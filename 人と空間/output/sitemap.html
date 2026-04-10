@@ -206,64 +206,93 @@
       color: #bbb;
     }
 
-    /* スマホ：縦並びレイアウト */
+    /* スマホ：カード型レイアウト */
     @media (max-width: 600px) {
       body {
-        padding: 40px 20px;
+        padding: 32px 16px;
       }
 
       .sitemap {
         max-width: 100%;
+        width: 100%;
       }
 
-      /* 横線を非表示 */
-      .pages::before {
+      /* TOP下の縦線 */
+      .line-down {
+        height: 20px;
+      }
+
+      /* 横線・接続線をすべて非表示 */
+      .pages::before,
+      .line-col,
+      .sub-line {
         display: none;
       }
 
-      /* ページ群を縦に並べる */
+      /* ページ群を縦カード列に */
       .pages {
         flex-direction: column;
-        align-items: center;
-        max-width: 320px;
+        align-items: stretch;
         width: 100%;
+        max-width: 100%;
+        gap: 10px;
+      }
+
+      /* 各ページをカード化 */
+      .page-col {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        background: white;
+        border: 2px solid #1e2d3d;
+        border-radius: 8px;
+        padding: 14px;
         gap: 0;
       }
 
-      /* 各列を中央揃えに */
-      .page-col {
-        width: 100%;
-        align-items: center;
-      }
-
-      /* 縦線の高さを確保 */
-      .line-col {
-        height: 24px;
-      }
-
+      /* ページボックスをカードのヘッダーに */
       .page-box {
-        width: 70%;
-        max-width: 200px;
+        width: 100%;
+        max-width: 100%;
+        border: none;
+        border-bottom: 1px solid #e0e0e0;
+        border-radius: 0;
+        padding: 0 0 10px 0;
+        text-align: left;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
       }
 
-      /* サブページは横並び */
+      .page-box .page-en {
+        font-size: 10px;
+        color: #888;
+        letter-spacing: 0.15em;
+        margin-bottom: 0;
+      }
+
+      .page-box .page-ja {
+        font-size: 14px;
+        font-weight: 600;
+        color: #1e2d3d;
+      }
+
+      /* サブページを横並びタグに */
       .sub-pages {
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: center;
         gap: 6px;
-        padding: 10px 0 4px;
-      }
-
-      /* サブ間の縦線は非表示 */
-      .sub-line {
-        display: none;
+        width: 100%;
       }
 
       .sub-box {
         width: auto;
         max-width: none;
-        padding: 6px 10px;
+        padding: 5px 10px;
+        font-size: 11px;
+        border-radius: 20px;
       }
     }
   </style>
