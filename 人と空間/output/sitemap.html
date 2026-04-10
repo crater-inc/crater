@@ -17,7 +17,7 @@
     /* ヘッダー */
     .header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 48px;
     }
 
     .header .logo-mark {
@@ -47,87 +47,63 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0;
     }
 
     /* TOPページ */
     .top-page {
       background: #1e2d3d;
       color: white;
-      padding: 20px 60px;
+      padding: 16px 48px;
       border-radius: 6px;
       font-size: 15px;
       font-weight: 600;
       letter-spacing: 0.1em;
-      position: relative;
     }
 
-    /* 縦線（TOPから） */
+    /* TOP下の縦線 */
     .line-down {
       width: 2px;
-      height: 40px;
+      height: 32px;
       background: #bbb;
     }
 
-    /* 横線（ページ群をつなぐ） */
-    .horizontal-line {
-      display: none;
-    }
-
-    /* ページ群 */
+    /* ページ群：カードグリッド */
     .pages {
       display: flex;
-      gap: 0;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
       width: 100%;
-      max-width: 700px;
-      justify-content: space-between;
-      position: relative;
     }
 
-    /* ページ群の上に横線を擬似要素で描く（5列 = 各列20%、中心は10%〜90%） */
-    .pages::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 10%;
-      right: 10%;
-      height: 2px;
-      background: #bbb;
-    }
-
-    /* 各ページ列 */
+    /* 各ページカード */
     .page-col {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      flex: 1;
-      min-width: 0;
-    }
-
-    /* 縦線（横線からページへ） */
-    .line-col {
-      width: 2px;
-      height: 30px;
-      background: #bbb;
-    }
-
-    /* ページボックス */
-    .page-box {
       background: white;
       border: 2px solid #1e2d3d;
-      border-radius: 6px;
-      padding: 10px 6px;
-      text-align: center;
-      width: 90%;
-      max-width: 140px;
+      border-radius: 8px;
+      padding: 16px;
+      width: calc(33.333% - 8px);
+      min-width: 200px;
+      max-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* カード内ページ名 */
+    .page-box {
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
     }
 
     .page-box .page-en {
       font-size: 10px;
       color: #888;
       letter-spacing: 0.15em;
-      margin-bottom: 4px;
     }
 
     .page-box .page-ja {
@@ -136,41 +112,26 @@
       color: #1e2d3d;
     }
 
-    /* サブページ */
+    /* サブページ：横並びタグ */
     .sub-pages {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      margin-top: 0;
-    }
-
-    .sub-line {
-      width: 2px;
-      height: 20px;
-      background: #ccc;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     .sub-box {
-      background: #f9f9f9;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 8px 6px;
+      background: #f0f3f6;
+      border: 1px solid #c8d0da;
+      border-radius: 20px;
+      padding: 5px 10px;
       font-size: 11px;
-      color: #555;
-      width: 90%;
-      max-width: 130px;
-      text-align: center;
-    }
-
-    .sub-box + .sub-line {
-      display: block;
+      color: #444;
     }
 
     /* 注記 */
     .notes {
       max-width: 900px;
-      margin: 60px auto 0;
+      margin: 48px auto 0;
       background: white;
       border-radius: 8px;
       padding: 30px;
@@ -206,93 +167,26 @@
       color: #bbb;
     }
 
-    /* スマホ：カード型レイアウト */
+    /* スマホ */
     @media (max-width: 600px) {
       body {
         padding: 32px 16px;
       }
 
-      .sitemap {
-        max-width: 100%;
-        width: 100%;
-      }
-
-      /* TOP下の縦線 */
       .line-down {
         height: 20px;
       }
 
-      /* 横線・接続線をすべて非表示 */
-      .pages::before,
-      .line-col,
-      .sub-line {
-        display: none;
-      }
-
-      /* ページ群を縦カード列に */
       .pages {
         flex-direction: column;
         align-items: stretch;
-        width: 100%;
-        max-width: 100%;
         gap: 10px;
       }
 
-      /* 各ページをカード化 */
       .page-col {
         width: 100%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        background: white;
-        border: 2px solid #1e2d3d;
-        border-radius: 8px;
-        padding: 14px;
-        gap: 0;
-      }
-
-      /* ページボックスをカードのヘッダーに */
-      .page-box {
-        width: 100%;
+        min-width: unset;
         max-width: 100%;
-        border: none;
-        border-bottom: 1px solid #e0e0e0;
-        border-radius: 0;
-        padding: 0 0 10px 0;
-        text-align: left;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-      }
-
-      .page-box .page-en {
-        font-size: 10px;
-        color: #888;
-        letter-spacing: 0.15em;
-        margin-bottom: 0;
-      }
-
-      .page-box .page-ja {
-        font-size: 14px;
-        font-weight: 600;
-        color: #1e2d3d;
-      }
-
-      /* サブページを横並びタグに */
-      .sub-pages {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
-        width: 100%;
-      }
-
-      .sub-box {
-        width: auto;
-        max-width: none;
-        padding: 5px 10px;
-        font-size: 11px;
-        border-radius: 20px;
       }
     }
   </style>
@@ -311,81 +205,70 @@
     <div class="top-page">TOP（ホーム）</div>
     <div class="line-down"></div>
 
-    <!-- 横線 -->
-    <div class="horizontal-line"></div>
-
-    <!-- 各ページ列 -->
+    <!-- 各ページカード -->
     <div class="pages">
 
       <!-- 私たちについて -->
       <div class="page-col">
-        <div class="line-col"></div>
         <div class="page-box">
           <div class="page-en">ABOUT</div>
           <div class="page-ja">私たちについて</div>
         </div>
         <div class="sub-pages">
-          <div class="sub-line"></div>
           <div class="sub-box">ミッション</div>
-          <div class="sub-line"></div>
           <div class="sub-box">会社概要</div>
-          <div class="sub-line"></div>
           <div class="sub-box">メンバー</div>
         </div>
       </div>
 
       <!-- サービス -->
       <div class="page-col">
-        <div class="line-col"></div>
         <div class="page-box">
           <div class="page-en">SERVICES</div>
           <div class="page-ja">サービス</div>
         </div>
         <div class="sub-pages">
-          <div class="sub-line"></div>
           <div class="sub-box">CX調査</div>
-          <div class="sub-line"></div>
           <div class="sub-box">空間品質調査</div>
-          <div class="sub-line"></div>
           <div class="sub-box">AIカメラ・DX</div>
-          <div class="sub-line"></div>
           <div class="sub-box">コンサルティング</div>
         </div>
       </div>
 
       <!-- 事例 -->
       <div class="page-col">
-        <div class="line-col"></div>
         <div class="page-box">
           <div class="page-en">CASES</div>
           <div class="page-ja">事例</div>
         </div>
         <div class="sub-pages">
-          <div class="sub-line"></div>
           <div class="sub-box">百貨店</div>
-          <div class="sub-line"></div>
           <div class="sub-box">ライフスタイル</div>
-          <div class="sub-line"></div>
           <div class="sub-box">アパレル</div>
         </div>
       </div>
 
       <!-- お問い合わせ -->
       <div class="page-col">
-        <div class="line-col"></div>
         <div class="page-box">
           <div class="page-en">CONTACT</div>
           <div class="page-ja">お問い合わせ</div>
         </div>
         <div class="sub-pages">
-          <div class="sub-line"></div>
-          <div class="sub-box">送信完了</div>
+          <div class="sub-box">お問い合わせフォーム</div>
+        </div>
+      </div>
+
+      <!-- 送信完了 -->
+      <div class="page-col">
+        <div class="page-box">
+          <div class="page-en">COMPLETE</div>
+          <div class="page-ja">送信完了</div>
         </div>
       </div>
 
       <!-- プライバシーポリシー -->
       <div class="page-col">
-        <div class="line-col"></div>
         <div class="page-box">
           <div class="page-en">PRIVACY</div>
           <div class="page-ja">プライバシーポリシー</div>
