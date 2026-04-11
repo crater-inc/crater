@@ -9,118 +9,170 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --accent: #FF5C00;
-            --black: #0A0A0A;
+            --orange: #FF5C00;
+            --black: #000000;
+            --near-black: #0A0A0A;
             --white: #FFFFFF;
-            --gray: #777777;
+            --gray: #666666;
+            --dark-gray: #444444;
             --light: #F4F4F4;
-            --border: #DDDDDD;
-            --border-dark: #2A2A2A;
+            --border: #E0E0E0;
+            --border-dark: #1A1A1A;
         }
 
         body {
             font-family: 'Noto Sans JP', sans-serif;
             background: var(--white);
-            color: var(--black);
+            color: var(--near-black);
             line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* ヘッダー */
+        /* ===========================
+           ヘッダー
+        =========================== */
         .header {
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 100;
-            height: 56px;
+            z-index: 200;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 48px;
-            background: rgba(10,10,10,0.92);
-            backdrop-filter: blur(8px);
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-dark);
         }
 
         .logo {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: 13px;
-            letter-spacing: 0.12em;
+            font-size: 12px;
+            letter-spacing: 0.14em;
             color: var(--white);
             text-transform: uppercase;
         }
 
         .nav {
             display: flex;
-            gap: 36px;
+            gap: 32px;
             align-items: center;
         }
 
         .nav a {
             font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            letter-spacing: 0.1em;
-            color: #666666;
+            letter-spacing: 0.12em;
+            color: #555555;
             text-decoration: none;
             text-transform: uppercase;
         }
 
         .nav .nav-cta {
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 6px 20px;
+            color: var(--orange);
+            border: 1px solid var(--orange);
+            padding: 6px 18px;
             border-radius: 2px;
         }
 
         /* ===========================
+           共通パーツ
+        =========================== */
+        .label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--orange);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .label::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 1px;
+            background: var(--orange);
+        }
+
+        .sec-title {
+            font-size: clamp(32px, 4.5vw, 58px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--near-black);
+            margin-bottom: 56px;
+        }
+
+        .sec-title-white { color: var(--white); }
+
+        .sec-title em {
+            font-style: normal;
+            color: var(--orange);
+        }
+
+        /* セクション共通パディング */
+        .sec { padding: 120px 48px; }
+        .sec-dark { background: var(--black); border-bottom: 1px solid var(--border-dark); }
+        .sec-light { background: var(--light); }
+        .sec-white { background: var(--white); border-bottom: 1px solid var(--border); }
+
+        /* ===========================
            HERO
-           フルスクリーン / 写真グリッド / 超大テキスト
         =========================== */
         .hero {
             min-height: 100vh;
             background: var(--black);
-            display: grid;
-            grid-template-rows: 1fr auto;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
-        /* 写真グリッド（3枚）*/
+        /* 写真グリッド（3分割・背景） */
         .hero-photos {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            height: 100vh;
             position: absolute;
             inset: 0;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr 1fr;
+            gap: 2px;
+            background: var(--border-dark);
         }
 
-        .hero-photo {
-            overflow: hidden;
-        }
+        .hero-photo { overflow: hidden; }
 
         .hero-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(40%) brightness(0.6);
+            filter: grayscale(35%) brightness(0.65);
         }
 
-        /* 縦の区切り線 */
-        .hero-photo:not(:last-child) {
-            border-right: 1px solid #222222;
+        /* 下からのグラデーションオーバーレイ */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(0,0,0,0.92) 0%,
+                rgba(0,0,0,0.5) 35%,
+                rgba(0,0,0,0.1) 65%,
+                transparent 100%
+            );
         }
 
-        /* テキストオーバーレイ */
-        .hero-content {
+        /* テキストコンテンツ */
+        .hero-body {
             position: relative;
             z-index: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 80px 48px;
-            min-height: 100vh;
-            background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 50%, transparent 100%);
+            padding: 0 48px 80px;
         }
 
         .hero-eyebrow {
@@ -128,9 +180,9 @@
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.3em;
-            color: var(--accent);
+            color: var(--orange);
             text-transform: uppercase;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 16px;
@@ -138,28 +190,27 @@
 
         .hero-eyebrow::before {
             content: '';
-            display: block;
-            width: 32px;
+            width: 28px;
             height: 1px;
-            background: var(--accent);
+            background: var(--orange);
         }
 
         .hero-title {
             font-family: 'Noto Sans JP', sans-serif;
-            font-size: clamp(48px, 7.5vw, 108px);
+            font-size: clamp(48px, 8vw, 112px);
             font-weight: 700;
-            line-height: 1.05;
+            line-height: 1.02;
             letter-spacing: -0.04em;
             color: var(--white);
-            margin-bottom: 40px;
+            margin-bottom: 48px;
         }
 
         .hero-title em {
             font-style: normal;
-            color: var(--accent);
+            color: var(--orange);
         }
 
-        .hero-bottom {
+        .hero-foot {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
@@ -167,19 +218,19 @@
         }
 
         .hero-sub {
-            font-size: 14px;
-            color: rgba(255,255,255,0.55);
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
             line-height: 1.9;
-            max-width: 340px;
+            max-width: 320px;
         }
 
         .hero-cta {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
-            background: var(--accent);
+            gap: 10px;
+            background: var(--orange);
             color: var(--white);
-            height: 52px;
+            height: 50px;
             padding: 0 40px;
             border-radius: 2px;
             font-size: 13px;
@@ -191,114 +242,54 @@
         }
 
         /* ===========================
-           セクション共通
+           PROBLEM（黒背景）
+           写真左 / リスト右
         =========================== */
-        .section {
-            padding: 120px 48px;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-        }
-
-        .section-dark {
-            background: var(--black);
-            border-bottom-color: var(--border-dark);
-        }
-
-        .section-light {
-            background: var(--light);
-        }
-
-        .section-label {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 28px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .section-label::after {
-            content: '';
-            display: block;
-            width: 36px;
-            height: 1px;
-            background: var(--accent);
-        }
-
-        .section-title {
-            font-size: clamp(32px, 4.5vw, 60px);
-            font-weight: 700;
-            line-height: 1.15;
-            letter-spacing: -0.03em;
-            color: var(--black);
-            margin-bottom: 64px;
-        }
-
-        .section-dark .section-title {
-            color: var(--white);
-        }
-
-        .section-title em {
-            font-style: normal;
-            color: var(--accent);
-        }
-
-        /* ===========================
-           PROBLEM（セクション2）
-           黒背景 / 写真＋テキスト横並び
-        =========================== */
-        .problem-layout {
+        .problem-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 45% 1fr;
             gap: 2px;
             background: var(--border-dark);
         }
 
         .problem-photo {
             overflow: hidden;
-            aspect-ratio: 4/5;
+            aspect-ratio: 3/4;
         }
 
         .problem-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(30%) brightness(0.75);
+            filter: grayscale(40%) brightness(0.65);
         }
 
         .problem-list {
             background: var(--black);
-            padding: 48px;
+            padding: 56px 48px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 0;
         }
 
         .problem-item {
             display: flex;
-            gap: 24px;
+            gap: 20px;
             align-items: flex-start;
-            padding: 28px 0;
+            padding: 24px 0;
             border-bottom: 1px solid var(--border-dark);
         }
 
-        .problem-item:first-child {
-            border-top: 1px solid var(--border-dark);
-        }
+        .problem-item:first-child { border-top: 1px solid var(--border-dark); }
 
-        .problem-num {
+        .p-num {
             font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--orange);
             letter-spacing: 0.05em;
             flex-shrink: 0;
-            padding-top: 3px;
+            padding-top: 4px;
         }
 
         .problem-item strong {
@@ -312,20 +303,20 @@
 
         .problem-item p {
             font-size: 13px;
-            color: #666666;
-            line-height: 1.7;
+            color: #555555;
+            line-height: 1.8;
         }
 
         /* ===========================
-           CONCEPT（セクション3）
-           白背景 / 3カード横並び
+           CONCEPT（白背景）
+           3カード横並び
         =========================== */
         .concept-lead {
-            font-size: 17px;
+            font-size: 16px;
             color: #444444;
             line-height: 1.9;
-            max-width: 600px;
-            margin-bottom: 72px;
+            max-width: 580px;
+            margin-bottom: 64px;
         }
 
         .concept-cards {
@@ -340,56 +331,50 @@
             padding: 48px 40px;
         }
 
-        .concept-card.active {
-            background: var(--black);
-        }
+        .concept-card.active { background: var(--black); }
 
-        .card-num {
+        .c-num {
             font-family: 'Montserrat', sans-serif;
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.2em;
-            color: #bbbbbb;
+            color: #cccccc;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
-        .concept-card.active .card-num {
-            color: var(--accent);
-        }
+        .concept-card.active .c-num { color: var(--orange); }
 
-        .card-title {
+        .c-title {
             font-size: 20px;
             font-weight: 700;
-            color: var(--black);
-            margin-bottom: 24px;
+            color: var(--near-black);
+            margin-bottom: 22px;
             line-height: 1.3;
         }
 
-        .concept-card.active .card-title {
-            color: var(--white);
-        }
+        .concept-card.active .c-title { color: var(--white); }
 
-        .card-tags {
+        .c-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .tag {
             font-size: 11px;
-            padding: 4px 12px;
+            padding: 4px 10px;
             border: 1px solid var(--border);
             border-radius: 2px;
-            color: #999999;
+            color: #aaaaaa;
         }
 
-        .tag.ng { color: #cc3333; border-color: #cc3333; }
-        .tag.ok { color: var(--accent); border-color: var(--accent); }
+        .tag.ng { color: #bb2222; border-color: #bb2222; }
+        .tag.ok { color: var(--orange); border-color: var(--orange); }
 
         /* ===========================
-           SERVICE（セクション4）
-           写真左 / リスト右 / 非対称
+           SERVICE（薄グレー）
+           写真左55% / テキスト右
         =========================== */
         .service-grid {
             display: grid;
@@ -408,7 +393,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(20%);
+            filter: grayscale(20%) brightness(0.9);
         }
 
         .service-text {
@@ -419,79 +404,77 @@
             justify-content: center;
         }
 
-        .service-list {
-            list-style: none;
-            margin-top: 0;
-        }
+        .svc-list { list-style: none; }
 
-        .service-list li {
+        .svc-item {
             display: flex;
             gap: 20px;
-            align-items: flex-start;
             padding: 22px 0;
             border-bottom: 1px solid var(--border);
         }
 
-        .service-list li:first-child { border-top: 1px solid var(--border); }
+        .svc-item:first-child { border-top: 1px solid var(--border); }
 
         .svc-num {
             font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--orange);
             flex-shrink: 0;
-            padding-top: 2px;
+            padding-top: 3px;
         }
 
-        .svc-content strong {
+        .svc-item strong {
             display: block;
             font-size: 14px;
             font-weight: 700;
-            color: var(--black);
+            color: var(--near-black);
             margin-bottom: 4px;
         }
 
-        .svc-content p {
+        .svc-item p {
             font-size: 13px;
             color: var(--gray);
             line-height: 1.7;
         }
 
-        /* coverage bar */
+        /* 対応領域バー */
         .coverage {
             background: var(--black);
-            padding: 32px 48px;
+            padding: 28px 48px;
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 28px;
         }
 
-        .coverage-label {
+        .cov-label {
             font-family: 'Montserrat', sans-serif;
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.2em;
-            color: var(--accent);
+            color: var(--orange);
             text-transform: uppercase;
             white-space: nowrap;
         }
 
-        .coverage-items {
+        .cov-items {
             display: flex;
-            gap: 24px;
+            gap: 0;
             flex-wrap: wrap;
         }
 
-        .coverage-item {
-            font-size: 13px;
-            color: #666666;
-            border-left: 1px solid #333333;
-            padding-left: 24px;
+        .cov-item {
+            font-size: 12px;
+            color: #555555;
+            border-left: 1px solid var(--border-dark);
+            padding: 0 20px;
         }
 
+        .cov-item:first-child { border-left: none; }
+
         /* ===========================
-           MERIT（セクション5）
-           白背景 / 3カード / 大番号
+           MERIT（白背景）
+           3カード / 番号超大
         =========================== */
         .merit-cards {
             display: grid;
@@ -516,24 +499,24 @@
         }
 
         .merit-card h3 {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
-            color: var(--black);
-            margin-bottom: 16px;
+            color: var(--near-black);
+            margin-bottom: 14px;
             line-height: 1.4;
         }
 
         .merit-card p {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--gray);
             line-height: 1.9;
         }
 
         /* ===========================
-           TIMELINE（セクション6）
-           黒背景 / 写真グリッド＋テキスト
+           TIMELINE（黒背景）
+           写真グリッド上段 / テキスト下段
         =========================== */
-        .timeline-photos {
+        .tl-photos {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2px;
@@ -541,26 +524,26 @@
             margin-bottom: 2px;
         }
 
-        .timeline-photo {
+        .tl-photo {
             overflow: hidden;
             aspect-ratio: 3/2;
         }
 
-        .timeline-photo img {
+        .tl-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(40%) brightness(0.7);
+            filter: grayscale(40%) brightness(0.65);
         }
 
-        .timeline-texts {
+        .tl-texts {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2px;
             background: var(--border-dark);
         }
 
-        .timeline-text {
+        .tl-text {
             background: var(--black);
             padding: 40px;
         }
@@ -569,9 +552,9 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 64px;
             font-weight: 900;
-            color: #1e1e1e;
+            color: #1a1a1a;
             line-height: 1;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             letter-spacing: -0.04em;
         }
 
@@ -580,27 +563,27 @@
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.15em;
-            color: var(--accent);
+            color: var(--orange);
             text-transform: uppercase;
             margin-bottom: 24px;
         }
 
-        .timeline-text h3 {
-            font-size: 15px;
+        .tl-text h3 {
+            font-size: 14px;
             font-weight: 700;
             color: var(--white);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.5;
         }
 
-        .timeline-text p {
+        .tl-text p {
             font-size: 13px;
             color: #555555;
             line-height: 1.8;
         }
 
         /* ===========================
-           FAQ（セクション7）
+           FAQ（薄グレー）
            左右分割
         =========================== */
         .faq-wrap {
@@ -609,16 +592,16 @@
             gap: 80px;
         }
 
-        .faq-side h2 {
-            font-size: 36px;
+        .faq-side-title {
+            font-size: 34px;
             font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1.2;
-            color: var(--black);
-            margin-bottom: 20px;
+            color: var(--near-black);
+            margin-bottom: 16px;
         }
 
-        .faq-side p {
+        .faq-side-sub {
             font-size: 13px;
             color: var(--gray);
             line-height: 1.8;
@@ -633,17 +616,18 @@
             padding: 22px 0;
             font-size: 14px;
             font-weight: 700;
-            color: var(--black);
+            color: var(--near-black);
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            gap: 16px;
         }
 
         .faq-icon {
             font-family: 'Montserrat', sans-serif;
             font-size: 18px;
-            color: var(--accent);
+            color: var(--orange);
             flex-shrink: 0;
         }
 
@@ -655,8 +639,8 @@
         }
 
         /* ===========================
-           PRICING（セクション8）
-           白背景 / 2カード / 数字主役
+           PRICING（白背景）
+           2カード / 数字超大
         =========================== */
         .pricing-cards {
             display: grid;
@@ -670,27 +654,25 @@
             padding: 72px 56px;
         }
 
-        .pricing-card.dark {
-            background: var(--black);
-        }
+        .pricing-card.dark { background: var(--black); }
 
         .p-tag {
             font-family: 'Montserrat', sans-serif;
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.25em;
-            color: var(--gray);
+            color: #aaaaaa;
             text-transform: uppercase;
             margin-bottom: 48px;
         }
 
-        .pricing-card.dark .p-tag { color: var(--accent); }
+        .pricing-card.dark .p-tag { color: var(--orange); }
 
         .p-price {
             font-family: 'Montserrat', sans-serif;
             font-size: clamp(44px, 5.5vw, 76px);
             font-weight: 900;
-            color: var(--black);
+            color: var(--near-black);
             letter-spacing: -0.04em;
             line-height: 1;
             margin-bottom: 8px;
@@ -699,16 +681,13 @@
         .pricing-card.dark .p-price { color: var(--white); }
 
         .p-unit {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--gray);
             margin-bottom: 48px;
+            letter-spacing: 0.05em;
         }
 
-        .p-features {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
+        .p-features { display: flex; flex-direction: column; gap: 14px; }
 
         .p-feature {
             display: flex;
@@ -718,32 +697,26 @@
             line-height: 1.6;
         }
 
-        .pricing-card.dark .p-feature { color: #555555; }
+        .pricing-card.dark .p-feature { color: #444444; }
 
         .p-feature::before {
             content: '—';
-            color: var(--accent);
+            color: var(--orange);
             flex-shrink: 0;
         }
 
         /* ===========================
-           CTA（セクション9）
-           黒背景 / 写真＋フォーム
+           CTA（黒背景）
+           左：写真＋テキスト / 右：フォーム
         =========================== */
-        .cta-section {
-            background: var(--black);
-            padding: 0;
-            border-bottom: none;
+        .cta-wrap {
             display: grid;
-            grid-template-columns: 1fr 560px;
-            min-height: 700px;
+            grid-template-columns: 1fr 520px;
+            min-height: 680px;
+            gap: 0;
         }
 
         .cta-left {
-            padding: 100px 56px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             position: relative;
             overflow: hidden;
         }
@@ -760,13 +733,24 @@
             filter: grayscale(40%) brightness(0.4);
         }
 
+        .cta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.55);
+        }
+
         .cta-text {
             position: relative;
             z-index: 1;
+            padding: 80px 56px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
         .cta-heading {
-            font-size: clamp(32px, 4vw, 56px);
+            font-size: clamp(32px, 4vw, 52px);
             font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1.2;
@@ -775,13 +759,13 @@
         }
 
         .cta-copy {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            color: rgba(255,255,255,0.45);
             line-height: 1.9;
         }
 
         .cta-right {
-            background: #111111;
+            background: #0d0d0d;
             padding: 80px 56px;
             border-left: 1px solid var(--border-dark);
             display: flex;
@@ -789,9 +773,7 @@
             justify-content: center;
         }
 
-        .cta-right .section-label { margin-bottom: 32px; }
-
-        .form-group { margin-bottom: 20px; }
+        .form-group { margin-bottom: 18px; }
 
         .form-group label {
             display: block;
@@ -799,7 +781,7 @@
             font-size: 10px;
             font-weight: 700;
             letter-spacing: 0.15em;
-            color: #555555;
+            color: #444444;
             text-transform: uppercase;
             margin-bottom: 8px;
         }
@@ -808,26 +790,24 @@
         .form-group textarea {
             width: 100%;
             background: var(--black);
-            border: 1px solid #2a2a2a;
+            border: 1px solid #1f1f1f;
             color: var(--white);
             font-family: 'Noto Sans JP', sans-serif;
-            font-size: 14px;
-            padding: 14px 16px;
+            font-size: 13px;
+            padding: 12px 14px;
             border-radius: 2px;
             outline: none;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--accent);
-        }
+        .form-group textarea:focus { border-color: var(--orange); }
 
-        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-group textarea { min-height: 96px; resize: vertical; }
 
         .submit-btn {
             width: 100%;
-            height: 52px;
-            background: var(--accent);
+            height: 50px;
+            background: var(--orange);
             color: var(--white);
             border: none;
             font-family: 'Noto Sans JP', sans-serif;
@@ -839,48 +819,57 @@
             letter-spacing: 0.06em;
         }
 
-        /* フッター */
+        /* ===========================
+           フッター
+        =========================== */
         .footer {
             background: #050505;
-            padding: 36px 48px;
+            padding: 32px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #1a1a1a;
+            border-top: 1px solid #111111;
         }
 
         .footer-logo {
             font-family: 'Montserrat', sans-serif;
             font-weight: 900;
-            font-size: 12px;
-            letter-spacing: 0.12em;
-            color: #333333;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            color: #2a2a2a;
             text-transform: uppercase;
         }
 
-        .footer-copy { font-size: 11px; color: #333333; }
+        .footer-copy { font-size: 11px; color: #2a2a2a; }
 
-        /* レスポンシブ */
-        @media (max-width: 900px) {
-            .header { padding: 0 24px; }
+        /* ===========================
+           レスポンシブ
+        =========================== */
+        @media (max-width: 960px) {
+            .header { padding: 0 20px; }
+            .nav { display: none; }
             .hero-photos { grid-template-columns: 1fr 1fr; }
             .hero-photos .hero-photo:last-child { display: none; }
-            .hero-content { padding: 80px 24px; }
+            .hero-body { padding: 0 20px 60px; }
             .hero-title { font-size: 44px; }
-            .hero-bottom { flex-direction: column; align-items: flex-start; }
-            .section { padding: 80px 24px; }
-            .problem-layout { grid-template-columns: 1fr; }
+            .hero-foot { flex-direction: column; align-items: flex-start; }
+            .sec { padding: 80px 20px; }
+            .problem-grid { grid-template-columns: 1fr; }
+            .problem-list { padding: 40px 20px; }
             .concept-cards { grid-template-columns: 1fr; }
             .service-grid { grid-template-columns: 1fr; }
+            .service-text { padding: 40px 20px; }
+            .coverage { padding: 24px 20px; flex-wrap: wrap; gap: 16px; }
             .merit-cards { grid-template-columns: 1fr; }
-            .timeline-photos { grid-template-columns: 1fr; }
-            .timeline-texts { grid-template-columns: 1fr; }
-            .faq-wrap { grid-template-columns: 1fr; }
+            .tl-photos { grid-template-columns: 1fr; }
+            .tl-texts { grid-template-columns: 1fr; }
+            .faq-wrap { grid-template-columns: 1fr; gap: 40px; }
             .pricing-cards { grid-template-columns: 1fr; }
-            .cta-section { grid-template-columns: 1fr; }
-            .cta-left { min-height: 300px; padding: 60px 24px; }
-            .cta-right { padding: 60px 24px; }
-            .footer { flex-direction: column; gap: 12px; }
+            .pricing-card { padding: 48px 20px; }
+            .cta-wrap { grid-template-columns: 1fr; }
+            .cta-left { min-height: 320px; }
+            .cta-right { padding: 60px 20px; }
+            .footer { flex-direction: column; gap: 12px; padding: 28px 20px; }
         }
     </style>
 </head>
@@ -890,35 +879,36 @@
     <header class="header">
         <div class="logo">Designer Consulting</div>
         <nav class="nav">
-            <a href="#problem">課題</a>
-            <a href="#concept">コンセプト</a>
-            <a href="#service">サービス</a>
-            <a href="#pricing">料金</a>
-            <a href="#cta" class="nav-cta">相談する</a>
+            <a href="#problem">Problem</a>
+            <a href="#concept">Concept</a>
+            <a href="#service">Service</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#cta" class="nav-cta">Contact</a>
         </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO ／ 黒背景・写真グリッド・超大テキスト -->
     <section class="hero" id="top">
         <div class="hero-photos">
             <div class="hero-photo">
-                <img src="https://picsum.photos/seed/office1/900/1200" alt="">
+                <img src="https://picsum.photos/seed/office11/900/1100" alt="">
             </div>
             <div class="hero-photo">
-                <img src="https://picsum.photos/seed/design2/600/1200" alt="">
+                <img src="https://picsum.photos/seed/desk22/600/1100" alt="">
             </div>
             <div class="hero-photo">
-                <img src="https://picsum.photos/seed/creative3/600/1200" alt="">
+                <img src="https://picsum.photos/seed/work33/600/1100" alt="">
             </div>
         </div>
-        <div class="hero-content">
+        <div class="hero-overlay"></div>
+        <div class="hero-body">
             <p class="hero-eyebrow">社内デザイナー顧問</p>
             <h1 class="hero-title">
                 デザイン係を、<br>
                 <em>"任せられる存在"</em>に<br>
                 育てる仕組み
             </h1>
-            <div class="hero-bottom">
+            <div class="hero-foot">
                 <p class="hero-sub">
                     採用でも外注でもない、第三の選択肢。<br>
                     外部アートディレクターが社内のデザイン上司として伴走します。
@@ -928,45 +918,45 @@
         </div>
     </section>
 
-    <!-- PROBLEM -->
-    <section class="section section-dark" id="problem">
-        <p class="section-label">Problem</p>
-        <h2 class="section-title">社内のデザインは、<br>こんな状況に<em>なっていませんか？</em></h2>
-        <div class="problem-layout">
+    <!-- PROBLEM ／ 黒背景・写真左・リスト右 -->
+    <section class="sec sec-dark" id="problem">
+        <p class="label">Problem</p>
+        <h2 class="sec-title sec-title-white">社内のデザインは、<br>こんな状況に<em>なっていませんか？</em></h2>
+        <div class="problem-grid">
             <div class="problem-photo">
-                <img src="https://picsum.photos/seed/workplace4/800/1000" alt="">
+                <img src="https://picsum.photos/seed/workplace44/700/930" alt="">
             </div>
             <div class="problem-list">
                 <div class="problem-item">
-                    <span class="problem-num">01</span>
+                    <span class="p-num">01</span>
                     <div>
                         <strong>デザイン担当が専門教育を受けていない</strong>
                         <p>経理や営業から異動した担当者が、実務で学ぶしかない状態</p>
                     </div>
                 </div>
                 <div class="problem-item">
-                    <span class="problem-num">02</span>
+                    <span class="p-num">02</span>
                     <div>
                         <strong>制作物の品質が安定しない</strong>
                         <p>作る人によって品質がバラバラ。ブランド統一が難しい</p>
                     </div>
                 </div>
                 <div class="problem-item">
-                    <span class="problem-num">03</span>
+                    <span class="p-num">03</span>
                     <div>
                         <strong>修正・外注コストが増えている</strong>
                         <p>何度も修正が必要になったり、外注に頼る悪循環</p>
                     </div>
                 </div>
                 <div class="problem-item">
-                    <span class="problem-num">04</span>
+                    <span class="p-num">04</span>
                     <div>
                         <strong>経営者がレビューに時間を割いている</strong>
                         <p>経営者が毎回チェック・修正指示。本来の仕事ができない</p>
                     </div>
                 </div>
                 <div class="problem-item">
-                    <span class="problem-num">05</span>
+                    <span class="p-num">05</span>
                     <div>
                         <strong>デザイナー採用を検討するほどでもない</strong>
                         <p>専門人材が必要だけど、採用コストが見合わない</p>
@@ -976,19 +966,19 @@
         </div>
     </section>
 
-    <!-- CONCEPT -->
-    <section class="section" id="concept">
-        <p class="section-label">Concept</p>
-        <h2 class="section-title">採用でも外注でもない、<br><em>第三の選択肢</em></h2>
+    <!-- CONCEPT ／ 白背景・3カード -->
+    <section class="sec sec-white" id="concept">
+        <p class="label">Concept</p>
+        <h2 class="sec-title">採用でも外注でもない、<br><em>第三の選択肢</em></h2>
         <p class="concept-lead">
             外部アートディレクターが社内のデザイン上司として伴走する。<br>
             コストを抑えながら、社内にデザイン力を蓄積できる唯一の方法。
         </p>
         <div class="concept-cards">
             <div class="concept-card">
-                <p class="card-num">Option 01</p>
-                <h3 class="card-title">採用</h3>
-                <div class="card-tags">
+                <p class="c-num">Option 01</p>
+                <h3 class="c-title">採用</h3>
+                <div class="c-tags">
                     <span class="tag ng">コスト高</span>
                     <span class="tag ng">時間かかる</span>
                     <span class="tag ng">固定費</span>
@@ -996,18 +986,18 @@
                 </div>
             </div>
             <div class="concept-card">
-                <p class="card-num">Option 02</p>
-                <h3 class="card-title">外注</h3>
-                <div class="card-tags">
+                <p class="c-num">Option 02</p>
+                <h3 class="c-title">外注</h3>
+                <div class="c-tags">
                     <span class="tag ng">毎回高い</span>
                     <span class="tag ng">ノウハウが残らない</span>
                     <span class="tag ok">即戦力◎</span>
                 </div>
             </div>
             <div class="concept-card active">
-                <p class="card-num">Option 03</p>
-                <h3 class="card-title">社内デザイナー顧問</h3>
-                <div class="card-tags">
+                <p class="c-num">Option 03</p>
+                <h3 class="c-title">社内デザイナー顧問</h3>
+                <div class="c-tags">
                     <span class="tag ok">コスト効率◎</span>
                     <span class="tag ok">ノウハウ蓄積◎</span>
                     <span class="tag ok">即導入◎</span>
@@ -1016,40 +1006,40 @@
         </div>
     </section>
 
-    <!-- SERVICE -->
-    <section class="section section-light" id="service">
-        <p class="section-label">Service</p>
-        <h2 class="section-title">実務レビューで、<br><em>確実に成長</em></h2>
+    <!-- SERVICE ／ 薄グレー・写真左・テキスト右 -->
+    <section class="sec sec-light" id="service">
+        <p class="label">Service</p>
+        <h2 class="sec-title">実務レビューで、<br><em>確実に成長</em></h2>
         <div class="service-grid">
             <div class="service-photo">
-                <img src="https://picsum.photos/seed/meeting5/900/700" alt="オンラインレビュー">
+                <img src="https://picsum.photos/seed/meeting55/900/680" alt="">
             </div>
             <div class="service-text">
-                <ul class="service-list">
-                    <li>
+                <ul class="svc-list">
+                    <li class="svc-item">
                         <span class="svc-num">01</span>
-                        <div class="svc-content">
+                        <div>
                             <strong>週1回1時間のオンラインレビュー</strong>
                             <p>実務制作物をチェック＆改善指導。具体的なフィードバックで即実践。</p>
                         </div>
                     </li>
-                    <li>
+                    <li class="svc-item">
                         <span class="svc-num">02</span>
-                        <div class="svc-content">
+                        <div>
                             <strong>全ジャンルのデザイン対応</strong>
                             <p>グラフィック、Web、資料、パッケージ、販促物、広告。</p>
                         </div>
                     </li>
-                    <li>
+                    <li class="svc-item">
                         <span class="svc-num">03</span>
-                        <div class="svc-content">
+                        <div>
                             <strong>レベルに応じた課題提示</strong>
                             <p>制作物がない場合も、個別成長に合わせた課題でスキルを底上げ。</p>
                         </div>
                     </li>
-                    <li>
+                    <li class="svc-item">
                         <span class="svc-num">04</span>
-                        <div class="svc-content">
+                        <div>
                             <strong>毎月経営者へ育成レポート</strong>
                             <p>成長の可視化で投資対効果を実感。経営者の安心感に。</p>
                         </div>
@@ -1058,22 +1048,22 @@
             </div>
         </div>
         <div class="coverage">
-            <span class="coverage-label">Coverage</span>
-            <div class="coverage-items">
-                <span class="coverage-item">グラフィック</span>
-                <span class="coverage-item">Web</span>
-                <span class="coverage-item">資料・プレゼン</span>
-                <span class="coverage-item">パッケージ</span>
-                <span class="coverage-item">販促物</span>
-                <span class="coverage-item">広告</span>
+            <span class="cov-label">Coverage</span>
+            <div class="cov-items">
+                <span class="cov-item">グラフィック</span>
+                <span class="cov-item">Web</span>
+                <span class="cov-item">資料・プレゼン</span>
+                <span class="cov-item">パッケージ</span>
+                <span class="cov-item">販促物</span>
+                <span class="cov-item">広告</span>
             </div>
         </div>
     </section>
 
-    <!-- MERIT -->
-    <section class="section" id="merit">
-        <p class="section-label">Merit</p>
-        <h2 class="section-title">導入で得られる<br><em>3つの価値</em></h2>
+    <!-- MERIT ／ 白背景・3カード・番号超大 -->
+    <section class="sec sec-white" id="merit">
+        <p class="label">Merit</p>
+        <h2 class="sec-title">導入で得られる<br><em>3つの価値</em></h2>
         <div class="merit-cards">
             <div class="merit-card">
                 <div class="merit-num">01</div>
@@ -1093,35 +1083,29 @@
         </div>
     </section>
 
-    <!-- TIMELINE -->
-    <section class="section section-dark" id="timeline">
-        <p class="section-label">Timeline</p>
-        <h2 class="section-title"><em>6ヶ月</em>で、ここまで変わる</h2>
-        <div class="timeline-photos">
-            <div class="timeline-photo">
-                <img src="https://picsum.photos/seed/growth6/600/400" alt="">
-            </div>
-            <div class="timeline-photo">
-                <img src="https://picsum.photos/seed/team7/600/400" alt="">
-            </div>
-            <div class="timeline-photo">
-                <img src="https://picsum.photos/seed/success8/600/400" alt="">
-            </div>
+    <!-- TIMELINE ／ 黒背景・写真上段・テキスト下段 -->
+    <section class="sec sec-dark" id="timeline">
+        <p class="label">Timeline</p>
+        <h2 class="sec-title sec-title-white"><em>6ヶ月</em>で、ここまで変わる</h2>
+        <div class="tl-photos">
+            <div class="tl-photo"><img src="https://picsum.photos/seed/growth66/600/400" alt=""></div>
+            <div class="tl-photo"><img src="https://picsum.photos/seed/team77/600/400" alt=""></div>
+            <div class="tl-photo"><img src="https://picsum.photos/seed/success88/600/400" alt=""></div>
         </div>
-        <div class="timeline-texts">
-            <div class="timeline-text">
+        <div class="tl-texts">
+            <div class="tl-text">
                 <div class="tl-month">1-2</div>
                 <p class="tl-period">Short Term</p>
                 <h3>制作物のクオリティ改善が見える</h3>
                 <p>レビューを受けた制作物から改善が見える。気づきが増える時期。</p>
             </div>
-            <div class="timeline-text">
+            <div class="tl-text">
                 <div class="tl-month">3-4</div>
                 <p class="tl-period">Mid Term</p>
                 <h3>任せられるデザイン担当へ成長</h3>
                 <p>指摘が減少。自分で改善案を考えるようになり、主体的に制作。</p>
             </div>
-            <div class="timeline-text">
+            <div class="tl-text">
                 <div class="tl-month">5-6</div>
                 <p class="tl-period">Long Term</p>
                 <h3>社内にデザインノウハウが蓄積</h3>
@@ -1130,13 +1114,13 @@
         </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section section-light" id="faq">
+    <!-- FAQ ／ 薄グレー・左右分割 -->
+    <section class="sec sec-light" id="faq">
         <div class="faq-wrap">
-            <div class="faq-side">
-                <p class="section-label">FAQ</p>
-                <h2>よくある<br>質問</h2>
-                <p>その他ご不明な点はお気軽にご相談ください。</p>
+            <div>
+                <p class="label">FAQ</p>
+                <h2 class="faq-side-title">よくある<br>質問</h2>
+                <p class="faq-side-sub">その他ご不明な点はお気軽にご相談ください。</p>
             </div>
             <div class="faq-list">
                 <div class="faq-item">
@@ -1167,10 +1151,10 @@
         </div>
     </section>
 
-    <!-- PRICING -->
-    <section class="section" id="pricing">
-        <p class="section-label">Pricing</p>
-        <h2 class="section-title">料金・<em>契約条件</em></h2>
+    <!-- PRICING ／ 白背景・2カード・価格超大 -->
+    <section class="sec sec-white" id="pricing">
+        <p class="label">Pricing</p>
+        <h2 class="sec-title">料金・<em>契約条件</em></h2>
         <div class="pricing-cards">
             <div class="pricing-card">
                 <p class="p-tag">Monthly Plan</p>
@@ -1197,44 +1181,47 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section" id="cta">
-        <div class="cta-left">
-            <div class="cta-bg">
-                <img src="https://picsum.photos/seed/consult9/900/700" alt="">
+    <!-- CTA ／ 黒背景・写真左・フォーム右 -->
+    <section class="sec-dark" id="cta">
+        <div class="cta-wrap">
+            <div class="cta-left">
+                <div class="cta-bg">
+                    <img src="https://picsum.photos/seed/consult99/900/700" alt="">
+                </div>
+                <div class="cta-overlay"></div>
+                <div class="cta-text">
+                    <p class="label">Contact</p>
+                    <h2 class="cta-heading">まずは、<br>相談してみて<br>ください。</h2>
+                    <p class="cta-copy">
+                        「本当に効果があるのか」<br>
+                        「うちの会社に合うのか」<br><br>
+                        そうした疑問は、まず話してみてください。<br>
+                        問い合わせは無料。返信は24時間以内。
+                    </p>
+                </div>
             </div>
-            <div class="cta-text">
-                <p class="section-label">Contact</p>
-                <h2 class="cta-heading">まずは、<br>相談してみて<br>ください。</h2>
-                <p class="cta-copy">
-                    「本当に効果があるのか」<br>
-                    「うちの会社に合うのか」<br><br>
-                    そうした疑問は、まず話してみてください。<br>
-                    問い合わせは無料。返信は24時間以内。
-                </p>
+            <div class="cta-right">
+                <p class="label">Free Consultation</p>
+                <form>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input type="text" placeholder="株式会社〇〇">
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" placeholder="山田 太郎">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="example@company.co.jp">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="ご質問・ご相談内容をご記入ください"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">無料相談を申し込む</button>
+                </form>
             </div>
-        </div>
-        <div class="cta-right">
-            <p class="section-label">Free Consultation</p>
-            <form>
-                <div class="form-group">
-                    <label>Company</label>
-                    <input type="text" placeholder="株式会社〇〇">
-                </div>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" placeholder="山田 太郎">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="example@company.co.jp">
-                </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea placeholder="ご質問・ご相談内容をご記入ください"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">無料相談を申し込む</button>
-            </form>
         </div>
     </section>
 
