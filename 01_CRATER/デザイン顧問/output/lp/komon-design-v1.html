@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社内デザイナー顧問</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --accent: #FF5C00;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gray: #777777;
+            --light: #F4F4F4;
+            --border: #DDDDDD;
+            --border-dark: #2A2A2A;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            letter-spacing: 0.12em;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .nav a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #666666;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav .nav-cta {
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 6px 20px;
+            border-radius: 2px;
+        }
+
+        /* ===========================
+           HERO
+           フルスクリーン / 写真グリッド / 超大テキスト
+        =========================== */
+        .hero {
+            min-height: 100vh;
+            background: var(--black);
+            display: grid;
+            grid-template-rows: 1fr auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 写真グリッド（3枚）*/
+        .hero-photos {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            height: 100vh;
+            position: absolute;
+            inset: 0;
+        }
+
+        .hero-photo {
+            overflow: hidden;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(40%) brightness(0.6);
+        }
+
+        /* 縦の区切り線 */
+        .hero-photo:not(:last-child) {
+            border-right: 1px solid #222222;
+        }
+
+        /* テキストオーバーレイ */
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 80px 48px;
+            min-height: 100vh;
+            background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 50%, transparent 100%);
+        }
+
+        .hero-eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: clamp(48px, 7.5vw, 108px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            color: var(--white);
+            margin-bottom: 40px;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.9;
+            max-width: 340px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--accent);
+            color: var(--white);
+            height: 52px;
+            padding: 0 40px;
+            border-radius: 2px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        /* ===========================
+           セクション共通
+        =========================== */
+        .section {
+            padding: 120px 48px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .section-dark {
+            background: var(--black);
+            border-bottom-color: var(--border-dark);
+        }
+
+        .section-light {
+            background: var(--light);
+        }
+
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .section-label::after {
+            content: '';
+            display: block;
+            width: 36px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4.5vw, 60px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            margin-bottom: 64px;
+        }
+
+        .section-dark .section-title {
+            color: var(--white);
+        }
+
+        .section-title em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        /* ===========================
+           PROBLEM（セクション2）
+           黒背景 / 写真＋テキスト横並び
+        =========================== */
+        .problem-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: var(--border-dark);
+        }
+
+        .problem-photo {
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .problem-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%) brightness(0.75);
+        }
+
+        .problem-list {
+            background: var(--black);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 0;
+        }
+
+        .problem-item {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .problem-item:first-child {
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .problem-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            flex-shrink: 0;
+            padding-top: 3px;
+        }
+
+        .problem-item strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+            line-height: 1.5;
+        }
+
+        .problem-item p {
+            font-size: 13px;
+            color: #666666;
+            line-height: 1.7;
+        }
+
+        /* ===========================
+           CONCEPT（セクション3）
+           白背景 / 3カード横並び
+        =========================== */
+        .concept-lead {
+            font-size: 17px;
+            color: #444444;
+            line-height: 1.9;
+            max-width: 600px;
+            margin-bottom: 72px;
+        }
+
+        .concept-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+
+        .concept-card {
+            background: var(--white);
+            padding: 48px 40px;
+        }
+
+        .concept-card.active {
+            background: var(--black);
+        }
+
+        .card-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: #bbbbbb;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .concept-card.active .card-num {
+            color: var(--accent);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+
+        .concept-card.active .card-title {
+            color: var(--white);
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            color: #999999;
+        }
+
+        .tag.ng { color: #cc3333; border-color: #cc3333; }
+        .tag.ok { color: var(--accent); border-color: var(--accent); }
+
+        /* ===========================
+           SERVICE（セクション4）
+           写真左 / リスト右 / 非対称
+        =========================== */
+        .service-grid {
+            display: grid;
+            grid-template-columns: 55% 1fr;
+            gap: 2px;
+            background: var(--border);
+            margin-bottom: 2px;
+        }
+
+        .service-photo {
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .service-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        .service-text {
+            background: var(--light);
+            padding: 56px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-top: 0;
+        }
+
+        .service-list li {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 22px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .service-list li:first-child { border-top: 1px solid var(--border); }
+
+        .svc-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+
+        .svc-content strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 4px;
+        }
+
+        .svc-content p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* coverage bar */
+        .coverage {
+            background: var(--black);
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .coverage-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .coverage-items {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .coverage-item {
+            font-size: 13px;
+            color: #666666;
+            border-left: 1px solid #333333;
+            padding-left: 24px;
+        }
+
+        /* ===========================
+           MERIT（セクション5）
+           白背景 / 3カード / 大番号
+        =========================== */
+        .merit-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+
+        .merit-card {
+            background: var(--white);
+            padding: 56px 40px;
+        }
+
+        .merit-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 96px;
+            font-weight: 900;
+            color: var(--light);
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -0.06em;
+        }
+
+        .merit-card h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .merit-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.9;
+        }
+
+        /* ===========================
+           TIMELINE（セクション6）
+           黒背景 / 写真グリッド＋テキスト
+        =========================== */
+        .timeline-photos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border-dark);
+            margin-bottom: 2px;
+        }
+
+        .timeline-photo {
+            overflow: hidden;
+            aspect-ratio: 3/2;
+        }
+
+        .timeline-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(40%) brightness(0.7);
+        }
+
+        .timeline-texts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border-dark);
+        }
+
+        .timeline-text {
+            background: var(--black);
+            padding: 40px;
+        }
+
+        .tl-month {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 64px;
+            font-weight: 900;
+            color: #1e1e1e;
+            line-height: 1;
+            margin-bottom: 6px;
+            letter-spacing: -0.04em;
+        }
+
+        .tl-period {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .timeline-text h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .timeline-text p {
+            font-size: 13px;
+            color: #555555;
+            line-height: 1.8;
+        }
+
+        /* ===========================
+           FAQ（セクション7）
+           左右分割
+        =========================== */
+        .faq-wrap {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 80px;
+        }
+
+        .faq-side h2 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .faq-side p {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .faq-list { display: flex; flex-direction: column; }
+
+        .faq-item { border-top: 1px solid var(--border); }
+        .faq-item:last-child { border-bottom: 1px solid var(--border); }
+
+        .faq-q {
+            padding: 22px 0;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--black);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-icon {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .faq-a {
+            padding: 0 0 22px;
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.9;
+        }
+
+        /* ===========================
+           PRICING（セクション8）
+           白背景 / 2カード / 数字主役
+        =========================== */
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: var(--border);
+        }
+
+        .pricing-card {
+            background: var(--white);
+            padding: 72px 56px;
+        }
+
+        .pricing-card.dark {
+            background: var(--black);
+        }
+
+        .p-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-bottom: 48px;
+        }
+
+        .pricing-card.dark .p-tag { color: var(--accent); }
+
+        .p-price {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(44px, 5.5vw, 76px);
+            font-weight: 900;
+            color: var(--black);
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card.dark .p-price { color: var(--white); }
+
+        .p-unit {
+            font-size: 13px;
+            color: var(--gray);
+            margin-bottom: 48px;
+        }
+
+        .p-features {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .p-feature {
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+            color: #555555;
+            line-height: 1.6;
+        }
+
+        .pricing-card.dark .p-feature { color: #555555; }
+
+        .p-feature::before {
+            content: '—';
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* ===========================
+           CTA（セクション9）
+           黒背景 / 写真＋フォーム
+        =========================== */
+        .cta-section {
+            background: var(--black);
+            padding: 0;
+            border-bottom: none;
+            display: grid;
+            grid-template-columns: 1fr 560px;
+            min-height: 700px;
+        }
+
+        .cta-left {
+            padding: 100px 56px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+        }
+
+        .cta-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(40%) brightness(0.4);
+        }
+
+        .cta-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-heading {
+            font-size: clamp(32px, 4vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .cta-copy {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.9;
+        }
+
+        .cta-right {
+            background: #111111;
+            padding: 80px 56px;
+            border-left: 1px solid var(--border-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cta-right .section-label { margin-bottom: 32px; }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #555555;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: var(--black);
+            border: 1px solid #2a2a2a;
+            color: var(--white);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
+            padding: 14px 16px;
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+        }
+
+        .form-group textarea { min-height: 100px; resize: vertical; }
+
+        .submit-btn {
+            width: 100%;
+            height: 52px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-top: 8px;
+            letter-spacing: 0.06em;
+        }
+
+        /* フッター */
+        .footer {
+            background: #050505;
+            padding: 36px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            color: #333333;
+            text-transform: uppercase;
+        }
+
+        .footer-copy { font-size: 11px; color: #333333; }
+
+        /* レスポンシブ */
+        @media (max-width: 900px) {
+            .header { padding: 0 24px; }
+            .hero-photos { grid-template-columns: 1fr 1fr; }
+            .hero-photos .hero-photo:last-child { display: none; }
+            .hero-content { padding: 80px 24px; }
+            .hero-title { font-size: 44px; }
+            .hero-bottom { flex-direction: column; align-items: flex-start; }
+            .section { padding: 80px 24px; }
+            .problem-layout { grid-template-columns: 1fr; }
+            .concept-cards { grid-template-columns: 1fr; }
+            .service-grid { grid-template-columns: 1fr; }
+            .merit-cards { grid-template-columns: 1fr; }
+            .timeline-photos { grid-template-columns: 1fr; }
+            .timeline-texts { grid-template-columns: 1fr; }
+            .faq-wrap { grid-template-columns: 1fr; }
+            .pricing-cards { grid-template-columns: 1fr; }
+            .cta-section { grid-template-columns: 1fr; }
+            .cta-left { min-height: 300px; padding: 60px 24px; }
+            .cta-right { padding: 60px 24px; }
+            .footer { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="logo">Designer Consulting</div>
+        <nav class="nav">
+            <a href="#problem">課題</a>
+            <a href="#concept">コンセプト</a>
+            <a href="#service">サービス</a>
+            <a href="#pricing">料金</a>
+            <a href="#cta" class="nav-cta">相談する</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+        <div class="hero-photos">
+            <div class="hero-photo">
+                <img src="https://picsum.photos/seed/office1/900/1200" alt="">
+            </div>
+            <div class="hero-photo">
+                <img src="https://picsum.photos/seed/design2/600/1200" alt="">
+            </div>
+            <div class="hero-photo">
+                <img src="https://picsum.photos/seed/creative3/600/1200" alt="">
+            </div>
+        </div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">社内デザイナー顧問</p>
+            <h1 class="hero-title">
+                デザイン係を、<br>
+                <em>"任せられる存在"</em>に<br>
+                育てる仕組み
+            </h1>
+            <div class="hero-bottom">
+                <p class="hero-sub">
+                    採用でも外注でもない、第三の選択肢。<br>
+                    外部アートディレクターが社内のデザイン上司として伴走します。
+                </p>
+                <a href="#cta" class="hero-cta">まず相談してみる →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section section-dark" id="problem">
+        <p class="section-label">Problem</p>
+        <h2 class="section-title">社内のデザインは、<br>こんな状況に<em>なっていませんか？</em></h2>
+        <div class="problem-layout">
+            <div class="problem-photo">
+                <img src="https://picsum.photos/seed/workplace4/800/1000" alt="">
+            </div>
+            <div class="problem-list">
+                <div class="problem-item">
+                    <span class="problem-num">01</span>
+                    <div>
+                        <strong>デザイン担当が専門教育を受けていない</strong>
+                        <p>経理や営業から異動した担当者が、実務で学ぶしかない状態</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-num">02</span>
+                    <div>
+                        <strong>制作物の品質が安定しない</strong>
+                        <p>作る人によって品質がバラバラ。ブランド統一が難しい</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-num">03</span>
+                    <div>
+                        <strong>修正・外注コストが増えている</strong>
+                        <p>何度も修正が必要になったり、外注に頼る悪循環</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-num">04</span>
+                    <div>
+                        <strong>経営者がレビューに時間を割いている</strong>
+                        <p>経営者が毎回チェック・修正指示。本来の仕事ができない</p>
+                    </div>
+                </div>
+                <div class="problem-item">
+                    <span class="problem-num">05</span>
+                    <div>
+                        <strong>デザイナー採用を検討するほどでもない</strong>
+                        <p>専門人材が必要だけど、採用コストが見合わない</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONCEPT -->
+    <section class="section" id="concept">
+        <p class="section-label">Concept</p>
+        <h2 class="section-title">採用でも外注でもない、<br><em>第三の選択肢</em></h2>
+        <p class="concept-lead">
+            外部アートディレクターが社内のデザイン上司として伴走する。<br>
+            コストを抑えながら、社内にデザイン力を蓄積できる唯一の方法。
+        </p>
+        <div class="concept-cards">
+            <div class="concept-card">
+                <p class="card-num">Option 01</p>
+                <h3 class="card-title">採用</h3>
+                <div class="card-tags">
+                    <span class="tag ng">コスト高</span>
+                    <span class="tag ng">時間かかる</span>
+                    <span class="tag ng">固定費</span>
+                    <span class="tag ok">ノウハウ蓄積◎</span>
+                </div>
+            </div>
+            <div class="concept-card">
+                <p class="card-num">Option 02</p>
+                <h3 class="card-title">外注</h3>
+                <div class="card-tags">
+                    <span class="tag ng">毎回高い</span>
+                    <span class="tag ng">ノウハウが残らない</span>
+                    <span class="tag ok">即戦力◎</span>
+                </div>
+            </div>
+            <div class="concept-card active">
+                <p class="card-num">Option 03</p>
+                <h3 class="card-title">社内デザイナー顧問</h3>
+                <div class="card-tags">
+                    <span class="tag ok">コスト効率◎</span>
+                    <span class="tag ok">ノウハウ蓄積◎</span>
+                    <span class="tag ok">即導入◎</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE -->
+    <section class="section section-light" id="service">
+        <p class="section-label">Service</p>
+        <h2 class="section-title">実務レビューで、<br><em>確実に成長</em></h2>
+        <div class="service-grid">
+            <div class="service-photo">
+                <img src="https://picsum.photos/seed/meeting5/900/700" alt="オンラインレビュー">
+            </div>
+            <div class="service-text">
+                <ul class="service-list">
+                    <li>
+                        <span class="svc-num">01</span>
+                        <div class="svc-content">
+                            <strong>週1回1時間のオンラインレビュー</strong>
+                            <p>実務制作物をチェック＆改善指導。具体的なフィードバックで即実践。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="svc-num">02</span>
+                        <div class="svc-content">
+                            <strong>全ジャンルのデザイン対応</strong>
+                            <p>グラフィック、Web、資料、パッケージ、販促物、広告。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="svc-num">03</span>
+                        <div class="svc-content">
+                            <strong>レベルに応じた課題提示</strong>
+                            <p>制作物がない場合も、個別成長に合わせた課題でスキルを底上げ。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="svc-num">04</span>
+                        <div class="svc-content">
+                            <strong>毎月経営者へ育成レポート</strong>
+                            <p>成長の可視化で投資対効果を実感。経営者の安心感に。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="coverage">
+            <span class="coverage-label">Coverage</span>
+            <div class="coverage-items">
+                <span class="coverage-item">グラフィック</span>
+                <span class="coverage-item">Web</span>
+                <span class="coverage-item">資料・プレゼン</span>
+                <span class="coverage-item">パッケージ</span>
+                <span class="coverage-item">販促物</span>
+                <span class="coverage-item">広告</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MERIT -->
+    <section class="section" id="merit">
+        <p class="section-label">Merit</p>
+        <h2 class="section-title">導入で得られる<br><em>3つの価値</em></h2>
+        <div class="merit-cards">
+            <div class="merit-card">
+                <div class="merit-num">01</div>
+                <h3>社内にデザイン力が残る</h3>
+                <p>採用や研修とは違い、実務を通してスキルが蓄積。社員が企業の資産になります。</p>
+            </div>
+            <div class="merit-card">
+                <div class="merit-num">02</div>
+                <h3>経営者のレビュー負担を軽減</h3>
+                <p>外部アートディレクターがレビュー役を担当。経営者の時間をコア業務に使えます。</p>
+            </div>
+            <div class="merit-card">
+                <div class="merit-num">03</div>
+                <h3>制作物の品質が安定する</h3>
+                <p>広告・資料・Web・販促物、全制作物のクオリティが底上げ。ブランドが安定します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section section-dark" id="timeline">
+        <p class="section-label">Timeline</p>
+        <h2 class="section-title"><em>6ヶ月</em>で、ここまで変わる</h2>
+        <div class="timeline-photos">
+            <div class="timeline-photo">
+                <img src="https://picsum.photos/seed/growth6/600/400" alt="">
+            </div>
+            <div class="timeline-photo">
+                <img src="https://picsum.photos/seed/team7/600/400" alt="">
+            </div>
+            <div class="timeline-photo">
+                <img src="https://picsum.photos/seed/success8/600/400" alt="">
+            </div>
+        </div>
+        <div class="timeline-texts">
+            <div class="timeline-text">
+                <div class="tl-month">1-2</div>
+                <p class="tl-period">Short Term</p>
+                <h3>制作物のクオリティ改善が見える</h3>
+                <p>レビューを受けた制作物から改善が見える。気づきが増える時期。</p>
+            </div>
+            <div class="timeline-text">
+                <div class="tl-month">3-4</div>
+                <p class="tl-period">Mid Term</p>
+                <h3>任せられるデザイン担当へ成長</h3>
+                <p>指摘が減少。自分で改善案を考えるようになり、主体的に制作。</p>
+            </div>
+            <div class="timeline-text">
+                <div class="tl-month">5-6</div>
+                <p class="tl-period">Long Term</p>
+                <h3>社内にデザインノウハウが蓄積</h3>
+                <p>企業全体のデザイン品質が安定。再契約・延長検討段階へ。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-light" id="faq">
+        <div class="faq-wrap">
+            <div class="faq-side">
+                <p class="section-label">FAQ</p>
+                <h2>よくある<br>質問</h2>
+                <p>その他ご不明な点はお気軽にご相談ください。</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q"><span>週1回1時間でデザイン力は伸びますか？</span><span class="faq-icon">+</span></div>
+                    <div class="faq-a">はい。実務を通した学習が最も効果的です。1時間の集中レビューと、その後の実践で確実に成長します。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>対応できるデザイン領域は？</span><span class="faq-icon">+</span></div>
+                    <div class="faq-a">グラフィック、Web、資料、パッケージ、販促物、広告など、全てのデザイン領域に対応します。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>チャットでの質問は可能ですか？</span><span class="faq-icon">+</span></div>
+                    <div class="faq-a">基本は週1回のレビューセッションですが、緊急時のチャット対応も相談に応じます。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>半年契約しかできませんか？</span><span class="faq-icon">+</span></div>
+                    <div class="faq-a">基本は6ヶ月契約です。スポット対応や短期契約の相談も受け付けています。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>6ヶ月で成果が出なかった場合は？</span><span class="faq-icon">+</span></div>
+                    <div class="faq-a">毎月の育成レポートで進捗を確認。成長が見えない場合は指導内容の見直しや相談に対応します。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q"><span>同時に複数人対応できますか？</span><span class="faq-icon">+</span></div>
+                    <div class="faq-a">1契約で1人を基本としていますが、複数人での相談も可能です。料金体系を調整してご対応します。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+        <p class="section-label">Pricing</p>
+        <h2 class="section-title">料金・<em>契約条件</em></h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <p class="p-tag">Monthly Plan</p>
+                <div class="p-price">¥500,000</div>
+                <p class="p-unit">/ 月額（税別）</p>
+                <div class="p-features">
+                    <div class="p-feature">週1回1時間レビュー</div>
+                    <div class="p-feature">実務制作物指導</div>
+                    <div class="p-feature">毎月育成レポート</div>
+                    <div class="p-feature">契約期間：6ヶ月〜</div>
+                </div>
+            </div>
+            <div class="pricing-card dark">
+                <p class="p-tag">6-Month Plan</p>
+                <div class="p-price">¥3,000,000</div>
+                <p class="p-unit">/ 6ヶ月（税別）</p>
+                <div class="p-features">
+                    <div class="p-feature">採用コスト（年間400-600万円）より効率的</div>
+                    <div class="p-feature">外注費（同期間500-800万円）より安定</div>
+                    <div class="p-feature">請求書発行後・前払い</div>
+                    <div class="p-feature">月払い相談可</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="cta">
+        <div class="cta-left">
+            <div class="cta-bg">
+                <img src="https://picsum.photos/seed/consult9/900/700" alt="">
+            </div>
+            <div class="cta-text">
+                <p class="section-label">Contact</p>
+                <h2 class="cta-heading">まずは、<br>相談してみて<br>ください。</h2>
+                <p class="cta-copy">
+                    「本当に効果があるのか」<br>
+                    「うちの会社に合うのか」<br><br>
+                    そうした疑問は、まず話してみてください。<br>
+                    問い合わせは無料。返信は24時間以内。
+                </p>
+            </div>
+        </div>
+        <div class="cta-right">
+            <p class="section-label">Free Consultation</p>
+            <form>
+                <div class="form-group">
+                    <label>Company</label>
+                    <input type="text" placeholder="株式会社〇〇">
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="山田 太郎">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="example@company.co.jp">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="ご質問・ご相談内容をご記入ください"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">無料相談を申し込む</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-logo">Designer Consulting</div>
+        <p class="footer-copy">© 2025 CRATER Inc. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
