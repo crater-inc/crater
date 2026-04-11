@@ -1,30 +1,33 @@
 /*
- * CRATER Company Profile — style.css v3
- * 規格: slide-web-standards.md 準拠
+ * CRATER Company Profile — style.css v4
+ * レイアウトカタログ準拠: slide-stage + slide（16:9 calc方式）
  * フォント: urw-din（英数）/ Noto Sans JP（日本語）
  */
 
 /* ===== カラーシステム ===== */
 :root {
-  --c-base:       #C8C8C8;
-  --c-surface:    #ADADAD;
-  --c-surface-lt: #D8D8D8;
-  --c-black:      #111111;
-  --c-text:       #111111;
-  --c-text-sub:   #555555;
-  --c-accent:     #FFE500;
-  --c-white:      #FFFFFF;
-  --c-border:     rgba(0,0,0,0.14);
+  --c-base:        #C8C8C8;   /* 背景グレー */
+  --c-surface:     #ADADAD;   /* 少し暗いグレー面 */
+  --c-surface-lt:  #D8D8D8;   /* 少し明るいグレー面 */
+  --c-black:       #111111;
+  --c-text:        #111111;
+  --c-text-sub:    #555555;
+  --c-accent:      #FFE500;   /* 黄色（重要箇所のみ・1スライド1箇所まで） */
+  --c-white:       #FFFFFF;
+  --c-border:      rgba(0,0,0,0.14);
 
   /* フォント */
   --font-en: 'urw-din', sans-serif;
   --font-ja: 'Noto Sans JP', sans-serif;
+
+  /* ナビバー高さ（スライドサイズ計算に使用） */
+  --nav-h: 48px;
 }
 
 /* ===== リセット ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ===== ボディ（flex縦積み） ===== */
+/* ===== ボディ（縦並び flex） ===== */
 body {
   font-family: var(--font-ja);
   background: var(--c-base);
@@ -45,30 +48,24 @@ body {
   background: var(--c-base);
 }
 
-/* ===== スライドラッパー（16:9 厳密固定） ===== */
-/* ブラウザサイズに比例してスケールする。レスポンシブではなくスケーリング。 */
-.slide-wrapper {
-  aspect-ratio: 16 / 9;
-  height: 100%;
-  max-width: 100%;
+/* ===== スライド（16:9厳密固定 — calc方式） =====
+   calc(100vh - var(--nav-h)) = ステージの実際の高さに合わせてスケール
+   max-width/max-height の組み合わせでどんな画面でも 16:9 を維持する */
+.slide {
+  --stage-h: calc(100dvh - var(--nav-h));
+  width: 100vw;
+  height: var(--stage-h);
+  max-width: calc(var(--stage-h) * 16 / 9);
+  max-height: calc(100vw * 9 / 16);
   position: relative;
   overflow: hidden;
-  container-type: inline-size;  /* cqw の基準はこのラッパー幅 */
+  container-type: inline-size;   /* cqw の基準はスライド幅 */
   background: var(--c-base);
-}
-
-/* ===== スライド（ラッパー内で重ねる） ===== */
-.slide {
-  position: absolute;
-  inset: 0;
-  background: var(--c-base);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  display: none;
 }
 .slide.active {
-  opacity: 1;
-  pointer-events: all;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== テキスト折り返し制御 ===== */
@@ -87,7 +84,7 @@ body {
   line-break: strict;
 }
 
-/* ===== フォントシステム（cqw 基準 / 1920px幅での参考値） ===== */
+/* ===== フォントシステム（cqw基準） ===== */
 .slide-hero    { font-family: var(--font-en); font-size: 7.2cqw; font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
 .slide-h1      { font-family: var(--font-ja); font-size: 4.8cqw; font-weight: 900; line-height: 1.2;  letter-spacing: -0.01em; }
 .slide-h2      { font-family: var(--font-ja); font-size: 3.2cqw; font-weight: 700; line-height: 1.25; letter-spacing: 0.01em; }
@@ -106,17 +103,6 @@ body {
   display: inline;
 }
 
-/* ===== セクションタグ（英字ラベル） ===== */
-.section-tag {
-  font-family: var(--font-en);
-  font-size: 1.0cqw;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--c-text-sub);
-  display: block;
-}
-
 /* ===== アクセントライン ===== */
 .accent-line {
   width: 3.2cqw;
@@ -128,13 +114,13 @@ body {
 
 /* ===== ナビゲーションバー ===== */
 .nav-bar {
-  height: 48px;
+  height: var(--nav-h);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 28px;
-  background: rgba(200,200,200,0.92);
+  background: rgba(200,200,200,0.96);
   border-top: 1px solid var(--c-border);
   backdrop-filter: blur(8px);
   z-index: 200;
@@ -190,14 +176,15 @@ body {
 /* プログレスバー */
 .progress-bar {
   position: fixed;
-  bottom: 48px; left: 0;
+  bottom: var(--nav-h); left: 0;
   height: 2px;
   background: var(--c-accent);
   transition: width 0.3s ease;
   z-index: 201;
+  width: 0;
 }
 
-/* ===== サイドバー（デフォルト非表示） ===== */
+/* ===== サイドバー（デフォルト非表示・オーバーレイ式） ===== */
 .sidebar {
   position: fixed;
   top: 0; left: 0; bottom: 0;
@@ -276,7 +263,6 @@ body {
 }
 .s01-logo {
   color: var(--c-white);
-  /* A に黄色なし。ロゴは白一色 */
 }
 .s01-company {
   color: rgba(255,255,255,0.32);
@@ -287,7 +273,6 @@ body {
 .s01-tagline {
   color: var(--c-text);
   line-height: 1.6;
-  /* 黄色は tagline の核心フレーズのみ */
 }
 .s01-est {
   display: inline-block;
@@ -305,7 +290,7 @@ body {
 
 /* ============================================
    S02: ミッション
-   中央ステートメント（黄色なし）
+   中央ステートメント
    ============================================ */
 .s02 {
   height: 100%;
@@ -329,7 +314,7 @@ body {
 
 /* ============================================
    S03: 実績数字
-   3カラム均等 / 数字は黒のみ（黄色なし）
+   3カラム均等 / 数字は黒のみ
    ============================================ */
 .s03 {
   display: grid;

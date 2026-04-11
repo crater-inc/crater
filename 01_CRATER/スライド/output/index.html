@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/fwj5xdw.css">
   <!-- Noto Sans JP -->
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -19,10 +19,8 @@
   <div id="sidebar-agenda"></div>
 </nav>
 
-<!-- スライドステージ → スライドラッパー（16:9固定） -->
-<div class="slide-stage">
-  <div class="slide-wrapper" id="slide-wrapper"></div>
-</div>
+<!-- スライドステージ（16:9固定） -->
+<div class="slide-stage" id="slide-stage"></div>
 
 <!-- プログレスバー -->
 <div class="progress-bar" id="progress-bar"></div>
@@ -45,8 +43,8 @@
   </div>
 </nav>
 
-<script src="js/slides.js?v=3"></script>
-<script src="js/app.js?v=3"></script>
+<script src="js/slides.js?v=4"></script>
+<script src="js/app.js?v=4"></script>
 
 <!-- パスワード保護 -->
 <div id="pw-lock" style="position:fixed;inset:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:9999;">
