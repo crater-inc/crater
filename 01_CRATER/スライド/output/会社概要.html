@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会社概要 — 株式会社クレーター</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+
+    /* ===== 色変数 ===== */
+    :root {
+      --黒: #111111;
+      --白: #ffffff;
+      --赤: #D4001A;
+      --薄グレー: #f5f5f5;
+      --線: #e0e0e0;
+      --文字薄: #999;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #000;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* ===== スライド共通 ===== */
+    .スライドデッキ { width: 100vw; height: 100vh; position: relative; }
+
+    .スライド {
+      position: absolute;
+      inset: 0;
+      background: var(--白);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      display: grid;
+      grid-template-rows: 48px 1fr 44px;
+    }
+
+    .スライド.アクティブ { opacity: 1; pointer-events: all; }
+
+    /* ヘッダー・フッター */
+    .ヘッダー, .フッター {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 48px;
+      border-bottom: 1px solid var(--線);
+    }
+    .フッター { border-bottom: none; border-top: 1px solid var(--線); }
+
+    .ラベル小 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--文字薄);
+      text-transform: uppercase;
+    }
+
+    /* プログレスバー */
+    .プログレス {
+      position: fixed; bottom: 0; left: 0;
+      height: 3px; background: var(--赤);
+      transition: width 0.35s ease; z-index: 100;
+    }
+
+    /* ナビ */
+    .ナビ {
+      position: fixed; bottom: 28px; right: 44px;
+      display: flex; gap: 8px; z-index: 100;
+    }
+    .ナビボタン {
+      width: 40px; height: 40px;
+      border: 1px solid var(--線);
+      background: var(--白);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 15px; color: #555;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .ナビボタン:hover { background: var(--黒); border-color: var(--黒); color: var(--白); }
+    .ナビボタン:disabled { opacity: 0.2; pointer-events: none; }
+
+
+    /* ================================================
+       スライド1: 表紙
+    ================================================ */
+    #s1 { background: var(--黒); }
+    #s1 .ヘッダー { border-bottom-color: #2a2a2a; }
+    #s1 .フッター { border-top-color: #2a2a2a; }
+    #s1 .ラベル小 { color: #444; }
+
+    .表紙本文 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0 48px 0;
+    }
+
+    .表紙左 {
+      display: flex; flex-direction: column; justify-content: center;
+      border-right: 1px solid #2a2a2a;
+      padding-right: 48px;
+    }
+
+    .表紙右 {
+      display: flex; flex-direction: column; justify-content: center;
+      padding-left: 48px;
+    }
+
+    .表紙ロゴ {
+      font-size: clamp(64px, 9vw, 100px);
+      font-weight: 900;
+      color: var(--白);
+      letter-spacing: -0.03em;
+      line-height: 0.9;
+    }
+
+    .表紙ロゴ span { color: var(--赤); }
+
+    .表紙社名 {
+      font-size: 13px; font-weight: 300;
+      color: #555; margin-top: 16px; letter-spacing: 0.1em;
+    }
+
+    .表紙キャッチ {
+      font-size: clamp(20px, 2.6vw, 28px);
+      font-weight: 900;
+      color: var(--白);
+      line-height: 1.7;
+      letter-spacing: 0.05em;
+    }
+
+    .表紙キャッチ::before {
+      content: '';
+      display: block;
+      width: 32px; height: 3px;
+      background: var(--赤);
+      margin-bottom: 20px;
+    }
+
+    .表紙年 {
+      font-size: 11px; color: #444;
+      margin-top: 20px; letter-spacing: 0.1em;
+    }
+
+    /* ================================================
+       スライド2: ミッション
+    ================================================ */
+    .ミッション本文 {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+    }
+
+    .ミッション左 {
+      padding: 40px 48px;
+      border-right: 1px solid var(--線);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .ミッション主張 {
+      font-size: clamp(26px, 3.2vw, 40px);
+      font-weight: 900; line-height: 1.5;
+      color: var(--黒); margin-bottom: 24px;
+    }
+
+    .ミッション主張 em {
+      font-style: normal; color: var(--赤);
+    }
+
+    .ミッション本文テキスト {
+      font-size: 13px; color: #666; line-height: 2;
+    }
+
+    .ミッション右 {
+      background: var(--薄グレー);
+      display: flex; flex-direction: column;
+      justify-content: center;
+      padding: 40px 36px; gap: 0;
+    }
+
+    .数字ブロック {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--線);
+    }
+    .数字ブロック:last-child { border-bottom: none; }
+
+    .数字大 {
+      font-size: 40px; font-weight: 900;
+      color: var(--黒); line-height: 1;
+    }
+    .数字大 span { color: var(--赤); font-size: 24px; }
+
+    .数字ラベル {
+      font-size: 11px; color: var(--文字薄);
+      letter-spacing: 0.1em; margin-top: 4px;
+    }
+
+    /* ================================================
+       スライド3: 会社概要
+    ================================================ */
+    .概要本文 {
+      padding: 32px 48px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .概要見出し {
+      font-size: 11px; font-weight: 700;
+      color: var(--赤); letter-spacing: 0.18em;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+
+    .概要テーブル { width: 100%; border-collapse: collapse; }
+
+    .概要テーブル tr { border-bottom: 1px solid #f0f0f0; }
+    .概要テーブル tr:first-child { border-top: 1px solid #f0f0f0; }
+
+    .概要テーブル th {
+      text-align: left; font-size: 10px; font-weight: 700;
+      color: var(--文字薄); letter-spacing: 0.12em;
+      padding: 13px 0; width: 110px; vertical-align: top;
+      text-transform: uppercase;
+    }
+
+    .概要テーブル td {
+      font-size: 14px; color: var(--黒);
+      padding: 13px 0 13px 16px; line-height: 1.7;
+    }
+
+    .概要テーブル td strong { font-weight: 900; }
+
+    /* ================================================
+       スライド4: 事業内容（放射図解）
+    ================================================ */
+    .事業本文 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .事業左 {
+      background: var(--黒);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 40px 48px;
+    }
+
+    .事業キャッチ {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 900; color: var(--白);
+      line-height: 1.3; margin-bottom: 20px;
+    }
+
+    .事業キャッチ em {
+      font-style: normal; color: var(--赤);
+    }
+
+    .事業説明 { font-size: 12px; color: #666; line-height: 2; }
+
+    .事業右 {
+      display: flex; align-items: center; justify-content: center;
+      padding: 32px;
+    }
+
+    /* ================================================
+       スライド5: 受賞歴（タイムライン図解）
+    ================================================ */
+    .受賞本文 {
+      padding: 28px 48px;
+      display: flex; flex-direction: column; gap: 24px;
+    }
+
+    .受賞主張 {
+      font-size: clamp(22px, 2.8vw, 34px);
+      font-weight: 900; color: var(--黒);
+    }
+    .受賞主張 em { font-style: normal; color: var(--赤); }
+
+    .タイムライン {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--線);
+      flex: 1;
+    }
+
+    .タイムラインアイテム {
+      background: var(--白);
+      padding: 24px 20px;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .タイムラインアイテム:nth-child(2n) { background: var(--薄グレー); }
+
+    .受賞年バッジ {
+      display: inline-block;
+      background: var(--黒);
+      color: var(--白);
+      font-size: 10px; font-weight: 700;
+      padding: 3px 10px;
+      letter-spacing: 0.1em;
+      align-self: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .受賞賞名 {
+      font-size: 14px; font-weight: 900;
+      color: var(--黒); line-height: 1.3;
+      flex: 1;
+    }
+
+    .受賞結果 {
+      font-size: 11px; color: var(--文字薄);
+      margin-top: 8px;
+    }
+
+    .受賞補足 {
+      font-size: 12px; color: #666;
+      display: flex; gap: 24px; align-items: center;
+    }
+    .受賞補足 strong { color: var(--黒); font-weight: 700; }
+
+    /* ================================================
+       スライド6: クライアント
+    ================================================ */
+    .クライアント本文 {
+      padding: 32px 48px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+
+    .クライアント主張 {
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 900; color: var(--黒);
+    }
+    .クライアント主張 em { font-style: normal; color: var(--赤); }
+
+    .クライアントグリッド {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--線);
+    }
+
+    .クライアントセル {
+      background: var(--白);
+      padding: 20px 20px 18px;
+    }
+    .クライアントセル:nth-child(odd) { background: var(--薄グレー); }
+
+    .クライアント社名 {
+      font-size: 14px; font-weight: 900;
+      color: var(--黒); line-height: 1.3;
+    }
+
+    .クライアント業種 {
+      font-size: 10px; color: var(--文字薄);
+      margin-top: 4px; letter-spacing: 0.05em;
+    }
+
+    /* ================================================
+       スライド7: 連絡先
+    ================================================ */
+    #s7 { background: var(--黒); }
+    #s7 .ヘッダー { border-bottom-color: #2a2a2a; }
+    #s7 .フッター { border-top-color: #2a2a2a; }
+    #s7 .ラベル小 { color: #444; }
+
+    .連絡先本文 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .連絡先左 {
+      padding: 40px 48px;
+      border-right: 1px solid #2a2a2a;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+
+    .連絡先ロゴ {
+      font-size: clamp(48px, 6.5vw, 80px);
+      font-weight: 900; color: var(--白);
+      line-height: 0.9; letter-spacing: -0.02em;
+    }
+
+    .連絡先ロゴ span { color: var(--赤); }
+
+    .連絡先社名 {
+      font-size: 13px; color: #555;
+      margin-top: 12px; letter-spacing: 0.1em;
+    }
+
+    .連絡先URL {
+      font-size: 13px; color: #444;
+      margin-top: 28px; letter-spacing: 0.05em;
+    }
+
+    .連絡先右 {
+      padding: 40px 44px;
+      display: flex; flex-direction: column;
+      justify-content: center; gap: 0;
+    }
+
+    .連絡先行 {
+      padding: 16px 0;
+      border-bottom: 1px solid #2a2a2a;
+      display: flex; flex-direction: column; gap: 5px;
+    }
+    .連絡先行:last-child { border-bottom: none; }
+
+    .連絡先ラベル {
+      font-size: 10px; font-weight: 700;
+      color: var(--赤); letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .連絡先値 {
+      font-size: 14px; color: #aaa; line-height: 1.7;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="スライドデッキ">
+
+  <!-- ===== スライド1: 表紙 ===== -->
+  <div class="スライド アクティブ" id="s1">
+    <div class="ヘッダー">
+      <span class="ラベル小">Company Profile</span>
+      <span class="ラベル小" style="color:#333;">01 / 07</span>
+    </div>
+    <div class="表紙本文">
+      <div class="表紙左">
+        <div class="表紙ロゴ">CR<span>A</span>TER</div>
+        <p class="表紙社名">株式会社クレーター</p>
+      </div>
+      <div class="表紙右">
+        <p class="表紙キャッチ">この星に、<br>つめあとを残せ。</p>
+        <p class="表紙年">Est. 2013 — Tokyo, Japan</p>
+      </div>
+    </div>
+    <div class="フッター">
+      <span class="ラベル小" style="color:#333;">Confidential</span>
+      <span class="ラベル小" style="color:#333;">crater.co.jp</span>
+    </div>
+  </div>
+
+  <!-- ===== スライド2: ミッション ===== -->
+  <div class="スライド" id="s2">
+    <div class="ヘッダー">
+      <span class="ラベル小">Mission</span>
+      <span class="ラベル小">02 / 07</span>
+    </div>
+    <div class="ミッション本文">
+      <div class="ミッション左">
+        <h2 class="ミッション主張">価値あるブランドを、<br><em>必要な人に届ける</em>。<br>それがデザインの本質。</h2>
+        <p class="ミッション本文テキスト">
+          メッセージとストーリーを視覚化し、<br>
+          ブランドの価値を正確に伝えることが、<br>
+          クレーターの仕事です。
+        </p>
+      </div>
+      <div class="ミッション右">
+        <div class="数字ブロック">
+          <div class="数字大">12<span>年</span></div>
+          <div class="数字ラベル">創業からの実績</div>
+        </div>
+        <div class="数字ブロック">
+          <div class="数字大" style="color:var(--赤)">4</div>
+          <div class="数字ラベル">国際デザイン賞受賞</div>
+        </div>
+        <div class="数字ブロック">
+          <div class="数字大">5</div>
+          <div class="数字ラベル">事業領域</div>
+        </div>
+      </div>
+    </div>
+    <div class="フッター">
+      <span class="ラベル小">Confidential</span>
+      <span class="ラベル小">crater.co.jp</span>
+    </div>
+  </div>
+
+  <!-- ===== スライド3: 会社概要 ===== -->
+  <div class="スライド" id="s3">
+    <div class="ヘッダー">
+      <span class="ラベル小">Overview</span>
+      <span class="ラベル小">03 / 07</span>
+    </div>
+    <div class="概要本文">
+      <p class="概要見出し">Company Overview</p>
+      <table class="概要テーブル">
+        <tr>
+          <th>社名</th>
+          <td><strong>株式会社クレーター</strong> / CRATER Inc.</td>
+        </tr>
+        <tr>
+          <th>代表</th>
+          <td>明里 圭修（KEISUKE AKARI）</td>
+        </tr>
+        <tr>
+          <th>設立</th>
+          <td>2013年創業 / 2019年4月26日 法人設立</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>ブランディング、ロゴ、グラフィック、Web、パッケージデザイン</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F</td>
+        </tr>
+        <tr>
+          <th>アクセス</th>
+          <td>下北沢駅より徒歩4分（京王井の頭線 / 小田急線）</td>
+        </tr>
+        <tr>
+          <th>営業時間</th>
+          <td>10:00 – 19:00（土・日・祝 定休）</td>
+        </tr>
+        <tr>
+          <th>連絡先</th>
+          <td>TEL: 03-6665-0846 / FAX: 03-6800-3608</td>
+        </tr>
+      </table>
+    </div>
+    <div class="フッター">
+      <span class="ラベル小">Confidential</span>
+      <span class="ラベル小">crater.co.jp</span>
+    </div>
+  </div>
+
+  <!-- ===== スライド4: 事業内容（放射図解） ===== -->
+  <div class="スライド" id="s4">
+    <div class="ヘッダー">
+      <span class="ラベル小">Services</span>
+      <span class="ラベル小">04 / 07</span>
+    </div>
+    <div class="事業本文">
+      <div class="事業左">
+        <h2 class="事業キャッチ">領域を<br>限定しない<br><em>デザイン。</em></h2>
+        <p class="事業説明">幅広く・深く。<br>ブランドに必要なすべてを<br>一貫して担います。</p>
+      </div>
+      <div class="事業右">
+        <!-- 放射図解（SVG） -->
+        <svg viewBox="0 0 280 280" width="280" height="280" style="overflow:visible;">
+          <!-- 放射線 -->
+          <line x1="140" y1="140" x2="140" y2="24"  stroke="#e0e0e0" stroke-width="1"/>
+          <line x1="140" y1="140" x2="244" y2="80"  stroke="#e0e0e0" stroke-width="1"/>
+          <line x1="140" y1="140" x2="224" y2="216" stroke="#e0e0e0" stroke-width="1"/>
+          <line x1="140" y1="140" x2="56"  y2="216" stroke="#e0e0e0" stroke-width="1"/>
+          <line x1="140" y1="140" x2="36"  y2="80"  stroke="#e0e0e0" stroke-width="1"/>
+          <!-- 中心円 -->
+          <circle cx="140" cy="140" r="38" fill="#111"/>
+          <text x="140" y="136" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="11" font-weight="900" fill="white" letter-spacing="1">CRATER</text>
+          <text x="140" y="152" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8" fill="#666">デザイン事務所</text>
+          <!-- ブランディング（上） -->
+          <circle cx="140" cy="24" r="28" fill="white" stroke="#e0e0e0" stroke-width="1.5"/>
+          <text x="140" y="20" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">ブランド</text>
+          <text x="140" y="32" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">ディング</text>
+          <!-- ロゴデザイン（右上・赤） -->
+          <circle cx="244" cy="80" r="28" fill="#D4001A"/>
+          <text x="244" y="76" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="white">ロゴ</text>
+          <text x="244" y="88" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="white">デザイン</text>
+          <!-- パッケージ（右下） -->
+          <circle cx="224" cy="216" r="28" fill="white" stroke="#e0e0e0" stroke-width="1.5"/>
+          <text x="224" y="212" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">パッケージ</text>
+          <text x="224" y="224" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">デザイン</text>
+          <!-- Webデザイン（左下） -->
+          <circle cx="56" cy="216" r="28" fill="white" stroke="#e0e0e0" stroke-width="1.5"/>
+          <text x="56" y="212" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">Web</text>
+          <text x="56" y="224" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">デザイン</text>
+          <!-- グラフィック（左上） -->
+          <circle cx="36" cy="80" r="28" fill="white" stroke="#e0e0e0" stroke-width="1.5"/>
+          <text x="36" y="76" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">グラフィック</text>
+          <text x="36" y="88" text-anchor="middle" font-family="'Noto Sans JP', sans-serif" font-size="8.5" font-weight="700" fill="#111">デザイン</text>
+        </svg>
+      </div>
+    </div>
+    <div class="フッター">
+      <span class="ラベル小">Confidential</span>
+      <span class="ラベル小">crater.co.jp</span>
+    </div>
+  </div>
+
+  <!-- ===== スライド5: 受賞歴 ===== -->
+  <div class="スライド" id="s5">
+    <div class="ヘッダー">
+      <span class="ラベル小">Awards</span>
+      <span class="ラベル小">05 / 07</span>
+    </div>
+    <div class="受賞本文">
+      <h2 class="受賞主張">国際デザイン賞<em>4冠</em>。<br>世界が認めた実力。</h2>
+      <div class="タイムライン">
+        <div class="タイムラインアイテム">
+          <span class="受賞年バッジ" style="background:var(--赤)">2023</span>
+          <div class="受賞賞名">A' Design<br>Award</div>
+          <div class="受賞結果">Silver Award</div>
+        </div>
+        <div class="タイムラインアイテム">
+          <span class="受賞年バッジ">2023</span>
+          <div class="受賞賞名">German<br>Design Award</div>
+          <div class="受賞結果">受賞</div>
+        </div>
+        <div class="タイムラインアイテム">
+          <span class="受賞年バッジ" style="background:var(--赤)">2023</span>
+          <div class="受賞賞名">Asia Design<br>Prize</div>
+          <div class="受賞結果">Gold Award</div>
+        </div>
+        <div class="タイムラインアイテム">
+          <span class="受賞年バッジ">複数年</span>
+          <div class="受賞賞名">K-Design<br>Award</div>
+          <div class="受賞結果">Gold / Silver 複数受賞</div>
+        </div>
+      </div>
+      <div class="受賞補足">
+        <span><strong>デザインノート</strong> 特集掲載（10ページ）</span>
+        <span>全国対応・オンライン完全対応</span>
+      </div>
+    </div>
+    <div class="フッター">
+      <span class="ラベル小">Confidential</span>
+      <span class="ラベル小">crater.co.jp</span>
+    </div>
+  </div>
+
+  <!-- ===== スライド6: クライアント ===== -->
+  <div class="スライド" id="s6">
+    <div class="ヘッダー">
+      <span class="ラベル小">Clients</span>
+      <span class="ラベル小">06 / 07</span>
+    </div>
+    <div class="クライアント本文">
+      <h2 class="クライアント主張">大手から専門ブランドまで。<br><em>信頼が積み重なる実績。</em></h2>
+      <div class="クライアントグリッド">
+        <div class="クライアントセル">
+          <div class="クライアント社名">亀田製菓</div>
+          <div class="クライアント業種">食品メーカー</div>
+        </div>
+        <div class="クライアントセル">
+          <div class="クライアント社名">西武ライオンズ</div>
+          <div class="クライアント業種">プロスポーツ</div>
+        </div>
+        <div class="クライアントセル">
+          <div class="クライアント社名">日本中央競馬会</div>
+          <div class="クライアント業種">エンターテインメント</div>
+        </div>
+        <div class="クライアントセル">
+          <div class="クライアント社名">日東紡績</div>
+          <div class="クライアント業種">製造業</div>
+        </div>
+      </div>
+    </div>
+    <div class="フッター">
+      <span class="ラベル小">Confidential</span>
+      <span class="ラベル小">crater.co.jp</span>
+    </div>
+  </div>
+
+  <!-- ===== スライド7: 連絡先 ===== -->
+  <div class="スライド" id="s7">
+    <div class="ヘッダー">
+      <span class="ラベル小" style="color:#333">Contact</span>
+      <span class="ラベル小" style="color:#333">07 / 07</span>
+    </div>
+    <div class="連絡先本文">
+      <div class="連絡先左">
+        <div class="連絡先ロゴ">CR<span>A</span>TER</div>
+        <p class="連絡先社名">株式会社クレーター</p>
+        <p class="連絡先URL">crater.co.jp</p>
+      </div>
+      <div class="連絡先右">
+        <div class="連絡先行">
+          <span class="連絡先ラベル">TEL</span>
+          <span class="連絡先値">03-6665-0846</span>
+        </div>
+        <div class="連絡先行">
+          <span class="連絡先ラベル">FAX</span>
+          <span class="連絡先値">03-6800-3608</span>
+        </div>
+        <div class="連絡先行">
+          <span class="連絡先ラベル">所在地</span>
+          <span class="連絡先値">〒155-0031<br>東京都世田谷区北沢3丁目20-18<br>北沢宝ビル3F</span>
+        </div>
+        <div class="連絡先行">
+          <span class="連絡先ラベル">営業時間</span>
+          <span class="連絡先値">10:00 – 19:00（土・日・祝 定休）</span>
+        </div>
+      </div>
+    </div>
+    <div class="フッター">
+      <span class="ラベル小" style="color:#333">Confidential</span>
+      <span class="ラベル小" style="color:#333">crater.co.jp</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ナビ -->
+<div class="ナビ">
+  <button class="ナビボタン" id="前へ" onclick="移動(-1)" disabled>←</button>
+  <button class="ナビボタン" id="次へ" onclick="移動(1)">→</button>
+</div>
+<div class="プログレス" id="プログレス"></div>
+
+<script>
+  var 現在 = 0, 合計 = 7;
+
+  function 表示(i) {
+    document.querySelectorAll('.スライド').forEach(function(s){ s.classList.remove('アクティブ'); });
+    document.querySelectorAll('.スライド')[i].classList.add('アクティブ');
+    document.getElementById('前へ').disabled = i === 0;
+    document.getElementById('次へ').disabled = i === 合計 - 1;
+    document.getElementById('プログレス').style.width = ((i + 1) / 合計 * 100) + '%';
+  }
+
+  function 移動(d) {
+    var n = 現在 + d;
+    if (n < 0 || n >= 合計) return;
+    現在 = n; 表示(現在);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); 移動(1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); 移動(-1); }
+  });
+
+  表示(0);
+</script>
+
+<!-- パスワード保護 -->
+<div id="pw-lock" style="position:fixed;inset:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:9999;">
+  <div style="font-size:11px;letter-spacing:0.3em;color:#fff;opacity:0.4;">CRATER INC.</div>
+  <input id="pw-input" type="password" placeholder="PASSWORD" autofocus
+    style="background:#222;border:1px solid #444;border-radius:4px;padding:12px 16px;font-size:14px;color:#fff;width:240px;text-align:center;letter-spacing:0.1em;outline:none;"
+    onkeydown="if(event.key==='Enter')pwCheck()">
+  <div id="pw-error" style="font-size:12px;color:#e05555;display:none;">パスワードが違います</div>
+  <div style="font-size:10px;letter-spacing:0.1em;color:#fff;opacity:0.25;margin-top:4px;">CRATER / スライド / 会社概要.html</div>
+</div>
+<script>
+  (function(){ if(sessionStorage.getItem('cv_auth')==='1'){document.getElementById('pw-lock').style.display='none';} })();
+  function pwCheck(){
+    if(document.getElementById('pw-input').value==='view'){
+      document.getElementById('pw-lock').style.display='none';
+      sessionStorage.setItem('cv_auth','1');
+    } else {
+      document.getElementById('pw-error').style.display='block';
+      document.getElementById('pw-input').value='';
+    }
+  }
+</script>
+
+</body>
+</html>
