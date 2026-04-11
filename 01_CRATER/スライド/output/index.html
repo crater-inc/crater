@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会社概要 — 株式会社クレーター</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+
+<!-- サイドバー（デフォルト非表示） -->
+<div class="backdrop" id="backdrop"></div>
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">CR<span class="hl-a">A</span>TER</div>
+  <div id="sidebar-agenda"></div>
+</nav>
+
+<!-- スライドステージ -->
+<div class="slide-stage" id="slide-stage"></div>
+
+<!-- プログレスバー（ナビバーの上） -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- ナビゲーションバー -->
+<nav class="nav-bar">
+  <div class="nav-left">
+    <button class="hamburger-btn" id="hamburger-btn" aria-label="メニューを開く">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="nav-logo">CR<span class="hl-a">A</span>TER</span>
+  </div>
+  <div class="nav-center">
+    <button class="nav-btn" id="btn-prev" disabled aria-label="前のスライド">←</button>
+    <span class="nav-counter" id="nav-counter">1 / 8</span>
+    <button class="nav-btn" id="btn-next" aria-label="次のスライド">→</button>
+  </div>
+  <div class="nav-right">
+    <span class="nav-counter">Company Profile</span>
+  </div>
+</nav>
+
+<!-- slides.js → app.js の順で読み込む（type="module" 禁止） -->
+<script src="js/slides.js?v=1"></script>
+<script src="js/app.js?v=1"></script>
+
+<!-- パスワード保護 -->
+<div id="pw-lock" style="position:fixed;inset:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:9999;">
+  <div style="font-size:11px;letter-spacing:0.3em;color:#fff;opacity:0.4;">CRATER INC.</div>
+  <input id="pw-input" type="password" placeholder="PASSWORD" autofocus
+    style="background:#222;border:1px solid #444;border-radius:0;padding:12px 16px;font-size:14px;color:#fff;width:240px;text-align:center;letter-spacing:0.1em;outline:none;"
+    onkeydown="if(event.key==='Enter')pwCheck()">
+  <div id="pw-error" style="font-size:12px;color:#e05555;display:none;">パスワードが違います</div>
+  <div style="font-size:10px;letter-spacing:0.1em;color:#fff;opacity:0.25;margin-top:4px;">CRATER / 会社概要</div>
+</div>
+<script>
+  (function () {
+    if (sessionStorage.getItem('cp_auth') === '1') {
+      document.getElementById('pw-lock').style.display = 'none';
+    }
+  })();
+  function pwCheck() {
+    if (document.getElementById('pw-input').value === 'view') {
+      document.getElementById('pw-lock').style.display = 'none';
+      sessionStorage.setItem('cp_auth', '1');
+    } else {
+      document.getElementById('pw-error').style.display = 'block';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
+
+</body>
+</html>
