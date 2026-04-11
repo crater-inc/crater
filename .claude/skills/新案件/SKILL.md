@@ -117,12 +117,14 @@ disable-model-invocation: true
 これにより次回からファイルを編集・pushするだけで自動でNetlifyに反映される。
 
 ```bash
-git add [作成したフォルダ名]/
+git add [フォルダ名]/output/[ファイル名.html]
 git commit -m "新案件追加：[案件名]"
 git push
 ```
 
-- 初回のみ必要（2回目以降は通常のpushで自動反映）
+- **HTMLファイルのみ指定する**（`git add フォルダ/` と書かない）
+- node_modules・.env・画像など不要なファイルが上がるのを防ぐため
+- 初回のみ必要（2回目以降は同じコマンドでpushするだけ）
 
 push完了後、以下をユーザーに伝える：
 ```
