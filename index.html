@@ -14,9 +14,52 @@
       min-height: 100vh;
     }
 
+    /* パスワード画面 */
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      z-index: 100;
+    }
+
+    .lock-screen .logo {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: #fff;
+      opacity: 0.4;
+    }
+
+    .lock-screen input {
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 14px;
+      color: #fff;
+      width: 240px;
+      text-align: center;
+      letter-spacing: 0.1em;
+      outline: none;
+    }
+
+    .lock-screen input:focus {
+      border-color: #888;
+    }
+
+    .lock-screen .error {
+      font-size: 12px;
+      color: #e05555;
+      display: none;
+    }
+
     /* ヘッダー */
     .header {
-      background: #1e2d3d;
+      background: #111;
       padding: 32px 48px;
     }
 
@@ -24,7 +67,7 @@
       font-size: 11px;
       letter-spacing: 0.3em;
       color: #fff;
-      opacity: 0.5;
+      opacity: 0.4;
       margin-bottom: 6px;
     }
 
@@ -124,52 +167,84 @@
 </head>
 <body>
 
-  <div class="header">
+  <!-- パスワード画面 -->
+  <div class="lock-screen" id="lockScreen">
     <div class="logo">CRATER INC.</div>
-    <h1>VIEW</h1>
+    <input type="password" id="passwordInput" placeholder="PASSWORD" onkeydown="if(event.key==='Enter')checkPassword()" autofocus>
+    <div class="error" id="errorMsg">パスワードが違います</div>
   </div>
 
-  <div class="container">
+  <!-- メインコンテンツ -->
+  <div id="mainContent" style="display:none;">
 
-    <!-- クライアント案件 -->
-    <div class="section">
-      <div class="section-header">
-        <span class="section-label">CLIENT</span>
-        <span class="section-title">人と空間</span>
-      </div>
-      <div class="cards">
-        <a class="card" href="/CL/人と空間/output/sitemap.html">
-          <span class="card-type">SITEMAP</span>
-          <span class="card-name">サイトマップ</span>
-        </a>
-      </div>
+    <div class="header">
+      <div class="logo">CRATER INC.</div>
+      <h1>VIEW</h1>
     </div>
 
-    <!-- 自社案件 -->
-    <div class="section">
-      <div class="section-header">
-        <span class="section-label">CRATER</span>
-        <span class="section-title">社内デザイナー顧問 LP</span>
+    <div class="container">
+
+      <!-- クライアント案件 -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-label">CLIENT</span>
+          <span class="section-title">人と空間</span>
+        </div>
+        <div class="cards">
+          <a class="card" href="/CL/人と空間/output/sitemap.html">
+            <span class="card-type">SITEMAP</span>
+            <span class="card-name">サイトマップ</span>
+          </a>
+        </div>
       </div>
-      <div class="cards">
-        <a class="card" href="/01_CRATER/デザイン顧問/output/lp/wireframe-full.html">
-          <span class="card-type">WIREFRAME</span>
-          <span class="card-name">ワイヤーフレーム</span>
-        </a>
-        <a class="card" href="/01_CRATER/デザイン顧問/output/lp/layout-frame.html">
-          <span class="card-type">LAYOUT FRAME</span>
-          <span class="card-name">レイアウトフレーム</span>
-        </a>
-        <a class="card" href="/01_CRATER/デザイン顧問/output/lp/layout-frame-v2.html">
-          <span class="card-type">LAYOUT FRAME</span>
-          <span class="card-name">レイアウトフレーム v2</span>
-        </a>
+
+      <!-- 自社案件 -->
+      <div class="section">
+        <div class="section-header">
+          <span class="section-label">CRATER</span>
+          <span class="section-title">社内デザイナー顧問 LP</span>
+        </div>
+        <div class="cards">
+          <a class="card" href="/01_CRATER/デザイン顧問/output/lp/wireframe-full.html">
+            <span class="card-type">WIREFRAME</span>
+            <span class="card-name">ワイヤーフレーム</span>
+          </a>
+          <a class="card" href="/01_CRATER/デザイン顧問/output/lp/layout-frame.html">
+            <span class="card-type">LAYOUT FRAME</span>
+            <span class="card-name">レイアウトフレーム</span>
+          </a>
+          <a class="card" href="/01_CRATER/デザイン顧問/output/lp/layout-frame-v2.html">
+            <span class="card-type">LAYOUT FRAME</span>
+            <span class="card-name">レイアウトフレーム v2</span>
+          </a>
+        </div>
       </div>
+
     </div>
+
+    <div class="footer">CRATER INC. — INTERNAL USE ONLY</div>
 
   </div>
 
-  <div class="footer">CRATER INC. — INTERNAL USE ONLY</div>
+  <script>
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value;
+      if (input === 'allpage123') {
+        document.getElementById('lockScreen').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        sessionStorage.setItem('crater_auth', '1');
+      } else {
+        document.getElementById('errorMsg').style.display = 'block';
+        document.getElementById('passwordInput').value = '';
+      }
+    }
+
+    // セッション中は再入力不要
+    if (sessionStorage.getItem('crater_auth') === '1') {
+      document.getElementById('lockScreen').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>
