@@ -622,17 +622,18 @@
     }
   </style>
 
+  <!-- Firebase SDK（compat形式） -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
   <!-- コメントボタン -->
   <button class="c-toggle" id="c-toggle" onclick="cToggle()">＋ コメント</button>
 
   <!-- コメントモードオーバーレイ -->
   <div class="c-overlay" id="c-overlay"></div>
 
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-    import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, serverTimestamp }
-      from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-
+  <script>
+    // Firebase初期化
     const firebaseConfig = {
       apiKey: "AIzaSyArq3B1YkeiBv-PgpBkMrRGWsOkuXx4fxo",
       authDomain: "view-crater.firebaseapp.com",
@@ -641,108 +642,99 @@
       messagingSenderId: "523845906687",
       appId: "1:523845906687:web:b5b6612eabe1af9544dcca"
     };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
     // このページの識別子（ASCII必須）
     const PAGE_ID = "hito-sitemap-v1";
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
 
     let commentMode = false;
     let pendingX = 0, pendingY = 0;
     let activeCommentId = null;
 
-    // ピン＆ポップアップ用コンテナ（body直下・絶対配置）
+    // ピン＆ポップアップ用コンテナ（body直下・絶対配置・オーバーレイより高いz-index）
     const container = document.createElement('div');
-    container.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:0;z-index:6000;';
+    container.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:0;z-index:8000;';
     document.body.appendChild(container);
 
     // 入力ポップアップ
     const inputPopup = document.createElement('div');
     inputPopup.className = 'c-popup';
-    inputPopup.innerHTML = `
-      <textarea id="c-text" placeholder="コメントを入力…"></textarea>
-      <div class="c-popup-actions">
-        <button class="c-btn-cancel" id="c-cancel">キャンセル</button>
-        <button class="c-btn-submit" id="c-submit">送信</button>
-      </div>`;
+    inputPopup.innerHTML =
+      '<textarea id="c-text" placeholder="コメントを入力…"></textarea>' +
+      '<div class="c-popup-actions">' +
+        '<button class="c-btn-cancel" onclick="cancelInput()">キャンセル</button>' +
+        '<button class="c-btn-submit" onclick="submitComment()">送信</button>' +
+      '</div>';
     container.appendChild(inputPopup);
 
     // 表示ポップアップ
     const viewPopup = document.createElement('div');
     viewPopup.className = 'c-view-popup';
-    viewPopup.innerHTML = `
-      <div class="c-view-text" id="c-view-text"></div>
-      <div class="c-view-meta" id="c-view-meta"></div>
-      <button class="c-btn-delete" id="c-delete">削除</button>`;
+    viewPopup.innerHTML =
+      '<div class="c-view-text" id="c-view-text"></div>' +
+      '<div class="c-view-meta" id="c-view-meta"></div>' +
+      '<button class="c-btn-delete" onclick="deleteComment()">削除</button>';
     container.appendChild(viewPopup);
 
     // コメントモード切り替え
-    window.cToggle = function() {
+    function cToggle() {
       commentMode = !commentMode;
       const btn = document.getElementById('c-toggle');
       const overlay = document.getElementById('c-overlay');
       btn.classList.toggle('active', commentMode);
       overlay.classList.toggle('active', commentMode);
       btn.textContent = commentMode ? '× キャンセル' : '＋ コメント';
-      if (!commentMode) cancelInput();
-    };
+      if (!commentMode) {
+        inputPopup.style.display = 'none';
+      }
+    }
 
-    // オーバーレイクリック → ピン設置
-    const overlayEl = document.getElementById('c-overlay');
-    overlayEl.addEventListener('click', function(e) {
+    // オーバーレイクリック → 入力ポップアップ表示
+    document.getElementById('c-overlay').addEventListener('click', function(e) {
       pendingX = e.clientX + window.scrollX;
       pendingY = e.clientY + window.scrollY;
-
-      // 右端近くなら左側に表示
       const popupX = (window.innerWidth - e.clientX > 290) ? pendingX + 16 : pendingX - 276;
       inputPopup.style.display = 'block';
       inputPopup.style.left = popupX + 'px';
       inputPopup.style.top = pendingY + 'px';
       document.getElementById('c-text').value = '';
       document.getElementById('c-text').focus();
-
-      // ポップアップ表示中はオーバーレイのクリックを無効化
-      overlayEl.style.pointerEvents = 'none';
     });
 
-    // キャンセル
+    // 入力キャンセル
     function cancelInput() {
       inputPopup.style.display = 'none';
-      // オーバーレイのクリックを再有効化
-      overlayEl.style.pointerEvents = 'auto';
-    }
-    document.getElementById('c-cancel').addEventListener('click', () => {
-      cancelInput();
       if (commentMode) cToggle();
-    });
+    }
 
-    // 送信
-    document.getElementById('c-submit').addEventListener('click', async () => {
+    // コメント送信
+    function submitComment() {
       const text = document.getElementById('c-text').value.trim();
       if (!text) return;
-      try {
-        await addDoc(collection(db, 'comments', PAGE_ID, 'items'), {
-          x: pendingX,
-          y: pendingY,
-          text,
-          timestamp: serverTimestamp()
-        });
-        cancelInput();
+      db.collection('comments').doc(PAGE_ID).collection('items').add({
+        x: pendingX,
+        y: pendingY,
+        text: text,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(function() {
+        inputPopup.style.display = 'none';
         if (commentMode) cToggle();
-      } catch(e) {
-        alert('保存に失敗しました: ' + e.message);
-      }
-    });
+      }).catch(function(err) {
+        alert('保存に失敗しました: ' + err.message);
+      });
+    }
 
-    // 削除
-    document.getElementById('c-delete').addEventListener('click', async () => {
+    // コメント削除
+    function deleteComment() {
       if (!activeCommentId) return;
       if (!confirm('このコメントを削除しますか？')) return;
-      await deleteDoc(doc(db, 'comments', PAGE_ID, 'items', activeCommentId));
-      viewPopup.style.display = 'none';
-      activeCommentId = null;
-    });
+      db.collection('comments').doc(PAGE_ID).collection('items').doc(activeCommentId).delete()
+        .then(function() {
+          viewPopup.style.display = 'none';
+          activeCommentId = null;
+        });
+    }
 
     // ポップアップ外クリックで閉じる
     document.addEventListener('click', function(e) {
@@ -753,37 +745,37 @@
     });
 
     // リアルタイムでコメント読み込み・表示
-    onSnapshot(collection(db, 'comments', PAGE_ID, 'items'), (snapshot) => {
-      container.querySelectorAll('.c-pin').forEach(p => p.remove());
-      let num = 0;
-
-      snapshot.forEach((docSnap) => {
-        num++;
-        const data = docSnap.data();
-        const n = num;
-
-        const pin = document.createElement('div');
-        pin.className = 'c-pin';
-        pin.style.left = data.x + 'px';
-        pin.style.top = data.y + 'px';
-        pin.textContent = n;
-
-        pin.addEventListener('click', function(e) {
-          e.stopPropagation();
-          activeCommentId = docSnap.id;
-          const relX = data.x - window.scrollX;
-          const popupX = (window.innerWidth - relX > 290) ? data.x + 16 : data.x - 276;
-          viewPopup.style.display = 'block';
-          viewPopup.style.left = popupX + 'px';
-          viewPopup.style.top = data.y + 'px';
-          document.getElementById('c-view-text').textContent = data.text;
-          const ts = data.timestamp?.toDate?.()?.toLocaleString('ja-JP') || '';
-          document.getElementById('c-view-meta').textContent = ts;
+    db.collection('comments').doc(PAGE_ID).collection('items')
+      .orderBy('timestamp')
+      .onSnapshot(function(snapshot) {
+        container.querySelectorAll('.c-pin').forEach(function(p) { p.remove(); });
+        var num = 0;
+        snapshot.forEach(function(docSnap) {
+          num++;
+          var data = docSnap.data();
+          var n = num;
+          var pin = document.createElement('div');
+          pin.className = 'c-pin';
+          pin.style.left = data.x + 'px';
+          pin.style.top = data.y + 'px';
+          pin.textContent = n;
+          pin.addEventListener('click', function(e) {
+            e.stopPropagation();
+            activeCommentId = docSnap.id;
+            var relX = data.x - window.scrollX;
+            var popupX = (window.innerWidth - relX > 290) ? data.x + 16 : data.x - 276;
+            viewPopup.style.display = 'block';
+            viewPopup.style.left = popupX + 'px';
+            viewPopup.style.top = data.y + 'px';
+            document.getElementById('c-view-text').textContent = data.text;
+            var ts = data.timestamp ? data.timestamp.toDate().toLocaleString('ja-JP') : '';
+            document.getElementById('c-view-meta').textContent = ts;
+          });
+          container.appendChild(pin);
         });
-
-        container.appendChild(pin);
+      }, function(err) {
+        alert('読み込みエラー: ' + err.message);
       });
-    });
   </script>
 
 </body>
