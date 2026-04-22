@@ -1087,6 +1087,90 @@
     </div>
   </div>
 
+  <!-- ===== コメントシステム ===== -->
+  <style>
+    .c-toggle-wrap {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9001;
+      display: flex; flex-direction: column; align-items: flex-end;
+    }
+    .c-tooltip {
+      position: absolute; bottom: 62px; right: 0;
+      background: rgba(20,30,40,0.92); color: #fff;
+      font-size: 12px; line-height: 1.7; padding: 10px 14px;
+      border-radius: 8px; width: 230px; pointer-events: none;
+      opacity: 0; transition: opacity 0.2s;
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif;
+    }
+    .c-toggle-wrap:hover .c-tooltip { opacity: 1; }
+    .c-toggle {
+      background: #1A2E42; color: white; border: none; border-radius: 50%;
+      width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 2px 16px rgba(0,0,0,0.3); transition: background 0.2s;
+    }
+    .c-toggle.active { background: #c0392b; }
+    .c-overlay {
+      position: fixed; inset: 0; z-index: 8500; cursor: crosshair; display: none;
+    }
+    .c-overlay.active { display: block; }
+    .c-pin {
+      position: absolute; width: 26px; height: 26px; background: #e74c3c; color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; pointer-events: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      transform: translate(-50%,-50%); font-size: 11px; font-weight: bold;
+      font-family: 'Helvetica Neue', Arial, sans-serif; transition: transform 0.15s; z-index: 300;
+    }
+    .c-pin:hover { transform: translate(-50%,-50%) scale(1.2); }
+    .c-popup, .c-view-popup {
+      position: absolute; background: white; border: 1px solid #e0e0e0;
+      border-radius: 10px; padding: 14px; width: 260px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.14); pointer-events: auto;
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif;
+    }
+    .c-popup { display: none; }
+    .c-view-popup { display: none; }
+    .c-popup textarea {
+      width: 100%; height: 80px; border: 1px solid #e0e0e0; border-radius: 6px;
+      padding: 8px 10px; font-size: 13px; resize: none; outline: none;
+      font-family: inherit; color: #333; line-height: 1.6; box-sizing: border-box;
+    }
+    .c-popup textarea:focus { border-color: #1A2E42; }
+    .c-popup-actions { display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end; }
+    .c-btn-cancel {
+      background: none; color: #aaa; border: 1px solid #e0e0e0; border-radius: 6px;
+      padding: 6px 14px; font-size: 12px; cursor: pointer;
+    }
+    .c-btn-submit {
+      background: #1A2E42; color: white; border: none; border-radius: 6px;
+      padding: 6px 16px; font-size: 12px; font-weight: bold; cursor: pointer;
+    }
+    .c-view-text { font-size: 13px; color: #222; line-height: 1.7; margin-bottom: 8px; white-space: pre-wrap; word-break: break-word; }
+    .c-view-meta { font-size: 11px; color: #bbb; margin-bottom: 10px; }
+    .c-btn-delete {
+      background: none; color: #e74c3c; border: 1px solid #e74c3c;
+      border-radius: 6px; padding: 5px 12px; font-size: 11px; cursor: pointer;
+    }
+  </style>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- コメントボタン -->
+  <div class="c-toggle-wrap">
+    <div class="c-tooltip">ピンの位置はブラウザ環境により多少ずれる場合がありますので、細かい指定をする場合はメモに残してください。</div>
+    <button class="c-toggle" id="c-toggle" onclick="cToggle()">
+      <svg id="c-icon-comment" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+      </svg>
+      <svg id="c-icon-close" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="c-overlay" id="c-overlay"></div>
+
+  <!-- ポップアップ用コンテナ（viewport固定） -->
+  <div id="c-popup-layer" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9000;"></div>
+
   <script>
     (function(){ if(sessionStorage.getItem('cv_auth')==='1'){document.getElementById('pw-lock').style.display='none';} })();
     function pwCheck(){
@@ -1131,6 +1215,226 @@
     document.addEventListener('keydown', e => {
       if(e.key === 'ArrowRight') move(1);
       if(e.key === 'ArrowLeft') move(-1);
+    });
+
+    // ===== コメントシステム =====
+    firebase.initializeApp({
+      apiKey: "AIzaSyArq3B1YkeiBv-PgpBkMrRGWsOkuXx4fxo",
+      authDomain: "view-crater.firebaseapp.com",
+      projectId: "view-crater",
+      storageBucket: "view-crater.firebasestorage.app",
+      messagingSenderId: "523845906687",
+      appId: "1:523845906687:web:b5b6612eabe1af9544dcca"
+    });
+    var db = firebase.firestore();
+    var WF_PAGE_ID = "hito-wireframe-v1";
+
+    var wfCommentMode = false;
+    var pendingX = 0, pendingY = 0, pendingSlideIdx = 0, pendingAnchor = null;
+    var wfActiveCommentId = null, lastWfSnapshot = null;
+
+    // 各スライドにピン用コンテナを追加
+    var slideEls = document.querySelectorAll('.slide');
+    var pinContainers = [];
+    slideEls.forEach(function(slide) {
+      slide.style.position = 'relative';
+      var c = document.createElement('div');
+      c.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:0;z-index:200;pointer-events:none;';
+      slide.appendChild(c);
+      pinContainers.push(c);
+    });
+
+    // ポップアップをviewport固定レイヤーに追加
+    var popupLayer = document.getElementById('c-popup-layer');
+
+    var inputPopup = document.createElement('div');
+    inputPopup.className = 'c-popup';
+    inputPopup.innerHTML =
+      '<textarea id="c-text" placeholder="コメントを入力… (Enterで送信)" ' +
+        'onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();wfSubmitComment();}"></textarea>' +
+      '<div class="c-popup-actions">' +
+        '<button class="c-btn-cancel" onclick="wfCancelInput()">キャンセル</button>' +
+        '<button class="c-btn-submit" onclick="wfSubmitComment()">メモ</button>' +
+      '</div>';
+    popupLayer.appendChild(inputPopup);
+
+    var viewPopup = document.createElement('div');
+    viewPopup.className = 'c-view-popup';
+    viewPopup.innerHTML =
+      '<div class="c-view-text" id="c-view-text"></div>' +
+      '<div class="c-view-meta" id="c-view-meta"></div>' +
+      '<button class="c-btn-delete" onclick="wfDeleteComment()">削除</button>';
+    popupLayer.appendChild(viewPopup);
+
+    // セレクター生成（slide内の相対パス）
+    function buildWfSelector(el, stopEl) {
+      if (!el || el === stopEl || el === document.body) return null;
+      if (el.id) return '#' + el.id;
+      var parts = [];
+      var node = el;
+      while (node && node !== stopEl && node.parentElement && node !== document.body) {
+        var tag = node.tagName.toLowerCase();
+        var cls = '';
+        if (node.className && typeof node.className === 'string') {
+          var fc = node.className.trim().split(/\s+/)[0];
+          if (fc) cls = '.' + fc;
+        }
+        var siblings = Array.from(node.parentElement.children).filter(function(c) { return c.tagName === node.tagName; });
+        var part = tag + cls + (siblings.length > 1 ? ':nth-of-type(' + (siblings.indexOf(node) + 1) + ')' : '');
+        parts.unshift(part);
+        if (node.id) { parts[0] = '#' + node.id; break; }
+        node = node.parentElement;
+      }
+      return parts.length > 0 ? parts.join(' > ') : null;
+    }
+
+    // ピン座標計算（アンカー追従）
+    function getWfPinCoords(data) {
+      var slideEl = slideEls[data.slideIndex];
+      if (data.anchor && data.anchor.selector) {
+        try {
+          var el = slideEl.querySelector(data.anchor.selector);
+          if (el) {
+            var elRect = el.getBoundingClientRect();
+            var slideRect = slideEl.getBoundingClientRect();
+            var elLeft = elRect.left - slideRect.left;
+            var elTop  = elRect.top  - slideRect.top + slideEl.scrollTop;
+            return {
+              x: elLeft + data.anchor.ox * elRect.width,
+              y: elTop  + data.anchor.oy * elRect.height
+            };
+          }
+        } catch(e) {}
+      }
+      return { x: data.x, y: data.y };
+    }
+
+    // コメントモード切り替え
+    function cToggle() {
+      wfCommentMode = !wfCommentMode;
+      var btn = document.getElementById('c-toggle');
+      var overlay = document.getElementById('c-overlay');
+      btn.classList.toggle('active', wfCommentMode);
+      overlay.classList.toggle('active', wfCommentMode);
+      document.getElementById('c-icon-comment').style.display = wfCommentMode ? 'none' : 'block';
+      document.getElementById('c-icon-close').style.display   = wfCommentMode ? 'block' : 'none';
+      if (!wfCommentMode) inputPopup.style.display = 'none';
+    }
+
+    // オーバーレイクリック → 現在スライドにピン設置
+    document.getElementById('c-overlay').addEventListener('click', function(e) {
+      var cx = e.clientX, cy = e.clientY;
+      var slideEl = slideEls[current];
+      var slideRect = slideEl.getBoundingClientRect();
+
+      // スライド内の座標（スクロール込み）
+      pendingX = cx - slideRect.left;
+      pendingY = cy - slideRect.top + slideEl.scrollTop;
+      pendingSlideIdx = current;
+
+      // DOM アンカー取得
+      this.style.display = 'none';
+      var target = document.elementFromPoint(cx, cy);
+      this.style.display = '';
+      if (target && target !== document.body && target !== slideEl) {
+        var elRect = target.getBoundingClientRect();
+        var elLeft = elRect.left - slideRect.left;
+        var elTop  = elRect.top  - slideRect.top + slideEl.scrollTop;
+        pendingAnchor = {
+          selector: buildWfSelector(target, slideEl),
+          ox: (pendingX - elLeft) / Math.max(elRect.width,  1),
+          oy: (pendingY - elTop)  / Math.max(elRect.height, 1)
+        };
+      } else {
+        pendingAnchor = null;
+      }
+
+      // 入力ポップアップ（viewport座標で表示）
+      var popupX = (window.innerWidth - cx > 290) ? cx + 16 : cx - 276;
+      inputPopup.style.left    = popupX + 'px';
+      inputPopup.style.top     = cy + 'px';
+      inputPopup.style.display = 'block';
+      document.getElementById('c-text').value = '';
+      document.getElementById('c-text').focus();
+    });
+
+    function wfCancelInput() {
+      inputPopup.style.display = 'none';
+      if (wfCommentMode) cToggle();
+    }
+
+    function wfSubmitComment() {
+      var text = document.getElementById('c-text').value.trim();
+      if (!text) return;
+      db.collection('comments').doc(WF_PAGE_ID).collection('items').add({
+        slideIndex: pendingSlideIdx,
+        x: pendingX, y: pendingY,
+        anchor: pendingAnchor || null,
+        text: text,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(function() {
+        inputPopup.style.display = 'none';
+      }).catch(function(err) { alert('保存に失敗しました: ' + err.message); });
+    }
+
+    function wfDeleteComment() {
+      if (!wfActiveCommentId) return;
+      if (!confirm('このコメントを削除しますか？')) return;
+      db.collection('comments').doc(WF_PAGE_ID).collection('items').doc(wfActiveCommentId).delete()
+        .then(function() { viewPopup.style.display = 'none'; wfActiveCommentId = null; });
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.c-view-popup') && !e.target.closest('.c-pin')) {
+        viewPopup.style.display = 'none';
+        wfActiveCommentId = null;
+      }
+    });
+
+    // ピン描画
+    function renderWfPins(snapshot) {
+      pinContainers.forEach(function(c) { c.querySelectorAll('.c-pin').forEach(function(p) { p.remove(); }); });
+      var num = 0;
+      snapshot.forEach(function(docSnap) {
+        num++;
+        var data = docSnap.data();
+        if (data.slideIndex === undefined || data.slideIndex === null) return;
+        var coords = getWfPinCoords(data);
+        var n = num;
+        var pin = document.createElement('div');
+        pin.className = 'c-pin';
+        pin.style.left = coords.x + 'px';
+        pin.style.top  = coords.y + 'px';
+        pin.textContent = n;
+        pin.addEventListener('click', function(e) {
+          e.stopPropagation();
+          wfActiveCommentId = docSnap.id;
+          var pinRect = pin.getBoundingClientRect();
+          var popupX = (window.innerWidth - pinRect.left > 290) ? pinRect.right + 8 : pinRect.left - 276;
+          viewPopup.style.display = 'block';
+          viewPopup.style.left = popupX + 'px';
+          viewPopup.style.top  = pinRect.top + 'px';
+          document.getElementById('c-view-text').textContent = data.text;
+          var ts = data.timestamp ? data.timestamp.toDate().toLocaleString('ja-JP') : '';
+          document.getElementById('c-view-meta').textContent = ts;
+        });
+        pinContainers[data.slideIndex].appendChild(pin);
+      });
+    }
+
+    db.collection('comments').doc(WF_PAGE_ID).collection('items')
+      .orderBy('timestamp')
+      .onSnapshot(function(snapshot) {
+        lastWfSnapshot = snapshot;
+        renderWfPins(snapshot);
+      }, function(err) { alert('読み込みエラー: ' + err.message); });
+
+    var wfResizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(wfResizeTimer);
+      wfResizeTimer = setTimeout(function() {
+        if (lastWfSnapshot) renderWfPins(lastWfSnapshot);
+      }, 200);
     });
   </script>
 
