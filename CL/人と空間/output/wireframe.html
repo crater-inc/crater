@@ -1321,8 +1321,9 @@
       if (!wfCommentMode) inputPopup.style.display = 'none';
     }
 
-    // オーバーレイクリック → 現在スライドにピン設置
+    // オーバーレイクリック → 現在スライドにピン設置（スクロール中は無視）
     document.getElementById('c-overlay').addEventListener('click', function(e) {
+      if (isTouchScroll) { isTouchScroll = false; return; }
       var cx = e.clientX, cy = e.clientY;
       var slideEl = slideEls[current];
       var slideRect = slideEl.getBoundingClientRect();
@@ -1436,6 +1437,29 @@
         if (lastWfSnapshot) renderWfPins(lastWfSnapshot);
       }, 200);
     });
+
+    // コメントモード中もスクロールを効かせる
+    var overlayEl = document.getElementById('c-overlay');
+
+    // マウスホイール → 現在のスライドにスクロール転送
+    overlayEl.addEventListener('wheel', function(e) {
+      slideEls[current].scrollTop += e.deltaY;
+    }, { passive: true });
+
+    // タッチスクロール転送（スワイプ判定付き）
+    var touchStartY = 0, touchDeltaY = 0, isTouchScroll = false;
+    overlayEl.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+      touchDeltaY = 0;
+      isTouchScroll = false;
+    }, { passive: true });
+    overlayEl.addEventListener('touchmove', function(e) {
+      var dy = touchStartY - e.touches[0].clientY;
+      touchStartY = e.touches[0].clientY;
+      touchDeltaY += Math.abs(dy);
+      if (touchDeltaY > 5) isTouchScroll = true;
+      slideEls[current].scrollTop += dy;
+    }, { passive: true });
   </script>
 
 </body>
