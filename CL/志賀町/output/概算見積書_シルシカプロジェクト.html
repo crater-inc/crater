@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>概算見積書｜志賀町「名品」プロジェクト SHIRU SHIKA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      font-size: 10pt;
+      line-height: 1.7;
+      color: #1a1a1a;
+      background: #fff;
+    }
+
+    .page {
+      max-width: 210mm;
+      margin: 0 auto;
+      padding: 20mm 20mm 20mm 22mm;
+    }
+
+    /* ヘッダー */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 28px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #1a1a1a;
+    }
+
+    .header-left h1 {
+      font-size: 18pt;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    .header-left .sub {
+      font-size: 9.5pt;
+      color: #555;
+      margin-top: 4px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 9.5pt;
+      color: #333;
+      line-height: 1.9;
+    }
+
+    /* 宛先・発行元 */
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .meta-to {
+      font-size: 10pt;
+    }
+
+    .meta-to .client {
+      font-size: 13pt;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .meta-from {
+      text-align: right;
+      font-size: 9.5pt;
+      color: #333;
+      line-height: 1.9;
+    }
+
+    .meta-from .company {
+      font-size: 11pt;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+
+    /* 件名・合計ブロック */
+    .summary {
+      background: #f5f5f5;
+      border-left: 4px solid #1a1a1a;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+
+    .summary .project-name {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .summary .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .summary .total-label {
+      font-size: 9.5pt;
+      color: #555;
+    }
+
+    .summary .total-amount {
+      font-size: 16pt;
+      font-weight: bold;
+      letter-spacing: 0.03em;
+    }
+
+    .summary .note {
+      font-size: 8.5pt;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    /* 見積テーブル */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-bottom: 8px;
+    }
+
+    thead th {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 8px 10px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    thead th.right { text-align: right; }
+    thead th.center { text-align: center; }
+
+    tbody td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #ddd;
+      vertical-align: top;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #fafafa;
+    }
+
+    tbody tr.category td {
+      background: #ebebeb;
+      font-weight: bold;
+      font-size: 9pt;
+      color: #333;
+      padding: 5px 10px;
+    }
+
+    .td-right { text-align: right; }
+    .td-center { text-align: center; }
+
+    /* 小計・合計行 */
+    tfoot td {
+      padding: 8px 10px;
+      font-weight: bold;
+      border-top: 1px solid #aaa;
+    }
+
+    tfoot tr.subtotal td { color: #333; }
+    tfoot tr.tax td { color: #555; font-weight: normal; font-size: 9pt; }
+
+    tfoot tr.grand-total td {
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 11pt;
+      border-top: none;
+    }
+
+    /* 備考 */
+    .remarks {
+      margin-top: 20px;
+      font-size: 9pt;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .remarks .title {
+      font-weight: bold;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+
+    .remarks ul {
+      padding-left: 1.2em;
+    }
+
+    .remarks li {
+      margin-bottom: 2px;
+    }
+
+    @media print {
+      body { font-size: 9.5pt; }
+      .page { padding: 12mm 14mm 12mm 16mm; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <h1>概　算　見　積　書</h1>
+      <div class="sub">志賀町「名品」プロジェクト　SHIRU SHIKA</div>
+    </div>
+    <div class="header-right">
+      発行日：令和８年　４月　22日<br>
+      有効期限：令和８年　５月　31日<br>
+      見積番号：EST-2026-001
+    </div>
+  </div>
+
+  <!-- 宛先・発行元 -->
+  <div class="meta">
+    <div class="meta-to">
+      <div class="client">志賀町　御中</div>
+      <div style="font-size:9pt; color:#555;">石川県羽咋郡志賀町</div>
+    </div>
+    <div class="meta-from">
+      <div class="company">株式会社クレーター</div>
+      〒155-0031 東京都世田谷区北沢3丁目20-18<br>
+      北沢宝ビル3F<br>
+      TEL：03-6665-0846<br>
+      crater.co.jp
+    </div>
+  </div>
+
+  <!-- 件名・合計 -->
+  <div class="summary">
+    <div class="project-name">件名：志賀町地域産品振興・認知拡大事業（SHIRU SHIKA プロジェクト）</div>
+    <div class="total-row">
+      <span class="total-label">概算合計金額（消費税込）</span>
+      <span class="total-amount">¥ 3,999,600</span>
+    </div>
+    <div class="note">※ 本見積は概算です。詳細仕様確定後に正式見積を提出いたします。</div>
+  </div>
+
+  <!-- 見積明細 -->
+  <table>
+    <thead>
+      <tr>
+        <th style="width:5%;">No.</th>
+        <th style="width:42%;">項目</th>
+        <th style="width:28%;">内容・仕様</th>
+        <th class="center" style="width:10%;">数量</th>
+        <th class="right" style="width:15%;">金額（円）</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- Phase 1：ブランド開発 -->
+      <tr class="category">
+        <td colspan="5">Phase 1　ブランド開発・設計</td>
+      </tr>
+      <tr>
+        <td class="td-center">1</td>
+        <td>ブランドコンセプト・ネーミング策定</td>
+        <td>SHIRU SHIKA のコンセプト定義・言語化、ブランドストーリー作成</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">400,000</td>
+      </tr>
+      <tr>
+        <td class="td-center">2</td>
+        <td>ロゴマーク・ロゴタイプ制作</td>
+        <td>SHIRU SHIKA ブランドロゴ（日英）、カラー・モノクロ各バリエーション、データ納品（ai・png・pdf）</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">600,000</td>
+      </tr>
+      <tr>
+        <td class="td-center">3</td>
+        <td>ブランドガイドライン作成</td>
+        <td>カラー指定・余白・禁止事項・使用例等のVI規定書</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">200,000</td>
+      </tr>
+
+      <!-- Phase 1：認定商品支援 -->
+      <tr class="category">
+        <td colspan="5">Phase 1　認定商品選定・デザイン支援</td>
+      </tr>
+      <tr>
+        <td class="td-center">4</td>
+        <td>生産者ヒアリング・認定商品選定支援</td>
+        <td>生産者へのヒアリング設計・実施、選定基準の策定・評価サポート（現地訪問含む）</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">400,000</td>
+      </tr>
+      <tr>
+        <td class="td-center">5</td>
+        <td>認定商品パッケージデザイン</td>
+        <td>SHIRU SHIKA ブランドに統一したパッケージデザイン（2商品想定）</td>
+        <td class="td-center">3商品</td>
+        <td class="td-right">500,000</td>
+      </tr>
+      <tr>
+        <td class="td-center">6</td>
+        <td>認定マーク・シールデザイン</td>
+        <td>認定商品に貼付する統一認定シール・マークのデザイン・データ制作</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">150,000</td>
+      </tr>
+
+      <!-- Phase 2：広報素材・PR -->
+      <tr class="category">
+        <td colspan="5">Phase 2　広報素材制作・PR展開</td>
+      </tr>
+      <tr>
+        <td class="td-center">7</td>
+        <td>キービジュアル制作</td>
+        <td>ブランドの世界観を表現するメインビジュアル（撮影ディレクション含む）</td>
+        <td class="td-center">1点</td>
+        <td class="td-right">250,000</td>
+      </tr>
+      <tr>
+        <td class="td-center">8</td>
+        <td>Web・SNS用広報素材制作</td>
+        <td>各SNSアイコン・バナー・掲載用画像（各サイズ展開）</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">200,000</td>
+      </tr>
+      <tr>
+        <td class="td-center">9</td>
+        <td>プレスリリース案作成</td>
+        <td>ブランド立上げ・認定商品発表に向けたプレスリリース原稿</td>
+        <td class="td-center">1件</td>
+        <td class="td-right">100,000</td>
+      </tr>
+      <tr>
+        <td class="td-center">10</td>
+        <td>ポップアップイベント企画・運営サポート</td>
+        <td>都内・金沢での物産展・ポップアップの企画立案・運営ディレクション</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">400,000</td>
+      </tr>
+
+      <!-- マネジメント -->
+      <tr class="category">
+        <td colspan="5">プロジェクトマネジメント</td>
+      </tr>
+      <tr>
+        <td class="td-center">11</td>
+        <td>プロジェクト全体統括・進行管理</td>
+        <td>全体スケジュール管理、自治体・生産者との調整、定例報告</td>
+        <td class="td-center">一式</td>
+        <td class="td-right">436,000</td>
+      </tr>
+
+    </tbody>
+    <tfoot>
+      <tr class="subtotal">
+        <td colspan="4" style="text-align:right;">小　計</td>
+        <td class="td-right">3,636,000</td>
+      </tr>
+      <tr class="tax">
+        <td colspan="4" style="text-align:right;">消費税（10%）</td>
+        <td class="td-right">363,600</td>
+      </tr>
+      <tr class="grand-total">
+        <td colspan="4" style="text-align:right;">合　計（税込）</td>
+        <td class="td-right">¥ 3,999,600</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- 備考 -->
+  <div class="remarks">
+    <div class="title">備考・条件</div>
+    <ul>
+      <li>本見積は概算であり、詳細仕様・対象商品数の確定後に正式見積を提出いたします。</li>
+      <li>商品パッケージデザインは2商品を想定しています。商品数の変更により金額が変動します。</li>
+      <li>以下の費用は本見積に含まれません。必要に応じて別途ご相談ください。
+        <ul style="margin-top:4px; padding-left:1.2em; list-style:disc;">
+          <li>印刷費・加工費（パッケージ・シール・販促物等の印刷・製造費用）</li>
+          <li>広告費（Web広告・SNS広告・雑誌・新聞等の媒体掲載費用）</li>
+          <li>出展料・イベント参加費（物産展・ポップアップの会場費・出展料・什器費等）</li>
+          <li>Webサイト制作費（EC・ブランドサイトの構築・運用費用）</li>
+          <li>生産者現地訪問に伴う交通費・宿泊費（実費精算）</li>
+        </ul>
+      </li>
+      <li>著作権（制作物一式）は納品・入金完了をもって志賀町に帰属します。</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
