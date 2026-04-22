@@ -18,25 +18,35 @@
     .lock-screen {
       position: fixed;
       inset: 0;
-      background: #111;
+      background: #888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .lock-screen .inner {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      z-index: 100;
+      gap: 16px;
+    }
+
+    .lock-screen .path {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #111;
     }
 
     .lock-screen .logo {
       font-size: 11px;
       letter-spacing: 0.3em;
-      color: #fff;
-      opacity: 0.4;
+      color: #333;
     }
 
     .lock-screen input {
-      background: #222;
-      border: 1px solid #444;
+      background: #666;
+      border: 1px solid #777;
       border-radius: 4px;
       padding: 12px 16px;
       font-size: 16px;
@@ -47,13 +57,22 @@
       outline: none;
     }
 
-    .lock-screen input:focus {
-      border-color: #888;
+    .lock-screen button {
+      background: #111;
+      color: #888;
+      border: none;
+      border-radius: 100px;
+      padding: 11px 0;
+      width: 240px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+      cursor: pointer;
     }
 
     .lock-screen .error {
       font-size: 12px;
-      color: #e05555;
+      color: #c0392b;
       display: none;
     }
 
@@ -169,9 +188,13 @@
 
   <!-- パスワード画面 -->
   <div class="lock-screen" id="lockScreen">
-    <div class="logo">CRATER INC.</div>
-    <input type="password" id="passwordInput" placeholder="PASSWORD" onkeydown="if(event.key==='Enter')checkPassword()" autofocus>
-    <div class="error" id="errorMsg">パスワードが違います</div>
+    <div class="inner">
+      <div class="path">CRATER / VIEW</div>
+      <input type="password" id="passwordInput" placeholder="PASSWORD" onkeydown="if(event.key==='Enter')checkPassword()" autofocus>
+      <button onclick="checkPassword()">ENTER</button>
+      <div class="error" id="errorMsg">パスワードが違います</div>
+      <div class="logo">CRATER INC.</div>
+    </div>
   </div>
 
   <!-- メインコンテンツ -->

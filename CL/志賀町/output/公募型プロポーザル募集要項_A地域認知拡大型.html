@@ -217,13 +217,17 @@
 
 </div>
   <!-- パスワード保護 -->
-  <div id="pw-lock" style="position:fixed;inset:0;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:9999;">
-    <div style="font-size:11px;letter-spacing:0.3em;color:#fff;opacity:0.4;">CRATER INC.</div>
-    <input id="pw-input" type="password" placeholder="PASSWORD" autofocus
-      style="background:#222;border:1px solid #444;border-radius:4px;padding:12px 16px;font-size:16px;color:#fff;width:240px;text-align:center;letter-spacing:0.1em;outline:none;"
-      onkeydown="if(event.key==='Enter')pwCheck()">
-    <div id="pw-error" style="font-size:12px;color:#e05555;display:none;">パスワードが違います</div>
-    <div style="font-size:10px;letter-spacing:0.1em;color:#fff;opacity:0.25;margin-top:4px;">志賀町 / 募集要項（地域認知拡大型）</div>
+  <div id="pw-lock" style="position:fixed;inset:0;background:#888;display:flex;align-items:center;justify-content:center;z-index:9999;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+      <div style="font-size:12px;letter-spacing:0.1em;color:#111;">志賀町 / 募集要項（地域認知拡大型）</div>
+      <input id="pw-input" type="password" placeholder="PASSWORD" autofocus
+        style="background:#666;border:1px solid #777;border-radius:4px;padding:12px 16px;font-size:16px;color:#fff;width:240px;text-align:center;letter-spacing:0.1em;outline:none;"
+        onkeydown="if(event.key==='Enter')pwCheck()">
+      <button onclick="pwCheck()"
+        style="background:#111;color:#888;border:none;border-radius:100px;padding:11px 0;width:240px;font-size:13px;font-weight:bold;letter-spacing:0.15em;cursor:pointer;">ENTER</button>
+      <div id="pw-error" style="font-size:12px;color:#c0392b;display:none;">パスワードが違います</div>
+      <div style="font-size:11px;letter-spacing:0.3em;color:#333;">CRATER INC.</div>
+    </div>
   </div>
   <script>
     (function(){ if(sessionStorage.getItem('cv_auth')==='1'){document.getElementById('pw-lock').style.display='none';} })();
