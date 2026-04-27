@@ -1031,7 +1031,7 @@ body {
 <!-- ══ TAB NAV ══ -->
 <div class="tab-nav-sticky">
 <nav class="tab-nav">
-  <div class="tab-nav-brand">
+  <div class="tab-nav-brand" onclick="switchTab('overview')" style="cursor:pointer;">
     <div>
       <div class="tab-nav-brand-jp">金の時　<span style="font-size:13px;font-weight:300;color:var(--pt);letter-spacing:0.1em;">|　BRANDBOARD</span></div>
     </div>
@@ -1976,7 +1976,7 @@ body {
 <!-- ══ FOOTER ══ -->
 <div class="board-footer-wrap">
 <div class="board-footer">
-  <div style="font-size:18px;font-weight:700;letter-spacing:0.1em;color:var(--gold-dk);">
+  <div style="font-size:18px;font-weight:700;letter-spacing:0.1em;color:var(--gold-dk);cursor:pointer;" onclick="switchTab('overview');window.scrollTo({top:0,behavior:'smooth'})">
     金の時　<span style="font-size:13px;font-weight:300;color:var(--pt);letter-spacing:0.1em;">|　BRANDBOARD</span>
   </div>
   <div class="footer-copy">© 2026 金の時 / Golden Moments — JHL+</div>
