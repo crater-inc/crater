@@ -996,8 +996,6 @@ body {
   .typo-item-right { padding-top: 0; }
   .typo-item-left [style*="font-size:52px"] { font-size: 36px !important; }
   .tr-sz { display: none; }
-  .typo-row { flex-direction: column-reverse; align-items: flex-start; padding: 10px 0; gap: 2px; }
-  .tr-lbl { width: auto; font-size: 9px; letter-spacing: 0.2em; }
 
   /* コアコード大見出し */
   .core-code-headline { font-size: 28px !important; }
@@ -1019,6 +1017,12 @@ body {
   .concept-big-main { font-size: 24px; }
   .tagline-main { font-size: 26px; }
   .icon-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+}
+
+@media (max-width: 1100px) and (min-width: 769px) {
+  .typo-row { flex-direction: column; align-items: flex-start; gap: 3px; padding: 10px 0; }
+  .tr-lbl { width: auto; }
+  .tr-sz { font-size: 10px; opacity: 0.7; }
 }
 </style>
 </head>
