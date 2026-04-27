@@ -1039,6 +1039,7 @@ body {
   <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
   <button class="tab-btn" onclick="switchTab('design')">Design System</button>
   <button class="tab-btn" onclick="switchTab('logo')">Logo</button>
+  <button class="tab-btn" onclick="switchTab('visual')">Visual</button>
   <button class="tab-btn" onclick="switchTab('package')">Package</button>
   <!-- ハンバーガー（SP用） -->
   <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMenu()" aria-label="メニュー">
@@ -1049,6 +1050,7 @@ body {
     <button class="sp-menu-item active" onclick="switchTab('overview');closeMenu()">Overview</button>
     <button class="sp-menu-item" onclick="switchTab('design');closeMenu()">Design System</button>
     <button class="sp-menu-item" onclick="switchTab('logo');closeMenu()">Logo</button>
+    <button class="sp-menu-item" onclick="switchTab('visual');closeMenu()">Visual</button>
     <button class="sp-menu-item" onclick="switchTab('package');closeMenu()">Package</button>
   </div>
 </nav>
@@ -1768,6 +1770,83 @@ body {
   </div>
 
 </div><!-- /logo -->
+
+<!-- ══ § VISUAL ══ -->
+<div id="tab-visual" class="tab-content">
+
+  <!-- KV -->
+  <div class="section-heading" style="margin-top:0;"><span class="section-heading-text">Key Visual</span><span class="section-heading-sep">|</span><span class="section-heading-jp">キービジュアル</span></div>
+  <div style="position:relative;width:100%;aspect-ratio:16/7;background:#CCCCCC;border-radius:16px;overflow:hidden;margin-bottom:var(--gap);">
+    <img src="../assets/kv-main.jpg" alt="KV" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+    <div style="position:absolute;inset:0;background:rgba(200,200,200,0.88);display:flex;align-items:center;justify-content:center;">
+      <div style="font-family:'Crimson Pro',serif;font-size:28px;letter-spacing:0.4em;color:#AAAAAA;text-transform:uppercase;background:#FFFFFF;padding:12px 36px;">SAMPLE</div>
+    </div>
+  </div>
+
+  <!-- Visual Concept -->
+  <div class="section-heading"><span class="section-heading-text">Visual Concept</span><span class="section-heading-sep">|</span><span class="section-heading-jp">ビジュアルコンセプト</span></div>
+  <div class="card" style="margin-bottom:var(--gap);">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;">
+      <div>
+        <div style="font-family:'Crimson Pro',serif;font-size:11px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">Atmosphere</div>
+        <div style="font-size:16px;font-weight:500;margin-bottom:8px;">静かな輝き</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:300;color:var(--gray);line-height:2;">騒がしくなく、語りすぎない。深みのある暗闇にゴールドがにじむような静謐な世界観。</div>
+      </div>
+      <div>
+        <div style="font-family:'Crimson Pro',serif;font-size:11px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">Subject</div>
+        <div style="font-size:16px;font-weight:500;margin-bottom:8px;">素材と光</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:300;color:var(--gray);line-height:2;">金時草の葉・質感・産地の風景。人物は「輝く人生の後半を歩む人」を暗示する後ろ姿や手元。</div>
+      </div>
+      <div>
+        <div style="font-family:'Crimson Pro',serif;font-size:11px;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">Tone</div>
+        <div style="font-size:16px;font-weight:500;margin-bottom:8px;">ゴールデンアワー</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:300;color:var(--gray);line-height:2;">朝・夕の柔らかい光。高コントラスト。白飛びよりも暗部重視。緑×白の典型的サプリ写真とは距離を置く。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visual Grid -->
+  <div class="section-heading"><span class="section-heading-text">Visual Grid</span><span class="section-heading-sep">|</span><span class="section-heading-jp">ビジュアル一覧</span></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-bottom:var(--gap);">
+    <div style="position:relative;aspect-ratio:4/3;background:#C8C8C8;border-radius:12px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(200,200,200,0.88);display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.35em;color:#AAAAAA;text-transform:uppercase;background:#FFFFFF;padding:6px 16px;">SAMPLE</div>
+      </div>
+      <div style="position:absolute;bottom:12px;left:14px;font-family:'Crimson Pro',serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);text-transform:uppercase;">Ingredient</div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/3;background:#BBBBBB;border-radius:12px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(200,200,200,0.88);display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.35em;color:#AAAAAA;text-transform:uppercase;background:#FFFFFF;padding:6px 16px;">SAMPLE</div>
+      </div>
+      <div style="position:absolute;bottom:12px;left:14px;font-family:'Crimson Pro',serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);text-transform:uppercase;">Lifestyle</div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/3;background:#D4D4D4;border-radius:12px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(200,200,200,0.88);display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.35em;color:#AAAAAA;text-transform:uppercase;background:#FFFFFF;padding:6px 16px;">SAMPLE</div>
+      </div>
+      <div style="position:absolute;bottom:12px;left:14px;font-family:'Crimson Pro',serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);text-transform:uppercase;">Product</div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/3;background:#C0C0C0;border-radius:12px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(200,200,200,0.88);display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.35em;color:#AAAAAA;text-transform:uppercase;background:#FFFFFF;padding:6px 16px;">SAMPLE</div>
+      </div>
+      <div style="position:absolute;bottom:12px;left:14px;font-family:'Crimson Pro',serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);text-transform:uppercase;">Origin</div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/3;background:#CACACA;border-radius:12px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(200,200,200,0.88);display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.35em;color:#AAAAAA;text-transform:uppercase;background:#FFFFFF;padding:6px 16px;">SAMPLE</div>
+      </div>
+      <div style="position:absolute;bottom:12px;left:14px;font-family:'Crimson Pro',serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);text-transform:uppercase;">Gift Scene</div>
+    </div>
+    <div style="position:relative;aspect-ratio:4/3;background:#B8B8B8;border-radius:12px;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:rgba(200,200,200,0.88);display:flex;align-items:center;justify-content:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.35em;color:#AAAAAA;text-transform:uppercase;background:#FFFFFF;padding:6px 16px;">SAMPLE</div>
+      </div>
+      <div style="position:absolute;bottom:12px;left:14px;font-family:'Crimson Pro',serif;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);text-transform:uppercase;">Texture</div>
+    </div>
+  </div>
+
+</div><!-- /visual -->
 
 <!-- ══ § PACKAGE ══ -->
 <div id="tab-package" class="tab-content">
