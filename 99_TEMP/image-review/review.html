@@ -336,6 +336,35 @@
       white-space: pre-wrap;
     }
 
+    .panel-edit-btn {
+      margin-left: auto;
+      background: none;
+      border: 1px solid #374151;
+      color: #6b7280;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: inherit;
+      flex-shrink: 0;
+    }
+    .panel-edit-btn:hover { background: #374151; color: #d1d5db; }
+
+    .c-edit-textarea {
+      width: 100%;
+      background: #111827;
+      border: 1px solid #2563eb;
+      border-radius: 6px;
+      color: #e5e7eb;
+      font-size: 13px;
+      padding: 8px 10px;
+      resize: none;
+      font-family: inherit;
+      line-height: 1.5;
+      outline: none;
+      min-height: 70px;
+    }
+
     .panel-empty {
       font-size: 13px;
       color: #4b5563;
@@ -559,15 +588,20 @@
       '<div class="c-view-popup-header">' +
         '<span class="c-view-num"># ' + num + '　' + (c.name || '匿名') + '</span>' +
         '<div class="c-view-actions">' +
-          '<button class="c-view-btn resolve" data-id="' + c.id + '">' + (c.resolved ? '再開' : '解決') + '</button>' +
-          '<button class="c-view-btn delete" data-id="' + c.id + '">削除</button>' +
+          '<button class="c-view-btn edit">編集</button>' +
+          '<button class="c-view-btn resolve">' + (c.resolved ? '再開' : '解決') + '</button>' +
+          '<button class="c-view-btn delete">削除</button>' +
         '</div>' +
       '</div>' +
-      '<div class="c-view-text">' + escapeHtml(c.text) + '</div>' +
+      '<div class="c-view-text" id="popup-text-' + c.id + '">' + escapeHtml(c.text) + '</div>' +
       (c.resolved ? '<span class="c-view-resolved-badge">✓ 解決済み</span>' : '') +
       (date ? '<div class="c-view-meta">' + date + '</div>' : '');
 
     imageWrap.appendChild(viewPopup);
+
+    viewPopup.querySelector('.edit').addEventListener('click', function() {
+      startEditInPopup(c, viewPopup);
+    });
 
     viewPopup.querySelector('.resolve').addEventListener('click', function() {
       db.collection('comments').doc(PAGE_ID).collection('items')
@@ -578,6 +612,30 @@
     viewPopup.querySelector('.delete').addEventListener('click', function() {
       if (!confirm('このコメントを削除しますか？')) return;
       db.collection('comments').doc(PAGE_ID).collection('items').doc(c.id).delete();
+      closeViewPopup();
+    });
+  }
+
+  // ===== ポップアップ内インライン編集 =====
+  function startEditInPopup(c, popup) {
+    var textEl = popup.querySelector('#popup-text-' + c.id);
+    if (!textEl) return;
+    var current = c.text;
+    textEl.outerHTML =
+      '<textarea class="c-edit-textarea" id="popup-edit-' + c.id + '">' + escapeHtml(current) + '</textarea>' +
+      '<div class="c-input-row" style="margin-top:8px">' +
+        '<button class="c-cancel-btn" id="edit-cancel-' + c.id + '">キャンセル</button>' +
+        '<button class="c-send-btn" id="edit-save-' + c.id + '">保存</button>' +
+      '</div>';
+
+    var ta = popup.querySelector('#popup-edit-' + c.id);
+    ta.focus();
+
+    popup.querySelector('#edit-cancel-' + c.id).addEventListener('click', closeViewPopup);
+    popup.querySelector('#edit-save-' + c.id).addEventListener('click', function() {
+      var newText = ta.value.trim();
+      if (!newText) return;
+      db.collection('comments').doc(PAGE_ID).collection('items').doc(c.id).update({ text: newText });
       closeViewPopup();
     });
   }
@@ -603,10 +661,17 @@
         '<div class="panel-item-header">' +
           '<div class="panel-num' + (c.resolved ? ' resolved' : '') + '">' + (i + 1) + '</div>' +
           '<span class="panel-name">' + escapeHtml(c.name || '匿名') + '</span>' +
+          '<button class="panel-edit-btn" data-id="' + c.id + '">編集</button>' +
         '</div>' +
-        '<div class="panel-text">' + escapeHtml(c.text) + '</div>';
+        '<div class="panel-text" id="panel-text-' + c.id + '">' + escapeHtml(c.text) + '</div>';
 
-      item.addEventListener('click', function() {
+      item.querySelector('.panel-edit-btn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        startEditInPanel(c, item);
+      });
+
+      item.addEventListener('click', function(e) {
+        if (e.target.closest('.panel-edit-btn') || e.target.closest('.c-send-btn') || e.target.closest('.c-cancel-btn')) return;
         var pin = imageWrap.querySelector('.c-pin[data-id="' + c.id + '"]');
         if (pin) {
           pin.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -615,6 +680,32 @@
       });
 
       list.appendChild(item);
+    });
+  }
+
+  // ===== パネル内インライン編集 =====
+  function startEditInPanel(c, item) {
+    var textEl = item.querySelector('#panel-text-' + c.id);
+    if (!textEl) return;
+    textEl.outerHTML =
+      '<textarea class="c-edit-textarea" id="panel-edit-' + c.id + '">' + escapeHtml(c.text) + '</textarea>' +
+      '<div class="c-input-row" style="margin-top:6px">' +
+        '<button class="c-cancel-btn" id="pedit-cancel-' + c.id + '">キャンセル</button>' +
+        '<button class="c-send-btn" id="pedit-save-' + c.id + '">保存</button>' +
+      '</div>';
+
+    var ta = item.querySelector('#panel-edit-' + c.id);
+    ta.focus();
+
+    item.querySelector('#pedit-cancel-' + c.id).addEventListener('click', function(e) {
+      e.stopPropagation();
+      renderPins();
+    });
+    item.querySelector('#pedit-save-' + c.id).addEventListener('click', function(e) {
+      e.stopPropagation();
+      var newText = ta.value.trim();
+      if (!newText) return;
+      db.collection('comments').doc(PAGE_ID).collection('items').doc(c.id).update({ text: newText });
     });
   }
 
