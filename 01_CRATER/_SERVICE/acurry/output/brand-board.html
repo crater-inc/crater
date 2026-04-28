@@ -327,7 +327,7 @@ details.acc[open] .acc-body { opacity: 1; }
 .icon-grid { display: grid; grid-template-columns: repeat(8,1fr); gap: 20px; }
 .icon-item { display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .icon-box {
-  width: 64px; height: 64px;
+  width: 80px; height: 80px;
   display: flex; align-items: center; justify-content: center;
   border-bottom: 1px solid var(--gray-lt);
 }
@@ -713,62 +713,75 @@ details.acc[open] .acc-body { opacity: 1; }
       <div>
         <div class="lbl">Color System</div>
 
-        <!-- ドーナツチャート -->
-        <div style="display:flex;justify-content:center;margin-bottom:20px;">
-          <svg width="160" height="160" viewBox="0 0 160 160">
-            <!-- Black 60% -->
-            <circle cx="80" cy="80" r="56" fill="none" stroke="#111111" stroke-width="28"
-              stroke-dasharray="211.2 352" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
-            <!-- Dark Gray 20% -->
-            <circle cx="80" cy="80" r="56" fill="none" stroke="#444444" stroke-width="28"
-              stroke-dasharray="70.4 352" stroke-dashoffset="-211.2" transform="rotate(-90 80 80)"/>
-            <!-- Mid Gray 12% -->
+        <!-- ドーナツチャート + 凡例 -->
+        <div style="display:flex;align-items:center;gap:24px;margin-bottom:20px;">
+          <svg width="160" height="160" viewBox="0 0 160 160" style="flex-shrink:0;">
+            <!-- BG Light Gray 70% -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#C8C7C1" stroke-width="28"
+              stroke-dasharray="246.4 352" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
+            <!-- Mid Gray 15% -->
             <circle cx="80" cy="80" r="56" fill="none" stroke="#888888" stroke-width="28"
-              stroke-dasharray="42.2 352" stroke-dashoffset="-281.6" transform="rotate(-90 80 80)"/>
-            <!-- BG 8% -->
-            <circle cx="80" cy="80" r="56" fill="none" stroke="#D8D7D2" stroke-width="28"
-              stroke-dasharray="28.2 352" stroke-dashoffset="-323.8" transform="rotate(-90 80 80)"/>
+              stroke-dasharray="52.8 352" stroke-dashoffset="-246.4" transform="rotate(-90 80 80)"/>
+            <!-- Dark Gray 10% -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#444444" stroke-width="28"
+              stroke-dasharray="35.2 352" stroke-dashoffset="-299.2" transform="rotate(-90 80 80)"/>
+            <!-- Black 5% -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#111111" stroke-width="28"
+              stroke-dasharray="17.6 352" stroke-dashoffset="-334.4" transform="rotate(-90 80 80)"/>
             <circle cx="80" cy="80" r="42" fill="var(--bg)"/>
-            <text x="80" y="75" text-anchor="middle" font-family="'Roboto Condensed',sans-serif" font-size="10" fill="#888" letter-spacing="2">COLOR</text>
-            <text x="80" y="90" text-anchor="middle" font-family="'Roboto Condensed',sans-serif" font-size="9" fill="#aaa" letter-spacing="1">BALANCE</text>
           </svg>
+          <!-- 凡例：%のみ -->
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:10px;height:10px;background:#C8C7C1;border:1px solid rgba(0,0,0,0.15);flex-shrink:0;"></div>
+              <span style="font-size:13px;letter-spacing:0.1em;color:var(--black);">70%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:10px;height:10px;background:#888888;flex-shrink:0;"></div>
+              <span style="font-size:13px;letter-spacing:0.1em;color:var(--black);">15%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:10px;height:10px;background:#444444;flex-shrink:0;"></div>
+              <span style="font-size:13px;letter-spacing:0.1em;color:var(--black);">10%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:10px;height:10px;background:#111111;flex-shrink:0;"></div>
+              <span style="font-size:13px;letter-spacing:0.1em;color:var(--black);">5%</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Primary swatches: 横長・大きめ -->
-        <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:16px;">
-          <div style="background:#111111;height:96px;display:flex;align-items:flex-end;padding:14px 16px;justify-content:space-between;">
-            <div style="font-size:11px;font-weight:500;color:#fff;letter-spacing:0.05em;">Black</div>
-            <div style="font-size:11px;color:#555;letter-spacing:0.08em;">#111111</div>
-          </div>
-          <div style="background:#444444;height:64px;display:flex;align-items:flex-end;padding:12px 16px;justify-content:space-between;">
-            <div style="font-size:11px;font-weight:500;color:#888;letter-spacing:0.05em;">Dark Gray</div>
-            <div style="font-size:11px;color:#666;letter-spacing:0.08em;">#444444</div>
-          </div>
-          <div style="background:#888888;height:64px;display:flex;align-items:flex-end;padding:12px 16px;justify-content:space-between;">
-            <div style="font-size:11px;font-weight:500;color:#ccc;letter-spacing:0.05em;">Mid Gray</div>
-            <div style="font-size:11px;color:#aaa;letter-spacing:0.08em;">#888888</div>
-          </div>
-          <div style="background:#D8D7D2;height:48px;display:flex;align-items:flex-end;padding:10px 16px;justify-content:space-between;border:1px solid rgba(0,0,0,0.06);">
-            <div style="font-size:11px;font-weight:500;color:#666;letter-spacing:0.05em;">Background</div>
-            <div style="font-size:11px;color:#888;letter-spacing:0.08em;">#D8D7D2</div>
-          </div>
+        <!-- Primary swatches：キャプションを外に -->
+        <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:12px;">
+          <div style="background:#111111;height:72px;"></div>
+          <div style="background:#444444;height:48px;"></div>
+          <div style="background:#888888;height:48px;"></div>
+          <div style="background:#C8C7C1;height:32px;border:1px solid rgba(0,0,0,0.08);"></div>
+        </div>
+        <!-- キャプション（外） -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;margin-bottom:16px;">
+          <div style="font-size:11px;font-weight:500;">Black</div>
+          <div style="font-size:11px;color:#555;">#111111</div>
+          <div style="font-size:11px;font-weight:500;">Dark Gray</div>
+          <div style="font-size:11px;color:#555;">#444444</div>
+          <div style="font-size:11px;font-weight:500;">Mid Gray</div>
+          <div style="font-size:11px;color:#555;">#888888</div>
+          <div style="font-size:11px;font-weight:500;">Background</div>
+          <div style="font-size:11px;color:#555;">#C8C7C1</div>
         </div>
 
         <!-- グラデーションバー -->
-        <div style="height:3px;background:linear-gradient(to right,#111,#444,#888,#D8D7D2);margin-bottom:20px;"></div>
+        <div style="height:3px;background:linear-gradient(to right,#111,#444,#888,#C8C7C1);margin-bottom:20px;"></div>
 
         <!-- Accent -->
-        <div style="border-top:2px solid #B8723A;padding-top:14px;">
+        <div style="border-top:1px solid rgba(0,0,0,0.15);padding-top:14px;">
           <div style="font-size:10px;letter-spacing:0.2em;color:#B8723A;margin-bottom:10px;">PRODUCT ACCENT — 肉じゃがカレー</div>
-          <div style="display:flex;align-items:center;gap:0;">
+          <div style="display:flex;align-items:center;gap:0;margin-bottom:8px;">
             <div style="width:48px;height:48px;background:#B8723A;flex-shrink:0;"></div>
             <div style="width:48px;height:48px;background:#D9956A;flex-shrink:0;"></div>
             <div style="width:48px;height:48px;background:#F0E4D8;flex-shrink:0;border:1px solid rgba(0,0,0,0.06);"></div>
-            <div style="padding-left:14px;">
-              <div style="font-size:12px;font-weight:500;color:#111;">#B8723A</div>
-              <div style="font-size:11px;color:#555;margin-top:2px;">商品・製品文脈のみ使用</div>
-            </div>
           </div>
+          <div style="font-size:12px;font-weight:500;color:#111;">#B8723A — 商品・製品文脈のみ使用</div>
         </div>
       </div>
     </div>
@@ -779,35 +792,35 @@ details.acc[open] .acc-body { opacity: 1; }
     <div class="lbl">Icon Set</div>
     <div class="icon-grid">
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8M12 8v8"/></svg></div>
         <div class="icon-lbl">Spice</div>
       </div>
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
         <div class="icon-lbl">Memory</div>
       </div>
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
         <div class="icon-lbl">Gift</div>
       </div>
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
         <div class="icon-lbl">Craft</div>
       </div>
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></div>
         <div class="icon-lbl">Minimal</div>
       </div>
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div class="icon-lbl">Quality</div>
       </div>
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div>
         <div class="icon-lbl">Mastery</div>
       </div>
       <div class="icon-item">
-        <div class="icon-box"><svg width="28" height="28" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="icon-box"><svg width="42" height="42" fill="none" stroke="#111" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
         <div class="icon-lbl">Story</div>
       </div>
     </div>
