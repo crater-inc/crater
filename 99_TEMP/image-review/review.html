@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画像レビュー</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ===== ヘッダー ===== */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 52px;
+      background: #111;
+      border-bottom: 1px solid #333;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .header-title {
+      font-size: 14px;
+      color: #aaa;
+      flex: 1;
+    }
+
+    .btn {
+      padding: 7px 16px;
+      border-radius: 6px;
+      border: none;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.8; }
+
+    .btn-comment {
+      background: #2563eb;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-comment.active {
+      background: #ef4444;
+    }
+
+    .btn-resolve {
+      background: #333;
+      color: #ccc;
+    }
+
+    .comment-count {
+      background: #374151;
+      border-radius: 12px;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    /* ===== メインエリア ===== */
+    .main {
+      padding-top: 52px;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ===== 画像エリア ===== */
+    .image-area {
+      flex: 1;
+      padding: 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .image-wrap {
+      position: relative;
+      display: inline-block;
+      cursor: crosshair;
+    }
+
+    .image-wrap.normal-cursor {
+      cursor: default;
+    }
+
+    .review-image {
+      display: block;
+      max-width: 100%;
+      width: 800px;
+    }
+
+    /* ===== ピン ===== */
+    .c-pin {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50% 50% 50% 0;
+      transform: translate(-50%, -100%) rotate(-45deg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      color: #fff;
+      transition: transform 0.15s;
+      z-index: 10;
+      background: #2563eb;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .c-pin:hover {
+      transform: translate(-50%, -100%) rotate(-45deg) scale(1.15);
+    }
+    .c-pin.resolved {
+      background: #6b7280;
+    }
+    .c-pin-num {
+      transform: rotate(45deg);
+    }
+
+    /* ===== ピンポップアップ（閲覧） ===== */
+    .c-view-popup {
+      position: absolute;
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 10px;
+      padding: 14px 16px;
+      min-width: 240px;
+      max-width: 300px;
+      z-index: 20;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .c-view-popup-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .c-view-num {
+      font-size: 11px;
+      color: #6b7280;
+      font-weight: bold;
+    }
+
+    .c-view-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .c-view-btn {
+      background: none;
+      border: 1px solid #374151;
+      color: #9ca3af;
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .c-view-btn:hover { background: #374151; }
+    .c-view-btn.resolve { border-color: #10b981; color: #10b981; }
+    .c-view-btn.delete { border-color: #ef4444; color: #ef4444; }
+
+    .c-view-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #e5e7eb;
+      white-space: pre-wrap;
+    }
+
+    .c-view-meta {
+      margin-top: 8px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .c-view-resolved-badge {
+      display: inline-block;
+      background: #064e3b;
+      color: #10b981;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      margin-top: 6px;
+    }
+
+    /* ===== コメント入力ポップアップ ===== */
+    .c-input-popup {
+      position: absolute;
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 10px;
+      padding: 14px;
+      min-width: 260px;
+      z-index: 30;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .c-input-popup textarea {
+      width: 100%;
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      color: #e5e7eb;
+      font-size: 13px;
+      padding: 8px 10px;
+      resize: none;
+      font-family: inherit;
+      line-height: 1.5;
+      outline: none;
+    }
+    .c-input-popup textarea:focus {
+      border-color: #2563eb;
+    }
+
+    .c-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .c-input-name {
+      flex: 1;
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 6px;
+      color: #e5e7eb;
+      font-size: 12px;
+      padding: 6px 8px;
+      font-family: inherit;
+      outline: none;
+    }
+    .c-input-name:focus { border-color: #2563eb; }
+
+    .c-send-btn {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .c-cancel-btn {
+      background: #374151;
+      color: #9ca3af;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    /* ===== サイドパネル ===== */
+    .side-panel {
+      width: 300px;
+      background: #111;
+      border-left: 1px solid #222;
+      padding: 20px 16px;
+      overflow-y: auto;
+      max-height: calc(100vh - 52px);
+      position: sticky;
+      top: 52px;
+    }
+
+    .panel-title {
+      font-size: 12px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .panel-item {
+      background: #1f2937;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .panel-item:hover { border-color: #374151; }
+    .panel-item.active { border-color: #2563eb; }
+    .panel-item.resolved { opacity: 0.5; }
+
+    .panel-item-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .panel-num {
+      width: 20px;
+      height: 20px;
+      background: #2563eb;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .panel-num.resolved { background: #6b7280; }
+
+    .panel-name {
+      font-size: 11px;
+      color: #6b7280;
+    }
+
+    .panel-text {
+      font-size: 12px;
+      color: #d1d5db;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .panel-empty {
+      font-size: 13px;
+      color: #4b5563;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    /* ===== ローディング ===== */
+    .loading {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      .side-panel { display: none; }
+      .image-area { padding: 16px; }
+      .review-image { width: 100%; }
+      .c-view-popup { max-width: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="loading" id="loading">読み込み中…</div>
+
+<!-- ヘッダー -->
+<div class="header">
+  <span class="header-title" id="page-title">レビュー</span>
+  <span class="comment-count" id="comment-count">0 件</span>
+  <button class="btn btn-resolve" id="btn-toggle-resolved">解決済みを隠す</button>
+  <button class="btn btn-comment" id="btn-comment-mode">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    コメントを追加
+  </button>
+</div>
+
+<!-- メイン -->
+<div class="main">
+  <div class="image-area">
+    <div class="image-wrap normal-cursor" id="image-wrap">
+      <!-- ↓ この src を画像パスに変更する -->
+      <img class="review-image" id="review-image" src="review-image.png" alt="レビュー画像">
+    </div>
+  </div>
+
+  <!-- サイドパネル -->
+  <div class="side-panel">
+    <div class="panel-title">コメント一覧</div>
+    <div id="panel-list">
+      <div class="panel-empty" id="panel-empty">コメントはまだありません</div>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<script>
+  // ===== Firebase設定 =====
+  firebase.initializeApp({
+    apiKey: "AIzaSyArq3B1YkeiBv-PgpBkMrRGWsOkuXx4fxo",
+    authDomain: "view-crater.firebaseapp.com",
+    projectId: "view-crater",
+    storageBucket: "view-crater.firebasestorage.app",
+    messagingSenderId: "523845906687",
+    appId: "1:523845906687:web:b5b6612eabe1af9544dcca"
+  });
+  var db = firebase.firestore();
+
+  // ===== ページID（URLのパス or 手動設定） =====
+  // 複数レビューページを作る場合はここを変える
+  var PAGE_ID = location.pathname.replace(/[^a-zA-Z0-9_-]/g, '_') || 'review_default';
+
+  // ===== 状態 =====
+  var commentMode = false;
+  var showResolved = true;
+  var comments = [];
+  var activePopupId = null;
+  var inputPopup = null;
+  var viewPopup = null;
+
+  var imageWrap = document.getElementById('image-wrap');
+  var reviewImage = document.getElementById('review-image');
+
+  // ===== コメントモード切替 =====
+  document.getElementById('btn-comment-mode').addEventListener('click', function() {
+    commentMode = !commentMode;
+    imageWrap.classList.toggle('normal-cursor', !commentMode);
+    this.textContent = commentMode ? '× キャンセル' : '　コメントを追加';
+    this.classList.toggle('active', commentMode);
+    if (!commentMode) closeInputPopup();
+  });
+
+  // ===== 解決済み表示切替 =====
+  document.getElementById('btn-toggle-resolved').addEventListener('click', function() {
+    showResolved = !showResolved;
+    this.textContent = showResolved ? '解決済みを隠す' : '解決済みを表示';
+    renderPins();
+  });
+
+  // ===== 画像クリック → コメント入力 =====
+  imageWrap.addEventListener('click', function(e) {
+    if (!commentMode) return;
+    if (e.target.closest('.c-pin') || e.target.closest('.c-input-popup')) return;
+
+    closeInputPopup();
+    closeViewPopup();
+
+    var rect = reviewImage.getBoundingClientRect();
+    var wrapRect = imageWrap.getBoundingClientRect();
+    var x = ((e.clientX - rect.left) / rect.width * 100);
+    var y = ((e.clientY - rect.top) / rect.height * 100);
+
+    // 入力ポップアップ表示
+    inputPopup = document.createElement('div');
+    inputPopup.className = 'c-input-popup';
+    inputPopup.style.left = (e.clientX - wrapRect.left + 12) + 'px';
+    inputPopup.style.top  = (e.clientY - wrapRect.top + 12) + 'px';
+    inputPopup.innerHTML =
+      '<textarea id="c-text" rows="3" placeholder="コメントを入力…"></textarea>' +
+      '<div class="c-input-row">' +
+        '<input class="c-input-name" id="c-name" type="text" placeholder="名前（任意）">' +
+        '<button class="c-cancel-btn" id="c-cancel">キャンセル</button>' +
+        '<button class="c-send-btn" id="c-send">送信</button>' +
+      '</div>';
+
+    imageWrap.appendChild(inputPopup);
+    document.getElementById('c-text').focus();
+
+    document.getElementById('c-cancel').addEventListener('click', closeInputPopup);
+    document.getElementById('c-send').addEventListener('click', function() {
+      var text = document.getElementById('c-text').value.trim();
+      var name = document.getElementById('c-name').value.trim() || '匿名';
+      if (!text) return;
+      saveComment(x, y, text, name);
+      closeInputPopup();
+    });
+
+    // Enter送信（Shift+Enterで改行）
+    document.getElementById('c-text').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('c-send').click();
+      }
+    });
+  });
+
+  // ===== コメント保存 =====
+  function saveComment(x, y, text, name) {
+    db.collection('image_reviews').doc(PAGE_ID).collection('comments').add({
+      x: x,
+      y: y,
+      text: text,
+      name: name,
+      resolved: false,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+
+  // ===== ピン表示 =====
+  function renderPins() {
+    imageWrap.querySelectorAll('.c-pin').forEach(function(p) { p.remove(); });
+
+    var visible = comments.filter(function(c) {
+      return showResolved || !c.resolved;
+    });
+
+    visible.forEach(function(c, i) {
+      var pin = document.createElement('div');
+      pin.className = 'c-pin' + (c.resolved ? ' resolved' : '');
+      pin.style.left = c.x + '%';
+      pin.style.top  = c.y + '%';
+      pin.innerHTML = '<span class="c-pin-num">' + (i + 1) + '</span>';
+      pin.dataset.id = c.id;
+
+      pin.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (activePopupId === c.id) { closeViewPopup(); return; }
+        closeViewPopup();
+        closeInputPopup();
+        showViewPopup(c, pin, i + 1);
+      });
+
+      imageWrap.appendChild(pin);
+    });
+
+    // サイドパネル更新
+    renderPanel(visible);
+
+    // カウント更新
+    document.getElementById('comment-count').textContent = comments.length + ' 件';
+  }
+
+  // ===== 閲覧ポップアップ =====
+  function showViewPopup(c, pin, num) {
+    activePopupId = c.id;
+    var pinRect = pin.getBoundingClientRect();
+    var wrapRect = imageWrap.getBoundingClientRect();
+
+    viewPopup = document.createElement('div');
+    viewPopup.className = 'c-view-popup';
+    viewPopup.style.left = (pinRect.left - wrapRect.left + 34) + 'px';
+    viewPopup.style.top  = (pinRect.bottom - wrapRect.top - 28) + 'px';
+
+    var date = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString('ja-JP') : '';
+
+    viewPopup.innerHTML =
+      '<div class="c-view-popup-header">' +
+        '<span class="c-view-num"># ' + num + '　' + (c.name || '匿名') + '</span>' +
+        '<div class="c-view-actions">' +
+          '<button class="c-view-btn resolve" data-id="' + c.id + '">' + (c.resolved ? '再開' : '解決') + '</button>' +
+          '<button class="c-view-btn delete" data-id="' + c.id + '">削除</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="c-view-text">' + escapeHtml(c.text) + '</div>' +
+      (c.resolved ? '<span class="c-view-resolved-badge">✓ 解決済み</span>' : '') +
+      (date ? '<div class="c-view-meta">' + date + '</div>' : '');
+
+    imageWrap.appendChild(viewPopup);
+
+    viewPopup.querySelector('.resolve').addEventListener('click', function() {
+      db.collection('image_reviews').doc(PAGE_ID).collection('comments')
+        .doc(c.id).update({ resolved: !c.resolved });
+      closeViewPopup();
+    });
+
+    viewPopup.querySelector('.delete').addEventListener('click', function() {
+      if (!confirm('このコメントを削除しますか？')) return;
+      db.collection('image_reviews').doc(PAGE_ID).collection('comments').doc(c.id).delete();
+      closeViewPopup();
+    });
+  }
+
+  // ===== サイドパネル =====
+  function renderPanel(visible) {
+    var list = document.getElementById('panel-list');
+    var empty = document.getElementById('panel-empty');
+
+    list.querySelectorAll('.panel-item').forEach(function(el) { el.remove(); });
+
+    if (visible.length === 0) {
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    visible.forEach(function(c, i) {
+      var item = document.createElement('div');
+      item.className = 'panel-item' + (c.resolved ? ' resolved' : '');
+      item.dataset.id = c.id;
+      item.innerHTML =
+        '<div class="panel-item-header">' +
+          '<div class="panel-num' + (c.resolved ? ' resolved' : '') + '">' + (i + 1) + '</div>' +
+          '<span class="panel-name">' + escapeHtml(c.name || '匿名') + '</span>' +
+        '</div>' +
+        '<div class="panel-text">' + escapeHtml(c.text) + '</div>';
+
+      item.addEventListener('click', function() {
+        var pin = imageWrap.querySelector('.c-pin[data-id="' + c.id + '"]');
+        if (pin) {
+          pin.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          pin.click();
+        }
+      });
+
+      list.appendChild(item);
+    });
+  }
+
+  // ===== リアルタイム購読 =====
+  db.collection('image_reviews').doc(PAGE_ID).collection('comments')
+    .orderBy('createdAt')
+    .onSnapshot(function(snap) {
+      comments = snap.docs.map(function(doc) {
+        var d = doc.data();
+        d.id = doc.id;
+        return d;
+      });
+      renderPins();
+      document.getElementById('loading').style.display = 'none';
+    }, function(err) {
+      console.error(err);
+      document.getElementById('loading').style.display = 'none';
+    });
+
+  // ===== 外クリックで閉じる =====
+  document.addEventListener('click', function(e) {
+    if (viewPopup && !e.target.closest('.c-view-popup') && !e.target.closest('.c-pin')) {
+      closeViewPopup();
+    }
+  });
+
+  function closeInputPopup() {
+    if (inputPopup) { inputPopup.remove(); inputPopup = null; }
+  }
+  function closeViewPopup() {
+    if (viewPopup) { viewPopup.remove(); viewPopup = null; }
+    activePopupId = null;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>
