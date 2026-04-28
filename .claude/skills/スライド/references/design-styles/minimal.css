@@ -1,0 +1,38 @@
+/*
+ * TASTE: ミニマル・シンプル
+ * 用途: スタートアップ / プロダクト / LT
+ * ベース: ホワイト / メイン: チャコール / アクセント: ピュアブラック
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #FFFFFF;
+  --c-main:          #111111;
+  --c-accent:        #111111;
+  --c-sub:           #6B7280;
+  --c-border:        #E5E7EB;
+  --c-surface:       #F9FAFB;
+  --c-bridge-bg:     #111111;
+  --c-bridge-text:   #FFFFFF;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-body:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-weight-head: 700;
+  --font-weight-body: 400;
+  --letter-spacing-head: -0.01em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  2px;
+  --accent-line-color:  #111111;
+  --card-radius:        0px;
+  --card-border:        1px solid #E5E7EB;
+  --card-bg:            #F9FAFB;
+  --section-bar-height: 3px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(0, 0, 0, 0.35);
+  --photo-filter:    none;
+
+  /* ── シャドウ（禁止のため全て none）── */
+  --card-shadow:     none;
+}

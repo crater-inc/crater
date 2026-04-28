@@ -1,0 +1,37 @@
+/*
+ * TASTE: ダイナミック
+ * 用途: ビジョン発表 / 変革宣言 / 大型数値
+ * ベース: ディープブラック / メイン: ホワイト / アクセント: アンバーゴールド
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #080808;
+  --c-main:          #F5F5F5;
+  --c-accent:        #F59E0B;
+  --c-sub:           #9CA3AF;
+  --c-border:        rgba(245, 158, 11, 0.20);
+  --c-surface:       #141414;
+  --c-bridge-bg:     #F59E0B;
+  --c-bridge-text:   #080808;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-body:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-weight-head: 900;
+  --font-weight-body: 400;
+  --letter-spacing-head: -0.02em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  4px;
+  --accent-line-color:  #F59E0B;
+  --card-radius:        0px;
+  --card-border:        1px solid rgba(245, 158, 11, 0.25);
+  --card-bg:            #141414;
+  --section-bar-height: 4px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(8, 8, 8, 0.55);
+  --photo-filter:    saturate(0.7) brightness(0.8) contrast(1.1);
+
+  --card-shadow:     none;
+}

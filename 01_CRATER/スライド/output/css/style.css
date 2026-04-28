@@ -1,19 +1,16 @@
 /*
- * CRATER Company Profile — style.css v6
- * slide-builder スキル準拠
+ * CRATER Company Profile — style.css v7
+ * テンプレートデザイン完全準拠
  * フォント: urw-din（英数）/ Noto Sans JP（日本語）
  */
 
 :root {
-  --c-base:       #C8C8C8;
-  --c-surface:    #ADADAD;
-  --c-surface-lt: #D8D8D8;
-  --c-black:      #111111;
-  --c-text:       #111111;
-  --c-text-sub:   #555555;
-  --c-accent:     #FFE500;
-  --c-white:      #FFFFFF;
-  --c-border:     rgba(0,0,0,0.13);
+  --c-base:    #C8C8C8;
+  --c-black:   #111111;
+  --c-text:    #111111;
+  --c-sub:     #555555;
+  --c-white:   #FFFFFF;
+  --c-border:  rgba(0,0,0,0.15);
 
   --font-en: 'urw-din', sans-serif;
   --font-ja: 'Noto Sans JP', sans-serif;
@@ -22,7 +19,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: var(--c-base);
+  background: #FFFFFF;
   font-family: var(--font-ja);
   color: var(--c-text);
   overflow: hidden;
@@ -34,27 +31,28 @@ body {
 
 
 /* ============================================================
-   SLIDE STAGE — フルビューポート・16:9
+   SLIDE STAGE — 16:9 フルビューポート
    ============================================================ */
 .slide-stage {
   width: 100vw;
   height: 100vh;
-  display: grid;
-  place-items: center;
-  background: var(--c-base);
+  background: #FFFFFF;
+  overflow: hidden;
+  position: relative;
 }
 
+/* 1920×1080固定 → JSでscale変換。cqwは常に1cqw=19.2pxで安定 */
 .slide {
-  width: 100vw;
-  height: 100vh;
-  max-width: calc(100vh * 16 / 9);
-  max-height: calc(100vw * 9 / 16);
-  margin: auto;
-  position: relative;
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   overflow: hidden;
   background: var(--c-base);
   container-type: inline-size;
   display: none;
+  transform-origin: center center;
 }
 .slide.active {
   display: flex;
@@ -63,24 +61,47 @@ body {
 
 /* 日本語禁則 */
 :lang(ja) { line-break: strict; }
-.slide-hero, .slide-h1, .slide-h2, .slide-h3 {
-  word-break: normal; overflow-wrap: normal; text-wrap: balance; line-break: strict;
-}
-.slide-title, .slide-body, .slide-caption, .slide-micro, li {
-  word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break: strict;
+h1, h2, h3 { word-break: normal; overflow-wrap: normal; text-wrap: balance; line-break: strict; }
+p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break: strict; }
+
+
+/* ============================================================
+   共通パーツ
+   ============================================================ */
+
+/* 黒バッジ（日付・セクション名） */
+.badge {
+  display: inline-block;
+  background: var(--c-black);
+  color: var(--c-white);
+  font-family: var(--font-ja);
+  font-size: 0.9cqw;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.3cqw 0.8cqw;
+  border-radius: 0;
 }
 
-/* フォントクラス */
-.slide-hero    { font-family: var(--font-en); font-size: 7.2cqw; font-weight: 600; line-height: 1.05; letter-spacing: -0.02em; }
-.slide-h1      { font-family: var(--font-ja); font-size: 4.8cqw; font-weight: 900; line-height: 1.2;  letter-spacing: -0.01em; }
-.slide-h2      { font-family: var(--font-ja); font-size: 3.2cqw; font-weight: 700; line-height: 1.25; }
-.slide-number  { font-family: var(--font-en); font-size: 9.6cqw; font-weight: 600; line-height: 1;    letter-spacing: -0.03em; }
+/* フッターコピーライト（各スライドで個別配置） */
+.copy {
+  font-family: var(--font-en);
+  font-size: 0.75cqw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--c-sub);
+}
+.copy-white {
+  font-family: var(--font-en);
+  font-size: 0.75cqw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+}
 
 
 /* ============================================================
    UI オーバーレイ（px固定）
    ============================================================ */
-
 .nav-prev, .nav-next {
   position: fixed; top: 0; width: 50%; height: 100%;
   z-index: 100; cursor: pointer;
@@ -90,8 +111,8 @@ body {
 
 .status-bar {
   position: fixed; top: 16px; right: 64px;
-  font-family: var(--font-en); font-size: 12px; letter-spacing: 0.1em;
-  color: rgba(0,0,0,0.35); z-index: 200; pointer-events: none;
+  font-family: var(--font-en); font-size: 11px; letter-spacing: 0.1em;
+  color: rgba(0,0,0,0.3); z-index: 200; pointer-events: none;
 }
 
 .menu-btn {
@@ -103,12 +124,12 @@ body {
 }
 .menu-btn span {
   display: block; width: 20px; height: 1.5px;
-  background: var(--c-text); border-radius: 1px;
+  background: var(--c-text); border-radius: 0;
 }
 
 .progress-bar {
   position: fixed; bottom: 0; left: 0;
-  height: 3px; background: var(--c-accent);
+  height: 2px; background: var(--c-black);
   transition: width 0.3s ease; z-index: 200; width: 0;
 }
 
@@ -132,12 +153,12 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .sidebar-logo {
-  font-family: var(--font-en); font-size: 18px;
-  font-weight: 600; letter-spacing: 0.08em;
+  font-family: var(--font-en); font-size: 16px;
+  font-weight: 600; letter-spacing: 0.1em;
 }
 .sidebar-close {
-  background: none; border: none; color: rgba(255,255,255,0.5);
-  font-size: 14px; cursor: pointer; padding: 4px;
+  background: none; border: none; color: rgba(255,255,255,0.4);
+  font-size: 13px; cursor: pointer; padding: 4px;
 }
 .sidebar-close:hover { color: var(--c-white); }
 
@@ -147,20 +168,72 @@ body {
   width: 100%; padding: 11px 24px;
   background: none; border: none; cursor: pointer;
   font-family: var(--font-ja); font-size: 12px; font-weight: 700;
-  letter-spacing: 0.06em; color: rgba(255,255,255,0.45);
+  letter-spacing: 0.06em; color: rgba(255,255,255,0.4);
   text-align: left; transition: all 0.15s;
 }
 .sidebar-item:hover { color: var(--c-white); background: rgba(255,255,255,0.06); }
-.sidebar-item.active { color: var(--c-accent); }
-.sidebar-num { font-family: var(--font-en); font-size: 10px; opacity: 0.3; min-width: 20px; }
+.sidebar-item.active { color: rgba(255,255,255,0.9); }
+.sidebar-num { font-family: var(--font-en); font-size: 10px; opacity: 0.25; min-width: 20px; }
+
+/* テキストページネーション */
+.pagination {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  z-index: 200;
+  pointer-events: auto;
+}
+
+.pagination-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-ja);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: rgba(0,0,0,0.25);
+  white-space: nowrap;
+  transition: color 0.15s;
+  position: relative;
+}
+.pagination-item::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 10px;
+  background: rgba(0,0,0,0.15);
+}
+.pagination-item:last-child::after { display: none; }
+.pagination-item:hover { color: rgba(0,0,0,0.5); }
+.pagination-item.active {
+  color: var(--c-text);
+  font-weight: 700;
+}
+.pagination-num {
+  font-family: var(--font-en);
+  font-size: 9px;
+  opacity: 0.4;
+}
 
 .script-trigger {
   position: fixed; bottom: 0; left: 0; right: 0; height: 48px; z-index: 150;
 }
 .script-panel {
   position: fixed; bottom: -100%; left: 0; right: 0;
-  max-height: 28vh; background: rgba(17,17,17,0.93);
-  color: rgba(255,255,255,0.88); padding: 20px 48px;
+  max-height: 28vh; background: rgba(17,17,17,0.94);
+  color: rgba(255,255,255,0.85); padding: 20px 48px;
   font-family: var(--font-ja); font-size: 14px; line-height: 1.9;
   letter-spacing: 0.02em; overflow-y: auto;
   z-index: 150; transition: bottom 0.2s ease; backdrop-filter: blur(8px);
@@ -169,361 +242,494 @@ body {
 
 
 /* ============================================================
-   S01: 表紙 — フルブリード写真 × エディトリアルカバー
+   S01: 表紙
+   グレー背景 × 左寄せ × 本文縦中央 × CRATERフッター左下
    ============================================================ */
-
-/* 背景写真（東京夜景、グレースケール+暗め） */
-.s01-photo {
-  position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1920&q=80');
-  background-size: cover;
-  background-position: center 40%;
-  filter: grayscale(100%) brightness(0.38);
-}
-
-/* フォールバック（写真が読み込めない場合） */
-.s01-photo::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
-  z-index: -1;
-}
-
-/* 左から右へのグラデーションオーバーレイ */
-.s01-overlay {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(to right, rgba(17,17,17,0.75) 0%, rgba(17,17,17,0.3) 60%, rgba(17,17,17,0.1) 100%),
-    linear-gradient(to top,   rgba(17,17,17,0.7) 0%, transparent 50%);
-}
-
-.s01-content {
-  position: relative; z-index: 1;
+.s01 {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 4.5cqw 7cqw;
+  padding: 5cqw;
 }
 
-/* ロゴ + 年 */
-.s01-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.s01-logo {
-  font-family: var(--font-en);
-  font-size: 1.5cqw;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  color: rgba(255,255,255,0.65);
-  text-transform: uppercase;
-}
-.s01-year {
-  font-family: var(--font-en);
-  font-size: 0.9cqw;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.35);
-}
-
-/* タグライン中央エリア */
-.s01-center {
+/* 縦中央に配置するためflexで押し込む */
+.s01-body {
   display: flex;
   flex-direction: column;
-  gap: 2cqw;
-}
-.s01-accent-bar {
-  width: 3.5cqw;
-  height: 0.22cqw;
-  background: var(--c-accent);
-}
-.s01-tagline {
-  font-family: var(--font-ja);
-  font-size: 5.2cqw;
-  font-weight: 900;
-  line-height: 1.35;
-  color: var(--c-white);
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-.s01-hl {
-  background: var(--c-accent);
-  color: var(--c-black);
-  padding: 0.05em 0.2em;
-  display: inline;
+  gap: 1.4cqw;
+  /* 上下余白を均等にするためmargin autoで中央寄せ */
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
-/* フッター情報 */
-.s01-bottom {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-.s01-company {
+.s01-client {
   font-family: var(--font-ja);
-  font-size: 1.1cqw;
+  font-size: 1.45cqw;
   font-weight: 400;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 0.06em;
+  color: var(--c-text);
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
-.s01-category {
+
+.s01-title {
+  font-family: var(--font-ja);
+  font-size: 5.8cqw;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+  text-wrap: balance;
+}
+
+/* バッジはtitleの直下に小さめに */
+.s01-body .badge {
+  align-self: flex-start;
+  margin-top: 0.4cqw;
+}
+
+.s01-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.8cqw;
+}
+
+.s01-logo {
+  width: 8cqw;
+  height: auto;
+  display: block;
+}
+
+.s01-copy {
   font-family: var(--font-en);
-  font-size: 0.9cqw;
+  font-size: 0.75cqw;
   font-weight: 400;
-  letter-spacing: 0.3em;
-  color: rgba(255,255,255,0.3);
-  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-sub);
+  line-height: 1;
 }
 
 
 /* ============================================================
-   S02: ミッション — フルグレー × 左寄せ大ステートメント
+   S02: ミッション
+   グレー背景 × 黒バッジ左上 × 大ステートメント中央
    ============================================================ */
 .s02 {
   height: 100%;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-
-/* 背景に薄く大きく "MISSION" */
-.s02-bg-word {
-  position: absolute;
-  right: -2cqw;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-en);
-  font-size: 20cqw;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  color: rgba(0,0,0,0.045);
-  line-height: 1;
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-}
-
-/* コンテンツエリア */
-.s02-content {
-  position: relative;
-  z-index: 1;
-  padding: 0 10cqw 0 7cqw;
   display: flex;
   flex-direction: column;
-  gap: 2.5cqw;
+  padding: 5cqw;
+  position: relative;
 }
 
-.s02-label {
-  font-family: var(--font-en);
-  font-size: 1.0cqw;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--c-text-sub);
-}
-.s02-accent-line {
-  width: 3cqw;
-  height: 0.2cqw;
-  background: var(--c-accent);
-}
-.s02-statement {
-  font-family: var(--font-ja);
-  font-size: 3.8cqw;
-  font-weight: 900;
-  line-height: 1.55;
-  color: var(--c-text);
-  letter-spacing: -0.01em;
-  text-wrap: balance;
-}
-.s02-body {
-  font-family: var(--font-ja);
-  font-size: 1.55cqw;
-  font-weight: 400;
-  line-height: 1.9;
-  color: var(--c-text-sub);
-  letter-spacing: 0.02em;
+.s02-top {
+  flex-shrink: 0;
 }
 
-
-/* ============================================================
-   S03: 実績数字 — グレー3カラム × 黒大数字 × 黄色バー
-   ============================================================ */
-.s03 {
-  display: flex;
-  align-items: stretch;
-  height: 100%;
-}
-.s03-col {
+.s02-main {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 6.5cqw;
-  border-right: 0.1cqw solid var(--c-border);
+  gap: 3cqw;
 }
-.s03-col:last-child { border-right: none; }
 
-/* 上部インジケーターバー */
-.s03-bar-wrap {
-  width: 100%;
-  height: 0.22cqw;
-  background: rgba(0,0,0,0.1);
-  margin-bottom: 3.5cqw;
+.s02-statement {
+  font-family: var(--font-ja);
+  font-size: 4.8cqw;
+  font-weight: 900;
+  line-height: 1.45;
+  color: var(--c-text);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
 }
-.s03-bar {
+
+.s02-body {
+  font-family: var(--font-ja);
+  font-size: 1.5cqw;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--c-sub);
+  letter-spacing: 0.02em;
+}
+
+.s02-copy {
+  position: absolute;
+  right: 5cqw;
+  bottom: 5cqw;
+  font-family: var(--font-en);
+  font-size: 0.75cqw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--c-sub);
+}
+
+
+/* ============================================================
+   S04SVC: 事業領域
+   グレー背景 × 左ステートメント × 右サービスリスト
+   ============================================================ */
+.s04svc {
   height: 100%;
-  background: var(--c-accent);
+  display: flex;
+  flex-direction: column;
+  padding: 5cqw;
+  position: relative;
 }
 
-/* 数字 + 単位 */
+.s04svc-top {
+  flex-shrink: 0;
+}
+
+.s04svc-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3cqw;
+}
+
+.s04svc-statement {
+  font-family: var(--font-ja);
+  font-size: 3.2cqw;
+  font-weight: 900;
+  line-height: 1.45;
+  color: var(--c-text);
+  letter-spacing: -0.01em;
+}
+
+.s04svc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.s04svc-item {
+  display: grid;
+  grid-template-columns: 4cqw 14cqw 1fr;
+  align-items: center;
+  gap: 1.5cqw;
+  padding: 1.0cqw 0;
+  border-bottom: 0.08cqw solid var(--c-border);
+}
+.s04svc-item:last-child {
+  border-bottom: none;
+}
+
+.s04svc-num {
+  font-family: var(--font-en);
+  font-size: 0.85cqw;
+  font-weight: 400;
+  color: var(--c-sub);
+  letter-spacing: 0.05em;
+}
+
+.s04svc-name {
+  font-family: var(--font-ja);
+  font-size: 1.2cqw;
+  font-weight: 700;
+  color: var(--c-text);
+  letter-spacing: 0.02em;
+}
+
+.s04svc-desc {
+  font-family: var(--font-ja);
+  font-size: 1.05cqw;
+  font-weight: 400;
+  color: var(--c-sub);
+  letter-spacing: 0.02em;
+}
+
+.s04svc-copy {
+  position: absolute;
+  right: 5cqw;
+  bottom: 5cqw;
+  font-family: var(--font-en);
+  font-size: 0.75cqw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--c-sub);
+}
+
+
+/* ============================================================
+   S03: 実績数字
+   全黒背景 × 白数字 × 左縦ラベル
+   ============================================================ */
+.s03 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5cqw;
+  position: relative;
+}
+
+.s03-top {
+  flex-shrink: 0;
+}
+
+.s03-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.s03-item {
+  display: grid;
+  grid-template-columns: 18cqw 1fr;
+  align-items: center;
+  gap: 3cqw;
+  padding: 2.2cqw 0;
+}
+
+.s03-divider {
+  width: 100%;
+  height: 0.1cqw;
+  background: var(--c-border);
+}
+
 .s03-num-row {
   display: flex;
   align-items: baseline;
   gap: 0.4cqw;
 }
+
 .s03-number {
   font-family: var(--font-en);
-  font-size: 10cqw;
+  font-size: 8cqw;
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.04em;
   color: var(--c-text);
 }
+
 .s03-unit {
   font-family: var(--font-ja);
-  font-size: 3cqw;
+  font-size: 2.5cqw;
   font-weight: 900;
-  color: var(--c-text);
-  opacity: 0.55;
+  color: var(--c-sub);
 }
 
-/* 区切り線 */
-.s03-divider {
-  width: 100%;
-  height: 0.1cqw;
-  background: var(--c-border);
-  margin: 2.5cqw 0 1.8cqw;
-}
-
-.s03-label {
+.s03-desc {
   font-family: var(--font-ja);
-  font-size: 1.45cqw;
+  font-size: 1.35cqw;
   font-weight: 400;
-  color: var(--c-text-sub);
-  letter-spacing: 0.05em;
+  line-height: 1.8;
+  color: var(--c-sub);
+  letter-spacing: 0.02em;
+}
+
+.s03-copy {
+  position: absolute;
+  right: 5cqw;
+  bottom: 5cqw;
+  font-family: var(--font-en);
+  font-size: 0.75cqw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--c-sub);
 }
 
 
 /* ============================================================
-   S04: 会社概要 — 左テーブル(58%) × 右写真(42%)
+   S04: 会社概要
+   グレー背景 × CRATERロゴ大 × シンプルテーブル（水平罫線のみ）
    ============================================================ */
 .s04 {
-  display: grid;
-  grid-template-columns: 58% 42%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5cqw;
+  gap: 0;
+  position: relative;
 }
 
-/* 左：テーブルエリア */
-.s04-left {
-  background: var(--c-base);
+.s04-top {
+  flex-shrink: 0;
+}
+
+/* バッジ以外のコンテンツを上下センター */
+.s04-main {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 5cqw 5cqw 5cqw 7cqw;
-  gap: 3cqw;
+  gap: 1.6cqw;
 }
-.s04-header {
+
+.s04-logo {
+  width: 14cqw;
+  height: auto;
+  display: block;
+}
+
+.s04-table {
+  width: 100%;
+  border-collapse: collapse;
+  /* flex: 1 を外してテーブルを自然な高さに。下に余白が生まれる */
+}
+
+.s04-table tr {
+  border-bottom: 0.08cqw solid var(--c-border);
+}
+.s04-table tr:last-child {
+  border-bottom: none;
+}
+
+.s04-table th {
+  text-align: left;
+  font-family: var(--font-ja);
+  font-size: 1.0cqw;
+  font-weight: 400;
+  color: var(--c-sub);
+  padding: 0.8cqw 0;
+  width: 12cqw;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.s04-table td {
+  font-family: var(--font-ja);
+  font-size: 1.2cqw;
+  font-weight: 400;
+  color: var(--c-text);
+  padding: 0.8cqw 0 0.8cqw 2cqw;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.s04-copy {
+  position: absolute;
+  right: 5cqw;
+  bottom: 5cqw;
+  font-family: var(--font-en);
+  font-size: 0.75cqw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--c-sub);
+}
+
+
+/* ============================================================
+   S05: 実績データ
+   グレー背景 × 縦書きラベル × 大%数字 × 2行構成
+   ============================================================ */
+.s05 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5cqw;
+  position: relative;
+}
+
+.s05-top {
+  flex-shrink: 0;
+}
+
+.s05-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+}
+
+.s05-item {
+  display: grid;
+  grid-template-columns: 3cqw 14cqw 1fr;
+  align-items: center;
+  gap: 2.5cqw;
+  padding: 2.8cqw 0;
+}
+
+.s05-divider {
+  width: 100%;
+  height: 0.08cqw;
+  background: var(--c-border);
+}
+
+/* 縦書きラベル */
+.s05-label-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.s05-label {
+  font-family: var(--font-ja);
+  font-size: 0.9cqw;
+  font-weight: 400;
+  color: var(--c-sub);
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* 数字 */
+.s05-num-col {
+  display: flex;
+  align-items: baseline;
+}
+
+.s05-num-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2cqw;
+}
+
+.s05-number {
+  font-family: var(--font-en);
+  font-size: 9cqw;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--c-text);
+}
+
+.s05-unit {
+  font-family: var(--font-en);
+  font-size: 3.5cqw;
+  font-weight: 400;
+  color: var(--c-text);
+  letter-spacing: -0.02em;
+}
+
+/* テキスト */
+.s05-text-col {
   display: flex;
   flex-direction: column;
   gap: 0.8cqw;
 }
-.s04-en {
-  font-family: var(--font-en);
-  font-size: 1.0cqw;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--c-text-sub);
-}
-.s04-ja {
-  font-family: var(--font-ja);
-  font-size: 3.0cqw;
-  font-weight: 900;
-  color: var(--c-text);
-  line-height: 1;
-}
-.s04-accent-bar {
-  width: 3cqw;
-  height: 0.2cqw;
-  background: var(--c-accent);
-  margin-top: 0.4cqw;
-}
 
-/* テーブル */
-.s04-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.s04-table tr {
-  border-bottom: 0.1cqw solid var(--c-border);
-}
-.s04-table tr:first-child {
-  border-top: 0.1cqw solid var(--c-border);
-}
-.s04-table th {
-  text-align: left;
-  font-family: var(--font-en);
-  font-size: 0.82cqw;
-  font-weight: 400;
-  color: var(--c-text-sub);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 0.85cqw 0;
-  width: 9cqw;
-  vertical-align: top;
-  white-space: nowrap;
-}
-.s04-table td {
+.s05-desc {
   font-family: var(--font-ja);
-  font-size: 1.38cqw;
+  font-size: 1.3cqw;
+  font-weight: 400;
+  line-height: 1.9;
   color: var(--c-text);
-  padding: 0.85cqw 0 0.85cqw 1.5cqw;
-  line-height: 1.6;
   letter-spacing: 0.02em;
 }
-.s04-table td strong { font-weight: 900; }
-.s04-sub {
-  font-size: 0.95em;
-  color: var(--c-text-sub);
+
+.s05-source {
+  font-family: var(--font-ja);
+  font-size: 0.8cqw;
   font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-sub);
+  letter-spacing: 0.02em;
 }
 
-/* 右：写真エリア */
-.s04-right {
-  position: relative;
-  overflow: hidden;
-}
-.s04-photo {
-  position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=960&q=80');
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(60%) brightness(0.75);
-}
-/* 写真が読み込めない場合のフォールバック */
-.s04-photo::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #888 0%, #555 100%);
-  z-index: -1;
-}
-/* 左からのフェードで自然につなぐ */
-.s04-photo::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, var(--c-base) 0%, transparent 18%);
-  z-index: 1;
+.s05-copy {
+  position: absolute;
+  right: 5cqw;
+  bottom: 5cqw;
+  font-family: var(--font-en);
+  font-size: 0.75cqw;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--c-sub);
 }

@@ -1,0 +1,37 @@
+/*
+ * TASTE: ポップ
+ * 用途: エンタメ / 食品 / 採用 / 若年層向け
+ * ベース: ホワイト / メイン: ディープパープル / アクセント: ビビッドオレンジ
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #FFFFFF;
+  --c-main:          #1F0A3C;
+  --c-accent:        #FF5C00;
+  --c-sub:           #7B5EA7;
+  --c-border:        #F3E8FF;
+  --c-surface:       #FDF4FF;
+  --c-bridge-bg:     #FF5C00;
+  --c-bridge-text:   #FFFFFF;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', sans-serif;
+  --font-body:       'Noto Sans JP', sans-serif;
+  --font-weight-head: 900;
+  --font-weight-body: 400;
+  --letter-spacing-head: -0.01em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  4px;
+  --accent-line-color:  #FF5C00;
+  --card-radius:        16px;
+  --card-border:        2px solid #F3E8FF;
+  --card-bg:            #FDF4FF;
+  --section-bar-height: 4px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(31, 10, 60, 0.25);
+  --photo-filter:    saturate(1.2) brightness(1.05);
+
+  --card-shadow:     none;
+}

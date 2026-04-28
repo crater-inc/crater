@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(open /Users/cratermacbookpro/Projects/claude/CL/人と空間/design-preview.html)",
+      "Edit(~/.claude/skills/デザインシステム/**)",
+      "Edit(~/.claude/skills/ビジュアルシート/**)",
+      "Edit(~/.claude/skills/VI設計者/**)",
+      "Edit(~/.claude/skills/公募・応募担当/**)",
+      "WebFetch(domain:www.city.hachinohe.aomori.jp)",
+      "Bash(grep -n \"padding: 24px 16px\" /Users/cratermacbookpro/Projects/claude/CL/志賀町/output/*.html)",
+      "Bash(grep -n \"font-size:14px\" /Users/cratermacbookpro/Projects/claude/CL/志賀町/output/*.html)",
+      "Bash(sed -n '460,470p' \"/Users/cratermacbookpro/Projects/claude/CL/人と空間/output/sitemap.html\")",
+      "Bash(sed -n '1482,1492p' \"/Users/cratermacbookpro/Projects/claude/CL/人と空間/output/content-map.html\")",
+      "Bash(sed -n '1075,1085p' \"/Users/cratermacbookpro/Projects/claude/CL/人と空間/output/wireframe.html\")",
+      "Edit(~/.claude/skills/翻訳/**)"
+    ],
+    "additionalDirectories": [
+      "/Users/cratermacbookpro/.claude/skills"
+    ]
+  }
+}

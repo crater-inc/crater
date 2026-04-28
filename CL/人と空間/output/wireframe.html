@@ -1090,11 +1090,11 @@
   <!-- ===== コメントシステム ===== -->
   <style>
     .c-toggle-wrap {
-      position: fixed; bottom: 24px; right: 24px; z-index: 9001;
-      display: flex; flex-direction: column; align-items: flex-end;
+      position: fixed; bottom: 24px; left: 24px; z-index: 9200;
+      display: flex; flex-direction: column; align-items: flex-start;
     }
     .c-tooltip {
-      position: absolute; bottom: 62px; right: 0;
+      position: absolute; bottom: 62px; left: 0;
       background: rgba(20,30,40,0.92); color: #fff;
       font-size: 12px; line-height: 1.7; padding: 10px 14px;
       border-radius: 8px; width: 230px; pointer-events: none;
@@ -1153,6 +1153,53 @@
       background: none; color: #e74c3c; border: 1px solid #e74c3c;
       border-radius: 6px; padding: 5px 12px; font-size: 11px; cursor: pointer;
     }
+    /* リストボタン */
+    .c-list-btn-wrap {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9200;
+    }
+    .c-list-btn {
+      background: #1A2E42; color: white; border: none; border-radius: 50%;
+      width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; box-shadow: 0 2px 16px rgba(0,0,0,0.3); transition: background 0.2s;
+    }
+    .c-list-btn.active { background: #c0392b; }
+    /* コメントパネル */
+    .c-panel-backdrop { position: fixed; inset: 0; z-index: 8900; display: none; }
+    .c-panel-backdrop.open { display: block; }
+    .c-panel {
+      position: fixed; top: 0; right: -320px; width: 300px; height: 100%;
+      background: white; z-index: 9100; transition: right 0.3s ease;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+      display: flex; flex-direction: column;
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif;
+    }
+    .c-panel.open { right: 0; }
+    .c-panel-head {
+      padding: 20px 20px 16px; border-bottom: 1px solid #e8e8e8;
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    .c-panel-title { font-size: 14px; font-weight: 600; color: #1A2E42; letter-spacing: 0.05em; }
+    .c-panel-close {
+      background: none; border: none; cursor: pointer; color: #aaa; padding: 4px;
+      display: flex; line-height: 1;
+    }
+    .c-panel-close:hover { color: #333; }
+    .c-panel-body { flex: 1; overflow-y: auto; padding: 8px 0; }
+    .c-panel-empty { padding: 40px 20px; font-size: 13px; color: #bbb; text-align: center; }
+    .c-panel-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 20px; cursor: pointer; border-bottom: 1px solid #f4f4f4;
+      transition: background 0.15s;
+    }
+    .c-panel-item:hover { background: #f8f9fb; }
+    .c-panel-num {
+      width: 22px; height: 22px; background: #e74c3c; color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: bold; flex-shrink: 0; margin-top: 2px;
+    }
+    .c-panel-info { flex: 1; min-width: 0; }
+    .c-panel-text { font-size: 13px; color: #333; line-height: 1.6; word-break: break-word; }
+    .c-panel-ts { font-size: 11px; color: #bbb; margin-top: 3px; }
   </style>
 
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -1170,6 +1217,31 @@
       </svg>
     </button>
   </div>
+  <!-- リストボタン -->
+  <div class="c-list-btn-wrap">
+    <button class="c-list-btn" id="c-list-btn" onclick="toggleWfPanel()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- コメントパネル -->
+  <div class="c-panel-backdrop" id="c-panel-backdrop" onclick="toggleWfPanel()"></div>
+  <div class="c-panel" id="c-panel">
+    <div class="c-panel-head">
+      <span class="c-panel-title">コメント一覧</span>
+      <button class="c-panel-close" onclick="toggleWfPanel()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="c-panel-body" id="c-panel-body">
+      <div class="c-panel-empty" id="c-panel-empty">コメントはまだありません</div>
+    </div>
+  </div>
+
   <div class="c-overlay" id="c-overlay"></div>
 
   <!-- ポップアップ用コンテナ（viewport固定） -->
@@ -1430,9 +1502,63 @@
       }
     });
 
-    // ピン描画
+    // ===== パネル開閉 =====
+    var wfPanelOpen = false;
+    function toggleWfPanel() {
+      wfPanelOpen = !wfPanelOpen;
+      document.getElementById('c-panel').classList.toggle('open', wfPanelOpen);
+      document.getElementById('c-panel-backdrop').classList.toggle('open', wfPanelOpen);
+      document.getElementById('c-list-btn').classList.toggle('active', wfPanelOpen);
+    }
+
+    // HTMLエスケープ
+    function escapeHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    // パネル一覧更新
+    function updateWfPanel(snapshot) {
+      var body = document.getElementById('c-panel-body');
+      var empty = document.getElementById('c-panel-empty');
+      body.querySelectorAll('.c-panel-item').forEach(function(el) { el.remove(); });
+      if (!snapshot || snapshot.empty) {
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+      var num = 0;
+      snapshot.forEach(function(docSnap) {
+        num++;
+        var data = docSnap.data();
+        if (data.slideIndex === undefined || data.slideIndex === null) return;
+        var item = document.createElement('div');
+        item.className = 'c-panel-item';
+        var ts = data.timestamp ? data.timestamp.toDate().toLocaleString('ja-JP') : '';
+        item.innerHTML =
+          '<div class="c-panel-num">' + num + '</div>' +
+          '<div class="c-panel-info">' +
+            '<div class="c-panel-text">' + escapeHtml(data.text) + '</div>' +
+            '<div class="c-panel-ts">' + ts + '</div>' +
+          '</div>';
+        // クリックでスライド移動＋スクロール
+        (function(d) {
+          item.addEventListener('click', function() {
+            goTo(d.slideIndex);
+            var coords = getWfPinCoords(d);
+            setTimeout(function() {
+              slideEls[d.slideIndex].scrollTop = Math.max(0, coords.y - window.innerHeight / 2);
+            }, 50);
+            if (wfPanelOpen) toggleWfPanel();
+          });
+        })(data);
+        body.appendChild(item);
+      });
+    }
+
+    // ピン描画（ドラッグ対応）
     function renderWfPins(snapshot) {
       pinContainers.forEach(function(c) { c.querySelectorAll('.c-pin').forEach(function(p) { p.remove(); }); });
+      updateWfPanel(snapshot);
       var num = 0;
       snapshot.forEach(function(docSnap) {
         num++;
@@ -1445,7 +1571,60 @@
         pin.style.left = coords.x + 'px';
         pin.style.top  = coords.y + 'px';
         pin.textContent = n;
+
+        // ドラッグ機能
+        var dragMoved = false;
+        var dragStartClientX, dragStartClientY, pinStartX, pinStartY;
+
+        function onDragStart(e) {
+          e.stopPropagation();
+          dragMoved = false;
+          var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          dragStartClientX = clientX;
+          dragStartClientY = clientY;
+          pinStartX = coords.x;
+          pinStartY = coords.y;
+          pin.style.transition = 'none';
+          document.addEventListener('mousemove', onDragMove);
+          document.addEventListener('mouseup', onDragEnd);
+          document.addEventListener('touchmove', onDragMove, { passive: false });
+          document.addEventListener('touchend', onDragEnd);
+        }
+
+        function onDragMove(e) {
+          if (e.touches) e.preventDefault();
+          var clientX = e.touches ? e.touches[0].clientX : e.clientX;
+          var clientY = e.touches ? e.touches[0].clientY : e.clientY;
+          var dx = clientX - dragStartClientX;
+          var dy = clientY - dragStartClientY;
+          if (Math.abs(dx) > 4 || Math.abs(dy) > 4) dragMoved = true;
+          coords.x = pinStartX + dx;
+          coords.y = pinStartY + dy;
+          pin.style.left = coords.x + 'px';
+          pin.style.top  = coords.y + 'px';
+        }
+
+        function onDragEnd() {
+          document.removeEventListener('mousemove', onDragMove);
+          document.removeEventListener('mouseup', onDragEnd);
+          document.removeEventListener('touchmove', onDragMove);
+          document.removeEventListener('touchend', onDragEnd);
+          pin.style.transition = '';
+          if (dragMoved) {
+            db.collection('comments').doc(WF_PAGE_ID).collection('items').doc(docSnap.id).update({
+              x: coords.x,
+              y: coords.y,
+              anchor: null
+            }).catch(function(err) { console.error('位置更新失敗:', err); });
+          }
+        }
+
+        pin.addEventListener('mousedown', onDragStart);
+        pin.addEventListener('touchstart', onDragStart, { passive: true });
+
         pin.addEventListener('click', function(e) {
+          if (dragMoved) { dragMoved = false; return; }
           e.stopPropagation();
           wfActiveCommentId = docSnap.id;
           var pinRect = pin.getBoundingClientRect();

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人と空間 — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --white:   #FFFFFF;
+      --black:   #0D0D0D;
+      --navy:    #1A2E42;
+      --accent:  #2B5FA0;
+      --line:    #C8D0D8;
+      --g05:     #F5F5F5;
+      --g10:     #E8E8E8;
+      --g30:     #B0B0B0;
+      --g50:     #777777;
+      --g80:     #333333;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: #EDEDED;
+      color: var(--black);
+      padding: 48px 32px 80px;
+    }
+
+    /* ===== ページタイトル ===== */
+    .ds-header {
+      max-width: 1120px;
+      margin: 0 auto 56px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 20px;
+    }
+    .ds-brand {
+      font-family: 'Inter', sans-serif;
+    }
+    .ds-brand-en {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: var(--g50);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .ds-brand-ja {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--black);
+    }
+    .ds-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--g30);
+      letter-spacing: 0.1em;
+      text-align: right;
+    }
+
+    /* ===== セクションラベル ===== */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--g30);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--g10);
+    }
+
+    /* ===== グリッドラッパー ===== */
+    .ds-grid {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* ===== カード ===== */
+    .ds-card {
+      background: #fff;
+      padding: 28px;
+    }
+    .ds-card.wide { grid-column: span 2; }
+    .ds-card.full { grid-column: span 3; }
+    .ds-card.dark { background: var(--navy); }
+
+    /* ===== カラーシステム ===== */
+    .color-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .color-swatch {
+      flex: 1;
+      height: 48px;
+      border-radius: 2px;
+      position: relative;
+    }
+    .color-swatch-sm {
+      flex: 1;
+      height: 32px;
+      border-radius: 2px;
+    }
+    .color-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      color: var(--g50);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+    }
+    .color-group { flex: 1; }
+
+    /* ===== タイポグラフィ ===== */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--g05);
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      color: var(--g30);
+      width: 90px;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== ボタン ===== */
+    .btn-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 2px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border: none;
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid var(--navy);
+      padding: 11px 28px;
+      border-radius: 2px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .btn-text-link {
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ===== コンポーネント ===== */
+    .comp-card {
+      border: 1px solid var(--g10);
+      padding: 20px;
+      background: #fff;
+    }
+    .comp-card-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--g05);
+      border-radius: 2px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .comp-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .comp-card-body {
+      font-size: 12px;
+      color: var(--g50);
+      line-height: 1.7;
+    }
+
+    /* KPI */
+    .kpi-block { display: flex; gap: 12px; }
+    .kpi-item {
+      flex: 1;
+      background: var(--g05);
+      padding: 18px 14px;
+      text-align: center;
+    }
+    .kpi-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .kpi-unit {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: var(--g50);
+    }
+    .kpi-label {
+      font-size: 10px;
+      color: var(--g50);
+      margin-top: 6px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ナビ */
+    .nav-demo {
+      background: #fff;
+      border-bottom: 1px solid var(--g10);
+      padding: 0 20px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+    .nav-logo-demo {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      white-space: nowrap;
+    }
+    .nav-link-demo {
+      font-size: 12px;
+      color: var(--g50);
+      letter-spacing: 0.04em;
+      padding-bottom: 2px;
+    }
+    .nav-link-demo.active {
+      color: var(--black);
+      font-weight: 700;
+      border-bottom: 2px solid var(--black);
+    }
+    .nav-spacer { flex: 1; }
+    .nav-cta-demo {
+      background: var(--navy);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 2px;
+      letter-spacing: 0.06em;
+    }
+
+    /* フォーム */
+    .form-demo-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
+    .form-demo-label { font-size: 11px; font-weight: 700; color: var(--g80); }
+    .form-demo-req { color: #BF4C3A; font-size: 9px; margin-left: 4px; }
+    .form-demo-input {
+      background: var(--g05);
+      border: 1px solid var(--g10);
+      border-radius: 2px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--g30);
+      font-family: 'Noto Sans JP', sans-serif;
+      width: 100%;
+    }
+
+    /* タグ */
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--g10);
+      color: var(--g50);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-right: 6px;
+      letter-spacing: 0.06em;
+    }
+
+    /* ===== 動線モチーフ ===== */
+    .motif-demo {
+      position: relative;
+      height: 80px;
+      overflow: hidden;
+    }
+    .motif-line {
+      position: absolute;
+      background: var(--g10);
+    }
+    .motif-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--navy);
+    }
+
+    /* ===== セクション見出しデモ ===== */
+    .sec-label-demo {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--g50);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .sec-h2-demo {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .sec-lead-demo {
+      font-size: 14px;
+      color: var(--g50);
+      line-height: 1.8;
+    }
+
+    /* ダークカード内テキスト */
+    .ds-card.dark .section-label { color: rgba(255,255,255,0.25); }
+    .ds-card.dark .section-label::after { background: rgba(255,255,255,0.1); }
+    .ds-card.dark .kpi-num { color: #fff; }
+    .ds-card.dark .kpi-unit { color: rgba(255,255,255,0.4); }
+    .ds-card.dark .kpi-label { color: rgba(255,255,255,0.4); }
+    .ds-card.dark .kpi-item { background: rgba(255,255,255,0.07); }
+
+    /* ===== ロゴ再現 ===== */
+    .logo-svg-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <div class="ds-header">
+    <div class="ds-brand">
+      <span class="ds-brand-en">Human and Space — Design System</span>
+      <span class="ds-brand-ja">人と空間</span>
+    </div>
+    <div class="ds-meta">
+      v1.0 &nbsp;/&nbsp; 2026<br>
+      WHITE BASE &nbsp;·&nbsp; GEOMETRIC &nbsp;·&nbsp; FLOW
+    </div>
+  </div>
+
+  <div class="ds-grid">
+
+    <!-- ===== カラーシステム ===== -->
+    <div class="ds-card wide">
+      <div class="section-label">Color System</div>
+      <div class="color-row">
+        <div class="color-group">
+          <div class="color-swatch" style="background:#0D0D0D"></div>
+          <div class="color-label">#0D0D0D<br>Black</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch" style="background:#1A2E42"></div>
+          <div class="color-label">#1A2E42<br>Navy</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch" style="background:#2B5FA0"></div>
+          <div class="color-label">#2B5FA0<br>Accent</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch" style="background:#C8D0D8; border:1px solid #E8E8E8"></div>
+          <div class="color-label">#C8D0D8<br>Line</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch" style="background:#FFFFFF; border:1px solid #E8E8E8"></div>
+          <div class="color-label">#FFFFFF<br>White</div>
+        </div>
+      </div>
+      <div class="color-row" style="margin-top:16px">
+        <div class="color-group">
+          <div class="color-swatch-sm" style="background:#F5F5F5; border:1px solid #E8E8E8"></div>
+          <div class="color-label">Gray 05</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch-sm" style="background:#E8E8E8"></div>
+          <div class="color-label">Gray 10</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch-sm" style="background:#B0B0B0"></div>
+          <div class="color-label">Gray 30</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch-sm" style="background:#777777"></div>
+          <div class="color-label">Gray 50</div>
+        </div>
+        <div class="color-group">
+          <div class="color-swatch-sm" style="background:#333333"></div>
+          <div class="color-label">Gray 80</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ロゴ & コンセプト ===== -->
+    <div class="ds-card">
+      <div class="section-label">Brand Mark</div>
+      <div class="logo-svg-wrap" style="margin-bottom:20px">
+        <!-- ロゴ再現 SVG -->
+        <svg width="80" height="52" viewBox="0 0 80 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- 円（人） -->
+          <circle cx="22" cy="26" r="20" fill="#0D0D0D"/>
+          <!-- X（交差） -->
+          <line x1="43" y1="12" x2="59" y2="40" stroke="#0D0D0D" stroke-width="3"/>
+          <line x1="59" y1="12" x2="43" y2="40" stroke="#0D0D0D" stroke-width="3"/>
+          <!-- 四角（空間） -->
+          <rect x="62" y="14" width="16" height="24" fill="#0D0D0D"/>
+        </svg>
+        <div>
+          <div style="font-size:18px;font-weight:700;letter-spacing:0.08em;color:#0D0D0D">人と空間</div>
+          <div style="font-family:'Inter';font-size:9px;letter-spacing:0.2em;color:#B0B0B0;margin-top:2px">HUMAN AND SPACE</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--g50);line-height:1.8;border-top:1px solid var(--g05);padding-top:14px">
+        人（円）× 空間（四角）<br>
+        <strong style="color:var(--g80)">動線の可視化</strong>をコンセプトに。<br>
+        装飾は「線」のみ。色より形で語る。
+      </div>
+    </div>
+
+    <!-- ===== タイポグラフィ ===== -->
+    <div class="ds-card full">
+      <div class="section-label">Typography</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+        <div>
+          <div class="type-row">
+            <div class="type-meta">60px / 700<br>H1 / KPI</div>
+            <div style="font-family:'Inter';font-size:44px;font-weight:700;line-height:1;letter-spacing:-0.02em;color:var(--black)">+26%</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">44px / 700<br>Hero Copy</div>
+            <div style="font-size:30px;font-weight:700;line-height:1.2;color:var(--black)">お客様の体験を変える。</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">32px / 700<br>H2</div>
+            <div style="font-size:22px;font-weight:700;color:var(--black)">私たちのサービス</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">24px / 700<br>H3</div>
+            <div style="font-size:17px;font-weight:700;color:var(--black)">CX調査（顧客体験価値）</div>
+          </div>
+        </div>
+        <div>
+          <div class="type-row">
+            <div class="type-meta">18px / 500<br>Lead</div>
+            <div style="font-size:14px;font-weight:500;color:var(--g50);line-height:1.8">AI時代の店舗CX・UX改善のパイオニア。商空間運営における顧客体験価値を改善します。</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">15px / 400<br>Body</div>
+            <div style="font-size:13px;color:var(--g80);line-height:1.8">ハイブリッドCX調査は、モニター型（生活者目線）と専門型（プロの行動分析）の二重構造により、深い洞察を提供します。</div>
+          </div>
+          <div class="type-row">
+            <div class="type-meta">11px / 600<br>Label</div>
+            <div style="font-family:'Inter';font-size:10px;font-weight:600;letter-spacing:0.2em;color:var(--g50);text-transform:uppercase">CX SURVEY / SECTION 01</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ボタン ===== -->
+    <div class="ds-card">
+      <div class="section-label">Buttons</div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div>
+          <div style="font-size:9px;color:var(--g30);letter-spacing:0.1em;margin-bottom:8px;font-family:'Inter'">PRIMARY</div>
+          <button class="btn-primary">まずは相談する</button>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--g30);letter-spacing:0.1em;margin-bottom:8px;font-family:'Inter'">SECONDARY</div>
+          <button class="btn-secondary">サービス資料を見る</button>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--g30);letter-spacing:0.1em;margin-bottom:8px;font-family:'Inter'">TEXT LINK</div>
+          <a class="btn-text-link" href="#">詳しく見る →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ナビゲーション ===== -->
+    <div class="ds-card wide">
+      <div class="section-label">Navigation</div>
+      <div class="nav-demo">
+        <div class="nav-logo-demo">人と空間</div>
+        <a class="nav-link-demo active">私たちについて</a>
+        <a class="nav-link-demo">サービス</a>
+        <a class="nav-link-demo">事例</a>
+        <a class="nav-link-demo">お問い合わせ</a>
+        <div class="nav-spacer"></div>
+        <div class="nav-cta-demo">まずは相談する</div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:6px;align-items:center">
+        <span class="tag">CX調査</span>
+        <span class="tag">空間品質</span>
+        <span class="tag">AIカメラ</span>
+        <span class="tag">伴走型コンサル</span>
+        <span class="tag" style="background:var(--navy);color:#fff;border-color:var(--navy)">お問い合わせ</span>
+      </div>
+    </div>
+
+    <!-- ===== セクション見出し ===== -->
+    <div class="ds-card">
+      <div class="section-label">Section Heading</div>
+      <div class="sec-label-demo">OUR SERVICES</div>
+      <div class="sec-h2-demo">5つのサービス領域</div>
+      <div class="sec-lead-demo">CXと空間品質の改善を、調査・分析・伴走支援で実現。お客様の課題に合わせた最適な組み合わせを提案します。</div>
+    </div>
+
+    <!-- ===== カードコンポーネント ===== -->
+    <div class="ds-card">
+      <div class="section-label">Card Component</div>
+      <div class="comp-card">
+        <div class="comp-card-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" stroke="#B0B0B0" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" stroke="#B0B0B0" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" stroke="#B0B0B0" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" stroke="#B0B0B0" stroke-width="1.5"/></svg>
+        </div>
+        <div class="comp-card-title">CX調査</div>
+        <div class="comp-card-body">モニター型と専門型の二重構造で、生活者目線とプロの洞察を同時に取得。</div>
+      </div>
+    </div>
+
+    <!-- ===== KPI（ライト） ===== -->
+    <div class="ds-card">
+      <div class="section-label">KPI — Light</div>
+      <div class="kpi-block">
+        <div class="kpi-item">
+          <div class="kpi-num">+26<span class="kpi-unit">%</span></div>
+          <div class="kpi-label">売上前年比</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-num">+7<span class="kpi-unit">%</span></div>
+          <div class="kpi-label">コンバージョン</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== KPI（ダーク） ===== -->
+    <div class="ds-card dark wide">
+      <div class="section-label">KPI — Dark / Navy Background</div>
+      <div class="kpi-block">
+        <div class="kpi-item">
+          <div class="kpi-num" style="color:#fff">117<span class="kpi-unit" style="color:rgba(255,255,255,0.4)">%</span></div>
+          <div class="kpi-label">重点店舗売上前年比最大</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-num" style="color:#fff">5<span class="kpi-unit" style="color:rgba(255,255,255,0.4)">年</span></div>
+          <div class="kpi-label">百貨店伴走支援</div>
+        </div>
+        <div class="kpi-item">
+          <div class="kpi-num" style="color:#fff">+9<span class="kpi-unit" style="color:rgba(255,255,255,0.4)">%</span></div>
+          <div class="kpi-label">客単価</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== フォーム ===== -->
+    <div class="ds-card">
+      <div class="section-label">Form Elements</div>
+      <div class="form-demo-row">
+        <div class="form-demo-label">会社名<span class="form-demo-req">必須</span></div>
+        <input class="form-demo-input" type="text" placeholder="株式会社 ○○○○" readonly>
+      </div>
+      <div class="form-demo-row">
+        <div class="form-demo-label">お問い合わせ内容<span class="form-demo-req">必須</span></div>
+        <input class="form-demo-input" type="text" placeholder="ご相談内容をご記入ください" readonly>
+      </div>
+      <button class="btn-primary" style="width:100%;text-align:center">送信する</button>
+    </div>
+
+    <!-- ===== スペーシング ===== -->
+    <div class="ds-card">
+      <div class="section-label">Spacing Scale</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">4px</div>
+          <div style="height:8px;background:var(--navy);width:4px;border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">8px</div>
+          <div style="height:8px;background:var(--navy);width:8px;border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">16px</div>
+          <div style="height:8px;background:var(--navy);width:16px;border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">24px</div>
+          <div style="height:8px;background:var(--navy);width:24px;border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">32px</div>
+          <div style="height:8px;background:var(--navy);width:32px;border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">48px</div>
+          <div style="height:8px;background:var(--navy);width:48px;border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">80px</div>
+          <div style="height:8px;background:var(--navy);width:80px;border-radius:1px"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="font-family:'Inter';font-size:9px;color:var(--g30);width:32px">120px</div>
+          <div style="height:8px;background:var(--navy);width:120px;border-radius:1px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 動線モチーフ ===== -->
+    <div class="ds-card wide">
+      <div class="section-label">Visual Motif — 動線 / Flow</div>
+      <div style="position:relative;height:96px;background:var(--g05);overflow:hidden">
+        <!-- 格子線 -->
+        <svg width="100%" height="100%" style="position:absolute;top:0;left:0" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E8E8E8" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)"/>
+          <!-- 動線パス -->
+          <path d="M 40 80 Q 200 20 400 48 Q 600 76 760 32 Q 900 8 1080 48" stroke="#1A2E42" stroke-width="1.5" fill="none" stroke-dasharray="4 6" opacity="0.6"/>
+          <path d="M 40 48 Q 280 80 500 36 Q 680 4 880 56 Q 1000 80 1080 64" stroke="#C8D0D8" stroke-width="1" fill="none" opacity="0.8"/>
+          <!-- 交差点 -->
+          <circle cx="400" cy="48" r="4" fill="#1A2E42"/>
+          <circle cx="760" cy="32" r="4" fill="#1A2E42"/>
+          <circle cx="200" cy="36" r="2.5" fill="#B0B0B0"/>
+          <circle cx="600" cy="68" r="2.5" fill="#B0B0B0"/>
+        </svg>
+        <!-- ラベル -->
+        <div style="position:absolute;bottom:10px;right:16px;font-family:'Inter';font-size:9px;color:var(--g30);letter-spacing:0.1em">HUMAN FLOW VISUALIZATION</div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:20px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="width:20px;height:1.5px;background:var(--navy)"></div>
+          <div style="font-size:10px;color:var(--g50)">主動線</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="width:20px;height:1px;background:var(--line)"></div>
+          <div style="font-size:10px;color:var(--g50)">副動線</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--navy)"></div>
+          <div style="font-size:10px;color:var(--g50)">交差点</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="width:5px;height:5px;border-radius:50%;background:var(--g30)"></div>
+          <div style="font-size:10px;color:var(--g50)">計測点</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ルール ===== -->
+    <div class="ds-card">
+      <div class="section-label">Rules</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <div style="width:16px;height:16px;background:var(--g05);border:1px solid var(--g10);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">
+            <div style="width:6px;height:6px;background:#B0B0B0;border-radius:50%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--g80)">角丸は最大 <strong>2px</strong>。建築的に</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <div style="width:16px;height:16px;background:var(--g05);border:1px solid var(--g10);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">
+            <div style="width:6px;height:6px;background:#B0B0B0;border-radius:50%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--g80)">グラデーション<strong>禁止</strong></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <div style="width:16px;height:16px;background:var(--g05);border:1px solid var(--g10);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">
+            <div style="width:6px;height:6px;background:#B0B0B0;border-radius:50%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--g80)">影は hoverのみ <code style="font-size:10px;background:var(--g05);padding:1px 4px">box-shadow</code></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <div style="width:16px;height:16px;background:var(--g05);border:1px solid var(--g10);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">
+            <div style="width:6px;height:6px;background:#B0B0B0;border-radius:50%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--g80)">使用色は<strong>3色以内</strong></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <div style="width:16px;height:16px;background:var(--g05);border:1px solid var(--g10);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">
+            <div style="width:6px;height:6px;background:#B0B0B0;border-radius:50%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--g80)">アニメは <strong>0.25s〜0.6s</strong> 静かに</div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:8px">
+          <div style="width:16px;height:16px;background:var(--g05);border:1px solid var(--g10);border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">
+            <div style="width:6px;height:6px;background:#B0B0B0;border-radius:50%"></div>
+          </div>
+          <div style="font-size:11px;color:var(--g80)">本文フォントは <strong>11px以上</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

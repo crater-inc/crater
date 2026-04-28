@@ -1,5 +1,5 @@
 // ============================================
-// CRATER 会社概要スライド — app.js v6
+// CRATER 会社概要スライド — app.js v8
 // ============================================
 
 (function () {
@@ -15,10 +15,21 @@
   var navNext     = document.getElementById('nav-next');
   var scriptTrig  = document.getElementById('script-trigger');
   var scriptPanel = document.getElementById('script-panel');
+  var pagination  = document.getElementById('pagination');
 
   var current = 0;
   var total   = slideFactories.length;
   var rendered = {};
+
+  // ===== 1920×1080 固定スケーリング =====
+  var currentScale = 1;
+  function scaleSlides() {
+    currentScale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.querySelectorAll('.slide').forEach(function (s) {
+      s.style.transform = 'translate(-50%, -50%) scale(' + currentScale + ')';
+    });
+  }
+  window.addEventListener('resize', scaleSlides);
 
   // ===== スライドレンダリング（遅延） =====
   function ensureRendered(i) {
@@ -26,6 +37,8 @@
     var frag = document.createRange().createContextualFragment(slideFactories[i]());
     stage.appendChild(frag);
     rendered[i] = true;
+    // 追加後に全スライドへスケールを再適用（インデックスズレを防ぐ）
+    scaleSlides();
   }
 
   // ===== スライド移動 =====
@@ -52,6 +65,11 @@
       el.classList.toggle('active', idx === i);
     });
 
+    // ページネーションのハイライト
+    document.querySelectorAll('.pagination-item').forEach(function (el, idx) {
+      el.classList.toggle('active', idx === i);
+    });
+
     // トークスクリプト
     var slide = slides[i];
     var notes = slide ? slide.getAttribute('data-notes') : '';
@@ -66,6 +84,7 @@
     var p = parseInt(hash, 10) - 1;
     if (p >= 0 && p < total) initPage = p;
   }
+  scaleSlides(); // スケール値を確定してから
   [0, 1, 2].forEach(function (i) { ensureRendered(i); });
   goTo(initPage, true);
 
@@ -95,6 +114,7 @@
   });
 
   agendaItems.forEach(function (item, i) {
+    // サイドバー
     var btn = document.createElement('button');
     btn.className = 'sidebar-item';
     btn.innerHTML =
@@ -106,6 +126,18 @@
       closeSidebar();
     });
     sideList.appendChild(btn);
+
+    // ページネーション
+    var pBtn = document.createElement('button');
+    pBtn.className = 'pagination-item';
+    pBtn.innerHTML =
+      '<span class="pagination-num">' + String(i + 1).padStart(2, '0') + '</span>' +
+      '<span>' + item.label + '</span>';
+    pBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      goTo(i);
+    });
+    pagination.appendChild(pBtn);
   });
 
   // ===== トークスクリプト（下ホバー） =====

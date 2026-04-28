@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amazon物流スキーム比較表｜KECELUN</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif;
+      background: #f5f5f5;
+      color: #111;
+      padding: 40px 24px;
+    }
+
+    /* ヘッダー */
+    .ヘッダー {
+      margin-bottom: 32px;
+    }
+
+    .ヘッダー h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .ヘッダー p {
+      font-size: 13px;
+      color: #666;
+    }
+
+    /* 入力フォーム */
+    .入力エリア {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .入力グループ {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .入力グループ label {
+      font-size: 12px;
+      color: #666;
+      font-weight: 600;
+    }
+
+    .入力グループ input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 14px;
+      width: 180px;
+    }
+
+    .計算ボタン {
+      background: #232f3e;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 9px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .計算ボタン:hover {
+      background: #374151;
+    }
+
+    /* 比較テーブル */
+    .テーブルラッパー {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      min-width: 700px;
+    }
+
+    /* ヘッダー行 */
+    thead tr {
+      background: #232f3e;
+      color: #fff;
+    }
+
+    thead th {
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    thead th:first-child {
+      text-align: left;
+      width: 200px;
+    }
+
+    /* スキーム列のハイライト */
+    .おすすめ列 {
+      background: rgba(255, 153, 0, 0.15) !important;
+    }
+
+    thead th.おすすめ列 {
+      background: #ff9900 !important;
+      color: #111 !important;
+    }
+
+    /* データ行 */
+    tbody tr {
+      border-bottom: 1px solid #eee;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: #fafafa;
+    }
+
+    tbody td {
+      padding: 13px 16px;
+      font-size: 13px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    tbody td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: #444;
+      background: #f9f9f9;
+    }
+
+    /* 合計行 */
+    .合計行 {
+      background: #f0f0f0 !important;
+      font-weight: 700;
+    }
+
+    .合計行 td {
+      font-size: 14px !important;
+      color: #111 !important;
+    }
+
+    /* セル色 */
+    .良い { color: #2e7d32; font-weight: 600; }
+    .普通 { color: #e65100; }
+    .悪い { color: #c62828; }
+
+    /* 注意書き */
+    .注意書き {
+      margin-top: 24px;
+      font-size: 12px;
+      color: #888;
+      line-height: 1.8;
+    }
+
+    .注意書き li {
+      list-style: none;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .注意書き li::before {
+      content: '※';
+      position: absolute;
+      left: 0;
+    }
+
+    /* 判定エリア */
+    .判定エリア {
+      margin-top: 32px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px 24px;
+    }
+
+    .判定エリア h2 {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .判定テキスト {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .バッジ {
+      display: inline-block;
+      background: #232f3e;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 3px;
+      margin-right: 4px;
+    }
+
+    /* セクション見出し */
+    .セクション見出し {
+      margin-top: 56px;
+      margin-bottom: 16px;
+      border-left: 4px solid #232f3e;
+      padding-left: 12px;
+    }
+
+    .セクション見出し h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .セクション見出し p {
+      font-size: 12px;
+      color: #888;
+    }
+
+    /* 各社テーブル */
+    .各社テーブル {
+      min-width: 1100px;
+    }
+
+    .各社テーブル thead th {
+      font-size: 12px;
+      padding: 12px 10px;
+      white-space: nowrap;
+    }
+
+    .各社テーブル tbody td {
+      font-size: 12px;
+      padding: 11px 10px;
+      white-space: nowrap;
+    }
+
+    .会社名セル {
+      font-weight: 700 !important;
+    }
+
+    .会社名セル a {
+      color: #0066c0;
+      text-decoration: none;
+    }
+
+    .会社名セル a:hover {
+      text-decoration: underline;
+    }
+
+    .ステータスセル {
+      text-align: center;
+    }
+
+    .ステータス {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+
+    .ステータス.未 {
+      background: #e0e0e0;
+      color: #666;
+    }
+
+    .ステータス.送信済 {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .ステータス.返信あり {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .ステータス.NG {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    .ステータス.MTG済 {
+      background: #d1ecf1;
+      color: #0c5460;
+    }
+
+    .ステータス.MTG予定 {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .備考セル {
+      font-size: 11px !important;
+      color: #666;
+      text-align: left !important;
+      white-space: normal !important;
+      min-width: 160px;
+    }
+
+    /* 各社テーブルの○✗表示 */
+    .各社テーブル .良い { color: #2e7d32; font-weight: 700; }
+    .各社テーブル .悪い { color: #c62828; font-weight: 700; }
+    .各社テーブル .普通 { color: #e65100; }
+
+    /* FBA基準行 */
+    .fba行 {
+      background: #f0f4ff !important;
+    }
+
+    .fba行 td:first-child {
+      background: #e8eeff !important;
+      font-weight: 700 !important;
+      color: #232f3e !important;
+    }
+
+    /* 問い合わせステータス：基準 */
+    .ステータス.基準 {
+      background: #232f3e;
+      color: #fff;
+    }
+
+    /* 利用シーンバッジ */
+    .シーンバッジ {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .シーンバッジ.FBA単独 {
+      background: #232f3e;
+      color: #fff;
+    }
+
+    .シーンバッジ.FBA代替 {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .シーンバッジ.FBA補完 {
+      background: #cce5ff;
+      color: #004085;
+    }
+
+    .シーンバッジ.両対応 {
+      background: #fff3cd;
+      color: #856404;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ヘッダー">
+    <h1>Amazon 物流スキーム比較表</h1>
+    <p>KECELUN（ケセルン）｜ライフギアジャパン × CRATER</p>
+  </div>
+
+  <!-- 販売価格入力 -->
+  <div class="入力エリア">
+    <div class="入力グループ">
+      <label>販売価格（税込）</label>
+      <input type="number" id="販売価格" value="21980" step="100">
+    </div>
+    <div class="入力グループ">
+      <label>月間販売予定数（個）</label>
+      <input type="number" id="販売数" value="30" step="1">
+    </div>
+    <div class="入力グループ">
+      <label>仕入れ原価（1個）</label>
+      <input type="number" id="原価" value="5000" step="100">
+    </div>
+    <button class="計算ボタン" onclick="計算する()">再計算</button>
+  </div>
+
+  <!-- 比較テーブル -->
+  <div class="テーブルラッパー">
+    <table>
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>FBA<br><small>（フルフィルメント by Amazon）</small></th>
+          <th>自己発送<br><small>（自社倉庫・自社出荷）</small></th>
+          <th class="おすすめ">3PL<br><small>（倉庫代行サービス）</small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 固定コスト -->
+        <tr>
+          <td>Amazon紹介料（8%）</td>
+          <td id="fba_紹介料">¥1,758</td>
+          <td id="自己_紹介料">¥1,758</td>
+          <td class="おすすめ列" id="pl_紹介料">¥1,758</td>
+        </tr>
+        <tr>
+          <td>フルフィルメント手数料</td>
+          <td id="fba_手数料">¥560</td>
+          <td>—</td>
+          <td class="おすすめ列">—</td>
+        </tr>
+        <tr>
+          <td>在庫保管費（月）</td>
+          <td id="fba_保管">¥60〜¥150<br><small>（30個×¥2〜¥5）</small></td>
+          <td>倉庫賃料による</td>
+          <td class="おすすめ列">¥100〜¥300<br><small>（30個×¥3〜¥10）</small></td>
+        </tr>
+        <tr>
+          <td>発送・梱包作業費</td>
+          <td class="良い">含む（FBA）</td>
+          <td class="悪い">自社負担<br><small>（¥200〜¥500/件）</small></td>
+          <td class="おすすめ列良い">含む（代行）</td>
+        </tr>
+        <tr>
+          <td>送料（顧客への配送）</td>
+          <td class="良い">Prime対応・無料</td>
+          <td class="悪い">¥600〜¥1,200<br><small>（ヤマト・佐川等）</small></td>
+          <td class="おすすめ列">¥500〜¥800<br><small>（契約による）</small></td>
+        </tr>
+        <tr>
+          <td>Primeバッジ</td>
+          <td class="良い">✓ 取得可能</td>
+          <td class="悪い">✗ なし</td>
+          <td class="おすすめ列">△ 条件付き</td>
+        </tr>
+        <tr>
+          <td>危険物対応</td>
+          <td class="悪い">要審査・制限あり</td>
+          <td class="良い">対応可能</td>
+          <td class="おすすめ列良い">倉庫による</td>
+        </tr>
+        <tr>
+          <td>初期費用</td>
+          <td>なし</td>
+          <td class="悪い">倉庫整備費</td>
+          <td class="おすすめ列">初期登録費のみ</td>
+        </tr>
+        <tr class="合計行">
+          <td>1個あたりコスト合計（概算）</td>
+          <td id="fba_合計">計算中...</td>
+          <td id="自己_合計">計算中...</td>
+          <td class="おすすめ列" id="pl_合計">計算中...</td>
+        </tr>
+        <tr class="合計行">
+          <td>月間粗利（概算）</td>
+          <td id="fba_粗利">計算中...</td>
+          <td id="自己_粗利">計算中...</td>
+          <td class="おすすめ列" id="pl_粗利">計算中...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 判定 -->
+  <div class="判定エリア">
+    <h2>スキーム選定の考え方</h2>
+    <div class="判定テキスト" id="判定テキスト">
+      <p>
+        <span class="バッジ">FBA</span>
+        コスト負担は中程度だが、<strong>危険物審査がボトルネック</strong>。KECELUNはエアロゾル系消火剤のため、FBA受け入れ可否の確認が最優先。審査通過後は販売力（Prime）が最大限に活かせる。
+      </p>
+      <br>
+      <p>
+        <span class="バッジ">自己発送</span>
+        コスト試算上は送料・梱包費が重くなる。月販売数が少ない段階では手が回る可能性があるが、スケールしにくい。
+      </p>
+      <br>
+      <p>
+        <span class="バッジ">3PL</span>
+        危険物対応倉庫を持つ3PLを選べば、FBA審査リスクを回避しながらプロ運用が可能。<strong>初期〜中期の現実解として最有力候補。</strong>
+      </p>
+    </div>
+  </div>
+
+  <ul class="注意書き">
+    <li>紹介料はカテゴリーにより異なります（本表はホーム＆キッチン8%で試算）。</li>
+    <li>3PLのコストは業者・契約内容により大幅に異なります。見積もりが必要です。</li>
+    <li>FBAの危険物審査（ハザードマテリアルレビュー）はセラーセントラルから申請が必要です。</li>
+    <li>自己発送の送料は重量・配送業者・契約単価により変動します。</li>
+    <li>2025年時点のAmazon手数料をもとに試算しています。</li>
+  </ul>
+
+  <!-- ===================== -->
+  <!-- 3PL各社比較テーブル   -->
+  <!-- ===================== -->
+
+  <div class="セクション見出し">
+    <h2>3PL 各社比較</h2>
+    <p>問い合わせ結果を随時更新</p>
+  </div>
+
+  <div class="テーブルラッパー">
+    <table class="各社テーブル">
+      <thead>
+        <tr>
+          <th style="width:130px">会社名</th>
+          <th>問い合わせ<br>状況</th>
+          <th>オンライン<br>MTG</th>
+          <th>越境EC<br>対応</th>
+          <th>利用シーン</th>
+          <th>危険物対応<br><small>（エアロゾル）</small></th>
+          <th>Amazon<br>連携</th>
+          <th>Shopify<br>連携</th>
+          <th>保管費</th>
+          <th>出荷手数料<br><small>（/件）</small></th>
+          <th>配送<br>業者</th>
+          <th>WMS/<br>システム</th>
+          <th>初期費用</th>
+          <th>月額固定費</th>
+          <th>ミニマム<br>保証</th>
+          <th>土日祝<br>出荷</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Amazon FBA（基準行） -->
+        <tr class="fba行">
+          <td class="会社名セル">Amazon FBA</td>
+          <td class="ステータスセル"><span class="ステータス 基準">基準</span></td>
+          <td class="ステータスセル">—</td>
+          <td class="良い">✓ 対応可<br><small>（Global Selling）</small></td>
+          <td><span class="シーンバッジ FBA単独">FBA単独</span></td>
+          <td class="普通">⚠ 要審査</td>
+          <td class="良い">◎ ネイティブ</td>
+          <td class="悪い">✗ 非対応</td>
+          <td>¥2〜5/個/月</td>
+          <td>¥560<br><small>（フルフィルメント）</small></td>
+          <td>Amazon</td>
+          <td>セラーセントラル</td>
+          <td>なし</td>
+          <td>¥4,900<br><small>（大口出品）</small></td>
+          <td>なし</td>
+          <td class="良い">✓</td>
+          <td class="備考セル">危険物審査が通れば最強。Primeバッジあり。エアロゾル系は要確認。</td>
+        </tr>
+        <!-- 3PL各社 -->
+        <tr>
+          <td class="会社名セル"><a href="https://logex.jp/rakulogi-fba-mini" target="_blank">ラクロジ</a></td>
+          <td class="ステータスセル"><span class="ステータス 送信済">送信済</span></td>
+          <td class="ステータスセル">—</td>
+          <td class="普通">⚠ 要確認</td>
+          <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+          <td class="備考セル">—</td>
+        </tr>
+        <tr>
+          <td class="会社名セル"><a href="https://www.logiless.com/" target="_blank">LOGILESS</a></td>
+          <td class="ステータスセル"><span class="ステータス 送信済">送信済</span></td>
+          <td class="ステータスセル">—</td>
+          <td class="普通">⚠ 要確認</td>
+          <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+          <td class="備考セル">—</td>
+        </tr>
+        <tr>
+          <td class="会社名セル"><a href="https://service.openlogi.com/" target="_blank">オープンロジ</a></td>
+          <td class="ステータスセル"><span class="ステータス MTG済">MTG済</span></td>
+          <td class="ステータスセル"><span class="ステータス MTG済">済</span></td>
+          <td class="良い">✓ 対応<br><small>（EMS定価10%オフ・DHL・FedEx）</small></td>
+          <td><span class="シーンバッジ FBA代替">越境EC向き</span></td>
+          <td class="普通">⚠ SDS送付待ち<br><small>（2社が非該当判断済・詳細確認中）</small></td>
+          <td class="普通">△ CSV連携可<br><small>（NextEngine経由で自動化可）</small></td>
+          <td class="良い">✓ あり</td>
+          <td>0.2円/個/日（ポストビン）<br><small>〜1円/個/日（60サイズ）</small></td>
+          <td>フルフィルX：280円全込<br><small>通常：395円〜（5月改定後）</small></td>
+          <td>ヤマト・佐川<br><small>（海外：EMS・DHL・FedEx）</small></td>
+          <td>自社WEB管理画面<br><small>（API連携無料）</small></td>
+          <td class="良い">無料</td>
+          <td class="良い">無料</td>
+          <td class="良い">なし<br><small>（1点から利用可）</small></td>
+          <td class="悪い">✗ 不可<br><small>（土曜◯・日祝✗）</small></td>
+          <td class="備考セル">MTG実施済（2026-04-23）。担当より「KECELUNはFBAの方が相性良い」と助言。越境EC・複数クライアント一元管理向き。事故率50ppm以下（業界最高水準）。品質に自信あり。返品はメーカー戻し。</td>
+        </tr>
+        <tr>
+          <td class="会社名セル"><a href="https://asnaro7676.com/" target="_blank">asnaro</a></td>
+          <td class="ステータスセル"><span class="ステータス 返信あり">返信あり</span></td>
+          <td class="ステータスセル">—</td>
+          <td class="普通">⚠ 要確認</td>
+          <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+          <td class="備考セル">返信あり・サービス紹介のみ。具体的な条件・危険物対応は未確認。MTGまたは追加質問で詳細確認が必要。</td>
+        </tr>
+        <!-- 塚本郵便逓送（返信あり・データ入力済） -->
+        <tr>
+          <td class="会社名セル"><a href="https://tsukamototeisou.jp/" target="_blank">塚本郵便逓送</a></td>
+          <td class="ステータスセル"><span class="ステータス 返信あり">返信あり</span></td>
+          <td class="ステータスセル">—</td>
+          <td class="普通">⚠ 要確認<br><small>（資料内に記載なし）</small></td>
+          <td><span class="シーンバッジ FBA補完">FBA補完</span></td>
+          <td class="普通">⚠ 要確認<br><small>（見積書は化粧品前提）</small></td>
+          <td class="良い">✓<br><small>（FBA出荷対応）</small></td>
+          <td class="普通">△<br><small>（ロジレス経由で可能性あり）</small></td>
+          <td>¥4,000/坪/月<br><small>（個単位換算は要確認）</small></td>
+          <td>¥100/件（toC）<br>¥115/件（FBA）</td>
+          <td>佐川急便</td>
+          <td>ロジレス<br><small>（¥12,000/月別途）</small></td>
+          <td>別途<br><small>（移管・設備費）</small></td>
+          <td>¥30,000<br><small>（基本料）</small></td>
+          <td class="悪い">¥80,000/月<br><small>（初動3ヶ月免除）</small></td>
+          <td class="普通">△ 要相談</td>
+          <td class="備考セル">見積書は月2,000件・化粧品前提。KECELUN（30〜50件・危険物）での再見積が必要。ミニマム¥8万は小規模には重い。</td>
+        </tr>
+        <tr>
+          <td class="会社名セル"><a href="https://www.hapilogi.co.jp/" target="_blank">ハピロジ</a></td>
+          <td class="ステータスセル"><span class="ステータス 送信済">送信済</span></td>
+          <td class="ステータスセル">—</td>
+          <td class="普通">⚠ 要確認</td>
+          <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+          <td class="備考セル">—</td>
+        </tr>
+        <tr>
+          <td class="会社名セル"><a href="https://stockcrew.co.jp/" target="_blank">stockcrew</a></td>
+          <td class="ステータスセル"><span class="ステータス 返信あり">返信あり</span></td>
+          <td class="ステータスセル"><span class="ステータス MTG予定">予定あり</span></td>
+          <td class="普通">⚠ 要確認</td>
+          <td>—</td>
+          <td class="良い">✓ 保管可<br><small>（危険物非該当と判断・SDS提出必須）</small></td>
+          <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+          <td class="備考セル">消防法・可燃性ガス・高圧ガス等を調査の上、危険物非該当と判断。保管可能。SDS等書類の提出が必須。詳細はオンラインMTGで確認予定。</td>
+        </tr>
+        <tr>
+          <td class="会社名セル"><a href="https://www.belluna.biz/lp/lp7.html" target="_blank">ベルーナBiz</a></td>
+          <td class="ステータスセル"><span class="ステータス 返信あり">返信あり</span></td>
+          <td class="ステータスセル">—</td>
+          <td class="普通">⚠ 要追加調査<br><small>（資料内に記載なし）</small></td>
+          <td><span class="シーンバッジ 両対応">両対応</span></td>
+          <td class="普通">⚠ 要追加調査<br><small>（資料内に記載なし）</small></td>
+          <td class="普通">⚠ 要追加調査<br><small>（資料内での言及なし）</small></td>
+          <td class="良い">✓ あり<br><small>（卸出荷(Shopify)記載あり）</small></td>
+          <td>¥3,500〜4,500/坪/月</td>
+          <td>要個別見積もり<br><small>（ヒアリング後提示）</small></td>
+          <td>ヤマト・佐川・日本郵便</td>
+          <td>COOOLa<br>ロジザードZERO</td>
+          <td class="普通">要追加調査</td>
+          <td class="普通">要追加調査</td>
+          <td class="普通">要追加調査</td>
+          <td class="普通">要追加調査</td>
+          <td class="備考セル">年間1,500万個発送のカタログ通販実績。化粧品製造業・医薬部外品製造許可あり。関東拠点（上尾・吉見）で関東圏リードタイムに強み。物流＋コールセンターのワンストップが特徴。危険物対応・初期費用・ミニマム等は要追加確認。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="注意書き" style="margin-top:16px">
+    <li>問い合わせ後、返信内容をもとに順次更新予定。</li>
+    <li>危険物対応は受け入れ可否の最優先確認項目。</li>
+  </ul>
+
+  <script>
+    // 初期計算
+    window.onload = function() {
+      計算する();
+    };
+
+    function 計算する() {
+      const 価格 = parseInt(document.getElementById('販売価格').value) || 21980;
+      const 数量 = parseInt(document.getElementById('販売数').value) || 30;
+      const 原価 = parseInt(document.getElementById('原価').value) || 5000;
+
+      const 紹介料 = Math.round(価格 * 0.08);
+      const fba手数料 = 560;
+      const fba保管 = 数量 * 3; // 1個あたり約¥3
+      const pl保管 = 数量 * 6;  // 1個あたり約¥6
+      const 自己送料 = 800;
+      const pl出荷 = 600;
+
+      // FBA合計
+      const fba合計 = 紹介料 + fba手数料 + 3;
+      const fba粗利月 = (価格 - 原価 - fba合計) * 数量;
+
+      // 自己発送合計
+      const 自己合計 = 紹介料 + 自己送料 + 300; // 梱包費
+      const 自己粗利月 = (価格 - 原価 - 自己合計) * 数量;
+
+      // 3PL合計
+      const pl合計 = 紹介料 + pl出荷 + 6;
+      const pl粗利月 = (価格 - 原価 - pl合計) * 数量;
+
+      // 紹介料表示を更新
+      document.getElementById('fba_紹介料').textContent = '¥' + 紹介料.toLocaleString();
+      document.getElementById('自己_紹介料').textContent = '¥' + 紹介料.toLocaleString();
+      document.getElementById('pl_紹介料').textContent = '¥' + 紹介料.toLocaleString();
+
+      // 合計表示
+      document.getElementById('fba_合計').textContent = '¥' + fba合計.toLocaleString() + ' / 個';
+      document.getElementById('自己_合計').textContent = '¥' + 自己合計.toLocaleString() + ' / 個';
+      document.getElementById('pl_合計').textContent = '¥' + pl合計.toLocaleString() + ' / 個';
+
+      // 粗利表示
+      document.getElementById('fba_粗利').innerHTML = fba粗利月 >= 0
+        ? '<span style="color:#2e7d32">¥' + fba粗利月.toLocaleString() + '</span>'
+        : '<span style="color:#c62828">¥' + fba粗利月.toLocaleString() + '</span>';
+
+      document.getElementById('自己_粗利').innerHTML = 自己粗利月 >= 0
+        ? '<span style="color:#2e7d32">¥' + 自己粗利月.toLocaleString() + '</span>'
+        : '<span style="color:#c62828">¥' + 自己粗利月.toLocaleString() + '</span>';
+
+      document.getElementById('pl_粗利').innerHTML = pl粗利月 >= 0
+        ? '<span style="color:#2e7d32">¥' + pl粗利月.toLocaleString() + '</span>'
+        : '<span style="color:#c62828">¥' + pl粗利月.toLocaleString() + '</span>';
+    }
+  </script>
+
+</body>
+</html>

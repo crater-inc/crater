@@ -1,0 +1,37 @@
+/*
+ * TASTE: 高級感
+ * 用途: ラグジュアリー / ブランド / 高単価
+ * ベース: オフブラック / メイン: シャンパンゴールド / アクセント: ゴールド
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #0C0C0A;
+  --c-main:          #E8D5A3;
+  --c-accent:        #C9A84C;
+  --c-sub:           #8A7A5A;
+  --c-border:        rgba(201, 168, 76, 0.18);
+  --c-surface:       #161612;
+  --c-bridge-bg:     #C9A84C;
+  --c-bridge-text:   #0C0C0A;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Serif JP', 'Georgia', serif;
+  --font-body:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-weight-head: 600;
+  --font-weight-body: 300;
+  --letter-spacing-head: 0.10em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  2px;
+  --accent-line-color:  #C9A84C;
+  --card-radius:        0px;
+  --card-border:        1px solid rgba(201, 168, 76, 0.22);
+  --card-bg:            #161612;
+  --section-bar-height: 2px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(12, 12, 10, 0.50);
+  --photo-filter:    saturate(0.75) brightness(0.85) contrast(1.05);
+
+  --card-shadow:     none;
+}

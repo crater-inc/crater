@@ -1,0 +1,37 @@
+/*
+ * TASTE: 信頼感
+ * 用途: IR / 決算説明 / 中期経営計画
+ * ベース: ホワイト / メイン: ダークネイビー / アクセント: ディープレッド
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #FFFFFF;
+  --c-main:          #0A1628;
+  --c-accent:        #C0122C;
+  --c-sub:           #4A607A;
+  --c-border:        #D1D9E6;
+  --c-surface:       #F4F6F9;
+  --c-bridge-bg:     #0A1628;
+  --c-bridge-text:   #FFFFFF;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-body:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-weight-head: 700;
+  --font-weight-body: 400;
+  --letter-spacing-head: 0.02em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  4px;
+  --accent-line-color:  #C0122C;
+  --card-radius:        0px;
+  --card-border:        1px solid #D1D9E6;
+  --card-bg:            #F4F6F9;
+  --section-bar-height: 4px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(10, 22, 40, 0.45);
+  --photo-filter:    saturate(0.85) brightness(0.95);
+
+  --card-shadow:     none;
+}

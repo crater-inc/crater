@@ -1,0 +1,37 @@
+/*
+ * TASTE: スタイリッシュ
+ * 用途: テック / デザイン会社 / BtoB提案
+ * ベース: ディープネイビー / メイン: オフホワイト / アクセント: スカイブルー
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #0F172A;
+  --c-main:          #F1F5F9;
+  --c-accent:        #38BDF8;
+  --c-sub:           #94A3B8;
+  --c-border:        rgba(255, 255, 255, 0.08);
+  --c-surface:       #1E293B;
+  --c-bridge-bg:     #38BDF8;
+  --c-bridge-text:   #0F172A;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-body:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-weight-head: 700;
+  --font-weight-body: 400;
+  --letter-spacing-head: 0.02em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  4px;
+  --accent-line-color:  #38BDF8;
+  --card-radius:        16px;
+  --card-border:        1px solid rgba(255, 255, 255, 0.08);
+  --card-bg:            #1E293B;
+  --section-bar-height: 4px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(15, 23, 42, 0.50);
+  --photo-filter:    none;
+
+  --card-shadow:     none;
+}

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>slide-builder テイストカタログ</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #111;
+  font-family: 'Noto Sans JP', 'Inter', sans-serif;
+  color: #eee;
+  padding: 3rem 2rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+.subtitle {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(520px, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.taste-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+.taste-header {
+  background: #1a1a1a;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.taste-header h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+}
+.taste-header .usage {
+  font-size: 0.78rem;
+  color: #888;
+}
+.taste-header .filename {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: #555;
+  font-family: monospace;
+}
+
+/* ── スライドプレビュー領域 ── */
+.preview-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  container-type: inline-size;
+  container-name: slide;
+}
+
+.slide-preview {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* テキストスケール */
+.slide-preview .h1    { font-size: 5.5cqw; line-height: 1.2; }
+.slide-preview .h2    { font-size: 3.8cqw; line-height: 1.3; }
+.slide-preview .body  { font-size: 2.4cqw; line-height: 1.6; }
+.slide-preview .label { font-size: 1.8cqw; }
+.slide-preview .micro { font-size: 1.5cqw; }
+
+/* ── 各テイストのCSS変数注入 ── */
+
+/* minimal */
+.t-minimal {
+  --c-base: #FFFFFF; --c-main: #111111; --c-accent: #111111;
+  --c-sub: #6B7280; --c-border: #E5E7EB; --c-surface: #F9FAFB;
+  --c-bridge-bg: #111111; --c-bridge-text: #FFFFFF;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 700; --letter-spacing-head: -0.01em;
+  --accent-line-width: 2px; --accent-line-color: #111111;
+  --card-radius: 0px; --card-border: 1px solid #E5E7EB; --card-bg: #F9FAFB;
+  --section-bar-height: 3px;
+}
+
+/* stylish */
+.t-stylish {
+  --c-base: #0F172A; --c-main: #F1F5F9; --c-accent: #38BDF8;
+  --c-sub: #94A3B8; --c-border: rgba(255,255,255,0.08); --c-surface: #1E293B;
+  --c-bridge-bg: #38BDF8; --c-bridge-text: #0F172A;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 700; --letter-spacing-head: 0.02em;
+  --accent-line-width: 4px; --accent-line-color: #38BDF8;
+  --card-radius: 16px; --card-border: 1px solid rgba(255,255,255,0.08); --card-bg: #1E293B;
+  --section-bar-height: 4px;
+}
+
+/* futuristic */
+.t-futuristic {
+  --c-base: #0A0A0F; --c-main: #E2E8F0; --c-accent: #7C3AED;
+  --c-sub: #6B7280; --c-border: rgba(124,58,237,0.20); --c-surface: #13131A;
+  --c-bridge-bg: #7C3AED; --c-bridge-text: #FFFFFF;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 800; --letter-spacing-head: 0.04em;
+  --accent-line-width: 4px; --accent-line-color: #7C3AED;
+  --card-radius: 16px; --card-border: 1px solid rgba(124,58,237,0.25); --card-bg: #13131A;
+  --section-bar-height: 4px;
+}
+
+/* cute */
+.t-cute {
+  --c-base: #FFFAF7; --c-main: #3D1C2C; --c-accent: #F43F8A;
+  --c-sub: #9D6F7F; --c-border: #FADADD; --c-surface: #FFF0F4;
+  --c-bridge-bg: #F43F8A; --c-bridge-text: #FFFFFF;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 700; --letter-spacing-head: 0.03em;
+  --accent-line-width: 4px; --accent-line-color: #F43F8A;
+  --card-radius: 16px; --card-border: 2px solid #FADADD; --card-bg: #FFF0F4;
+  --section-bar-height: 4px;
+}
+
+/* friendly */
+.t-friendly {
+  --c-base: #FAFAF8; --c-main: #2D3A2E; --c-accent: #4D8C6F;
+  --c-sub: #7B9E87; --c-border: #D4E6DA; --c-surface: #F0F7F2;
+  --c-bridge-bg: #4D8C6F; --c-bridge-text: #FFFFFF;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 700; --letter-spacing-head: 0.01em;
+  --accent-line-width: 4px; --accent-line-color: #4D8C6F;
+  --card-radius: 16px; --card-border: 1px solid #D4E6DA; --card-bg: #F0F7F2;
+  --section-bar-height: 4px;
+}
+
+/* fresh */
+.t-fresh {
+  --c-base: #FFFFFF; --c-main: #0F2A5C; --c-accent: #1D6AE5;
+  --c-sub: #5A7BA8; --c-border: #DBEAFE; --c-surface: #EFF6FF;
+  --c-bridge-bg: #1D6AE5; --c-bridge-text: #FFFFFF;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 700; --letter-spacing-head: 0.01em;
+  --accent-line-width: 4px; --accent-line-color: #1D6AE5;
+  --card-radius: 16px; --card-border: 1px solid #DBEAFE; --card-bg: #EFF6FF;
+  --section-bar-height: 4px;
+}
+
+/* pop */
+.t-pop {
+  --c-base: #FFFFFF; --c-main: #1F0A3C; --c-accent: #FF5C00;
+  --c-sub: #7B5EA7; --c-border: #F3E8FF; --c-surface: #FDF4FF;
+  --c-bridge-bg: #FF5C00; --c-bridge-text: #FFFFFF;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 900; --letter-spacing-head: -0.01em;
+  --accent-line-width: 4px; --accent-line-color: #FF5C00;
+  --card-radius: 16px; --card-border: 2px solid #F3E8FF; --card-bg: #FDF4FF;
+  --section-bar-height: 4px;
+}
+
+/* dynamic */
+.t-dynamic {
+  --c-base: #080808; --c-main: #F5F5F5; --c-accent: #F59E0B;
+  --c-sub: #9CA3AF; --c-border: rgba(245,158,11,0.20); --c-surface: #141414;
+  --c-bridge-bg: #F59E0B; --c-bridge-text: #080808;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 900; --letter-spacing-head: -0.02em;
+  --accent-line-width: 4px; --accent-line-color: #F59E0B;
+  --card-radius: 0px; --card-border: 1px solid rgba(245,158,11,0.25); --card-bg: #141414;
+  --section-bar-height: 4px;
+}
+
+/* trust */
+.t-trust {
+  --c-base: #FFFFFF; --c-main: #0A1628; --c-accent: #C0122C;
+  --c-sub: #4A607A; --c-border: #D1D9E6; --c-surface: #F4F6F9;
+  --c-bridge-bg: #0A1628; --c-bridge-text: #FFFFFF;
+  --font-head: 'Noto Sans JP', sans-serif;
+  --font-weight-head: 700; --letter-spacing-head: 0.02em;
+  --accent-line-width: 4px; --accent-line-color: #C0122C;
+  --card-radius: 0px; --card-border: 1px solid #D1D9E6; --card-bg: #F4F6F9;
+  --section-bar-height: 4px;
+}
+
+/* luxury */
+.t-luxury {
+  --c-base: #0C0C0A; --c-main: #E8D5A3; --c-accent: #C9A84C;
+  --c-sub: #8A7A5A; --c-border: rgba(201,168,76,0.18); --c-surface: #161612;
+  --c-bridge-bg: #C9A84C; --c-bridge-text: #0C0C0A;
+  --font-head: 'Noto Serif JP', 'Georgia', serif;
+  --font-weight-head: 600; --letter-spacing-head: 0.10em;
+  --accent-line-width: 2px; --accent-line-color: #C9A84C;
+  --card-radius: 0px; --card-border: 1px solid rgba(201,168,76,0.22); --card-bg: #161612;
+  --section-bar-height: 2px;
+}
+
+/* ── スライドコンテンツ共通スタイル ── */
+.slide-preview {
+  background: var(--c-base);
+  color: var(--c-main);
+  font-family: var(--font-head);
+  padding: 5cqw 6cqw;
+}
+
+.top-bar {
+  height: var(--section-bar-height);
+  background: var(--c-accent);
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+
+.slide-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2cqw;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--c-accent);
+  color: var(--c-base);
+  font-size: 1.4cqw;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.3cqw 1cqw;
+  border-radius: 2px;
+  width: fit-content;
+}
+
+.slide-preview .h1 {
+  font-weight: var(--font-weight-head);
+  letter-spacing: var(--letter-spacing-head);
+  color: var(--c-main);
+}
+
+.accent-word {
+  color: var(--c-accent);
+}
+
+.cards {
+  display: flex;
+  gap: 2cqw;
+}
+
+.card {
+  flex: 1;
+  background: var(--c-surface, var(--c-base));
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  padding: 2cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8cqw;
+}
+
+.card-num {
+  font-size: 3cqw;
+  font-weight: 900;
+  color: var(--c-accent);
+  line-height: 1;
+}
+
+.card-title {
+  font-size: 1.8cqw;
+  font-weight: 700;
+  color: var(--c-main);
+}
+
+.card-desc {
+  font-size: 1.4cqw;
+  color: var(--c-sub);
+  line-height: 1.5;
+}
+
+.divider {
+  height: var(--accent-line-width);
+  background: var(--c-accent);
+  width: 5cqw;
+}
+
+/* ── スワッチ行 ── */
+.swatches {
+  background: #1a1a1a;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.swatch {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.swatch-label {
+  font-size: 0.7rem;
+  color: #666;
+  margin-left: 0.25rem;
+}
+
+.swatch-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;800;900&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>slide-builder デザインテイストカタログ</h1>
+<p class="subtitle">スライド生成時は対応CSSファイルを <code>css/style.css</code> としてコピーして使う</p>
+
+<div class="grid">
+
+  <!-- ① ミニマル -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>① ミニマル・シンプル</h2>
+      <span class="usage">スタートアップ / プロダクト / LT</span>
+      <span class="filename">minimal.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-minimal">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">SOLUTION</span>
+          <p class="h1">シンプルが、<span class="accent-word">速い。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#FFFFFF;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#111111;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#111111;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ② スタイリッシュ -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>② スタイリッシュ</h2>
+      <span class="usage">テック / デザイン会社 / BtoB提案</span>
+      <span class="filename">stylish.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-stylish">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">SOLUTION</span>
+          <p class="h1">技術で、<span class="accent-word">差をつける。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#0F172A;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#F1F5F9;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#38BDF8;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ③ 近未来 -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>③ 近未来</h2>
+      <span class="usage">AI / SaaS / 研究開発 / テックビジョン</span>
+      <span class="filename">futuristic.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-futuristic">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">VISION</span>
+          <p class="h1">AIが、<span class="accent-word">限界を超える。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#0A0A0F;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#E2E8F0;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#7C3AED;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ④ かわいい -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>④ かわいい</h2>
+      <span class="usage">子ども向け / 教育 / ウェルネス / SNS</span>
+      <span class="filename">cute.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-cute">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">POINT</span>
+          <p class="h1">楽しく、<span class="accent-word">続けられる。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#FFFAF7;border-color:#ddd;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#3D1C2C;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#F43F8A;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ⑤ やさしい -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>⑤ やさしい</h2>
+      <span class="usage">食品 / 教育 / 人材 / ESG</span>
+      <span class="filename">friendly.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-friendly">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">VALUE</span>
+          <p class="h1">人に、<span class="accent-word">寄り添う。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#FAFAF8;border-color:#ddd;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#2D3A2E;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#4D8C6F;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ⑥ 爽やか -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>⑥ 爽やか</h2>
+      <span class="usage">医療 / 金融 / コーポレート（明るめ）</span>
+      <span class="filename">fresh.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-fresh">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">SERVICE</span>
+          <p class="h1">信頼を、<span class="accent-word">形にする。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#FFFFFF;border-color:#ddd;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#0F2A5C;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#1D6AE5;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ⑦ ポップ -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>⑦ ポップ</h2>
+      <span class="usage">エンタメ / 食品 / 採用 / 若年層向け</span>
+      <span class="filename">pop.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-pop">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">NEW</span>
+          <p class="h1">熱量が、<span class="accent-word">動かす。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#FFFFFF;border-color:#ddd;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#1F0A3C;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#FF5C00;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ⑧ ダイナミック -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>⑧ ダイナミック</h2>
+      <span class="usage">ビジョン発表 / 変革宣言 / 大型数値</span>
+      <span class="filename">dynamic.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-dynamic">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">VISION</span>
+          <p class="h1">変革を、<span class="accent-word">宣言する。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#080808;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#F5F5F5;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#F59E0B;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ⑨ 信頼感 -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>⑨ 信頼感</h2>
+      <span class="usage">IR / 決算説明 / 中期経営計画</span>
+      <span class="filename">trust.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-trust">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">REPORT</span>
+          <p class="h1">実績が、<span class="accent-word">証明する。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#FFFFFF;border-color:#ddd;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#0A1628;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#C0122C;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+  <!-- ⑩ 高級感 -->
+  <div class="taste-card">
+    <div class="taste-header">
+      <h2>⑩ 高級感</h2>
+      <span class="usage">ラグジュアリー / ブランド / 高単価</span>
+      <span class="filename">luxury.css</span>
+    </div>
+    <div class="preview-wrap">
+      <div class="slide-preview t-luxury">
+        <div class="top-bar"></div>
+        <div class="slide-inner">
+          <span class="tag">PREMIUM</span>
+          <p class="h1">本物が、<span class="accent-word">語る。</span></p>
+          <div class="divider"></div>
+          <div class="cards">
+            <div class="card">
+              <div class="card-num">01</div>
+              <div class="card-title">設計</div>
+              <div class="card-desc">余分を削ぎ落とした構成</div>
+            </div>
+            <div class="card">
+              <div class="card-num">02</div>
+              <div class="card-title">実装</div>
+              <div class="card-desc">動くものを最速で届ける</div>
+            </div>
+            <div class="card">
+              <div class="card-num">03</div>
+              <div class="card-title">改善</div>
+              <div class="card-desc">データで継続的に磨く</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swatches">
+      <div class="swatch-group"><div class="swatch" style="background:#0C0C0A;"></div><span class="swatch-label">base</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#E8D5A3;"></div><span class="swatch-label">main</span></div>
+      <div class="swatch-group"><div class="swatch" style="background:#C9A84C;"></div><span class="swatch-label">accent</span></div>
+    </div>
+  </div>
+
+</div><!-- /grid -->
+
+<p style="text-align:center; margin-top:3rem; font-size:0.78rem; color:#555;">
+  各テイストのCSSは <code>references/design-styles/</code> フォルダに格納。<br>
+  スライド生成時は該当ファイルを <code>css/style.css</code> としてコピーして使う。
+</p>
+
+</body>
+</html>

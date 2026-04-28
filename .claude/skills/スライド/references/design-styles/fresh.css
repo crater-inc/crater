@@ -1,0 +1,37 @@
+/*
+ * TASTE: 爽やか
+ * 用途: 医療 / 金融 / コーポレート（明るめ）
+ * ベース: ホワイト / メイン: ネイビー / アクセント: ロイヤルブルー
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #FFFFFF;
+  --c-main:          #0F2A5C;
+  --c-accent:        #1D6AE5;
+  --c-sub:           #5A7BA8;
+  --c-border:        #DBEAFE;
+  --c-surface:       #EFF6FF;
+  --c-bridge-bg:     #1D6AE5;
+  --c-bridge-text:   #FFFFFF;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-body:       'Noto Sans JP', 'Inter', sans-serif;
+  --font-weight-head: 700;
+  --font-weight-body: 400;
+  --letter-spacing-head: 0.01em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  4px;
+  --accent-line-color:  #1D6AE5;
+  --card-radius:        16px;
+  --card-border:        1px solid #DBEAFE;
+  --card-bg:            #EFF6FF;
+  --section-bar-height: 4px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(15, 42, 92, 0.40);
+  --photo-filter:    none;
+
+  --card-shadow:     none;
+}

@@ -1,0 +1,37 @@
+/*
+ * TASTE: やさしい
+ * 用途: 食品 / 教育 / 人材 / ESG
+ * ベース: ウォームホワイト / メイン: アーストーン / アクセント: セージグリーン
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #FAFAF8;
+  --c-main:          #2D3A2E;
+  --c-accent:        #4D8C6F;
+  --c-sub:           #7B9E87;
+  --c-border:        #D4E6DA;
+  --c-surface:       #F0F7F2;
+  --c-bridge-bg:     #4D8C6F;
+  --c-bridge-text:   #FFFFFF;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', sans-serif;
+  --font-body:       'Noto Sans JP', sans-serif;
+  --font-weight-head: 700;
+  --font-weight-body: 400;
+  --letter-spacing-head: 0.01em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  4px;
+  --accent-line-color:  #4D8C6F;
+  --card-radius:        16px;
+  --card-border:        1px solid #D4E6DA;
+  --card-bg:            #F0F7F2;
+  --section-bar-height: 4px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(45, 58, 46, 0.30);
+  --photo-filter:    saturate(0.9) brightness(1.05);
+
+  --card-shadow:     none;
+}

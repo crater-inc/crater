@@ -1,0 +1,37 @@
+/*
+ * TASTE: かわいい
+ * 用途: 子ども向け / 教育 / ウェルネス / SNS
+ * ベース: クリームホワイト / メイン: ダークローズ / アクセント: コーラルピンク
+ */
+:root {
+  /* ── カラー ── */
+  --c-base:          #FFFAF7;
+  --c-main:          #3D1C2C;
+  --c-accent:        #F43F8A;
+  --c-sub:           #9D6F7F;
+  --c-border:        #FADADD;
+  --c-surface:       #FFF0F4;
+  --c-bridge-bg:     #F43F8A;
+  --c-bridge-text:   #FFFFFF;
+
+  /* ── タイポグラフィ ── */
+  --font-head:       'Noto Sans JP', sans-serif;
+  --font-body:       'Noto Sans JP', sans-serif;
+  --font-weight-head: 700;
+  --font-weight-body: 400;
+  --letter-spacing-head: 0.03em;
+
+  /* ── デコレーション ── */
+  --accent-line-width:  4px;
+  --accent-line-color:  #F43F8A;
+  --card-radius:        16px;
+  --card-border:        2px solid #FADADD;
+  --card-bg:            #FFF0F4;
+  --section-bar-height: 4px;
+
+  /* ── 写真・オーバーレイ ── */
+  --photo-overlay:   rgba(244, 63, 138, 0.15);
+  --photo-filter:    saturate(1.1) brightness(1.05);
+
+  --card-shadow:     none;
+}

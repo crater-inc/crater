@@ -1,0 +1,11 @@
+{
+  "name": "slide-builder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:demo": "node scripts/validate-slide-deck.mjs demo/style.html"
+  },
+  "devDependencies": {
+    "playwright": "latest"
+  }
+}

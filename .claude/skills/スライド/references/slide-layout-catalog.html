@@ -1,0 +1,2298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide Layout Catalog — 全レイアウトパターン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   SLIDE LAYOUT CATALOG TEMPLATE
+   全レイアウトパターン — Slideland準拠
+   16:9 / 1920×1080 / cqwスケーリング
+   ============================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* 3色システム — テーマに応じて差し替え */
+  --c-base: #FFFFFF;
+  --c-main: #1A1A2E;
+  --c-accent: #E94560;
+
+  /* 派生色 */
+  --c-base-dim: #F0F2F5;
+  --c-main-light: rgba(26, 26, 46, 0.08);
+  --c-main-mid: rgba(26, 26, 46, 0.5);
+  --c-accent-light: rgba(233, 69, 96, 0.1);
+  --c-accent-dark: #C73550;
+  --c-text: #0F172A;
+  --c-text-sub: #64748B;
+  --c-border: rgba(26, 26, 46, 0.12);
+}
+
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  background: var(--c-base);
+  color: var(--c-text);
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ============================================
+   SLIDE STAGE — 16:9 中央配置
+   ============================================ */
+.slide-stage {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--c-base);
+}
+
+.slide {
+  width: 100vw;
+  height: 100vh;
+  max-width: calc(100vh * 16 / 9);
+  max-height: calc(100vw * 9 / 16);
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  background: var(--c-base);
+  container-type: inline-size;
+  display: none;
+}
+.slide.active { display: flex; flex-direction: column; }
+
+/* ============================================
+   SAFE AREA — 全スライド共通
+   ============================================ */
+.slide-content {
+  padding: 4.2cqw 7cqw;
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+/* ============================================
+   TYPOGRAPHY — cqwベース
+   ============================================ */
+.slide-hero   { font-size: 7.2cqw; font-weight: 900; line-height: 1.15; letter-spacing: -0.02em; }
+.slide-h1     { font-size: 4.8cqw; font-weight: 700; line-height: 1.2; }
+.slide-h2     { font-size: 3.2cqw; font-weight: 700; line-height: 1.22; }
+.slide-h3     { font-size: 2.2cqw; font-weight: 700; line-height: 1.28; }
+.slide-title  { font-size: 2cqw; font-weight: 400; line-height: 1.4; }
+.slide-body   { font-size: 1.6cqw; font-weight: 400; line-height: 1.6; letter-spacing: 0.05em; }
+.slide-caption{ font-size: 1.1cqw; font-weight: 300; line-height: 1.45; }
+.slide-micro  { font-size: 0.9cqw; font-weight: 300; line-height: 1.4; }
+.slide-number { font-size: 9.6cqw;  font-weight: 900; line-height: 1; }
+
+.text-accent { color: var(--c-accent); }
+.text-main   { color: var(--c-main); }
+.text-sub    { color: var(--c-text-sub); }
+.text-white  { color: #FFFFFF; }
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+
+:lang(ja) {
+  line-break: strict;
+}
+
+.slide-hero,
+.slide-h1,
+.slide-h2,
+.slide-h3 {
+  word-break: normal;
+  overflow-wrap: normal;
+  text-wrap: balance;
+  line-break: strict;
+}
+
+.slide-title,
+.slide-body,
+.slide-caption,
+.slide-micro,
+li,
+blockquote {
+  word-break: normal;
+  overflow-wrap: normal;
+  text-wrap: pretty;
+  line-break: strict;
+}
+
+.break-token {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.nowrap-label {
+  white-space: nowrap;
+}
+
+/* ============================================
+   装飾要素 — アクセントライン、カード、etc
+   ============================================ */
+.accent-line-top {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 0.35cqw; background: var(--c-accent);
+}
+.accent-line-left {
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 0.35cqw; background: var(--c-accent);
+}
+.accent-dot {
+  display: inline-block; width: 0.6cqw; height: 0.6cqw;
+  border-radius: 50%; background: var(--c-accent);
+  margin-right: 0.8cqw; vertical-align: middle;
+}
+.underline-accent {
+  display: inline-block;
+  border-bottom: 0.2cqw solid var(--c-accent);
+  padding-bottom: 0.3cqw;
+}
+.label-tag {
+  display: inline-block;
+  background: transparent;
+  color: var(--c-accent);
+  border: 0.15cqw solid var(--c-accent);
+  padding: 0.3cqw 1cqw;
+  border-radius: 0.8cqw;
+  font-size: 1.1cqw;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ============================================
+   カード共通
+   ============================================ */
+.card {
+  background: var(--c-base);
+  border: 1px solid var(--c-border);
+  border-radius: 0.8cqw;
+  padding: 2cqw;
+}
+.card-accent {
+  border-left: 0.25cqw solid var(--c-accent);
+}
+.card-filled {
+  background: var(--c-base-dim);
+  border: none;
+}
+.card-dark {
+  background: var(--c-main);
+  color: #fff;
+  border: none;
+}
+
+/* ============================================
+   アイコンプレースホルダー（SVGの代わり）
+   ============================================ */
+.icon-circle {
+  width: 5cqw; height: 5cqw;
+  border-radius: 50%;
+  background: var(--c-accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.4cqw; color: var(--c-accent);
+  flex-shrink: 0;
+}
+.icon-circle-large {
+  width: 7cqw; height: 7cqw; font-size: 3.4cqw;
+}
+.icon-circle-dark {
+  background: var(--c-accent); color: #fff;
+}
+
+/* ============================================
+   LAYOUT UTILITIES
+   ============================================ */
+.layout-center {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 1.5cqw;
+}
+.layout-left {
+  display: flex; flex-direction: column;
+  justify-content: center; gap: 1.5cqw;
+}
+.layout-2col {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 3cqw; align-items: center; height: 100%;
+}
+.layout-2col-wide {
+  display: grid; grid-template-columns: 1.2fr 0.8fr;
+  gap: 3cqw; align-items: center; height: 100%;
+}
+.layout-3col {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 2cqw; align-items: start;
+}
+.layout-4col {
+  display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1.5cqw; align-items: start;
+}
+.layout-2row {
+  display: flex; flex-direction: column;
+  justify-content: center; gap: 2.5cqw;
+}
+.layout-top-bottom {
+  display: flex; flex-direction: column;
+  gap: 2cqw; height: 100%;
+}
+.layout-top-bottom > :first-child { flex-shrink: 0; }
+.layout-top-bottom > :last-child  { flex: 1; min-height: 0; }
+
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-col    { display: flex; flex-direction: column; }
+.flex-row    { display: flex; flex-direction: row; }
+.gap-sm      { gap: 1cqw; }
+.gap-md      { gap: 2cqw; }
+.gap-lg      { gap: 3cqw; }
+.gap-xl      { gap: 4cqw; }
+.w-full      { width: 100%; }
+.h-full      { height: 100%; }
+
+/* ============================================
+   IMAGE PLACEHOLDER
+   ============================================ */
+.img-placeholder {
+  background: var(--c-base-dim);
+  border: 1px solid var(--c-border);
+  border-radius: 0.8cqw;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--c-text-sub); font-size: 1.2cqw;
+  min-height: 20cqw;
+}
+.img-placeholder.round { border-radius: 50%; width: 8cqw; height: 8cqw; min-height: unset; border: none; }
+
+/* ============================================
+   CHART PLACEHOLDER
+   ============================================ */
+.chart-placeholder {
+  background: var(--c-base-dim);
+  border-radius: 0.8cqw;
+  padding: 2cqw;
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: 1cqw; min-height: 22cqw;
+}
+.chart-bar {
+  width: 3cqw; border-radius: 0.8cqw 0.8cqw 0 0;
+  background: var(--c-accent);
+}
+
+/* ============================================
+   TABLE
+   ============================================ */
+.slide-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 1.7cqw;
+}
+.slide-table th {
+  background: var(--c-main);
+  color: #fff; padding: 1.2cqw 2cqw;
+  text-align: left; font-weight: 700;
+}
+.slide-table td {
+  padding: 1.2cqw 2cqw;
+  border-bottom: 1px solid var(--c-border);
+}
+.slide-table tr:nth-child(even) td { background: var(--c-base-dim); }
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.timeline { position: relative; padding-left: 3cqw; }
+.timeline::before {
+  content: ''; position: absolute; left: 0.6cqw; top: 0; bottom: 0;
+  width: 0.15cqw; background: var(--c-accent);
+}
+.timeline-item { position: relative; padding-bottom: 2cqw; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -2.7cqw; top: 0.4cqw;
+  width: 1cqw; height: 1cqw; border-radius: 50%;
+  background: var(--c-accent);
+}
+
+/* ============================================
+   PROGRESS STEPS
+   ============================================ */
+.steps-row {
+  display: flex; align-items: center; gap: 0;
+}
+.step-item {
+  flex: 1; text-align: center; position: relative;
+}
+.step-circle {
+  width: 4.5cqw; height: 4.5cqw; border-radius: 50%;
+  background: var(--c-accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1cqw; font-size: 2cqw; font-weight: 700;
+}
+.step-item:not(:last-child)::after {
+  content: ''; position: absolute;
+  top: 1.75cqw; left: calc(50% + 2cqw); right: calc(-50% + 2cqw);
+  height: 0.15cqw; background: var(--c-accent);
+}
+
+/* ============================================
+   PYRAMID
+   ============================================ */
+.pyramid { display: flex; flex-direction: column; align-items: center; gap: 0.3cqw; }
+.pyramid-level {
+  display: flex; align-items: center; justify-content: center;
+  height: 5cqw; color: #fff; font-weight: 700; font-size: 1.8cqw;
+  border-radius: 0.8cqw;
+}
+
+/* ============================================
+   CYCLE
+   ============================================ */
+.cycle-container {
+  position: relative; width: 28cqw; height: 28cqw; margin: 0 auto;
+}
+.cycle-node {
+  position: absolute; width: 9cqw; height: 9cqw;
+  border-radius: 50%; background: var(--c-accent);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 1.6cqw; font-weight: 700; text-align: center;
+}
+.cycle-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 11cqw; height: 11cqw; border-radius: 50%;
+  background: var(--c-main); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2cqw; font-weight: 700;
+}
+
+/* ============================================
+   MATRIX 2x2
+   ============================================ */
+.matrix-2x2 {
+  display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; gap: 0.15cqw;
+  width: 34cqw; height: 26cqw; margin: 0 auto;
+}
+.matrix-cell {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 1.5cqw; border-radius: 0.8cqw;
+}
+.matrix-axis-x, .matrix-axis-y {
+  position: absolute; font-size: 1cqw; color: var(--c-text-sub); font-weight: 700;
+}
+
+/* ============================================
+   VENN
+   ============================================ */
+.venn-container { position: relative; width: 36cqw; height: 22cqw; margin: 0 auto; }
+.venn-circle {
+  position: absolute; width: 18cqw; height: 18cqw;
+  border-radius: 50%; opacity: 0.25;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.2cqw;
+}
+
+/* ============================================
+   BEFORE-AFTER
+   ============================================ */
+.before-after {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 2cqw; align-items: center;
+}
+.ba-divider {
+  width: 0.15cqw; height: 16cqw;
+  background: var(--c-border); position: relative;
+}
+.ba-arrow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 3cqw; height: 3cqw; border-radius: 50%;
+  background: var(--c-accent); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5cqw; font-weight: 900;
+}
+
+/* ============================================
+   RANKING
+   ============================================ */
+.ranking-item {
+  display: flex; align-items: center; gap: 1.5cqw;
+  padding: 1.2cqw 0;
+  border-bottom: 1px solid var(--c-border);
+}
+.ranking-num {
+  font-size: 3.2cqw; font-weight: 900; color: var(--c-accent);
+  width: 5cqw; text-align: center; flex-shrink: 0;
+}
+
+/* ============================================
+   PRICING
+   ============================================ */
+.pricing-card {
+  border: 1px solid var(--c-border);
+  border-radius: 0.8cqw; padding: 2cqw; text-align: center;
+}
+.pricing-card.featured {
+  border: 0.15cqw solid var(--c-accent);
+  background: var(--c-accent-light);
+  position: relative;
+}
+.pricing-badge {
+  position: absolute; top: -1.2cqw; left: 50%; transform: translateX(-50%);
+  background: var(--c-accent); color: #fff;
+  padding: 0.3cqw 1.5cqw; border-radius: 0.8cqw;
+  font-size: 0.9cqw; font-weight: 700; white-space: nowrap;
+}
+
+/* ============================================
+   Q&A
+   ============================================ */
+.qa-item { margin-bottom: 1.5cqw; }
+.qa-q {
+  display: flex; align-items: flex-start; gap: 1.2cqw;
+  font-weight: 700; font-size: 2cqw; margin-bottom: 0.6cqw;
+}
+.qa-a {
+  display: flex; align-items: flex-start; gap: 1.2cqw;
+  font-size: 1.7cqw; color: var(--c-text-sub);
+  padding-left: 3.5cqw;
+}
+.qa-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.8cqw; height: 2.8cqw; border-radius: 50%;
+  font-weight: 900; font-size: 1.6cqw; flex-shrink: 0;
+}
+.qa-badge-q { background: var(--c-accent); color: #fff; }
+.qa-badge-a { background: var(--c-main); color: #fff; }
+
+/* ============================================
+   FULL-BG SLIDE
+   ============================================ */
+.slide-fullbg {
+  background-size: cover; background-position: center;
+}
+.slide-fullbg .overlay {
+  position: absolute; inset: 0;
+  background: rgba(26, 26, 46, 0.7);
+}
+.slide-fullbg .slide-content { position: relative; z-index: 1; color: #fff; }
+
+/* ============================================
+   BRIDGE / SECTION DIVIDER
+   ============================================ */
+.slide-bridge {
+  background: var(--c-main); color: #fff;
+}
+.slide-bridge-accent {
+  background: var(--c-accent); color: #fff;
+}
+
+/* ============================================
+   GANTT CHART
+   ============================================ */
+.gantt { width: 100%; display: flex; flex-direction: column; justify-content: space-evenly; height: 100%; }
+.gantt-row {
+  display: grid; grid-template-columns: 8cqw 1fr;
+  align-items: center; gap: 1cqw;
+  padding: 0.5cqw 0;
+  border-bottom: 1px solid var(--c-border);
+}
+.gantt-label { font-size: 1.5cqw; font-weight: 700; }
+.gantt-track { position: relative; height: 2cqw; background: var(--c-base-dim); border-radius: 0.8cqw; }
+.gantt-bar {
+  position: absolute; top: 0; height: 100%;
+  background: var(--c-accent); border-radius: 0.8cqw;
+  opacity: 0.85;
+}
+
+/* ============================================
+   NAVIGATION UI
+   ============================================ */
+.nav-area {
+  position: fixed; top: 0; width: 50%; height: 100%;
+  z-index: 100; cursor: pointer;
+}
+.nav-prev { left: 0; }
+.nav-next { right: 0; }
+
+.status-bar {
+  position: fixed; top: 16px; right: 80px;
+  font-size: 13px; color: rgba(255,255,255,0.6);
+  z-index: 200; font-family: "Noto Sans JP", sans-serif;
+}
+
+.menu-btn {
+  position: fixed; top: 12px; right: 16px;
+  width: 40px; height: 40px; z-index: 300;
+  background: none; border: none; cursor: pointer;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 5px;
+}
+.menu-btn span {
+  display: block; width: 22px; height: 2px;
+  background: rgba(255,255,255,0.7); border-radius: 1px;
+  transition: 0.2s;
+}
+
+/* Sidebar */
+.sidebar-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  z-index: 400; opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+.sidebar {
+  position: fixed; top: 0; right: -320px; bottom: 0;
+  width: 320px; background: var(--c-main); color: #fff;
+  z-index: 500; transition: right 0.3s ease;
+  padding: 60px 20px 20px; overflow-y: auto;
+}
+.sidebar-overlay.open .sidebar { right: 0; }
+.sidebar-item {
+  padding: 10px 12px; border-radius: 6px; cursor: pointer;
+  font-size: 14px; margin-bottom: 4px;
+  transition: background 0.15s;
+}
+.sidebar-item:hover { background: rgba(255,255,255,0.1); }
+.sidebar-item.current { background: var(--c-accent); }
+
+/* Talk Script */
+.script-trigger {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 48px; z-index: 150;
+}
+.script-panel {
+  position: fixed; bottom: -100%; left: 0; right: 0;
+  max-height: 30vh; background: rgba(15, 23, 42, 0.95);
+  color: #fff; padding: 24px 40px; font-size: 15px;
+  line-height: 1.8; overflow-y: auto;
+  z-index: 150; transition: bottom 0.2s ease;
+  font-family: "Noto Sans JP", sans-serif;
+}
+.script-panel.visible { bottom: 0; }
+
+/* Progress Bar */
+.progress-bar {
+  position: fixed; bottom: 0; left: 0; height: 3px;
+  background: var(--c-accent); z-index: 200;
+  transition: width 0.3s;
+}
+</style>
+</head>
+<body>
+
+<div class="slide-stage">
+
+<!-- ============================================
+     01. 表紙 (Cover / Title)
+     ============================================ -->
+<section class="slide active" data-section="structure" data-notes="プレゼンテーションの表紙スライド。タイトル・サブタイトル・登壇者情報を配置。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-center">
+    <span class="label-tag">レイアウト: 表紙</span>
+    <h1 class="slide-hero text-main">プレゼンタイトル</h1>
+    <p class="slide-title text-sub">サブタイトルテキスト — 補足情報</p>
+    <div style="margin-top: 2cqw;">
+      <p class="slide-body text-main" style="font-weight:700;">登壇者名</p>
+      <p class="slide-caption text-sub">肩書き / 所属 — 2026.03.24</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     02. 目次 (Table of Contents)
+     ============================================ -->
+<section class="slide" data-section="structure" data-notes="アジェンダ/目次スライド。セクション一覧を番号付きで表示。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: 目次</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">アジェンダ</h2>
+    </div>
+    <div class="flex-col" style="padding: 1cqw 2cqw; justify-content: space-between;">
+      <div class="flex-row" style="align-items:center; gap:2cqw; padding:1.2cqw 0; border-bottom:1px solid var(--c-border);">
+        <span class="slide-h2 text-accent" style="width:3cqw; text-align:center;">01</span>
+        <span class="slide-h3 text-main">セクションタイトル</span>
+        <span class="slide-caption text-sub" style="margin-left:auto;">5 min</span>
+      </div>
+      <div class="flex-row" style="align-items:center; gap:2cqw; padding:1.2cqw 0; border-bottom:1px solid var(--c-border);">
+        <span class="slide-h2 text-accent" style="width:3cqw; text-align:center;">02</span>
+        <span class="slide-h3 text-main">セクションタイトル</span>
+        <span class="slide-caption text-sub" style="margin-left:auto;">15 min</span>
+      </div>
+      <div class="flex-row" style="align-items:center; gap:2cqw; padding:1.2cqw 0; border-bottom:1px solid var(--c-border);">
+        <span class="slide-h2 text-accent" style="width:3cqw; text-align:center;">03</span>
+        <span class="slide-h3 text-main">セクションタイトル</span>
+        <span class="slide-caption text-sub" style="margin-left:auto;">20 min</span>
+      </div>
+      <div class="flex-row" style="align-items:center; gap:2cqw; padding:1.2cqw 0;">
+        <span class="slide-h2 text-accent" style="width:3cqw; text-align:center;">04</span>
+        <span class="slide-h3 text-main">セクションタイトル</span>
+        <span class="slide-caption text-sub" style="margin-left:auto;">10 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     03. 中表紙 / セクション区切り (Section Divider)
+     ============================================ -->
+<section class="slide slide-bridge" data-section="structure" data-notes="セクション区切り。アクセントカラー背景で視覚的に区切る。">
+  <div class="slide-content layout-center">
+    <span class="slide-caption text-white" style="opacity:0.6; letter-spacing:0.15em;">第1章</span>
+    <h2 class="slide-hero text-white">セクション名</h2>
+    <div style="width:5cqw; height:0.2cqw; background:var(--c-accent); margin:0 auto;"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     04. 中表紙 アクセントカラー版
+     ============================================ -->
+<section class="slide slide-bridge-accent" data-section="structure" data-notes="アクセントカラーで強調するセクション区切り。">
+  <div class="slide-content layout-center">
+    <span class="slide-caption text-white" style="opacity:0.7; letter-spacing:0.15em;">第2章</span>
+    <h2 class="slide-hero text-white">アクセント中表紙</h2>
+  </div>
+</section>
+
+<!-- ============================================
+     05. メッセージ (Message / Big Statement)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="1メッセージに集中する強調スライド。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-center">
+    <span class="label-tag">レイアウト: メッセージ</span>
+    <h2 class="slide-hero text-main" style="max-width:80%;">
+      最も伝えたい<br><span class="text-accent">1メッセージ</span>をここに
+    </h2>
+    <p class="slide-title text-sub">補足説明は最小限に留める</p>
+  </div>
+</section>
+
+<!-- ============================================
+     06. 自己紹介 (Self-Introduction)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="登壇者の自己紹介。写真+プロフィール。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content">
+    <span class="label-tag" style="margin-bottom:1.5cqw;">レイアウト: 自己紹介</span>
+    <div class="layout-2col">
+      <div class="flex-col" style="align-items:center; gap:1.5cqw;">
+        <div class="img-placeholder round" style="width:14cqw; height:14cqw; font-size:1.5cqw;">写真</div>
+        <h3 class="slide-h2 text-main">名前 太郎</h3>
+        <p class="slide-body text-sub">肩書き / 所属</p>
+      </div>
+      <div class="flex-col gap-md">
+        <div class="flex-row" style="align-items:flex-start; gap:1.2cqw;">
+          <div class="icon-circle">●</div>
+          <div>
+            <p class="slide-body" style="font-weight:700;">経歴・実績1</p>
+            <p class="slide-caption text-sub">補足説明テキスト</p>
+          </div>
+        </div>
+        <div class="flex-row" style="align-items:flex-start; gap:1.2cqw;">
+          <div class="icon-circle">●</div>
+          <div>
+            <p class="slide-body" style="font-weight:700;">経歴・実績2</p>
+            <p class="slide-caption text-sub">補足説明テキスト</p>
+          </div>
+        </div>
+        <div class="flex-row" style="align-items:flex-start; gap:1.2cqw;">
+          <div class="icon-circle">●</div>
+          <div>
+            <p class="slide-body" style="font-weight:700;">経歴・実績3</p>
+            <p class="slide-caption text-sub">補足説明テキスト</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     07. 背景 / 課題 (Background / Issues)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="背景・課題を提示するスライド。問題提起に使う。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: 背景・課題</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;"><span class="underline-accent">解決すべき課題</span></h2>
+    </div>
+    <div class="layout-3col" style="flex:1; align-items:stretch;">
+      <div class="card card-accent flex-col gap-sm" style="justify-content:flex-start;">
+        <div class="icon-circle-dark">!</div>
+        <p class="slide-h3 text-main">課題 1</p>
+        <p class="slide-body text-sub">課題の説明テキスト。簡潔に状況を伝える。</p>
+      </div>
+      <div class="card card-accent flex-col gap-sm" style="justify-content:flex-start;">
+        <div class="icon-circle-dark">!</div>
+        <p class="slide-h3 text-main">課題 2</p>
+        <p class="slide-body text-sub">課題の説明テキスト。簡潔に状況を伝える。</p>
+      </div>
+      <div class="card card-accent flex-col gap-sm" style="justify-content:flex-start;">
+        <div class="icon-circle-dark">!</div>
+        <p class="slide-h3 text-main">課題 3</p>
+        <p class="slide-body text-sub">課題の説明テキスト。簡潔に状況を伝える。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     08. 特徴 / 選ばれる理由 (Features / USP)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="特徴・強み・USPを3カラムアイコングリッドで表示。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: 特徴</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">選ばれる<span class="text-accent">3つ</span>の理由</h2>
+    </div>
+    <div class="layout-3col" style="flex:1; align-items:stretch;">
+      <div class="card flex-col gap-sm text-center" style="align-items:center;">
+        <div class="icon-circle icon-circle-large icon-circle-dark">01</div>
+        <p class="slide-h3 text-main">特徴タイトル</p>
+        <p class="slide-body text-sub">特徴の説明テキスト</p>
+      </div>
+      <div class="card flex-col gap-sm text-center" style="align-items:center;">
+        <div class="icon-circle icon-circle-large icon-circle-dark">02</div>
+        <p class="slide-h3 text-main">特徴タイトル</p>
+        <p class="slide-body text-sub">特徴の説明テキスト</p>
+      </div>
+      <div class="card flex-col gap-sm text-center" style="align-items:center;">
+        <div class="icon-circle icon-circle-large icon-circle-dark">03</div>
+        <p class="slide-h3 text-main">特徴タイトル</p>
+        <p class="slide-body text-sub">特徴の説明テキスト</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     09. 左右分割 — テキスト＋画像 (Split: Text + Image)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="左右分割レイアウト。左にテキスト、右に画像/図。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content">
+    <span class="label-tag" style="margin-bottom:1.5cqw;">レイアウト: 左右分割</span>
+    <div class="layout-2col" style="flex:1;">
+      <div class="flex-col gap-md" style="justify-content:center;">
+        <h2 class="slide-h1 text-main">見出しテキスト</h2>
+        <p class="slide-body text-sub">
+          説明文をここに配置。左右分割は<br>テキストと視覚情報を対比させる<br>最も汎用的なレイアウト。
+        </p>
+        <div class="flex-row gap-sm" style="align-items:center;">
+          <div class="accent-dot"></div>
+          <span class="slide-body">ポイント1</span>
+        </div>
+        <div class="flex-row gap-sm" style="align-items:center;">
+          <div class="accent-dot"></div>
+          <span class="slide-body">ポイント2</span>
+        </div>
+      </div>
+      <div class="img-placeholder h-full" style="min-height:28cqw;">IMAGE / FIGURE</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     10. 4カラム アイコングリッド (Icon Grid)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="4つの要素をアイコン付きグリッドで並列表示。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: アイコングリッド</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">4つの柱</h2>
+    </div>
+    <div class="layout-4col" style="flex:1; align-items:stretch;">
+      <div class="card-filled flex-col gap-sm text-center" style="align-items:center; padding:2cqw; border-radius:0.8cqw;">
+        <div class="icon-circle icon-circle-large">◆</div>
+        <p class="slide-h3 text-main">項目A</p>
+        <p class="slide-caption text-sub">説明テキスト</p>
+      </div>
+      <div class="card-filled flex-col gap-sm text-center" style="align-items:center; padding:2cqw; border-radius:0.8cqw;">
+        <div class="icon-circle icon-circle-large">◆</div>
+        <p class="slide-h3 text-main">項目B</p>
+        <p class="slide-caption text-sub">説明テキスト</p>
+      </div>
+      <div class="card-filled flex-col gap-sm text-center" style="align-items:center; padding:2cqw; border-radius:0.8cqw;">
+        <div class="icon-circle icon-circle-large">◆</div>
+        <p class="slide-h3 text-main">項目C</p>
+        <p class="slide-caption text-sub">説明テキスト</p>
+      </div>
+      <div class="card-filled flex-col gap-sm text-center" style="align-items:center; padding:2cqw; border-radius:0.8cqw;">
+        <div class="icon-circle icon-circle-large">◆</div>
+        <p class="slide-h3 text-main">項目D</p>
+        <p class="slide-caption text-sub">説明テキスト</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     11. 大数字 / 統計 (Big Number / Statistic)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="インパクトのある数字を大きく表示。実績・成果の訴求に。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: 大数字・統計</span>
+      <h2 class="slide-h2 text-main" style="margin-top:1cqw;">実績ハイライト</h2>
+    </div>
+    <div class="layout-3col" style="flex:1; align-items:center;">
+      <div class="text-center">
+        <p class="slide-number text-accent">98<span class="slide-h2">%</span></p>
+        <p class="slide-body text-main" style="font-weight:700;">顧客満足度</p>
+        <p class="slide-caption text-sub">2025年度実績</p>
+      </div>
+      <div class="text-center">
+        <p class="slide-number text-accent">500<span class="slide-h2">+</span></p>
+        <p class="slide-body text-main" style="font-weight:700;">導入企業数</p>
+        <p class="slide-caption text-sub">累計</p>
+      </div>
+      <div class="text-center">
+        <p class="slide-number text-accent">3.2<span class="slide-h2">x</span></p>
+        <p class="slide-body text-main" style="font-weight:700;">生産性向上</p>
+        <p class="slide-caption text-sub">平均値</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     12. 引用 (Quote)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="引用・お客様の声。大きな引用符とテキスト。">
+  <div class="accent-line-left"></div>
+  <div class="slide-content layout-center">
+    <span class="label-tag">レイアウト: 引用</span>
+    <div style="max-width:75%; text-align:center;">
+      <span class="slide-hero text-accent" style="opacity:0.2; line-height:0.8;">"</span>
+      <p class="slide-h2 text-main" style="font-style:italic; margin-top:-3cqw;">
+        引用テキストをここに。<br>インパクトのある言葉を選ぶ。
+      </p>
+      <div style="margin-top:2cqw; display:flex; align-items:center; justify-content:center; gap:1cqw;">
+        <div class="img-placeholder round" style="width:4cqw; height:4cqw; font-size:0.8cqw;">写真</div>
+        <div class="text-left">
+          <p class="slide-body text-main" style="font-weight:700;">引用者名</p>
+          <p class="slide-caption text-sub">肩書き / 企業名</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     13. テーブル (Table)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="表形式でデータを整理。比較・仕様一覧に。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: テーブル</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">比較表</h2>
+    </div>
+    <div style="flex:1; overflow:hidden;">
+      <table class="slide-table">
+        <thead>
+          <tr><th>項目</th><th>プランA</th><th>プランB</th><th>プランC</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>機能1</td><td>○</td><td>○</td><td>○</td></tr>
+          <tr><td>機能2</td><td>—</td><td>○</td><td>○</td></tr>
+          <tr><td>機能3</td><td>—</td><td>—</td><td>○</td></tr>
+          <tr><td>サポート</td><td>メール</td><td>チャット</td><td>専任担当</td></tr>
+          <tr><td style="font-weight:700;">価格</td><td><strong class="text-accent">¥9,800</strong></td><td><strong class="text-accent">¥29,800</strong></td><td><strong class="text-accent">¥98,000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     14. 横フロー (Horizontal Flow / Process)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="プロセスや手順を横方向のフローで表現。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-center" style="gap:3cqw;">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: 横フロー</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">導入ステップ</h2>
+    </div>
+    <div class="steps-row" style="width:100%;">
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <p class="slide-h3 text-main">ヒアリング</p>
+        <p class="slide-caption text-sub">要件整理</p>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <p class="slide-h3 text-main">設計</p>
+        <p class="slide-caption text-sub">PoC作成</p>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <p class="slide-h3 text-main">導入</p>
+        <p class="slide-caption text-sub">環境構築</p>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">4</div>
+        <p class="slide-h3 text-main">運用</p>
+        <p class="slide-caption text-sub">サポート</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     15. 縦フロー (Vertical Flow)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="縦方向のフロー。タイムライン形式。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content">
+    <span class="label-tag">レイアウト: 縦フロー / タイムライン</span>
+    <div class="layout-2col" style="margin-top:1.5cqw; flex:1;">
+      <div>
+        <h2 class="slide-h1 text-main" style="margin-bottom:2cqw;">沿革</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <p class="slide-body" style="font-weight:700;">2020年 — 創業</p>
+            <p class="slide-caption text-sub">サービス開始</p>
+          </div>
+          <div class="timeline-item">
+            <p class="slide-body" style="font-weight:700;">2022年 — シリーズA</p>
+            <p class="slide-caption text-sub">事業拡大</p>
+          </div>
+          <div class="timeline-item">
+            <p class="slide-body" style="font-weight:700;">2024年 — 上場</p>
+            <p class="slide-caption text-sub">東証グロース</p>
+          </div>
+          <div class="timeline-item">
+            <p class="slide-body" style="font-weight:700;">2026年 — 海外展開</p>
+            <p class="slide-caption text-sub">アジア進出</p>
+          </div>
+        </div>
+      </div>
+      <div class="img-placeholder h-full">GROWTH CHART</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     16. ピラミッド (Pyramid)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="階層構造をピラミッドで表現。戦略・フレームワーク。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: ピラミッド</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">戦略フレームワーク</h2>
+    </div>
+    <div class="pyramid" style="flex:1; justify-content:center;">
+      <div class="pyramid-level" style="width:25%; background:var(--c-accent);">ビジョン</div>
+      <div class="pyramid-level" style="width:45%; background:var(--c-accent-dark);">戦略</div>
+      <div class="pyramid-level" style="width:65%; background:var(--c-main); opacity:0.8;">戦術</div>
+      <div class="pyramid-level" style="width:85%; background:var(--c-main); opacity:0.6;">オペレーション</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     17. サイクル (Cycle)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="循環プロセス。PDCAなどの繰り返し構造。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: サイクル</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">PDCAサイクル</h2>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+      <div class="cycle-container">
+        <div class="cycle-center">PDCA</div>
+        <div class="cycle-node" style="top:0; left:50%; transform:translateX(-50%);">Plan</div>
+        <div class="cycle-node" style="top:50%; right:0; transform:translateY(-50%); background:var(--c-accent-dark);">Do</div>
+        <div class="cycle-node" style="bottom:0; left:50%; transform:translateX(-50%); background:var(--c-main); opacity:0.8;">Check</div>
+        <div class="cycle-node" style="top:50%; left:0; transform:translateY(-50%); background:var(--c-main); opacity:0.6;">Act</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     18. マトリクス 2x2 (Matrix)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="2x2マトリクス。ポジショニング・優先度分析。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: マトリクス</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">ポジショニングマップ</h2>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center; position:relative;">
+      <div class="matrix-2x2">
+        <div class="matrix-cell" style="background:var(--c-accent-light); border-radius:0.8cqw 0 0 0;">
+          <p class="slide-h3 text-accent">高価値・高緊急</p>
+          <p class="slide-caption text-sub">最優先で実行</p>
+        </div>
+        <div class="matrix-cell" style="background:var(--c-base-dim); border-radius:0 0.8cqw 0 0;">
+          <p class="slide-h3 text-main">高価値・低緊急</p>
+          <p class="slide-caption text-sub">計画的に実行</p>
+        </div>
+        <div class="matrix-cell" style="background:var(--c-base-dim); border-radius:0 0 0 0.8cqw;">
+          <p class="slide-h3 text-main">低価値・高緊急</p>
+          <p class="slide-caption text-sub">委譲を検討</p>
+        </div>
+        <div class="matrix-cell" style="background:var(--c-main-light); border-radius:0 0 0.8cqw 0;">
+          <p class="slide-h3 text-sub">低価値・低緊急</p>
+          <p class="slide-caption text-sub">削減候補</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     19. ビフォーアフター (Before-After)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="導入前後・改善前後の比較。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: ビフォーアフター</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">導入による変化</h2>
+    </div>
+    <div class="before-after" style="flex:1; align-items:center;">
+      <div class="card" style="text-align:center; width:100%;">
+        <p class="slide-caption text-sub" style="letter-spacing:0.1em; margin-bottom:1cqw;">BEFORE</p>
+        <p class="slide-h2 text-main">手作業で3時間</p>
+        <p class="slide-body text-sub" style="margin-top:0.8cqw;">ミスが多発・残業常態化</p>
+      </div>
+      <div class="ba-divider">
+        <div class="ba-arrow">→</div>
+      </div>
+      <div class="card" style="text-align:center; width:100%; border-color:var(--c-accent);">
+        <p class="slide-caption text-accent" style="letter-spacing:0.1em; margin-bottom:1cqw;">AFTER</p>
+        <p class="slide-h2 text-accent">自動化で10分</p>
+        <p class="slide-body text-sub" style="margin-top:0.8cqw;">ゼロエラー・定時退社</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     20. ランキング (Ranking)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="順位付きリスト。人気・売上など。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: ランキング</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">人気機能 TOP 5</h2>
+    </div>
+    <div style="flex:1; overflow:hidden;">
+      <div class="ranking-item">
+        <span class="ranking-num">1</span>
+        <div style="flex:1;"><p class="slide-h3 text-main">機能名A</p><p class="slide-caption text-sub">利用率 89%</p></div>
+        <div style="width:30cqw; height:1.5cqw; background:var(--c-base-dim); border-radius:0.8cqw; overflow:hidden;">
+          <div style="width:89%; height:100%; background:var(--c-accent); border-radius:0.8cqw;"></div>
+        </div>
+      </div>
+      <div class="ranking-item">
+        <span class="ranking-num">2</span>
+        <div style="flex:1;"><p class="slide-h3 text-main">機能名B</p><p class="slide-caption text-sub">利用率 76%</p></div>
+        <div style="width:30cqw; height:1.5cqw; background:var(--c-base-dim); border-radius:0.8cqw; overflow:hidden;">
+          <div style="width:76%; height:100%; background:var(--c-accent); border-radius:0.8cqw; opacity:0.85;"></div>
+        </div>
+      </div>
+      <div class="ranking-item">
+        <span class="ranking-num">3</span>
+        <div style="flex:1;"><p class="slide-h3 text-main">機能名C</p><p class="slide-caption text-sub">利用率 64%</p></div>
+        <div style="width:30cqw; height:1.5cqw; background:var(--c-base-dim); border-radius:0.8cqw; overflow:hidden;">
+          <div style="width:64%; height:100%; background:var(--c-accent); border-radius:0.8cqw; opacity:0.7;"></div>
+        </div>
+      </div>
+      <div class="ranking-item">
+        <span class="ranking-num">4</span>
+        <div style="flex:1;"><p class="slide-h3 text-main">機能名D</p><p class="slide-caption text-sub">利用率 51%</p></div>
+        <div style="width:30cqw; height:1.5cqw; background:var(--c-base-dim); border-radius:0.8cqw; overflow:hidden;">
+          <div style="width:51%; height:100%; background:var(--c-main); border-radius:0.8cqw; opacity:0.4;"></div>
+        </div>
+      </div>
+      <div class="ranking-item" style="border-bottom:none;">
+        <span class="ranking-num" style="opacity:0.5;">5</span>
+        <div style="flex:1;"><p class="slide-h3 text-main">機能名E</p><p class="slide-caption text-sub">利用率 38%</p></div>
+        <div style="width:30cqw; height:1.5cqw; background:var(--c-base-dim); border-radius:0.8cqw; overflow:hidden;">
+          <div style="width:38%; height:100%; background:var(--c-main); border-radius:0.8cqw; opacity:0.3;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     21. 箇条書き 縦 (Bullet List — Vertical)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="シンプルな縦型箇条書き。左揃え。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-left" style="padding-left:8cqw;">
+    <span class="label-tag">レイアウト: 箇条書き（縦）</span>
+    <h2 class="slide-h1 text-main" style="margin-top:1cqw;">ポイント整理</h2>
+    <div class="flex-col gap-md" style="margin-top:1cqw;">
+      <div class="flex-row" style="align-items:center; gap:1.5cqw;">
+        <div class="accent-dot"></div>
+        <p class="slide-h3 text-main">ポイント1のタイトル</p>
+      </div>
+      <div class="flex-row" style="align-items:center; gap:1.5cqw;">
+        <div class="accent-dot"></div>
+        <p class="slide-h3 text-main">ポイント2のタイトル</p>
+      </div>
+      <div class="flex-row" style="align-items:center; gap:1.5cqw;">
+        <div class="accent-dot"></div>
+        <p class="slide-h3 text-main">ポイント3のタイトル</p>
+      </div>
+      <div class="flex-row" style="align-items:center; gap:1.5cqw;">
+        <div class="accent-dot"></div>
+        <p class="slide-h3 text-main">ポイント4のタイトル</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     22. 箇条書き 横 (Bullet List — Horizontal)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="横並びの箇条書き。カード形式で視認性向上。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: 箇条書き（横）</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">実施項目</h2>
+    </div>
+    <div class="layout-3col" style="flex:1; align-items:stretch;">
+      <div class="card-filled" style="padding:2cqw; border-radius:0.8cqw;">
+        <div class="flex-row gap-sm" style="align-items:center; margin-bottom:1cqw;">
+          <div class="icon-circle" style="width:2.5cqw; height:2.5cqw; font-size:1.2cqw;">✓</div>
+          <p class="slide-h3 text-main">項目タイトルA</p>
+        </div>
+        <p class="slide-body text-sub">説明テキスト。2行程度。</p>
+      </div>
+      <div class="card-filled" style="padding:2cqw; border-radius:0.8cqw;">
+        <div class="flex-row gap-sm" style="align-items:center; margin-bottom:1cqw;">
+          <div class="icon-circle" style="width:2.5cqw; height:2.5cqw; font-size:1.2cqw;">✓</div>
+          <p class="slide-h3 text-main">項目タイトルB</p>
+        </div>
+        <p class="slide-body text-sub">説明テキスト。2行程度。</p>
+      </div>
+      <div class="card-filled" style="padding:2cqw; border-radius:0.8cqw;">
+        <div class="flex-row gap-sm" style="align-items:center; margin-bottom:1cqw;">
+          <div class="icon-circle" style="width:2.5cqw; height:2.5cqw; font-size:1.2cqw;">✓</div>
+          <p class="slide-h3 text-main">項目タイトルC</p>
+        </div>
+        <p class="slide-body text-sub">説明テキスト。2行程度。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     23. ステップ / 階段 (Stairs / Steps)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="段階的な成長・レベルアップを階段で表現。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: ステップ・階段</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">成長ステージ</h2>
+    </div>
+    <div style="flex:1; display:flex; align-items:flex-end; justify-content:center; gap:0.5cqw; padding-bottom:2cqw;">
+      <div style="width:10cqw; text-align:center;">
+        <p class="slide-caption text-main" style="font-weight:700; margin-bottom:0.5cqw;">Lv.1</p>
+        <div style="height:8cqw; background:var(--c-main); opacity:0.3; border-radius:0.8cqw 0.8cqw 0 0; display:flex; align-items:center; justify-content:center;">
+          <span class="slide-caption text-white">基礎</span>
+        </div>
+      </div>
+      <div style="width:10cqw; text-align:center;">
+        <p class="slide-caption text-main" style="font-weight:700; margin-bottom:0.5cqw;">Lv.2</p>
+        <div style="height:14cqw; background:var(--c-main); opacity:0.5; border-radius:0.8cqw 0.8cqw 0 0; display:flex; align-items:center; justify-content:center;">
+          <span class="slide-caption text-white">応用</span>
+        </div>
+      </div>
+      <div style="width:10cqw; text-align:center;">
+        <p class="slide-caption text-main" style="font-weight:700; margin-bottom:0.5cqw;">Lv.3</p>
+        <div style="height:20cqw; background:var(--c-accent-dark); border-radius:0.8cqw 0.8cqw 0 0; display:flex; align-items:center; justify-content:center;">
+          <span class="slide-caption text-white">実践</span>
+        </div>
+      </div>
+      <div style="width:10cqw; text-align:center;">
+        <p class="slide-caption text-main" style="font-weight:700; margin-bottom:0.5cqw;">Lv.4</p>
+        <div style="height:26cqw; background:var(--c-accent); border-radius:0.8cqw 0.8cqw 0 0; display:flex; align-items:center; justify-content:center;">
+          <span class="slide-caption text-white">エキスパート</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     24. チャート — 棒グラフ (Bar Chart)
+     ============================================ -->
+<section class="slide" data-section="chart" data-notes="棒グラフで数値推移を可視化。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: 棒グラフ</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">売上推移</h2>
+    </div>
+    <div class="chart-placeholder" style="flex:1;">
+      <div style="text-align:center;">
+        <div class="chart-bar" style="height:10cqw; opacity:0.5;"></div>
+        <p class="slide-caption text-sub" style="margin-top:0.5cqw;">2022</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="chart-bar" style="height:14cqw; opacity:0.65;"></div>
+        <p class="slide-caption text-sub" style="margin-top:0.5cqw;">2023</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="chart-bar" style="height:18cqw; opacity:0.8;"></div>
+        <p class="slide-caption text-sub" style="margin-top:0.5cqw;">2024</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="chart-bar" style="height:24cqw;"></div>
+        <p class="slide-caption text-sub" style="margin-top:0.5cqw;">2025</p>
+      </div>
+      <div style="text-align:center;">
+        <div class="chart-bar" style="height:30cqw; background:var(--c-accent); opacity:1;"></div>
+        <p class="slide-caption text-accent" style="margin-top:0.5cqw; font-weight:700;">2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     25. ガントチャート (Gantt Chart)
+     ============================================ -->
+<section class="slide" data-section="chart" data-notes="プロジェクトスケジュールをガントチャートで表示。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: ガントチャート</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">ロードマップ</h2>
+      <div class="flex-row" style="gap:3cqw; margin-top:1cqw;">
+        <span class="slide-caption text-sub">Q1</span>
+        <span class="slide-caption text-sub">Q2</span>
+        <span class="slide-caption text-sub">Q3</span>
+        <span class="slide-caption text-sub">Q4</span>
+      </div>
+    </div>
+    <div class="gantt" style="flex:1;">
+      <div class="gantt-row">
+        <div class="gantt-label">Phase 1</div>
+        <div class="gantt-track"><div class="gantt-bar" style="left:0%; width:30%;"></div></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Phase 2</div>
+        <div class="gantt-track"><div class="gantt-bar" style="left:20%; width:35%; background:var(--c-accent-dark);"></div></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Phase 3</div>
+        <div class="gantt-track"><div class="gantt-bar" style="left:45%; width:30%; background:var(--c-main); opacity:0.6;"></div></div>
+      </div>
+      <div class="gantt-row">
+        <div class="gantt-label">Phase 4</div>
+        <div class="gantt-track"><div class="gantt-bar" style="left:65%; width:35%; background:var(--c-main); opacity:0.4;"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     26. 事例紹介 (Case Study)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="導入事例の紹介。ロゴ+概要+成果。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content">
+    <span class="label-tag">レイアウト: 事例紹介</span>
+    <div class="layout-2col-wide" style="margin-top:1.5cqw; flex:1;">
+      <div class="flex-col gap-md" style="justify-content:center;">
+        <p class="slide-caption text-accent" style="font-weight:700; letter-spacing:0.1em;">導入事例</p>
+        <h2 class="slide-h1 text-main">株式会社サンプル</h2>
+        <p class="slide-body text-sub">
+          導入背景と課題の説明。<br>どのような状況だったか簡潔に。
+        </p>
+        <div class="card card-accent" style="padding:1.5cqw;">
+          <p class="slide-caption text-accent" style="font-weight:700;">成果</p>
+          <p class="slide-h3 text-main">業務時間 60% 削減</p>
+        </div>
+      </div>
+      <div class="flex-col gap-md">
+        <div class="img-placeholder" style="flex:1; min-height:20cqw;">スクリーンショット / 写真</div>
+        <div class="flex-row gap-sm" style="justify-content:center;">
+          <div class="text-center">
+            <p class="slide-h2 text-accent">3x</p>
+            <p class="slide-caption text-sub">生産性</p>
+          </div>
+          <div class="text-center">
+            <p class="slide-h2 text-accent">95%</p>
+            <p class="slide-caption text-sub">満足度</p>
+          </div>
+          <div class="text-center">
+            <p class="slide-h2 text-accent">2週間</p>
+            <p class="slide-caption text-sub">導入期間</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     27. お客様の声 (Testimonials — Multiple)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="複数のお客様の声を並列で表示。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: お客様の声</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">お客様の声</h2>
+    </div>
+    <div class="layout-3col" style="flex:1; align-items:stretch;">
+      <div class="card flex-col" style="justify-content:space-between;">
+        <div>
+          <span class="slide-h2 text-accent" style="opacity:0.3;">"</span>
+          <p class="slide-body text-main" style="margin-top:-1cqw;">テスティモニアルの本文テキスト。実際の体験談。</p>
+        </div>
+        <div class="flex-row gap-sm" style="align-items:center; margin-top:1.5cqw;">
+          <div class="img-placeholder round" style="width:3cqw; height:3cqw; font-size:0.6cqw;">IMG</div>
+          <div>
+            <p class="slide-caption text-main" style="font-weight:700;">田中様</p>
+            <p class="slide-micro text-sub">○○株式会社</p>
+          </div>
+        </div>
+      </div>
+      <div class="card flex-col" style="justify-content:space-between;">
+        <div>
+          <span class="slide-h2 text-accent" style="opacity:0.3;">"</span>
+          <p class="slide-body text-main" style="margin-top:-1cqw;">テスティモニアルの本文テキスト。実際の体験談。</p>
+        </div>
+        <div class="flex-row gap-sm" style="align-items:center; margin-top:1.5cqw;">
+          <div class="img-placeholder round" style="width:3cqw; height:3cqw; font-size:0.6cqw;">IMG</div>
+          <div>
+            <p class="slide-caption text-main" style="font-weight:700;">鈴木様</p>
+            <p class="slide-micro text-sub">△△株式会社</p>
+          </div>
+        </div>
+      </div>
+      <div class="card flex-col" style="justify-content:space-between;">
+        <div>
+          <span class="slide-h2 text-accent" style="opacity:0.3;">"</span>
+          <p class="slide-body text-main" style="margin-top:-1cqw;">テスティモニアルの本文テキスト。実際の体験談。</p>
+        </div>
+        <div class="flex-row gap-sm" style="align-items:center; margin-top:1.5cqw;">
+          <div class="img-placeholder round" style="width:3cqw; height:3cqw; font-size:0.6cqw;">IMG</div>
+          <div>
+            <p class="slide-caption text-main" style="font-weight:700;">佐藤様</p>
+            <p class="slide-micro text-sub">□□株式会社</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     28. メンバー紹介 (Team Members)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="チームメンバーの紹介。写真+名前+役割。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: メンバー紹介</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">チーム</h2>
+    </div>
+    <div class="layout-4col" style="flex:1; align-items:start;">
+      <div class="text-center flex-col gap-sm" style="align-items:center;">
+        <div class="img-placeholder round" style="width:8cqw; height:8cqw; font-size:1cqw;">写真</div>
+        <p class="slide-h3 text-main">名前A</p>
+        <p class="slide-caption text-accent">CEO</p>
+        <p class="slide-micro text-sub">経歴の要約テキスト</p>
+      </div>
+      <div class="text-center flex-col gap-sm" style="align-items:center;">
+        <div class="img-placeholder round" style="width:8cqw; height:8cqw; font-size:1cqw;">写真</div>
+        <p class="slide-h3 text-main">名前B</p>
+        <p class="slide-caption text-accent">CTO</p>
+        <p class="slide-micro text-sub">経歴の要約テキスト</p>
+      </div>
+      <div class="text-center flex-col gap-sm" style="align-items:center;">
+        <div class="img-placeholder round" style="width:8cqw; height:8cqw; font-size:1cqw;">写真</div>
+        <p class="slide-h3 text-main">名前C</p>
+        <p class="slide-caption text-accent">COO</p>
+        <p class="slide-micro text-sub">経歴の要約テキスト</p>
+      </div>
+      <div class="text-center flex-col gap-sm" style="align-items:center;">
+        <div class="img-placeholder round" style="width:8cqw; height:8cqw; font-size:1cqw;">写真</div>
+        <p class="slide-h3 text-main">名前D</p>
+        <p class="slide-caption text-accent">CMO</p>
+        <p class="slide-micro text-sub">経歴の要約テキスト</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     29. 料金プラン (Pricing)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="料金プラン比較。3カラムのプライシングカード。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: 料金プラン</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">料金プラン</h2>
+    </div>
+    <div class="layout-3col" style="flex:1; align-items:stretch;">
+      <div class="pricing-card flex-col gap-sm">
+        <p class="slide-h3 text-main">スターター</p>
+        <p class="slide-number text-main" style="font-size:4cqw;">¥9,800<span class="slide-caption">/月</span></p>
+        <hr style="border:none; border-top:1px solid var(--c-border); margin:0.5cqw 0;">
+        <p class="slide-body text-sub">✓ 基本機能</p>
+        <p class="slide-body text-sub">✓ メールサポート</p>
+        <p class="slide-body text-sub" style="opacity:0.4;">✗ API連携</p>
+      </div>
+      <div class="pricing-card featured flex-col gap-sm">
+        <div class="pricing-badge">おすすめ</div>
+        <p class="slide-h3 text-accent">プロ</p>
+        <p class="slide-number text-accent" style="font-size:4cqw;">¥29,800<span class="slide-caption">/月</span></p>
+        <hr style="border:none; border-top:1px solid var(--c-border); margin:0.5cqw 0;">
+        <p class="slide-body text-main">✓ 全機能</p>
+        <p class="slide-body text-main">✓ チャットサポート</p>
+        <p class="slide-body text-main">✓ API連携</p>
+      </div>
+      <div class="pricing-card flex-col gap-sm">
+        <p class="slide-h3 text-main">エンタープライズ</p>
+        <p class="slide-number text-main" style="font-size:4cqw;">要相談</p>
+        <hr style="border:none; border-top:1px solid var(--c-border); margin:0.5cqw 0;">
+        <p class="slide-body text-sub">✓ 全機能</p>
+        <p class="slide-body text-sub">✓ 専任担当</p>
+        <p class="slide-body text-sub">✓ カスタマイズ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     30. Q&A
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="よくある質問。Q&A形式で不安を解消。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: Q&A</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">よくある質問</h2>
+    </div>
+    <div class="flex-col gap-md" style="flex:1; justify-content:center;">
+      <div class="qa-item">
+        <div class="qa-q">
+          <span class="qa-badge qa-badge-q">Q</span>
+          <span>導入にどれくらいの期間がかかりますか？</span>
+        </div>
+        <div class="qa-a">
+          <span class="qa-badge qa-badge-a">A</span>
+          <span>最短2週間で導入可能です。規模に応じて1〜2ヶ月程度。</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">
+          <span class="qa-badge qa-badge-q">Q</span>
+          <span>既存システムとの連携は可能ですか？</span>
+        </div>
+        <div class="qa-a">
+          <span class="qa-badge qa-badge-a">A</span>
+          <span>主要なCRM・SFAとのAPI連携に対応しています。</span>
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="qa-q">
+          <span class="qa-badge qa-badge-q">Q</span>
+          <span>無料トライアルはありますか？</span>
+        </div>
+        <div class="qa-a">
+          <span class="qa-badge qa-badge-a">A</span>
+          <span>14日間の無料トライアルをご用意しています。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     31. 競合比較 (Competitive Comparison)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="競合との比較。自社の優位性を明確に。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">レイアウト: 競合比較</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">競合比較</h2>
+    </div>
+    <div style="flex:1; overflow:hidden;">
+      <table class="slide-table">
+        <thead>
+          <tr>
+            <th>機能</th>
+            <th style="background:var(--c-accent);">当社</th>
+            <th>競合A</th>
+            <th>競合B</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>AI機能</td><td style="font-weight:700;">◎</td><td>○</td><td>△</td></tr>
+          <tr><td>日本語対応</td><td style="font-weight:700;">◎</td><td>△</td><td>○</td></tr>
+          <tr><td>導入スピード</td><td style="font-weight:700;">◎</td><td>○</td><td>○</td></tr>
+          <tr><td>サポート</td><td style="font-weight:700;">◎</td><td>○</td><td>△</td></tr>
+          <tr><td>価格</td><td style="font-weight:700;"><span class="text-accent">◎</span></td><td>△</td><td>○</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     32. ベン図 (Venn Diagram)
+     ============================================ -->
+<section class="slide" data-section="diagram" data-notes="ベン図。共通部分の可視化。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: ベン図</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">3要素の関係性</h2>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+      <div class="venn-container">
+        <div class="venn-circle" style="top:0; left:50%; transform:translateX(-50%); background:var(--c-accent);">
+          <span style="margin-top:-3cqw; color:var(--c-accent); opacity:1;">テクノロジー</span>
+        </div>
+        <div class="venn-circle" style="bottom:0; left:10%; background:var(--c-main);">
+          <span style="margin-left:-2cqw; color:var(--c-main); opacity:1;">ビジネス</span>
+        </div>
+        <div class="venn-circle" style="bottom:0; right:10%; background:#16A34A;">
+          <span style="margin-right:-2cqw; color:#16A34A; opacity:1;">デザイン</span>
+        </div>
+        <div style="position:absolute; top:55%; left:50%; transform:translate(-50%,-50%); font-size:1.2cqw; font-weight:900; color:var(--c-accent);">CORE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     33. フルイメージ + オーバーレイ (Full-Image)
+     ============================================ -->
+<section class="slide slide-fullbg" data-section="content" data-notes="全面画像スライド。ダークオーバーレイ+白文字。" style="background:#1A1A2E;">
+  <div class="overlay"></div>
+  <div class="slide-content layout-center" style="z-index:1;">
+    <span class="label-tag">レイアウト: フルイメージ</span>
+    <h2 class="slide-hero text-white">インパクトある<br>ビジュアル表現</h2>
+    <p class="slide-title" style="color:rgba(255,255,255,0.8);">全面画像 + オーバーレイで視覚的に訴求</p>
+  </div>
+</section>
+
+<!-- ============================================
+     34. まとめ (Summary / Key Takeaways)
+     ============================================ -->
+<section class="slide" data-section="content" data-notes="まとめスライド。キーメッセージを再確認。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: まとめ</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">本日のまとめ</h2>
+    </div>
+    <div class="flex-col gap-md" style="flex:1; justify-content:center; padding:0 5cqw;">
+      <div class="card card-accent flex-row gap-md" style="align-items:center;">
+        <div class="icon-circle icon-circle-dark" style="font-size:1.5cqw; font-weight:900;">1</div>
+        <div>
+          <p class="slide-h3 text-main">キーメッセージ 1</p>
+          <p class="slide-caption text-sub">要約テキスト</p>
+        </div>
+      </div>
+      <div class="card card-accent flex-row gap-md" style="align-items:center;">
+        <div class="icon-circle icon-circle-dark" style="font-size:1.5cqw; font-weight:900;">2</div>
+        <div>
+          <p class="slide-h3 text-main">キーメッセージ 2</p>
+          <p class="slide-caption text-sub">要約テキスト</p>
+        </div>
+      </div>
+      <div class="card card-accent flex-row gap-md" style="align-items:center;">
+        <div class="icon-circle icon-circle-dark" style="font-size:1.5cqw; font-weight:900;">3</div>
+        <div>
+          <p class="slide-h3 text-main">キーメッセージ 3</p>
+          <p class="slide-caption text-sub">要約テキスト</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     35. CTA — なぜ今 (CTA: Why Now)
+     ============================================ -->
+<section class="slide slide-bridge-accent" data-section="cta" data-notes="CTA1: なぜ今行動すべきかを訴求。">
+  <div class="slide-content layout-center">
+    <span class="label-tag" style="background:#fff; color:var(--c-accent);">レイアウト: CTA — なぜ今</span>
+    <h2 class="slide-hero text-white">なぜ<span style="text-decoration:underline; text-decoration-thickness:0.3cqw;">今</span>なのか</h2>
+    <p class="slide-title text-white" style="opacity:0.9; max-width:70%;">
+      変化のスピードは加速している。<br>先行者利益が最も大きいのは、今この瞬間。
+    </p>
+  </div>
+</section>
+
+<!-- ============================================
+     36. CTA — 具体的ステップ (CTA: Next Steps)
+     ============================================ -->
+<section class="slide" data-section="cta" data-notes="CTA2: 具体的な次のアクションを提示。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-center" style="gap:3cqw;">
+    <div class="text-center">
+      <span class="label-tag">レイアウト: CTA — 次のステップ</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">始めるための<span class="text-accent">3ステップ</span></h2>
+    </div>
+    <div class="steps-row" style="width:100%;">
+      <div class="step-item">
+        <div class="step-circle">1</div>
+        <p class="slide-h3 text-main">無料相談</p>
+        <p class="slide-caption text-sub">30分のオンライン面談</p>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">2</div>
+        <p class="slide-h3 text-main">トライアル</p>
+        <p class="slide-caption text-sub">14日間無料お試し</p>
+      </div>
+      <div class="step-item">
+        <div class="step-circle">3</div>
+        <p class="slide-h3 text-main">本導入</p>
+        <p class="slide-caption text-sub">最短2週間で稼働</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PHOTO LAYOUTS — 写真レイアウトパターン
+     ============================================ -->
+
+<!-- ============================================
+     38. 写真：全面＋テキストオーバーレイ (Full Photo + Overlay)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="全面写真＋ダークオーバーレイ。写真の上にテキストを直接配置。インパクト重視。" style="background:#2C3E50;">
+  <div style="position:absolute; inset:0; background:rgba(0,0,0,0.55);"></div>
+  <div class="slide-content layout-center" style="z-index:1;">
+    <span class="label-tag">写真: 全面+オーバーレイ</span>
+    <h2 class="slide-hero text-white">全面写真で<br>世界観を伝える</h2>
+    <p class="slide-title" style="color:rgba(255,255,255,0.85);">背景を画像に差し替え。オーバーレイで可読性確保。</p>
+    <p class="slide-caption" style="color:rgba(255,255,255,0.5); margin-top:2cqw;">style="background: url('photo.jpg') center/cover"</p>
+  </div>
+</section>
+
+<!-- ============================================
+     39. 写真：全面＋下部テキストバー (Full Photo + Bottom Bar)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="全面写真の下部にテキストバーを配置。写真を最大限見せながらキャプション。" style="background:#374151;">
+  <div class="slide-content" style="padding:0; justify-content:flex-end;">
+    <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.15); font-size:3cqw; letter-spacing:0.3em;">全面写真エリア</div>
+    <div style="background:rgba(26,26,46,0.92); padding:3cqw 4.2cqw; position:relative; z-index:1;">
+      <span class="label-tag" style="margin-bottom:1cqw;">写真: 全面+下部バー</span>
+      <h3 class="slide-h2 text-white" style="margin-top:0.8cqw;">写真を最大限に見せる</h3>
+      <p class="slide-body" style="color:rgba(255,255,255,0.7);">下部バーにタイトル・キャプション。プロダクト写真、風景、オフィス紹介に最適。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     40. 写真：半面左（写真左＋テキスト右）(Half Photo Left)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="左半分に写真、右半分にテキスト。人物紹介、事例紹介に。">
+  <div class="accent-line-top"></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; height:100%; width:100%;">
+    <div style="background:#374151; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:2.5cqw; letter-spacing:0.2em;">
+      写真
+    </div>
+    <div style="padding:4.2cqw; display:flex; flex-direction:column; justify-content:center; gap:1.5cqw;">
+      <span class="label-tag">写真: 半面（写真左）</span>
+      <h2 class="slide-h1 text-main">見出しテキスト</h2>
+      <p class="slide-body text-sub">
+        左半分を写真が占め、右半分にテキスト。<br>人物ポートレート、建築物、プロダクト写真に。<br>写真に余計な余白を入れず裁ち落とし配置。
+      </p>
+      <div class="flex-row gap-sm" style="align-items:center; margin-top:1cqw;">
+        <div class="accent-dot"></div>
+        <span class="slide-body">ポイント1</span>
+      </div>
+      <div class="flex-row gap-sm" style="align-items:center;">
+        <div class="accent-dot"></div>
+        <span class="slide-body">ポイント2</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     41. 写真：半面右（テキスト左＋写真右）(Half Photo Right)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="右半分に写真、左半分にテキスト。左右反転バリエーション。">
+  <div class="accent-line-top"></div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; height:100%; width:100%;">
+    <div style="padding:4.2cqw; display:flex; flex-direction:column; justify-content:center; gap:1.5cqw;">
+      <span class="label-tag">写真: 半面（写真右）</span>
+      <h2 class="slide-h1 text-main">見出しテキスト</h2>
+      <p class="slide-body text-sub">
+        右半分を写真が占め、左半分にテキスト。<br>視線が左から右へ自然に流れる配置。<br>事例紹介、オフィス紹介に。
+      </p>
+      <div class="card card-accent" style="padding:1.5cqw; margin-top:1cqw;">
+        <p class="slide-body text-accent" style="font-weight:700;">導入効果: 生産性 3倍向上</p>
+      </div>
+    </div>
+    <div style="background:#0D1B2A; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:2.5cqw; letter-spacing:0.2em;">
+      写真
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     42. 写真：部分使用（カード内写真）(Partial Photo in Cards)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="カード内に写真を配置。複数の写真を整列表示。チーム紹介、施設紹介、商品一覧に。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">写真: 部分使用（カード内）</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">施設・サービス紹介</h2>
+    </div>
+    <div class="layout-3col" style="flex:1; align-items:stretch;">
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="height:16cqw; background:#374151; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:1.5cqw;">写真</div>
+        <div style="padding:1.5cqw;">
+          <p class="slide-h3 text-main">タイトルA</p>
+          <p class="slide-caption text-sub" style="margin-top:0.5cqw;">説明テキスト。写真の下にテキスト。</p>
+        </div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="height:16cqw; background:#1F2937; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:1.5cqw;">写真</div>
+        <div style="padding:1.5cqw;">
+          <p class="slide-h3 text-main">タイトルB</p>
+          <p class="slide-caption text-sub" style="margin-top:0.5cqw;">説明テキスト。写真の下にテキスト。</p>
+        </div>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden;">
+        <div style="height:16cqw; background:#0D1B2A; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:1.5cqw;">写真</div>
+        <div style="padding:1.5cqw;">
+          <p class="slide-h3 text-main">タイトルC</p>
+          <p class="slide-caption text-sub" style="margin-top:0.5cqw;">説明テキスト。写真の下にテキスト。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     43. 写真：上部帯写真＋下部テキスト (Top Band Photo)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="上部1/3に帯状の写真、下部2/3にテキスト・コンテンツ。風景、集合写真に。">
+  <div style="height:35%; background:#1A252F; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.15); font-size:2cqw; letter-spacing:0.3em; position:relative;">
+    帯写真
+  </div>
+  <div style="height:65%; padding:2cqw 4.2cqw; display:flex; flex-direction:column; justify-content:center; gap:1.5cqw;">
+    <span class="label-tag">写真: 上部帯写真</span>
+    <h2 class="slide-h1 text-main">帯写真レイアウト</h2>
+    <p class="slide-body text-sub">
+      上部に横長の帯写真を配置。集合写真、パノラマ風景、オフィス全景に最適。<br>下部にコンテンツを配置して情報量を確保。
+    </p>
+    <div class="flex-row gap-lg" style="margin-top:1cqw;">
+      <div class="text-center">
+        <p class="slide-h2 text-accent">150名</p>
+        <p class="slide-caption text-sub">社員数</p>
+      </div>
+      <div class="text-center">
+        <p class="slide-h2 text-accent">5拠点</p>
+        <p class="slide-caption text-sub">オフィス</p>
+      </div>
+      <div class="text-center">
+        <p class="slide-h2 text-accent">12ヶ国</p>
+        <p class="slide-caption text-sub">展開国</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     44. 写真：背景ぼかし＋前面カード (Blurred BG + Card)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="背景に写真（ぼかし）、前面に白カードでテキスト。高級感・プレミアム感。" style="background:#1A1A2E;">
+  <div style="position:absolute; inset:0; backdrop-filter:blur(8px); background:rgba(26,26,46,0.4);"></div>
+  <div class="slide-content layout-center" style="z-index:1;">
+    <span class="label-tag">写真: 背景ぼかし+前面カード</span>
+    <div class="card" style="max-width:65%; padding:4cqw; text-align:center; background:rgba(255,255,255,0.95);">
+      <h2 class="slide-h1 text-main">プレミアムな表現</h2>
+      <p class="slide-body text-sub" style="margin-top:1.5cqw;">
+        写真をぼかして背景に使用。<br>前面の白カードに情報を集約。<br>ラグジュアリー、ブランド訴求に。
+      </p>
+      <div style="margin-top:2cqw; display:inline-block; background:var(--c-accent); color:#fff; padding:0.8cqw 3cqw; border-radius:0.8cqw; font-size:1.6cqw; font-weight:700;">
+        CTA ボタン
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     45. 写真：グリッドギャラリー (Photo Grid Gallery)
+     ============================================ -->
+<section class="slide" data-section="photo" data-notes="複数写真をグリッドで配置。ギャラリー、実績集、イベント振り返りに。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div class="text-center">
+      <span class="label-tag">写真: グリッドギャラリー</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">イベントギャラリー</h2>
+    </div>
+    <div style="flex:1; display:grid; grid-template-columns:2fr 1fr 1fr; grid-template-rows:1fr 1fr; gap:0.8cqw;">
+      <div style="grid-row:1/3; background:#2C3E50; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:2cqw;">メイン写真</div>
+      <div style="background:#374151; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.15); font-size:1.2cqw;">写真 2</div>
+      <div style="background:#1F2937; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.15); font-size:1.2cqw;">写真 3</div>
+      <div style="background:#0D1B2A; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.15); font-size:1.2cqw;">写真 4</div>
+      <div style="background:#1A252F; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.15); font-size:1.2cqw;">写真 5</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     47-50. 写真ベース (Image Layouts)
+     ============================================ -->
+<section class="slide" data-section="image" data-notes="全面写真＋キャプション。写真を主役にするレイアウト。">
+  <div style="width:100%; height:100%; background:var(--c-main); display:flex; align-items:center; justify-content:center; position:relative;">
+    <div style="width:78%; height:72%; border-radius:0.8cqw; background:#2C3E50; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:2cqw; letter-spacing:0.1em;">全面写真</div>
+    <div class="accent-line-top"></div>
+    <span class="label-tag" style="position:absolute; top:2cqw; left:2cqw; background:rgba(255,255,255,0.15); color:#fff;">写真: フルスクリーン写真</span>
+    <div style="position:absolute; bottom:2.5cqw; left:4.2cqw; right:4.2cqw; display:flex; justify-content:space-between; align-items:flex-end;">
+      <p class="slide-caption" style="color:rgba(255,255,255,0.7);">図1 — キャプションテキスト</p>
+      <p class="slide-micro" style="color:rgba(255,255,255,0.4);">出典: example.com</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-section="image" data-notes="左写真＋右テキスト。製品・人物・事例紹介に。">
+  <div class="accent-line-top"></div>
+  <div style="width:100%; height:100%; display:flex;">
+    <div style="width:50%; background:#2C3E50; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:2cqw; letter-spacing:0.05em;">写真</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:4.2cqw 5cqw;">
+      <span class="label-tag" style="margin-bottom:1.5cqw;">写真: 左写真＋右テキスト</span>
+      <p class="slide-caption text-accent" style="font-weight:700; letter-spacing:0.15em; margin-bottom:0.8cqw;">カテゴリ</p>
+      <h2 class="slide-h1 text-main" style="margin-bottom:2cqw;">見出しテキスト</h2>
+      <p class="slide-body text-sub">製品紹介・事例紹介・人物紹介など<br>幅広く使える左右分割パターン。<br>写真が主役のスライドに最適。</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-section="image" data-notes="左テキスト＋右写真。左写真版の逆配置。">
+  <div class="accent-line-top"></div>
+  <div style="width:100%; height:100%; display:flex; background:var(--c-base-dim);">
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:4.2cqw 5cqw;">
+      <span class="label-tag" style="margin-bottom:1.5cqw;">写真: 右写真＋左テキスト</span>
+      <h2 class="slide-h1 text-main" style="margin-bottom:2cqw;">テキスト＋写真<br>（逆配置）</h2>
+      <p class="slide-body text-sub">左右を入れ替えたバリエーション。<br>スライドの流れに変化をつけたい時に。<br>交互に使うとリズムが出る。</p>
+      <div style="display:flex; gap:1cqw; margin-top:2cqw;">
+        <div style="padding:0.7cqw 1.8cqw; background:var(--c-main); color:#fff; font-size:1.4cqw; border-radius:0.8cqw;">詳細を見る</div>
+        <div style="padding:0.7cqw 1.8cqw; border:1px solid var(--c-main); color:var(--c-main); font-size:1.4cqw; border-radius:0.8cqw;">資料DL</div>
+      </div>
+    </div>
+    <div style="width:50%; background:#1F2937; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:2cqw; letter-spacing:0.05em;">写真</div>
+  </div>
+</section>
+
+<section class="slide" data-section="image" data-notes="3枚写真グリッド。事例集・ビフォーアフター・比較展示に。">
+  <div class="accent-line-top"></div>
+  <div class="slide-content layout-top-bottom">
+    <div>
+      <span class="label-tag">写真: 3枚フォトグリッド</span>
+      <h2 class="slide-h1 text-main" style="margin-top:1cqw;">3枚フォトギャラリー</h2>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:1cqw;">
+      <div style="flex:1; display:flex; gap:2cqw;">
+        <div style="flex:1; border-radius:0.8cqw; background:#2C3E50; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:1.5cqw;">写真 1</div>
+        <div style="flex:1; border-radius:0.8cqw; background:#1F2937; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:1.5cqw;">写真 2</div>
+        <div style="flex:1; border-radius:0.8cqw; background:#374151; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-size:1.5cqw;">写真 3</div>
+      </div>
+      <div style="display:flex; gap:2cqw;">
+        <p style="flex:1; text-align:center;" class="slide-caption text-sub">キャプション 1</p>
+        <p style="flex:1; text-align:center;" class="slide-caption text-sub">キャプション 2</p>
+        <p style="flex:1; text-align:center;" class="slide-caption text-sub">キャプション 3</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     51-53. 引用・行動喚起 (Quote / CTA)
+     ============================================ -->
+<section class="slide slide-bridge" data-section="quote" data-notes="全面引用スライド。インパクトのある言葉を大きく見せる。">
+  <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--c-main); padding:5cqw 10cqw; text-align:center;">
+    <div>
+      <span class="label-tag" style="background:rgba(255,255,255,0.15); color:#fff; margin-bottom:2cqw; display:inline-block;">QUOTE: 全面引用</span>
+      <div style="font-size:6cqw; color:var(--c-accent); line-height:1; margin-bottom:2cqw;">"</div>
+      <p class="slide-h1 text-white" style="line-height:1.6; margin-bottom:3cqw;">未来を予測する最善の方法は、<br>それを発明することだ。</p>
+      <div style="width:4cqw; height:0.2cqw; background:var(--c-accent); margin:0 auto 2cqw;"></div>
+      <p class="slide-caption" style="color:rgba(255,255,255,0.5);">Alan Kay — Computer Scientist</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-section="quote" data-notes="左縦線アクセントの引用。スピーカーの言葉・インサイト引用に。">
+  <div class="accent-line-top"></div>
+  <div style="width:100%; height:100%; display:flex; align-items:center; background:var(--c-base-dim); padding:5cqw 8cqw;">
+    <div style="border-left:0.4cqw solid var(--c-accent); padding-left:3cqw;">
+      <span class="label-tag" style="margin-bottom:2cqw; display:inline-block;">QUOTE: サイドアクセント</span>
+      <p class="slide-h1 text-main" style="line-height:1.6; margin-bottom:2cqw;">「テクノロジーは道具に過ぎない。<br>重要なのは、何のために使うかだ。」</p>
+      <p class="slide-body text-sub">— 氏名 / 肩書き・所属</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-bridge" data-section="cta" data-notes="行動喚起スライド。申込・DL・問い合わせなどCTAに使う。">
+  <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--c-main); padding:5cqw; text-align:center;">
+    <div>
+      <span class="label-tag" style="background:rgba(255,255,255,0.15); color:#fff; margin-bottom:2.5cqw; display:inline-block;">CTA: 行動喚起</span>
+      <h2 class="slide-hero text-white" style="margin-bottom:1.5cqw;">まずは無料相談から</h2>
+      <p class="slide-title text-white" style="opacity:0.6; margin-bottom:3cqw;">お気軽にお問い合わせください</p>
+      <div style="display:inline-flex; gap:2cqw;">
+        <div style="padding:1.2cqw 3.5cqw; background:var(--c-accent); color:#fff; font-size:1.7cqw; font-weight:700; border-radius:0.8cqw;">お問い合わせ</div>
+        <div style="padding:1.2cqw 3.5cqw; border:1px solid rgba(255,255,255,0.3); color:#fff; font-size:1.7cqw; font-weight:700; border-radius:0.8cqw;">資料ダウンロード</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     54-56. 情報密度高 (Dense / Info)
+     ============================================ -->
+<section class="slide" data-section="dense" data-notes="ダッシュボード型。KPI4指標＋折れ線グラフ＋ドーナツチャートの組み合わせ。">
+  <div class="accent-line-top"></div>
+  <div style="width:100%; height:100%; display:flex; flex-direction:column; padding:2.5cqw 3cqw; background:var(--c-base-dim);">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2cqw;">
+      <div>
+        <span class="label-tag" style="margin-bottom:0.5cqw; display:block;">DENSE: ダッシュボード</span>
+        <h2 class="slide-h2 text-main">月次レポート <span class="slide-body text-sub">2026年3月</span></h2>
+      </div>
+      <div style="display:flex; gap:1cqw;">
+        <div style="padding:0.5cqw 1.2cqw; background:var(--c-accent); color:#fff; font-size:1.2cqw; font-weight:600; border-radius:0.8cqw;">PDF出力</div>
+        <div style="padding:0.5cqw 1.2cqw; border:1px solid var(--c-border); color:var(--c-text-sub); font-size:1.2cqw; border-radius:0.8cqw;">前月比較</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:1.5cqw; margin-bottom:2cqw;">
+      <div class="card" style="flex:1; padding:1.5cqw;">
+        <div style="display:flex; justify-content:space-between; align-items:center;"><span class="slide-micro text-sub">売上</span><span class="slide-micro" style="color:#22C55E;">+24%</span></div>
+        <p class="slide-h2 text-main" style="margin-top:0.3cqw;">¥12.4M</p>
+      </div>
+      <div class="card" style="flex:1; padding:1.5cqw;">
+        <div style="display:flex; justify-content:space-between; align-items:center;"><span class="slide-micro text-sub">新規MRR</span><span class="slide-micro" style="color:#22C55E;">+18%</span></div>
+        <p class="slide-h2 text-accent" style="margin-top:0.3cqw;">¥3.2M</p>
+      </div>
+      <div class="card" style="flex:1; padding:1.5cqw;">
+        <div style="display:flex; justify-content:space-between; align-items:center;"><span class="slide-micro text-sub">解約率</span><span class="slide-micro text-accent">+0.3pt</span></div>
+        <p class="slide-h2 text-main" style="margin-top:0.3cqw;">1.8%</p>
+      </div>
+      <div class="card" style="flex:1; padding:1.5cqw;">
+        <div style="display:flex; justify-content:space-between; align-items:center;"><span class="slide-micro text-sub">NPS</span><span class="slide-micro" style="color:#22C55E;">+5pt</span></div>
+        <p class="slide-h2 text-main" style="margin-top:0.3cqw;">72</p>
+      </div>
+    </div>
+    <div style="display:flex; gap:1.5cqw; flex:1; min-height:0;">
+      <div class="card" style="flex:2; padding:2cqw; display:flex; flex-direction:column;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1.5cqw;">
+          <span class="slide-body text-main" style="font-weight:700;">売上推移</span>
+          <div style="display:flex; gap:1cqw; font-size:1cqw; color:var(--c-text-sub);"><span>● 今期</span><span style="color:var(--c-border);">● 前期</span></div>
+        </div>
+        <div style="flex:1; position:relative;">
+          <svg viewBox="0 0 100 40" preserveAspectRatio="none" style="width:100%; height:100%;">
+            <polyline points="0,35 10,30 20,28 30,25 40,20 50,22 60,18 70,12 80,10 90,8 100,5" fill="none" stroke="var(--c-accent)" stroke-width="1.2"/>
+            <polyline points="0,38 10,36 20,35 30,33 40,30 50,31 60,28 70,25 80,24 90,22 100,20" fill="none" stroke="var(--c-border)" stroke-width="1" stroke-dasharray="2,2"/>
+          </svg>
+        </div>
+      </div>
+      <div style="flex:1; display:flex; flex-direction:column; gap:1.5cqw;">
+        <div class="card" style="flex:1; background:var(--c-main); padding:1.5cqw; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+          <div style="width:8cqw; height:8cqw; border-radius:50%; background:conic-gradient(var(--c-accent) 0% 68%, rgba(255,255,255,0.15) 68% 100%); display:flex; align-items:center; justify-content:center;">
+            <div style="width:5.5cqw; height:5.5cqw; border-radius:50%; background:var(--c-main); display:flex; align-items:center; justify-content:center; font-size:1.8cqw; font-weight:800; color:#fff;">68%</div>
+          </div>
+          <span class="slide-micro" style="color:rgba(255,255,255,0.6); margin-top:0.8cqw;">目標達成率</span>
+        </div>
+        <div class="card" style="flex:1; padding:1.5cqw;">
+          <span class="slide-micro text-sub">トップ顧客</span>
+          <div style="margin-top:0.8cqw; display:flex; flex-direction:column; gap:0.5cqw;">
+            <div style="display:flex; justify-content:space-between;" class="slide-caption"><span class="text-main" style="font-weight:600;">A社</span><span class="text-accent" style="font-weight:700;">¥2.1M</span></div>
+            <div style="display:flex; justify-content:space-between;" class="slide-caption"><span class="text-main" style="font-weight:600;">B社</span><span class="text-main">¥1.8M</span></div>
+            <div style="display:flex; justify-content:space-between;" class="slide-caption"><span class="text-main" style="font-weight:600;">C社</span><span class="text-main">¥1.4M</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-section="dense" data-notes="SWOT分析。4象限グリッドで強み・弱み・機会・脅威を整理。">
+  <div class="accent-line-top"></div>
+  <div style="width:100%; height:100%; display:flex; flex-direction:column; padding:3cqw;">
+    <div style="margin-bottom:2cqw;">
+      <span class="label-tag">DENSE: SWOT分析</span>
+      <h2 class="slide-h2 text-main" style="margin-top:0.5cqw;">SWOT分析</h2>
+    </div>
+    <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:1.2cqw; min-height:0;">
+      <div style="background:#EEF4FF; border-radius:0.8cqw; padding:2cqw;">
+        <div style="display:flex; align-items:center; gap:1cqw; margin-bottom:1.2cqw;">
+          <div style="width:3cqw; height:3cqw; background:#3B82F6; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; font-size:1.6cqw; font-weight:800; color:#fff;">S</div>
+          <span class="slide-h3 text-main">強み</span>
+        </div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.7cqw;">
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#3B82F6; font-weight:700; flex-shrink:0;">+</span>業界トップクラスの技術力</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#3B82F6; font-weight:700; flex-shrink:0;">+</span>10年以上の導入実績500社</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#3B82F6; font-weight:700; flex-shrink:0;">+</span>24時間365日のサポート体制</li>
+        </ul>
+      </div>
+      <div style="background:#FEF3C7; border-radius:0.8cqw; padding:2cqw;">
+        <div style="display:flex; align-items:center; gap:1cqw; margin-bottom:1.2cqw;">
+          <div style="width:3cqw; height:3cqw; background:#F59E0B; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; font-size:1.6cqw; font-weight:800; color:#fff;">W</div>
+          <span class="slide-h3 text-main">弱み</span>
+        </div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.7cqw;">
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#F59E0B; font-weight:700; flex-shrink:0;">-</span>海外展開の経験が浅い</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#F59E0B; font-weight:700; flex-shrink:0;">-</span>マーケティング人材の不足</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#F59E0B; font-weight:700; flex-shrink:0;">-</span>レガシーシステムの保守コスト</li>
+        </ul>
+      </div>
+      <div style="background:#ECFDF5; border-radius:0.8cqw; padding:2cqw;">
+        <div style="display:flex; align-items:center; gap:1cqw; margin-bottom:1.2cqw;">
+          <div style="width:3cqw; height:3cqw; background:#22C55E; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; font-size:1.6cqw; font-weight:800; color:#fff;">O</div>
+          <span class="slide-h3 text-main">機会</span>
+        </div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.7cqw;">
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#22C55E; font-weight:700; flex-shrink:0;">↑</span>AI市場の急成長（年率35%）</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#22C55E; font-weight:700; flex-shrink:0;">↑</span>DX推進の法規制強化</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#22C55E; font-weight:700; flex-shrink:0;">↑</span>リモートワーク定着による需要増</li>
+        </ul>
+      </div>
+      <div style="background:#FEF2F2; border-radius:0.8cqw; padding:2cqw;">
+        <div style="display:flex; align-items:center; gap:1cqw; margin-bottom:1.2cqw;">
+          <div style="width:3cqw; height:3cqw; background:#EF4444; border-radius:0.8cqw; display:flex; align-items:center; justify-content:center; font-size:1.6cqw; font-weight:800; color:#fff;">T</div>
+          <span class="slide-h3 text-main">脅威</span>
+        </div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.7cqw;">
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#EF4444; font-weight:700; flex-shrink:0;">!</span>大手プラットフォーマーの参入</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#EF4444; font-weight:700; flex-shrink:0;">!</span>エンジニア採用コストの高騰</li>
+          <li class="slide-body text-main" style="display:flex; align-items:flex-start; gap:0.6cqw;"><span style="color:#EF4444; font-weight:700; flex-shrink:0;">!</span>個人情報保護規制の厳格化</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-section="dense" data-notes="プロジェクト進捗レポート。サマリー3指標＋フェーズ別進捗テーブル。">
+  <div class="accent-line-top"></div>
+  <div style="width:100%; height:100%; display:flex; flex-direction:column; padding:2.5cqw 3cqw;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2cqw;">
+      <div>
+        <span class="label-tag" style="margin-bottom:0.5cqw; display:block;">DENSE: プロジェクト進捗</span>
+        <h2 class="slide-h2 text-main">プロジェクト進捗報告</h2>
+      </div>
+      <div style="display:flex; align-items:center; gap:1.5cqw;" class="slide-micro text-sub">
+        <span style="display:flex; align-items:center; gap:0.5cqw;"><span style="width:1cqw; height:1cqw; background:#22C55E; border-radius:50%; display:inline-block;"></span>完了</span>
+        <span style="display:flex; align-items:center; gap:0.5cqw;"><span style="width:1cqw; height:1cqw; background:#3B82F6; border-radius:50%; display:inline-block;"></span>進行中</span>
+        <span style="display:flex; align-items:center; gap:0.5cqw;"><span style="width:1cqw; height:1cqw; background:var(--c-border); border-radius:50%; display:inline-block;"></span>未着手</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:2cqw; margin-bottom:2cqw;">
+      <div class="card" style="flex:1; padding:1.5cqw; display:flex; align-items:center; gap:1.5cqw;">
+        <div style="width:5cqw; height:5cqw; border-radius:50%; background:conic-gradient(#22C55E 0% 65%, #3B82F6 65% 85%, var(--c-border) 85% 100%); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+          <div style="width:3.5cqw; height:3.5cqw; border-radius:50%; background:var(--c-base); display:flex; align-items:center; justify-content:center; font-size:1.2cqw; font-weight:800; color:var(--c-main);">65%</div>
+        </div>
+        <div><p class="slide-micro text-sub">全体進捗</p><p class="slide-h3 text-main">予定通り</p></div>
+      </div>
+      <div class="card" style="flex:1; padding:1.5cqw; display:flex; align-items:center; gap:1.5cqw;">
+        <div class="slide-h1 text-accent">3</div>
+        <div><p class="slide-micro text-sub">未解決リスク</p><p class="slide-body text-accent" style="font-weight:600;">要対応 2件</p></div>
+      </div>
+      <div class="card" style="flex:1; padding:1.5cqw; display:flex; align-items:center; gap:1.5cqw;">
+        <div class="slide-h1 text-main">42</div>
+        <div><p class="slide-micro text-sub">残タスク</p><p class="slide-body text-main" style="font-weight:600;">期限内 38件</p></div>
+      </div>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:0.8cqw; min-height:0;">
+      <div style="display:flex; align-items:center; gap:1cqw; padding:0 1cqw;" class="slide-micro text-sub">
+        <span style="width:20%; font-weight:700; color:var(--c-main);">フェーズ</span><span style="width:10%; text-align:center;">担当</span><span style="width:10%; text-align:center;">期限</span><span style="flex:1;">進捗</span><span style="width:10%; text-align:center;">状態</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:1cqw; background:var(--c-base-dim); padding:1cqw; border-radius:0.8cqw;" class="slide-caption">
+        <span style="width:20%; font-weight:600; color:var(--c-main);">要件定義</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">山田</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">3/15</span>
+        <span style="flex:1;"><div style="height:0.8cqw; background:var(--c-border); border-radius:0.8cqw; overflow:hidden;"><div style="width:100%; height:100%; background:#22C55E; border-radius:0.8cqw;"></div></div></span>
+        <span style="width:10%; text-align:center; color:#22C55E; font-weight:700;">完了</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:1cqw; border:1px solid var(--c-border); padding:1cqw; border-radius:0.8cqw;" class="slide-caption">
+        <span style="width:20%; font-weight:600; color:var(--c-main);">UI設計</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">佐藤</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">3/30</span>
+        <span style="flex:1;"><div style="height:0.8cqw; background:var(--c-border); border-radius:0.8cqw; overflow:hidden;"><div style="width:100%; height:100%; background:#22C55E; border-radius:0.8cqw;"></div></div></span>
+        <span style="width:10%; text-align:center; color:#22C55E; font-weight:700;">完了</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:1cqw; background:#EEF4FF; padding:1cqw; border-radius:0.8cqw; border:1px solid #BFDBFE;" class="slide-caption">
+        <span style="width:20%; font-weight:600; color:var(--c-main);">フロント開発</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">鈴木</span><span style="width:10%; text-align:center; color:var(--c-accent); font-weight:600;">4/20</span>
+        <span style="flex:1;"><div style="height:0.8cqw; background:var(--c-border); border-radius:0.8cqw; overflow:hidden;"><div style="width:72%; height:100%; background:#3B82F6; border-radius:0.8cqw;"></div></div></span>
+        <span style="width:10%; text-align:center; color:#3B82F6; font-weight:700;">72%</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:1cqw; background:#EEF4FF; padding:1cqw; border-radius:0.8cqw; border:1px solid #BFDBFE;" class="slide-caption">
+        <span style="width:20%; font-weight:600; color:var(--c-main);">バックエンド</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">田中</span><span style="width:10%; text-align:center; color:var(--c-accent); font-weight:600;">4/25</span>
+        <span style="flex:1;"><div style="height:0.8cqw; background:var(--c-border); border-radius:0.8cqw; overflow:hidden;"><div style="width:45%; height:100%; background:#3B82F6; border-radius:0.8cqw;"></div></div></span>
+        <span style="width:10%; text-align:center; color:#3B82F6; font-weight:700;">45%</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:1cqw; background:var(--c-base-dim); padding:1cqw; border-radius:0.8cqw;" class="slide-caption">
+        <span style="width:20%; font-weight:600; color:var(--c-main);">テスト・QA</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">高橋</span><span style="width:10%; text-align:center; color:var(--c-text-sub);">5/10</span>
+        <span style="flex:1;"><div style="height:0.8cqw; background:var(--c-border); border-radius:0.8cqw; overflow:hidden;"></div></span>
+        <span style="width:10%; text-align:center; color:var(--c-border); font-weight:700;">未着手</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     57. 裏表紙 / 閉じ (Back Cover / Closing)
+     ============================================ -->
+<section class="slide slide-bridge" data-section="closing" data-notes="閉じスライド。連絡先・URL・QRコード等。">
+  <div class="slide-content layout-center">
+    <span class="label-tag" style="background:var(--c-accent);">レイアウト: 裏表紙</span>
+    <h2 class="slide-hero text-white">Thank You</h2>
+    <div style="width:5cqw; height:0.2cqw; background:var(--c-accent); margin:1cqw auto;"></div>
+    <p class="slide-title text-white" style="opacity:0.8;">お問い合わせ: contact@example.com</p>
+    <p class="slide-caption text-white" style="opacity:0.5;">https://example.com</p>
+  </div>
+</section>
+
+</div><!-- /.slide-stage -->
+
+<!-- ============================================
+     NAVIGATION & UI
+     ============================================ -->
+<div class="nav-area nav-prev" id="navPrev"></div>
+<div class="nav-area nav-next" id="navNext"></div>
+
+<div class="status-bar" id="statusBar">1 / 37</div>
+
+<button class="menu-btn" id="menuBtn">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="sidebar-overlay" id="sidebarOverlay">
+  <div class="sidebar" id="sidebar"></div>
+</div>
+
+<div class="script-trigger" id="scriptTrigger"></div>
+<div class="script-panel" id="scriptPanel"></div>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<script>
+/* ============================================
+   SLIDE ENGINE
+   ============================================ */
+(function() {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let current = 0;
+
+  // URL hash
+  const hash = parseInt(location.hash.replace('#', ''), 10);
+  if (hash >= 1 && hash <= total) current = hash - 1;
+
+  function showSlide(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    location.hash = current + 1;
+    updateUI();
+  }
+
+  function updateUI() {
+    document.getElementById('statusBar').textContent =
+      (current + 1) + ' / ' + total;
+    document.getElementById('progressBar').style.width =
+      ((current + 1) / total * 100) + '%';
+    // Script panel
+    const notes = slides[current].getAttribute('data-notes') || '';
+    document.getElementById('scriptPanel').textContent = notes;
+    // Sidebar highlight
+    document.querySelectorAll('.sidebar-item').forEach((el, i) => {
+      el.classList.toggle('current', i === current);
+    });
+  }
+
+  // Navigation
+  document.getElementById('navNext').addEventListener('click', () => showSlide(current + 1));
+  document.getElementById('navPrev').addEventListener('click', () => showSlide(current - 1));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); showSlide(current + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'Backspace') { e.preventDefault(); showSlide(current - 1); }
+    if (e.key === 'Home') showSlide(0);
+    if (e.key === 'End') showSlide(total - 1);
+    if (e.key === 'Escape') closeSidebar();
+    if (e.key === 'f') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  // Sidebar
+  const overlay = document.getElementById('sidebarOverlay');
+  const sidebar = document.getElementById('sidebar');
+  const menuBtn = document.getElementById('menuBtn');
+
+  // Build sidebar
+  slides.forEach((s, i) => {
+    const label = s.querySelector('.label-tag');
+    const item = document.createElement('div');
+    item.className = 'sidebar-item' + (i === current ? ' current' : '');
+    item.textContent = (i + 1) + '. ' + (label ? label.textContent : 'Slide ' + (i + 1));
+    item.addEventListener('click', () => { showSlide(i); closeSidebar(); });
+    sidebar.appendChild(item);
+  });
+
+  menuBtn.addEventListener('click', () => overlay.classList.toggle('open'));
+  overlay.addEventListener('click', (e) => {
+    if (!e.target.closest('.sidebar')) closeSidebar();
+  });
+  function closeSidebar() { overlay.classList.remove('open'); }
+
+  // Talk Script hover
+  const trigger = document.getElementById('scriptTrigger');
+  const panel = document.getElementById('scriptPanel');
+  trigger.addEventListener('mouseenter', () => {
+    if (slides[current].getAttribute('data-notes')) panel.classList.add('visible');
+  });
+  trigger.addEventListener('mouseleave', () => panel.classList.remove('visible'));
+  panel.addEventListener('mouseenter', () => panel.classList.add('visible'));
+  panel.addEventListener('mouseleave', () => panel.classList.remove('visible'));
+
+  // Touch swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) showSlide(current + 1);
+      else showSlide(current - 1);
+    }
+  });
+
+  // Init
+  slides.forEach((s, i) => s.classList.toggle('active', i === current));
+  updateUI();
+})();
+</script>
+
+</body>
+</html>
