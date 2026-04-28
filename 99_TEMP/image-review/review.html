@@ -415,7 +415,7 @@
 
   // ===== ページID（URLのパス or 手動設定） =====
   // 複数レビューページを作る場合はここを変える
-  var PAGE_ID = location.pathname.replace(/[^a-zA-Z0-9_-]/g, '_') || 'review_default';
+  var PAGE_ID = 'image-review-001';
 
   // ===== 状態 =====
   var commentMode = false;
@@ -500,6 +500,11 @@
       name: name,
       resolved: false,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function() {
+      console.log('保存OK');
+    }).catch(function(err) {
+      alert('保存エラー: ' + err.message);
+      console.error(err);
     });
   }
 
