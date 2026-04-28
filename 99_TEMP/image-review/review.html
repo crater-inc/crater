@@ -432,7 +432,7 @@
   document.getElementById('btn-comment-mode').addEventListener('click', function() {
     commentMode = !commentMode;
     imageWrap.classList.toggle('normal-cursor', !commentMode);
-    this.textContent = commentMode ? '× キャンセル' : '　コメントを追加';
+    this.textContent = commentMode ? 'コメント完了' : 'コメントを追加';
     this.classList.toggle('active', commentMode);
     if (!commentMode) closeInputPopup();
   });
