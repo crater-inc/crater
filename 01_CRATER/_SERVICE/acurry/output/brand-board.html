@@ -717,6 +717,8 @@ details.acc[open] .acc-body { opacity: 1; }
         <!-- ドーナツチャート + 凡例 -->
         <div style="display:flex;align-items:center;gap:24px;margin-bottom:20px;">
           <svg width="160" height="160" viewBox="0 0 160 160" style="flex-shrink:0;">
+            <!-- 外側ベース（白リング） -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#fff" stroke-width="30"/>
             <!-- BG Light Gray 70% -->
             <circle cx="80" cy="80" r="56" fill="none" stroke="#C8C7C1" stroke-width="28"
               stroke-dasharray="246.4 352" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
@@ -729,7 +731,19 @@ details.acc[open] .acc-body { opacity: 1; }
             <!-- Black 5% -->
             <circle cx="80" cy="80" r="56" fill="none" stroke="#111111" stroke-width="28"
               stroke-dasharray="17.6 352" stroke-dashoffset="-334.4" transform="rotate(-90 80 80)"/>
+            <!-- セグメント区切り（白） -->
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#fff" stroke-width="2"
+              stroke-dasharray="1 351" stroke-dashoffset="0" transform="rotate(-90 80 80)"/>
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#fff" stroke-width="2"
+              stroke-dasharray="1 351" stroke-dashoffset="-246.4" transform="rotate(-90 80 80)"/>
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#fff" stroke-width="2"
+              stroke-dasharray="1 351" stroke-dashoffset="-299.2" transform="rotate(-90 80 80)"/>
+            <circle cx="80" cy="80" r="56" fill="none" stroke="#fff" stroke-width="2"
+              stroke-dasharray="1 351" stroke-dashoffset="-334.4" transform="rotate(-90 80 80)"/>
+            <!-- 中央白抜き -->
             <circle cx="80" cy="80" r="42" fill="var(--bg)"/>
+            <!-- 中央枠（白リング） -->
+            <circle cx="80" cy="80" r="42" fill="none" stroke="#fff" stroke-width="2"/>
           </svg>
           <!-- 凡例：%のみ -->
           <div style="display:flex;flex-direction:column;gap:10px;">
