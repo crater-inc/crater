@@ -84,40 +84,43 @@ body {
   padding: 0 var(--pad);
   display: flex; align-items: center;
   justify-content: space-between;
-  height: 52px;
+  height: 64px;
+  border-bottom: 1px solid var(--gray-lt);
 }
 .header-brand {
   display: flex; align-items: center;
 }
 .header-brand svg {
-  height: 30px; width: auto; fill: var(--black);
+  height: 28px; width: auto; fill: var(--black);
 }
 .header-sub {
-  font-size: 12px; letter-spacing: 0.15em;
-  color: var(--black);
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--black); opacity: 0.5;
 }
 
 /* ── Tab Nav ─────────────────────────────── */
 .tab-nav {
-  position: sticky; top: 52px; z-index: 99;
+  position: sticky; top: 64px; z-index: 99;
   background: var(--bg);
   border-bottom: 1px solid var(--gray-lt);
-  display: flex; padding: 0 var(--pad); gap: 0;
+  display: flex;
+  padding: 0 calc(var(--pad) - 20px);
+  gap: 0;
   overflow-x: auto;
 }
 .tab-nav::-webkit-scrollbar { display: none; }
 .tab-btn {
   font-family: var(--font);
-  font-size: 12px; letter-spacing: 0.2em;
+  font-size: 11px; letter-spacing: 0.2em;
   color: var(--black); background: none; border: none;
   padding: 14px 20px; cursor: pointer;
-  border-bottom: 1px solid transparent;
+  border-bottom: 2px solid transparent;
   margin-bottom: -1px;
   transition: color 0.15s, border-color 0.15s;
-  flex-shrink: 0;
+  flex-shrink: 0; opacity: 0.45;
 }
-.tab-btn:hover { color: var(--black); }
-.tab-btn.active { color: var(--black); border-bottom-color: var(--black); }
+.tab-btn:hover { opacity: 0.8; }
+.tab-btn.active { opacity: 1; border-bottom-color: var(--black); }
 
 /* ── Tab Content ─────────────────────────── */
 .tab-panel { display: none; max-width: 1200px; margin: 0 auto; padding: 0 var(--pad) 80px; }
