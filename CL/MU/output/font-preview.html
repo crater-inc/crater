@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Font Preview — 能登マロン堂</title>
+
+<script>
+  const BRAND    = 'NOTO MARONDO';
+  const BRAND_JP = '能登マロン堂';
+  const TAGLINE  = 'くりだす、ベビーカステラ。';
+  const TAGLINE_EN = 'Chestnut Baby Castella.';
+  const BODY_TEXT = '栗のタンニンが酸化するときに現れる、自然の紫。ひとくちのベビーカステラに、能登の栗をのせた。';
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?
+  family=Barlow+Condensed:wght@300;400;500;600;700
+  &family=Oswald:wght@300;400;500;600
+  &family=Roboto+Condensed:wght@300;400;500;600;700
+  &family=Inter+Tight:wght@300;400;500;600;700
+  &family=Archivo+Narrow:wght@300;400;500;600;700
+  &family=League+Spartan:wght@400;500;600;700
+  &family=Noto+Serif+JP:wght@300;400;500;600;700
+  &family=Noto+Sans+JP:wght@400;500;700
+  &family=Shippori+Mincho:wght@400;500;600;700
+  &family=Zen+Old+Mincho:wght@400;500;600;700;900
+  &family=Shippori+Mincho+B1:wght@400;500;600;700;800
+  &family=Kaisei+Opti:wght@400;500;700
+  &display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#1a1a1a;
+  font-family:'Noto Serif JP', serif;
+  color:#e8e4dc;
+  padding:48px;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-size:11px; letter-spacing:0.35em; color:#555; margin-bottom:8px; font-weight:normal; }
+.note { font-size:11px; color:#444; margin-bottom:48px; line-height:1.8; }
+
+.section-title {
+  font-size:10px; letter-spacing:0.3em;
+  color:#555; border-bottom:1px solid #2a2a2a;
+  padding-bottom:8px; margin-bottom:32px; margin-top:56px;
+  text-transform: uppercase;
+}
+
+.card {
+  background:#222;
+  border-radius:4px;
+  padding:32px 36px;
+  margin-bottom:16px;
+  display:flex;
+  gap:40px;
+  align-items:flex-start;
+}
+
+.card-meta {
+  min-width:160px;
+  flex-shrink:0;
+}
+
+.font-name {
+  font-size:10px;
+  letter-spacing:0.2em;
+  color:#8F7AAA;
+  margin-bottom:4px;
+  font-family:'Noto Sans JP', sans-serif;
+  font-weight:normal;
+}
+
+.font-weight {
+  font-size:10px;
+  color:#444;
+  letter-spacing:0.1em;
+  font-family:'Noto Sans JP', sans-serif;
+}
+
+.card-content {
+  flex:1;
+}
+
+.preview-brand-jp {
+  font-size:42px;
+  line-height:1.2;
+  margin-bottom:12px;
+  color:#e8e4dc;
+}
+
+.preview-brand-en {
+  font-size:32px;
+  line-height:1.2;
+  margin-bottom:12px;
+  letter-spacing:0.05em;
+  color:#e8e4dc;
+}
+
+.preview-tagline {
+  font-size:16px;
+  line-height:1.8;
+  color:#aaa;
+  margin-bottom:8px;
+}
+
+.preview-body {
+  font-size:12px;
+  line-height:1.9;
+  color:#666;
+}
+
+.accent { color:#8F7AAA; }
+
+.combo-card {
+  background:#222;
+  border-radius:4px;
+  padding:40px 48px;
+  margin-bottom:16px;
+}
+
+.combo-label {
+  font-size:10px;
+  letter-spacing:0.2em;
+  color:#555;
+  margin-bottom:24px;
+  font-family:'Noto Sans JP', sans-serif;
+}
+
+.combo-en {
+  font-size:48px;
+  letter-spacing:0.08em;
+  line-height:1;
+  margin-bottom:4px;
+  color:#e8e4dc;
+}
+
+.combo-jp {
+  font-size:36px;
+  line-height:1.4;
+  margin-bottom:16px;
+  color:#e8e4dc;
+}
+
+.combo-tagline {
+  font-size:14px;
+  color:#8F7AAA;
+  letter-spacing:0.05em;
+  line-height:1.8;
+}
+
+.color-dot {
+  display:inline-block;
+  width:8px; height:8px;
+  border-radius:50%;
+  background:#8F7AAA;
+  margin-right:6px;
+  vertical-align:middle;
+}
+</style>
+</head>
+<body>
+
+<h1>FONT PREVIEW — 能登マロン堂 / NOTO MARONDO</h1>
+<div class="note">
+  ブランドカラー <span class="accent">■ #8F7AAA</span>　／
+  日本語：明朝系　／　英字：幅狭ゴシック系
+</div>
+
+<!-- 日本語フォント -->
+<div class="section-title">日本語フォント候補</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Shippori Mincho</div>
+    <div class="font-weight">400 / 500 / 600</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-jp" style="font-family:'Shippori Mincho',serif; font-weight:500;">能登マロン堂</div>
+    <div class="preview-tagline" style="font-family:'Shippori Mincho',serif; font-weight:400;">くりだす、ベビーカステラ。</div>
+    <div class="preview-body" style="font-family:'Shippori Mincho',serif;">栗のタンニンが酸化するときに現れる、自然の紫。ひとくちのベビーカステラに、能登の栗をのせた。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Zen Old Mincho</div>
+    <div class="font-weight">400 / 500 / 700</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-jp" style="font-family:'Zen Old Mincho',serif; font-weight:500;">能登マロン堂</div>
+    <div class="preview-tagline" style="font-family:'Zen Old Mincho',serif; font-weight:400;">くりだす、ベビーカステラ。</div>
+    <div class="preview-body" style="font-family:'Zen Old Mincho',serif;">栗のタンニンが酸化するときに現れる、自然の紫。ひとくちのベビーカステラに、能登の栗をのせた。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Noto Serif JP</div>
+    <div class="font-weight">300 / 400 / 500</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-jp" style="font-family:'Noto Serif JP',serif; font-weight:400;">能登マロン堂</div>
+    <div class="preview-tagline" style="font-family:'Noto Serif JP',serif; font-weight:300;">くりだす、ベビーカステラ。</div>
+    <div class="preview-body" style="font-family:'Noto Serif JP',serif; font-weight:300;">栗のタンニンが酸化するときに現れる、自然の紫。ひとくちのベビーカステラに、能登の栗をのせた。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Kaisei Opti</div>
+    <div class="font-weight">400 / 500 / 700</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-jp" style="font-family:'Kaisei Opti',serif; font-weight:500;">能登マロン堂</div>
+    <div class="preview-tagline" style="font-family:'Kaisei Opti',serif; font-weight:400;">くりだす、ベビーカステラ。</div>
+    <div class="preview-body" style="font-family:'Kaisei Opti',serif;">栗のタンニンが酸化するときに現れる、自然の紫。ひとくちのベビーカステラに、能登の栗をのせた。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Shippori Mincho B1</div>
+    <div class="font-weight">400 / 600 / 800</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-jp" style="font-family:'Shippori Mincho B1',serif; font-weight:600;">能登マロン堂</div>
+    <div class="preview-tagline" style="font-family:'Shippori Mincho B1',serif; font-weight:400;">くりだす、ベビーカステラ。</div>
+    <div class="preview-body" style="font-family:'Shippori Mincho B1',serif;">栗のタンニンが酸化するときに現れる、自然の紫。ひとくちのベビーカステラに、能登の栗をのせた。</div>
+  </div>
+</div>
+
+<!-- 英字フォント -->
+<div class="section-title">英字フォント候補（幅狭ゴシック系）</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Barlow Condensed</div>
+    <div class="font-weight">300 / 400 / 500 / 600</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-en" style="font-family:'Barlow Condensed',sans-serif; font-weight:500;">NOTO MARONDO</div>
+    <div class="preview-tagline" style="font-family:'Barlow Condensed',sans-serif; font-weight:300; letter-spacing:0.15em;">Chestnut Baby Castella.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Oswald</div>
+    <div class="font-weight">300 / 400 / 500</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-en" style="font-family:'Oswald',sans-serif; font-weight:400;">NOTO MARONDO</div>
+    <div class="preview-tagline" style="font-family:'Oswald',sans-serif; font-weight:300; letter-spacing:0.12em;">Chestnut Baby Castella.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Roboto Condensed</div>
+    <div class="font-weight">300 / 400 / 500</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-en" style="font-family:'Roboto Condensed',sans-serif; font-weight:400;">NOTO MARONDO</div>
+    <div class="preview-tagline" style="font-family:'Roboto Condensed',sans-serif; font-weight:300; letter-spacing:0.12em;">Chestnut Baby Castella.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Inter Tight</div>
+    <div class="font-weight">300 / 400 / 500</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-en" style="font-family:'Inter Tight',sans-serif; font-weight:400;">NOTO MARONDO</div>
+    <div class="preview-tagline" style="font-family:'Inter Tight',sans-serif; font-weight:300; letter-spacing:0.12em;">Chestnut Baby Castella.</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-meta">
+    <div class="font-name">Archivo Narrow</div>
+    <div class="font-weight">300 / 400 / 500</div>
+  </div>
+  <div class="card-content">
+    <div class="preview-brand-en" style="font-family:'Archivo Narrow',sans-serif; font-weight:400;">NOTO MARONDO</div>
+    <div class="preview-tagline" style="font-family:'Archivo Narrow',sans-serif; font-weight:300; letter-spacing:0.12em;">Chestnut Baby Castella.</div>
+  </div>
+</div>
+
+<!-- 組み合わせ提案 -->
+<div class="section-title">組み合わせ提案</div>
+
+<div class="combo-card">
+  <div class="combo-label">案1 — Barlow Condensed × Shippori Mincho</div>
+  <div class="combo-en" style="font-family:'Barlow Condensed',sans-serif; font-weight:500;">NOTO MARONDO</div>
+  <div class="combo-jp" style="font-family:'Shippori Mincho',serif; font-weight:500;">能登マロン堂</div>
+  <div class="combo-tagline" style="font-family:'Shippori Mincho',serif;">くりだす、ベビーカステラ。</div>
+</div>
+
+<div class="combo-card">
+  <div class="combo-label">案2 — Oswald × Zen Old Mincho</div>
+  <div class="combo-en" style="font-family:'Oswald',sans-serif; font-weight:400; letter-spacing:0.1em;">NOTO MARONDO</div>
+  <div class="combo-jp" style="font-family:'Zen Old Mincho',serif; font-weight:500;">能登マロン堂</div>
+  <div class="combo-tagline" style="font-family:'Zen Old Mincho',serif;">くりだす、ベビーカステラ。</div>
+</div>
+
+<div class="combo-card">
+  <div class="combo-label">案3 — Inter Tight × Noto Serif JP（細め・余白感）</div>
+  <div class="combo-en" style="font-family:'Inter Tight',sans-serif; font-weight:300; letter-spacing:0.2em; font-size:40px;">NOTO MARONDO</div>
+  <div class="combo-jp" style="font-family:'Noto Serif JP',serif; font-weight:300; font-size:32px;">能登マロン堂</div>
+  <div class="combo-tagline" style="font-family:'Noto Serif JP',serif; font-weight:300;">くりだす、ベビーカステラ。</div>
+</div>
+
+<div class="combo-card">
+  <div class="combo-label">案4 — Barlow Condensed × Kaisei Opti（バランス型）</div>
+  <div class="combo-en" style="font-family:'Barlow Condensed',sans-serif; font-weight:400; letter-spacing:0.15em;">NOTO MARONDO</div>
+  <div class="combo-jp" style="font-family:'Kaisei Opti',serif; font-weight:500;">能登マロン堂</div>
+  <div class="combo-tagline" style="font-family:'Kaisei Opti',serif;">くりだす、ベビーカステラ。</div>
+</div>
+
+<div style="margin-top:56px; color:#333; font-size:10px; letter-spacing:0.2em; text-align:right;">NOTO MARONDO — FONT STUDY</div>
+
+</body>
+</html>
