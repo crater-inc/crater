@@ -22,7 +22,8 @@
 <div id="wf-bar">
   <span class="wf-bar-logo">ONE WF</span><span class="wf-bar-sep">|</span><span class="wf-bar-page">ニュース一覧</span>
   <div class="wf-bar-nav"><a href="wireframe-index.html">INDEX</a><a href="wireframe-top.html">TOP</a><a href="wireframe-about.html">ABOUT</a><a href="wireframe-property.html">PROPERTY</a><a href="wireframe-staff-list.html">STAFF</a><a href="wireframe-voice-list.html">VOICE</a><a href="wireframe-recruit.html">RECRUIT</a><a href="wireframe-company.html">COMPANY</a><a href="wireframe-contact.html">CONTACT</a><a href="wireframe-assessment.html">査定</a><a href="wireframe-news-list.html" class="cur">NEWS</a></div>
-  <div class="wf-bar-right"><span id="wf-count">0件</span><button id="wf-toggle-resolved">解決済みを隠す</button><button id="wf-comment-btn">💬 コメント追加</button></div>
+  <div class="wf-bar-right"><button id="wf-help-btn" onclick="document.getElementById('wf-help-modal').style.display='flex'" style="font-size:11px;color:#aaa;background:transparent;border:1px solid #444;border-radius:3px;padding:3px 10px;cursor:pointer;letter-spacing:0.1em;">？ 使い方</button>
+    <span id="wf-count">0件</span><button id="wf-toggle-resolved">解決済みを隠す</button><button id="wf-comment-btn">💬 コメント追加</button></div>
 </div>
 <div id="wf-panel"><div class="wf-panel-title">コメント一覧</div><div id="wf-panel-list"><div id="wf-panel-empty">コメントはまだありません</div></div></div>
 
@@ -89,5 +90,32 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script>var WF_PAGE_ID='one-wf-news-list';</script>
 <script src="_wf-comment.js"></script>
+
+<!-- 使い方モーダル -->
+<div id="wf-help-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:40px 48px;max-width:540px;width:90%;position:relative;">
+    <div style="font-size:11px;letter-spacing:0.3em;color:#555;margin-bottom:20px;">HOW TO USE</div>
+    <div style="font-size:16px;font-weight:bold;color:#fff;letter-spacing:0.1em;margin-bottom:28px;">ワイヤーフレームの使い方</div>
+    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:20px;">
+      <li style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="color:#555;font-size:11px;letter-spacing:0.15em;margin-top:2px;flex-shrink:0;">01</span>
+        <span style="font-size:13px;color:#ccc;line-height:1.8;">一番上のメニューバーはワイヤー確認用のナビゲーションです。<br>実際のデザインには含まれません。</span>
+      </li>
+      <li style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="color:#555;font-size:11px;letter-spacing:0.15em;margin-top:2px;flex-shrink:0;">02</span>
+        <span style="font-size:13px;color:#ccc;line-height:1.8;">各セクションの番号はコンテンツの識別用です。<br>最終的なデザインには入りません。</span>
+      </li>
+      <li style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="color:#555;font-size:11px;letter-spacing:0.15em;margin-top:2px;flex-shrink:0;">03</span>
+        <span style="font-size:13px;color:#ccc;line-height:1.8;">右上の「💬 コメント追加」を押してから、気になる箇所をクリックするとピンを置けます。<br>文字の修正・要望もここに入力してください。</span>
+      </li>
+      <li style="display:flex;gap:14px;align-items:flex-start;">
+        <span style="color:#555;font-size:11px;letter-spacing:0.15em;margin-top:2px;flex-shrink:0;">04</span>
+        <span style="font-size:13px;color:#ccc;line-height:1.8;">デザインはまだ未着手です。<br>現在はレイアウト・構成の確認段階です。</span>
+      </li>
+    </ul>
+    <button onclick="document.getElementById('wf-help-modal').style.display='none'" style="margin-top:32px;width:100%;padding:12px;background:#333;color:#aaa;border:none;border-radius:4px;font-size:12px;letter-spacing:0.15em;cursor:pointer;">閉じる</button>
+  </div>
+</div>
 </body>
 </html>
