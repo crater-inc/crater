@@ -9,25 +9,26 @@
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 :root {
-  --bg:#F5F1E8; --bg2:#EDE9DF; --white:#FFFFFF;
-  --pur:#8F7AAA; --pur-lt:#D4C9E2; --pur-dk:#6A5A88;
+  --bg:#2A1F3D; --bg2:#3A2D52; --white:#FFFFFF;
+  --pur:#8F7AAA; --pur-lt:rgba(255,255,255,0.15); --pur-dk:#C0B0D8;
   --red:#C0392B;
-  --ch:#1A1A1A; --ch2:#2C2C2C;
-  --gray:#555; --gray-lt:#888;
+  --ch:#F5F1E8; --ch2:#E8E4DC;
+  --gray:#C0B8D0; --gray-lt:#9890A8;
+  --beige:#F5F1E8;
   --gap:20px;
 }
 body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif; min-height:100vh; }
 #mainWrap { overflow-x:clip; }
 
 /* ══ TAB NAV ══ */
-.tab-nav-sticky { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:1px solid var(--pur-lt); }
+.tab-nav-sticky { position:sticky; top:0; z-index:100; background:var(--bg2); border-bottom:1px solid var(--pur-lt); }
 .tab-nav { max-width:1440px; margin:0 auto; display:flex; align-items:stretch; padding:0 56px; }
 .tab-nav-brand { display:flex; align-items:center; gap:10px; margin-right:40px; padding:16px 0; border-right:1px solid var(--pur-lt); padding-right:36px; }
-.tab-nav-brand-jp { font-size:17px; font-weight:700; letter-spacing:0.08em; color:var(--pur-dk); }
+.tab-nav-brand-jp { font-size:17px; font-weight:700; letter-spacing:0.08em; color:var(--ch); }
 .tab-nav-brand-en { font-family:'Oswald',sans-serif; font-weight:300; font-size:10px; letter-spacing:0.35em; color:var(--pur); }
 .tab-btn { padding:18px 24px 16px; font-family:'Oswald',sans-serif; font-weight:300; font-size:13px; letter-spacing:0.3em; color:var(--gray-lt); text-transform:uppercase; cursor:pointer; border:none; background:none; border-bottom:2px solid transparent; margin-bottom:-1px; transition:color 0.2s,border-color 0.2s; }
-.tab-btn:hover { color:var(--ch); }
-.tab-btn.active { color:var(--ch); border-bottom-color:var(--pur); }
+.tab-btn:hover { color:var(--beige); }
+.tab-btn.active { color:var(--beige); border-bottom-color:var(--pur); }
 
 /* ══ TAB CONTENT ══ */
 .tab-content { display:none; padding:48px 56px 80px; max-width:1440px; margin:0 auto; }
@@ -42,26 +43,27 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
 .row { margin-bottom:var(--gap); }
 
 /* ══ CARD ══ */
-.card { background:var(--white); border-radius:8px; padding:40px 36px; }
-.card-dark { background:var(--ch); border-radius:8px; padding:40px 36px; position:relative; overflow:hidden; }
+.card { background:rgba(255,255,255,0.06); border-radius:8px; padding:40px 36px; border:1px solid var(--pur-lt); }
+.card-white { background:var(--white); border-radius:8px; padding:40px 36px; }
+.card-dark { background:rgba(0,0,0,0.3); border-radius:8px; padding:40px 36px; position:relative; overflow:hidden; }
 .card-purple { background:var(--pur); border-radius:8px; padding:40px 36px; }
 .card-muted { background:var(--bg2); border-radius:8px; padding:40px 36px; }
 
 /* ══ SECTION HEADING ══ */
 .section-heading { margin-bottom:var(--gap); margin-top:32px; }
 .section-heading:first-child { margin-top:0; }
-.section-heading-text { font-family:'Oswald',sans-serif; font-weight:300; font-size:17px; letter-spacing:0.35em; color:var(--pur-dk); text-transform:uppercase; }
-.section-heading-jp { font-family:'Noto Sans JP',sans-serif; font-size:11px; font-weight:400; color:var(--gray); letter-spacing:0.15em; margin-left:12px; }
+.section-heading-text { font-family:'Oswald',sans-serif; font-weight:300; font-size:26px; letter-spacing:0.35em; color:var(--pur-dk); text-transform:uppercase; }
+.section-heading-jp { font-family:'Noto Sans JP',sans-serif; font-size:12px; font-weight:400; color:var(--gray); letter-spacing:0.15em; margin-left:14px; }
 
 /* ══ LBL ══ */
 .lbl { font-family:'Oswald',sans-serif; font-weight:300; font-size:10px; letter-spacing:0.35em; color:var(--pur); text-transform:uppercase; margin-bottom:18px; }
-.lbl-dark { font-family:'Oswald',sans-serif; font-weight:300; font-size:10px; letter-spacing:0.35em; color:var(--pur-lt); text-transform:uppercase; margin-bottom:18px; }
+.lbl-dark { font-family:'Oswald',sans-serif; font-weight:300; font-size:10px; letter-spacing:0.35em; color:rgba(255,255,255,0.5); text-transform:uppercase; margin-bottom:18px; }
 
 /* ══ ACCORDION ══ */
 .accordion { margin-top:28px; }
 .accordion summary { list-style:none; display:flex; align-items:center; justify-content:space-between; padding:13px 18px; cursor:pointer; user-select:none; outline:none; border-radius:4px; transition:background 0.2s; }
-.accordion-light summary { background:var(--bg2); border:1px solid var(--pur-lt); }
-.accordion-light summary:hover { background:var(--pur-lt); }
+.accordion-light summary { background:rgba(255,255,255,0.06); border:1px solid var(--pur-lt); }
+.accordion-light summary:hover { background:rgba(255,255,255,0.1); }
 .accordion-dark summary { background:rgba(143,122,170,0.12); border:1px solid rgba(143,122,170,0.25); }
 .accordion-dark summary:hover { background:rgba(143,122,170,0.2); }
 .accordion summary::-webkit-details-marker { display:none; }
@@ -74,17 +76,17 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
 
 /* ══ OVERVIEW ══ */
 .ov-hero { display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); margin-bottom:var(--gap); }
-.ov-left { background:var(--white); border-radius:8px; padding:52px; }
+.ov-left { background:rgba(255,255,255,0.06); border-radius:8px; padding:52px; border:1px solid var(--pur-lt); }
 .ov-name-jp { font-size:80px; font-weight:300; line-height:0.95; letter-spacing:0.05em; color:var(--ch); }
 .ov-name-en { font-family:'Oswald',sans-serif; font-weight:200; font-size:14px; letter-spacing:0.45em; color:var(--pur); margin-top:16px; }
 .ov-tags { display:flex; gap:8px; flex-wrap:wrap; margin-top:24px; }
 .ov-tag { font-family:'Oswald',sans-serif; font-weight:300; font-size:10px; letter-spacing:0.2em; color:var(--pur-dk); border:1px solid var(--pur-lt); border-radius:4px; padding:5px 12px; }
 
-.ov-right { background:var(--pur); border-radius:8px; padding:52px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; min-height:360px; }
-.ov-right::before { content:''; position:absolute; top:-60px; right:-60px; width:360px; height:360px; border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 65%); }
-.ov-concept-lbl { font-family:'Oswald',sans-serif; font-weight:300; font-size:10px; letter-spacing:0.4em; color:rgba(255,255,255,0.55); margin-bottom:14px; position:relative; z-index:1; }
-.ov-tagline { font-size:38px; font-weight:300; color:#fff; line-height:1.5; letter-spacing:0.06em; position:relative; z-index:1; }
-.ov-tagline em { font-style:normal; color:rgba(255,255,255,0.75); }
+.ov-right { background:var(--beige); border-radius:8px; padding:52px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden; min-height:360px; }
+.ov-right::before { content:''; position:absolute; top:-60px; right:-60px; width:360px; height:360px; border-radius:50%; background:radial-gradient(circle, rgba(143,122,170,0.15) 0%, transparent 65%); }
+.ov-concept-lbl { font-family:'Oswald',sans-serif; font-weight:300; font-size:10px; letter-spacing:0.4em; color:#9890A8; margin-bottom:14px; position:relative; z-index:1; }
+.ov-tagline { font-size:38px; font-weight:300; color:#1A1A1A; line-height:1.5; letter-spacing:0.06em; position:relative; z-index:1; }
+.ov-tagline em { font-style:normal; color:var(--pur); }
 
 /* ── 落款 ── */
 .kamon { font-family:'Zen Old Mincho',serif; font-size:13px; font-weight:400; color:var(--red); border:1.5px solid var(--red); border-radius:2px; padding:4px 8px; display:inline-block; letter-spacing:0.2em; position:relative; z-index:1; margin-bottom:20px; }
@@ -226,6 +228,12 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
 ══════════════════════════════ -->
 <div id="tab-overview" class="tab-content active">
 
+  <!-- Brand Name -->
+  <div class="section-heading">
+    <span class="section-heading-text">Brand Name</span>
+    <span class="section-heading-jp">ブランドネーム</span>
+  </div>
+
   <!-- Hero -->
   <div class="ov-hero">
     <div class="ov-left">
@@ -239,7 +247,6 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
       </div>
     </div>
     <div class="ov-right">
-      <div class="kamon">能登マロン堂</div>
       <div class="ov-concept-lbl">TAGLINE</div>
       <div class="ov-tagline">くりだす、<br><em>ベビーカステラ。</em></div>
     </div>
@@ -250,25 +257,19 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
     <span class="section-heading-text">Tagline · Concept</span>
     <span class="section-heading-jp">タグライン・コンセプト</span>
   </div>
-  <div class="grid-2 row">
-    <div style="padding:40px 0;">
-      <div class="lbl">Tagline</div>
-      <div style="font-size:36px;font-weight:300;line-height:1.5;letter-spacing:0.06em;color:var(--ch);">くりだす、<br>ベビーカステラ。</div>
-      <div style="font-family:'Oswald',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.3em;color:var(--pur);margin-top:14px;">Chestnut Baby Castella.</div>
-    </div>
-    <div style="padding:40px 0;">
-      <div class="lbl">Concept</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:400;color:var(--ch);line-height:2.2;">「くりだす」は「繰り出す」と「栗」をかけた言葉。ベビーカステラという親しみある形式に、栗ペーストをのせた専門店。屋台のおやつを、選ばれる和スイーツへ。</div>
-      <details class="accordion accordion-light" style="margin-top:24px;">
-        <summary>
-          <span class="accordion-label">Brand Story</span>
-          <span class="accordion-arrow">∨</span>
-        </summary>
-        <div class="accordion-body">
-          <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2;">ベビーカステラは、縁日の屋台で子どもが手を伸ばすおやつだ。でも能登マロン堂は、そこに栗を持ち込んだ。栗のペーストをひとくち分のカステラに重ねたとき、それはもう屋台のおやつではなく、誰かに贈りたいものになった。栗にしかできない味がある。栗だけを、くりだす。</div>
-        </div>
-      </details>
-    </div>
+  <div class="row" style="border-top:1px solid var(--pur-lt); padding-top:40px;">
+    <div style="font-size:52px;font-weight:300;line-height:1.3;letter-spacing:0.06em;color:var(--ch);">くりだす、ベビーカステラ。</div>
+    <div style="font-family:'Oswald',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.3em;color:var(--pur);margin-top:12px;">Chestnut Baby Castella.</div>
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:300;color:var(--gray);line-height:2.2;margin-top:24px;max-width:640px;">「くりだす」は「繰り出す」と「栗」をかけた言葉。ベビーカステラという親しみある形式に、栗ペーストをのせた専門店。屋台のおやつを、選ばれる和スイーツへ。</div>
+    <details class="accordion accordion-light" style="margin-top:24px;max-width:640px;">
+      <summary>
+        <span class="accordion-label">Brand Story</span>
+        <span class="accordion-arrow">∨</span>
+      </summary>
+      <div class="accordion-body">
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:var(--gray);line-height:2.2;">ベビーカステラは、縁日の屋台で子どもが手を伸ばすおやつだ。でも能登マロン堂は、そこに栗を持ち込んだ。栗のペーストをひとくち分のカステラに重ねたとき、それはもう屋台のおやつではなく、誰かに贈りたいものになった。栗にしかできない味がある。栗だけを、くりだす。</div>
+      </div>
+    </details>
   </div>
 
   <!-- Brand Attributes -->
@@ -313,6 +314,7 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
   <!-- Do's & Don'ts -->
   <div class="section-heading">
     <span class="section-heading-text">Do's &amp; Don'ts</span>
+    <span class="section-heading-jp">やること・やらないこと</span>
   </div>
   <div class="grid-2 row">
     <div style="padding:32px 0;border-top:1px solid var(--pur-lt);">
@@ -340,6 +342,7 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
     <span class="section-heading-text">Brand Codes</span>
     <span class="section-heading-jp">ブランドコード</span>
   </div>
+  <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:var(--gray);line-height:2;margin-bottom:var(--gap);">栗のベビーカステラをブランドたらしめる、他にはない固有資産。「なぜ能登マロン堂でなければならないか」を語る要素群。</div>
   <div class="grid-12 row">
     <div class="card-purple">
       <div class="lbl-dark">Core Code</div>
@@ -476,13 +479,15 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
 
   <!-- KV メイン -->
   <div class="row">
-    <div style="width:100%; aspect-ratio:16/9; background:var(--ch); border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; position:relative; overflow:hidden;">
-      <div style="position:absolute; inset:0; background:radial-gradient(circle at 60% 40%, rgba(143,122,170,0.12) 0%, transparent 60%);"></div>
-      <div style="border:2px dashed rgba(143,122,170,0.3); border-radius:8px; padding:40px 60px; display:flex; flex-direction:column; align-items:center; gap:12px; position:relative; z-index:1;">
-        <div style="font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:0.4em; color:rgba(143,122,170,0.5);">KEY VISUAL PLACEHOLDER</div>
-        <div style="font-family:'Zen Old Mincho',serif; font-size:28px; font-weight:500; color:rgba(245,241,232,0.2); letter-spacing:0.08em;">能登マロン堂</div>
-        <div style="font-family:'Noto Sans JP',sans-serif; font-size:11px; font-weight:300; color:rgba(245,241,232,0.25);">KV制作後に差し替え</div>
+    <div style="width:100%; aspect-ratio:16/9; background:#2A1F3D; border-radius:8px; display:flex; flex-direction:column; align-items:flex-end; justify-content:flex-end; padding:52px; position:relative; overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 60%, rgba(143,122,170,0.2) 0%, transparent 55%);"></div>
+      <div style="position:absolute;top:40px;left:52px;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.4em;color:rgba(143,122,170,0.5);">NOTO MARONDO</div>
+      <div style="position:absolute;bottom:80px;left:52px;font-family:'Zen Old Mincho',serif;font-size:64px;font-weight:300;color:rgba(245,241,232,0.15);letter-spacing:0.05em;line-height:1;">能登マロン堂</div>
+      <div style="position:relative;z-index:1;text-align:right;">
+        <div style="font-family:'Zen Old Mincho',serif;font-size:13px;font-weight:300;color:rgba(245,241,232,0.4);letter-spacing:0.1em;margin-bottom:8px;">KV制作後に差し替え</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:300;color:rgba(143,122,170,0.6);">くりだす、ベビーカステラ。</div>
       </div>
+      <div style="position:absolute;bottom:40px;left:52px;border:1.5px solid rgba(192,57,43,0.6);border-radius:2px;padding:3px 8px;font-family:'Zen Old Mincho',serif;font-size:11px;color:rgba(192,57,43,0.6);letter-spacing:0.2em;">能登</div>
     </div>
   </div>
 
@@ -491,18 +496,18 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
     <span class="section-heading-text">Visual Concept</span>
     <span class="section-heading-jp">ビジュアルコンセプト</span>
   </div>
-  <div class="grid-3 row">
-    <div class="card">
+  <div class="grid-3 row" style="border-top:1px solid var(--pur-lt);padding-top:32px;">
+    <div style="padding:24px 0;border-top:2px solid var(--pur);">
       <div class="lbl">Atmosphere</div>
-      <div style="font-family:'Noto Sans JP',sans-serif; font-size:13px; font-weight:400; color:var(--ch); line-height:2;">静謐・余白・和の空気感。にぎやかでなく、品で魅せる。</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:var(--ch);line-height:2;">静謐・余白・和の空気感。にぎやかでなく、品で魅せる。</div>
     </div>
-    <div class="card">
+    <div style="padding:24px 0;border-top:2px solid var(--pur);">
       <div class="lbl">Subject</div>
-      <div style="font-family:'Noto Sans JP',sans-serif; font-size:13px; font-weight:400; color:var(--ch); line-height:2;">栗・ベビーカステラ・手・包装。素材の質感を丁寧に見せる。</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:var(--ch);line-height:2;">栗・ベビーカステラ・手・包装。素材の質感を丁寧に見せる。</div>
     </div>
-    <div class="card">
+    <div style="padding:24px 0;border-top:2px solid var(--pur);">
       <div class="lbl">Tone</div>
-      <div style="font-family:'Noto Sans JP',sans-serif; font-size:13px; font-weight:400; color:var(--ch); line-height:2;">暗めのトーン・ローキー。タンニン紫と黒と生成りの世界観。</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:var(--ch);line-height:2;">暗めのトーン・ローキー。タンニン紫と黒と生成りの世界観。</div>
     </div>
   </div>
 
@@ -511,13 +516,13 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
     <span class="section-heading-text">Visual Grid</span>
     <span class="section-heading-jp">ビジュアルグリッド</span>
   </div>
-  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:var(--gap);">
-    <div style="aspect-ratio:3/2; background:var(--bg2); border-radius:6px; border:2px dashed var(--pur-lt); display:flex; align-items:center; justify-content:center;"><span style="font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:0.2em; color:var(--pur-lt);">IMAGE 01</span></div>
-    <div style="aspect-ratio:3/2; background:var(--bg2); border-radius:6px; border:2px dashed var(--pur-lt); display:flex; align-items:center; justify-content:center;"><span style="font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:0.2em; color:var(--pur-lt);">IMAGE 02</span></div>
-    <div style="aspect-ratio:3/2; background:var(--bg2); border-radius:6px; border:2px dashed var(--pur-lt); display:flex; align-items:center; justify-content:center;"><span style="font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:0.2em; color:var(--pur-lt);">IMAGE 03</span></div>
-    <div style="aspect-ratio:3/2; background:var(--bg2); border-radius:6px; border:2px dashed var(--pur-lt); display:flex; align-items:center; justify-content:center;"><span style="font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:0.2em; color:var(--pur-lt);">IMAGE 04</span></div>
-    <div style="aspect-ratio:3/2; background:var(--bg2); border-radius:6px; border:2px dashed var(--pur-lt); display:flex; align-items:center; justify-content:center;"><span style="font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:0.2em; color:var(--pur-lt);">IMAGE 05</span></div>
-    <div style="aspect-ratio:3/2; background:var(--bg2); border-radius:6px; border:2px dashed var(--pur-lt); display:flex; align-items:center; justify-content:center;"><span style="font-family:'Oswald',sans-serif; font-size:10px; letter-spacing:0.2em; color:var(--pur-lt);">IMAGE 06</span></div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:var(--gap);">
+    <div style="aspect-ratio:3/2;background:#3A2D52;border-radius:6px;border:1px solid rgba(143,122,170,0.2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.2em;color:rgba(143,122,170,0.4);">IMAGE 01</span></div>
+    <div style="aspect-ratio:3/2;background:#3A2D52;border-radius:6px;border:1px solid rgba(143,122,170,0.2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.2em;color:rgba(143,122,170,0.4);">IMAGE 02</span></div>
+    <div style="aspect-ratio:3/2;background:#3A2D52;border-radius:6px;border:1px solid rgba(143,122,170,0.2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.2em;color:rgba(143,122,170,0.4);">IMAGE 03</span></div>
+    <div style="aspect-ratio:3/2;background:#3A2D52;border-radius:6px;border:1px solid rgba(143,122,170,0.2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.2em;color:rgba(143,122,170,0.4);">IMAGE 04</span></div>
+    <div style="aspect-ratio:3/2;background:#3A2D52;border-radius:6px;border:1px solid rgba(143,122,170,0.2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.2em;color:rgba(143,122,170,0.4);">IMAGE 05</span></div>
+    <div style="aspect-ratio:3/2;background:#3A2D52;border-radius:6px;border:1px solid rgba(143,122,170,0.2);display:flex;align-items:center;justify-content:center;"><span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.2em;color:rgba(143,122,170,0.4);">IMAGE 06</span></div>
   </div>
 
 </div><!-- /visual -->
@@ -528,22 +533,22 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
 <div id="tab-design" class="tab-content">
 
   <!-- Design Concept -->
-  <div class="concept-card row">
-    <div class="lbl">Design Concept</div>
-    <div class="concept-name">SHIBUKAWA</div>
-    <div class="concept-name-sub">渋皮 — THE COLOR OF THE CHESTNUT SKIN</div>
-    <div class="concept-grid">
+  <div style="background:var(--pur);border-radius:8px;padding:52px;margin-bottom:var(--gap);">
+    <div class="lbl-dark">Design Concept</div>
+    <div style="font-size:72px;font-weight:900;letter-spacing:0.06em;color:#fff;line-height:1;">SHIBUKAWA</div>
+    <div style="font-family:'Oswald',sans-serif;font-weight:200;font-size:13px;letter-spacing:0.5em;color:rgba(255,255,255,0.5);margin-top:8px;">渋皮 — THE COLOR OF THE CHESTNUT SKIN</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-top:40px;">
       <div>
-        <div class="concept-col-lbl">Tone</div>
-        <div class="concept-col-text">静謐・余白・品。主張しすぎず、でも記憶に残る。和の美意識をベースにした上質感。</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.35em;color:rgba(255,255,255,0.55);margin-bottom:12px;">TONE</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.85);line-height:2;">静謐・余白・品。主張しすぎず、でも記憶に残る。和の美意識をベースにした上質感。</div>
       </div>
       <div>
-        <div class="concept-col-lbl">Palette</div>
-        <div class="concept-col-text">栗のタンニンが酸化するときに現れる紫をメインカラーに。黒と生成りが骨格を作り、赤（落款）がアクセントになる。</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.35em;color:rgba(255,255,255,0.55);margin-bottom:12px;">PALETTE</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.85);line-height:2;">栗のタンニンが酸化するときに現れる紫をメインカラーに。深い紫の背景と生成りのコントラストで世界観を作る。</div>
       </div>
       <div>
-        <div class="concept-col-lbl">Direction</div>
-        <div class="concept-col-text">縦組みの明朝体・細い英字・余白の大きさ。情報を削ることで価値を高める、和モダンのグラフィック感。</div>
+        <div style="font-family:'Oswald',sans-serif;font-weight:300;font-size:10px;letter-spacing:0.35em;color:rgba(255,255,255,0.55);margin-bottom:12px;">DIRECTION</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:rgba(255,255,255,0.85);line-height:2;">細い明朝体・細い英字・余白の大きさ。情報を削ることで価値を高める、和モダンのグラフィック感。</div>
       </div>
     </div>
   </div>
@@ -555,101 +560,101 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
   </div>
   <div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--gap);margin-bottom:var(--gap);">
     <!-- Typography -->
-    <div class="card">
+    <div style="padding:0;">
       <div class="lbl">Typography</div>
       <div class="typo-block">
-        <div class="typo-sample">能登マロン堂</div>
-        <div class="typo-meta">Zen Old Mincho — 見出し・ブランド名用</div>
+        <div class="typo-sample" style="color:var(--ch);">能登マロン堂</div>
+        <div class="typo-meta">Zen Old Mincho 300–700 — 見出し・ブランド名・タグライン用</div>
         <div class="typo-scale">
-          <div class="typo-scale-row"><span class="typo-scale-size">88px</span><span class="typo-scale-text" style="font-size:36px;font-weight:700;">能登マロン堂</span></div>
-          <div class="typo-scale-row"><span class="typo-scale-size">48px</span><span class="typo-scale-text" style="font-size:24px;font-weight:500;">くりだす、ベビーカステラ。</span></div>
-          <div class="typo-scale-row"><span class="typo-scale-size">24px</span><span class="typo-scale-text" style="font-size:16px;font-weight:400;">栗のタンニンが生む、自然の紫。</span></div>
+          <div class="typo-scale-row"><span class="typo-scale-size">88px</span><span class="typo-scale-text" style="font-size:36px;font-weight:300;color:var(--ch);">能登マロン堂</span></div>
+          <div class="typo-scale-row"><span class="typo-scale-size">48px</span><span class="typo-scale-text" style="font-size:24px;font-weight:300;color:var(--ch);">くりだす、ベビーカステラ。</span></div>
+          <div class="typo-scale-row"><span class="typo-scale-size">24px</span><span class="typo-scale-text" style="font-size:16px;font-weight:300;color:var(--ch);">栗のタンニンが生む、自然の紫。</span></div>
         </div>
       </div>
       <div class="typo-block">
-        <div class="typo-sample-en">NOTO MARONDO</div>
-        <div class="typo-meta">Oswald Light 200/300 — 英字見出し・ラベル用</div>
+        <div class="typo-sample-en" style="color:var(--ch);">NOTO MARONDO</div>
+        <div class="typo-meta">Oswald 200–300 — 英字見出し・ラベル・タブ用</div>
         <div class="typo-scale">
-          <div class="typo-scale-row"><span class="typo-scale-size">48px</span><span class="typo-scale-text" style="font-size:28px;font-family:'Oswald',sans-serif;font-weight:200;letter-spacing:0.1em;">NOTO MARONDO</span></div>
-          <div class="typo-scale-row"><span class="typo-scale-size">14px</span><span class="typo-scale-text" style="font-size:13px;font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:0.3em;">CHESTNUT BABY CASTELLA</span></div>
+          <div class="typo-scale-row"><span class="typo-scale-size">48px</span><span class="typo-scale-text" style="font-size:28px;font-family:'Oswald',sans-serif;font-weight:200;letter-spacing:0.1em;color:var(--ch);">NOTO MARONDO</span></div>
+          <div class="typo-scale-row"><span class="typo-scale-size">14px</span><span class="typo-scale-text" style="font-size:13px;font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:0.3em;color:var(--ch);">CHESTNUT BABY CASTELLA</span></div>
         </div>
       </div>
       <div class="typo-block">
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:400;color:var(--ch);">本文テキスト・説明文</div>
-        <div class="typo-meta">Noto Sans JP Light 300/400 — 本文・キャプション用</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:400;color:var(--ch);">本文・説明テキスト</div>
+        <div class="typo-meta">Noto Sans JP 300–400 — 本文・キャプション・説明文用（読み込み優先）</div>
         <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:300;color:var(--gray);line-height:2;margin-top:10px;">栗のペーストをひとくちのカステラにのせたとき、それはもう屋台のおやつではなく、誰かに贈りたいものになった。</div>
       </div>
     </div>
 
     <!-- Color -->
-    <div class="card">
+    <div style="padding:0;">
       <div class="lbl">Color System</div>
-      <!-- Donut -->
+      <!-- Donut: Purple 40% / Dark 30% / Beige 20% / Deep 10% -->
       <div class="donut-wrap">
         <svg width="130" height="130" viewBox="0 0 130 130">
-          <circle cx="65" cy="65" r="46" fill="none" stroke="#EDE9DF" stroke-width="26"/>
-          <!-- Black 50% -->
-          <circle cx="65" cy="65" r="46" fill="none" stroke="#1A1A1A" stroke-width="26"
-            stroke-dasharray="144.5 144.5" stroke-dashoffset="36" transform="rotate(-90 65 65)"/>
-          <!-- Purple 30% -->
+          <circle cx="65" cy="65" r="46" fill="none" stroke="#3A2D52" stroke-width="26"/>
+          <!-- Purple 40% = 115.6/289 -->
           <circle cx="65" cy="65" r="46" fill="none" stroke="#8F7AAA" stroke-width="26"
-            stroke-dasharray="86.7 202.3" stroke-dashoffset="-108.5" transform="rotate(-90 65 65)"/>
-          <!-- Light Purple 12% -->
-          <circle cx="65" cy="65" r="46" fill="none" stroke="#D4C9E2" stroke-width="26"
-            stroke-dasharray="34.7 254.3" stroke-dashoffset="-195.2" transform="rotate(-90 65 65)"/>
-          <!-- BG 8% -->
+            stroke-dasharray="115.6 173.4" stroke-dashoffset="0" transform="rotate(-90 65 65)"/>
+          <!-- Dark 30% = 86.7 -->
+          <circle cx="65" cy="65" r="46" fill="none" stroke="#1A1A1A" stroke-width="26"
+            stroke-dasharray="86.7 202.3" stroke-dashoffset="-115.6" transform="rotate(-90 65 65)"/>
+          <!-- Beige 20% = 57.8 -->
           <circle cx="65" cy="65" r="46" fill="none" stroke="#F5F1E8" stroke-width="26"
-            stroke-dasharray="23.1 265.9" stroke-dashoffset="-229.9" transform="rotate(-90 65 65)"/>
-          <text x="65" y="61" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8" fill="#888" letter-spacing="0.1em">COLOR</text>
-          <text x="65" y="73" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8" fill="#888" letter-spacing="0.1em">BALANCE</text>
+            stroke-dasharray="57.8 231.2" stroke-dashoffset="-202.3" transform="rotate(-90 65 65)"/>
+          <!-- Deep Purple 10% = 28.9 -->
+          <circle cx="65" cy="65" r="46" fill="none" stroke="#2A1F3D" stroke-width="26"
+            stroke-dasharray="28.9 260.1" stroke-dashoffset="-260.1" transform="rotate(-90 65 65)"/>
+          <text x="65" y="61" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8" fill="#C0B8D0" letter-spacing="0.1em">COLOR</text>
+          <text x="65" y="73" text-anchor="middle" font-family="Oswald,sans-serif" font-size="8" fill="#C0B8D0" letter-spacing="0.1em">BALANCE</text>
         </svg>
         <div class="donut-legend">
-          <div class="legend-row"><div class="legend-dot" style="background:#1A1A1A;"></div><span class="legend-label">Black</span><span class="legend-pct">50%</span></div>
-          <div class="legend-row"><div class="legend-dot" style="background:#8F7AAA;"></div><span class="legend-label">Purple</span><span class="legend-pct">30%</span></div>
-          <div class="legend-row"><div class="legend-dot" style="background:#D4C9E2;"></div><span class="legend-label">Lt. Purple</span><span class="legend-pct">12%</span></div>
-          <div class="legend-row"><div class="legend-dot" style="background:#F5F1E8;border:1px solid #ddd;"></div><span class="legend-label">Beige</span><span class="legend-pct">8%</span></div>
+          <div class="legend-row"><div class="legend-dot" style="background:#8F7AAA;"></div><span class="legend-label">Purple</span><span class="legend-pct">40%</span></div>
+          <div class="legend-row"><div class="legend-dot" style="background:#1A1A1A;border:1px solid #555;"></div><span class="legend-label">Black</span><span class="legend-pct">30%</span></div>
+          <div class="legend-row"><div class="legend-dot" style="background:#F5F1E8;border:1px solid #999;"></div><span class="legend-label">Beige</span><span class="legend-pct">20%</span></div>
+          <div class="legend-row"><div class="legend-dot" style="background:#2A1F3D;border:1px solid #666;"></div><span class="legend-label">Deep</span><span class="legend-pct">10%</span></div>
         </div>
       </div>
       <!-- Primary -->
       <div class="grid-3" style="margin-bottom:12px;">
         <div>
-          <div class="color-swatch-lg" style="background:#1A1A1A;"></div>
-          <div class="color-name">Black</div>
-          <div class="color-hex">#1A1A1A</div>
-          <div class="color-use">文字・背景</div>
-        </div>
-        <div>
           <div class="color-swatch-lg" style="background:#8F7AAA;"></div>
-          <div class="color-name">Tannin</div>
+          <div class="color-name" style="color:var(--ch);">Tannin</div>
           <div class="color-hex">#8F7AAA</div>
           <div class="color-use">メインカラー</div>
         </div>
         <div>
-          <div class="color-swatch-lg" style="background:#F5F1E8; border:1px solid #ddd;"></div>
-          <div class="color-name">Naranashi</div>
+          <div class="color-swatch-lg" style="background:#2A1F3D;border:1px solid #555;"></div>
+          <div class="color-name" style="color:var(--ch);">Deep</div>
+          <div class="color-hex">#2A1F3D</div>
+          <div class="color-use">背景</div>
+        </div>
+        <div>
+          <div class="color-swatch-lg" style="background:#F5F1E8;"></div>
+          <div class="color-name" style="color:var(--ch);">Naranashi</div>
           <div class="color-hex">#F5F1E8</div>
-          <div class="color-use">背景・余白</div>
+          <div class="color-use">生成り・文字</div>
         </div>
       </div>
       <!-- Sub -->
       <div class="grid-3" style="margin-bottom:0;">
         <div>
-          <div class="color-swatch-sm" style="background:#6A5A88;"></div>
-          <div class="color-name" style="font-size:11px;">Deep Purple</div>
-          <div class="color-hex">#6A5A88</div>
+          <div class="color-swatch-sm" style="background:#1A1A1A;border:1px solid #444;"></div>
+          <div class="color-name" style="font-size:11px;color:var(--ch);">Black</div>
+          <div class="color-hex">#1A1A1A</div>
         </div>
         <div>
-          <div class="color-swatch-sm" style="background:#D4C9E2;"></div>
-          <div class="color-name" style="font-size:11px;">Light Purple</div>
-          <div class="color-hex">#D4C9E2</div>
+          <div class="color-swatch-sm" style="background:#C0B0D8;"></div>
+          <div class="color-name" style="font-size:11px;color:var(--ch);">Light Purple</div>
+          <div class="color-hex">#C0B0D8</div>
         </div>
         <div>
           <div class="color-swatch-sm" style="background:#C0392B;"></div>
-          <div class="color-name" style="font-size:11px;">Kamon Red</div>
+          <div class="color-name" style="font-size:11px;color:var(--ch);">Kamon Red</div>
           <div class="color-hex">#C0392B</div>
         </div>
       </div>
-      <div class="grad-bar"></div>
+      <div style="height:12px;border-radius:6px;background:linear-gradient(to right,#2A1F3D,#6A5A88,#8F7AAA,#C0B0D8,#F5F1E8);margin-top:20px;"></div>
     </div>
   </div>
 
@@ -658,16 +663,16 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
     <span class="section-heading-text">Icon Set</span>
     <span class="section-heading-jp">アイコンセット</span>
   </div>
-  <div class="card row">
+  <div class="row" style="border-top:1px solid var(--pur-lt);padding-top:32px;">
     <div class="icon-grid">
-      <div class="icon-item"><div class="icon-circle">🌰</div><div class="icon-name">栗</div></div>
-      <div class="icon-item"><div class="icon-circle">🍡</div><div class="icon-name">串</div></div>
-      <div class="icon-item"><div class="icon-circle">🎁</div><div class="icon-name">ギフト</div></div>
-      <div class="icon-item"><div class="icon-circle">⛩</div><div class="icon-name">和</div></div>
-      <div class="icon-item"><div class="icon-circle">🚐</div><div class="icon-name">キッチンカー</div></div>
-      <div class="icon-item"><div class="icon-circle">🍂</div><div class="icon-name">秋</div></div>
-      <div class="icon-item"><div class="icon-circle">📍</div><div class="icon-name">能登</div></div>
-      <div class="icon-item"><div class="icon-circle">🔴</div><div class="icon-name">落款</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">🌰</div><div class="icon-name">栗</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">🍡</div><div class="icon-name">串</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">🎁</div><div class="icon-name">ギフト</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">⛩</div><div class="icon-name">和</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">🚐</div><div class="icon-name">キッチンカー</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">🍂</div><div class="icon-name">秋</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">📍</div><div class="icon-name">能登</div></div>
+      <div class="icon-item"><div class="icon-circle" style="background:rgba(255,255,255,0.08);">印</div><div class="icon-name">落款</div></div>
     </div>
   </div>
 
@@ -676,73 +681,95 @@ body { background:var(--bg); color:var(--ch); font-family:'Zen Old Mincho',serif
     <span class="section-heading-text">Layout Principles</span>
     <span class="section-heading-jp">レイアウト・余白の原則</span>
   </div>
-  <div class="card row">
+  <div class="row" style="border-top:1px solid var(--pur-lt);padding-top:32px;">
     <div class="grid-3" style="margin-bottom:0;">
       <div class="principle-item">
         <div class="principle-num">01</div>
-        <div class="principle-title">余白を語らせる</div>
+        <div class="principle-title" style="color:var(--ch);">余白を語らせる</div>
         <div class="principle-body">情報を詰めない。余白が「上質さ」を語る。何も置かない空間こそ、ブランドの声になる。</div>
-        <div class="principle-visual">
+        <div class="principle-visual" style="background:rgba(255,255,255,0.05);">
           <div style="width:40px;height:40px;background:var(--pur);border-radius:2px;opacity:0.7;"></div>
         </div>
       </div>
-      <div class="principle-item" style="border-left:1px solid var(--bg2);border-right:1px solid var(--bg2);">
+      <div class="principle-item" style="border-left:1px solid var(--pur-lt);border-right:1px solid var(--pur-lt);">
         <div class="principle-num">02</div>
-        <div class="principle-title">縦のリズム</div>
+        <div class="principle-title" style="color:var(--ch);">縦のリズム</div>
         <div class="principle-body">和の書物のように、縦方向の整列を意識する。行間・段間は広め。読むリズムを大切に。</div>
-        <div class="principle-visual" style="flex-direction:column;gap:6px;">
-          <div style="width:80%;height:3px;background:var(--pur-lt);border-radius:2px;"></div>
-          <div style="width:65%;height:3px;background:var(--pur-lt);border-radius:2px;"></div>
-          <div style="width:72%;height:3px;background:var(--pur-lt);border-radius:2px;"></div>
+        <div class="principle-visual" style="flex-direction:column;gap:6px;background:rgba(255,255,255,0.05);">
+          <div style="width:80%;height:3px;background:var(--pur);opacity:0.5;border-radius:2px;"></div>
+          <div style="width:65%;height:3px;background:var(--pur);opacity:0.5;border-radius:2px;"></div>
+          <div style="width:72%;height:3px;background:var(--pur);opacity:0.5;border-radius:2px;"></div>
         </div>
       </div>
       <div class="principle-item">
         <div class="principle-num">03</div>
-        <div class="principle-title">落款のアクセント</div>
-        <div class="principle-body">赤い落款を必ず入れる。余白の中の一点の赤が、日本らしさと手仕事感を象徴する。</div>
-        <div class="principle-visual">
+        <div class="principle-title" style="color:var(--ch);">落款のアクセント</div>
+        <div class="principle-body">赤い落款を全制作物に必ず入れる。余白の中の一点の赤が、日本らしさと手仕事感を象徴する。</div>
+        <div class="principle-visual" style="background:rgba(255,255,255,0.05);">
           <div style="font-family:'Zen Old Mincho',serif;font-size:16px;color:var(--red);border:1.5px solid var(--red);padding:4px 8px;letter-spacing:0.2em;">能登</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- UI Components -->
+  <!-- UI Components + iPhone -->
   <div class="section-heading">
-    <span class="section-heading-text">UI Components</span>
-    <span class="section-heading-jp">UIコンポーネント</span>
+    <span class="section-heading-text">UI · Mobile</span>
+    <span class="section-heading-jp">UIコンポーネント・モバイル</span>
   </div>
-  <div class="grid-4 row">
-    <div class="card">
-      <div class="ui-section-title">BUTTONS</div>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div class="ui-btn-primary">注文する</div>
-        <div class="ui-btn-secondary">詳しく見る</div>
-        <div class="ui-btn-text">→ ブランドストーリー</div>
+  <div style="display:grid;grid-template-columns:180px 1fr;gap:40px;margin-bottom:var(--gap);border-top:1px solid var(--pur-lt);padding-top:32px;">
+    <!-- iPhone mockup -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div style="width:160px;height:300px;border:6px solid #3A2D52;border-radius:28px;overflow:hidden;position:relative;background:#2A1F3D;box-shadow:0 0 0 1px rgba(255,255,255,0.1);">
+        <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:50px;height:10px;background:#3A2D52;border-radius:0 0 8px 8px;"></div>
+        <div style="padding:22px 12px 12px;">
+          <div style="font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:0.3em;color:var(--pur);margin-bottom:6px;">NOTO MARONDO</div>
+          <div style="font-family:'Zen Old Mincho',serif;font-size:16px;font-weight:300;color:var(--ch);line-height:1.3;margin-bottom:10px;">能登マロン堂</div>
+          <div style="width:100%;height:70px;background:var(--pur);border-radius:4px;opacity:0.4;margin-bottom:8px;"></div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:9px;font-weight:300;color:var(--gray);line-height:1.7;margin-bottom:10px;">くりだす、ベビーカステラ。</div>
+          <div style="width:100%;height:24px;background:var(--pur);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+            <span style="font-family:'Oswald',sans-serif;font-size:8px;letter-spacing:0.15em;color:#fff;">ORDER</span>
+          </div>
+        </div>
       </div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:10px;font-weight:400;color:var(--gray-lt);">Mobile View</div>
     </div>
-    <div class="card">
-      <div class="ui-section-title">INPUT</div>
-      <input class="ui-input" placeholder="お名前を入力">
-    </div>
-    <div class="card">
-      <div class="ui-section-title">TAGS</div>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
-        <span class="ui-tag">栗専門</span>
-        <span class="ui-tag">ベビーカステラ</span>
-        <span class="ui-tag">手土産</span>
-        <span class="ui-tag">キッチンカー</span>
+    <!-- UI Components -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+      <div>
+        <div class="ui-section-title" style="color:var(--gray);">BUTTONS</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div class="ui-btn-primary">注文する</div>
+          <div class="ui-btn-secondary">詳しく見る</div>
+          <div class="ui-btn-text">→ ブランドストーリー</div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="ui-section-title">BORDER · RADIUS</div>
-      <div style="display:flex;gap:12px;align-items:center;margin-top:8px;">
-        <div style="width:44px;height:44px;background:var(--pur-lt);border-radius:4px;"></div>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:400;color:var(--gray);">小要素<br>4px</div>
+      <div>
+        <div class="ui-section-title" style="color:var(--gray);">INPUT</div>
+        <input class="ui-input" placeholder="お名前を入力" style="background:rgba(255,255,255,0.08);border-color:var(--pur-lt);color:var(--ch);">
+        <div style="margin-top:16px;">
+          <div class="ui-section-title" style="color:var(--gray);">TAGS</div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="ui-tag">栗専門</span>
+            <span class="ui-tag">ベビーカステラ</span>
+            <span class="ui-tag">手土産</span>
+          </div>
+        </div>
       </div>
-      <div style="display:flex;gap:12px;align-items:center;margin-top:12px;">
-        <div style="width:44px;height:44px;background:var(--pur-lt);border-radius:8px;"></div>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:400;color:var(--gray);">大要素<br>8px</div>
+      <div>
+        <div class="ui-section-title" style="color:var(--gray);">BORDER · RADIUS</div>
+        <div style="display:flex;gap:16px;align-items:flex-start;margin-top:8px;">
+          <div style="text-align:center;">
+            <div style="width:44px;height:44px;background:var(--pur);opacity:0.4;border-radius:4px;"></div>
+            <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--gray);margin-top:6px;">4px</div>
+            <div style="font-family:'Noto Sans JP',sans-serif;font-size:10px;font-weight:300;color:var(--gray-lt);">ボタン・タグ</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:44px;height:44px;background:var(--pur);opacity:0.4;border-radius:8px;"></div>
+            <div style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:0.1em;color:var(--gray);margin-top:6px;">8px</div>
+            <div style="font-family:'Noto Sans JP',sans-serif;font-size:10px;font-weight:300;color:var(--gray-lt);">カード・枠</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
