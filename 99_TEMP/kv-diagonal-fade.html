@@ -163,10 +163,36 @@
     blendSwitcher.appendChild(btn);
   });
 
-  const DURATION = 2200;   // アニメーション時間（ms）
-  const INTERVAL = 10000;  // 切り替え間隔（ms）
-  // 最初は速く・そのあとゆっくり減速
+  const DURATION = 2200;
+  const INTERVAL = 10000;
   const EASING = 'cubic-bezier(0.05, 0, 0.15, 1)';
+
+  // ランダムに選ぶ方向パターン（角度 + 対応する逆方向）
+  const directions = [
+    { angle: '-45deg',  rev: '135deg'  }, // 右上→左下
+    { angle: '45deg',   rev: '-135deg' }, // 左上→右下
+    { angle: '0deg',    rev: '180deg'  }, // 上→下
+    { angle: '90deg',   rev: '-90deg'  }, // 左→右
+    { angle: '-30deg',  rev: '150deg'  }, // やや右上
+    { angle: '30deg',   rev: '-150deg' }, // やや左上
+  ];
+
+  let lastDirIndex = -1;
+
+  function randomDirection() {
+    let i;
+    do { i = Math.floor(Math.random() * directions.length); } while (i === lastDirIndex);
+    lastDirIndex = i;
+    return directions[i];
+  }
+
+  function applyMask(el, angle, isEntering) {
+    const g = isEntering
+      ? `linear-gradient(${angle}, black calc(var(--wipe) - 250%), transparent var(--wipe))`
+      : `linear-gradient(${angle}, transparent calc(var(--wipe) - 250%), black var(--wipe))`;
+    el.style.maskImage = g;
+    el.style.webkitMaskImage = g;
+  }
 
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
@@ -186,10 +212,13 @@
       d.classList.toggle('active', i === current);
     });
 
+    // ランダム方向を決定してインラインマスクを適用
+    const dir = randomDirection();
     slides[prev].classList.add('leaving');
     slides[next].classList.add('entering');
+    applyMask(slides[prev], dir.angle, false);
+    applyMask(slides[next], dir.angle, true);
 
-    // 選択中のblend modeを適用
     slides[prev].style.mixBlendMode = currentBlend;
     slides[next].style.mixBlendMode = currentBlend;
 
@@ -207,6 +236,10 @@
       slides[next].classList.add('active');
       slides[prev].style.mixBlendMode = '';
       slides[next].style.mixBlendMode = '';
+      slides[prev].style.maskImage = '';
+      slides[prev].style.webkitMaskImage = '';
+      slides[next].style.maskImage = '';
+      slides[next].style.webkitMaskImage = '';
       anim.cancel();
       isAnimating = false;
     };
