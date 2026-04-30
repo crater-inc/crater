@@ -35,39 +35,32 @@
     inherits: false;
   }
 
-  /* フェードアウト：前の画像がゆっくり消える */
+  /* 前の画像はそのまま残す（新画像が上に乗って透けることでダブルエクスポージャーに） */
   .kv-slide.leaving {
     z-index: 1;
-    animation: fade-out 2.8s ease-in-out forwards;
-  }
-
-  @keyframes fade-out {
-    0%   { opacity: 1; }
-    100% { opacity: 0; }
+    opacity: 1;
   }
 
   .kv-slide.entering {
     opacity: 1;
     z-index: 2;
-    --wipe: -60%;
-    /* 左下→右上・グラデーション幅を広くして混じり合う表現に */
+    --wipe: -80%;
+    /* 左下→右上・超広いグラデーション帯でダブルエクスポージャー風に */
     mask-image: linear-gradient(
       135deg,
-      black calc(var(--wipe) - 60%),
-      rgba(0,0,0,0.5) calc(var(--wipe) - 10%),
+      black calc(var(--wipe) - 100%),
       transparent var(--wipe)
     );
     -webkit-mask-image: linear-gradient(
       135deg,
-      black calc(var(--wipe) - 60%),
-      rgba(0,0,0,0.5) calc(var(--wipe) - 10%),
+      black calc(var(--wipe) - 100%),
       transparent var(--wipe)
     );
-    animation: diag-fade 2.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: diag-fade 3.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   @keyframes diag-fade {
-    to { --wipe: 180%; }
+    to { --wipe: 200%; }
   }
 
   /* ドットナビ */
@@ -112,7 +105,7 @@
   const nav = document.getElementById('kvNav');
   let current = 0;
   let isAnimating = false;
-  const INTERVAL = 6000; // 切り替え間隔（ms）
+  const INTERVAL = 7000; // 切り替え間隔（ms）
 
   // ドット生成
   slides.forEach((_, i) => {
