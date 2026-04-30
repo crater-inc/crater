@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KV 対角フェード サンプル</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; }
+
+  .kv {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .kv-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  .kv-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  /* @property でカスタムプロパティをアニメーション可能にする */
+  @property --wipe {
+    syntax: '<percentage>';
+    initial-value: -30%;
+    inherits: false;
+  }
+
+  .kv-slide.entering {
+    opacity: 1;
+    z-index: 2;
+    --wipe: -30%;
+    /* 左下→右上への斜めグラデーションマスク */
+    mask-image: linear-gradient(
+      135deg,
+      black calc(var(--wipe) - 25%),
+      transparent var(--wipe)
+    );
+    -webkit-mask-image: linear-gradient(
+      135deg,
+      black calc(var(--wipe) - 25%),
+      transparent var(--wipe)
+    );
+    animation: diag-fade 1.4s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  }
+
+  @keyframes diag-fade {
+    to { --wipe: 160%; }
+  }
+
+  /* ドットナビ */
+  .kv-nav {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+  }
+
+  .kv-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .kv-dot.active {
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<div class="kv" id="kv">
+  <!-- 画像はお好きなものに差し替えてください -->
+  <div class="kv-slide active" style="background-image: url('https://picsum.photos/seed/shrine1/1600/900')"></div>
+  <div class="kv-slide" style="background-image: url('https://picsum.photos/seed/forest2/1600/900')"></div>
+  <div class="kv-slide" style="background-image: url('https://picsum.photos/seed/japan3/1600/900')"></div>
+</div>
+
+<div class="kv-nav" id="kvNav"></div>
+
+<script>
+  const slides = document.querySelectorAll('.kv-slide');
+  const nav = document.getElementById('kvNav');
+  let current = 0;
+  let isAnimating = false;
+  const INTERVAL = 4000; // 切り替え間隔（ms）
+
+  // ドット生成
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'kv-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    nav.appendChild(dot);
+  });
+
+  function goTo(next) {
+    if (isAnimating || next === current) return;
+    isAnimating = true;
+
+    const prev = current;
+    current = next;
+
+    // ドット更新
+    nav.querySelectorAll('.kv-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+
+    // entering クラスを付与してアニメーション開始
+    slides[next].classList.add('entering');
+
+    slides[next].addEventListener('animationend', () => {
+      slides[prev].classList.remove('active');
+      slides[next].classList.remove('entering');
+      slides[next].classList.add('active');
+      isAnimating = false;
+    }, { once: true });
+  }
+
+  // 自動切り替え
+  setInterval(() => {
+    goTo((current + 1) % slides.length);
+  }, INTERVAL);
+</script>
+
+</body>
+</html>
