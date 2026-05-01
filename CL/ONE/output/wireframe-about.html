@@ -327,11 +327,10 @@ body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f5f5f5; co
     var panel=document.getElementById('wf-panel');
     var CLIENT_MODE=(new URLSearchParams(window.location.search)).get('client')==='1';
     if(panel&&!CLIENT_MODE){
-      var claudeBtn=document.createElement('button');
-      claudeBtn.id='wf-claude-btn';
-      claudeBtn.textContent='COMMENT ALLCOPY';
-      claudeBtn.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a3a2a;border:1px solid #2a6a4a;color:#4ade80;padding:10px 24px;border-radius:6px;font-size:12px;letter-spacing:0.15em;cursor:pointer;font-family:inherit;z-index:9999;white-space:nowrap;';
-      document.body.appendChild(claudeBtn);
+      var claudeWrap=document.createElement('div');
+      claudeWrap.style.cssText='position:sticky;bottom:0;padding:16px;background:#111;border-top:1px solid #222;margin-top:16px;';
+      claudeWrap.innerHTML='<button id="wf-claude-btn" style="width:100%;background:#1a3a2a;border:1px solid #2a6a4a;color:#4ade80;padding:10px 16px;border-radius:6px;font-size:12px;letter-spacing:0.15em;cursor:pointer;font-family:inherit;">COMMENT ALLCOPY</button>';
+      panel.appendChild(claudeWrap);
       document.getElementById('wf-claude-btn').addEventListener('click',function(){
         var sorted=comments.slice().sort(function(a,b){return(a.createdAt?a.createdAt.seconds:0)-(b.createdAt?b.createdAt.seconds:0);});
         var open=sorted.filter(function(c){return!c.resolved;});
