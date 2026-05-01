@@ -17,7 +17,7 @@
     var claudeBtn=document.createElement('div');
     claudeBtn.id='wf-claude-wrap';
     claudeBtn.style.cssText='margin-top:24px;border-top:1px solid #222;padding-top:16px;';
-    claudeBtn.innerHTML='<button id="wf-claude-btn" style="width:100%;background:#1a3a2a;border:1px solid #2a6a4a;color:#4ade80;padding:10px 16px;border-radius:6px;font-size:12px;letter-spacing:0.15em;cursor:pointer;font-family:inherit;text-align:left;">📋 クロードに渡す</button><div style="font-size:10px;color:#444;margin-top:8px;line-height:1.6;">コメントをまとめてコピーできます。<br>クロードのチャットに貼り付けてください。</div>';
+    claudeBtn.innerHTML='<button id="wf-claude-btn" style="width:100%;background:#1a3a2a;border:1px solid #2a6a4a;color:#4ade80;padding:10px 16px;border-radius:6px;font-size:12px;letter-spacing:0.15em;cursor:pointer;font-family:inherit;text-align:left;">COMMENT ALLCOPY</button>';
     panel.appendChild(claudeBtn);
     document.getElementById('wf-claude-btn').addEventListener('click',showClaudeModal);
   }
