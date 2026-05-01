@@ -44,7 +44,7 @@
     closeInput();closeView();
     var rect=overlay.getBoundingClientRect();
     var x=((e.clientX-rect.left)/rect.width*100).toFixed(2);
-    var y=((e.clientY-rect.top+window.pageYOffset)/overlay.scrollHeight*100).toFixed(2);
+    var y=((e.clientY-rect.top)/overlay.scrollHeight*100).toFixed(2);
     inputPopup=document.createElement('div');
     inputPopup.className='c-input-popup';
     inputPopup.style.cssText='position:fixed;left:'+Math.min(e.clientX+12,window.innerWidth-290)+'px;top:'+Math.min(e.clientY+12,window.innerHeight-160)+'px;z-index:10000;';

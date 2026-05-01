@@ -402,7 +402,7 @@ body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f5f5f5; co
     closeInput();closeView();
     var rect=overlay.getBoundingClientRect();
     var x=((e.clientX-rect.left)/rect.width*100).toFixed(2);
-    var y=((e.clientY-rect.top+window.pageYOffset)/overlay.scrollHeight*100).toFixed(2);
+    var y=((e.clientY-rect.top)/overlay.scrollHeight*100).toFixed(2);
 
     inputPopup=document.createElement('div');
     inputPopup.className='c-input-popup';
