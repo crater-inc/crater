@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 名刺 B案 縦 裏面（英語・ネイビーベタ・白抜き） -->
+<svg xmlns="http://www.w3.org/2000/svg" width="61mm" height="97mm" viewBox="0 0 61 97">
+  <defs>
+    <style>
+      .crop-outer { stroke: #000000; stroke-width: 0.25; fill: none; }
+      .company-en { font-family: 'Georgia', serif; font-size: 3.2px; fill: #ffffff; letter-spacing: 0.3px; }
+      .name-en { font-family: 'Georgia', serif; font-size: 7px; fill: #ffffff; letter-spacing: 0.5px; }
+      .title-en { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 2.4px; fill: #c8d4e8; }
+      .info-en { font-family: 'Arial', 'Helvetica', sans-serif; font-size: 2.3px; fill: #c8d4e8; }
+      .gold { stroke: #b8963e; stroke-width: 0.4; fill: none; }
+    </style>
+  </defs>
+
+  <!-- ネイビーベタ面 -->
+  <rect x="0" y="0" width="61" height="97" fill="#1c2c4a"/>
+
+  <!-- トンボ -->
+  <line x1="0" y1="3" x2="2" y2="3" class="crop-outer"/>
+  <line x1="3" y1="0" x2="3" y2="2" class="crop-outer"/>
+  <line x1="59" y1="3" x2="61" y2="3" class="crop-outer"/>
+  <line x1="58" y1="0" x2="58" y2="2" class="crop-outer"/>
+  <line x1="0" y1="94" x2="2" y2="94" class="crop-outer"/>
+  <line x1="3" y1="95" x2="3" y2="97" class="crop-outer"/>
+  <line x1="59" y1="94" x2="61" y2="94" class="crop-outer"/>
+  <line x1="58" y1="95" x2="58" y2="97" class="crop-outer"/>
+
+  <!-- ゴールドライン装飾 -->
+  <line x1="8" y1="22" x2="53" y2="22" class="gold"/>
+  <line x1="8" y1="55" x2="53" y2="55" class="gold"/>
+
+  <!-- 社名 -->
+  <text x="30.5" y="13" class="company-en" text-anchor="middle">Shiraimatsu Kikai Co., Ltd.</text>
+  <text x="30.5" y="18.5" class="company-en" text-anchor="middle" font-size="2.5px" fill="#b8963e">Tokyo Branch</text>
+
+  <!-- 役職 -->
+  <text x="30.5" y="30" class="title-en" text-anchor="middle">General Manager, Manufacturer Business Division</text>
+  <text x="30.5" y="35" class="title-en" text-anchor="middle">Executive Officer / Tokyo Branch Manager</text>
+
+  <!-- 氏名 -->
+  <text x="30.5" y="49" class="name-en" text-anchor="middle">Tadashi Taga</text>
+
+  <!-- 住所・連絡先 -->
+  <text x="30.5" y="62" class="info-en" text-anchor="middle" font-size="2.1px">2-14-32 Ogi, Adachi-ku, Tokyo 123-0873</text>
+  <text x="30.5" y="67" class="info-en" text-anchor="middle">TEL 03-5647-1570　FAX 03-5647-1572</text>
+  <text x="30.5" y="72" class="info-en" text-anchor="middle">Mobile 080-4062-2931</text>
+  <text x="30.5" y="77" class="info-en" text-anchor="middle" font-size="2.1px">tadashi_taga@shiraimatsu.co.jp</text>
+
+  <!-- 拠点 -->
+  <line x1="8" y1="80" x2="53" y2="80" class="gold"/>
+  <text x="30.5" y="85.5" class="info-en" text-anchor="middle" font-size="2px" fill="#b8963e">[Osaka Head Office]　[Kyushu Sales Office]</text>
+</svg>

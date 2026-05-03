@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 名刺 C案 横 表面 / 仕上がり91×55mm / 塗り足し3mm / 総サイズ97×61mm -->
+<svg xmlns="http://www.w3.org/2000/svg" width="97mm" height="61mm" viewBox="0 0 97 61">
+  <defs>
+    <style>
+      .crop { stroke: #000; stroke-width: 0.25; fill: none; }
+      .company { font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif; font-size: 3.2px; fill: #222; letter-spacing: 0.3px; }
+      .name-ja { font-family: 'Hiragino Mincho ProN', 'Yu Mincho', serif; font-size: 8px; fill: #222; letter-spacing: 1px; }
+      .title { font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; font-size: 2.4px; fill: #555; }
+      .info { font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; font-size: 2.3px; fill: #333; }
+      .branch-tag { font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; font-size: 2px; fill: #888; }
+      .rule { stroke: #cccccc; stroke-width: 0.3; }
+      .dark-bar { fill: #222222; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="97" height="61" fill="#ffffff"/>
+  <rect x="3" y="3" width="91" height="55" fill="#ffffff"/>
+
+  <!-- トンボ -->
+  <line x1="0" y1="3" x2="2" y2="3" class="crop"/>
+  <line x1="3" y1="0" x2="3" y2="2" class="crop"/>
+  <line x1="95" y1="3" x2="97" y2="3" class="crop"/>
+  <line x1="94" y1="0" x2="94" y2="2" class="crop"/>
+  <line x1="0" y1="58" x2="2" y2="58" class="crop"/>
+  <line x1="3" y1="59" x2="3" y2="61" class="crop"/>
+  <line x1="95" y1="58" x2="97" y2="58" class="crop"/>
+  <line x1="94" y1="59" x2="94" y2="61" class="crop"/>
+
+  <!-- 左エリア：名前・役職 -->
+  <!-- 仕切りライン -->
+  <line x1="52" y1="7" x2="52" y2="54" class="rule"/>
+
+  <!-- 左ブロック -->
+  <!-- 役職 -->
+  <text x="8" y="15" class="title">メーカー事業本部　本部長　執行役員</text>
+  <text x="8" y="20.5" class="title">東京支店長</text>
+
+  <!-- 氏名 -->
+  <text x="8" y="36" class="name-ja">多賀　正</text>
+
+  <!-- 社名 -->
+  <text x="8" y="45.5" class="company">白井松器械株式会社</text>
+  <text x="8" y="50.5" class="company" font-size="2.5px" fill="#888">Shiraimatsu Kikai Co., Ltd.</text>
+
+  <!-- 右ブロック：連絡先 -->
+  <text x="57" y="15" class="info">東京支店</text>
+  <text x="57" y="21" class="info" font-size="2px">〒123-0873</text>
+  <text x="57" y="26" class="info" font-size="2px">東京都足立区扇2丁目14番32号</text>
+
+  <line x1="57" y1="29" x2="91" y2="29" class="rule"/>
+
+  <text x="57" y="34.5" class="info">TEL 03-5647-1570</text>
+  <text x="57" y="39.5" class="info">FAX 03-5647-1572</text>
+  <text x="57" y="44.5" class="info">携帯 080-4062-2931</text>
+
+  <line x1="57" y1="47" x2="91" y2="47" class="rule"/>
+
+  <text x="57" y="51.5" class="info" font-size="2.1px">tadashi_taga@shiraimatsu.co.jp</text>
+
+  <!-- 下部拠点タグ -->
+  <text x="48.5" y="57.5" class="branch-tag" text-anchor="middle">［大阪本社］　［九州営業所］</text>
+
+  <!-- 左下ライン装飾 -->
+  <rect x="3" y="56" width="91" height="1.5" fill="#222222"/>
+</svg>
