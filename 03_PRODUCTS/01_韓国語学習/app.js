@@ -78,8 +78,38 @@ function renderWords(category) {
   });
 }
 
-// ---- フレーズタブ（placeholder - Task 6で実装） ----
-function renderPhrases() {}
+// ---- フレーズタブ ----
+function renderPhrases() {
+  const progress = getProgress();
+  const container = document.getElementById('phrases-list');
+
+  const cards = phrases.map(p => {
+    const prog = progress[p.id] || {};
+    const learned = prog.learned ? 'learned' : '';
+    const learnedLabel = prog.learned ? '✓ 覚えた' : '覚えた';
+    const badge = p.kchoice ? '<span class="badge-kchoice">K CHOICE!</span>' : '';
+    return `
+      <div class="card">
+        <div class="card-hangul">${p.hangul}${badge}</div>
+        <div class="card-reading">${p.reading}</div>
+        <div class="card-japanese">${p.japanese}</div>
+        <button class="btn-learned ${learned}" data-id="${p.id}">${learnedLabel}</button>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = cards;
+
+  container.querySelectorAll('.btn-learned').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const progress = getProgress();
+      if (!progress[id]) progress[id] = { correct:0, wrong:0, lastStudied:'' };
+      progress[id].learned = !progress[id].learned;
+      saveProgress(progress);
+      renderPhrases();
+    });
+  });
+}
 
 // ---- 履歴タブ（placeholder - Task 9で実装） ----
 function renderHistory() {}
