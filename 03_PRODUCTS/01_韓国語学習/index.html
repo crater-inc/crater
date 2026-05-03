@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>韓国語学習</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- メインコンテンツ -->
+  <main id="app">
+
+    <!-- 単語タブ -->
+    <section id="tab-words" class="tab-content active">
+      <h2 class="page-title">単語</h2>
+      <div id="words-list"></div>
+    </section>
+
+    <!-- フレーズタブ -->
+    <section id="tab-phrases" class="tab-content">
+      <h2 class="page-title">フレーズ</h2>
+      <div id="phrases-list"></div>
+    </section>
+
+    <!-- テストタブ -->
+    <section id="tab-test" class="tab-content">
+      <h2 class="page-title">テスト</h2>
+      <div id="test-mode-select">
+        <button class="mode-btn active" data-mode="ja-to-ko">日→韓</button>
+        <button class="mode-btn" data-mode="ko-to-ja">韓→日</button>
+        <button class="mode-btn" data-mode="handwrite">手書き</button>
+      </div>
+      <div id="test-area"></div>
+    </section>
+
+    <!-- 履歴タブ -->
+    <section id="tab-history" class="tab-content">
+      <h2 class="page-title">履歴</h2>
+      <div id="history-area"></div>
+    </section>
+
+  </main>
+
+  <!-- ボトムナビ -->
+  <nav id="bottom-nav">
+    <button class="nav-btn active" data-tab="words">
+      <span class="nav-icon">📖</span>
+      <span class="nav-label">単語</span>
+    </button>
+    <button class="nav-btn" data-tab="phrases">
+      <span class="nav-icon">💬</span>
+      <span class="nav-label">フレーズ</span>
+    </button>
+    <button class="nav-btn" data-tab="test">
+      <span class="nav-icon">✏️</span>
+      <span class="nav-label">テスト</span>
+    </button>
+    <button class="nav-btn" data-tab="history">
+      <span class="nav-icon">📊</span>
+      <span class="nav-label">履歴</span>
+    </button>
+  </nav>
+
+  <script src="data/words.js"></script>
+  <script src="data/phrases.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
