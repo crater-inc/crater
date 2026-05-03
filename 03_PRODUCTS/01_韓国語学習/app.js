@@ -292,8 +292,47 @@ function renderHandwrite() {
   });
 }
 
-// ---- 履歴タブ（placeholder - Task 9で実装） ----
-function renderHistory() {}
+// ---- 履歴タブ ----
+function renderHistory() {
+  const history = getHistory();
+  const progress = getProgress();
+  const area = document.getElementById('history-area');
+
+  // 全体統計
+  const allIds = [...words, ...phrases].map(i => i.id);
+  let totalCorrect = 0, totalWrong = 0;
+  allIds.forEach(id => {
+    const p = progress[id] || {};
+    totalCorrect += p.correct || 0;
+    totalWrong += p.wrong || 0;
+  });
+  const total = totalCorrect + totalWrong;
+  const rate = total > 0 ? Math.round(totalCorrect / total * 100) : 0;
+  const learnedCount = allIds.filter(id => (progress[id] || {}).learned).length;
+
+  const summary = `
+    <div class="history-card">
+      <div style="font-size:13px; color:#999; margin-bottom:8px;">累計成績</div>
+      <div style="font-size:28px; font-weight:700; color:#111;">${rate}%</div>
+      <div style="font-size:13px; color:#777; margin-bottom:8px;">${totalCorrect}問正解 / ${total}問</div>
+      <div class="progress-bar-wrap"><div class="progress-bar" style="width:${rate}%"></div></div>
+      <div style="font-size:13px; color:#777; margin-top:10px;">覚えた単語・フレーズ：${learnedCount}件</div>
+    </div>`;
+
+  const logs = history.length === 0
+    ? '<p style="padding:16px; color:#999;">まだテスト履歴がありません</p>'
+    : history.map(h => `
+      <div class="history-card">
+        <div class="history-date">${h.date}</div>
+        <div class="history-score">${h.score} / ${h.total}</div>
+        <div class="history-mode">${h.mode}</div>
+        <div class="progress-bar-wrap" style="margin-top:8px;">
+          <div class="progress-bar" style="width:${Math.round(h.score/h.total*100)}%"></div>
+        </div>
+      </div>`).join('');
+
+  area.innerHTML = summary + '<div style="height:8px;"></div>' + logs;
+}
 
 // 初期表示
 renderWords('すべて');
