@@ -336,3 +336,6 @@ function renderHistory() {
 
 // 初期表示
 renderWords('すべて');
+
+// テストタブ初期起動
+startTest();
