@@ -220,8 +220,76 @@ function showTestResult() {
   document.getElementById('retry-btn').addEventListener('click', startTest);
 }
 
+// ---- 手書きモード ----
 function renderHandwrite() {
-  document.getElementById('test-area').innerHTML = '<p style="padding:16px;color:#999;">手書きモードは準備中</p>';
+  const area = document.getElementById('test-area');
+  const item = testItems[testIndex];
+  const badge = item.kchoice ? '<span class="badge-kchoice">K CHOICE!</span>' : '';
+
+  area.innerHTML = `
+    <div class="test-question">
+      ${item.japanese}${badge}
+      <div class="sub">${testIndex + 1} / ${testItems.length} — ハングルで書いてみよう</div>
+    </div>
+    <div id="canvas-wrap">
+      <canvas id="handwrite-canvas" width="300" height="200"></canvas>
+      <div class="canvas-btns">
+        <button class="btn-secondary" id="clear-canvas">消す</button>
+        <button class="btn-primary" id="show-answer">答えを見る</button>
+      </div>
+    </div>
+    <div id="answer-area"></div>`;
+
+  // キャンバス描画
+  const canvas = document.getElementById('handwrite-canvas');
+  const ctx = canvas.getContext('2d');
+  ctx.strokeStyle = '#111';
+  ctx.lineWidth = 3;
+  ctx.lineCap = 'round';
+  let drawing = false;
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches ? e.touches[0] : e;
+    return {
+      x: (touch.clientX - rect.left) * (canvas.width / rect.width),
+      y: (touch.clientY - rect.top) * (canvas.height / rect.height)
+    };
+  }
+
+  canvas.addEventListener('mousedown',  e => { drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); });
+  canvas.addEventListener('mousemove',  e => { if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
+  canvas.addEventListener('mouseup',    () => drawing = false);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); }, { passive:false });
+  canvas.addEventListener('touchmove',  e => { e.preventDefault(); if (!drawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); }, { passive:false });
+  canvas.addEventListener('touchend',   () => drawing = false);
+
+  document.getElementById('clear-canvas').addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+
+  document.getElementById('show-answer').addEventListener('click', () => {
+    const answerArea = document.getElementById('answer-area');
+    answerArea.innerHTML = `
+      <div style="text-align:center; padding:16px; background:#fff; border-radius:12px; margin-top:12px;">
+        <div style="font-size:36px; font-weight:700;">${item.hangul}</div>
+        <div style="font-size:14px; color:#888; margin-top:4px;">${item.reading}</div>
+        <div class="self-grade">
+          <button class="grade-btn ok" data-correct="true">○</button>
+          <button class="grade-btn ng" data-correct="false">✕</button>
+        </div>
+      </div>`;
+
+    answerArea.querySelectorAll('.grade-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isCorrect = btn.dataset.correct === 'true';
+        recordResult(item.id, isCorrect);
+        if (isCorrect) testCorrect++;
+        testIndex++;
+        renderTestQuestion();
+      });
+    });
+  });
 }
 
 // ---- 履歴タブ（placeholder - Task 9で実装） ----
