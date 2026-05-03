@@ -111,6 +111,119 @@ function renderPhrases() {
   });
 }
 
+// ---- テストタブ ----
+let currentTestMode = 'ja-to-ko';
+let testItems = [];
+let testIndex = 0;
+let testCorrect = 0;
+
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTestMode = btn.dataset.mode;
+    startTest();
+  });
+});
+
+function startTest() {
+  const all = [...words, ...phrases];
+  testItems = shuffle(all).slice(0, 10);
+  testIndex = 0;
+  testCorrect = 0;
+  renderTestQuestion();
+}
+
+function shuffle(arr) {
+  return [...arr].sort(() => Math.random() - 0.5);
+}
+
+function renderTestQuestion() {
+  const area = document.getElementById('test-area');
+  if (testIndex >= testItems.length) {
+    showTestResult();
+    return;
+  }
+  if (currentTestMode === 'handwrite') {
+    renderHandwrite();
+    return;
+  }
+
+  const item = testItems[testIndex];
+  const isJaToKo = currentTestMode === 'ja-to-ko';
+  const question = isJaToKo ? item.japanese : item.hangul;
+  const answerKey = isJaToKo ? 'hangul' : 'japanese';
+
+  // 選択肢（正解1＋ランダム3）
+  const all = [...words, ...phrases];
+  const wrongs = shuffle(all.filter(i => i.id !== item.id)).slice(0, 3);
+  const choices = shuffle([item, ...wrongs]);
+
+  const badge = item.kchoice ? '<span class="badge-kchoice">K CHOICE!</span>' : '';
+
+  area.innerHTML = `
+    <div class="test-question">
+      ${question}${badge}
+      <div class="sub">${testIndex + 1} / ${testItems.length}</div>
+    </div>
+    <div class="choices">
+      ${choices.map(c => `<button class="choice-btn" data-id="${c.id}" data-correct="${c.id === item.id}">${c[answerKey]}</button>`).join('')}
+    </div>`;
+
+  area.querySelectorAll('.choice-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isCorrect = btn.dataset.correct === 'true';
+      area.querySelectorAll('.choice-btn').forEach(b => {
+        b.disabled = true;
+        if (b.dataset.correct === 'true') b.classList.add('correct');
+        else if (b === btn && !isCorrect) b.classList.add('wrong');
+      });
+      recordResult(item.id, isCorrect);
+      if (isCorrect) testCorrect++;
+      setTimeout(() => {
+        testIndex++;
+        renderTestQuestion();
+      }, 1000);
+    });
+  });
+}
+
+function recordResult(id, isCorrect) {
+  const progress = getProgress();
+  if (!progress[id]) progress[id] = { correct:0, wrong:0, lastStudied:'' };
+  if (isCorrect) progress[id].correct++;
+  else progress[id].wrong++;
+  progress[id].lastStudied = new Date().toLocaleDateString('ja-JP');
+  saveProgress(progress);
+}
+
+function showTestResult() {
+  const area = document.getElementById('test-area');
+  const modeLabel = { 'ja-to-ko':'日→韓', 'ko-to-ja':'韓→日', 'handwrite':'手書き' }[currentTestMode];
+  area.innerHTML = `
+    <div class="test-result">
+      <div class="result-score">${testCorrect} / ${testItems.length}</div>
+      <div class="result-label">${modeLabel} テスト結果</div>
+      <button class="btn-primary" id="retry-btn">もう一度</button>
+    </div>`;
+
+  // 履歴に保存
+  const history = getHistory();
+  history.unshift({
+    date: new Date().toLocaleDateString('ja-JP'),
+    mode: modeLabel,
+    score: testCorrect,
+    total: testItems.length
+  });
+  saveHistory(history.slice(0, 50));
+
+  document.getElementById('retry-btn').addEventListener('click', startTest);
+}
+
+function renderHandwrite() {
+  document.getElementById('test-area').innerHTML = '<p style="padding:16px;color:#999;">手書きモードは準備中</p>';
+}
+
 // ---- 履歴タブ（placeholder - Task 9で実装） ----
 function renderHistory() {}
 
