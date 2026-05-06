@@ -1,0 +1,23 @@
+name: Deploy APOLLOS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '02_APOLLOS/output/website/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: FTPデプロイ
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: 02_APOLLOS/output/website/
+          server-dir: /home/c6512608/public_html/apollos.jp/
