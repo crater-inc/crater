@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>金の時 — 市場展開戦略</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --base:#F5F2EC;
+  --base2:#EDEAE2;
+  --gold:#9A7B2E;
+  --gold-lt:#E8D5A3;
+  --gold-dk:#7A6330;
+  --dark:#2C2C2C;
+  --dark2:#1A1712;
+  --gray:#5C5956;
+  --pt:#B8B3A8;
+  --white:#FFFFFF;
+  --font-ja:'Zen Old Mincho',serif;
+  --font-en:'Crimson Pro',serif;
+  --font-sans:'Noto Sans JP',sans-serif;
+}
+
+html,body{
+  width:100%;height:100%;
+  background:var(--base);
+  overflow:hidden;
+  font-family:var(--font-ja);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── STAGE ── */
+.stage{
+  width:100vw;height:100vh;
+  display:grid;place-items:center;
+  background:var(--base);
+  container-type:size;
+}
+
+/* ── SLIDE ── */
+.slide{
+  width:100vw;height:100vh;
+  max-width:calc(100vh * 16/9);
+  max-height:calc(100vw * 9/16);
+  margin:auto;
+  position:absolute;
+  overflow:hidden;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .45s ease;
+  container-type:size;
+}
+.slide.active{opacity:1;pointer-events:auto;position:relative;}
+
+/* ── TYPOGRAPHY ── */
+.slide-hero{font-size:7.2cqw;font-weight:700;line-height:1.1;letter-spacing:0.03em;}
+.slide-h1  {font-size:4.8cqw;font-weight:700;line-height:1.15;letter-spacing:0.03em;}
+.slide-h2  {font-size:3.2cqw;font-weight:700;line-height:1.2; letter-spacing:0.03em;}
+.slide-h3  {font-size:2.2cqw;font-weight:600;line-height:1.3; letter-spacing:0.05em;}
+.slide-title{font-size:2cqw; font-weight:400;line-height:1.4; letter-spacing:0.05em;}
+.slide-body {font-size:1.6cqw;font-weight:400;line-height:1.7; letter-spacing:0.02em;}
+.slide-caption{font-size:1.1cqw;font-weight:300;line-height:1.6;letter-spacing:0.05em;}
+.slide-micro{font-size:0.9cqw;font-weight:300;line-height:1.5;letter-spacing:0.05em;}
+.slide-number{font-size:9.6cqw;font-weight:700;line-height:1;font-family:var(--font-en);}
+.en{font-family:var(--font-en);}
+.sans{font-family:var(--font-sans);}
+
+/* ── CONTENT WRAPPER ── */
+.slide-content{
+  padding:4.2cqw 7cqw;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;
+  justify-content:center;
+  box-sizing:border-box;
+}
+
+/* ── NAV ── */
+.nav{
+  position:fixed;bottom:0;left:0;right:0;
+  height:5cqh;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3cqw;
+  background:rgba(245,242,236,0.92);
+  backdrop-filter:blur(8px);
+  border-top:1px solid var(--gold-lt);
+  z-index:100;
+}
+.nav-brand{
+  font-family:var(--font-en);
+  font-size:1.1cqw;letter-spacing:0.3em;
+  color:var(--gold-dk);
+  text-transform:uppercase;
+}
+.nav-ctrl{display:flex;align-items:center;gap:2cqw;}
+.nav-btn{
+  width:3.2cqw;height:3.2cqw;
+  border:1px solid var(--gold-lt);
+  background:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.nav-btn:hover{background:var(--gold-lt);}
+.nav-btn svg{width:1.2cqw;height:1.2cqw;}
+.nav-counter{
+  font-family:var(--font-en);
+  font-size:1.1cqw;color:var(--gray);
+  letter-spacing:0.1em;min-width:4cqw;text-align:center;
+}
+.progress{
+  position:fixed;top:0;left:0;
+  height:2px;background:var(--gold);
+  transition:width .4s ease;z-index:200;
+}
+
+/* ═══════════════════════════════
+   SLIDE 01 — 表紙
+═══════════════════════════════ */
+.s01{background:var(--dark2);}
+.s01 .bg-ring{
+  position:absolute;top:50%;left:55%;
+  transform:translate(-50%,-50%);
+  width:70cqw;height:70cqw;
+  border-radius:50%;
+  border:0.5px solid rgba(232,213,163,0.12);
+  pointer-events:none;
+}
+.s01 .bg-ring2{
+  position:absolute;top:50%;left:55%;
+  transform:translate(-50%,-50%);
+  width:50cqw;height:50cqw;
+  border-radius:50%;
+  border:0.5px solid rgba(232,213,163,0.08);
+}
+.s01 .gold-line{
+  position:absolute;top:0;left:0;
+  width:0.4cqw;height:100%;
+  background:linear-gradient(to bottom,transparent,var(--gold),transparent);
+}
+.s01 .slide-content{
+  padding:5cqw 8cqw;
+  justify-content:flex-end;
+  position:relative;z-index:1;
+}
+.s01 .label{
+  font-family:var(--font-en);
+  font-size:1.1cqw;letter-spacing:0.4em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:2.5cqw;
+}
+.s01 .title{
+  font-size:6cqw;font-weight:500;
+  color:var(--base);line-height:1.1;
+  letter-spacing:0.06em;
+  margin-bottom:1.5cqw;
+}
+.s01 .sub{
+  font-family:var(--font-en);
+  font-size:1.8cqw;letter-spacing:0.4em;
+  color:var(--gold);font-style:italic;
+  margin-bottom:4cqw;
+}
+.s01 .meta{
+  font-family:var(--font-sans);
+  font-size:1.1cqw;font-weight:300;
+  color:rgba(240,237,232,0.35);
+  letter-spacing:0.15em;
+}
+
+/* ═══════════════════════════════
+   SLIDE 02 — ブランド概要
+═══════════════════════════════ */
+.s02{background:var(--base);}
+.s02 .top-line{
+  position:absolute;top:0;left:0;right:0;
+  height:0.4cqw;background:var(--gold);
+}
+.s02 .slide-content{padding:5cqw 8cqw;justify-content:center;}
+.s02 .lbl{
+  font-family:var(--font-en);
+  font-size:1.1cqw;letter-spacing:0.35em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:3cqw;
+}
+.s02 .main{
+  font-size:4cqw;font-weight:500;
+  line-height:1.4;letter-spacing:0.04em;
+  color:var(--dark);margin-bottom:3cqw;
+}
+.s02 .main em{font-style:normal;color:var(--gold-dk);}
+.s02 .grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2cqw;margin-top:3cqw;
+}
+.s02 .item{
+  border-top:1px solid var(--gold-lt);
+  padding-top:1.5cqw;
+}
+.s02 .item-lbl{
+  font-family:var(--font-en);
+  font-size:0.9cqw;letter-spacing:0.25em;
+  color:var(--gold);text-transform:uppercase;
+  margin-bottom:0.8cqw;
+}
+.s02 .item-val{
+  font-family:var(--font-sans);
+  font-size:1.3cqw;font-weight:400;
+  color:var(--dark);line-height:1.6;
+}
+
+/* ═══════════════════════════════
+   SLIDE 03 — ブリッジ（国内）
+═══════════════════════════════ */
+.s03{background:var(--gold-dk);}
+.s03 .slide-content{align-items:center;}
+.s03 .bridge-lbl{
+  font-family:var(--font-en);
+  font-size:1.2cqw;letter-spacing:0.5em;
+  color:rgba(255,255,255,0.5);
+  text-transform:uppercase;margin-bottom:2cqw;
+}
+.s03 .bridge-title{
+  font-size:5cqw;font-weight:500;
+  color:var(--base);letter-spacing:0.06em;
+  text-align:center;
+}
+.s03 .bridge-en{
+  font-family:var(--font-en);font-style:italic;
+  font-size:1.8cqw;color:rgba(245,242,236,0.5);
+  letter-spacing:0.2em;margin-top:1.5cqw;
+}
+
+/* ═══════════════════════════════
+   SLIDE 04 — ターゲット
+═══════════════════════════════ */
+.s04{background:var(--base);}
+.s04 .top-line{position:absolute;top:0;left:0;right:0;height:0.4cqw;background:var(--gold);}
+.s04 .slide-content{padding:5cqw 8cqw;}
+.s04 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s04 .ttl{font-size:2.8cqw;font-weight:500;color:var(--dark);margin-bottom:3cqw;letter-spacing:0.04em;}
+.s04 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:3cqw;margin-top:1cqw;}
+.s04 .col{background:var(--white);padding:3cqw;border-top:2px solid var(--gold);}
+.s04 .col-h{font-size:1.6cqw;font-weight:600;color:var(--gold-dk);margin-bottom:1.5cqw;letter-spacing:0.05em;}
+.s04 .col-body{font-family:var(--font-sans);font-size:1.3cqw;font-weight:300;color:var(--gray);line-height:1.9;}
+
+/* ═══════════════════════════════
+   SLIDE 05 — コアメッセージ
+═══════════════════════════════ */
+.s05{background:var(--dark2);}
+.s05 .slide-content{align-items:flex-start;justify-content:center;}
+.s05 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:3cqw;}
+.s05 .table{width:100%;}
+.s05 .row{
+  display:grid;grid-template-columns:20cqw 1fr;
+  border-top:1px solid rgba(232,213,163,0.15);
+  padding:2cqw 0;
+  align-items:center;
+}
+.s05 .row:last-child{border-bottom:1px solid rgba(232,213,163,0.15);}
+.s05 .row-lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;}
+.s05 .row-val{font-size:2.4cqw;font-weight:500;color:var(--base);letter-spacing:0.04em;}
+.s05 .row-val.accent{color:var(--gold);}
+
+/* ═══════════════════════════════
+   SLIDE 06 — Instagram
+═══════════════════════════════ */
+.s06{background:var(--base);}
+.s06 .top-line{position:absolute;top:0;left:0;right:0;height:0.4cqw;background:var(--gold);}
+.s06 .slide-content{padding:5cqw 8cqw;}
+.s06 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s06 .ttl{font-size:2.8cqw;font-weight:500;color:var(--dark);margin-bottom:3cqw;}
+.s06 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:3cqw;}
+.s06 .col{padding:2.5cqw;background:var(--white);border-left:2px solid var(--gold);}
+.s06 .col-h{font-size:1.4cqw;font-weight:600;color:var(--gold-dk);margin-bottom:1.2cqw;letter-spacing:0.05em;}
+.s06 .col-body{font-family:var(--font-sans);font-size:1.3cqw;font-weight:300;color:var(--gray);line-height:2;}
+.s06 .kpi{
+  margin-top:2.5cqw;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5cqw;
+}
+.s06 .kpi-item{
+  background:var(--base2);
+  padding:1.5cqw;text-align:center;
+}
+.s06 .kpi-num{font-family:var(--font-en);font-size:3cqw;font-weight:600;color:var(--gold-dk);}
+.s06 .kpi-lbl{font-family:var(--font-sans);font-size:1.1cqw;font-weight:300;color:var(--gray);margin-top:0.3cqw;}
+
+/* ═══════════════════════════════
+   SLIDE 07 — PR
+═══════════════════════════════ */
+.s07{background:var(--dark);}
+.s07 .slide-content{padding:5cqw 8cqw;}
+.s07 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s07 .ttl{font-size:2.8cqw;font-weight:500;color:var(--base);margin-bottom:3cqw;letter-spacing:0.04em;}
+.s07 .media-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1.5cqw;margin-bottom:3cqw;
+}
+.s07 .media-item{
+  border:1px solid rgba(232,213,163,0.2);
+  padding:2cqw;
+  text-align:center;
+}
+.s07 .media-cat{font-family:var(--font-en);font-size:0.9cqw;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:0.8cqw;}
+.s07 .media-name{font-size:1.3cqw;color:var(--base);font-weight:400;}
+.s07 .pr-copy{
+  border-top:1px solid rgba(232,213,163,0.2);
+  padding-top:2cqw;
+}
+.s07 .pr-copy-lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:1cqw;}
+.s07 .pr-copy-text{font-size:2cqw;font-weight:400;color:var(--base);letter-spacing:0.04em;}
+.s07 .pr-copy-text em{font-style:normal;color:var(--gold);}
+
+/* ═══════════════════════════════
+   SLIDE 08 — フェーズ（国内）
+═══════════════════════════════ */
+.s08{background:var(--base);}
+.s08 .top-line{position:absolute;top:0;left:0;right:0;height:0.4cqw;background:var(--gold);}
+.s08 .slide-content{padding:5cqw 8cqw;}
+.s08 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s08 .ttl{font-size:2.8cqw;font-weight:500;color:var(--dark);margin-bottom:3cqw;}
+.s08 .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;}
+.s08 .phase{background:var(--white);padding:2.5cqw;border-top:2px solid var(--gold);}
+.s08 .phase-num{font-family:var(--font-en);font-size:3.5cqw;font-weight:600;color:var(--gold-lt);line-height:1;margin-bottom:0.8cqw;}
+.s08 .phase-period{font-family:var(--font-sans);font-size:1.1cqw;color:var(--gold);font-weight:500;margin-bottom:1cqw;letter-spacing:0.1em;}
+.s08 .phase-title{font-size:1.6cqw;font-weight:600;color:var(--dark);margin-bottom:1.2cqw;}
+.s08 .phase-list{list-style:none;}
+.s08 .phase-list li{
+  font-family:var(--font-sans);
+  font-size:1.2cqw;font-weight:300;
+  color:var(--gray);line-height:1.8;
+  padding-left:1.2cqw;position:relative;
+}
+.s08 .phase-list li::before{
+  content:'—';
+  position:absolute;left:0;
+  color:var(--gold);font-size:1cqw;
+}
+
+/* ═══════════════════════════════
+   SLIDE 09 — 国内予算
+═══════════════════════════════ */
+.s09{background:var(--base2);}
+.s09 .slide-content{padding:5cqw 8cqw;}
+.s09 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s09 .ttl{font-size:2.8cqw;font-weight:500;color:var(--dark);margin-bottom:3cqw;}
+.s09 .budget-table{width:100%;border-collapse:collapse;}
+.s09 .budget-table th{
+  font-family:var(--font-en);
+  font-size:1.1cqw;letter-spacing:0.2em;
+  color:var(--gold);text-transform:uppercase;
+  text-align:left;padding:1.2cqw 1.5cqw;
+  border-bottom:1px solid var(--gold-lt);
+  background:var(--white);
+}
+.s09 .budget-table td{
+  font-family:var(--font-sans);
+  font-size:1.3cqw;font-weight:300;
+  color:var(--dark);
+  padding:1.2cqw 1.5cqw;
+  border-bottom:1px solid var(--gold-lt);
+  background:var(--white);
+}
+.s09 .budget-table tr.total td{
+  font-weight:500;color:var(--gold-dk);
+  font-size:1.5cqw;
+  background:var(--gold-lt);
+}
+.s09 .note{
+  font-family:var(--font-sans);
+  font-size:1.1cqw;font-weight:300;
+  color:var(--gray);margin-top:1.5cqw;
+}
+
+/* ═══════════════════════════════
+   SLIDE 10 — ブリッジ（台湾）
+═══════════════════════════════ */
+.s10{background:var(--dark2);}
+.s10 .slide-content{align-items:center;}
+.s10 .bridge-lbl{font-family:var(--font-en);font-size:1.2cqw;letter-spacing:0.5em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:2cqw;}
+.s10 .bridge-title{font-size:5cqw;font-weight:500;color:var(--base);letter-spacing:0.06em;text-align:center;}
+.s10 .bridge-en{font-family:var(--font-en);font-style:italic;font-size:1.8cqw;color:var(--gold);letter-spacing:0.2em;margin-top:1.5cqw;}
+.s10 .bridge-sub{font-family:var(--font-sans);font-size:1.3cqw;font-weight:300;color:rgba(245,242,236,0.45);margin-top:2cqw;letter-spacing:0.1em;}
+
+/* ═══════════════════════════════
+   SLIDE 11 — 台湾市場背景
+═══════════════════════════════ */
+.s11{background:var(--base);}
+.s11 .top-line{position:absolute;top:0;left:0;right:0;height:0.4cqw;background:var(--gold);}
+.s11 .slide-content{padding:5cqw 8cqw;}
+.s11 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s11 .ttl{font-size:2.8cqw;font-weight:500;color:var(--dark);margin-bottom:3cqw;}
+.s11 .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;}
+.s11 .fact{background:var(--white);padding:2.5cqw;border-top:2px solid var(--gold);}
+.s11 .fact-num{font-family:var(--font-en);font-size:3.5cqw;font-weight:600;color:var(--gold);line-height:1;margin-bottom:0.5cqw;}
+.s11 .fact-unit{font-family:var(--font-en);font-size:1.2cqw;color:var(--gold-dk);}
+.s11 .fact-body{font-family:var(--font-sans);font-size:1.2cqw;font-weight:300;color:var(--gray);line-height:1.8;margin-top:1cqw;}
+.s11 .insight{
+  margin-top:2cqw;background:var(--dark);
+  padding:2cqw 2.5cqw;
+}
+.s11 .insight-text{font-size:1.6cqw;font-weight:400;color:var(--base);letter-spacing:0.04em;}
+.s11 .insight-text em{font-style:normal;color:var(--gold);}
+
+/* ═══════════════════════════════
+   SLIDE 12 — 台湾展開フェーズ
+═══════════════════════════════ */
+.s12{background:var(--dark);}
+.s12 .slide-content{padding:5cqw 8cqw;}
+.s12 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s12 .ttl{font-size:2.8cqw;font-weight:500;color:var(--base);margin-bottom:3cqw;}
+.s12 .phases{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;}
+.s12 .phase{border:1px solid rgba(232,213,163,0.2);padding:2.5cqw;}
+.s12 .phase-num{font-family:var(--font-en);font-size:3.5cqw;font-weight:600;color:rgba(232,213,163,0.15);line-height:1;margin-bottom:0.8cqw;}
+.s12 .phase-period{font-family:var(--font-sans);font-size:1.1cqw;color:var(--gold);font-weight:500;margin-bottom:1cqw;letter-spacing:0.1em;}
+.s12 .phase-title{font-size:1.6cqw;font-weight:600;color:var(--base);margin-bottom:1.2cqw;}
+.s12 .phase-list{list-style:none;}
+.s12 .phase-list li{
+  font-family:var(--font-sans);
+  font-size:1.2cqw;font-weight:300;
+  color:rgba(245,242,236,0.6);line-height:1.8;
+  padding-left:1.2cqw;position:relative;
+}
+.s12 .phase-list li::before{content:'—';position:absolute;left:0;color:var(--gold);font-size:1cqw;}
+
+/* ═══════════════════════════════
+   SLIDE 13 — 代理店可能性
+═══════════════════════════════ */
+.s13{background:var(--base);}
+.s13 .top-line{position:absolute;top:0;left:0;right:0;height:0.4cqw;background:var(--gold);}
+.s13 .slide-content{padding:5cqw 8cqw;}
+.s13 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s13 .ttl{font-size:2.8cqw;font-weight:500;color:var(--dark);margin-bottom:3cqw;}
+.s13 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:3cqw;}
+.s13 .col{background:var(--white);padding:2.5cqw;border-top:2px solid var(--gold);}
+.s13 .col-h{font-size:1.5cqw;font-weight:600;color:var(--gold-dk);margin-bottom:1.2cqw;}
+.s13 .col-body{font-family:var(--font-sans);font-size:1.3cqw;font-weight:300;color:var(--gray);line-height:2;}
+.s13 .note-box{
+  margin-top:2.5cqw;background:var(--dark);
+  padding:2cqw 2.5cqw;
+}
+.s13 .note-text{font-size:1.5cqw;font-weight:400;color:var(--base);letter-spacing:0.04em;}
+.s13 .note-text em{font-style:normal;color:var(--gold);}
+
+/* ═══════════════════════════════
+   SLIDE 14 — ブリッジ（VI）
+═══════════════════════════════ */
+.s14{background:var(--gold-dk);}
+.s14 .slide-content{align-items:center;}
+.s14 .bridge-lbl{font-family:var(--font-en);font-size:1.2cqw;letter-spacing:0.5em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:2cqw;}
+.s14 .bridge-title{font-size:5cqw;font-weight:500;color:var(--base);letter-spacing:0.06em;text-align:center;}
+.s14 .bridge-en{font-family:var(--font-en);font-style:italic;font-size:1.8cqw;color:rgba(245,242,236,0.5);letter-spacing:0.2em;margin-top:1.5cqw;}
+
+/* ═══════════════════════════════
+   SLIDE 15 — VI展開ロードマップ
+═══════════════════════════════ */
+.s15{background:var(--base);}
+.s15 .top-line{position:absolute;top:0;left:0;right:0;height:0.4cqw;background:var(--gold);}
+.s15 .slide-content{padding:5cqw 8cqw;}
+.s15 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5cqw;}
+.s15 .ttl{font-size:2.8cqw;font-weight:500;color:var(--dark);margin-bottom:3cqw;}
+.s15 .roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:2cqw;position:relative;}
+.s15 .roadmap::before{
+  content:'';
+  position:absolute;
+  top:4cqw;left:2cqw;right:2cqw;
+  height:1px;background:var(--gold-lt);
+  z-index:0;
+}
+.s15 .step{position:relative;z-index:1;}
+.s15 .step-num{
+  width:4cqw;height:4cqw;
+  border-radius:50%;
+  background:var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-en);font-size:1.6cqw;
+  font-weight:600;color:var(--white);
+  margin-bottom:1.5cqw;
+}
+.s15 .step-title{font-size:1.6cqw;font-weight:600;color:var(--dark);margin-bottom:0.8cqw;}
+.s15 .step-body{
+  font-family:var(--font-sans);
+  font-size:1.2cqw;font-weight:300;
+  color:var(--gray);line-height:1.8;
+}
+.s15 .step-period{
+  font-family:var(--font-en);
+  font-size:1cqw;letter-spacing:0.15em;
+  color:var(--gold);margin-top:0.8cqw;
+}
+
+/* ═══════════════════════════════
+   SLIDE 16 — まとめ
+═══════════════════════════════ */
+.s16{background:var(--dark2);}
+.s16 .bg-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:70cqw;height:70cqw;border-radius:50%;border:0.5px solid rgba(232,213,163,0.1);}
+.s16 .slide-content{align-items:center;position:relative;z-index:1;}
+.s16 .lbl{font-family:var(--font-en);font-size:1.1cqw;letter-spacing:0.35em;color:var(--gold);text-transform:uppercase;margin-bottom:3cqw;}
+.s16 .main{font-size:4cqw;font-weight:500;color:var(--base);line-height:1.5;letter-spacing:0.04em;text-align:center;margin-bottom:3cqw;}
+.s16 .main em{font-style:normal;color:var(--gold);}
+.s16 .sub{font-family:var(--font-en);font-style:italic;font-size:1.6cqw;color:var(--gold);letter-spacing:0.2em;}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+
+<div class="stage">
+
+<!-- SLIDE 01 表紙 -->
+<section class="slide s01 active">
+  <div class="bg-ring"></div>
+  <div class="bg-ring2"></div>
+  <div class="gold-line"></div>
+  <div class="slide-content">
+    <div class="label en">Market Strategy 2026</div>
+    <div class="title">金の時</div>
+    <div class="sub">Golden Moments</div>
+    <div class="meta sans">国内・台湾 市場展開戦略 / CRATER × APOLLOS</div>
+  </div>
+</section>
+
+<!-- SLIDE 02 ブランド概要 -->
+<section class="slide s02">
+  <div class="top-line"></div>
+  <div class="slide-content">
+    <div class="lbl">Brand Overview</div>
+    <div class="main">不老長寿と呼ばれた野菜、<em>金時草。</em></div>
+    <div class="grid">
+      <div class="item">
+        <div class="item-lbl">Product</div>
+        <div class="item-val sans">金時草粉末食品<br>スティック袋 2g × 30包</div>
+      </div>
+      <div class="item">
+        <div class="item-lbl">Origin</div>
+        <div class="item-val sans">加賀野菜<br>4,000年の歴史</div>
+      </div>
+      <div class="item">
+        <div class="item-lbl">Tagline</div>
+        <div class="item-val">輝きは、準備から始まる。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 03 ブリッジ 国内 -->
+<section class="slide s03">
+  <div class="slide-content">
+    <div class="bridge-lbl">Chapter 01</div>
+    <div class="bridge-title">国内戦略</div>
+    <div class="bridge-en">Domestic Strategy</div>
+  </div>
+</section>
+
+<!-- SLIDE 04 ターゲット -->
+<section class="slide s04">
+  <div class="top-line"></div>
+  <div class="slide-content">
+    <div class="lbl">Target</div>
+    <div class="ttl">「これから輝く人生を歩む人」へ届ける</div>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-h">コアターゲット</div>
+        <div class="col-body">
+          40〜60代女性<br>
+          健康意識が高く、上質なものを選ぶ層<br>
+          「予防・メンテナンス」より「豊かな暮らし」を重視<br>
+          ギフトとして贈る・贈られる関係にある
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-h">ターゲットの状態</div>
+        <div class="col-body">
+          金時草を知らない（認知ゼロ）<br>
+          「加賀野菜」というストーリーに興味を持つ<br>
+          毎朝の習慣として取り入れやすいものを探している<br>
+          信頼できるブランドを選びたい
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 05 コアメッセージ -->
+<section class="slide s05">
+  <div class="slide-content">
+    <div class="lbl">Core Message</div>
+    <div class="table">
+      <div class="row">
+        <div class="row-lbl">認知の入り口</div>
+        <div class="row-val accent">不老長寿と呼ばれた野菜、金時草。</div>
+      </div>
+      <div class="row">
+        <div class="row-lbl">ブランドコンセプト</div>
+        <div class="row-val">輝きは、準備から始まる。</div>
+      </div>
+      <div class="row">
+        <div class="row-lbl">行動喚起</div>
+        <div class="row-val">今日の一包から。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 06 Instagram -->
+<section class="slide s06">
+  <div class="top-line"></div>
+  <div class="slide-content">
+    <div class="lbl">Channel 01</div>
+    <div class="ttl">Instagram — 世界観と習慣をつくる</div>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-h">発信方針</div>
+        <div class="col-body">
+          金時草の葉・産地・溶かす瞬間・朝の手元<br>
+          「毎朝の一包」という習慣の文脈<br>
+          静謐なビジュアルで世界観を統一<br>
+          リールで「金時草って何？」素材紹介
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-h">運用設計</div>
+        <div class="col-body">
+          週3本投稿<br>
+          フィード：世界観写真<br>
+          ストーリーズ：産地・歴史・日常<br>
+          ハイライト：ブランドストーリー
+        </div>
+      </div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-item">
+        <div class="kpi-num">300+</div>
+        <div class="kpi-lbl sans">3ヶ月フォロワー</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">5%+</div>
+        <div class="kpi-lbl sans">投稿保存率</div>
+      </div>
+      <div class="kpi-item">
+        <div class="kpi-num">週3</div>
+        <div class="kpi-lbl sans">投稿頻度</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 07 PR -->
+<section class="slide s07">
+  <div class="slide-content">
+    <div class="lbl">Channel 02</div>
+    <div class="ttl">PR・メディア — 第三者の言葉で信頼をつくる</div>
+    <div class="media-grid">
+      <div class="media-item">
+        <div class="media-cat">Women's Magazine</div>
+        <div class="media-name sans">美ST / 婦人画報<br>Marisol</div>
+      </div>
+      <div class="media-item">
+        <div class="media-cat">Food & Lifestyle</div>
+        <div class="media-name sans">食べログマガジン<br>Lifestyle Web</div>
+      </div>
+      <div class="media-item">
+        <div class="media-cat">Regional</div>
+        <div class="media-name sans">石川・金沢・加賀<br>地域メディア</div>
+      </div>
+      <div class="media-item">
+        <div class="media-cat">Wellness</div>
+        <div class="media-name sans">健康・ウェルネス<br>系Webメディア</div>
+      </div>
+    </div>
+    <div class="pr-copy">
+      <div class="pr-copy-lbl">プレスリリース切り口</div>
+      <div class="pr-copy-text">「加賀に4,000年伝わる<em>不老長寿の野菜</em>を、現代の食卓へ」</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 08 フェーズ 国内 -->
+<section class="slide s08">
+  <div class="top-line"></div>
+  <div class="slide-content">
+    <div class="lbl">Domestic Roadmap</div>
+    <div class="ttl">国内 フェーズ別アクション</div>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num">01</div>
+        <div class="phase-period sans">1〜2ヶ月目</div>
+        <div class="phase-title">存在を示す</div>
+        <ul class="phase-list">
+          <li>Instagramアカウント開設</li>
+          <li>世界観投稿10本ストック</li>
+          <li>プレスリリース作成</li>
+          <li>メディア5社にアプローチ</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-num">02</div>
+        <div class="phase-period sans">3〜4ヶ月目</div>
+        <div class="phase-title">信頼をつくる</div>
+        <ul class="phase-list">
+          <li>メディア掲載実績をSNSで紹介</li>
+          <li>産地・農家・歴史の連続発信</li>
+          <li>インフルエンサーへ試供品アプローチ</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-num">03</div>
+        <div class="phase-period sans">5〜6ヶ月目</div>
+        <div class="phase-title">購買導線をつくる</div>
+        <ul class="phase-list">
+          <li>ECへの導線をInstagramに設置</li>
+          <li>ギフト需要の訴求追加</li>
+          <li>購入者の声（UGC）収集・発信</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 09 国内予算 -->
+<section class="slide s09">
+  <div class="slide-content">
+    <div class="lbl">Domestic Budget</div>
+    <div class="ttl">国内 予算目安（初期3ヶ月）</div>
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>内容</th>
+          <th>目安金額</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Instagram運用</td>
+          <td class="sans">撮影・投稿制作・運用管理</td>
+          <td class="en">¥80,000〜 / 月</td>
+        </tr>
+        <tr>
+          <td>プレスリリース</td>
+          <td class="sans">作成・配信・メディアアプローチ</td>
+          <td class="en">¥100,000〜 / 本</td>
+        </tr>
+        <tr>
+          <td>インフルエンサー</td>
+          <td class="sans">試供品提供・謝礼</td>
+          <td class="en">¥50,000〜 / 人</td>
+        </tr>
+        <tr class="total">
+          <td colspan="2">合計（3ヶ月）</td>
+          <td class="en">¥450,000〜</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note sans">※ 広告費・EC初期費用は別途。初期は認知構築フェーズのため広告投資は推奨しない。</div>
+  </div>
+</section>
+
+<!-- SLIDE 10 ブリッジ 台湾 -->
+<section class="slide s10">
+  <div class="slide-content">
+    <div class="bridge-lbl">Chapter 02</div>
+    <div class="bridge-title">台湾戦略</div>
+    <div class="bridge-en">Taiwan Strategy</div>
+    <div class="bridge-sub sans">越境EC × 現地展開</div>
+  </div>
+</section>
+
+<!-- SLIDE 11 台湾市場背景 -->
+<section class="slide s11">
+  <div class="top-line"></div>
+  <div class="slide-content">
+    <div class="lbl">Taiwan Market</div>
+    <div class="ttl">台湾が狙い目の理由</div>
+    <div class="three-col">
+      <div class="fact">
+        <div class="fact-num">2,350<span class="fact-unit">万人</span></div>
+        <div class="fact-body sans">人口。高い所得水準と健康意識。日本ブランドへの高い信頼感。</div>
+      </div>
+      <div class="fact">
+        <div class="fact-num">漢方<span class="fact-unit">文化</span></div>
+        <div class="fact-body sans">薬膳・漢方の文化的背景あり。「不老長寿」という概念への親和性が高い。</div>
+      </div>
+      <div class="fact">
+        <div class="fact-num">J品質<span class="fact-unit">需要</span></div>
+        <div class="fact-body sans">日本産・日本製の食品・健康食品への需要が継続的に高い市場。</div>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="insight-text">「不老長寿と呼ばれた野菜」というコンセプトは、<em>台湾の価値観とも深く共鳴する。</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 12 台湾展開フェーズ -->
+<section class="slide s12">
+  <div class="slide-content">
+    <div class="lbl">Taiwan Roadmap</div>
+    <div class="ttl">台湾 展開フェーズ</div>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num">01</div>
+        <div class="phase-period sans">フェーズ1</div>
+        <div class="phase-title">越境ECでテスト</div>
+        <ul class="phase-list">
+          <li>日本のECサイトから台湾向け販売開始</li>
+          <li>台湾向け越境EC（91App等）検討</li>
+          <li>繁体字での商品ページ整備</li>
+          <li>市場の反応・需要を把握する</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-num">02</div>
+        <div class="phase-period sans">フェーズ2</div>
+        <div class="phase-title">現地パートナー交渉</div>
+        <ul class="phase-list">
+          <li>現地代理店・パートナーへのアプローチ</li>
+          <li>コネクションを活用した展開検討</li>
+          <li>現地向けブランディング調整</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-num">03</div>
+        <div class="phase-period sans">フェーズ3</div>
+        <div class="phase-title">本格現地展開</div>
+        <ul class="phase-list">
+          <li>台湾国内での販売網構築</li>
+          <li>現地メディア・インフルエンサー活用</li>
+          <li>リテール（百貨店・健康食品店）への展開</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13 代理店可能性 -->
+<section class="slide s13">
+  <div class="top-line"></div>
+  <div class="slide-content">
+    <div class="lbl">Partner Strategy</div>
+    <div class="ttl">現地代理店・パートナーの可能性</div>
+    <div class="two-col">
+      <div class="col">
+        <div class="col-h">越境ECアプローチ</div>
+        <div class="col-body sans">
+          まずは越境ECで市場を探る。<br>
+          台湾向け配送・決済・繁体字対応を整え、<br>
+          需要と顧客層を把握してから次の手を打つ。<br>
+          初期投資を抑えてリスクを最小化できる。
+        </div>
+      </div>
+      <div class="col">
+        <div class="col-h">現地代理店アプローチ</div>
+        <div class="col-body sans">
+          コネクションを活用した現地パートナーとの連携。<br>
+          代理店・ブランドアンバサダーとしての役割を検討。<br>
+          現地の販売網・信頼ネットワークを活用した<br>
+          スピーディな市場浸透が期待できる。
+        </div>
+      </div>
+    </div>
+    <div class="note-box">
+      <div class="note-text">両アプローチを並行して進め、<em>市場の反応次第で軸足を決める。</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 14 ブリッジ VI -->
+<section class="slide s14">
+  <div class="slide-content">
+    <div class="bridge-lbl">Chapter 03</div>
+    <div class="bridge-title">VI展開ロードマップ</div>
+    <div class="bridge-en">Visual Identity Roadmap</div>
+  </div>
+</section>
+
+<!-- SLIDE 15 VIロードマップ -->
+<section class="slide s15">
+  <div class="top-line"></div>
+  <div class="slide-content">
+    <div class="lbl">VI Roadmap</div>
+    <div class="ttl">ロゴからSNSまで、世界観を一貫させる</div>
+    <div class="roadmap">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">ロゴ</div>
+        <div class="step-body sans">ブランドロゴの確定。日本語・英語・モノクロ各バリエーション。</div>
+        <div class="step-period en">Phase 1</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">パッケージ</div>
+        <div class="step-body sans">スティック袋・化粧箱のデザイン確定。国内・台湾両対応版。</div>
+        <div class="step-period en">Phase 1</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Webサイト</div>
+        <div class="step-body sans">ブランドサイト・ECページのデザイン。繁体字版も並行制作。</div>
+        <div class="step-period en">Phase 2</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">SNS・広告</div>
+        <div class="step-body sans">Instagram・PR素材・広告クリエイティブのテンプレート整備。</div>
+        <div class="step-period en">Phase 2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 16 まとめ -->
+<section class="slide s16">
+  <div class="bg-ring"></div>
+  <div class="slide-content">
+    <div class="lbl">Next Step</div>
+    <div class="main">埋もれている価値を、<br><em>次の世界へ。</em></div>
+    <div class="sub en">Golden Moments — 金の時</div>
+  </div>
+</section>
+
+</div><!-- /stage -->
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand en">Golden Moments</div>
+  <div class="nav-ctrl">
+    <button class="nav-btn" id="prevBtn" onclick="go(-1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="nav-counter en" id="counter">1 / 16</div>
+    <button class="nav-btn" id="nextBtn" onclick="go(1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</nav>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const counter = document.getElementById('counter');
+const progress = document.getElementById('progress');
+let cur = 0;
+
+function update(){
+  slides.forEach((s,i)=>{
+    s.classList.toggle('active', i===cur);
+  });
+  counter.textContent = `${cur+1} / ${slides.length}`;
+  progress.style.width = `${((cur+1)/slides.length)*100}%`;
+}
+
+function go(dir){
+  cur = Math.max(0, Math.min(slides.length-1, cur+dir));
+  update();
+}
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') go(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') go(-1);
+});
+
+update();
+</script>
+</body>
+</html>
