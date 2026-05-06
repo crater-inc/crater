@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: 02_APOLLOS/output/website/
-          server-dir: /home/c6512608/public_html/apollos.jp/
+          server-dir: public_html/apollos.jp/
