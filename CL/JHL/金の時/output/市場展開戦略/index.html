@@ -78,7 +78,7 @@ html,body{
   color:var(--gold);text-transform:uppercase;
   margin-bottom:2cqw;
 }
-.top-line{position:absolute;top:0;left:0;right:0;height:0.4cqw;background:var(--gold);}
+.top-line{display:none;}
 
 /* ── PROGRESS ── */
 .progress{position:fixed;top:0;left:0;height:2px;background:var(--gold);transition:width .4s;z-index:200;}
@@ -118,18 +118,20 @@ html,body{
 /* ── SIDE ARROWS ── */
 .side-arrow{
   position:fixed;top:50%;transform:translateY(-50%);
-  width:4.5vh;height:4.5vh;
-  background:rgba(245,242,236,0.85);
-  border:1px solid var(--gold-lt);
+  width:3.2vh;height:3.2vh;
+  background:rgba(245,242,236,0.6);
+  border:1px solid rgba(154,123,46,0.2);
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;z-index:100;
-  transition:background .2s,border-color .2s;
+  opacity:0;
+  transition:opacity .25s,background .2s;
   backdrop-filter:blur(4px);
 }
+body:hover .side-arrow{opacity:1;}
 .side-arrow:hover{background:var(--gold-lt);border-color:var(--gold);}
-.side-arrow svg{width:1.8vh;height:1.8vh;stroke:var(--dark);}
-.side-arrow.left{left:1.5vh;}
-.side-arrow.right{right:1.5vh;}
+.side-arrow svg{width:1.2vh;height:1.2vh;stroke:var(--gray);}
+.side-arrow.left{left:1vh;}
+.side-arrow.right{right:1vh;}
 
 /* ══════════════════════════════
    S01 表紙
