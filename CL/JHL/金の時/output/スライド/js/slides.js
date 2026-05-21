@@ -749,15 +749,8 @@ window.slideFactories[24] = () => `
 
 // ─── P26: パッケージデザイン ───
 window.slideFactories[25] = () => `
-<div class="slide slide-flex" id="s26" style="background:#1a1a1a;flex-direction:row;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;">
-    <img src="img/package.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;" alt="金の時 パッケージデザイン">
-  </div>
-  <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(26,26,26,0.7) 0%,transparent 35%,transparent 65%,rgba(26,26,26,0.7) 100%);pointer-events:none;"></div>
-  <div style="position:absolute;top:64px;left:80px;z-index:2;">
-    <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.5em;color:#C9A84C;text-transform:uppercase;margin-bottom:10px;">Package Design</div>
-    <div style="font-family:'Zen Old Mincho',serif;font-size:36px;font-weight:500;color:#FAF7F2;letter-spacing:0.06em;">パッケージデザイン</div>
-  </div>
+<div class="slide" id="s26" style="background:#fff;position:relative;overflow:hidden;">
+  <img src="img/package.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" alt="金の時 パッケージデザイン">
 </div>
 `;
 
