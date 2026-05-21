@@ -267,7 +267,7 @@ window.slideFactories[12] = () => `
       <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:300;color:#5C5956;letter-spacing:0.15em;margin-left:20px;">定期購読モデルのご提案</span>
     </div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:88px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.5;margin-bottom:32px;">続けることで、<br>輝きは深まる。</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.0;margin-bottom:32px;">金の時の価値は「継続」にあります。毎月届く安心感と習慣化によって顧客のLTVを最大化します。</div>
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.0;margin-bottom:32px;">金の時の価値は「継続」にあります。毎月届く安心感と習慣化によって顧客のLTVを最大化します。</div>
     <div style="display:flex;flex-direction:column;gap:16px;">
       <div style="background:#fff;border-radius:12px;padding:24px 32px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
         <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:90px;">Point 01</div>
@@ -340,7 +340,7 @@ window.slideFactories[15] = () => `
       <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:300;color:#5C5956;letter-spacing:0.15em;margin-left:20px;">台湾市場への展開</span>
     </div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:88px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.5;margin-bottom:32px;">日本の美しさを、<br>台湾へ届ける。</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.0;margin-bottom:32px;">台湾では日本のブランド・品質への信頼が高く、健康・美容市場も成長中です。インフルエンサーを起用した定期購読ECでブランドの世界観ごと届けます。</div>
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.0;margin-bottom:32px;">台湾では日本のブランド・品質への信頼が高く、健康・美容市場も成長中です。インフルエンサーを起用した定期購読ECでブランドの世界観ごと届けます。</div>
     <div style="display:flex;flex-direction:column;gap:16px;">
       <div style="background:#fff;border-radius:12px;padding:24px 32px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
         <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:120px;">Strategy 01</div>
@@ -439,7 +439,7 @@ window.slideFactories[18] = () => `
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Pure Powder — Core Product</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金の時</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草 純粉末　2g × 30包 スティックタイプ</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       加賀・金沢の伝統野菜「金時草」だけを原料とした<br>シンプルで誠実な粉末サプリメント。<br>素材そのものの力をスティック1包に凝縮。<br>全製品ラインの出発点となるフラッグシップ。
     </div>
     <div style="display:flex;gap:16px;flex-wrap:wrap;">
@@ -484,7 +484,7 @@ window.slideFactories[19] = () => `
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Golden Kinako Powder</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">きんじ粉</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×きな粉　黄金の粉末</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       きなこのような風味に、ほのかな苦みと甘み。<br>砂糖を少量加えることで食べやすく仕上げた<br>日常使いの粉末シリーズ。豆乳・ヨーグルト・<br>トーストなど幅広い食シーンに溶け込む。
     </div>
     <div style="display:flex;gap:16px;flex-wrap:wrap;">
@@ -515,7 +515,7 @@ window.slideFactories[20] = () => `
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Gold Protein Series</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">ゴールド<br>プロテイン</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×タンパク質　機能美のプロテイン</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       「美しさを鍛える」コンセプトで、金時草の<br>植物性栄養素とタンパク質を組み合わせる。<br>一般的なプロテインとは一線を画す、<br>白金のような静謐さをもったウェルネス製品。
     </div>
     <div style="background:#F5F2EC;border-radius:16px;padding:28px 32px;border:1px solid #E4E0D8;">
@@ -573,7 +573,7 @@ window.slideFactories[21] = () => `
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Gold Matcha — Global</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金抹茶</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×抹茶　海外展開フラッグシップ</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       世界的に需要が高まる「Matcha」と、<br>日本固有の希少野菜「金時草」を掛け合わせた<br>海外展開フラッグシップ製品。<br>JAPAN・TRADITION・WELLNESSを一包に凝縮。
     </div>
     <div style="display:flex;gap:20px;">
@@ -611,7 +611,7 @@ window.slideFactories[22] = () => `
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Gold Tea Series</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金茶</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×茶葉ブレンド　日常の一杯に</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       茶葉と金時草粉末をブレンドした粉末茶。<br>お湯を注ぐだけで、4000年の歴史が一杯に宿る。<br>毎日の習慣として、静かに飲み続けられる<br>ウェルネスティーシリーズ。
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
@@ -709,7 +709,7 @@ window.slideFactories[24] = () => `
   <div style="position:relative;z-index:2;">
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#C9A84C;text-transform:uppercase;margin-bottom:32px;">The Power of Powder</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:80px;font-weight:500;color:#FAF7F2;letter-spacing:0.06em;line-height:1.3;margin-bottom:48px;">混ぜるだけで、<br>新しい製品になる。</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#B8B3A8;line-height:2.2;margin-bottom:64px;">
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#B8B3A8;line-height:2.2;margin-bottom:64px;">
       金の時のすべての製品ラインは「粉末を混ぜる」という<br>シンプルな製法で成立する。設備投資を最小化しながら、<br>一つの素材から多様な市場へアプローチできる。<br>これが金時草粉末ビジネスの本質的な強みです。
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
