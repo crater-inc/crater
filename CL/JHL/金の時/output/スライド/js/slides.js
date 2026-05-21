@@ -426,6 +426,16 @@ window.slideFactories[18] = () => `
     </div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
+    <div style="margin-bottom:32px;">
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M36 10 C22 10 12 22 12 38 C12 50 20 58 32 62" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path d="M36 10 C50 10 60 22 60 38 C60 50 52 58 40 62" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path d="M36 10 L36 62" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M36 28 L24 22" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <path d="M36 38 L48 30" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+        <path d="M36 48 L26 44" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Pure Powder — Core Product</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金の時</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草 純粉末　2g × 30包 スティックタイプ</div>
@@ -447,7 +457,7 @@ window.slideFactories[18] = () => `
 </div>
 `;
 
-// ─── P20: キンジコ（金時粉） ───（旧P19）
+// ─── P20: きんじ粉 ───
 window.slideFactories[19] = () => `
 <div class="slide slide-flex" id="s20" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
@@ -458,8 +468,21 @@ window.slideFactories[19] = () => `
     </div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
-    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Kinoko-style Powder</div>
-    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">キンジコ</div>
+    <div style="margin-bottom:32px;">
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="36" cy="52" rx="22" ry="10" stroke="#C9A84C" stroke-width="2" fill="none"/>
+        <path d="M14 52 L14 58 Q36 68 58 58 L58 52" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <circle cx="28" cy="38" r="3" fill="#C9A84C" opacity="0.7"/>
+        <circle cx="36" cy="33" r="3" fill="#C9A84C" opacity="0.7"/>
+        <circle cx="44" cy="38" r="3" fill="#C9A84C" opacity="0.7"/>
+        <circle cx="32" cy="44" r="2.5" fill="#C9A84C" opacity="0.5"/>
+        <circle cx="40" cy="44" r="2.5" fill="#C9A84C" opacity="0.5"/>
+        <path d="M30 20 Q36 12 42 20 Q36 28 30 20Z" stroke="#C9A84C" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
+        <path d="M36 28 L36 32" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Golden Kinako Powder</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">きんじ粉</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×きな粉　黄金の粉末</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       きなこのような風味に、ほのかな苦みと甘み。<br>砂糖を少量加えることで食べやすく仕上げた<br>日常使いの粉末シリーズ。豆乳・ヨーグルト・<br>トーストなど幅広い食シーンに溶け込む。
@@ -479,12 +502,18 @@ window.slideFactories[19] = () => `
 </div>
 `;
 
-// ─── P21: プロテイン ───
+// ─── P21: ゴールドプロテイン ───
 window.slideFactories[20] = () => `
 <div class="slide slide-flex" id="s21" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
-    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Protein Series</div>
-    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金の時<br>プロテイン</div>
+    <div style="margin-bottom:32px;">
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M36 8 L42 30 L62 30 L46 44 L52 66 L36 52 L20 66 L26 44 L10 30 L30 30 Z" stroke="#C9A84C" stroke-width="2" stroke-linejoin="round" fill="none"/>
+        <path d="M36 20 L39 30 L50 30 L41 37 L44 48 L36 42 L28 48 L31 37 L22 30 L33 30 Z" fill="#C9A84C" opacity="0.15"/>
+      </svg>
+    </div>
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Gold Protein Series</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">ゴールド<br>プロテイン</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×タンパク質　機能美のプロテイン</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       「美しさを鍛える」コンセプトで、金時草の<br>植物性栄養素とタンパク質を組み合わせる。<br>一般的なプロテインとは一線を画す、<br>白金のような静謐さをもったウェルネス製品。
@@ -517,9 +546,9 @@ window.slideFactories[20] = () => `
 </div>
 `;
 
-// ─── P22: 抹茶ミックス（海外向け） ───
+// ─── P22: 金抹茶（海外向け） ───
 window.slideFactories[21] = () => `
-<div class="slide slide-flex" id="s21" style="background:#FAF7F2;flex-direction:row;position:relative;">
+<div class="slide slide-flex" id="s22" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="https://images.unsplash.com/photo-1545239705-1564e58b9e4a?w=640&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
     <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.3),transparent);"></div>
@@ -531,8 +560,18 @@ window.slideFactories[21] = () => `
     </div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
-    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Matcha Mix — Global</div>
-    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金の時<br>抹茶ミックス</div>
+    <div style="margin-bottom:32px;">
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="36" cy="48" rx="20" ry="10" stroke="#C9A84C" stroke-width="2" fill="none"/>
+        <path d="M16 48 L16 54 Q36 64 56 54 L56 48" stroke="#C9A84C" stroke-width="2" fill="none"/>
+        <path d="M24 36 Q36 28 48 36" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M28 28 Q36 18 44 28" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M30 20 Q36 10 42 20" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5"/>
+        <path d="M36 36 L36 48" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Gold Matcha — Global</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金抹茶</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×抹茶　海外展開フラッグシップ</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       世界的に需要が高まる「Matcha」と、<br>日本固有の希少野菜「金時草」を掛け合わせた<br>海外展開フラッグシップ製品。<br>JAPAN・TRADITION・WELLNESSを一包に凝縮。
@@ -555,12 +594,22 @@ window.slideFactories[21] = () => `
 </div>
 `;
 
-// ─── P23: お茶シリーズ ───
+// ─── P23: 金茶 ───
 window.slideFactories[22] = () => `
-<div class="slide slide-flex" id="s22" style="background:#FAF7F2;flex-direction:row;position:relative;">
+<div class="slide slide-flex" id="s23" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
-    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Tea Series</div>
-    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金の時<br>お茶</div>
+    <div style="margin-bottom:32px;">
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 28 L18 58 Q18 62 22 62 L44 62 Q48 62 48 58 L52 28 Z" stroke="#C9A84C" stroke-width="2" stroke-linejoin="round" fill="none"/>
+        <path d="M52 36 Q62 36 62 44 Q62 52 52 52" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M10 28 L56 28" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M27 14 Q27 8 33 8" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <path d="M33 14 Q33 8 39 8" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <path d="M39 14 Q39 8 45 8" stroke="#C9A84C" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.4"/>
+      </svg>
+    </div>
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Gold Tea Series</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金茶</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草×茶葉ブレンド　日常の一杯に</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       茶葉と金時草粉末をブレンドした粉末茶。<br>お湯を注ぐだけで、4000年の歴史が一杯に宿る。<br>毎日の習慣として、静かに飲み続けられる<br>ウェルネスティーシリーズ。
@@ -619,22 +668,22 @@ window.slideFactories[23] = () => `
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:28px;">
     <div style="background:#fff;border-radius:16px;padding:28px 24px;border:1px solid #C9A84C;">
       <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#C9A84C;text-transform:uppercase;margin-bottom:8px;">Phase 1 — 確定</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">キンジコ</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">きんじ粉</div>
       <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">きなこ市場。甘み+金時草の苦み。和スイーツ需要。</div>
     </div>
     <div style="background:#fff;border-radius:16px;padding:28px 24px;border:1px solid #E4E0D8;">
       <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 1 — 検討</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">プロテイン</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">ゴールドプロテイン</div>
       <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">美・健康軸。抹茶/ほうじ茶フレーバー。女性ウェルネス。</div>
     </div>
     <div style="background:#fff;border-radius:16px;padding:28px 24px;border:1px solid #E4E0D8;">
       <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 2 — 海外</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">抹茶ミックス</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">金抹茶</div>
       <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">台湾・北米・欧州。Matcha×金時草。越境EC主力。</div>
     </div>
     <div style="background:#fff;border-radius:16px;padding:28px 24px;border:1px solid #E4E0D8;">
       <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 2 — 国内</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">お茶</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:32px;color:#2C2C2C;margin-bottom:8px;">金茶</div>
       <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">毎日の習慣。緑茶/ほうじ茶/玄米茶ブレンド。定期購入。</div>
     </div>
   </div>
@@ -653,8 +702,106 @@ window.slideFactories[23] = () => `
 </div>
 `;
 
-// ─── P25: エンド ───
+// ─── P25: 粉を混ぜるだけ ───
 window.slideFactories[24] = () => `
+<div class="slide slide-flex" id="s25" style="background:#2C2C2C;flex-direction:column;justify-content:center;padding:80px 180px;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,168,76,0.08) 0%,transparent 60%);pointer-events:none;"></div>
+  <div style="position:relative;z-index:2;">
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#C9A84C;text-transform:uppercase;margin-bottom:32px;">The Power of Powder</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:80px;font-weight:500;color:#FAF7F2;letter-spacing:0.06em;line-height:1.3;margin-bottom:48px;">混ぜるだけで、<br>新しい製品になる。</div>
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#B8B3A8;line-height:2.2;margin-bottom:64px;">
+      金の時のすべての製品ラインは「粉末を混ぜる」という<br>シンプルな製法で成立する。設備投資を最小化しながら、<br>一つの素材から多様な市場へアプローチできる。<br>これが金時草粉末ビジネスの本質的な強みです。
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;">
+      <div style="border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:36px 28px;">
+        <div style="margin-bottom:20px;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="20" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+            <path d="M14 24 L22 32 L34 16" stroke="#C9A84C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:28px;color:#FAF7F2;margin-bottom:10px;">低コスト展開</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:17px;color:#B8B3A8;line-height:1.9;">既存の製造ラインを活用。新設備なしに製品ラインを拡張できる。</div>
+      </div>
+      <div style="border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:36px 28px;">
+        <div style="margin-bottom:20px;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M8 24 L24 8 L40 24 L24 40 Z" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+            <path d="M16 24 L24 16 L32 24 L24 32 Z" fill="#C9A84C" opacity="0.2"/>
+          </svg>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:28px;color:#FAF7F2;margin-bottom:10px;">素材の一貫性</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:17px;color:#B8B3A8;line-height:1.9;">全製品に金時草が入ることでブランドの一体感と訴求軸が統一される。</div>
+      </div>
+      <div style="border:1px solid rgba(201,168,76,0.3);border-radius:16px;padding:36px 28px;">
+        <div style="margin-bottom:20px;">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M24 6 L28 18 L42 18 L31 26 L35 38 L24 30 L13 38 L17 26 L6 18 L20 18 Z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:28px;color:#FAF7F2;margin-bottom:10px;">市場の多角化</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:17px;color:#B8B3A8;line-height:1.9;">サプリ・食品・お茶・海外と異なる市場を同時攻略できる。</div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+// ─── P26: パッケージデザイン ───
+window.slideFactories[25] = () => `
+<div class="slide slide-flex" id="s26" style="background:#FAF7F2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
+  <div style="position:absolute;top:60px;left:160px;">
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Package Design</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:40px;font-weight:500;color:#2C2C2C;letter-spacing:0.05em;">パッケージデザイン</div>
+  </div>
+  <div style="display:flex;gap:40px;align-items:center;justify-content:center;margin-top:60px;">
+    <div style="text-align:center;">
+      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
+      </div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">金の時</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">純粉末 / Flagship</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
+      </div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">きんじ粉</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Golden Kinako</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
+      </div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">ゴールドプロテイン</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Gold Protein</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
+      </div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">金抹茶</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Gold Matcha</div>
+    </div>
+    <div style="text-align:center;">
+      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
+      </div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">金茶</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Gold Tea</div>
+    </div>
+  </div>
+  <div style="position:absolute;bottom:48px;right:160px;font-family:'Noto Sans JP',sans-serif;font-size:16px;color:#B8B3A8;letter-spacing:0.1em;">※ 画像データ確定後に差し替え</div>
+</div>
+`;
+
+// ─── P27: エンド ───
+window.slideFactories[26] = () => `
 <div class="slide slide-flex" id="s18" style="background:#EDEAE2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
   <div style="position:absolute;top:80px;left:50%;transform:translateX(-50%);font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#B8B3A8;text-transform:uppercase;">Next Steps</div>
   <div style="font-family:'Zen Old Mincho',serif;font-size:100px;font-weight:500;color:#2C2C2C;letter-spacing:0.1em;margin-bottom:20px;">金の時</div>
