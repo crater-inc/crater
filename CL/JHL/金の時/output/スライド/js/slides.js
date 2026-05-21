@@ -415,9 +415,41 @@ window.slideFactories[17] = () => `
 </div>
 `;
 
-// ─── P19: キンジコ（金時粉） ───
+// ─── P19: 金の時（メイン製品） ───
 window.slideFactories[18] = () => `
 <div class="slide slide-flex" id="s19" style="background:#FAF7F2;flex-direction:row;position:relative;">
+  <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=640&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.25),transparent);"></div>
+    <div style="position:absolute;bottom:48px;left:48px;background:rgba(201,168,76,0.95);padding:12px 28px;border-radius:40px;">
+      <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">Current — Flagship</span>
+    </div>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Pure Powder — Core Product</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金の時</div>
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;color:#9A7B2E;margin-bottom:36px;letter-spacing:0.1em;">金時草 純粉末　2g × 30包 スティックタイプ</div>
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
+      加賀・金沢の伝統野菜「金時草」だけを原料とした<br>シンプルで誠実な粉末サプリメント。<br>素材そのものの力をスティック1包に凝縮。<br>全製品ラインの出発点となるフラッグシップ。
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <div style="background:#C9A84C;border-radius:8px;padding:12px 24px;">
+        <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;color:#fff;font-weight:500;">既存販売中</span>
+      </div>
+      <div style="background:#F5F2EC;border:1px solid #E4E0D8;border-radius:8px;padding:12px 24px;">
+        <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;color:#5C5956;">JHL+ EC展開</span>
+      </div>
+      <div style="background:#F5F2EC;border:1px solid #E4E0D8;border-radius:8px;padding:12px 24px;">
+        <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;color:#5C5956;">ラインの礎</span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+// ─── P20: キンジコ（金時粉） ───（旧P19）
+window.slideFactories[19] = () => `
+<div class="slide slide-flex" id="s20" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="https://images.unsplash.com/photo-1620706857370-e1b9770e8bb1?w=640&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
     <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.3),transparent);"></div>
@@ -447,9 +479,9 @@ window.slideFactories[18] = () => `
 </div>
 `;
 
-// ─── P20: プロテイン ───
-window.slideFactories[19] = () => `
-<div class="slide slide-flex" id="s20" style="background:#FAF7F2;flex-direction:row;position:relative;">
+// ─── P21: プロテイン ───
+window.slideFactories[20] = () => `
+<div class="slide slide-flex" id="s21" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Protein Series</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;margin-bottom:8px;">金の時<br>プロテイン</div>
@@ -485,8 +517,8 @@ window.slideFactories[19] = () => `
 </div>
 `;
 
-// ─── P21: 抹茶ミックス（海外向け） ───
-window.slideFactories[20] = () => `
+// ─── P22: 抹茶ミックス（海外向け） ───
+window.slideFactories[21] = () => `
 <div class="slide slide-flex" id="s21" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="https://images.unsplash.com/photo-1545239705-1564e58b9e4a?w=640&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
@@ -523,8 +555,8 @@ window.slideFactories[20] = () => `
 </div>
 `;
 
-// ─── P22: お茶シリーズ ───
-window.slideFactories[21] = () => `
+// ─── P23: お茶シリーズ ───
+window.slideFactories[22] = () => `
 <div class="slide slide-flex" id="s22" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
     <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:12px;">Tea Series</div>
@@ -562,33 +594,38 @@ window.slideFactories[21] = () => `
 </div>
 `;
 
-// ─── P23: 粉末展開ロードマップ ───
-window.slideFactories[22] = () => `
+// ─── P24: 粉末展開ロードマップ ───
+window.slideFactories[23] = () => `
 <div class="slide slide-flex" id="s23" style="background:#F5F2EC;flex-direction:column;justify-content:center;padding:80px 160px;">
   <div style="margin-bottom:56px;">
     <span style="font-family:'Crimson Pro',serif;font-size:22px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;">Future Expansion</span>
     <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:300;color:#5C5956;letter-spacing:0.15em;margin-left:24px;">粉末ライン展開ロードマップ</span>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:40px;">
-    <div style="background:#fff;border-radius:16px;padding:36px 28px;border:2px solid #C9A84C;">
-      <div style="font-family:'Crimson Pro',serif;font-size:14px;letter-spacing:0.3em;color:#C9A84C;text-transform:uppercase;margin-bottom:8px;">Phase 1 — 確定</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:34px;color:#2C2C2C;margin-bottom:8px;">キンジコ</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:17px;color:#5C5956;line-height:1.8;">きなこ市場。甘み+金時草の苦み。和スイーツ需要。</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:20px;margin-bottom:40px;">
+    <div style="background:#2C2C2C;border-radius:16px;padding:30px 22px;border:2px solid #C9A84C;">
+      <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#C9A84C;text-transform:uppercase;margin-bottom:8px;">現行 — 販売中</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:30px;color:#FAF7F2;margin-bottom:8px;">金の時</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#B8B3A8;line-height:1.8;">純粉末サプリ。ラインの礎。JHL+ EC展開。</div>
     </div>
-    <div style="background:#fff;border-radius:16px;padding:36px 28px;border:1px solid #E4E0D8;">
-      <div style="font-family:'Crimson Pro',serif;font-size:14px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 1 — 検討</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:34px;color:#2C2C2C;margin-bottom:8px;">プロテイン</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:17px;color:#5C5956;line-height:1.8;">美・健康軸。抹茶/ほうじ茶フレーバー。女性ウェルネス。</div>
+    <div style="background:#fff;border-radius:16px;padding:30px 22px;border:2px solid #C9A84C;">
+      <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#C9A84C;text-transform:uppercase;margin-bottom:8px;">Phase 1 — 確定</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:30px;color:#2C2C2C;margin-bottom:8px;">キンジコ</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">きなこ市場。甘み+金時草の苦み。和スイーツ需要。</div>
     </div>
-    <div style="background:#fff;border-radius:16px;padding:36px 28px;border:1px solid #E4E0D8;">
-      <div style="font-family:'Crimson Pro',serif;font-size:14px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 2 — 海外</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:34px;color:#2C2C2C;margin-bottom:8px;">抹茶ミックス</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:17px;color:#5C5956;line-height:1.8;">台湾・北米・欧州。Matcha×金時草。越境EC主力。</div>
+    <div style="background:#fff;border-radius:16px;padding:30px 22px;border:1px solid #E4E0D8;">
+      <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 1 — 検討</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:30px;color:#2C2C2C;margin-bottom:8px;">プロテイン</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">美・健康軸。抹茶/ほうじ茶フレーバー。女性ウェルネス。</div>
     </div>
-    <div style="background:#fff;border-radius:16px;padding:36px 28px;border:1px solid #E4E0D8;">
-      <div style="font-family:'Crimson Pro',serif;font-size:14px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 2 — 国内</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:34px;color:#2C2C2C;margin-bottom:8px;">お茶</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:17px;color:#5C5956;line-height:1.8;">毎日の習慣。緑茶/ほうじ茶/玄米茶ブレンド。定期購入。</div>
+    <div style="background:#fff;border-radius:16px;padding:30px 22px;border:1px solid #E4E0D8;">
+      <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 2 — 海外</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:30px;color:#2C2C2C;margin-bottom:8px;">抹茶ミックス</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">台湾・北米・欧州。Matcha×金時草。越境EC主力。</div>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:30px 22px;border:1px solid #E4E0D8;">
+      <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Phase 2 — 国内</div>
+      <div style="font-family:'Zen Old Mincho',serif;font-size:30px;color:#2C2C2C;margin-bottom:8px;">お茶</div>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#5C5956;line-height:1.8;">毎日の習慣。緑茶/ほうじ茶/玄米茶ブレンド。定期購入。</div>
     </div>
   </div>
   <div style="background:#fff;border-radius:16px;padding:32px 40px;border:1px solid #E4E0D8;">
@@ -604,8 +641,8 @@ window.slideFactories[22] = () => `
 </div>
 `;
 
-// ─── P24: エンド ───
-window.slideFactories[23] = () => `
+// ─── P25: エンド ───
+window.slideFactories[24] = () => `
 <div class="slide slide-flex" id="s18" style="background:#EDEAE2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
   <div style="position:absolute;top:80px;left:50%;transform:translateX(-50%);font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#B8B3A8;text-transform:uppercase;">Next Steps</div>
   <div style="font-family:'Zen Old Mincho',serif;font-size:100px;font-weight:500;color:#2C2C2C;letter-spacing:0.1em;margin-bottom:20px;">金の時</div>
