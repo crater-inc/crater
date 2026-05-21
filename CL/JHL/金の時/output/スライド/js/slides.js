@@ -749,54 +749,15 @@ window.slideFactories[24] = () => `
 
 // ─── P26: パッケージデザイン ───
 window.slideFactories[25] = () => `
-<div class="slide slide-flex" id="s26" style="background:#FAF7F2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
-  <div style="position:absolute;top:60px;left:160px;">
-    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Package Design</div>
-    <div style="font-family:'Zen Old Mincho',serif;font-size:40px;font-weight:500;color:#2C2C2C;letter-spacing:0.05em;">パッケージデザイン</div>
+<div class="slide slide-flex" id="s26" style="background:#1a1a1a;flex-direction:row;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;">
+    <img src="../img/package.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;" alt="金の時 パッケージデザイン">
   </div>
-  <div style="display:flex;gap:40px;align-items:center;justify-content:center;margin-top:60px;">
-    <div style="text-align:center;">
-      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
-      </div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">金の時</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">純粉末 / Flagship</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
-      </div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">きんじ粉</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Golden Kinako</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
-      </div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">ゴールドプロテイン</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Gold Protein</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
-      </div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">金抹茶</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Gold Matcha</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="width:220px;height:340px;background:#F5F2EC;border:2px dashed #E4E0D8;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:20px;">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin-bottom:12px;"><rect x="8" y="8" width="32" height="32" rx="4" stroke="#E4E0D8" stroke-width="1.5"/><path d="M18 24 L24 18 L30 24" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 18 L24 32" stroke="#E4E0D8" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:14px;color:#B8B3A8;">画像を挿入</div>
-      </div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;margin-bottom:4px;">金茶</div>
-      <div style="font-family:'Noto Sans JP',sans-serif;font-size:15px;color:#9A7B2E;">Gold Tea</div>
-    </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(26,26,26,0.7) 0%,transparent 35%,transparent 65%,rgba(26,26,26,0.7) 100%);pointer-events:none;"></div>
+  <div style="position:absolute;top:64px;left:80px;z-index:2;">
+    <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.5em;color:#C9A84C;text-transform:uppercase;margin-bottom:10px;">Package Design</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:36px;font-weight:500;color:#FAF7F2;letter-spacing:0.06em;">パッケージデザイン</div>
   </div>
-  <div style="position:absolute;bottom:48px;right:160px;font-family:'Noto Sans JP',sans-serif;font-size:16px;color:#B8B3A8;letter-spacing:0.1em;">※ 画像データ確定後に差し替え</div>
 </div>
 `;
 
