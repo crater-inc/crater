@@ -751,7 +751,7 @@ window.slideFactories[24] = () => `
 window.slideFactories[25] = () => `
 <div class="slide slide-flex" id="s26" style="background:#1a1a1a;flex-direction:row;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;">
-    <img src="../img/package.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;" alt="金の時 パッケージデザイン">
+    <img src="img/package.jpg" style="width:100%;height:100%;object-fit:contain;object-position:center;" alt="金の時 パッケージデザイン">
   </div>
   <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(26,26,26,0.7) 0%,transparent 35%,transparent 65%,rgba(26,26,26,0.7) 100%);pointer-events:none;"></div>
   <div style="position:absolute;top:64px;left:80px;z-index:2;">
