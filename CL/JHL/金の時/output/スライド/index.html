@@ -15,11 +15,157 @@
 
 <nav id="nav">
   <button id="btn-prev">&#8592;</button>
-  <span id="slide-counter">1 / 18</span>
+  <span id="slide-counter">1 / 24</span>
   <button id="btn-next">&#8594;</button>
 </nav>
 
 <script src="js/slides.js"></script>
 <script src="js/app.js"></script>
+
+<button id="wf-open-btn" onclick="togglePanel()">
+  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div id="wf-panel">
+  <div id="wf-panel-header">
+    <span class="wf-panel-title">Comments</span>
+    <div id="wf-panel-header-right">
+      <span id="wf-count">0件</span>
+      <button id="wf-close-btn" onclick="togglePanel()">×</button>
+    </div>
+  </div>
+  <div id="wf-panel-actions">
+    <button id="wf-comment-btn">💬 コメント追加</button>
+  </div>
+  <div id="wf-panel-list"><div id="wf-panel-empty">コメントなし</div></div>
+  <div id="wf-copy-wrap">
+    <button id="wf-copy-btn" onclick="copyAllComments()">COMMENT ALLCOPY</button>
+  </div>
+</div>
+
+<script>
+const STORE_KEY = 'jhl_kinnotoki_slide_comments';
+const SLIDE_NAMES = [
+  'P1 オープニング','P2 タグライン','P3 ブランドストーリー','P4 コアコード',
+  'P5 ブランド原則','P6','P7','P8','P9','P10','P11','P12','P13','P14',
+  'P15','P16','P17','P18 製品ライン拡張扉','P19 キンジコ',
+  'P20 プロテイン','P21 抹茶ミックス','P22 お茶','P23 ロードマップ','P24 エンド'
+];
+const getSlideContext = () => ({ slide: current, slideName: SLIDE_NAMES[current] || `P${current+1}` });
+
+let commentMode = false;
+let comments = JSON.parse(localStorage.getItem(STORE_KEY)||'[]');
+let inputPopup = null;
+
+function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(comments)); }
+
+function togglePanel(){
+  document.getElementById('wf-panel').classList.toggle('open');
+}
+
+document.getElementById('wf-comment-btn').addEventListener('click', ()=>{
+  commentMode = !commentMode;
+  document.body.classList.toggle('comment-mode', commentMode);
+  const btn = document.getElementById('wf-comment-btn');
+  btn.classList.toggle('wf-active', commentMode);
+  btn.textContent = commentMode ? '✕ 完了' : '💬 コメント追加';
+  if(!commentMode) closeInput();
+});
+
+document.getElementById('stage').addEventListener('click', e=>{
+  if(!commentMode) return;
+  if(e.target.closest('.c-pin')||e.target.closest('.c-input-popup')) return;
+  closeInput();
+  const rect = document.getElementById('stage').getBoundingClientRect();
+  const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+  const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+  inputPopup = document.createElement('div');
+  inputPopup.className = 'c-input-popup';
+  inputPopup.style.cssText = `position:fixed;left:${Math.min(e.clientX+12,window.innerWidth-280)}px;top:${Math.min(e.clientY+12,window.innerHeight-140)}px;z-index:10000;`;
+  inputPopup.innerHTML = `<textarea rows="3" id="c-text" placeholder="コメントを入力…"></textarea><div class="c-input-row"><button class="c-cancel-btn" id="c-cancel">キャンセル</button><button class="c-send-btn" id="c-send">送信</button></div>`;
+  document.body.appendChild(inputPopup);
+  const ta = document.getElementById('c-text');
+  ta.focus();
+  document.getElementById('c-cancel').addEventListener('click', closeInput);
+  document.getElementById('c-send').addEventListener('click', ()=>{
+    const text = ta.value.trim();
+    if(!text) return;
+    const ctx = getSlideContext();
+    comments.push({ id:Date.now(), ...ctx, x, y, text });
+    save(); closeInput();
+    commentMode = false;
+    document.body.classList.remove('comment-mode');
+    const btn = document.getElementById('wf-comment-btn');
+    btn.classList.remove('wf-active');
+    btn.textContent = '💬 コメント追加';
+    renderPins(); renderPanel();
+  });
+  let isComposing = false;
+  ta.addEventListener('compositionstart', ()=>{ isComposing=true; });
+  ta.addEventListener('compositionend',   ()=>{ isComposing=false; });
+  ta.addEventListener('keydown', ev=>{
+    if(ev.key==='Enter'&&!ev.shiftKey&&!isComposing){ ev.preventDefault(); document.getElementById('c-send').click(); }
+  });
+});
+
+function closeInput(){ if(inputPopup){ inputPopup.remove(); inputPopup=null; } }
+function deleteComment(id){ comments=comments.filter(c=>c.id!==id); save(); renderPins(); renderPanel(); }
+function startEdit(id){
+  const c=comments.find(x=>x.id===id); if(!c) return;
+  document.getElementById(`pt-${id}`).innerHTML=`<textarea class="c-edit-textarea" id="et-${id}" rows="3">${c.text}</textarea><div style="display:flex;gap:6px;margin-top:6px;"><button class="c-send-btn" style="font-size:11px;padding:4px 10px;" onclick="saveEdit(${id})">保存</button><button class="c-cancel-btn" style="font-size:11px;padding:4px 10px;" onclick="renderPanel()">キャンセル</button></div>`;
+  document.getElementById(`et-${id}`).focus();
+}
+function saveEdit(id){
+  const ta=document.getElementById(`et-${id}`); if(!ta) return;
+  const text=ta.value.trim(); if(!text) return;
+  const c=comments.find(x=>x.id===id); if(c) c.text=text;
+  save(); renderPanel(); renderPins();
+}
+
+function renderPins(){
+  document.querySelectorAll('.c-pin').forEach(p=>p.remove());
+  const slide = document.querySelector('.slide.active');
+  if(!slide) return;
+  comments.filter(c=>c.slide===current).forEach((c,i)=>{
+    const pin = document.createElement('div');
+    pin.className='c-pin'; pin.style.left=c.x+'%'; pin.style.top=c.y+'%'; pin.textContent=i+1;
+    makeDraggable(pin, c.id, slide); slide.appendChild(pin);
+  });
+}
+
+function makeDraggable(pin,id,container){
+  let dragging=false,startX,startY,startL,startT;
+  pin.addEventListener('mousedown',e=>{
+    e.stopPropagation(); dragging=false; startX=e.clientX; startY=e.clientY;
+    startL=parseFloat(pin.style.left); startT=parseFloat(pin.style.top);
+    const rect=container.getBoundingClientRect();
+    const onMove=ev=>{ const dx=ev.clientX-startX,dy=ev.clientY-startY; if(!dragging&&Math.abs(dx)+Math.abs(dy)>4) dragging=true; if(!dragging) return; pin.style.left=Math.max(0,Math.min(100,startL+dx/rect.width*100))+'%'; pin.style.top=Math.max(0,Math.min(100,startT+dy/rect.height*100))+'%'; };
+    const onUp=()=>{ document.removeEventListener('mousemove',onMove); document.removeEventListener('mouseup',onUp); if(!dragging) return; const c=comments.find(x=>x.id===id); if(c){c.x=parseFloat(pin.style.left).toFixed(1);c.y=parseFloat(pin.style.top).toFixed(1);save();} };
+    document.addEventListener('mousemove',onMove); document.addEventListener('mouseup',onUp);
+  });
+}
+
+function renderPanel(){
+  const list=document.getElementById('wf-panel-list');
+  document.getElementById('wf-count').textContent=`${comments.length}件`;
+  if(!comments.length){list.innerHTML='<div id="wf-panel-empty">コメントなし</div>';return;}
+  list.innerHTML=comments.map((c,i)=>`<div class="panel-item" id="pi-${c.id}"><div class="panel-item-header"><div class="panel-num">${i+1}</div><span class="panel-slide-name">${c.slideName}</span></div><div class="panel-text" id="pt-${c.id}">${c.text}</div><div class="panel-actions"><button class="panel-edit-btn" onclick="startEdit(${c.id})">編集</button><button class="panel-del-btn" onclick="deleteComment(${c.id})">削除</button></div></div>`).join('');
+}
+
+function copyAllComments(){
+  if(!comments.length){alert('コメントがありません');return;}
+  const lines=['=== COMMENT ALLCOPY ===',`${new Date().toLocaleString('ja-JP')} / ${comments.length}件`,''];
+  comments.forEach((c,i)=>{lines.push(`[${i+1}] ${c.slideName}`);lines.push(`位置：X${c.x}% Y${c.y}%`);lines.push(`内容：${c.text}`);lines.push('');});
+  navigator.clipboard.writeText(lines.join('\n')).then(()=>{const btn=document.getElementById('wf-copy-btn');btn.textContent='コピーしました！';setTimeout(()=>btn.textContent='COMMENT ALLCOPY',2000);});
+}
+
+// スライド切り替え時にピンを再描画
+const _origGoTo = goTo;
+window.goTo = function(n){
+  _origGoTo(n);
+  renderPins();
+};
+
+renderPanel();
+</script>
 </body>
 </html>
