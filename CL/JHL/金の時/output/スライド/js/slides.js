@@ -487,7 +487,7 @@ window.slideFactories[19] = () => `
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.1;letter-spacing:0.05em;margin-bottom:40px;">
       きなこのような風味に、ほのかな苦みと甘み。<br>砂糖を少量加えることで食べやすく仕上げた<br>日常使いの粉末シリーズ。豆乳・ヨーグルト・<br>トーストなど幅広い食シーンに溶け込む。
     </div>
-    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px;">
       <div style="background:#F5F2EC;border:1px solid #E4E0D8;border-radius:8px;padding:12px 24px;">
         <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;color:#5C5956;">きなこ市場参入</span>
       </div>
@@ -496,6 +496,23 @@ window.slideFactories[19] = () => `
       </div>
       <div style="background:#F5F2EC;border:1px solid #E4E0D8;border-radius:8px;padding:12px 24px;">
         <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;color:#5C5956;">和のギフト需要</span>
+      </div>
+    </div>
+    <div style="border-top:1px solid #E4E0D8;padding-top:32px;">
+      <div style="font-family:'Crimson Pro',serif;font-size:13px;letter-spacing:0.3em;color:#C9A84C;text-transform:uppercase;margin-bottom:16px;">Global Kinako Demand</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+        <div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:#2C2C2C;margin-bottom:6px;">🌎 欧米</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:300;color:#5C5956;line-height:1.8;">スーパーフードとして注目。スムージー・ヨーグルトへの混合需要が拡大中。</div>
+        </div>
+        <div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:#2C2C2C;margin-bottom:6px;">🌏 アジア</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:300;color:#5C5956;line-height:1.8;">高たんぱく・食物繊維の認知が高く、健康志向層を中心に日系食材として浸透。</div>
+        </div>
+        <div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:13px;font-weight:500;color:#2C2C2C;margin-bottom:6px;">🎁 お土産需要</div>
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:300;color:#5C5956;line-height:1.8;">「香ばしい魔法のパウダー」として海外旅行者に人気。和スイーツとの融合も拡大。</div>
+        </div>
       </div>
     </div>
   </div>
