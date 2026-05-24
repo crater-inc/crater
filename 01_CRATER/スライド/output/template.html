@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRATER スライドテンプレート</title>
+  <link rel="stylesheet" href="https://use.typekit.net/fwj5xdw.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-base:   #C8C8C8;
+      --c-black:  #111111;
+      --c-text:   #111111;
+      --c-sub:    #555555;
+      --c-white:  #FFFFFF;
+      --font-en:  'urw-din', sans-serif;
+      --font-ja:  'Noto Sans JP', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #FFFFFF;
+      font-family: var(--font-ja);
+      color: var(--c-text);
+      overflow: hidden;
+    }
+    :lang(ja) { line-break: strict; }
+    h1, h2, h3 { word-break: normal; overflow-wrap: normal; text-wrap: balance; line-break: strict; }
+    p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break: strict; }
+
+    /* ステージ */
+    .slide-stage {
+      width: 100vw;
+      height: 100vh;
+      background: #FFFFFF;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* スライド本体 1920×1080 */
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      overflow: hidden;
+      background: var(--c-base);
+      container-type: inline-size;
+      display: none;
+      transform-origin: center center;
+    }
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 共通: 黒バッジ */
+    .badge {
+      display: inline-block;
+      background: var(--c-black);
+      color: var(--c-white);
+      font-family: var(--font-ja);
+      font-size: 0.9cqw;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.3cqw 0.8cqw;
+      border-radius: 0;
+    }
+
+    /* ==================================================
+       UI オーバーレイ
+       ================================================== */
+    .nav-prev, .nav-next {
+      position: fixed; top: 0; width: 50%; height: 100%;
+      z-index: 100; cursor: pointer;
+    }
+    .nav-prev { left: 0; }
+    .nav-next { right: 0; }
+
+    .status-bar {
+      position: fixed; top: 16px; right: 64px;
+      font-family: var(--font-en); font-size: 11px; letter-spacing: 0.1em;
+      color: rgba(0,0,0,0.35); z-index: 200; pointer-events: none;
+    }
+
+    .menu-btn {
+      position: fixed; top: 12px; right: 16px;
+      width: 36px; height: 36px; z-index: 300;
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 5px;
+    }
+    .menu-btn span {
+      display: block; width: 20px; height: 1.5px;
+      background: var(--c-black); transition: opacity 0.2s;
+    }
+
+    .progress-bar {
+      position: fixed; bottom: 0; left: 0; height: 2px;
+      background: var(--c-black); z-index: 200;
+      transition: width 0.3s ease;
+    }
+
+    /* サイドバー */
+    .sidebar-overlay {
+      position: fixed; inset: 0; z-index: 400;
+      background: rgba(0,0,0,0.4);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .sidebar-overlay.open {
+      opacity: 1; pointer-events: all;
+    }
+    .sidebar {
+      position: absolute; top: 0; right: 0;
+      width: 280px; height: 100%;
+      background: #FFFFFF;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      display: flex; flex-direction: column;
+    }
+    .sidebar-overlay.open .sidebar { transform: translateX(0); }
+    .sidebar-header {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .sidebar-logo {
+      font-family: var(--font-en); font-size: 13px;
+      letter-spacing: 0.15em; color: var(--c-black);
+    }
+    .sidebar-close {
+      background: none; border: none; cursor: pointer;
+      font-size: 14px; color: var(--c-sub);
+    }
+    .sidebar-list {
+      flex: 1; overflow-y: auto; padding: 8px 0;
+    }
+    .sidebar-item {
+      display: block; padding: 12px 20px;
+      font-size: 12px; letter-spacing: 0.05em;
+      color: var(--c-sub); cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+      font-family: var(--font-en);
+    }
+    .sidebar-item:hover { color: var(--c-black); }
+    .sidebar-item.active {
+      color: var(--c-black);
+      border-left-color: var(--c-black);
+      font-weight: 700;
+    }
+
+    /* スクリプトパネル */
+    .script-trigger {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 40px; z-index: 150; cursor: default;
+    }
+    .script-panel {
+      position: fixed; bottom: -200px; left: 0; right: 0;
+      background: rgba(17,17,17,0.92); color: rgba(255,255,255,0.85);
+      padding: 20px 40px 28px;
+      font-size: 13px; line-height: 1.7; letter-spacing: 0.04em;
+      z-index: 160; transition: bottom 0.3s ease;
+      font-family: var(--font-ja); max-height: 200px; overflow-y: auto;
+    }
+    .script-panel.visible { bottom: 0; }
+
+    /* ==================================================
+       SLIDE 01 — 表紙（COVER）
+       ================================================== */
+    .s01 {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 5cqw;
+    }
+    .s01-body { display: flex; flex-direction: column; gap: 2cqw; }
+    .s01-client {
+      font-family: var(--font-ja); font-size: 1.1cqw;
+      font-weight: 400; letter-spacing: 0.06em; color: var(--c-sub);
+    }
+    .s01-title {
+      font-family: var(--font-ja); font-size: 5.5cqw;
+      font-weight: 900; letter-spacing: -0.01em; line-height: 1.05;
+      color: var(--c-black);
+    }
+    .s01-footer { display: flex; flex-direction: column; gap: 0.8cqw; }
+    .s01-logo { width: 8cqw; height: auto; }
+    .s01-copy {
+      font-family: var(--font-en); font-size: 0.75cqw;
+      letter-spacing: 0.1em; color: var(--c-sub);
+    }
+
+    /* ==================================================
+       SLIDE 02 — ステートメント（STATEMENT / MISSION）
+       ================================================== */
+    .s02 {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 5cqw;
+      position: relative;
+    }
+    .s02-top { flex-shrink: 0; }
+    .s02-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.4cqw;
+    }
+    .s02-statement {
+      font-family: var(--font-ja); font-size: 4.2cqw;
+      font-weight: 900; line-height: 1.25; letter-spacing: -0.01em;
+    }
+    .s02-body {
+      font-family: var(--font-ja); font-size: 1.3cqw;
+      font-weight: 400; line-height: 1.9; color: var(--c-sub);
+      max-width: 56cqw;
+    }
+    .s02-copy {
+      position: absolute; right: 5cqw; bottom: 5cqw;
+      font-family: var(--font-en); font-size: 0.75cqw;
+      letter-spacing: 0.1em; color: var(--c-sub);
+    }
+
+    /* ==================================================
+       SLIDE 03 — NUMBER（黒背景・数字インパクト）
+       ================================================== */
+    .s03 {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 5cqw;
+      background: var(--c-black);
+      position: relative;
+    }
+    .s03-top { flex-shrink: 0; }
+    .s03-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 5cqw;
+    }
+    .s03-label {
+      flex-shrink: 0;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-family: var(--font-en); font-size: 1.0cqw;
+      letter-spacing: 0.2em; color: rgba(255,255,255,0.35);
+    }
+    .s03-number {
+      font-family: var(--font-en); font-size: 9.6cqw;
+      font-weight: 700; color: var(--c-white); line-height: 1;
+      letter-spacing: -0.04em;
+    }
+    .s03-unit {
+      font-family: var(--font-en); font-size: 2.5cqw;
+      font-weight: 400; color: rgba(255,255,255,0.5);
+      align-self: flex-end; padding-bottom: 1.5cqw;
+    }
+    .s03-desc {
+      flex: 1;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 1cqw; border-left: 1px solid rgba(255,255,255,0.15);
+      padding-left: 4cqw;
+    }
+    .s03-desc-title {
+      font-family: var(--font-ja); font-size: 1.8cqw;
+      font-weight: 700; color: var(--c-white);
+    }
+    .s03-desc-body {
+      font-family: var(--font-ja); font-size: 1.1cqw;
+      font-weight: 400; color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+    }
+    .s03-copy {
+      position: absolute; right: 5cqw; bottom: 5cqw;
+      font-family: var(--font-en); font-size: 0.75cqw;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.2);
+    }
+
+    /* ==================================================
+       SLIDE 04 — SPLIT（テキスト左 / 写真右）
+       ================================================== */
+    .s04 {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+      position: relative;
+    }
+    .s04-left {
+      width: 60%;
+      display: flex; flex-direction: column;
+      padding: 5cqw;
+    }
+    .s04-left-top { flex-shrink: 0; }
+    .s04-left-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2cqw;
+    }
+    .s04-heading {
+      font-family: var(--font-ja); font-size: 3.2cqw;
+      font-weight: 900; line-height: 1.3; letter-spacing: -0.01em;
+    }
+    .s04-body {
+      font-family: var(--font-ja); font-size: 1.2cqw;
+      font-weight: 400; line-height: 1.9; color: var(--c-sub);
+      max-width: 44cqw;
+    }
+    .s04-copy {
+      position: absolute; right: calc(40% + 5cqw); bottom: 5cqw;
+      font-family: var(--font-en); font-size: 0.75cqw;
+      letter-spacing: 0.1em; color: var(--c-sub);
+    }
+    .s04-right {
+      width: 40%; height: 100%;
+      background: #888; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .s04-right img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(30%);
+    }
+    .s04-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: #999;
+      font-family: var(--font-en); font-size: 1.2cqw;
+      letter-spacing: 0.2em; color: rgba(255,255,255,0.4);
+    }
+
+    /* ==================================================
+       SLIDE 05 — OVERVIEW（会社概要テーブル）
+       ================================================== */
+    .s05 {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 5cqw;
+      position: relative;
+    }
+    .s05-top { flex-shrink: 0; display: flex; align-items: flex-start; gap: 3cqw; }
+    .s05-logo { width: 14cqw; height: auto; }
+    .s05-main {
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+    }
+    .s05-table { width: 100%; border-collapse: collapse; }
+    .s05-table tr { border-bottom: 1px solid rgba(0,0,0,0.15); }
+    .s05-table tr:first-child { border-top: none; }
+    .s05-table tr:last-child { border-bottom: none; }
+    .s05-table th {
+      width: 18cqw; padding: 1.2cqw 0;
+      font-family: var(--font-ja); font-size: 1.0cqw;
+      font-weight: 700; letter-spacing: 0.05em; color: var(--c-sub);
+      text-align: left; vertical-align: top;
+    }
+    .s05-table td {
+      padding: 1.2cqw 0;
+      font-family: var(--font-ja); font-size: 1.1cqw;
+      font-weight: 400; line-height: 1.7; color: var(--c-black);
+    }
+    .s05-copy {
+      position: absolute; right: 5cqw; bottom: 5cqw;
+      font-family: var(--font-en); font-size: 0.75cqw;
+      letter-spacing: 0.1em; color: var(--c-sub);
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide-stage" id="slide-stage"></div>
+
+<div class="nav-prev" id="nav-prev"></div>
+<div class="nav-next" id="nav-next"></div>
+<div class="status-bar" id="status-bar"></div>
+<button class="menu-btn" id="menu-btn">
+  <span></span><span></span><span></span>
+</button>
+<div class="progress-bar" id="progress-bar"></div>
+
+<div class="sidebar-overlay" id="sidebar-overlay">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">CRATER</span>
+      <button class="sidebar-close" id="sidebar-close">✕</button>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </nav>
+</div>
+
+<div class="script-trigger" id="script-trigger"></div>
+<div class="script-panel" id="script-panel"></div>
+
+<script>
+// ============================================================
+// SLIDE FACTORIES — 1スライド1関数
+// ============================================================
+
+function slide01Cover() {
+  return `<section class="slide" data-section="cover" data-notes="本日はお時間をいただきありがとうございます。株式会社クレーターの会社概要をご覧ください。">
+  <div class="s01">
+    <div class="s01-body">
+      <p class="s01-client">○○株式会社 御中</p>
+      <h1 class="s01-title">会社概要</h1>
+      <span class="badge">2025</span>
+    </div>
+    <div class="s01-footer">
+      <svg class="s01-logo" viewBox="110 238 615 124" xmlns="http://www.w3.org/2000/svg">
+        <text x="110" y="342" font-family="'urw-din', sans-serif" font-size="120" font-weight="700" fill="#111111" letter-spacing="8">CRATER</text>
+      </svg>
+      <p class="s01-copy">©CRATER Inc.</p>
+    </div>
+  </div>
+</section>`;
+}
+
+function slide02Concept() {
+  return `<section class="slide" data-section="concept" data-notes="クレーターとは、隕石が地面に衝突した跡。何かに全力でぶつかった証です。私たちは、デザインの力であなたのブランドを世界に刻みます。">
+  <div class="s02">
+    <div class="s02-top"><span class="badge">CONCEPT</span></div>
+    <div class="s02-main">
+      <h2 class="s02-statement">
+        この星に、<br>
+        つめあとを残せ。
+      </h2>
+      <p class="s02-body">
+        クレーターとは、隕石が地面に衝突した跡。<br>
+        何かに全力でぶつかった証です。<br>
+        私たちは、デザインの力で<br>
+        あなたのブランドを世界に刻みます。
+      </p>
+    </div>
+    <p class="s02-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide03Mission() {
+  return `<section class="slide" data-section="mission" data-notes="クレーターのミッションはシンプルです。価値あるブランドを、必要な人に届ける。">
+  <div class="s02">
+    <div class="s02-top"><span class="badge">MISSION</span></div>
+    <div class="s02-main">
+      <h2 class="s02-statement">
+        価値あるブランドを、<br>
+        必要な人に届ける。
+      </h2>
+      <p class="s02-body">
+        メッセージとストーリーを視覚化し、<br>
+        ブランドの価値を正確に伝えることが、<br>
+        クレーターの仕事です。
+      </p>
+    </div>
+    <p class="s02-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide04Number() {
+  return `<section class="slide" data-section="number" data-notes="設立から○年、これまで○○社以上のブランド制作に携わってきました。数字が私たちの実績を語ります。">
+  <div class="s03">
+    <div class="s03-top"><span class="badge" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.4);">NUMBER</span></div>
+    <div class="s03-main">
+      <span class="s03-label">CLIENTS</span>
+      <div style="display:flex;align-items:flex-end;gap:0.5cqw;">
+        <span class="s03-number">200</span>
+        <span class="s03-unit">社以上</span>
+      </div>
+      <div class="s03-desc">
+        <p class="s03-desc-title">幅広い業界の実績</p>
+        <p class="s03-desc-body">
+          食品・ファッション・医療・テック・建築など<br>
+          業界を限定せず、あらゆるブランドと向き合ってきました。
+        </p>
+      </div>
+    </div>
+    <p class="s03-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide05Split() {
+  return `<section class="slide" data-section="works" data-notes="実際の制作物をご覧ください。左のテキストが語る世界観を、右の写真が体現しています。">
+  <div class="s04">
+    <div class="s04-left">
+      <div class="s04-left-top"><span class="badge">WORKS</span></div>
+      <div class="s04-left-main">
+        <h2 class="s04-heading">
+          ブランドの核心を、<br>
+          ビジュアルに変える。
+        </h2>
+        <p class="s04-body">
+          ロゴ・パッケージ・Webサイト・グラフィック——<br>
+          あらゆる接点でブランドの世界観を一貫させます。<br>
+          「見た目」ではなく「意味」をデザインします。
+        </p>
+      </div>
+    </div>
+    <div class="s04-right">
+      <div class="s04-photo-placeholder">PHOTO</div>
+    </div>
+    <p class="s04-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide06Overview() {
+  return `<section class="slide" data-section="overview" data-notes="最後に会社概要をご覧ください。東京・世田谷区を拠点に、2019年より活動しています。">
+  <div class="s05">
+    <div class="s05-top">
+      <svg class="s05-logo" viewBox="110 238 615 124" xmlns="http://www.w3.org/2000/svg">
+        <text x="110" y="342" font-family="'urw-din', sans-serif" font-size="120" font-weight="700" fill="#111111" letter-spacing="8">CRATER</text>
+      </svg>
+    </div>
+    <div class="s05-main">
+      <table class="s05-table">
+        <tr>
+          <th>社名</th>
+          <td>株式会社クレーター（CRATER Inc.）</td>
+        </tr>
+        <tr>
+          <th>代表</th>
+          <td>明里 圭修（KEISUKE AKARI）</td>
+        </tr>
+        <tr>
+          <th>設立</th>
+          <td>2019年4月26日</td>
+        </tr>
+        <tr>
+          <th>所在地</th>
+          <td>〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>ブランディング、ロゴ、グラフィック、Web、パッケージデザイン</td>
+        </tr>
+        <tr>
+          <th>URL</th>
+          <td>crater.co.jp</td>
+        </tr>
+      </table>
+    </div>
+    <p class="s05-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// グローバル登録
+// ============================================================
+var slideFactories = [
+  slide01Cover,
+  slide02Concept,
+  slide03Mission,
+  slide04Number,
+  slide05Split,
+  slide06Overview
+];
+var agendaItems = [
+  { id: 'cover',    label: 'COVER' },
+  { id: 'concept',  label: 'CONCEPT' },
+  { id: 'mission',  label: 'MISSION' },
+  { id: 'number',   label: 'NUMBER' },
+  { id: 'works',    label: 'WORKS' },
+  { id: 'overview', label: 'OVERVIEW' }
+];
+
+// ============================================================
+// APP
+// ============================================================
+var stage = document.getElementById('slide-stage');
+var statusBar = document.getElementById('status-bar');
+var progressBar = document.getElementById('progress-bar');
+var scriptPanel = document.getElementById('script-panel');
+var scriptTrigger = document.getElementById('script-trigger');
+var sidebarOverlay = document.getElementById('sidebar-overlay');
+var sidebarList = document.getElementById('sidebar-list');
+
+var total = slideFactories.length;
+var current = 0;
+var rendered = {};
+var currentScale = 1;
+
+// スケーリング
+function scaleSlides() {
+  currentScale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+  document.querySelectorAll('.slide').forEach(function(s) {
+    s.style.transform = 'translate(-50%, -50%) scale(' + currentScale + ')';
+  });
+}
+window.addEventListener('resize', scaleSlides);
+
+function ensureRendered(i) {
+  if (rendered[i] || i < 0 || i >= total) return;
+  var frag = document.createRange().createContextualFragment(slideFactories[i]());
+  stage.appendChild(frag);
+  rendered[i] = true;
+  scaleSlides();
+}
+
+function goTo(n) {
+  if (n < 0 || n >= total) return;
+  // 前のスライドを非表示
+  var prev = stage.querySelector('.slide.active');
+  if (prev) prev.classList.remove('active');
+  // 対象スライドをレンダリング
+  [n - 1, n, n + 1].forEach(function(i) { ensureRendered(i); });
+  current = n;
+  var slides = stage.querySelectorAll('.slide');
+  slides[n].classList.add('active');
+  // UI更新
+  statusBar.textContent = (n + 1) + ' / ' + total;
+  progressBar.style.width = ((n + 1) / total * 100) + '%';
+  // スクリプト
+  scriptPanel.textContent = slides[n].dataset.notes || '';
+  // サイドバーのactive
+  document.querySelectorAll('.sidebar-item').forEach(function(item, idx) {
+    item.classList.toggle('active', idx === n);
+  });
+}
+
+// サイドバー生成
+agendaItems.forEach(function(item, i) {
+  var el = document.createElement('div');
+  el.className = 'sidebar-item';
+  el.textContent = (i + 1) + '. ' + item.label;
+  el.addEventListener('click', function(e) {
+    e.stopPropagation();
+    goTo(i);
+    closeSidebar();
+  });
+  sidebarList.appendChild(el);
+});
+
+function openSidebar() { sidebarOverlay.classList.add('open'); }
+function closeSidebar() { sidebarOverlay.classList.remove('open'); }
+
+document.getElementById('menu-btn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  openSidebar();
+});
+document.getElementById('sidebar-close').addEventListener('click', function(e) {
+  e.stopPropagation();
+  closeSidebar();
+});
+sidebarOverlay.addEventListener('click', function(e) {
+  if (e.target === sidebarOverlay) closeSidebar();
+});
+
+// ナビ
+document.getElementById('nav-prev').addEventListener('click', function(e) {
+  e.stopPropagation();
+  goTo(current - 1);
+});
+document.getElementById('nav-next').addEventListener('click', function(e) {
+  e.stopPropagation();
+  goTo(current + 1);
+});
+
+// キーボード
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+    e.preventDefault(); goTo(current + 1);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault(); goTo(current - 1);
+  } else if (e.key === 'Escape') {
+    closeSidebar();
+    scriptPanel.classList.remove('visible');
+  }
+});
+
+// スクリプトパネル
+scriptTrigger.addEventListener('mouseenter', function() {
+  if (scriptPanel.textContent) scriptPanel.classList.add('visible');
+});
+scriptPanel.addEventListener('mouseleave', function() {
+  scriptPanel.classList.remove('visible');
+});
+
+// 初期化
+scaleSlides();
+[0, 1, 2].forEach(function(i) { ensureRendered(i); });
+goTo(0);
+</script>
+
+</body>
+</html>
