@@ -23,7 +23,7 @@
       --font-ja:  'a1-gothic', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #aaa; overflow: hidden; }
+    body { background: #c0c0c0; overflow: hidden; }
     :lang(ja) { line-break: strict; }
     h1,h2,h3 { word-break: normal; overflow-wrap: normal; text-wrap: balance; }
     p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; }
@@ -31,7 +31,7 @@
     /* ステージ */
     .slide-stage {
       width: 100vw; height: 100vh;
-      background: #aaa;
+      background: #c0c0c0;
       overflow: hidden; position: relative;
     }
 
@@ -98,7 +98,7 @@
       z-index: 200; pointer-events: none;
     }
     .menu-btn {
-      position: fixed; top: 13px; right: 18px;
+      position: fixed; top: 13px; left: 18px;
       width: 36px; height: 36px; z-index: 300;
       background: none; border: none; cursor: pointer;
       display: flex; flex-direction: column;
@@ -144,9 +144,7 @@
 
     /* ページネーション */
     .pagination {
-      position: fixed; bottom: 18px; left: 50%;
-      transform: translateX(-50%);
-      display: flex; align-items: center; z-index: 200;
+      display: none;
     }
     .pagination-item {
       display: flex; align-items: center; gap: 7px;
@@ -190,8 +188,7 @@
     .s-cover-top { flex-shrink: 0; }
     .s-cover-main {
       flex: 1; display: flex; flex-direction: column;
-      justify-content: flex-end; gap: 0.6cqw;
-      padding-bottom: 3cqw;
+      justify-content: center; gap: 0.6cqw;
     }
     .s-cover-client {
       font-family: var(--font-ja); font-size: 1.0cqw;
@@ -510,7 +507,7 @@ function slide01Cover() {
     </div>
     <div class="s-cover-footer">
       <img src="assets/logo.svg" alt="CRATER" style="height:1.4cqw;width:auto;">
-      <span class="logo-footer-copy">©CRATER Inc. 2025</span>
+      <span class="logo-footer-copy">©CRATER Inc.</span>
     </div>
   </div>
 </section>`;
@@ -763,7 +760,7 @@ function slide08Overview() {
     </div>
     <div class="logo-footer">
       <img src="assets/logo.svg" alt="CRATER">
-      <span class="logo-footer-copy">©CRATER Inc. 2025</span>
+      <span class="logo-footer-copy">©CRATER Inc.</span>
     </div>
     <div class="pg-num">13</div>
   </div>
