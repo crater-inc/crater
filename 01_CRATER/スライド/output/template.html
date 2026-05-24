@@ -98,7 +98,7 @@
       z-index: 200; pointer-events: none;
     }
     .menu-btn {
-      position: fixed; top: 13px; left: 18px;
+      position: fixed; bottom: 18px; right: 18px;
       width: 36px; height: 36px; z-index: 300;
       background: none; border: none; cursor: pointer;
       display: flex; flex-direction: column;
@@ -164,16 +164,8 @@
     .pagination-num { font-family: var(--font-en); font-size: 9px; opacity: 0.35; }
 
     /* トークスクリプト */
-    .script-trigger { position: fixed; bottom: 0; left: 0; right: 0; height: 48px; z-index: 150; }
-    .script-panel {
-      position: fixed; bottom: -100%; left: 0; right: 0;
-      max-height: 28vh; background: rgba(17,17,17,0.94);
-      color: rgba(255,255,255,0.82); padding: 20px 48px;
-      font-family: var(--font-ja); font-size: 13px; line-height: 1.95;
-      letter-spacing: 0.025em; overflow-y: auto;
-      z-index: 160; transition: bottom 0.22s ease;
-    }
-    .script-panel.visible { bottom: 0; }
+    .script-trigger { display: none; }
+    .script-panel { display: none; }
 
 
     /* ============================================================
@@ -835,8 +827,6 @@ window.agendaItems = [
       el.classList.toggle('active', idx === i);
     });
     var slide = slides[i];
-    scriptPanel.textContent = slide ? (slide.getAttribute('data-notes') || '') : '';
-    scriptPanel.classList.remove('visible');
   }
 
   var initPage = 0;
@@ -878,17 +868,6 @@ window.agendaItems = [
     pagination.appendChild(pBtn);
   });
 
-  var stTimeout = null;
-  scriptTrig.addEventListener('mouseenter', function () {
-    if (scriptPanel.textContent.trim()) { clearTimeout(stTimeout); scriptPanel.classList.add('visible'); }
-  });
-  scriptTrig.addEventListener('mouseleave', function () {
-    stTimeout = setTimeout(function () { scriptPanel.classList.remove('visible'); }, 300);
-  });
-  scriptPanel.addEventListener('mouseenter', function () { clearTimeout(stTimeout); });
-  scriptPanel.addEventListener('mouseleave', function () {
-    stTimeout = setTimeout(function () { scriptPanel.classList.remove('visible'); }, 300);
-  });
 })();
 </script>
 
