@@ -183,28 +183,32 @@
        白背景 / 大見出し左 / ロゴ左下 / ページ番号右下
     ============================================================ */
     .s-cover {
-      height: 100%; padding: 4cqw 5cqw 5cqw;
+      height: 100%; padding: 6cqw 7cqw;
       display: flex; flex-direction: column;
       justify-content: space-between; position: relative;
     }
     .s-cover-top { flex-shrink: 0; }
     .s-cover-main {
       flex: 1; display: flex; flex-direction: column;
-      justify-content: center; gap: 1.8cqw;
+      justify-content: flex-end; gap: 0.6cqw;
+      padding-bottom: 3cqw;
     }
-    .s-cover-main .badge { align-self: flex-start; }
     .s-cover-client {
-      font-family: var(--font-ja); font-size: 1.1cqw;
+      font-family: var(--font-ja); font-size: 1.0cqw;
       font-weight: 400; color: var(--c-sub); letter-spacing: 0.05em;
+      margin-bottom: 0.4cqw;
     }
     .s-cover-title {
-      font-family: var(--font-ja); font-size: 6cqw;
-      font-weight: 900; line-height: 1.1; letter-spacing: 0.04em;
+      font-family: var(--font-ja); font-size: 3.6cqw;
+      font-weight: 900; line-height: 1.2; letter-spacing: 0.04em;
     }
     .s-cover-sub {
-      font-family: var(--font-ja); font-size: 1.3cqw;
-      font-weight: 400; color: var(--c-sub); letter-spacing: 0.04em;
-      line-height: 1.7;
+      font-family: var(--font-en); font-size: 0.9cqw;
+      font-weight: 400; color: var(--c-sub); letter-spacing: 0.1em;
+    }
+    .s-cover-footer {
+      flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: flex-start; gap: 0.5cqw;
     }
 
 
@@ -502,11 +506,10 @@ function slide01Cover() {
     <div class="s-cover-main">
       <p class="s-cover-client">○○株式会社 御中</p>
       <h1 class="s-cover-title">会社概要</h1>
-      <span class="badge">2025</span>
-      <p class="s-cover-sub">デザインの力でブランドの価値を伝える。</p>
+      <p class="s-cover-sub">Vol.01</p>
     </div>
-    <div class="logo-footer">
-      <img src="assets/logo.svg" alt="CRATER">
+    <div class="s-cover-footer">
+      <img src="assets/logo.svg" alt="CRATER" style="height:1.4cqw;width:auto;">
       <span class="logo-footer-copy">©CRATER Inc. 2025</span>
     </div>
   </div>
