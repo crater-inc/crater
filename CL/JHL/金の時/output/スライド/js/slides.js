@@ -768,14 +768,14 @@ window.slideFactories[27] = () => `
       <div style="font-family:'Crimson Pro',serif;font-size:56px;color:#E8D5A3;line-height:1;flex-shrink:0;margin-top:-4px;">02</div>
       <div>
         <div style="font-family:'Zen Old Mincho',serif;font-size:32px;font-weight:500;color:#2C2C2C;margin-bottom:10px;">ECの設計方針</div>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">同化ならJHL+ECへの導線強化、差別化なら金の時独自ECの構築。<br>どちらの構造で進めるかを確認する。</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">同化ならJHL+ECへどう関わるか・関わらないか。<br>差別化なら金の時独自ECを構築するかどうか。</div>
       </div>
     </div>
     <div style="display:flex;align-items:flex-start;gap:48px;padding:36px 48px;background:#fff;border-radius:16px;border:1px solid #E4E0D8;">
       <div style="font-family:'Crimson Pro',serif;font-size:56px;color:#E8D5A3;line-height:1;flex-shrink:0;margin-top:-4px;">03</div>
       <div>
         <div style="font-family:'Zen Old Mincho',serif;font-size:32px;font-weight:500;color:#2C2C2C;margin-bottom:10px;">クレーターの関わり方</div>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">制作会社としての単発関与か、ブランドパートナーとしての継続関与か。<br>双方にとって最良の形を話し合いたい。</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">制作会社としての単発関与か、ブランドパートナーとしての継続関与か、<br>代理販売など販売系か、それとも複合型かなど。<br>双方にとって最良の形を話し合えればと。</div>
       </div>
     </div>
   </div>
