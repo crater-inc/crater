@@ -8,7 +8,7 @@ window.slideFactories[0] = () => `
   <div style="position:absolute;top:50%;right:-100px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.14) 0%,transparent 62%);transform:translateY(-50%);pointer-events:none;"></div>
   <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:40px;position:relative;z-index:2;">Brand Proposal</div>
   <div style="font-family:'Zen Old Mincho',serif;font-size:68px;font-weight:500;color:#2C2C2C;letter-spacing:0.05em;line-height:1.3;position:relative;z-index:2;">JHL+金時草製品のブランド設計</div>
-  <div style="margin-top:80px;position:relative;z-index:2;">
+  <div style="position:absolute;bottom:64px;left:220px;z-index:2;">
     <svg viewBox="120 235 640 135" width="160" height="34" xmlns="http://www.w3.org/2000/svg">
       <path d="M204.5,323.6c-10.4,10.4-25.7,13.1-39.8,6.9-7.3-3.2-13-8.9-16.2-16.3-5-11.7-4.1-24.1,2.5-34.1,6.5-9.8,17.3-15.7,29-15.7s18,3.6,24.5,10.2l.4.4,16.9-16.9-.4-.4c-16.5-16.5-40.8-21.5-63.5-13.1-14.8,5.5-26.6,17.1-32.2,31.8-7.3,19.2-5.2,39.6,6,55.8,11,15.9,29,25.4,48.3,25.4s30.3-6.1,41.4-17.2l.4-.4-16.9-16.9-.4.4Z" fill="#B8B3A8"/>
       <path d="M324.3,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM289.5,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z" fill="#B8B3A8"/>
@@ -17,7 +17,7 @@ window.slideFactories[0] = () => `
       <path d="M440.9,264.4h29.2c1,0,1.9.8,1.9,1.9v89.7h22.3v-89.7c0-1,.8-1.9,1.9-1.9h29.2v-22.3h-84.5v22.3Z" fill="#B8B3A8"/>
       <path d="M377.4,242.1l-38.8,114h23.6l6.3-18.6c.7-2,2.6-3.3,4.7-3.3h33.3c2.1,0,4,1.3,4.7,3.3l6.3,18.6h23.6l-38.8-114h-24.9ZM377.7,310.5l12.1-35.6,12.1,35.6c.2.6-.3,1.3-.9,1.3h-22.4c-.7,0-1.2-.7-.9-1.3Z" fill="#B8B3A8"/>
     </svg>
-  </div>
+    </div>
 </div>
 `;
 
@@ -202,8 +202,25 @@ window.slideFactories[9] = () => `
 </div>
 `;
 
-// ─── P11: パッケージデザイン 扉 ───
+// ─── P11: ロゴタイプ 扉 ───
 window.slideFactories[10] = () => `
+<div class="slide slide-flex" id="s11" style="background:#C9A84C;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 220px;position:relative;">
+  <div style="position:absolute;top:0;right:0;bottom:0;width:6px;background:#2C2C2C;"></div>
+  <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.5em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:24px;">Logotype</div>
+  <div style="font-family:'Zen Old Mincho',serif;font-size:96px;font-weight:500;color:#fff;letter-spacing:0.08em;line-height:1.2;">金の時<br>ロゴタイプ</div>
+  <div style="font-family:'Crimson Pro',serif;font-size:28px;letter-spacing:0.4em;color:rgba(255,255,255,0.8);margin-top:20px;">Brand Identity</div>
+</div>
+`;
+
+// ─── P12: ロゴタイプ 画像 ───
+window.slideFactories[11] = () => `
+<div class="slide slide-flex" id="s12" style="background:#FAF7F2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
+  <img src="img/logo.png" style="max-width:70%;max-height:70%;object-fit:contain;" alt="金の時 ロゴタイプ">
+</div>
+`;
+
+// ─── P13: パッケージデザイン 扉 ───
+window.slideFactories[12] = () => `
 <div class="slide slide-flex" id="s11" style="background:#C9A84C;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 220px;position:relative;">
   <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:#2C2C2C;"></div>
   <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.5em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:24px;">Package Design</div>
@@ -212,14 +229,14 @@ window.slideFactories[10] = () => `
 `;
 
 // ─── P12: パッケージデザイン（画像）───
-window.slideFactories[11] = () => `
+window.slideFactories[13] = () => `
 <div class="slide" id="s12" style="background:#fff;position:relative;overflow:hidden;">
   <img src="img/きんじ.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" alt="金の時 パッケージデザイン">
 </div>
 `;
 
 // ─── P13: パッケージコンセプト ───
-window.slideFactories[12] = () => `
+window.slideFactories[14] = () => `
 <div class="slide slide-flex" id="s13" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/package.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;" alt="">
@@ -239,7 +256,7 @@ window.slideFactories[12] = () => `
 `;
 
 // ─── P14: ブリッジ「販売戦略」Section 02 ───
-window.slideFactories[13] = () => `
+window.slideFactories[15] = () => `
 <div class="slide slide-flex" id="s14" style="background:#C9A84C;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 220px;position:relative;">
   <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:#2C2C2C;"></div>
   <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.5em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:24px;">Section 02</div>
@@ -249,7 +266,7 @@ window.slideFactories[13] = () => `
 `;
 
 // ─── P15: 定期購読モデルの提案 ───
-window.slideFactories[14] = () => `
+window.slideFactories[16] = () => `
 <div class="slide slide-flex" id="s15" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:520px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p13_sub.jpg" style="width:100%;height:100%;object-fit:cover;object-position:60% center;" alt="">
@@ -280,7 +297,7 @@ window.slideFactories[14] = () => `
 `;
 
 // ─── P16: LINEを軸としたファン化フロー ───
-window.slideFactories[15] = () => `
+window.slideFactories[17] = () => `
 <div class="slide slide-flex" id="s16" style="background:#F5F2EC;flex-direction:column;justify-content:center;padding:80px 160px;">
   <div style="margin-bottom:52px;">
     <span style="font-family:'Crimson Pro',serif;font-size:22px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;">Fan Building</span>
@@ -315,7 +332,7 @@ window.slideFactories[15] = () => `
 `;
 
 // ─── P17: ブリッジ「製品ライン拡張」Section 03 ───
-window.slideFactories[16] = () => `
+window.slideFactories[18] = () => `
 <div class="slide slide-flex" id="s17" style="background:#C9A84C;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 220px;position:relative;">
   <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:#2C2C2C;"></div>
   <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.5em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:24px;">Section 03</div>
@@ -325,7 +342,7 @@ window.slideFactories[16] = () => `
 `;
 
 // ─── P18: 製品ライン — 金の時（フラッグシップ）───
-window.slideFactories[17] = () => `
+window.slideFactories[19] = () => `
 <div class="slide slide-flex" id="s18" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/k17_product.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center center;" alt="">
@@ -366,7 +383,7 @@ window.slideFactories[17] = () => `
 `;
 
 // ─── P19: きんじ粉 ───
-window.slideFactories[18] = () => `
+window.slideFactories[20] = () => `
 <div class="slide slide-flex" id="s19" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:680px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p20_kinako.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
@@ -427,7 +444,7 @@ window.slideFactories[18] = () => `
 `;
 
 // ─── P20: ゴールドプロテイン ───
-window.slideFactories[19] = () => `
+window.slideFactories[21] = () => `
 <div class="slide slide-flex" id="s20" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
     <div style="margin-bottom:32px;">
@@ -474,7 +491,7 @@ window.slideFactories[19] = () => `
 `;
 
 // ─── P21: 金抹茶（海外向け）───
-window.slideFactories[20] = () => `
+window.slideFactories[22] = () => `
 <div class="slide slide-flex" id="s21" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p22_matcha.jpg" style="width:100%;height:100%;object-fit:cover;object-position:55% center;" alt="">
@@ -521,7 +538,7 @@ window.slideFactories[20] = () => `
 `;
 
 // ─── P22: 金茶 ───
-window.slideFactories[21] = () => `
+window.slideFactories[23] = () => `
 <div class="slide slide-flex" id="s22" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
     <div style="margin-bottom:32px;">
@@ -569,7 +586,7 @@ window.slideFactories[21] = () => `
 `;
 
 // ─── P23: 粉末展開ロードマップ ───
-window.slideFactories[22] = () => `
+window.slideFactories[24] = () => `
 <div class="slide slide-flex" id="s23" style="background:#F5F2EC;flex-direction:column;justify-content:center;padding:72px 160px;">
   <div style="margin-bottom:40px;">
     <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:8px;">Future Expansion</div>
@@ -628,7 +645,7 @@ window.slideFactories[22] = () => `
 `;
 
 // ─── P24: 粉を混ぜるだけ（背景ライトに変更）───
-window.slideFactories[23] = () => `
+window.slideFactories[25] = () => `
 <div class="slide slide-flex" id="s24" style="background:#FAF7F2;flex-direction:column;justify-content:center;padding:80px 180px;position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(201,168,76,0.08) 0%,transparent 60%);pointer-events:none;"></div>
   <div style="position:relative;z-index:2;">
@@ -673,7 +690,7 @@ window.slideFactories[23] = () => `
 `;
 
 // ─── P25: ブリッジ「海外展開戦略」Section 04 ───
-window.slideFactories[24] = () => `
+window.slideFactories[26] = () => `
 <div class="slide slide-flex" id="s25" style="background:#C9A84C;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 220px;position:relative;">
   <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:#2C2C2C;"></div>
   <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.5em;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:24px;">Section 04</div>
@@ -683,7 +700,7 @@ window.slideFactories[24] = () => `
 `;
 
 // ─── P26: 台湾インフルエンサーEC戦略 ───
-window.slideFactories[25] = () => `
+window.slideFactories[27] = () => `
 <div class="slide slide-flex" id="s26" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px 80px 60px 160px;">
     <div style="margin-bottom:40px;">
@@ -714,7 +731,7 @@ window.slideFactories[25] = () => `
 `;
 
 // ─── P27: 海外定期購読の購買フロー ───
-window.slideFactories[26] = () => `
+window.slideFactories[28] = () => `
 <div class="slide slide-flex" id="s27" style="background:#F5F2EC;flex-direction:column;justify-content:center;padding:80px 160px;">
   <div style="margin-bottom:52px;">
     <span style="font-family:'Crimson Pro',serif;font-size:22px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;">Purchase Flow</span>
@@ -749,7 +766,7 @@ window.slideFactories[26] = () => `
 `;
 
 // ─── P28: 議題 ───
-window.slideFactories[27] = () => `
+window.slideFactories[29] = () => `
 <div class="slide slide-flex" id="s28" style="background:#FAF7F2;flex-direction:column;justify-content:center;padding:80px 160px;position:relative;">
   <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:#C9A84C;"></div>
   <div style="margin-bottom:64px;">
