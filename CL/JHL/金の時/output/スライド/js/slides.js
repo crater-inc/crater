@@ -121,7 +121,7 @@ window.slideFactories[5] = () => `
       </div>
       <div style="border-left:3px solid #E8D5A3;padding-left:28px;">
         <div style="font-family:'Crimson Pro',serif;font-size:52px;color:#E8D5A3;line-height:1;margin-bottom:8px;">02</div>
-        <div style="font-family:'Zen Old Mincho',serif;font-size:34px;font-weight:600;color:#2C2C2C;margin-bottom:12px;">金箔シェア100%の金沢の金</div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:28px;font-weight:600;color:#2C2C2C;margin-bottom:12px;">金箔シェア100%の<br>金沢の金</div>
         <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:1.9;">金沢は「金箔」の都市。伝統・信頼・上質さを一字で表す。</div>
       </div>
       <div style="border-left:3px solid #E8D5A3;padding-left:28px;">
