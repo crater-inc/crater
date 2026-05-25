@@ -32,8 +32,9 @@ window.slideFactories[1] = () => `
 
 // ─── P3: ブランドストーリー ───
 window.slideFactories[2] = () => `
-<div class="slide slide-flex" id="s3" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 100px 80px 160px;position:relative;z-index:2;">
+<div class="slide" id="s3" style="background:#FAF7F2;">
+  <img src="img/p3_story.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:65% 70%;" alt="">
+  <div style="position:absolute;top:0;left:0;width:65%;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:80px 100px 80px 160px;z-index:2;">
     <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:48px;">Story</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:72px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.4;margin-bottom:56px;">今この瞬間以降の<br>人生が元気で輝くように。</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:24px;font-weight:300;color:#5C5956;line-height:2.2;letter-spacing:0.06em;">
@@ -41,16 +42,16 @@ window.slideFactories[2] = () => `
       金の時とは、あなたの黄金時代。それは今日から始まっている。
     </div>
   </div>
-  <div style="width:680px;flex-shrink:0;position:relative;overflow:hidden;">
-    <img src="img/p3_story.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;" alt="">
-  </div>
 </div>
 `;
 
 // ─── P4: コアコード ───
 window.slideFactories[3] = () => `
-<div class="slide slide-flex" id="s4" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 80px 80px 160px;position:relative;z-index:2;">
+<div class="slide" id="s4" style="background:#FAF7F2;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:1080px;overflow:hidden;">
+    <img src="img/p4_core.jpg" style="width:100%;height:100%;object-fit:cover;" alt="">
+  </div>
+  <div style="position:absolute;top:0;left:0;width:65%;height:1080px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 80px 80px 160px;z-index:2;">
     <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:40px;">Brand Core Code</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:96px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.2;">不老長寿と<br>呼ばれる野菜。</div>
     <div style="font-family:'Crimson Pro',serif;font-size:26px;color:#9A7B2E;letter-spacing:0.2em;margin-top:16px;opacity:0.65;">The Vegetable of Eternal Youth</div>
@@ -58,9 +59,6 @@ window.slideFactories[3] = () => `
       古来より「不老長寿の野菜」と呼ばれてきた加賀の伝統野菜。<br>
       アントシアニン・GABA・鉄分・カルシウムを豊富に含む。
     </div>
-  </div>
-  <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
-    <img src="img/p4_core.jpg" style="width:100%;height:100%;object-fit:cover;" alt="">
   </div>
 </div>
 `;
@@ -239,11 +237,11 @@ window.slideFactories[13] = () => `
 
 // ─── P13: パッケージコンセプト ───
 window.slideFactories[14] = () => `
-<div class="slide slide-flex" id="s13" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
+<div class="slide" id="s13" style="background:#FAF7F2;">
+  <div style="position:absolute;top:0;left:0;width:50%;height:1080px;overflow:hidden;">
     <img src="img/package.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;" alt="">
   </div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;">
     <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:48px;">Package Concept</div>
     <div style="font-family:'Zen Old Mincho',serif;font-size:64px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.4;margin-bottom:48px;">金の輝きを、<br>手のひらに。</div>
     <div style="font-family:'Noto Sans JP',sans-serif;font-size:22px;font-weight:300;color:#5C5956;line-height:2.2;letter-spacing:0.05em;">
@@ -271,7 +269,7 @@ window.slideFactories[15] = () => `
 window.slideFactories[16] = () => `
 <div class="slide" id="s15" style="background:#FAF7F2;position:relative;">
   <div style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;">
-    <img src="img/p13_sub.jpg" style="width:100%;height:100%;object-fit:cover;object-position:60% center;" alt="">
+    <img src="img/k13_matcha.webp" style="width:100%;height:100%;object-fit:cover;object-position:center center;" alt="">
   </div>
   <div style="position:absolute;top:0;right:0;width:50%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 80px;">
     <div style="margin-bottom:28px;">
@@ -345,14 +343,14 @@ window.slideFactories[18] = () => `
 
 // ─── P18: 製品ライン — 金の時（フラッグシップ）───
 window.slideFactories[19] = () => `
-<div class="slide slide-flex" id="s18" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
+<div class="slide" id="s18" style="background:#FAF7F2;">
+  <div style="position:absolute;top:0;left:0;width:50%;height:1080px;overflow:hidden;">
     <img src="img/k17_product.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center center;" alt="">
     <div style="position:absolute;bottom:48px;left:48px;background:rgba(44,44,44,0.85);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#E8D5A3;text-transform:uppercase;">Current — Flagship</span>
     </div>
   </div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;">
     <div style="margin-bottom:32px;">
       <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M36 10 C22 10 12 22 12 38 C12 50 20 58 32 62" stroke="#C9A84C" stroke-width="2.2" stroke-linecap="round" fill="none"/>
@@ -386,14 +384,14 @@ window.slideFactories[19] = () => `
 
 // ─── P19: きんじ粉 ───
 window.slideFactories[20] = () => `
-<div class="slide slide-flex" id="s19" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="width:680px;flex-shrink:0;position:relative;overflow:hidden;">
+<div class="slide" id="s19" style="background:#FAF7F2;">
+  <div style="position:absolute;top:0;left:0;width:50%;height:1080px;overflow:hidden;">
     <img src="img/p20_kinako.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
     <div style="position:absolute;bottom:48px;left:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 01</span>
     </div>
   </div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;">
     <div style="margin-bottom:32px;">
       <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="36" cy="52" rx="22" ry="10" stroke="#C9A84C" stroke-width="2" fill="none"/>
@@ -447,8 +445,8 @@ window.slideFactories[20] = () => `
 
 // ─── P20: ゴールドプロテイン ───
 window.slideFactories[21] = () => `
-<div class="slide slide-flex" id="s20" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
+<div class="slide" id="s20" style="background:#FAF7F2;">
+  <div style="position:absolute;top:0;left:0;width:50%;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 120px;">
     <div style="margin-bottom:32px;">
       <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M36 8 L42 30 L62 30 L46 44 L52 66 L36 52 L20 66 L26 44 L10 30 L30 30 Z" stroke="#C9A84C" stroke-width="2" stroke-linejoin="round" fill="none"/>
@@ -483,7 +481,7 @@ window.slideFactories[21] = () => `
       </div>
     </div>
   </div>
-  <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:1080px;overflow:hidden;">
     <img src="img/p21_protein.jpg" style="width:100%;height:100%;object-fit:cover;object-position:25% center;" alt="">
     <div style="position:absolute;bottom:48px;right:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 02</span>
@@ -494,9 +492,9 @@ window.slideFactories[21] = () => `
 
 // ─── P21: 金抹茶（海外向け）───
 window.slideFactories[22] = () => `
-<div class="slide slide-flex" id="s21" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
-    <img src="img/p22_matcha.jpg" style="width:100%;height:100%;object-fit:cover;object-position:55% center;" alt="">
+<div class="slide" id="s21" style="background:#FAF7F2;">
+  <div style="position:absolute;top:0;left:0;width:50%;height:1080px;overflow:hidden;">
+    <img src="img/p22_matcha.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center center;" alt="">
     <div style="position:absolute;bottom:48px;left:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 03</span>
     </div>
@@ -504,7 +502,7 @@ window.slideFactories[22] = () => `
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#C9A84C;text-transform:uppercase;">Global Edition</span>
     </div>
   </div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;">
     <div style="margin-bottom:32px;">
       <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="36" cy="48" rx="20" ry="10" stroke="#C9A84C" stroke-width="2" fill="none"/>
@@ -541,8 +539,8 @@ window.slideFactories[22] = () => `
 
 // ─── P22: 金茶 ───
 window.slideFactories[23] = () => `
-<div class="slide slide-flex" id="s22" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 160px;position:relative;z-index:2;">
+<div class="slide" id="s22" style="background:#FAF7F2;">
+  <div style="position:absolute;top:0;left:0;width:50%;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:80px 80px 80px 120px;">
     <div style="margin-bottom:32px;">
       <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M14 28 L18 58 Q18 62 22 62 L44 62 Q48 62 48 58 L52 28 Z" stroke="#C9A84C" stroke-width="2" stroke-linejoin="round" fill="none"/>
@@ -578,8 +576,8 @@ window.slideFactories[23] = () => `
       </div>
     </div>
   </div>
-  <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
-    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=640&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
+  <div style="position:absolute;top:0;right:0;width:50%;height:1080px;overflow:hidden;">
+    <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=960&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
     <div style="position:absolute;bottom:48px;right:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 04</span>
     </div>
@@ -794,7 +792,7 @@ window.slideFactories[29] = () => `
       <div style="font-family:'Crimson Pro',serif;font-size:56px;color:#E8D5A3;line-height:1;flex-shrink:0;margin-top:-4px;">03</div>
       <div>
         <div style="font-family:'Zen Old Mincho',serif;font-size:32px;font-weight:500;color:#2C2C2C;margin-bottom:10px;">クレーターの関わり方</div>
-        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">制作会社としての単発関与か、ブランドパートナーとしての継続関与か、<br>代理販売など販売系か、それとも複合型かなど。<br>双方にとって最良の形を話し合えればと。</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">制作会社としての単発関与か、ブランドパートナーとしての継続関与か、<br>代理販売など販売系か、それとも複合型かなど。<br>日本？台湾？などの部分も含め、双方にとって最良の形を話し合えればと。</div>
       </div>
     </div>
   </div>
