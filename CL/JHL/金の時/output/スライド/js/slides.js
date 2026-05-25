@@ -215,7 +215,7 @@ window.slideFactories[10] = () => `
 // ─── P12: ロゴタイプ 画像 ───
 window.slideFactories[11] = () => `
 <div class="slide slide-flex" id="s12" style="background:#FAF7F2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
-  <img src="img/logo.png" style="max-width:70%;max-height:70%;object-fit:contain;" alt="金の時 ロゴタイプ">
+  <img src="img/logo.png" style="max-width:70%;max-height:70%;object-fit:contain;mix-blend-mode:multiply;" alt="金の時 ロゴタイプ">
 </div>
 `;
 
