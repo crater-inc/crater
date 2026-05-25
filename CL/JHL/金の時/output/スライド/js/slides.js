@@ -273,25 +273,25 @@ window.slideFactories[16] = () => `
   <div style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;">
     <img src="img/p13_sub.jpg" style="width:100%;height:100%;object-fit:cover;object-position:60% center;" alt="">
   </div>
-  <div style="position:absolute;top:0;right:0;width:50%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px 60px 80px;overflow-y:auto;">
-    <div style="margin-bottom:40px;">
-      <span style="font-family:'Crimson Pro',serif;font-size:22px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;">Subscription Model</span>
-      <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:300;color:#5C5956;letter-spacing:0.15em;margin-left:20px;">定期購読モデルのご提案</span>
+  <div style="position:absolute;top:0;right:0;width:50%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 80px;">
+    <div style="margin-bottom:28px;">
+      <span style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;">Subscription Model</span>
+      <span style="font-family:'Noto Sans JP',sans-serif;font-size:15px;font-weight:300;color:#5C5956;letter-spacing:0.15em;margin-left:16px;">定期購読モデルのご提案</span>
     </div>
-    <div style="font-family:'Zen Old Mincho',serif;font-size:88px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.5;margin-bottom:32px;">続けることで、<br>輝きは深まる。</div>
-    <div style="font-family:'Noto Sans JP',sans-serif;font-size:16px;font-weight:300;color:#5C5956;line-height:2.0;margin-bottom:32px;">金の時の価値は「継続」にあります。毎月届く安心感と習慣化によって顧客のLTVを最大化します。</div>
-    <div style="display:flex;flex-direction:column;gap:16px;">
-      <div style="background:#fff;border-radius:12px;padding:24px 32px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
-        <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:90px;">Point 01</div>
-        <div style="font-family:'Zen Old Mincho',serif;font-size:26px;color:#2C2C2C;">離脱率の最小化</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:64px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;line-height:1.4;margin-bottom:24px;">続けることで、<br>輝きは深まる。</div>
+    <div style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:300;color:#5C5956;line-height:2.0;margin-bottom:28px;">金の時の価値は「継続」にあります。毎月届く安心感と習慣化によって顧客のLTVを最大化します。</div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="background:#fff;border-radius:12px;padding:20px 28px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:80px;">Point 01</div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;">離脱率の最小化</div>
       </div>
-      <div style="background:#fff;border-radius:12px;padding:24px 32px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
-        <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:90px;">Point 02</div>
-        <div style="font-family:'Zen Old Mincho',serif;font-size:26px;color:#2C2C2C;">ブランドとの接点を増やす</div>
+      <div style="background:#fff;border-radius:12px;padding:20px 28px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:80px;">Point 02</div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;">ブランドとの接点を増やす</div>
       </div>
-      <div style="background:#fff;border-radius:12px;padding:24px 32px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
-        <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:90px;">Point 03</div>
-        <div style="font-family:'Zen Old Mincho',serif;font-size:26px;color:#2C2C2C;">収益の安定化</div>
+      <div style="background:#fff;border-radius:12px;padding:20px 28px;border:1px solid #E4E0D8;border-left:4px solid #C9A84C;display:flex;gap:20px;align-items:center;">
+        <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;min-width:80px;">Point 03</div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;">収益の安定化</div>
       </div>
     </div>
   </div>
