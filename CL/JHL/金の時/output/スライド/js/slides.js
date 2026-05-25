@@ -748,26 +748,36 @@ window.slideFactories[26] = () => `
 </div>
 `;
 
-// ─── P28: エンド ───
+// ─── P28: 議題 ───
 window.slideFactories[27] = () => `
-<div class="slide slide-flex" id="s28" style="background:#EDEAE2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
-  <div style="position:absolute;top:80px;left:50%;transform:translateX(-50%);font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#B8B3A8;text-transform:uppercase;">Next Steps</div>
-  <div style="font-family:'Zen Old Mincho',serif;font-size:100px;font-weight:500;color:#2C2C2C;letter-spacing:0.1em;margin-bottom:20px;">金の時</div>
-  <div style="font-family:'Crimson Pro',serif;font-size:26px;letter-spacing:0.6em;color:#C9A84C;margin-bottom:64px;">Golden Moments</div>
-  <div style="display:flex;gap:40px;margin-bottom:64px;">
-    <div style="background:#fff;border-radius:12px;padding:28px 40px;border:1px solid #E4E0D8;text-align:center;min-width:260px;">
-      <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:10px;">Step 01</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;">EC・定期購読の設計</div>
+<div class="slide slide-flex" id="s28" style="background:#FAF7F2;flex-direction:column;justify-content:center;padding:80px 160px;position:relative;">
+  <div style="position:absolute;top:0;left:0;width:6px;height:100%;background:#C9A84C;"></div>
+  <div style="margin-bottom:64px;">
+    <div style="font-family:'Crimson Pro',serif;font-size:18px;letter-spacing:0.5em;color:#B8B3A8;text-transform:uppercase;margin-bottom:16px;">Agenda</div>
+    <div style="font-family:'Zen Old Mincho',serif;font-size:64px;font-weight:500;color:#2C2C2C;letter-spacing:0.06em;">今日話し合いたいこと。</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:28px;">
+    <div style="display:flex;align-items:flex-start;gap:48px;padding:36px 48px;background:#fff;border-radius:16px;border:1px solid #E4E0D8;">
+      <div style="font-family:'Crimson Pro',serif;font-size:56px;color:#E8D5A3;line-height:1;flex-shrink:0;margin-top:-4px;">01</div>
+      <div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:32px;font-weight:500;color:#2C2C2C;margin-bottom:10px;">既存ブランドとの関係性</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">現状の金時草ブランド（JHL+）と金の時は、同化させるか・差別化するか。<br>ブランドとしての立ち位置を決める。</div>
+      </div>
     </div>
-    <div style="background:#fff;border-radius:12px;padding:28px 40px;border:1px solid #E4E0D8;text-align:center;min-width:260px;">
-      <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:10px;">Step 02</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;">LINE構築・コンテンツ</div>
+    <div style="display:flex;align-items:flex-start;gap:48px;padding:36px 48px;background:#fff;border-radius:16px;border:1px solid #E4E0D8;">
+      <div style="font-family:'Crimson Pro',serif;font-size:56px;color:#E8D5A3;line-height:1;flex-shrink:0;margin-top:-4px;">02</div>
+      <div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:32px;font-weight:500;color:#2C2C2C;margin-bottom:10px;">ECの設計方針</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">同化ならJHL+ECへの導線強化、差別化なら金の時独自ECの構築。<br>どちらの構造で進めるかを確認する。</div>
+      </div>
     </div>
-    <div style="background:#fff;border-radius:12px;padding:28px 40px;border:1px solid #E4E0D8;text-align:center;min-width:260px;">
-      <div style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#9A7B2E;text-transform:uppercase;margin-bottom:10px;">Step 03</div>
-      <div style="font-family:'Zen Old Mincho',serif;font-size:24px;color:#2C2C2C;">台湾EC × 海外展開</div>
+    <div style="display:flex;align-items:flex-start;gap:48px;padding:36px 48px;background:#fff;border-radius:16px;border:1px solid #E4E0D8;">
+      <div style="font-family:'Crimson Pro',serif;font-size:56px;color:#E8D5A3;line-height:1;flex-shrink:0;margin-top:-4px;">03</div>
+      <div>
+        <div style="font-family:'Zen Old Mincho',serif;font-size:32px;font-weight:500;color:#2C2C2C;margin-bottom:10px;">クレーターの関わり方</div>
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:300;color:#5C5956;line-height:1.9;">制作会社としての単発関与か、ブランドパートナーとしての継続関与か。<br>双方にとって最良の形を話し合いたい。</div>
+      </div>
     </div>
   </div>
-  <div style="font-family:'Zen Old Mincho',serif;font-size:22px;font-weight:400;letter-spacing:0.25em;color:#5C5956;">輝きは、準備から始まる。</div>
 </div>
 `;
