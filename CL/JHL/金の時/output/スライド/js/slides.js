@@ -269,11 +269,11 @@ window.slideFactories[15] = () => `
 
 // ─── P15: 定期購読モデルの提案 ───
 window.slideFactories[16] = () => `
-<div class="slide slide-flex" id="s15" style="background:#FAF7F2;flex-direction:row;position:relative;">
-  <div style="width:50%;flex-shrink:0;position:relative;overflow:hidden;">
+<div class="slide" id="s15" style="background:#FAF7F2;position:relative;">
+  <div style="position:absolute;top:0;left:0;width:50%;height:100%;overflow:hidden;">
     <img src="img/p13_sub.jpg" style="width:100%;height:100%;object-fit:cover;object-position:60% center;" alt="">
   </div>
-  <div style="width:50%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px 60px 80px;">
+  <div style="position:absolute;top:0;right:0;width:50%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:60px 100px 60px 80px;overflow-y:auto;">
     <div style="margin-bottom:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:22px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;">Subscription Model</span>
       <span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:300;color:#5C5956;letter-spacing:0.15em;margin-left:20px;">定期購読モデルのご提案</span>
