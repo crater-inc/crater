@@ -233,7 +233,7 @@ window.slideFactories[12] = () => `
 window.slideFactories[13] = () => `
 <div class="slide" id="s12" style="background:#fff;position:relative;overflow:hidden;">
   <img src="img/きんじ.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" alt="金の時 パッケージデザイン">
-  <div style="position:absolute;top:48px;left:64px;font-family:'Crimson Pro',serif;font-size:15px;letter-spacing:0.4em;color:#B8B3A8;text-transform:uppercase;">Package Design</div>
+  <div style="position:absolute;top:48px;left:64px;font-family:'Crimson Pro',serif;font-size:15px;letter-spacing:0.4em;color:#fff;text-transform:uppercase;">Package Design</div>
 </div>
 `;
 
