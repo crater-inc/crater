@@ -9,7 +9,7 @@ window.slideFactories[0] = () => `
   <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:40px;position:relative;z-index:2;">Brand Proposal</div>
   <div style="font-family:'Zen Old Mincho',serif;font-size:68px;font-weight:500;color:#2C2C2C;letter-spacing:0.05em;line-height:1.3;position:relative;z-index:2;">JHL+金時草製品のブランド設計</div>
   <div style="margin-top:80px;position:relative;z-index:2;">
-    <svg viewBox="120 235 640 135" width="80" height="17" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="120 235 640 135" width="160" height="34" xmlns="http://www.w3.org/2000/svg">
       <path d="M204.5,323.6c-10.4,10.4-25.7,13.1-39.8,6.9-7.3-3.2-13-8.9-16.2-16.3-5-11.7-4.1-24.1,2.5-34.1,6.5-9.8,17.3-15.7,29-15.7s18,3.6,24.5,10.2l.4.4,16.9-16.9-.4-.4c-16.5-16.5-40.8-21.5-63.5-13.1-14.8,5.5-26.6,17.1-32.2,31.8-7.3,19.2-5.2,39.6,6,55.8,11,15.9,29,25.4,48.3,25.4s30.3-6.1,41.4-17.2l.4-.4-16.9-16.9-.4.4Z" fill="#B8B3A8"/>
       <path d="M324.3,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM289.5,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z" fill="#B8B3A8"/>
       <path d="M720.4,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM685.6,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z" fill="#B8B3A8"/>
@@ -42,8 +42,7 @@ window.slideFactories[2] = () => `
     </div>
   </div>
   <div style="width:680px;flex-shrink:0;position:relative;overflow:hidden;">
-    <img src="img/p3_story.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 65%;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(250,247,242,0.3),transparent);"></div>
+    <img src="img/p3_story.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;" alt="">
   </div>
 </div>
 `;
@@ -62,7 +61,6 @@ window.slideFactories[3] = () => `
   </div>
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p4_core.jpg" style="width:100%;height:100%;object-fit:cover;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(250,247,242,0.4),transparent 40%);"></div>
   </div>
 </div>
 `;
@@ -216,7 +214,7 @@ window.slideFactories[10] = () => `
 // ─── P12: パッケージデザイン（画像）───
 window.slideFactories[11] = () => `
 <div class="slide" id="s12" style="background:#fff;position:relative;overflow:hidden;">
-  <img src="img/package.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" alt="金の時 パッケージデザイン">
+  <img src="img/きんじ.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" alt="金の時 パッケージデザイン">
 </div>
 `;
 
@@ -225,7 +223,6 @@ window.slideFactories[12] = () => `
 <div class="slide slide-flex" id="s13" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/package.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center top;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.4),transparent 50%);"></div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 120px 80px 80px;position:relative;z-index:2;">
     <div style="font-family:'Crimson Pro',serif;font-size:20px;letter-spacing:0.35em;color:#9A7B2E;text-transform:uppercase;margin-bottom:48px;">Package Concept</div>
@@ -256,7 +253,6 @@ window.slideFactories[14] = () => `
 <div class="slide slide-flex" id="s15" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:520px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p13_sub.jpg" style="width:100%;height:100%;object-fit:cover;object-position:60% center;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.35),transparent 50%);"></div>
   </div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px 140px 60px 100px;">
     <div style="margin-bottom:40px;">
@@ -333,7 +329,6 @@ window.slideFactories[17] = () => `
 <div class="slide slide-flex" id="s18" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/k17_product.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center center;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.25),transparent);"></div>
     <div style="position:absolute;bottom:48px;left:48px;background:rgba(44,44,44,0.85);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#E8D5A3;text-transform:uppercase;">Current — Flagship</span>
     </div>
@@ -375,7 +370,6 @@ window.slideFactories[18] = () => `
 <div class="slide slide-flex" id="s19" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:680px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p20_kinako.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.3),transparent);"></div>
     <div style="position:absolute;bottom:48px;left:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 01</span>
     </div>
@@ -472,7 +466,6 @@ window.slideFactories[19] = () => `
   </div>
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p21_protein.jpg" style="width:100%;height:100%;object-fit:cover;object-position:25% center;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(250,247,242,0.3),transparent);"></div>
     <div style="position:absolute;bottom:48px;right:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 02</span>
     </div>
@@ -485,7 +478,6 @@ window.slideFactories[20] = () => `
 <div class="slide slide-flex" id="s21" style="background:#FAF7F2;flex-direction:row;position:relative;">
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="img/p22_matcha.jpg" style="width:100%;height:100%;object-fit:cover;object-position:55% center;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to left,rgba(250,247,242,0.3),transparent);"></div>
     <div style="position:absolute;bottom:48px;left:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 03</span>
     </div>
@@ -569,7 +561,6 @@ window.slideFactories[21] = () => `
   </div>
   <div style="width:640px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=640&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(250,247,242,0.3),transparent);"></div>
     <div style="position:absolute;bottom:48px;right:48px;background:rgba(201,168,76,0.9);padding:12px 28px;border-radius:40px;">
       <span style="font-family:'Crimson Pro',serif;font-size:16px;letter-spacing:0.3em;color:#fff;text-transform:uppercase;">New Product 04</span>
     </div>
@@ -718,7 +709,6 @@ window.slideFactories[25] = () => `
   </div>
   <div style="width:580px;flex-shrink:0;position:relative;overflow:hidden;">
     <img src="https://images.unsplash.com/photo-1598935898639-81586f7d2129?w=580&h=1080&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover;" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to left,transparent 60%,rgba(250,247,242,0.3));"></div>
   </div>
 </div>
 `;
