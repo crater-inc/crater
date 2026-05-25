@@ -215,6 +215,7 @@ window.slideFactories[10] = () => `
 // ─── P12: ロゴタイプ 画像 ───
 window.slideFactories[11] = () => `
 <div class="slide slide-flex" id="s12" style="background:#FAF7F2;flex-direction:column;justify-content:center;align-items:center;position:relative;">
+  <div style="position:absolute;top:48px;left:64px;font-family:'Crimson Pro',serif;font-size:15px;letter-spacing:0.4em;color:#B8B3A8;text-transform:uppercase;">Logotype</div>
   <img src="img/logo.png" style="max-width:70%;max-height:70%;object-fit:contain;mix-blend-mode:multiply;" alt="金の時 ロゴタイプ">
 </div>
 `;
@@ -232,6 +233,7 @@ window.slideFactories[12] = () => `
 window.slideFactories[13] = () => `
 <div class="slide" id="s12" style="background:#fff;position:relative;overflow:hidden;">
   <img src="img/きんじ.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;" alt="金の時 パッケージデザイン">
+  <div style="position:absolute;top:48px;left:64px;font-family:'Crimson Pro',serif;font-size:15px;letter-spacing:0.4em;color:#B8B3A8;text-transform:uppercase;">Package Design</div>
 </div>
 `;
 
