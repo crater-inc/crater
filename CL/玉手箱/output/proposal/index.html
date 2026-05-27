@@ -1,48 +1,734 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>玉手箱 — Brand Concept Proposal</title>
-<link rel="stylesheet" href="css/style.css?v=3">
-<link rel="preload" as="image" href="../../brief/kv2.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>玉手箱 — ブランドコンセプト提案</title>
+  <link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
+  <link rel="stylesheet" href="https://morisawafonts.net/c/01KSMBH35VT2E86JG92RAXZ7XC/mf.css">
+  <script>
+    (function(d) {
+      var config = { kitId: 'qwe2tdt', scriptTimeout: 3000, async: true },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s);
+    })(document);
+  </script>
+  <style>
+    :root {
+      --c-base:   #DBDDDD;
+      --c-black:  #000000;
+      --c-text:   #000000;
+      --c-sub:    #000000;
+      --c-light:  #B0B0B0;
+      --c-border: rgba(0,0,0,0.15);
+      --font-en:  'urw-din', sans-serif;
+      --font-ja:  'MFW-PA1GothicStdN-Regular', sans-serif;
+      --font-ja-m: 'MFW-PA1GothicStdN-Medium', sans-serif;
+      --font-ja-b: 'MFW-PA1GothicStdN-Bold', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #EBEBEB; overflow: hidden; }
+    :lang(ja) { line-break: strict; }
+    h1,h2,h3 { word-break: normal; overflow-wrap: normal; text-wrap: balance; }
+    p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; }
+
+    /* ロック画面 */
+    #lockScreen {
+      position: fixed; inset: 0; background: #1a1a1a;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 9999; gap: 16px;
+    }
+    #lockScreen input {
+      background: #2a2a2a; border: 1px solid #444; color: #fff;
+      padding: 12px 24px; font-family: var(--font-en); font-size: 16px;
+      letter-spacing: 0.3em; text-align: center; width: 240px; outline: none;
+    }
+    #lockScreen button {
+      background: #000; color: #fff; border: none;
+      padding: 12px 48px; font-family: var(--font-en); font-size: 12px;
+      letter-spacing: 0.4em; text-transform: uppercase; cursor: pointer;
+    }
+    #lockLabel {
+      font-family: var(--font-en); font-size: 11px; letter-spacing: 0.4em;
+      color: rgba(255,255,255,0.25); text-transform: uppercase;
+    }
+    #pwErr { font-size: 11px; color: #c66; letter-spacing: 0.2em; height: 14px; font-family: var(--font-en); }
+
+    /* ステージ */
+    .slide-stage {
+      width: 100vw; height: 100vh;
+      background: #EBEBEB;
+      overflow: hidden; position: relative;
+    }
+
+    /* 1920×1080 固定キャンバス */
+    .slide {
+      width: 1920px; height: 1080px;
+      position: absolute; top: 50%; left: 50%;
+      overflow: hidden;
+      background: var(--c-base);
+      container-type: inline-size;
+      display: none;
+      transform-origin: center center;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+
+    /* 黒バッジ */
+    .badge {
+      display: inline-flex; align-items: center;
+      background: var(--c-black); color: #fff;
+      font-family: var(--font-en);
+      font-size: 0.85cqw; font-weight: 500;
+      letter-spacing: 0.14em;
+      padding: 0.55cqw 0.85cqw;
+      border-radius: 0; line-height: 1;
+    }
+
+    /* 右下コピーライト */
+    .slide-copy {
+      position: absolute; right: 2.4cqw; bottom: 2.4cqw;
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+
+    /* 強調スタイル */
+    .em-line {
+      position: relative; display: inline;
+      background: linear-gradient(#FFE500,#FFE500) 0 0.8em / 100% 0.18em no-repeat;
+    }
+    .em-black {
+      display: inline; background: var(--c-black); color: #ffffff;
+      padding: 0.12em 0.12em; line-height: inherit; font-family: inherit;
+    }
+
+    /* 白ベタ */
+    .slide-frame::before {
+      content: ''; pointer-events: none; z-index: 0;
+      position: absolute; inset: 1.2cqw; background: #ffffff;
+    }
+    .slide-frame > * { position: relative; z-index: 1; }
+
+    /* TYPE: 表紙 */
+    .s-cover {
+      height: 100%; padding: 6cqw 7cqw;
+      display: flex; flex-direction: column; justify-content: space-between; position: relative;
+    }
+    .s-cover-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.2cqw; }
+    .s-cover-client { font-family: var(--font-ja-m); font-size: 1.5cqw; color: var(--c-sub); letter-spacing: 0.05em; }
+    .s-cover-title { font-family: var(--font-ja-m); font-size: 3.6cqw; line-height: 1.2; letter-spacing: 0.04em; position: relative; left: -2px; }
+    .s-cover-sub { font-family: var(--font-en); font-size: 1.35cqw; font-weight: 400; color: var(--c-sub); letter-spacing: 0.1em; margin-top: 0.6cqw; }
+    .s-cover-footer { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 1.2cqw; }
+
+    /* TYPE: 目次 */
+    .s-agenda { height: 100%; padding: 4cqw 7cqw 5cqw 7cqw; display: flex; flex-direction: column; position: relative; }
+    .s-agenda-list { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .s-agenda-item { display: grid; grid-template-columns: 4cqw 1fr; align-items: center; padding: 1.6cqw 0; border-bottom: 1px solid var(--c-border); }
+    .s-agenda-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-agenda-num { font-family: var(--font-en); font-size: 2.2cqw; font-weight: 500; color: var(--c-sub); letter-spacing: 0.05em; }
+    .s-agenda-info { padding-left: 1.5cqw; }
+    .s-agenda-name { font-family: var(--font-ja-m); font-size: 2.2cqw; letter-spacing: 0.04em; }
+
+    /* TYPE: セクション区切り */
+    .s-section { height: 100%; padding: 4cqw 7cqw 5cqw 7cqw; display: flex; flex-direction: column; position: relative; }
+    .s-section-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-section-main { flex: 1; display: flex; align-items: center; }
+    .s-section-num-col { flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
+    .s-section-num-main { font-family: var(--font-en); font-size: 7.2cqw; font-weight: 400; line-height: 1; letter-spacing: -0.04em; transform: translateY(-0.25cqw); }
+    .s-section-divider { width: 1px; height: 5.5cqw; background: var(--c-border); flex-shrink: 0; margin: 0 2cqw; }
+    .s-section-text-col { flex: 1; display: flex; flex-direction: column; gap: 0.6cqw; justify-content: center; }
+    .s-section-label { font-family: var(--font-ja-m); font-size: 1.15cqw; letter-spacing: 0.1em; color: var(--c-sub); line-height: 1; padding-left: 4px; }
+    .s-section-name { font-family: var(--font-en); font-size: 3.8cqw; font-weight: 500; line-height: 1; letter-spacing: 0.02em; }
+    .s-section-desc { font-family: var(--font-ja-m); font-size: 1.2cqw; color: var(--c-sub); line-height: 1.9; max-width: 38cqw; }
+
+    /* TYPE: ステートメント */
+    .s-stmt { height: 100%; padding: 4cqw 7cqw 5cqw 7cqw; display: flex; flex-direction: column; position: relative; }
+    .s-stmt-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-stmt-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1.6cqw; }
+    .s-stmt-heading { font-family: var(--font-ja-m); font-size: 4.8cqw; line-height: 1.2; letter-spacing: 0.04em; margin-left: -2px; }
+    .s-stmt-body { font-family: var(--font-ja-m); font-size: 1.4cqw; line-height: 1.95; color: var(--c-sub); max-width: 52cqw; }
+
+    /* TYPE: テキスト＋リスト */
+    .s-list { height: 100%; padding: 4cqw 7cqw 5cqw 7cqw; display: flex; flex-direction: column; position: relative; }
+    .s-list-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-list-main { flex: 1; display: flex; align-items: center; gap: 6cqw; }
+    .s-list-left { flex: 0 0 26cqw; }
+    .s-list-heading { font-family: var(--font-ja-m); font-size: 3.4cqw; line-height: 1.45; letter-spacing: 0.04em; }
+    .s-list-right { flex: 1; }
+    .s-list-items { list-style: none; }
+    .s-list-item { display: grid; grid-template-columns: 3.5cqw 14cqw 1fr; align-items: baseline; gap: 1.2cqw; padding: 1.2cqw 0; border-bottom: 1px solid var(--c-border); }
+    .s-list-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-list-num { font-family: var(--font-en); font-size: 1.2cqw; color: var(--c-sub); letter-spacing: 0.06em; transform: translateY(-0.15cqw); }
+    .s-list-name { font-family: var(--font-ja-m); font-size: 1.2cqw; letter-spacing: 0.03em; }
+    .s-list-desc { font-family: var(--font-ja); font-size: 1.05cqw; color: var(--c-sub); line-height: 1.7; }
+
+    /* TYPE: 特徴グリッド */
+    .s-feature { height: 100%; padding: 4cqw 7cqw 5cqw 7cqw; display: flex; flex-direction: column; position: relative; }
+    .s-feature-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-feature-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; }
+    .s-feature-headline { font-family: var(--font-ja-m); font-size: 2.2cqw; letter-spacing: 0.04em; }
+    .s-feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqw; align-items: start; }
+    .s-feature-card { display: flex; flex-direction: column; align-items: flex-start; gap: 0.8cqw; position: relative; padding-right: 2.5cqw; }
+    .s-feature-card:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 1px; height: 60%; background: var(--c-border); }
+    .s-feature-en { font-family: var(--font-en); font-size: 2.6cqw; font-weight: 500; letter-spacing: 0.06em; line-height: 1; }
+    .s-feature-name { font-family: var(--font-ja-m); font-size: 1.0cqw; letter-spacing: 0.08em; color: var(--c-sub); }
+    .s-feature-desc { font-family: var(--font-ja); font-size: 1.05cqw; color: var(--c-sub); line-height: 1.8; max-width: 22cqw; }
+
+    /* TYPE: 箇条書き */
+    .s-bullet { height: 100%; padding: 4cqw 7cqw 5cqw 7cqw; display: flex; flex-direction: column; position: relative; }
+    .s-bullet-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
+    .s-bullet-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; }
+    .s-bullet-heading { font-family: var(--font-ja-m); font-size: 4.2cqw; line-height: 1.2; letter-spacing: 0.04em; }
+    .s-bullet-list { list-style: none; display: flex; flex-direction: column; }
+    .s-bullet-item { display: flex; align-items: baseline; gap: 1.2cqw; padding: 0.12cqw 0; }
+    .s-bullet-icon { flex-shrink: 0; width: 1.4cqw; height: 1.4cqw; position: relative; top: 0.12cqw; }
+    .s-bullet-icon svg { width: 100%; height: 100%; fill: var(--c-text); }
+    .s-bullet-text { font-family: var(--font-ja); font-size: 1.3cqw; line-height: 1.75; max-width: 72cqw; }
+
+    /* TYPE: 画像 */
+    .s-image { height: 100%; position: relative; }
+    .s-image-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
+    .s-image-main { position: absolute; top: 1.2cqw; left: 1.2cqw; right: 1.2cqw; bottom: 1.2cqw; display: flex; align-items: center; justify-content: center; }
+    .s-image-main--white { background: #ffffff; }
+
+    /* TYPE: 締め */
+    .s-closing { height: 100%; padding: 4cqw 7cqw 5cqw 7cqw; display: flex; flex-direction: column; position: relative; }
+    .s-closing-main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 3.2cqw; }
+    .s-closing-message { font-family: var(--font-ja); font-size: 1.2cqw; line-height: 1.9; color: var(--c-sub); max-width: 44cqw; }
+    .s-closing-divider { width: 3cqw; height: 1px; background: var(--c-border); }
+    .s-closing-contact { display: flex; flex-direction: column; gap: 0.6cqw; }
+    .s-closing-url { font-family: var(--font-en); font-size: 1.1cqw; letter-spacing: 0.08em; }
+    .s-closing-tel { font-family: var(--font-en); font-size: 1.0cqw; letter-spacing: 0.06em; color: var(--c-sub); }
+
+    /* UI */
+    .menu-btn {
+      position: fixed; width: 36px; height: 36px; z-index: 300;
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+    }
+    .menu-btn span { display: block; width: 18px; height: 1px; background: #111; }
+    .progress-bar { position: fixed; bottom: 0; left: 0; height: 2px; background: #111; transition: width 0.3s ease; z-index: 200; }
+    .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+    .sidebar { position: absolute; top: 0; right: -300px; bottom: 0; width: 280px; background: #2a2a2a; color: #fff; transition: right 0.3s ease; display: flex; flex-direction: column; }
+    .sidebar-overlay.open .sidebar { right: 0; }
+    .sidebar-header { display: flex; align-items: center; justify-content: space-between; padding: 24px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .sidebar-logo { display: block; height: 14px; width: auto; filter: invert(1); opacity: 0.85; }
+    .sidebar-close { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 13px; cursor: pointer; }
+    .sidebar-list { padding: 8px 0; flex: 1; overflow-y: auto; }
+    .sidebar-item { display: flex; align-items: center; gap: 14px; width: 100%; padding: 11px 24px; background: none; border: none; cursor: pointer; font-family: var(--font-ja-m); font-size: 11px; letter-spacing: 0.06em; color: rgba(255,255,255,0.35); text-align: left; transition: color 0.15s; }
+    .sidebar-item:hover { color: rgba(255,255,255,0.7); }
+    .sidebar-item.active { color: #fff; }
+    .sidebar-num { font-family: var(--font-en); font-size: 10px; opacity: 0.25; min-width: 20px; }
+    .nav-prev, .nav-next { position: fixed; top: 0; width: 50%; height: 100%; z-index: 100; cursor: pointer; }
+    .nav-prev { left: 0; } .nav-next { right: 0; }
+  </style>
 </head>
 <body>
 
 <!-- ロック画面 -->
-<div id="lockScreen" style="position:fixed;inset:0;background:#0D0D0D;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:20px;">
-  <div style="font-family:'EB Garamond',serif;font-size:14px;letter-spacing:0.5em;color:rgba(200,168,75,0.45);text-transform:uppercase;margin-bottom:8px;">The Oju · Tamatebako</div>
-  <input type="password" id="pwInput" placeholder="PASSWORD" onkeydown="if(event.key==='Enter')checkPw()" autofocus
-    style="background:#1a1a1a;border:1px solid #333;color:#fff;padding:14px 24px;font-size:16px;letter-spacing:0.3em;text-align:center;width:260px;outline:none;">
-  <button onclick="checkPw()"
-    style="background:#C8A84B;color:#000;border:none;padding:12px 48px;font-family:'EB Garamond',serif;font-size:13px;letter-spacing:0.4em;text-transform:uppercase;cursor:pointer;">ENTER</button>
-  <div id="pwErr" style="font-size:12px;color:#c66;letter-spacing:0.2em;height:16px;"></div>
+<div id="lockScreen">
+  <div id="lockLabel">Brand Concept Proposal · Tamatebako</div>
+  <input type="password" id="pwInput" placeholder="PASSWORD" onkeydown="if(event.key==='Enter')checkPw()" autofocus>
+  <button onclick="checkPw()">ENTER</button>
+  <div id="pwErr"></div>
 </div>
 
-<!-- ハンバーガー -->
-<button class="hamburger light" id="hamburger" aria-label="メニュー">
-  <span></span><span></span><span></span>
-</button>
-
-<!-- サイドバー -->
-<nav class="sidebar" id="sidebar">
-  <div class="sidebar-title">Contents</div>
-  <div id="sidebar-list"></div>
-</nav>
-<div class="backdrop" id="backdrop"></div>
-
-<!-- スライドステージ -->
 <div class="slide-stage" id="slide-stage"></div>
+<div class="nav-prev" id="nav-prev"></div>
+<div class="nav-next" id="nav-next"></div>
+<button class="menu-btn" id="menu-btn"><span></span><span></span><span></span></button>
+<div class="progress-bar" id="progress-bar" style="width:0"></div>
 
-<!-- ナビ -->
-<div class="nav">
-  <button class="nav-btn light" id="nav-prev">← PREV</button>
-  <span class="nav-counter light" id="nav-counter">1 / 10</span>
-  <button class="nav-btn light" id="nav-next">NEXT →</button>
+<div class="sidebar-overlay" id="sidebar-overlay">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img class="sidebar-logo" src="../../../01_CRATER/スライド/output/assets/logo.svg" alt="CRATER">
+      <button class="sidebar-close" id="sidebar-close">✕</button>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </nav>
 </div>
 
-<script src="js/slides.js?v=3"></script>
-<script src="js/app.js?v=3"></script>
+<script>
+window.bulletIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12,1.5A10.5,10.5,0,1,0,22.5,12,10.51,10.51,0,0,0,12,1.5ZM12,3A9,9,0,1,1,3,12,9,9,0,0,1,12,3Z"/><polygon points="10.5,16.5 6,12 8.25,10.5 10.5,12.75 15.75,6.75 18,9"/></svg>`;
+
+// SLIDE 01: 表紙
+function slide01Cover() {
+  return `<section class="slide" data-section="cover">
+  <div class="s-cover">
+    <div class="s-cover-top"><span class="badge">2026</span></div>
+    <div class="s-cover-main">
+      <p class="s-cover-client">玉手箱</p>
+      <h1 class="s-cover-title">ブランドコンセプト提案</h1>
+      <p class="s-cover-sub">Brand Concept Proposal</p>
+    </div>
+    <div class="s-cover-footer">
+      <img src="../../../01_CRATER/スライド/output/assets/logo.svg" alt="CRATER" style="height:1.4cqw;width:auto;">
+      <span style="font-family:var(--font-en);font-size:0.72cqw;letter-spacing:0.08em;color:var(--c-sub);">©CRATER Inc. 2026</span>
+    </div>
+  </div>
+</section>`;
+}
+
+// SLIDE 02: 目次
+function slide02Agenda() {
+  return `<section class="slide" data-section="agenda">
+  <div class="s-agenda">
+    <div style="position:absolute;top:calc(2.4cqw - 1px);left:2.4cqw;"><span class="badge">CONTENTS</span></div>
+    <div class="s-agenda-list">
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">01</span>
+        <div class="s-agenda-info"><span class="s-agenda-name">タグライン</span></div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">02</span>
+        <div class="s-agenda-info"><span class="s-agenda-name">ブランドストーリー</span></div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">03</span>
+        <div class="s-agenda-info"><span class="s-agenda-name">ブランドコード</span></div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">04</span>
+        <div class="s-agenda-info"><span class="s-agenda-name">ブランド方向性</span></div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">05</span>
+        <div class="s-agenda-info"><span class="s-agenda-name">ロゴ</span></div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">06</span>
+        <div class="s-agenda-info"><span class="s-agenda-name">デザインコンセプト</span></div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 03: タグライン
+function slide03Tagline() {
+  return `<section class="slide" data-section="tagline">
+  <div class="s-stmt">
+    <div class="s-stmt-top"><span class="badge">TAGLINE</span></div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading">重は、<br>特別を宿す。</h2>
+      <p class="s-stmt-body" style="font-family:var(--font-en);font-size:1.3cqw;letter-spacing:0.12em;">The vessel holds the extraordinary.</p>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 04: ブランドストーリー
+function slide04Story() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="story">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">BRAND STORY</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading">この重から始まる<br>物語を、感じてください。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">お重の器には、幾重の時間が重なっている。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">開けるたびに記憶が宿り、重ねるたびに歴史が刻まれる。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">玉手箱は、そんな器に選び抜いた逸品を入れてお届けしています。</span>
+        </li>
+      </ul>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 05: ブランドコード
+function slide05BrandCode() {
+  return `<section class="slide" data-section="brandcode">
+  <div class="s-list">
+    <div class="s-list-top"><span class="badge">BRAND CODE</span></div>
+    <div class="s-list-main">
+      <div class="s-list-left">
+        <h2 class="s-list-heading">逸品を、<br>伝統で。</h2>
+      </div>
+      <div class="s-list-right">
+        <ul class="s-list-items">
+          <li class="s-list-item">
+            <span class="s-list-num">Core</span>
+            <span class="s-list-name">逸品を、伝統で。</span>
+            <span class="s-list-desc">器の品格と逸品の価値が重なったとき、はじめて玉手箱になる。</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">01</span>
+            <span class="s-list-name">蓋を開ける瞬間</span>
+            <span class="s-list-desc">受け取った人が蓋を開けるその一瞬。すべてをこの体験のために設計する。</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">02</span>
+            <span class="s-list-name">選び抜く目利き</span>
+            <span class="s-list-desc">目利きで選んだ逸品だけを扱う姿勢が、ブランドへの信頼になる。</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">03</span>
+            <span class="s-list-name">越境する和の美</span>
+            <span class="s-list-desc">海外展開を見据えた、言語を超えて伝わる普遍的な日本の美。</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 06: ブランド方向性 Do's
+function slide06Dos() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="dos">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">BRAND DIRECTION — DO</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading">やること。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">開ける瞬間の体験を最優先に設計する</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">器（お重）の品格を常に保つ</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">選び抜いたという文脈を丁寧に伝える</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">余白・静けさをデザインに活かす</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">日本の伝統美を現代の感覚で表現する</span>
+        </li>
+      </ul>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 07: ブランド方向性 Don'ts
+function slide07Donts() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="donts">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">BRAND DIRECTION — DON'T</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading">やらないこと。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">賑やかすぎるビジュアル・POPな配色</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">安売り・数量限定の煽り文句</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">お重の格を下げるカジュアルな表現</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">情報を詰め込みすぎた窮屈なレイアウト</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">和のテイストを損なう洋風コミュニケーション</span>
+        </li>
+      </ul>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 08: ロゴ セクション扉
+function slide08LogoSection() {
+  return `<section class="slide" data-section="logo-section">
+  <div class="s-section">
+    <div class="s-section-top"></div>
+    <div class="s-section-main">
+      <div class="s-section-num-col">
+        <span class="s-section-num-main">05</span>
+      </div>
+      <div class="s-section-divider"></div>
+      <div class="s-section-text-col">
+        <span class="s-section-label">ロゴデザイン</span>
+        <h2 class="s-section-name">LOGO</h2>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 09: ロゴ（どーん）
+function slide09LogoMain() {
+  return `<section class="slide slide-frame" data-section="logo-main">
+  <div class="s-image">
+    <div class="s-image-top"><span class="badge">LOGO</span></div>
+    <div class="s-image-main s-image-main--white" style="padding:8cqw;">
+      <img src="../../brief/logo/03oju_logo-03.svg" style="width:100%;height:auto;display:block;" alt="玉手箱ロゴ">
+    </div>
+    <p class="slide-copy" style="position:absolute;right:2.4cqw;bottom:2.4cqw;">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 10: ロゴ コンセプト
+function slide10LogoConcept() {
+  return `<section class="slide" data-section="logo-concept">
+  <div style="position:absolute;top:0;left:0;width:55%;height:1080px;background:#ffffff;display:flex;align-items:center;justify-content:center;padding:8cqw;">
+    <img src="../../brief/logo/03oju_logo-05.svg" style="width:100%;height:auto;" alt="玉手箱ロゴ">
+  </div>
+  <div style="position:absolute;top:0;left:55%;right:0;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:5cqw 7cqw 5cqw 4cqw;gap:2.8cqw;">
+    <div style="position:absolute;top:calc(2.4cqw - 1px);left:2.4cqw;"><span class="badge">LOGO CONCEPT</span></div>
+    <div style="display:flex;flex-direction:column;gap:0.5cqw;">
+      <p style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.18em;color:var(--c-sub);">Mark</p>
+      <p style="font-family:var(--font-ja-m);font-size:1.2cqw;letter-spacing:0.03em;">お重そのものをかたちにしたマーク。</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.5cqw;">
+      <p style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.18em;color:var(--c-sub);">Symbol</p>
+      <p style="font-family:var(--font-ja-m);font-size:1.2cqw;letter-spacing:0.03em;">「玉」の字をシンボルに落とし込んでいる。</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.5cqw;">
+      <p style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.18em;color:var(--c-sub);">Hanko</p>
+      <p style="font-family:var(--font-ja-m);font-size:1.2cqw;letter-spacing:0.03em;">落款に「手箱」と記し、マークと組み合わせて<br>「玉手箱」として成立する構造。</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.5cqw;">
+      <p style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.18em;color:var(--c-sub);">Shoulder / English</p>
+      <p style="font-family:var(--font-ja-m);font-size:1.2cqw;letter-spacing:0.03em;">ショルダー名は「御重屋」。英語は「The oju」。<br>越境ECを見据えた国際表記。</p>
+    </div>
+  </div>
+  <p class="slide-copy">©CRATER Inc. 2026</p>
+</section>`;
+}
+
+// SLIDE 11: ロゴ バリエーション
+function slide11LogoVariation() {
+  return `<section class="slide slide-frame" data-section="logo-variation">
+  <div class="s-image">
+    <div class="s-image-top"><span class="badge">LOGO VARIATION</span></div>
+    <div class="s-image-main s-image-main--white" style="padding:5cqw;">
+      <img src="../../brief/logo/03oju_logo_アートボード 1.svg" style="width:100%;height:auto;display:block;" alt="玉手箱ロゴ バリエーション">
+    </div>
+    <p class="slide-copy" style="position:absolute;right:2.4cqw;bottom:2.4cqw;">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 12: デザインコンセプト
+function slide12DesignConcept() {
+  return `<section class="slide" data-section="design-concept">
+  <div class="s-feature">
+    <div class="s-feature-top"><span class="badge">DESIGN CONCEPT</span></div>
+    <div class="s-feature-main">
+      <p class="s-feature-headline">箔と漆と重</p>
+      <div class="s-feature-grid">
+        <div class="s-feature-card">
+          <p class="s-feature-en">TONE</p>
+          <p class="s-feature-name">［トーン］</p>
+          <p class="s-feature-desc">漆黒の静謐と金の輝き、緋のきわ。和の格調が根底に流れる。</p>
+        </div>
+        <div class="s-feature-card">
+          <p class="s-feature-en">PALETTE</p>
+          <p class="s-feature-name">［カラー］</p>
+          <p class="s-feature-desc">深い黒をベースに金をアクセント。ベージュで柔らかさを添え、緋色で要所を締める。</p>
+        </div>
+        <div class="s-feature-card">
+          <p class="s-feature-en">DIRECTION</p>
+          <p class="s-feature-name">［方向性］</p>
+          <p class="s-feature-desc">余白を活かした静的な構成。情報より体験を優先する設計。</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+// SLIDE 13: KV
+function slide13KV() {
+  return `<section class="slide" data-section="kv">
+  <div style="position:absolute;top:calc(2.4cqw - 1px);left:2.4cqw;z-index:2;">
+    <span class="badge">KEY VISUAL</span>
+  </div>
+  <div style="position:relative;width:100%;height:100%;overflow:hidden;">
+    <img src="../../brief/kv2.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" alt="Key Visual">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.6) 45%,transparent);display:flex;flex-direction:column;justify-content:center;padding:7cqw;gap:2cqw;">
+      <p style="font-family:var(--font-ja-m);font-size:3.6cqw;color:#ffffff;letter-spacing:0.06em;line-height:1.3;">重は、特別を宿す。</p>
+      <p style="font-family:var(--font-en);font-size:1.2cqw;color:rgba(255,255,255,0.5);letter-spacing:0.2em;">The vessel holds the extraordinary.</p>
+    </div>
+  </div>
+  <p class="slide-copy" style="color:rgba(255,255,255,0.3);z-index:2;">©CRATER Inc. 2026</p>
+</section>`;
+}
+
+// SLIDE 14: 締め
+function slide14Closing() {
+  return `<section class="slide" data-section="closing">
+  <div class="s-closing">
+    <div class="s-closing-main">
+      <div style="display:flex;flex-direction:column;gap:3.2cqw;align-items:flex-start;margin-top:30px;">
+        <img src="../../../01_CRATER/スライド/output/assets/logo.svg" alt="CRATER" style="height:2.4cqw;width:auto;display:block;">
+        <p class="s-closing-message">ご覧いただきありがとうございました。<br>ご不明な点・ご質問はお気軽にどうぞ。</p>
+        <div class="s-closing-divider"></div>
+        <div class="s-closing-contact">
+          <p class="s-closing-url">crater.co.jp</p>
+          <p class="s-closing-tel">03-6665-0846</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc. 2026</p>
+  </div>
+</section>`;
+}
+
+window.slideFactories = [
+  slide01Cover,
+  slide02Agenda,
+  slide03Tagline,
+  slide04Story,
+  slide05BrandCode,
+  slide06Dos,
+  slide07Donts,
+  slide08LogoSection,
+  slide09LogoMain,
+  slide10LogoConcept,
+  slide11LogoVariation,
+  slide12DesignConcept,
+  slide13KV,
+  slide14Closing,
+];
+
+window.agendaItems = [
+  { id: 'cover',          label: '表紙' },
+  { id: 'agenda',         label: '目次' },
+  { id: 'tagline',        label: 'タグライン' },
+  { id: 'story',          label: 'ブランドストーリー' },
+  { id: 'brandcode',      label: 'ブランドコード' },
+  { id: 'dos',            label: "ブランド方向性 — Do's" },
+  { id: 'donts',          label: "ブランド方向性 — Don'ts" },
+  { id: 'logo-section',   label: 'ロゴ セクション' },
+  { id: 'logo-main',      label: 'ロゴ' },
+  { id: 'logo-concept',   label: 'ロゴ コンセプト' },
+  { id: 'logo-variation', label: 'ロゴ バリエーション' },
+  { id: 'design-concept', label: 'デザインコンセプト' },
+  { id: 'kv',             label: 'Key Visual' },
+  { id: 'closing',        label: '締め' },
+];
+</script>
+
+<script>
+(function () {
+  var stage      = document.getElementById('slide-stage');
+  var menuBtn    = document.getElementById('menu-btn');
+  var overlay    = document.getElementById('sidebar-overlay');
+  var sideClose  = document.getElementById('sidebar-close');
+  var sideList   = document.getElementById('sidebar-list');
+  var progress   = document.getElementById('progress-bar');
+  var navPrev    = document.getElementById('nav-prev');
+  var navNext    = document.getElementById('nav-next');
+  var current    = 0;
+  var total      = slideFactories.length;
+  var rendered   = {};
+  var currentScale = 1;
+
+  function scaleSlides() {
+    currentScale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.querySelectorAll('.slide').forEach(function (s) {
+      s.style.transform = 'translate(-50%, -50%) scale(' + currentScale + ')';
+    });
+    var artW = 1920 * currentScale;
+    var artH = 1080 * currentScale;
+    var ox = (window.innerWidth  - artW) / 2;
+    var oy = (window.innerHeight - artH) / 2;
+    var margin = 46.08 * currentScale;
+    menuBtn.style.top   = (oy + margin) + 'px';
+    menuBtn.style.right = (ox + margin) + 'px';
+  }
+  window.addEventListener('resize', scaleSlides);
+
+  function ensureRendered(i) {
+    if (rendered[i] || i < 0 || i >= total) return;
+    var frag = document.createRange().createContextualFragment(slideFactories[i]());
+    var el = frag.querySelector('.slide');
+    if (el) el.setAttribute('data-index', i);
+    stage.appendChild(frag);
+    rendered[i] = true;
+    scaleSlides();
+  }
+
+  function getSlide(i) {
+    return stage.querySelector('.slide[data-index="' + i + '"]');
+  }
+
+  function goTo(i, skipHash) {
+    if (i < 0 || i >= total) return;
+    [i - 1, i, i + 1].forEach(function (j) { ensureRendered(j); });
+    stage.querySelectorAll('.slide').forEach(function (s) { s.classList.remove('active'); });
+    var target = getSlide(i);
+    if (target) target.classList.add('active');
+    current = i;
+    if (!skipHash) history.replaceState(null, '', '#' + (i + 1));
+    progress.style.width = ((i + 1) / total * 100) + '%';
+    document.querySelectorAll('.sidebar-item').forEach(function (el, idx) {
+      el.classList.toggle('active', idx === i);
+    });
+  }
+
+  var initPage = 0;
+  var hash = window.location.hash.replace('#', '');
+  if (hash && !isNaN(hash)) {
+    var p = parseInt(hash, 10) - 1;
+    if (p >= 0 && p < total) initPage = p;
+  }
+  scaleSlides();
+  [0, 1, 2].forEach(function (i) { ensureRendered(i); });
+  goTo(initPage, true);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ')         { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'Backspace') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home')  { e.preventDefault(); goTo(0); }
+    if (e.key === 'End')   { e.preventDefault(); goTo(total - 1); }
+    if (e.key === 'Escape') { overlay.classList.remove('open'); }
+  });
+  navPrev.addEventListener('click', function () { goTo(current - 1); });
+  navNext.addEventListener('click', function () { goTo(current + 1); });
+  menuBtn.addEventListener('click', function () { overlay.classList.toggle('open'); });
+  sideClose.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) {
+    if (!e.target.closest('.sidebar')) overlay.classList.remove('open');
+  });
+
+  agendaItems.forEach(function (item, i) {
+    var btn = document.createElement('button');
+    btn.className = 'sidebar-item';
+    btn.innerHTML = '<span class="sidebar-num">' + String(i + 1).padStart(2, '0') + '</span><span>' + item.label + '</span>';
+    btn.addEventListener('click', function (e) { e.stopPropagation(); goTo(i); overlay.classList.remove('open'); });
+    sideList.appendChild(btn);
+  });
+
+})();
+</script>
+
 <script>
 function checkPw() {
   if (document.getElementById('pwInput').value === 'view') {
@@ -58,5 +744,6 @@ if (sessionStorage.getItem('tamatebako_auth') === '1') {
   document.getElementById('lockScreen').style.display = 'none';
 }
 </script>
+
 </body>
 </html>
