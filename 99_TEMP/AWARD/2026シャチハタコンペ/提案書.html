@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 シャチハタコンペ 提案</title>
+<link rel="stylesheet" href="https://morisawafonts.net/c/01KSMBH35VT2E86JG92RAXZ7XC/mf.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --font-en: 'urw-din', sans-serif;
+  --font-ja: 'MFW-PA1GothicStdN-Regular', sans-serif;
+  --font-ja-m: 'MFW-PA1GothicStdN-Medium', sans-serif;
+  --font-ja-b: 'MFW-PA1GothicStdN-Bold', sans-serif;
+}
+
+body {
+  background: #e8e8e8;
+  font-family: var(--font-ja);
+}
+
+/* 左サイドナビ */
+.nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 180px;
+  height: 100vh;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 0 28px;
+  z-index: 1000;
+}
+.nav-title {
+  color: #fff;
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  padding: 0 20px 28px;
+  line-height: 2;
+  border-bottom: 1px solid #222;
+  margin-bottom: 20px;
+}
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 10px;
+  flex: 1;
+}
+.nav a {
+  color: #555;
+  text-decoration: none;
+  font-family: var(--font-ja);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  transition: all 0.2s;
+  padding: 9px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: 1.5;
+}
+.nav a:hover { color: #fff; background: #1e1e1e; }
+.nav a .nav-num {
+  font-family: var(--font-en);
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: #444;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.nav a:hover .nav-num { background: #fff; color: #111; }
+.nav-footer {
+  padding: 14px 20px 0;
+  font-family: var(--font-ja);
+  font-size: 9px;
+  color: #2a2a2a;
+  letter-spacing: 0.1em;
+  border-top: 1px solid #1a1a1a;
+}
+
+/* ページ群 */
+.pages {
+  padding: 48px 48px 80px 228px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+}
+
+/* A3縦 1枚 */
+.page {
+  width: 794px;
+  min-height: 1123px;
+  background: #fff;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  padding: 60px 56px 56px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 上部メタ */
+.page-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 44px;
+}
+.meta-info {
+  font-family: var(--font-ja);
+  font-size: 9px;
+  color: #aaa;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+}
+.meta-entry {
+  font-family: var(--font-en);
+  font-size: 9px;
+  color: #ccc;
+  letter-spacing: 0.15em;
+  text-align: right;
+}
+
+/* 作品名エリア */
+.title-block {
+  margin-bottom: 20px;
+}
+.product-name {
+  font-family: var(--font-ja-b);
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #0d0d0d;
+  margin-bottom: 10px;
+}
+.product-name-en {
+  font-family: var(--font-en);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: #bbb;
+}
+
+/* コンセプト */
+.concept-block {
+  margin-bottom: 40px;
+}
+.concept-text {
+  font-family: var(--font-ja-m);
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+  letter-spacing: 0.03em;
+}
+
+/* メインビジュアル */
+.visual-main {
+  width: 100%;
+  height: 420px;
+  background: #f5f5f5;
+  margin-bottom: 40px;
+  overflow: hidden;
+  position: relative;
+}
+.visual-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 2カラム下部 */
+.bottom-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: auto;
+  padding-top: 32px;
+  border-top: 1px solid #eee;
+}
+.col-label {
+  font-family: var(--font-en);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  color: #bbb;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.col-text {
+  font-family: var(--font-ja);
+  font-size: 12.5px;
+  line-height: 2;
+  color: #444;
+}
+.col-text strong {
+  font-family: var(--font-ja-m);
+  color: #111;
+}
+
+/* アクセントバー（各案のカラー） */
+.accent-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+/* ページ番号 */
+.page-num {
+  position: absolute;
+  bottom: 24px;
+  right: 40px;
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: #ddd;
+}
+
+
+/* ━━━ コメント機能 ━━━ */
+#wf-open-btn{position:fixed;right:16px;top:16px;width:36px;height:36px;background:#2C2C2C;color:#fff;border:none;border-radius:8px;cursor:pointer;z-index:9999;display:flex;align-items:center;justify-content:center;transition:background .2s,right .3s;box-shadow:0 2px 8px rgba(0,0,0,0.3);}
+#wf-open-btn:hover{background:#111;}
+#wf-open-btn.shifted{right:296px;}
+#wf-open-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.8;}
+#wf-panel{position:fixed;top:0;right:0;width:280px;height:100vh;background:#1a1a1a;border-left:1px solid #333;display:flex;flex-direction:column;z-index:9998;font-family:'Noto Sans JP',sans-serif;transform:translateX(280px);transition:transform .3s ease;}
+#wf-panel.open{transform:none;}
+#wf-panel-header{padding:14px 16px;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;justify-content:space-between;background:#111;flex-shrink:0;}
+.wf-panel-title{font-size:11px;color:#aaa;letter-spacing:0.12em;text-transform:uppercase;}
+#wf-panel-header-right{display:flex;align-items:center;gap:8px;}
+#wf-count{font-size:11px;color:#ccc;background:#333;padding:2px 8px;border-radius:8px;font-weight:500;}
+#wf-close-btn{background:none;border:none;color:#555;font-size:18px;cursor:pointer;padding:0 2px;}
+#wf-close-btn:hover{color:#aaa;}
+#wf-panel-actions{padding:10px 14px;border-bottom:1px solid #2a2a2a;flex-shrink:0;}
+#wf-comment-btn{width:100%;background:#2563eb;border:none;color:#fff;padding:8px;font-size:11px;cursor:pointer;letter-spacing:0.1em;transition:background .2s;border-radius:999px;}
+#wf-comment-btn:hover{background:#1d4ed8;}
+#wf-comment-btn.wf-active{background:#ef4444;}
+#wf-panel-list{flex:1;overflow-y:auto;padding:10px 14px;}
+.panel-item{background:#242424;padding:10px 12px;margin-bottom:8px;border:1px solid #2a2a2a;}
+.panel-item:hover{border-color:#374151;}
+.panel-item-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.panel-num{width:20px;height:20px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}
+.panel-slide-name{font-size:11px;color:#888;}
+.panel-text{font-size:12px;color:#e0e0e0;line-height:1.6;}
+.panel-actions{display:flex;gap:6px;margin-top:8px;}
+.panel-edit-btn{background:none;border:1px solid #374151;color:#aaa;padding:3px 8px;font-size:11px;cursor:pointer;}
+.panel-edit-btn:hover{background:#374151;color:#e0e0e0;}
+.panel-del-btn{background:none;border:1px solid #5a1a1a;color:#f87171;padding:3px 8px;font-size:11px;cursor:pointer;}
+.panel-del-btn:hover{background:#5a1a1a;}
+.c-edit-textarea{width:100%;background:#111;border:1px solid #2563eb;color:#e0e0e0;font-size:12px;padding:6px 8px;resize:none;line-height:1.5;outline:none;margin-top:6px;}
+#wf-panel-empty{font-size:12px;color:#555;text-align:center;padding:40px 0;}
+#wf-copy-wrap{padding:12px 14px;border-top:1px solid #2a2a2a;flex-shrink:0;}
+#wf-copy-btn{width:100%;background:#2C2C2C;border:1px solid #444;color:#e0e0e0;padding:10px 16px;font-size:11px;letter-spacing:0.15em;cursor:pointer;transition:background .2s;}
+#wf-copy-btn:hover{background:#111;}
+.c-pin{position:absolute;width:26px;height:26px;border-radius:50%;transform:translate(-50%,-50%);background:#2563eb;box-shadow:0 2px 8px rgba(0,0,0,0.4);cursor:grab;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;pointer-events:all;z-index:50;transition:transform .15s;}
+.c-pin:active{cursor:grabbing;}
+.c-pin:hover{transform:translate(-50%,-50%) scale(1.2);}
+.c-input-popup{background:#1f2937;border:1px solid #374151;border-radius:10px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,0.5);min-width:260px;}
+.c-input-popup textarea{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:8px 10px;resize:none;line-height:1.5;outline:none;}
+.c-input-popup textarea:focus{border-color:#2563eb;}
+.c-input-row{display:flex;gap:8px;margin-top:8px;}
+.c-send-btn{background:#2563eb;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;cursor:pointer;}
+.c-cancel-btn{background:#374151;color:#9ca3af;border:none;border-radius:6px;padding:7px 10px;font-size:12px;cursor:pointer;}
+body.comment-mode .page{cursor:crosshair;}
+.page{position:relative;}
+</style>
+</head>
+<body>
+
+<!-- 左サイドナビ -->
+<nav class="nav">
+  <div class="nav-title">SHACHIHATA<br>NEW PRODUCT<br>DESIGN 2026</div>
+  <div class="nav-links">
+    <a href="#dot">
+      <span class="nav-num">01</span>ドット印鑑
+    </a>
+    <a href="#finger">
+      <span class="nav-num">02</span>指紋印鑑
+    </a>
+    <a href="#puffy">
+      <span class="nav-num">03</span>ぷっくり<br>お名前シール
+    </a>
+  </div>
+  <div class="nav-footer">テーマ：現代のしるし</div>
+</nav>
+
+<div class="pages">
+
+  <!-- ━━━ 01 ドット印鑑 ━━━ -->
+  <div class="page" id="dot">
+    <div class="accent-bar" style="background:#111;"></div>
+
+    <div class="page-meta">
+      <div class="meta-info">
+        第20回 シヤチハタ・ニュープロダクト・デザイン・コンペティション　テーマ：現代のしるし
+      </div>
+      <div class="meta-entry">作品 01 / 03</div>
+    </div>
+
+    <div class="title-block">
+      <div class="product-name">ドット印鑑</div>
+      <div class="product-name-en">DOT HANKO</div>
+    </div>
+
+    <div class="concept-block">
+      <p class="concept-text">
+        デジタル世代の視覚言語——ドット文字——を、<br>
+        アナログの印鑑として復元する。<br>
+        ゲーム・LEDに育った人が、初めて「自分のしるし」と感じられる印鑑。
+      </p>
+    </div>
+
+    <div class="visual-main">
+      <img src="images/dot-hanko.jpg" alt="ドット印鑑">
+    </div>
+
+    <div class="bottom-cols">
+      <div>
+        <span class="col-label">掛け算の核</span>
+        <p class="col-text">印鑑（伝統・公式） <strong>×</strong> ドット文字（デジタル・現代）<br>アナログの素材で、デジタル世代の文字を刻む。</p>
+      </div>
+      <div>
+        <span class="col-label">現代のしるし</span>
+        <p class="col-text">ゲーム画面・LED掲示板・ピクセルアートで文字を学んだ世代にとって、<strong>ドット文字こそが自分の言語</strong>。それを印鑑に変換する。</p>
+      </div>
+    </div>
+
+    <div class="page-num">01 / 03</div>
+  </div>
+
+
+  <!-- ━━━ 02 指紋印鑑 ━━━ -->
+  <div class="page" id="finger">
+    <div class="accent-bar" style="background:#c0392b;"></div>
+
+    <div class="page-meta">
+      <div class="meta-info">
+        第20回 シヤチハタ・ニュープロダクト・デザイン・コンペティション　テーマ：現代のしるし
+      </div>
+      <div class="meta-entry">作品 02 / 03</div>
+    </div>
+
+    <div class="title-block">
+      <div class="product-name">指紋印鑑</div>
+      <div class="product-name-en">FINGERPRINT HANKO</div>
+    </div>
+
+    <div class="concept-block">
+      <p class="concept-text">
+        毎日何十回も行う「指紋認証」という現代の儀式を、<br>
+        インクと紙でアナログに刻む。<br>
+        消える認証ではなく、残るしるしへ。
+      </p>
+    </div>
+
+    <div class="visual-main">
+      <img src="images/finger-hanko.jpg" alt="指紋印鑑">
+    </div>
+
+    <div class="bottom-cols">
+      <div>
+        <span class="col-label">掛け算の核</span>
+        <p class="col-text">Touch ID（生体認証） <strong>×</strong> 洞窟壁画の手形（3万年前）<br>最新の行為と、最古のしるしが交差する。</p>
+      </div>
+      <div>
+        <span class="col-label">使い方</span>
+        <p class="col-text">専用インクパッドに<strong>親指を押し当て、紙に転写</strong>するだけ。名前も記号も不要——あなたの指紋そのものが、唯一の証明になる。</p>
+      </div>
+    </div>
+
+    <div class="page-num">02 / 03</div>
+  </div>
+
+
+  <!-- ━━━ 03 ぷっくりお名前シール ━━━ -->
+  <div class="page" id="puffy">
+    <div class="accent-bar" style="background:#e67e22;"></div>
+
+    <div class="page-meta">
+      <div class="meta-info">
+        第20回 シヤチハタ・ニュープロダクト・デザイン・コンペティション　テーマ：現代のしるし
+      </div>
+      <div class="meta-entry">作品 03 / 03</div>
+    </div>
+
+    <div class="title-block">
+      <div class="product-name">ぷっくり<br>お名前シール</div>
+      <div class="product-name-en">PUFFY NAME SEAL</div>
+    </div>
+
+    <div class="concept-block">
+      <p class="concept-text">
+        「自分の名前を見つける」喜びが、<br>
+        子どもにとって最初の「じぶんのしるし」体験になる。<br>
+        ぷっくりした触感が、記憶に刻まれる。
+      </p>
+    </div>
+
+    <div class="visual-main">
+      <img src="images/puffy-sticker.jpg" alt="ぷっくりお名前シール">
+    </div>
+
+    <div class="bottom-cols">
+      <div>
+        <span class="col-label">掛け算の核</span>
+        <p class="col-text">お名前シール（定番品） <strong>×</strong> ぷっくりシール（触覚・立体）<br>「貼る」行為に、触れる喜びを加える。</p>
+      </div>
+      <div>
+        <span class="col-label">プロダクトの形</span>
+        <p class="col-text"><strong>定番の名前をプリセット印刷したシール帳</strong>として販売。みさき・はると・りかなど、よくある名前を収録。文具・ノート・お弁当箱に貼る。</p>
+      </div>
+    </div>
+
+    <div class="page-num">03 / 03</div>
+  </div>
+
+</div>
+
+
+<!-- コメント機能UI -->
+<button id="wf-open-btn" onclick="togglePanel()">
+  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</button>
+<div id="wf-panel">
+  <div id="wf-panel-header">
+    <span class="wf-panel-title">Comments</span>
+    <div id="wf-panel-header-right">
+      <span id="wf-count">0件</span>
+      <button id="wf-close-btn" onclick="togglePanel()">×</button>
+    </div>
+  </div>
+  <div id="wf-panel-actions">
+    <button id="wf-comment-btn">💬 コメント追加</button>
+  </div>
+  <div id="wf-panel-list"><div id="wf-panel-empty">コメントなし</div></div>
+  <div id="wf-copy-wrap">
+    <button id="wf-copy-btn" onclick="copyAllComments()">COMMENT ALLCOPY</button>
+  </div>
+</div>
+
+<script>
+const STORE_KEY = 'shachihata_2026_comments';
+const PAGE_NAMES = { 'dot':'ドット印鑑', 'finger':'指紋印鑑', 'puffy':'ぷっくりお名前シール' };
+
+let commentMode = false;
+let comments = JSON.parse(localStorage.getItem(STORE_KEY)||'[]');
+let inputPopup = null;
+
+function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(comments)); }
+
+function togglePanel(){
+  document.getElementById('wf-panel').classList.toggle('open');
+  document.getElementById('wf-open-btn').classList.toggle('shifted');
+}
+
+document.getElementById('wf-comment-btn').addEventListener('click', ()=>{
+  commentMode = !commentMode;
+  document.body.classList.toggle('comment-mode', commentMode);
+  const btn = document.getElementById('wf-comment-btn');
+  btn.classList.toggle('wf-active', commentMode);
+  btn.textContent = commentMode ? '✕ 完了' : '💬 コメント追加';
+  if(!commentMode) closeInput();
+});
+
+document.querySelectorAll('.page').forEach(page => {
+  page.addEventListener('click', e => {
+    if(!commentMode) return;
+    if(e.target.closest('.c-pin') || e.target.closest('.c-input-popup')) return;
+    closeInput();
+    const pageId = page.id;
+    const rect = page.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+    inputPopup = document.createElement('div');
+    inputPopup.className = 'c-input-popup';
+    inputPopup.style.cssText = `position:fixed;left:${Math.min(e.clientX+12, window.innerWidth-300)}px;top:${Math.min(e.clientY+12, window.innerHeight-160)}px;z-index:10000;`;
+    inputPopup.innerHTML = `<textarea rows="3" id="c-text" placeholder="コメントを入力…"></textarea><div class="c-input-row"><button class="c-cancel-btn" id="c-cancel">キャンセル</button><button class="c-send-btn" id="c-send">送信</button></div>`;
+    document.body.appendChild(inputPopup);
+    const ta = document.getElementById('c-text');
+    ta.focus();
+    document.getElementById('c-cancel').addEventListener('click', closeInput);
+    document.getElementById('c-send').addEventListener('click', () => {
+      const text = ta.value.trim();
+      if(!text) return;
+      comments.push({ id: Date.now(), pageId, pageName: PAGE_NAMES[pageId] || pageId, x, y, text });
+      save(); closeInput();
+      commentMode = false;
+      document.body.classList.remove('comment-mode');
+      const btn = document.getElementById('wf-comment-btn');
+      btn.classList.remove('wf-active');
+      btn.textContent = '💬 コメント追加';
+      renderPins(); renderPanel();
+    });
+    let isComposing = false;
+    ta.addEventListener('compositionstart', () => isComposing = true);
+    ta.addEventListener('compositionend', () => isComposing = false);
+    ta.addEventListener('keydown', ev => {
+      if(ev.key === 'Enter' && !ev.shiftKey && !isComposing){ ev.preventDefault(); document.getElementById('c-send').click(); }
+    });
+  });
+});
+
+function closeInput(){ if(inputPopup){ inputPopup.remove(); inputPopup = null; } }
+function deleteComment(id){ comments = comments.filter(c => c.id !== id); save(); renderPins(); renderPanel(); }
+
+function startEdit(id){
+  const c = comments.find(x => x.id === id); if(!c) return;
+  document.getElementById(`pt-${id}`).innerHTML = `<textarea class="c-edit-textarea" id="et-${id}" rows="3">${c.text}</textarea><div style="display:flex;gap:6px;margin-top:6px;"><button class="c-send-btn" style="font-size:11px;padding:4px 10px;" onclick="saveEdit(${id})">保存</button><button class="c-cancel-btn" style="font-size:11px;padding:4px 10px;" onclick="renderPanel()">キャンセル</button></div>`;
+  document.getElementById(`et-${id}`).focus();
+}
+
+function saveEdit(id){
+  const ta = document.getElementById(`et-${id}`); if(!ta) return;
+  const text = ta.value.trim(); if(!text) return;
+  const c = comments.find(x => x.id === id); if(c) c.text = text;
+  save(); renderPanel(); renderPins();
+}
+
+function renderPins(){
+  document.querySelectorAll('.c-pin').forEach(p => p.remove());
+  comments.forEach((c, i) => {
+    const page = document.getElementById(c.pageId); if(!page) return;
+    const pin = document.createElement('div');
+    pin.className = 'c-pin';
+    pin.style.left = c.x + '%';
+    pin.style.top = c.y + '%';
+    pin.textContent = i + 1;
+    makeDraggable(pin, c.id, page);
+    page.appendChild(pin);
+  });
+}
+
+function makeDraggable(pin, id, container){
+  let dragging = false, startX, startY, startL, startT;
+  pin.addEventListener('mousedown', e => {
+    e.stopPropagation();
+    dragging = false; startX = e.clientX; startY = e.clientY;
+    startL = parseFloat(pin.style.left); startT = parseFloat(pin.style.top);
+    const rect = container.getBoundingClientRect();
+    const onMove = ev => {
+      const dx = ev.clientX - startX, dy = ev.clientY - startY;
+      if(!dragging && Math.abs(dx) + Math.abs(dy) > 4) dragging = true;
+      if(!dragging) return;
+      pin.style.left = Math.max(0, Math.min(100, startL + dx / rect.width * 100)) + '%';
+      pin.style.top  = Math.max(0, Math.min(100, startT + dy / rect.height * 100)) + '%';
+    };
+    const onUp = () => {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+      if(!dragging) return;
+      const c = comments.find(x => x.id === id);
+      if(c){ c.x = parseFloat(pin.style.left).toFixed(1); c.y = parseFloat(pin.style.top).toFixed(1); save(); }
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  });
+}
+
+function renderPanel(){
+  const list = document.getElementById('wf-panel-list');
+  document.getElementById('wf-count').textContent = `${comments.length}件`;
+  if(!comments.length){ list.innerHTML = '<div id="wf-panel-empty">コメントなし</div>'; return; }
+  list.innerHTML = comments.map((c, i) => `
+    <div class="panel-item" id="pi-${c.id}">
+      <div class="panel-item-header">
+        <div class="panel-num">${i+1}</div>
+        <span class="panel-slide-name">${c.pageName}</span>
+      </div>
+      <div class="panel-text" id="pt-${c.id}">${c.text}</div>
+      <div class="panel-actions">
+        <button class="panel-edit-btn" onclick="startEdit(${c.id})">編集</button>
+        <button class="panel-del-btn" onclick="deleteComment(${c.id})">削除</button>
+      </div>
+    </div>`).join('');
+}
+
+function copyAllComments(){
+  if(!comments.length){ alert('コメントがありません'); return; }
+  const lines = ['=== COMMENT ALLCOPY ===', `${new Date().toLocaleString('ja-JP')} / ${comments.length}件`, ''];
+  comments.forEach((c, i) => {
+    lines.push(`[${i+1}] ${c.pageName}`);
+    lines.push(`位置：X${c.x}% Y${c.y}%`);
+    lines.push(`内容：${c.text}`);
+    lines.push('');
+  });
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    const btn = document.getElementById('wf-copy-btn');
+    btn.textContent = 'コピーしました！';
+    setTimeout(() => btn.textContent = 'COMMENT ALLCOPY', 2000);
+  });
+}
+
+renderPins();
+renderPanel();
+</script>
+</body>
+</html>
