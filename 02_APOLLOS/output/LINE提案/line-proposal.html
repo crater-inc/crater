@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LINE公式アカウント運用 ご提案 — APOLLOS</title>
+  <link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
+  <link rel="stylesheet" href="https://morisawafonts.net/c/01KSMBH35VT2E86JG92RAXZ7XC/mf.css">
+  <script>
+    (function(d) {
+      var config = { kitId: 'qwe2tdt', scriptTimeout: 3000, async: true },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s);
+    })(document);
+  </script>
+  <style>
+    :root {
+      --c-base:   #DBDDDD;
+      --c-black:  #000000;
+      --c-text:   #000000;
+      --c-sub:    #555555;
+      --c-light:  #B0B0B0;
+      --c-border: rgba(0,0,0,0.15);
+      --font-en:  'urw-din', sans-serif;
+      --font-ja:  'MFW-PA1GothicStdN-Regular', sans-serif;
+      --font-ja-m: 'MFW-PA1GothicStdN-Medium', sans-serif;
+      --font-ja-b: 'MFW-PA1GothicStdN-Bold', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #EBEBEB; overflow: hidden; }
+    :lang(ja) { line-break: strict; }
+    h1,h2,h3 { word-break: normal; overflow-wrap: normal; text-wrap: balance; }
+    p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; }
+
+    .slide-stage {
+      width: 100vw; height: 100vh;
+      background: #EBEBEB;
+      overflow: hidden; position: relative;
+    }
+    .slide {
+      width: 1920px; height: 1080px;
+      position: absolute; top: 50%; left: 50%;
+      overflow: hidden;
+      background: var(--c-base);
+      container-type: inline-size;
+      display: none;
+      transform-origin: center center;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+
+    .badge {
+      display: inline-flex; align-items: center;
+      background: var(--c-black); color: #fff;
+      font-family: var(--font-en);
+      font-size: 0.85cqw; font-weight: 500;
+      letter-spacing: 0.14em;
+      padding: 0.55cqw 0.85cqw;
+      border-radius: 0; line-height: 1;
+    }
+
+    .nav-prev, .nav-next {
+      position: fixed; top: 0; width: 50%; height: 100%;
+      z-index: 100; cursor: pointer;
+    }
+    .nav-prev { left: 0; } .nav-next { right: 0; }
+
+    .menu-btn {
+      position: fixed;
+      width: 36px; height: 36px; z-index: 300;
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 5px;
+    }
+    .menu-btn span { display: block; width: 18px; height: 1px; background: #111; }
+    .progress-bar {
+      position: fixed; bottom: 0; left: 0;
+      height: 2px; background: #111;
+      transition: width 0.3s ease; z-index: 200;
+    }
+
+    .sidebar-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+    .sidebar {
+      position: absolute; top: 0; right: -300px; bottom: 0;
+      width: 280px; background: #2a2a2a; color: #fff;
+      transition: right 0.3s ease; display: flex; flex-direction: column;
+    }
+    .sidebar-overlay.open .sidebar { right: 0; }
+    .sidebar-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-logo-text {
+      font-family: var(--font-en); font-size: 13px;
+      font-weight: 500; letter-spacing: 0.12em; color: rgba(255,255,255,0.85);
+    }
+    .sidebar-close { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 13px; cursor: pointer; }
+    .sidebar-list { padding: 8px 0; flex: 1; overflow-y: auto; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 14px;
+      width: 100%; padding: 11px 24px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-ja-m); font-size: 11px;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.35);
+      text-align: left; transition: color 0.15s;
+    }
+    .sidebar-item:hover { color: rgba(255,255,255,0.7); }
+    .sidebar-item.active { color: #fff; }
+    .sidebar-num { font-family: var(--font-en); font-size: 10px; opacity: 0.25; min-width: 20px; }
+
+    /* 右下コピーライト */
+    .slide-copy {
+      position: absolute; right: 2.4cqw; bottom: 2.4cqw;
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+
+    /* 強調 */
+    .em-line {
+      position: relative; display: inline;
+      background: linear-gradient(#FFE500, #FFE500) 0 0.8em / 100% 0.18em no-repeat;
+    }
+    .em-black {
+      display: inline; background: var(--c-black); color: #ffffff;
+      padding: 0.12em 0.12em; line-height: inherit; font-family: inherit;
+    }
+
+    /* ============================================================
+       TYPE 01: 表紙
+    ============================================================ */
+    .s-cover {
+      height: 100%; padding: 6cqw 7cqw;
+      display: flex; flex-direction: column;
+      justify-content: space-between; position: relative;
+    }
+    .s-cover-top { flex-shrink: 0; }
+    .s-cover-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 0.4cqw;
+    }
+    .s-cover-client {
+      font-family: var(--font-ja-m); font-size: 1.5cqw;
+      color: var(--c-sub); letter-spacing: 0.05em;
+    }
+    .s-cover-title {
+      font-family: var(--font-ja-m); font-size: 3.6cqw;
+      line-height: 1.2; letter-spacing: 0.04em;
+    }
+    .s-cover-sub {
+      font-family: var(--font-en); font-size: 1.2cqw;
+      color: var(--c-sub); letter-spacing: 0.1em; margin-top: 0.8cqw;
+    }
+    .s-cover-footer {
+      flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: flex-start; gap: 0.6cqw;
+    }
+    .s-cover-logo {
+      font-family: var(--font-en); font-size: 1.6cqw;
+      font-weight: 500; letter-spacing: 0.14em;
+    }
+    .s-cover-copy {
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+
+    /* ============================================================
+       TYPE 02: コピードン（中央揃え）
+    ============================================================ */
+    .s-copy-slide {
+      height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 5cqw; position: relative;
+    }
+    .s-copy-slide-main {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.6cqw; text-align: center;
+    }
+    .s-copy-slide-heading {
+      font-family: var(--font-ja-m); font-size: 4.4cqw;
+      line-height: 1.3; letter-spacing: 0.05em; color: var(--c-text);
+    }
+    .s-copy-slide-sub {
+      font-family: var(--font-ja); font-size: 1.6cqw;
+      letter-spacing: 0.04em; color: var(--c-sub); transform: translateY(-10px);
+    }
+
+    /* ============================================================
+       TYPE 03: ステートメント
+    ============================================================ */
+    .s-stmt {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-stmt-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-stmt-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2cqw;
+    }
+    .s-stmt-heading {
+      font-family: var(--font-ja-m); font-size: 4.2cqw;
+      line-height: 1.25; letter-spacing: 0.04em; margin-left: -2px;
+    }
+    .s-stmt-body {
+      font-family: var(--font-ja); font-size: 1.4cqw;
+      line-height: 1.95; color: var(--c-sub);
+      max-width: 52cqw;
+    }
+
+    /* ============================================================
+       TYPE 04: NUMBER（大数字）
+    ============================================================ */
+    .s-number {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column;
+      background: var(--c-base); position: relative;
+    }
+    .s-number-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-number-grid {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+    .s-number-inner {
+      display: flex; align-items: flex-start; width: 100%;
+    }
+    .s-number-item {
+      flex: 1; display: flex; flex-direction: column;
+      gap: 0.2cqw; padding: 0 2.5cqw; position: relative;
+    }
+    .s-number-item:first-child { padding-left: 0; }
+    .s-number-item:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 8cqw; background: var(--c-border);
+    }
+    .s-number-upper {
+      display: flex; flex-direction: column; gap: 0.4cqw;
+      min-height: 11cqw; justify-content: flex-end;
+    }
+    .s-number-label {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.18em; color: var(--c-sub);
+    }
+    .s-number-num-row { display: flex; align-items: baseline; gap: 0.4cqw; }
+    .s-number-num {
+      font-family: var(--font-en); font-size: 7.5cqw;
+      font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: var(--c-text);
+    }
+    .s-number-unit {
+      font-family: var(--font-ja-m); font-size: 2.4cqw;
+      color: var(--c-sub); transform: translateY(-6px);
+    }
+    .s-number-desc {
+      font-family: var(--font-ja); font-size: 1.1cqw;
+      line-height: 1.8; color: var(--c-sub); min-height: 5cqw;
+    }
+
+    /* ============================================================
+       TYPE 05: テキスト＋リスト
+    ============================================================ */
+    .s-list {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-list-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-list-main {
+      flex: 1; display: flex; align-items: center; gap: 6cqw;
+    }
+    .s-list-left { flex: 0 0 26cqw; }
+    .s-list-heading {
+      font-family: var(--font-ja-m); font-size: 3.4cqw;
+      line-height: 1.45; letter-spacing: 0.04em;
+    }
+    .s-list-right { flex: 1; }
+    .s-list-items { list-style: none; }
+    .s-list-item {
+      display: grid; grid-template-columns: 3.5cqw 14cqw 1fr;
+      align-items: baseline; gap: 1.2cqw;
+      padding: 1.4cqw 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .s-list-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-list-num {
+      font-family: var(--font-en); font-size: 1.2cqw;
+      color: var(--c-sub); letter-spacing: 0.06em;
+    }
+    .s-list-name {
+      font-family: var(--font-ja-m); font-size: 1.2cqw;
+      letter-spacing: 0.03em;
+    }
+    .s-list-desc {
+      font-family: var(--font-ja); font-size: 1.05cqw;
+      color: var(--c-sub); line-height: 1.7;
+    }
+
+    /* ============================================================
+       TYPE 06: 特長グリッド
+    ============================================================ */
+    .s-feature {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-feature-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-feature-main {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw;
+    }
+    .s-feature-headline {
+      font-family: var(--font-ja-m); font-size: 2.2cqw;
+      letter-spacing: 0.04em; text-align: center;
+    }
+    .s-feature-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2cqw; align-items: start;
+    }
+    .s-feature-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.8cqw; text-align: center; position: relative;
+    }
+    .s-feature-card:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 60%; background: var(--c-border);
+    }
+    .s-feature-icon {
+      width: 5cqw; height: 5cqw;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-bottom: 0.4cqw;
+    }
+    .s-feature-icon svg {
+      width: 4cqw; height: 4cqw;
+      fill: none; stroke: var(--c-text); stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .s-feature-en {
+      font-family: var(--font-en); font-size: 2.2cqw;
+      font-weight: 500; letter-spacing: 0.06em; line-height: 1;
+    }
+    .s-feature-name {
+      font-family: var(--font-ja-m); font-size: 0.95cqw;
+      letter-spacing: 0.06em; color: var(--c-sub);
+    }
+    .s-feature-desc {
+      font-family: var(--font-ja); font-size: 0.95cqw;
+      color: var(--c-sub); line-height: 1.85; max-width: 17cqw;
+    }
+
+    /* ============================================================
+       TYPE 07: 箇条書き
+    ============================================================ */
+    .s-bullet {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-bullet-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
+    .s-bullet-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2.4cqw;
+    }
+    .s-bullet-heading {
+      font-family: var(--font-ja-m); font-size: 3.8cqw;
+      line-height: 1.25; letter-spacing: 0.04em;
+    }
+    .s-bullet-list {
+      list-style: none; display: flex; flex-direction: column; gap: 0;
+    }
+    .s-bullet-item {
+      display: flex; align-items: baseline; gap: 1.2cqw;
+      padding: 0.5cqw 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .s-bullet-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-bullet-icon {
+      flex-shrink: 0; width: 1.4cqw; height: 1.4cqw;
+      position: relative; top: 0.12cqw;
+    }
+    .s-bullet-icon svg { width: 100%; height: 100%; fill: var(--c-text); }
+    .s-bullet-text {
+      font-family: var(--font-ja); font-size: 1.3cqw;
+      line-height: 1.75; color: var(--c-text); max-width: 72cqw;
+    }
+    .s-bullet-text strong {
+      font-family: var(--font-ja-m);
+    }
+
+    /* ============================================================
+       TYPE 08: Closing
+    ============================================================ */
+    .s-closing {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-closing-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start; gap: 3.2cqw;
+    }
+    .s-closing-logo {
+      font-family: var(--font-en); font-size: 2.8cqw;
+      font-weight: 500; letter-spacing: 0.14em;
+    }
+    .s-closing-message {
+      font-family: var(--font-ja); font-size: 1.2cqw;
+      line-height: 1.9; color: var(--c-sub); max-width: 44cqw;
+    }
+    .s-closing-divider {
+      width: 3cqw; height: 1px; background: var(--c-border);
+    }
+    .s-closing-contact {
+      display: flex; flex-direction: column; gap: 0.6cqw;
+    }
+    .s-closing-url {
+      font-family: var(--font-en); font-size: 1.1cqw;
+      letter-spacing: 0.08em; color: var(--c-text);
+    }
+    .s-closing-tel {
+      font-family: var(--font-en); font-size: 1.0cqw;
+      letter-spacing: 0.06em; color: var(--c-sub);
+    }
+  </style>
+</head>
+<body>
+
+<div class="slide-stage" id="slide-stage"></div>
+<div class="nav-prev" id="nav-prev"></div>
+<div class="nav-next" id="nav-next"></div>
+<button class="menu-btn" id="menu-btn"><span></span><span></span><span></span></button>
+<div class="progress-bar" id="progress-bar" style="width:0"></div>
+
+<div class="sidebar-overlay" id="sidebar-overlay">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo-text">APOLLOS</span>
+      <button class="sidebar-close" id="sidebar-close">✕</button>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </nav>
+</div>
+
+<script>
+// ============================================================
+// 箇条書きアイコン（丸チェック）
+// ============================================================
+window.bulletIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12,1.5A10.5,10.5,0,1,0,22.5,12,10.51,10.51,0,0,0,12,1.5ZM12,3A9,9,0,1,1,3,12,9,9,0,0,1,12,3Z"/><polygon points="10.5,16.5 6,12 8.25,10.5 10.5,12.75 15.75,6.75 18,9"/></svg>`;
+
+// ============================================================
+// SLIDES
+// ============================================================
+
+// 01 表紙
+function slide01Cover() {
+  return `<section class="slide" data-section="cover">
+  <div class="s-cover">
+    <div class="s-cover-top">
+      <span class="badge">2026.05</span>
+    </div>
+    <div class="s-cover-main">
+      <p class="s-cover-client">クライアント御社名</p>
+      <h1 class="s-cover-title">LINE公式アカウント<br>運用のご提案</h1>
+      <p class="s-cover-sub">LINE OFFICIAL ACCOUNT PROPOSAL</p>
+    </div>
+    <div class="s-cover-footer">
+      <span class="s-cover-logo">APOLLOS</span>
+      <p class="s-cover-copy">©APOLLOS</p>
+    </div>
+  </div>
+</section>`;
+}
+
+// 02 コピードン（問題提起）
+function slide02CopyProblem() {
+  return `<section class="slide" data-section="problem">
+  <div class="s-copy-slide">
+    <div class="s-copy-slide-main">
+      <p class="s-copy-slide-heading">売った後が、<br><span class="em-black">本当の勝負</span>だ。</p>
+      <p class="s-copy-slide-sub">商品を届けた先に、顧客との関係は続いているか。</p>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 03 ステートメント（課題）
+function slide03Statement() {
+  return `<section class="slide" data-section="issue">
+  <div class="s-stmt">
+    <div class="s-stmt-top">
+      <span class="badge">ISSUE</span>
+    </div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading">購入後、顧客と<br>話せていますか。</h2>
+      <p class="s-stmt-body">通販サイトのメールフォームは見てもらえない。メルマガの開封率は数パーセント。SNSのフォローは気まぐれ。「買ってよかった」と思ってくれた人が、そのまま静かに離脱していく。物言わぬ離脱が、ブランドを少しずつ蝕んでいる。</p>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 04 NUMBERスライド
+function slide04Number() {
+  return `<section class="slide" data-section="number">
+  <div class="s-number">
+    <div class="s-number-top">
+      <span class="badge">NUMBER</span>
+    </div>
+    <div class="s-number-grid">
+      <div class="s-number-inner">
+        <div class="s-number-item">
+          <div class="s-number-upper">
+            <p class="s-number-label">LINE USER RATE</p>
+            <div class="s-number-num-row">
+              <span class="s-number-num">9</span>
+              <span class="s-number-unit">割</span>
+            </div>
+          </div>
+          <p class="s-number-desc">日本人のLINE利用率。<br>もはやインフラといえる普及率で、<br>あらゆる年代にリーチできる。</p>
+        </div>
+        <div class="s-number-item">
+          <div class="s-number-upper">
+            <p class="s-number-label">OPEN RATE vs EMAIL</p>
+            <div class="s-number-num-row">
+              <span class="s-number-num">3</span>
+              <span class="s-number-unit">倍+</span>
+            </div>
+          </div>
+          <p class="s-number-desc">LINEの開封率はメルマガの<br>3倍以上といわれる。<br>届けた情報が、確実に目に触れる。</p>
+        </div>
+        <div class="s-number-item">
+          <div class="s-number-upper">
+            <p class="s-number-label">SETUP FROM</p>
+            <div class="s-number-num-row">
+              <span class="s-number-num">5</span>
+              <span class="s-number-unit">万円〜</span>
+            </div>
+          </div>
+          <p class="s-number-desc">基本設定・ボット・リッチメニュー<br>込みのセットアップ費用。<br>専用アプリ開発の1/10以下で導入可能。</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 05 3つの活用軸（リスト）
+function slide05List() {
+  return `<section class="slide" data-section="howto">
+  <div class="s-list">
+    <div class="s-list-top">
+      <span class="badge">WHAT LINE CAN DO</span>
+    </div>
+    <div class="s-list-main">
+      <div class="s-list-left">
+        <h2 class="s-list-heading">LINEで<br>できること。</h2>
+      </div>
+      <div class="s-list-right">
+        <ul class="s-list-items">
+          <li class="s-list-item">
+            <span class="s-list-num">01</span>
+            <span class="s-list-name">情報発信</span>
+            <span class="s-list-desc">新商品・季節のレシピ・キャンペーン情報を一斉配信。メルマガより圧倒的に高い開封率で、ブランドの存在を定期的に想起させる。</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">02</span>
+            <span class="s-list-name">コミュニケーション窓口</span>
+            <span class="s-list-desc">問い合わせ・クレーム・サポートをLINEで一元管理。電話もフォームも不要。ボット＋有人対応の組み合わせで、負担なく顧客との接点を維持する。</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">03</span>
+            <span class="s-list-name">ミニアプリ（会員機能）</span>
+            <span class="s-list-desc">LINEの中に専用の会員ページをつくる仕組み。ポイントカード・購入履歴・定期便操作が、新規アプリ開発なしで実現できる。</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 06 ステートメント（本質）
+function slide06Core() {
+  return `<section class="slide" data-section="core">
+  <div class="s-stmt">
+    <div class="s-stmt-top">
+      <span class="badge">CORE VALUE</span>
+    </div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading">LINEの本質は、<br><span class="em-line">ファン化の促進</span>にある。</h2>
+      <p class="s-stmt-body">売上を上げるツールではなく、顧客との距離を縮めるツール。一度買ってくれた人を、「また買いたい」「友人に勧めたい」と思わせるための継続的な接点をつくる。それがLINE公式アカウントの本当の役割だ。</p>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 07 特長グリッド（4つ）
+function slide07Feature() {
+  return `<section class="slide" data-section="feature">
+  <div class="s-feature">
+    <div class="s-feature-top">
+      <span class="badge">STRENGTHS</span>
+    </div>
+    <div class="s-feature-main">
+      <p class="s-feature-headline">LINEが選ばれる、4つの理由。</p>
+      <div class="s-feature-grid">
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.72 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.91.36 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <p class="s-feature-en">OPEN</p>
+          <p class="s-feature-name">圧倒的な開封率</p>
+          <p class="s-feature-desc">通知がスマホに直接届く。メールと違い「後で見よう」が少なく、情報が確実に目に入る。</p>
+        </div>
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <p class="s-feature-en">CHAT</p>
+          <p class="s-feature-name">気軽な問い合わせ窓口</p>
+          <p class="s-feature-desc">フォームより断然ハードルが低い。クレームを吸い上げやすく、物言わぬ離脱を防ぐ。</p>
+        </div>
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><polyline points="8 21 12 17 16 21"/></svg>
+          </div>
+          <p class="s-feature-en">BOT</p>
+          <p class="s-feature-name">ボット×有人の両立</p>
+          <p class="s-feature-desc">よくある質問はボットで自動対応。複雑な案件はスタッフが引き継ぐ。稼働を最小化しながら質を保てる。</p>
+        </div>
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M15 9H9a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1z"/></svg>
+          </div>
+          <p class="s-feature-en">BLOCK</p>
+          <p class="s-feature-name">ブロックされない設計</p>
+          <p class="s-feature-desc">会員証・クーポン・操作機能など「登録し続ける理由」をつくる。メリットがある限り、ユーザーは残る。</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 08 ミニアプリ（箇条書き）
+function slide08Mini() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="miniapp">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">MINI APP</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading">アプリを開発しなくても、<br>アプリはつくれる。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text"><strong>ポイントカード・スタンプ機能</strong>　購入回数に応じてポイントを付与。次の購買動機をつくり、LTV（顧客生涯価値）を高める。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text"><strong>購入履歴・定期便の操作</strong>　「スキップしたい」「止めたい」がLINEから完結。マイページにログインする手間をなくし、解約率を下げる。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text"><strong>パーソナライズされた情報表示</strong>　LINE認証で個人データと紐づけ。「あなたの次回配送日」「残りポイント」など、一人ひとりに合った情報を届ける。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text"><strong>iOS・Androidどちらでも動く</strong>　LINEアプリがあれば動作する。ネイティブアプリ開発の1/10以下のコストで、同等の体験を提供できる。</span>
+        </li>
+      </ul>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 09 コピードン（結論）
+function slide09CopyConclusion() {
+  return `<section class="slide" data-section="conclusion">
+  <div class="s-copy-slide">
+    <div class="s-copy-slide-main">
+      <p class="s-copy-slide-heading">日本でビジネスをするなら、<br>LINEは<span class="em-black">入れなければいけない。</span></p>
+      <p class="s-copy-slide-sub">「やってみたい」ではなく、「やっておくべきだった」と後悔する前に。</p>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 10 導入ステップ・費用感（リスト）
+function slide10Flow() {
+  return `<section class="slide" data-section="flow">
+  <div class="s-list">
+    <div class="s-list-top">
+      <span class="badge">PLAN & COST</span>
+    </div>
+    <div class="s-list-main">
+      <div class="s-list-left">
+        <h2 class="s-list-heading">段階的に<br>育てる。</h2>
+      </div>
+      <div class="s-list-right">
+        <ul class="s-list-items">
+          <li class="s-list-item">
+            <span class="s-list-num">STEP 01</span>
+            <span class="s-list-name">基本設定 / 5万円〜</span>
+            <span class="s-list-desc">アカウント開設・リッチメニュー・ウェルカムメッセージ・ボット設定。まず「窓口」としてLINEを機能させる。</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">STEP 02</span>
+            <span class="s-list-name">運用サポート / 月3万円〜</span>
+            <span class="s-list-desc">配信コンテンツの設計・ボットシナリオの改善・分析レポート。専任担当者なしでも運用できる体制をつくる。</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">STEP 03</span>
+            <span class="s-list-name">ミニアプリ開発 / 30〜50万円</span>
+            <span class="s-list-desc">会員機能・ポイント・購入連携など、本格的な顧客接点システムに拡張。ビジネスの成長に合わせて段階的に導入。</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+// 11 Closing
+function slide11Closing() {
+  return `<section class="slide" data-section="closing">
+  <div class="s-closing">
+    <div class="s-closing-main">
+      <div style="display:flex; flex-direction:column; gap:3.2cqw; align-items:flex-start;">
+        <p class="s-closing-logo">APOLLOS</p>
+        <p class="s-closing-message">ご覧いただきありがとうございました。<br>まずは気軽にご相談ください。<br>ご状況に合わせた最適なプランをご提案します。</p>
+        <div class="s-closing-divider"></div>
+        <div class="s-closing-contact">
+          <p class="s-closing-url">apollos.jp</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©APOLLOS</p>
+  </div>
+</section>`;
+}
+
+window.slideFactories = [
+  slide01Cover,
+  slide02CopyProblem,
+  slide03Statement,
+  slide04Number,
+  slide05List,
+  slide06Core,
+  slide07Feature,
+  slide08Mini,
+  slide09CopyConclusion,
+  slide10Flow,
+  slide11Closing,
+];
+
+window.agendaItems = [
+  { id: 'cover',       label: '表紙' },
+  { id: 'problem',     label: '売った後が本当の勝負' },
+  { id: 'issue',       label: '課題：購入後のコミュニケーション' },
+  { id: 'number',      label: 'NUMBER' },
+  { id: 'howto',       label: 'LINEでできること' },
+  { id: 'core',        label: 'コア：ファン化の促進' },
+  { id: 'feature',     label: '4つの強み' },
+  { id: 'miniapp',     label: 'ミニアプリ' },
+  { id: 'conclusion',  label: 'だから入れなければいけない' },
+  { id: 'flow',        label: '導入ステップ・費用感' },
+  { id: 'closing',     label: 'Closing' },
+];
+</script>
+
+<script>
+(function () {
+  var stage     = document.getElementById('slide-stage');
+  var menuBtn   = document.getElementById('menu-btn');
+  var overlay   = document.getElementById('sidebar-overlay');
+  var sideClose = document.getElementById('sidebar-close');
+  var sideList  = document.getElementById('sidebar-list');
+  var progress  = document.getElementById('progress-bar');
+  var navPrev   = document.getElementById('nav-prev');
+  var navNext   = document.getElementById('nav-next');
+  var current = 0;
+  var total   = slideFactories.length;
+  var rendered = {};
+  var currentScale = 1;
+
+  function scaleSlides() {
+    currentScale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.querySelectorAll('.slide').forEach(function (s) {
+      s.style.transform = 'translate(-50%, -50%) scale(' + currentScale + ')';
+    });
+    var artW = 1920 * currentScale;
+    var artH = 1080 * currentScale;
+    var ox = (window.innerWidth  - artW) / 2;
+    var oy = (window.innerHeight - artH) / 2;
+    var margin = 46.08 * currentScale;
+    menuBtn.style.top   = (oy + margin) + 'px';
+    menuBtn.style.right = (ox + margin) + 'px';
+  }
+  window.addEventListener('resize', scaleSlides);
+
+  function ensureRendered(i) {
+    if (rendered[i] || i < 0 || i >= total) return;
+    var frag = document.createRange().createContextualFragment(slideFactories[i]());
+    var el = frag.querySelector('.slide');
+    if (el) el.setAttribute('data-index', i);
+    stage.appendChild(frag);
+    rendered[i] = true;
+    scaleSlides();
+  }
+
+  function getSlide(i) {
+    return stage.querySelector('.slide[data-index="' + i + '"]');
+  }
+
+  function goTo(i, skipHash) {
+    if (i < 0 || i >= total) return;
+    [i - 1, i, i + 1].forEach(function (j) { ensureRendered(j); });
+    stage.querySelectorAll('.slide').forEach(function (s) { s.classList.remove('active'); });
+    var target = getSlide(i);
+    if (target) target.classList.add('active');
+    current = i;
+    if (!skipHash) history.replaceState(null, '', '#' + (i + 1));
+    progress.style.width = ((i + 1) / total * 100) + '%';
+    document.querySelectorAll('.sidebar-item').forEach(function (el, idx) {
+      el.classList.toggle('active', idx === i);
+    });
+  }
+
+  var initPage = 0;
+  var hash = window.location.hash.replace('#', '');
+  if (hash && !isNaN(hash)) {
+    var p = parseInt(hash, 10) - 1;
+    if (p >= 0 && p < total) initPage = p;
+  }
+  scaleSlides();
+  [0, 1, 2].forEach(function (i) { ensureRendered(i); });
+  goTo(initPage, true);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ')         { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'Backspace') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home')  { e.preventDefault(); goTo(0); }
+    if (e.key === 'End')   { e.preventDefault(); goTo(total - 1); }
+    if (e.key === 'Escape') { overlay.classList.remove('open'); }
+  });
+  navPrev.addEventListener('click', function () { goTo(current - 1); });
+  navNext.addEventListener('click', function () { goTo(current + 1); });
+  menuBtn.addEventListener('click', function () { overlay.classList.toggle('open'); });
+  sideClose.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) {
+    if (!e.target.closest('.sidebar')) overlay.classList.remove('open');
+  });
+
+  agendaItems.forEach(function (item, i) {
+    var btn = document.createElement('button');
+    btn.className = 'sidebar-item';
+    btn.innerHTML = '<span class="sidebar-num">' + String(i + 1).padStart(2, '0') + '</span><span>' + item.label + '</span>';
+    btn.addEventListener('click', function (e) { e.stopPropagation(); goTo(i); overlay.classList.remove('open'); });
+    sideList.appendChild(btn);
+  });
+})();
+</script>
+
+</body>
+</html>
