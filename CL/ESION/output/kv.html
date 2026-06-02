@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ESION KV</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; }
+
+  .kv {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* 背景 */
+  .kv-bg {
+    position: absolute;
+    inset: -5%;
+    background: url('../brief/KVweb/bg.jpg') center center / cover no-repeat;
+    animation: bgScale 6s ease-in-out infinite;
+    transform-origin: center center;
+  }
+
+  /* ボトル */
+  .kv-bottle {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 90%;
+    width: auto;
+    animation: float 3.5s ease-in-out infinite;
+  }
+  .kv-bottle img {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
+  /* テキスト */
+  .kv-text {
+    position: absolute;
+    left: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42%;
+  }
+  .kv-text svg {
+    width: 100%;
+    height: auto;
+  }
+
+  /* アニメーション */
+  @keyframes float {
+    0%, 100% { transform: translateY(calc(-50% + 0px)); }
+    50%       { transform: translateY(calc(-50% - 20px)); }
+  }
+
+  @keyframes bgScale {
+    0%, 100% { transform: scale(1.00); }
+    50%       { transform: scale(1.10); }
+  }
+</style>
+</head>
+<body>
+
+<div class="kv">
+  <div class="kv-bg"></div>
+
+  <div class="kv-text">
+    <img src="../brief/KVweb/title.svg" alt="瞬感においわない オールインワンシャンプー">
+  </div>
+
+  <div class="kv-bottle">
+    <img src="../brief/KVweb/KV2_0001_グループ-1.png" alt="ESION ボトル">
+  </div>
+</div>
+
+</body>
+</html>
