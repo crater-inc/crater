@@ -17,10 +17,20 @@
   /* 背景 */
   .kv-bg {
     position: absolute;
-    inset: -2%;
-    background: url('../brief/KVweb/bg.jpg') -6% 40% / cover no-repeat;
+    top: -2%;
+    left: -120px;
+    right: -2%;
+    bottom: -2%;
+    overflow: hidden;
     animation: bgScale 6s ease-in-out infinite;
     transform-origin: center center;
+  }
+  .kv-bg img {
+    width: auto;
+    height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   /* ボトル */
@@ -67,7 +77,7 @@
 <body>
 
 <div class="kv">
-  <div class="kv-bg"></div>
+  <div class="kv-bg"><img src="../brief/KVweb/bg.jpg" alt=""></div>
 
   <div class="kv-text">
     <img src="../brief/KVweb/title.svg" alt="瞬感においわない オールインワンシャンプー">
