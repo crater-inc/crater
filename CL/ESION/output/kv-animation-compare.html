@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ESION KV アニメーション比較</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #111; font-family: sans-serif; }
+
+  .label {
+    color: #fff;
+    text-align: center;
+    padding: 24px;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+  }
+  .label strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 6px;
+    opacity: 1;
+    color: #fff;
+  }
+
+  /* ---- KV共通 ---- */
+  .kv {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kv-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #5ba3e0 0%, #3a7cc5 40%, #c8dff5 100%);
+  }
+
+  /* 泡のプレースホルダー */
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    filter: blur(2px);
+  }
+  .bubble-1  { width: 220px; height: 180px; left: -40px; top: 30%;  border-radius: 60% 40% 55% 45%; }
+  .bubble-2  { width: 300px; height: 240px; left: 15%;  bottom: -60px; border-radius: 50% 60% 40% 55%; }
+  .bubble-3  { width: 180px; height: 160px; left: 30%;  top: -30px; border-radius: 45% 55% 60% 40%; }
+  .bubble-4  { width: 90px;  height: 80px;  right: 30%; top: 8%;   border-radius: 50%; filter: blur(1px); }
+  .bubble-5  { width: 50px;  height: 50px;  right: 20%; top: 15%;  border-radius: 50%; filter: blur(0px); opacity: 0.7; }
+  .bubble-6  { width: 30px;  height: 30px;  right: 15%; top: 60%;  border-radius: 50%; opacity: 0.6; }
+  .bubble-7  { width: 60px;  height: 55px;  right: 8%;  top: 5%;   border-radius: 50%; opacity: 0.7; }
+  .bubble-8  { width: 200px; height: 160px; right: -20px; bottom: -40px; border-radius: 55% 45% 40% 60%; }
+
+  /* ボトル（プレースホルダー） */
+  .kv-bottle {
+    position: absolute;
+    right: 12%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22%;
+    aspect-ratio: 1 / 2.2;
+    background: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(200,220,240,0.4) 50%, rgba(255,255,255,0.3) 100%);
+    border-radius: 30px 30px 20px 20px;
+    border: 2px solid rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 900;
+    color: #1a3a6b;
+    letter-spacing: 0.2em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .kv-bottle::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 40px;
+    background: #1a3a6b;
+    border-radius: 4px 4px 0 0;
+  }
+
+  /* テキスト */
+  .kv-text {
+    position: absolute;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .kv-text .main {
+    font-size: clamp(36px, 5vw, 80px);
+    font-weight: 900;
+    color: #1a3a6b;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .kv-text .sub {
+    margin-top: 16px;
+    font-size: clamp(12px, 1.2vw, 18px);
+    color: #1a3a6b;
+    border: 1px solid #1a3a6b;
+    display: inline-block;
+    padding: 6px 14px;
+    letter-spacing: 0.15em;
+  }
+
+  /* ========== A: 背景完全固定 ========== */
+  .version-a .kv-bottle {
+    animation: float 3.5s ease-in-out infinite;
+  }
+
+  /* ========== B: 背景ゆっくりスケール ========== */
+  .version-b .kv-bg,
+  .version-b .bubble {
+    animation: bgScale 6s ease-in-out infinite;
+    transform-origin: center center;
+  }
+  .version-b .kv-bottle {
+    animation: float 3.5s ease-in-out infinite;
+  }
+
+  /* ---- アニメーション定義 ---- */
+  @keyframes float {
+    0%, 100% { transform: translateY(calc(-50% + 0px)); }
+    50%       { transform: translateY(calc(-50% - 18px)); }
+  }
+
+  @keyframes bgScale {
+    0%, 100% { transform: scale(1.00); }
+    50%       { transform: scale(1.04); }
+  }
+
+  /* 区切り線 */
+  .divider {
+    height: 2px;
+    background: #333;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- A: 背景完全固定 -->
+<div class="label">
+  <strong>A｜背景完全固定</strong>
+  ボトルだけフワフワ。プロダクトが際立つ・安定感あり。
+</div>
+<div class="kv version-a">
+  <div class="kv-bg"></div>
+  <div class="bubble bubble-1"></div>
+  <div class="bubble bubble-2"></div>
+  <div class="bubble bubble-3"></div>
+  <div class="bubble bubble-4"></div>
+  <div class="bubble bubble-5"></div>
+  <div class="bubble bubble-6"></div>
+  <div class="bubble bubble-7"></div>
+  <div class="bubble bubble-8"></div>
+  <div class="kv-text">
+    <div class="main">瞬感<br>においわない</div>
+    <div class="sub">オールインワンシャンプー</div>
+  </div>
+  <div class="kv-bottle">ESION</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- B: 背景ゆっくりスケール -->
+<div class="label">
+  <strong>B｜背景ゆっくりスケール（息をしている感じ）</strong>
+  背景がわずかに拡大縮小。泡の浮遊感・空気感が増す。
+</div>
+<div class="kv version-b">
+  <div class="kv-bg"></div>
+  <div class="bubble bubble-1"></div>
+  <div class="bubble bubble-2"></div>
+  <div class="bubble bubble-3"></div>
+  <div class="bubble bubble-4"></div>
+  <div class="bubble bubble-5"></div>
+  <div class="bubble bubble-6"></div>
+  <div class="bubble bubble-7"></div>
+  <div class="bubble bubble-8"></div>
+  <div class="kv-text">
+    <div class="main">瞬感<br>においわない</div>
+    <div class="sub">オールインワンシャンプー</div>
+  </div>
+  <div class="kv-bottle">ESION</div>
+</div>
+
+</body>
+</html>
