@@ -9,7 +9,7 @@
 
   .kv {
     width: 100%;
-    aspect-ratio: 16 / 7;
+    aspect-ratio: 2418 / 1230;
     position: relative;
     overflow: hidden;
   }
@@ -17,7 +17,7 @@
   /* 背景 */
   .kv-bg {
     position: absolute;
-    inset: -5%;
+    inset: -6%;
     background: url('../brief/KVweb/bg.jpg') center center / cover no-repeat;
     animation: bgScale 6s ease-in-out infinite;
     transform-origin: center center;
@@ -26,10 +26,9 @@
   /* ボトル */
   .kv-bottle {
     position: absolute;
-    right: 8%;
+    right: 7%;
     top: 50%;
-    transform: translateY(-50%);
-    height: 88%;
+    height: 82%;
     width: auto;
     animation: float 3.5s ease-in-out infinite;
   }
@@ -42,20 +41,21 @@
   /* テキスト */
   .kv-text {
     position: absolute;
-    left: 6%;
+    left: 5%;
     top: 50%;
     transform: translateY(-50%);
-    width: 42%;
+    width: 40%;
   }
-  .kv-text svg {
+  .kv-text img {
     width: 100%;
     height: auto;
+    display: block;
   }
 
   /* アニメーション */
   @keyframes float {
-    0%, 100% { transform: translateY(calc(-48% + 0px)); }
-    50%       { transform: translateY(calc(-48% - 20px)); }
+    0%, 100% { transform: translateY(-50%); }
+    50%       { transform: translateY(calc(-50% - 18px)); }
   }
 
   @keyframes bgScale {
