@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KINJI ブランド提案</title>
+  <title>新ブランドライン 立ち上げ提案</title>
   <link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
   <link rel="stylesheet" href="https://morisawafonts.net/c/01KSMBH35VT2E86JG92RAXZ7XC/mf.css">
   <script>
@@ -56,7 +56,6 @@
       padding: 0.55cqw 0.85cqw;
       border-radius: 0; line-height: 1;
     }
-
     .slide-copy {
       position: absolute; right: 2.4cqw; bottom: 2.4cqw;
       font-family: var(--font-en); font-size: 0.72cqw;
@@ -70,8 +69,7 @@
     }
     .nav-prev { left: 0; } .nav-next { right: 0; }
     .menu-btn {
-      position: fixed;
-      width: 36px; height: 36px; z-index: 300;
+      position: fixed; width: 36px; height: 36px; z-index: 300;
       background: none; border: none; cursor: pointer;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 5px;
@@ -112,25 +110,16 @@
     .sidebar-item.active { color: #fff; }
     .sidebar-num { font-family: var(--font-en); font-size: 10px; opacity: 0.25; min-width: 20px; }
 
-    /* white面 */
-    .slide-frame::before {
-      content: ''; pointer-events: none; z-index: 0;
-      position: absolute; inset: 1.2cqw;
-      background: #ffffff;
-    }
-    .slide-frame > * { position: relative; z-index: 1; }
-
-    /* 強調スタイル */
     .em-line {
       position: relative; display: inline;
       background: linear-gradient(#FFE500, #FFE500) 0 0.8em / 100% 0.18em no-repeat;
     }
     .em-black {
       display: inline; background: var(--c-black); color: #ffffff;
-      padding: 0.12em 0.12em; line-height: inherit; font-family: inherit;
+      padding: 0.12em 0.15em; line-height: inherit; font-family: inherit;
     }
 
-    /* TYPE 01: 表紙 */
+    /* TYPE: 表紙 */
     .s-cover {
       height: 100%; padding: 6cqw 7cqw;
       display: flex; flex-direction: column;
@@ -139,68 +128,64 @@
     .s-cover-top { flex-shrink: 0; }
     .s-cover-main {
       flex: 1; display: flex; flex-direction: column;
-      justify-content: center; gap: 0.2cqw;
+      justify-content: center; gap: 0.4cqw;
     }
-    .s-cover-client {
-      font-family: var(--font-ja-m); font-size: 1.5cqw;
-      color: var(--c-sub); letter-spacing: 0.05em;
+    .s-cover-eyebrow {
+      font-family: var(--font-ja); font-size: 1.3cqw;
+      color: var(--c-light); letter-spacing: 0.12em;
     }
     .s-cover-title {
-      font-family: var(--font-en); font-size: 8cqw;
-      line-height: 1; letter-spacing: 0.04em;
-      font-weight: 500;
+      font-family: var(--font-ja-m); font-size: 4.4cqw;
+      line-height: 1.2; letter-spacing: 0.04em;
     }
     .s-cover-sub {
-      font-family: var(--font-ja-m); font-size: 1.6cqw;
-      color: var(--c-sub); letter-spacing: 0.1em;
+      font-family: var(--font-ja); font-size: 1.4cqw;
+      color: var(--c-sub); letter-spacing: 0.06em;
       margin-top: 0.8cqw;
+      max-width: 50cqw;
+      line-height: 1.8;
     }
     .s-cover-footer {
       flex-shrink: 0; display: flex; flex-direction: column;
-      align-items: flex-start; gap: 1.2cqw;
+      align-items: flex-start; gap: 1.0cqw;
     }
 
-    /* TYPE 02: 目次 */
+    /* TYPE: 目次 */
     .s-agenda {
       height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
       display: flex; flex-direction: column; position: relative;
     }
     .s-agenda-top { flex-shrink: 0; }
-    .s-agenda-list { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+    .s-agenda-list { flex: 1; display: flex; flex-direction: column; justify-content: center; }
     .s-agenda-item {
       display: grid; grid-template-columns: 4cqw 1fr;
       align-items: center;
-      padding: 1.6cqw 0;
+      padding: 1.5cqw 0;
       border-bottom: 1px solid var(--c-border);
     }
     .s-agenda-item:first-child { border-top: 1px solid var(--c-border); }
     .s-agenda-num {
-      font-family: var(--font-en); font-size: 2.2cqw;
+      font-family: var(--font-en); font-size: 2.0cqw;
       font-weight: 500; color: var(--c-light); letter-spacing: 0.05em;
     }
-    .s-agenda-info { display: flex; flex-direction: column; padding-left: 1.5cqw; }
     .s-agenda-name {
-      font-family: var(--font-ja-m); font-size: 2.2cqw;
+      font-family: var(--font-ja-m); font-size: 2.0cqw;
       color: var(--c-text); letter-spacing: 0.04em;
+      padding-left: 1.5cqw;
     }
     .s-agenda-copy {
       position: absolute; right: 5cqw; bottom: 3.5cqw;
       font-family: var(--font-en); font-size: 0.72cqw;
-      letter-spacing: 0.08em; color: var(--c-sub);
+      letter-spacing: 0.08em; color: var(--c-light);
     }
 
-    /* TYPE 03: セクション区切り */
+    /* TYPE: セクション区切り */
     .s-section {
       height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
       display: flex; flex-direction: column; position: relative;
     }
-    .s-section-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
     .s-section-main {
-      flex: 1; display: flex; align-items: center; gap: 0;
-    }
-    .s-section-num-col {
-      flex: 0 0 auto; overflow: visible;
-      display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+      flex: 1; display: flex; align-items: center;
     }
     .s-section-num-main {
       font-family: var(--font-en); font-size: 7.2cqw;
@@ -216,7 +201,7 @@
     }
     .s-section-label {
       font-family: var(--font-ja-m); font-size: 1.15cqw;
-      letter-spacing: 0.1em; color: var(--c-sub); line-height: 1;
+      letter-spacing: 0.1em; color: var(--c-light); line-height: 1;
       padding-left: 4px;
     }
     .s-section-name {
@@ -224,7 +209,7 @@
       font-weight: 500; line-height: 1; letter-spacing: 0.02em;
     }
 
-    /* TYPE 04: ステートメント */
+    /* TYPE: ステートメント */
     .s-stmt {
       height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
       display: flex; flex-direction: column; position: relative;
@@ -239,12 +224,12 @@
       line-height: 1.2; letter-spacing: 0.04em; margin-left: -2px;
     }
     .s-stmt-body {
-      font-family: var(--font-ja-m); font-size: 1.4cqw;
+      font-family: var(--font-ja); font-size: 1.4cqw;
       line-height: 1.95; color: var(--c-sub);
       max-width: 52cqw;
     }
 
-    /* TYPE 05: テキスト＋リスト */
+    /* TYPE: リスト（左見出し＋右一覧） */
     .s-list {
       height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
       display: flex; flex-direction: column; position: relative;
@@ -255,85 +240,123 @@
     }
     .s-list-left { flex: 0 0 26cqw; }
     .s-list-heading {
-      font-family: var(--font-ja-m); font-size: 3.4cqw;
+      font-family: var(--font-ja-m); font-size: 3.2cqw;
       line-height: 1.45; letter-spacing: 0.04em;
     }
     .s-list-right { flex: 1; }
     .s-list-items { list-style: none; }
     .s-list-item {
-      display: grid; grid-template-columns: 3.5cqw 14cqw 1fr;
+      display: grid; grid-template-columns: 3.2cqw 1fr;
       align-items: baseline; gap: 1.2cqw;
-      padding: 1.2cqw 0;
+      padding: 1.3cqw 0;
       border-bottom: 1px solid var(--c-border);
     }
     .s-list-item:first-child { border-top: 1px solid var(--c-border); }
     .s-list-num {
-      font-family: var(--font-en); font-size: 1.2cqw;
+      font-family: var(--font-en); font-size: 1.1cqw;
       color: var(--c-light); letter-spacing: 0.06em;
     }
+    .s-list-body { display: flex; flex-direction: column; gap: 0.3cqw; }
     .s-list-name {
-      font-family: var(--font-ja-m); font-size: 1.2cqw;
+      font-family: var(--font-ja-m); font-size: 1.3cqw;
       letter-spacing: 0.03em;
     }
     .s-list-desc {
       font-family: var(--font-ja); font-size: 1.05cqw;
-      color: var(--c-sub); line-height: 1.7;
+      color: var(--c-light); line-height: 1.7;
     }
 
-    /* TYPE 06: 特徴グリッド */
-    .s-feature {
-      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
-      display: flex; flex-direction: column; position: relative;
-    }
-    .s-feature-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
-    .s-feature-main {
-      flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw;
-    }
-    .s-feature-headline {
-      font-family: var(--font-ja-m); font-size: 2.2cqw;
-      letter-spacing: 0.04em;
-    }
-    .s-feature-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 2cqw; align-items: start;
-    }
-    .s-feature-card {
-      display: flex; flex-direction: column;
-      gap: 0.8cqw; position: relative;
-    }
-    .s-feature-card:not(:last-child)::after {
-      content: ''; position: absolute; right: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 1px; height: 60%; background: var(--c-border);
-    }
-    .s-feature-en {
-      font-family: var(--font-en); font-size: 2.6cqw;
-      font-weight: 500; letter-spacing: 0.06em; line-height: 1;
-    }
-    .s-feature-name {
-      font-family: var(--font-ja-m); font-size: 1.0cqw;
-      letter-spacing: 0.08em; color: var(--c-sub);
-    }
-    .s-feature-desc {
-      font-family: var(--font-ja); font-size: 1.0cqw;
-      color: var(--c-sub); line-height: 1.8; max-width: 16cqw;
-    }
-
-    /* TYPE: コピードン */
+    /* TYPE: コピードン（中央） */
     .s-copy-slide {
       height: 100%; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       padding: 5cqw; position: relative;
     }
-    .s-copy-slide-heading {
-      font-family: var(--font-ja-m); font-size: 4.4cqw;
-      line-height: 1.3; letter-spacing: 0.05em; color: var(--c-text);
-      text-align: center;
+
+    /* TYPE: コピー提案（複数案並列） */
+    .s-proposals {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
     }
-    .s-copy-slide-sub {
-      font-family: var(--font-ja); font-size: 1.6cqw;
-      letter-spacing: 0.04em; color: var(--c-sub);
-      text-align: center; margin-top: 1.6cqw;
+    .s-proposals-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-proposals-main {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 1.4cqw;
+    }
+    .s-proposals-lead {
+      font-family: var(--font-ja-m); font-size: 1.3cqw;
+      letter-spacing: 0.06em; color: var(--c-light);
+      margin-bottom: 0.4cqw;
+    }
+    .s-proposal-item {
+      display: grid; grid-template-columns: 3.5cqw 1fr;
+      align-items: start; gap: 1.6cqw;
+      padding: 1.4cqw 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .s-proposal-item:first-of-type { border-top: 1px solid var(--c-border); }
+    .s-proposal-label {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.16em; color: var(--c-light);
+      padding-top: 0.3cqw;
+    }
+    .s-proposal-body { display: flex; flex-direction: column; gap: 0.3cqw; }
+    .s-proposal-copy {
+      font-family: var(--font-ja-m); font-size: 2.6cqw;
+      letter-spacing: 0.04em; line-height: 1.15;
+    }
+    .s-proposal-note {
+      font-family: var(--font-ja); font-size: 1.05cqw;
+      color: var(--c-light); line-height: 1.7; margin-top: 0.2cqw;
+    }
+
+    /* TYPE: フレーバー展開（上下2段） */
+    .s-flavor {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-flavor-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-flavor-main {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw;
+    }
+    .s-flavor-headline {
+      font-family: var(--font-ja-m); font-size: 3.0cqw;
+      letter-spacing: 0.04em; line-height: 1.3;
+    }
+    .s-flavor-sub {
+      font-family: var(--font-ja); font-size: 1.3cqw;
+      color: var(--c-light); line-height: 1.8;
+      margin-top: -1.2cqw;
+    }
+    .s-flavor-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0; border-top: 1px solid var(--c-border);
+    }
+    .s-flavor-item {
+      padding: 1.6cqw 2cqw 1.6cqw 0;
+      border-right: 1px solid var(--c-border);
+      display: flex; flex-direction: column; gap: 0.5cqw;
+    }
+    .s-flavor-item:last-child { border-right: none; padding-right: 0; }
+    .s-flavor-item:first-child { padding-left: 0; }
+    .s-flavor-name {
+      font-family: var(--font-ja-m); font-size: 2.0cqw;
+      letter-spacing: 0.04em;
+    }
+    .s-flavor-en {
+      font-family: var(--font-en); font-size: 0.9cqw;
+      letter-spacing: 0.18em; color: var(--c-light); line-height: 1;
+    }
+    .s-flavor-desc {
+      font-family: var(--font-ja); font-size: 1.0cqw;
+      color: var(--c-light); line-height: 1.75;
+      margin-top: 0.3cqw;
+    }
+    .s-flavor-use {
+      font-family: var(--font-ja); font-size: 0.95cqw;
+      color: var(--c-light); line-height: 1.7;
+      margin-top: 0.4cqw;
+      padding-top: 0.6cqw;
+      border-top: 1px solid var(--c-border);
     }
 
     /* TYPE: Closing */
@@ -346,40 +369,38 @@
       flex: 1; display: flex; flex-direction: column;
       justify-content: center; gap: 1.2cqw;
     }
-    .s-closing-title {
-      font-family: var(--font-en); font-size: 5.6cqw;
+    .s-closing-en {
+      font-family: var(--font-en); font-size: 5.2cqw;
       font-weight: 500; line-height: 1; letter-spacing: 0.02em;
     }
-    .s-closing-sub {
-      font-family: var(--font-ja-m); font-size: 1.5cqw;
-      letter-spacing: 0.08em; color: var(--c-sub);
-      margin-top: 0.6cqw;
+    .s-closing-ja {
+      font-family: var(--font-ja-m); font-size: 1.8cqw;
+      letter-spacing: 0.1em; margin-top: 0.4cqw;
     }
-    .s-closing-contact {
-      font-family: var(--font-en); font-size: 1.1cqw;
-      letter-spacing: 0.08em; color: var(--c-sub);
-      margin-top: 2cqw;
+    .s-closing-body {
+      font-family: var(--font-ja); font-size: 1.2cqw;
+      color: var(--c-light); line-height: 1.85;
+      max-width: 44cqw; margin-top: 1.2cqw;
     }
     .s-closing-footer {
-      flex-shrink: 0; display: flex; flex-direction: column;
-      align-items: flex-start; gap: 1.2cqw;
+      flex-shrink: 0; display: flex; align-items: center; gap: 1.6cqw;
     }
 
-    /* 2分割レイアウト */
-    .s-split-text {
+    /* 2分割レイアウト用 */
+    .s-half-left {
       position: absolute; top: 0; left: 0;
       width: 58%; height: 1080px;
-      padding: 4cqw 5cqw 4cqw 7cqw;
+      padding: 4cqw 4cqw 4cqw 7cqw;
       display: flex; flex-direction: column; justify-content: center;
     }
-    .s-split-img {
+    .s-half-right {
       position: absolute; top: 0; right: 0;
-      width: 42%; height: 1080px; overflow: hidden;
+      width: 42%; height: 1080px;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4cqw 7cqw 4cqw 4cqw;
+      border-left: 1px solid var(--c-border);
     }
-    .s-split-img img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-    .s-split-badge {
+    .s-abs-badge {
       position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2;
     }
   </style>
@@ -403,25 +424,25 @@
 </div>
 
 <script>
-// ============================================================
-// SLIDES
-// ============================================================
 
 // P1: 表紙
 function slide01Cover() {
   return `<section class="slide" data-section="cover">
   <div class="s-cover">
     <div class="s-cover-top">
-      <span class="badge">2026.06</span>
+      <span class="badge">2026.06　JHL+</span>
     </div>
     <div class="s-cover-main">
-      <p class="s-cover-client">株式会社ジャパンヘルスラボ 御中</p>
-      <h1 class="s-cover-title">KINJI</h1>
-      <p class="s-cover-sub">新ブランド立ち上げ提案</p>
+      <p class="s-cover-eyebrow">金の時 ラインエクステンション</p>
+      <h1 class="s-cover-title">新ブランドライン<br>立ち上げ提案</h1>
+      <p class="s-cover-sub">
+        「金の時」が育んできた素材と世界観を引き継ぎながら、<br>
+        より多くの人が手に取れるラインを新たに設計します。
+      </p>
     </div>
     <div class="s-cover-footer">
       <img src="assets/logo.svg" alt="CRATER" style="height:1.4cqw;width:auto;">
-      <span style="font-family:var(--font-en);font-size:0.72cqw;letter-spacing:0.08em;color:var(--c-sub);">©CRATER Inc.</span>
+      <span style="font-family:var(--font-en);font-size:0.72cqw;letter-spacing:0.08em;color:var(--c-light);">©CRATER Inc.</span>
     </div>
   </div>
 </section>`;
@@ -431,45 +452,31 @@ function slide01Cover() {
 function slide02Agenda() {
   return `<section class="slide" data-section="agenda">
   <div class="s-agenda">
-    <div class="s-agenda-top">
-      <span class="badge">CONTENTS</span>
-    </div>
+    <div class="s-agenda-top"><span class="badge">CONTENTS</span></div>
     <div class="s-agenda-list">
       <div class="s-agenda-item">
         <span class="s-agenda-num">01</span>
-        <div class="s-agenda-info">
-          <span class="s-agenda-name">背景と立て付け</span>
-        </div>
+        <span class="s-agenda-name">金の時 コンセプトの継承</span>
       </div>
       <div class="s-agenda-item">
         <span class="s-agenda-num">02</span>
-        <div class="s-agenda-info">
-          <span class="s-agenda-name">ターゲット</span>
-        </div>
+        <span class="s-agenda-name">立て付けと新ターゲット</span>
       </div>
       <div class="s-agenda-item">
         <span class="s-agenda-num">03</span>
-        <div class="s-agenda-info">
-          <span class="s-agenda-name">ブランド名 KINJI</span>
-        </div>
+        <span class="s-agenda-name">外向けコピー 提案</span>
       </div>
       <div class="s-agenda-item">
         <span class="s-agenda-num">04</span>
-        <div class="s-agenda-info">
-          <span class="s-agenda-name">ブランドコンセプト</span>
-        </div>
+        <span class="s-agenda-name">ブランド名 KINJI</span>
       </div>
       <div class="s-agenda-item">
         <span class="s-agenda-num">05</span>
-        <div class="s-agenda-info">
-          <span class="s-agenda-name">デザイン方向性</span>
-        </div>
+        <span class="s-agenda-name">粉で混ぜる フレーバー展開</span>
       </div>
       <div class="s-agenda-item">
         <span class="s-agenda-num">06</span>
-        <div class="s-agenda-info">
-          <span class="s-agenda-name">展開イメージ</span>
-        </div>
+        <span class="s-agenda-name">商品ライン・展開イメージ</span>
       </div>
     </div>
     <span class="s-agenda-copy">©CRATER Inc.</span>
@@ -477,18 +484,16 @@ function slide02Agenda() {
 </section>`;
 }
 
-// P3: 背景（セクション区切り）
-function slide03Section() {
-  return `<section class="slide" data-section="section01">
+// P3: 01 コンセプト継承（セクション扉）
+function slide03Section01() {
+  return `<section class="slide" data-section="s01">
   <div class="s-section">
     <div class="s-section-main">
-      <div class="s-section-num-col">
-        <span class="s-section-num-main">01</span>
-      </div>
+      <span class="s-section-num-main">01</span>
       <div class="s-section-divider"></div>
       <div class="s-section-text-col">
-        <span class="s-section-label">背景と立て付け</span>
-        <h2 class="s-section-name">BACKGROUND</h2>
+        <span class="s-section-label">金の時 コンセプトの継承</span>
+        <h2 class="s-section-name">CONCEPT</h2>
       </div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -496,52 +501,35 @@ function slide03Section() {
 </section>`;
 }
 
-// P4: 背景説明
-function slide04Background() {
-  return `<section class="slide" data-section="background">
-  <div class="s-list">
-    <div class="s-list-top"><span class="badge">BACKGROUND</span></div>
-    <div class="s-list-main">
-      <div class="s-list-left">
-        <h2 class="s-list-heading">既存ラインとの<br>住み分けを<br>明確にする。</h2>
-      </div>
-      <div class="s-list-right">
-        <ul class="s-list-items">
-          <li class="s-list-item">
-            <span class="s-list-num">01</span>
-            <span class="s-list-name">既存ライン「金の時」</span>
-            <span class="s-list-desc">静謐・伝統・高品質を訴求する上位ライン。<br>ターゲットは健康意識の高い40〜60代層。</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">02</span>
-            <span class="s-list-name">新ライン「KINJI」</span>
-            <span class="s-list-desc">より手の届きやすい価格帯・少量展開で、<br>新しい層へのエントリーブランドとして機能させる。</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">03</span>
-            <span class="s-list-name">ブランドの立て付け</span>
-            <span class="s-list-desc">上位ライン「金の時」への誘導導線として設計。<br>KINJIで認知→金の時でロイヤル化を図る。</span>
-          </li>
-        </ul>
-      </div>
+// P4: コンセプト継承 本文
+function slide04Concept() {
+  return `<section class="slide" data-section="concept">
+  <div class="s-stmt">
+    <div class="s-stmt-top"><span class="badge">CONCEPT</span></div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading">輝きは、<br>準備から始まる。</h2>
+      <p class="s-stmt-body">
+        「金の時」が掲げてきたこのコンセプトは、変わらない。<br>
+        治すのでも、予防するのでもない。輝く人生のための準備。<br>
+        その思想を、もっと幅広い人に届けるために——<br>
+        新しいラインが必要だという判断から、この提案は始まります。
+      </p>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
   </div>
 </section>`;
 }
 
-// P5: ターゲット（セクション区切り）
-function slide05Section() {
-  return `<section class="slide" data-section="section02">
+// P5: 02 立て付け（セクション扉）
+function slide05Section02() {
+  return `<section class="slide" data-section="s02">
   <div class="s-section">
     <div class="s-section-main">
-      <div class="s-section-num-col">
-        <span class="s-section-num-main">02</span>
-      </div>
+      <span class="s-section-num-main">02</span>
       <div class="s-section-divider"></div>
       <div class="s-section-text-col">
-        <span class="s-section-label">ターゲット</span>
-        <h2 class="s-section-name">TARGET</h2>
+        <span class="s-section-label">立て付けと新ターゲット</span>
+        <h2 class="s-section-name">POSITIONING</h2>
       </div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -549,49 +537,108 @@ function slide05Section() {
 </section>`;
 }
 
-// P6: ターゲット詳細
-function slide06Target() {
-  return `<section class="slide" data-section="target">
-  <div class="s-feature">
-    <div class="s-feature-top"><span class="badge">TARGET</span></div>
-    <div class="s-feature-main">
-      <h2 class="s-feature-headline">「ちょっといいもの」に<br>敏感な層を取り込む。</h2>
-      <div class="s-feature-grid">
-        <div class="s-feature-card">
-          <span class="s-feature-en">20s–40s</span>
-          <span class="s-feature-name">年齢層</span>
-          <p class="s-feature-desc">健康に関心が芽生え始めた<br>20〜40代。特に働き盛りで<br>セルフケア意識が高い層。</p>
-        </div>
-        <div class="s-feature-card">
-          <span class="s-feature-en">STYLE</span>
-          <span class="s-feature-name">ライフスタイル</span>
-          <p class="s-feature-desc">日用品にもこだわりを持ち、<br>おしゃれ感と機能性を<br>両立して求める。</p>
-        </div>
-        <div class="s-feature-card">
-          <span class="s-feature-en">ENTRY</span>
-          <span class="s-feature-name">エントリーポイント</span>
-          <p class="s-feature-desc">初めてサプリを試す層、<br>または少量から試したい<br>ライトユーザー。</p>
-        </div>
-        <div class="s-feature-card">
-          <span class="s-feature-en">VALUE</span>
-          <span class="s-feature-name">価値観</span>
-          <p class="s-feature-desc">「安い」より「賢い」選択。<br>品質感があって手頃、<br>ギフトにも使えるデザイン。</p>
-        </div>
+// P6: 立て付け詳細（2分割）
+function slide06Positioning() {
+  return `<section class="slide" data-section="positioning">
+  <span class="badge s-abs-badge">POSITIONING</span>
+  <div class="s-half-left">
+    <p style="font-family:var(--font-ja-m);font-size:1.1cqw;letter-spacing:0.1em;color:var(--c-light);margin-bottom:1.2cqw;">上位ライン</p>
+    <p style="font-family:var(--font-ja-m);font-size:3.0cqw;letter-spacing:0.04em;line-height:1.2;margin-bottom:1.2cqw;">金の時</p>
+    <p style="font-family:var(--font-ja);font-size:1.2cqw;color:var(--c-light);line-height:1.9;margin-bottom:2.4cqw;">
+      静謐・伝統・誠実。40〜60代の健康意識の<br>
+      高い層が中心。素材そのものの力を、<br>
+      シンプルに届けるフラッグシップ。
+    </p>
+    <div style="height:1px;background:var(--c-border);margin-bottom:2.4cqw;"></div>
+    <p style="font-family:var(--font-ja-m);font-size:1.1cqw;letter-spacing:0.1em;color:var(--c-light);margin-bottom:1.2cqw;">新ライン（エントリー）</p>
+    <p style="font-family:var(--font-en);font-size:3.0cqw;letter-spacing:0.08em;line-height:1.2;margin-bottom:1.2cqw;">KINJI</p>
+    <p style="font-family:var(--font-ja);font-size:1.2cqw;color:var(--c-light);line-height:1.9;">
+      素材は本物のまま。価格帯・量・デザインを<br>
+      より手に届きやすい形に。20〜40代の<br>
+      「ちょっといいもの」感度が高い層を狙う。
+    </p>
+  </div>
+  <div class="s-half-right">
+    <p style="font-family:var(--font-ja-m);font-size:1.1cqw;letter-spacing:0.1em;color:var(--c-light);margin-bottom:2.0cqw;">ブランドの流れ</p>
+    <div style="display:flex;flex-direction:column;gap:1.2cqw;">
+      <div style="padding:1.4cqw 0;border-bottom:1px solid var(--c-border);">
+        <p style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.16em;color:var(--c-light);margin-bottom:0.5cqw;">STEP 01</p>
+        <p style="font-family:var(--font-ja-m);font-size:1.4cqw;letter-spacing:0.04em;margin-bottom:0.3cqw;">KINJIで認知・初回購入</p>
+        <p style="font-family:var(--font-ja);font-size:1.05cqw;color:var(--c-light);line-height:1.75;">手に取りやすい価格でまず試してもらう。</p>
+      </div>
+      <div style="padding:1.4cqw 0;border-bottom:1px solid var(--c-border);">
+        <p style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.16em;color:var(--c-light);margin-bottom:0.5cqw;">STEP 02</p>
+        <p style="font-family:var(--font-ja-m);font-size:1.4cqw;letter-spacing:0.04em;margin-bottom:0.3cqw;">素材と世界観に共鳴させる</p>
+        <p style="font-family:var(--font-ja);font-size:1.05cqw;color:var(--c-light);line-height:1.75;">加賀・金時草という本物のストーリーで定着を促す。</p>
+      </div>
+      <div style="padding:1.4cqw 0;">
+        <p style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.16em;color:var(--c-light);margin-bottom:0.5cqw;">STEP 03</p>
+        <p style="font-family:var(--font-ja-m);font-size:1.4cqw;letter-spacing:0.04em;margin-bottom:0.3cqw;">「金の時」へのグラデーション</p>
+        <p style="font-family:var(--font-ja);font-size:1.05cqw;color:var(--c-light);line-height:1.75;">ロイヤル化とともに上位ラインへ自然に誘導する。</p>
       </div>
     </div>
-    <p class="slide-copy">©CRATER Inc.</p>
   </div>
+  <p class="slide-copy">©CRATER Inc.</p>
 </section>`;
 }
 
-// P7: ブランド名（セクション区切り）
-function slide07Section() {
-  return `<section class="slide" data-section="section03">
+// P7: 03 コピー提案（セクション扉）
+function slide07Section03() {
+  return `<section class="slide" data-section="s03">
   <div class="s-section">
     <div class="s-section-main">
-      <div class="s-section-num-col">
-        <span class="s-section-num-main">03</span>
+      <span class="s-section-num-main">03</span>
+      <div class="s-section-divider"></div>
+      <div class="s-section-text-col">
+        <span class="s-section-label">外向けコピー 提案</span>
+        <h2 class="s-section-name">COPY</h2>
       </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// P8: コピー提案3案
+function slide08Copy() {
+  return `<section class="slide" data-section="copy">
+  <div class="s-proposals">
+    <div class="s-proposals-top"><span class="badge">COPY DIRECTION</span></div>
+    <div class="s-proposals-main">
+      <p class="s-proposals-lead">「輝きは、準備から始まる。」を引き継ぎながら、より身近な入口を作るコピー案。</p>
+      <div class="s-proposal-item">
+        <span class="s-proposal-label">案 A</span>
+        <div class="s-proposal-body">
+          <p class="s-proposal-copy">輝き続ける毎日への、第一歩。</p>
+          <p class="s-proposal-note">「輝きは準備から」の思想を継承しながら、始めやすさ・継続をリズムよく伝える。スタートを後押しするトーン。</p>
+        </div>
+      </div>
+      <div class="s-proposal-item">
+        <span class="s-proposal-label">案 B</span>
+        <div class="s-proposal-body">
+          <p class="s-proposal-copy">本物の素材が、手に届く。</p>
+          <p class="s-proposal-note">加賀の金時草という「本物」を軸に、価格や量ではなく素材の誠実さで選んでもらうアプローチ。上位ラインとの連続性も自然に示す。</p>
+        </div>
+      </div>
+      <div class="s-proposal-item">
+        <span class="s-proposal-label">案 C</span>
+        <div class="s-proposal-body">
+          <p class="s-proposal-copy">加賀から届く、本物の輝き。</p>
+          <p class="s-proposal-note">産地「加賀・金沢」という圧倒的な固有性をコピーの軸に。旅先で出会う感覚、お土産需要にも対応。ECとリアル両方で機能する。</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// P9: 04 ブランド名（セクション扉）
+function slide09Section04() {
+  return `<section class="slide" data-section="s04">
+  <div class="s-section">
+    <div class="s-section-main">
+      <span class="s-section-num-main">04</span>
       <div class="s-section-divider"></div>
       <div class="s-section-text-col">
         <span class="s-section-label">ブランド名</span>
@@ -603,19 +650,20 @@ function slide07Section() {
 </section>`;
 }
 
-// P8: ネーミング説明
-function slide08Naming() {
+// P10: KINJI ネーミング
+function slide10Naming() {
   return `<section class="slide" data-section="naming">
   <div class="s-stmt">
     <div class="s-stmt-top"><span class="badge">NAMING</span></div>
     <div class="s-stmt-main">
-      <h2 class="s-stmt-heading" style="font-family:var(--font-en);font-size:6.4cqw;letter-spacing:0.06em;">KINJI</h2>
+      <h2 class="s-stmt-heading" style="font-family:var(--font-en);font-size:7.2cqw;letter-spacing:0.06em;line-height:1;">KINJI</h2>
       <p class="s-stmt-body">
-        「金の時」から生まれた、読みやすく・覚えやすいアルファベット名。<br>
-        「KINJI」は「金時（きんじ）草」の略であり、金時草を象徴する固有名詞としての力を持つ。<br><br>
-        アルファベット表記にすることで、パッケージ・ECサイト・SNSを問わず<br>
-        モダンでスタイリッシュな印象を与えることができる。<br>
-        和の素材を持ちながら、現代の感覚にフィットするブランド名。
+        「金時草（きんじそう）」の頭文字から生まれたアルファベット名。<br>
+        素材の固有名詞をそのまま名前にすることで、<br>
+        何を届けているかが一目でわかる強さを持つ。<br><br>
+        漢字の「金の時」が纏う重厚感をそのままに、<br>
+        アルファベット表記の軽やかさとスタイリッシュさを加えた。<br>
+        ECのサムネイル、パッケージ、SNSを問わず映えるブランド名。
       </p>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -623,18 +671,16 @@ function slide08Naming() {
 </section>`;
 }
 
-// P9: コンセプト（セクション区切り）
-function slide09Section() {
-  return `<section class="slide" data-section="section04">
+// P11: 05 フレーバー展開（セクション扉）
+function slide11Section05() {
+  return `<section class="slide" data-section="s05">
   <div class="s-section">
     <div class="s-section-main">
-      <div class="s-section-num-col">
-        <span class="s-section-num-main">04</span>
-      </div>
+      <span class="s-section-num-main">05</span>
       <div class="s-section-divider"></div>
       <div class="s-section-text-col">
-        <span class="s-section-label">ブランドコンセプト</span>
-        <h2 class="s-section-name">CONCEPT</h2>
+        <span class="s-section-label">粉で混ぜる フレーバー展開</span>
+        <h2 class="s-section-name">FLAVOR</h2>
       </div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -642,96 +688,58 @@ function slide09Section() {
 </section>`;
 }
 
-// P10: コンセプト
-function slide10Concept() {
-  return `<section class="slide" data-section="concept">
-  <div class="s-copy-slide">
-    <div>
-      <p class="s-copy-slide-heading">
-        素材は本物。<br>
-        もっと気軽に、<br>
-        日々の中に。
+// P12: フレーバー展開
+function slide12Flavor() {
+  return `<section class="slide" data-section="flavor">
+  <div class="s-flavor">
+    <div class="s-flavor-top"><span class="badge">FLAVOR</span></div>
+    <div class="s-flavor-main">
+      <h2 class="s-flavor-headline">粉で混ぜることで、<br>日常に溶け込む。</h2>
+      <p class="s-flavor-sub">
+        「金の時」の純粉末スタイルを継承しながら、風味を加えることで食シーンを広げる。<br>
+        豆乳・ヨーグルト・スムージー・料理へ。一手間で、輝きを日課にする。
       </p>
-      <p class="s-copy-slide-sub">
-        加賀の金時草という唯一の素材はそのままに。<br>
-        価格・量・デザインをより手の届きやすい形に変える。<br>
-        「本物を、日常に。」それが KINJIの存在意義。
-      </p>
+      <div class="s-flavor-grid">
+        <div class="s-flavor-item" style="padding-left:0;">
+          <span class="s-flavor-en">MATCHA</span>
+          <span class="s-flavor-name">抹茶</span>
+          <p class="s-flavor-desc">金時草の苦みと抹茶の渋みが調和する。和の落ち着きをそのまま一杯に。</p>
+          <p class="s-flavor-use">豆乳・お湯・ヨーグルト</p>
+        </div>
+        <div class="s-flavor-item" style="padding-left:2cqw;">
+          <span class="s-flavor-en">HOJICHA</span>
+          <span class="s-flavor-name">ほうじ茶</span>
+          <p class="s-flavor-desc">香ばしさが金時草の風味を引き立てる。夜のリラックスタイムにも合う。</p>
+          <p class="s-flavor-use">牛乳・温かい豆乳・お湯</p>
+        </div>
+        <div class="s-flavor-item" style="padding-left:2cqw;">
+          <span class="s-flavor-en">KINAKO</span>
+          <span class="s-flavor-name">きなこ</span>
+          <p class="s-flavor-desc">きなこの甘い香ばしさで飲みやすく。トーストに振りかける使い方も。</p>
+          <p class="s-flavor-use">ヨーグルト・トースト・スムージー</p>
+        </div>
+        <div class="s-flavor-item" style="padding-left:2cqw;">
+          <span class="s-flavor-en">PLAIN</span>
+          <span class="s-flavor-name">プレーン</span>
+          <p class="s-flavor-desc">素材そのまま。「金の時」の哲学を継承するベーシックライン。料理への応用も広い。</p>
+          <p class="s-flavor-use">全シーン対応</p>
+        </div>
+      </div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
   </div>
 </section>`;
 }
 
-// P11: デザイン方向性（セクション区切り）
-function slide11Section() {
-  return `<section class="slide" data-section="section05">
+// P13: 06 展開（セクション扉）
+function slide13Section06() {
+  return `<section class="slide" data-section="s06">
   <div class="s-section">
     <div class="s-section-main">
-      <div class="s-section-num-col">
-        <span class="s-section-num-main">05</span>
-      </div>
+      <span class="s-section-num-main">06</span>
       <div class="s-section-divider"></div>
       <div class="s-section-text-col">
-        <span class="s-section-label">デザイン方向性</span>
-        <h2 class="s-section-name">DESIGN</h2>
-      </div>
-    </div>
-    <p class="slide-copy">©CRATER Inc.</p>
-  </div>
-</section>`;
-}
-
-// P12: デザイン方向性
-function slide12Design() {
-  return `<section class="slide" data-section="design">
-  <div class="s-list">
-    <div class="s-list-top"><span class="badge">DESIGN DIRECTION</span></div>
-    <div class="s-list-main">
-      <div class="s-list-left">
-        <h2 class="s-list-heading">「金の時」より<br>軽やかに、<br>鮮度高く。</h2>
-      </div>
-      <div class="s-list-right">
-        <ul class="s-list-items">
-          <li class="s-list-item">
-            <span class="s-list-num">01</span>
-            <span class="s-list-name">カラーパレット</span>
-            <span class="s-list-desc">金色を引き継ぎながらも、より明るく軽快なトーンへ。<br>白・生成り・薄いゴールドを基調とした清潔感のある配色。</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">02</span>
-            <span class="s-list-name">タイポグラフィ</span>
-            <span class="s-list-desc">「KINJI」のアルファベットを大きく見せ、ブランド名を印象化。<br>すっきりとしたサンセリフベースで現代感を出す。</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">03</span>
-            <span class="s-list-name">パッケージ設計</span>
-            <span class="s-list-desc">少量（10〜15包）展開でトライアルしやすい形状。<br>棚映えとSNS映えを両立した、持ち歩けるサイズ感。</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">04</span>
-            <span class="s-list-name">世界観の一貫性</span>
-            <span class="s-list-desc">「金の時」と同じ素材起源を持ちながら異なる入口。<br>KINJIを知って「金の時」に行き着く、グラデーションを設計。</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <p class="slide-copy">©CRATER Inc.</p>
-  </div>
-</section>`;
-}
-
-// P13: 展開イメージ（セクション区切り）
-function slide13Section() {
-  return `<section class="slide" data-section="section06">
-  <div class="s-section">
-    <div class="s-section-main">
-      <div class="s-section-num-col">
-        <span class="s-section-num-main">06</span>
-      </div>
-      <div class="s-section-divider"></div>
-      <div class="s-section-text-col">
-        <span class="s-section-label">展開イメージ</span>
+        <span class="s-section-label">商品ライン・展開イメージ</span>
         <h2 class="s-section-name">LINEUP</h2>
       </div>
     </div>
@@ -740,34 +748,46 @@ function slide13Section() {
 </section>`;
 }
 
-// P14: 展開案
+// P14: 展開詳細
 function slide14Lineup() {
   return `<section class="slide" data-section="lineup">
-  <div class="s-feature">
-    <div class="s-feature-top"><span class="badge">LINEUP</span></div>
-    <div class="s-feature-main">
-      <h2 class="s-feature-headline">試しやすく、続けやすい展開をつくる。</h2>
-      <div class="s-feature-grid">
-        <div class="s-feature-card">
-          <span class="s-feature-en">TRIAL</span>
-          <span class="s-feature-name">トライアルパック</span>
-          <p class="s-feature-desc">10包入り。初めての方向け。<br>¥1,500前後を想定。<br>手に取りやすい価格でまず試してもらう。</p>
-        </div>
-        <div class="s-feature-card">
-          <span class="s-feature-en">DAILY</span>
-          <span class="s-feature-name">デイリーパック</span>
-          <p class="s-feature-desc">30包入り。継続利用向け。<br>¥3,500〜4,000前後を想定。<br>KINJIのメイン商品として設計。</p>
-        </div>
-        <div class="s-feature-card">
-          <span class="s-feature-en">GIFT</span>
-          <span class="s-feature-name">ギフトセット</span>
-          <p class="s-feature-desc">デザインに統一感を持たせ、<br>贈り物としても機能させる。<br>季節限定展開も検討。</p>
-        </div>
-        <div class="s-feature-card">
-          <span class="s-feature-en">CHANNEL</span>
-          <span class="s-feature-name">販路</span>
-          <p class="s-feature-desc">Amazon / 自社EC を中心に展開。<br>将来的にはセレクトショップや<br>ドラッグストアへの展開も視野。</p>
-        </div>
+  <div class="s-list">
+    <div class="s-list-top"><span class="badge">LINEUP</span></div>
+    <div class="s-list-main">
+      <div class="s-list-left">
+        <h2 class="s-list-heading">試しやすく、<br>続けやすい形で<br>届ける。</h2>
+      </div>
+      <div class="s-list-right">
+        <ul class="s-list-items">
+          <li class="s-list-item">
+            <span class="s-list-num">01</span>
+            <div class="s-list-body">
+              <span class="s-list-name">トライアルパック（10包）</span>
+              <span class="s-list-desc">¥1,500前後を想定。まず試したい人向けの入口。全フレーバー展開。</span>
+            </div>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">02</span>
+            <div class="s-list-body">
+              <span class="s-list-name">デイリーパック（30包）</span>
+              <span class="s-list-desc">¥3,500〜4,000前後。継続利用のメインアイテム。定期購入への誘導口。</span>
+            </div>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">03</span>
+            <div class="s-list-body">
+              <span class="s-list-name">ギフトセット（フレーバーミックス）</span>
+              <span class="s-list-desc">複数フレーバーのセット構成。贈り物需要・お土産需要に対応。</span>
+            </div>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">04</span>
+            <div class="s-list-body">
+              <span class="s-list-name">販路</span>
+              <span class="s-list-desc">Amazon・自社EC中心。セレクトショップ・土産店への展開も視野。</span>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -780,15 +800,16 @@ function slide15Closing() {
   return `<section class="slide" data-section="closing">
   <div class="s-closing">
     <div class="s-closing-main">
-      <p class="s-closing-title">KINJI</p>
-      <p class="s-closing-sub">本物の素材を、日常の選択肢に。</p>
-      <p class="s-closing-contact">
-        株式会社クレーター　crater.co.jp<br>
-        〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F
+      <p class="s-closing-en">Brilliance begins<br>with preparation.</p>
+      <p class="s-closing-ja">輝きは、準備から始まる。</p>
+      <p class="s-closing-body">
+        この言葉は「金の時」が最初から持っていたもの。<br>
+        KINJIはその第一歩を、より多くの人が踏み出せるように設計します。<br>
+        引き続き、ご検討をよろしくお願いいたします。
       </p>
     </div>
     <div class="s-closing-footer">
-      <img src="assets/logo.svg" alt="CRATER" style="height:2.4cqw;width:auto;">
+      <img src="assets/logo.svg" alt="CRATER" style="height:2.0cqw;width:auto;">
     </div>
   </div>
 </section>`;
@@ -797,30 +818,30 @@ function slide15Closing() {
 window.slideFactories = [
   slide01Cover,
   slide02Agenda,
-  slide03Section, slide04Background,
-  slide05Section, slide06Target,
-  slide07Section, slide08Naming,
-  slide09Section, slide10Concept,
-  slide11Section, slide12Design,
-  slide13Section, slide14Lineup,
+  slide03Section01, slide04Concept,
+  slide05Section02, slide06Positioning,
+  slide07Section03, slide08Copy,
+  slide09Section04, slide10Naming,
+  slide11Section05, slide12Flavor,
+  slide13Section06, slide14Lineup,
   slide15Closing,
 ];
 window.agendaItems = [
-  { id: 'cover',      label: '表紙' },
-  { id: 'agenda',     label: '目次' },
-  { id: 'section01',  label: '01 背景と立て付け' },
-  { id: 'background', label: '背景詳細' },
-  { id: 'section02',  label: '02 ターゲット' },
-  { id: 'target',     label: 'ターゲット詳細' },
-  { id: 'section03',  label: '03 ブランド名' },
-  { id: 'naming',     label: 'ネーミング' },
-  { id: 'section04',  label: '04 コンセプト' },
-  { id: 'concept',    label: 'コンセプト' },
-  { id: 'section05',  label: '05 デザイン方向性' },
-  { id: 'design',     label: 'デザイン詳細' },
-  { id: 'section06',  label: '06 展開イメージ' },
-  { id: 'lineup',     label: 'ラインナップ' },
-  { id: 'closing',    label: 'クロージング' },
+  { id: 'cover',       label: '表紙' },
+  { id: 'agenda',      label: '目次' },
+  { id: 's01',         label: '01 コンセプトの継承' },
+  { id: 'concept',     label: 'コンセプト' },
+  { id: 's02',         label: '02 立て付けと新ターゲット' },
+  { id: 'positioning', label: 'ポジショニング' },
+  { id: 's03',         label: '03 外向けコピー提案' },
+  { id: 'copy',        label: 'コピー3案' },
+  { id: 's04',         label: '04 ブランド名 KINJI' },
+  { id: 'naming',      label: 'ネーミング' },
+  { id: 's05',         label: '05 粉で混ぜるフレーバー' },
+  { id: 'flavor',      label: 'フレーバー展開' },
+  { id: 's06',         label: '06 商品ライン' },
+  { id: 'lineup',      label: 'ラインナップ' },
+  { id: 'closing',     label: 'クロージング' },
 ];
 </script>
 
@@ -883,7 +904,6 @@ window.agendaItems = [
     if (!skipHash) history.replaceState(null, '', '#' + (i + 1));
   }
 
-  // サイドバー構築
   agendaItems.forEach(function (item, i) {
     var btn = document.createElement('button');
     btn.className = 'sidebar-item';
