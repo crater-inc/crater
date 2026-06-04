@@ -783,7 +783,17 @@ function slide18Pkg3() { return slidePackageImg(3); }
 function slide19Pkg4() { return slidePackageImg(4); }
 function slide20Pkg5() { return slidePackageImg(5); }
 
-// P22: Closing
+// P21: THANK YOU
+function slide21ThankYou() {
+  return `<section class="slide" data-section="thankyou">
+  <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3.2cqw;position:relative;">
+    <p style="font-family:var(--font-en);font-size:8.0cqw;font-weight:400;letter-spacing:0.12em;line-height:1;">THANK YOU</p>
+    <img src="assets/logo.svg" alt="CRATER" style="height:1.6cqw;width:auto;opacity:0.6;">
+  </div>
+</section>`;
+}
+
+// P22: Closing（未使用）
 function slide22Closing() {
   return `<section class="slide" data-section="closing">
   <div class="s-closing">
@@ -813,6 +823,7 @@ window.slideFactories = [
   slide13Section06, slide14Lineup,
   slide15Section07,
   slide16Pkg1, slide17Pkg2, slide18Pkg3, slide19Pkg4, slide20Pkg5,
+  slide21ThankYou,
 ];
 window.agendaItems = [
   { id: 'cover',       label: '表紙' },
@@ -835,6 +846,7 @@ window.agendaItems = [
   { id: 'pkg3',        label: 'パッケージ 03' },
   { id: 'pkg4',        label: 'パッケージ 04' },
   { id: 'pkg5',        label: 'パッケージ 05' },
+  { id: 'thankyou',   label: 'THANK YOU' },
 ];
 </script>
 
