@@ -771,26 +771,18 @@ function slide15Section07() {
 </section>`;
 }
 
-// P16-21: パッケージ画像スライド
-function slidePackageImg(num, label) {
-  return `<section class="slide" data-section="pkg${num}">
-  <span class="badge s-abs-badge">PACKAGE</span>
-  <div style="position:absolute;top:0;left:0;width:100%;height:1080px;display:flex;align-items:center;justify-content:center;">
-    <img id="pkg-img-${num}" src="assets/package_0${num}.jpg" alt="${label}" style="width:100%;height:100%;object-fit:contain;" onerror="this.style.display='none';document.getElementById('pkg-placeholder-${num}').style.display='flex';">
-    <div id="pkg-placeholder-${num}" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:1.2cqw;">
-      <p style="font-family:var(--font-en);font-size:1.0cqw;letter-spacing:0.2em;color:var(--c-light);">IMAGE ${num} — ${label}</p>
-      <p style="font-family:var(--font-ja);font-size:0.85cqw;color:var(--c-light);">assets/package_0${num}.jpg</p>
-    </div>
-  </div>
-  <p class="slide-copy">©CRATER Inc.</p>
+// P16-20: パッケージ画像スライド（全面）
+function slidePackageImg(num) {
+  return `<section class="slide" data-section="pkg${num}" style="background:#000;">
+  <img src="assets/package_0${num}.jpg" alt="PACKAGE 0${num}" style="position:absolute;top:0;left:0;width:1920px;height:1080px;object-fit:cover;">
+  <p class="slide-copy" style="color:#fff;z-index:2;position:absolute;">©CRATER Inc.</p>
 </section>`;
 }
-function slide16Pkg1() { return slidePackageImg(1, 'PACKAGE DESIGN'); }
-function slide17Pkg2() { return slidePackageImg(2, 'PACKAGE DESIGN'); }
-function slide18Pkg3() { return slidePackageImg(3, 'PACKAGE DESIGN'); }
-function slide19Pkg4() { return slidePackageImg(4, 'PACKAGE DESIGN'); }
-function slide20Pkg5() { return slidePackageImg(5, 'PACKAGE DESIGN'); }
-function slide21Pkg6() { return slidePackageImg(6, 'PACKAGE DESIGN'); }
+function slide16Pkg1() { return slidePackageImg(1); }
+function slide17Pkg2() { return slidePackageImg(2); }
+function slide18Pkg3() { return slidePackageImg(3); }
+function slide19Pkg4() { return slidePackageImg(4); }
+function slide20Pkg5() { return slidePackageImg(5); }
 
 // P22: Closing
 function slide22Closing() {
@@ -821,7 +813,7 @@ window.slideFactories = [
   slide11Section05, slide12Flavor,
   slide13Section06, slide14Lineup,
   slide15Section07,
-  slide16Pkg1, slide17Pkg2, slide18Pkg3, slide19Pkg4, slide20Pkg5, slide21Pkg6,
+  slide16Pkg1, slide17Pkg2, slide18Pkg3, slide19Pkg4, slide20Pkg5,
   slide22Closing,
 ];
 window.agendaItems = [
@@ -845,7 +837,6 @@ window.agendaItems = [
   { id: 'pkg3',        label: 'パッケージ 03' },
   { id: 'pkg4',        label: 'パッケージ 04' },
   { id: 'pkg5',        label: 'パッケージ 05' },
-  { id: 'pkg6',        label: 'パッケージ 06' },
   { id: 'closing',     label: 'クロージング' },
 ];
 </script>
