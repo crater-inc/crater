@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スクロールナビ 10案</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: #111;
+    color: #fff;
+  }
+
+  /* ========== 共通：各案のページ ========== */
+  .page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  }
+
+  .page-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-num {
+    font-size: clamp(80px, 15vw, 160px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .page-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ========== 案のタイトルパネル ========== */
+  .case-title {
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 100px;
+    padding: 8px 24px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.5);
+    z-index: 100;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  /* ========== 案切り替えボタン ========== */
+  .nav-btns {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover, .nav-btn.active {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+
+  /* ========== スクロールナビ共通 ========== */
+  .scroll-nav {
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: none;
+  }
+
+  .scroll-nav.visible { display: flex; }
+
+  /* ====================================
+     案01：玉がレールを滑る（基本）
+  ==================================== */
+  .nav-01 {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-01 .rail {
+    width: 1px;
+    height: 120px;
+    background: rgba(255,255,255,0.15);
+    position: relative;
+  }
+
+  .nav-01 .dot {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px rgba(255,255,255,0.5);
+  }
+
+  /* ====================================
+     案02：玉が伸び縮みしながら動く
+  ==================================== */
+  .nav-02 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-02 .rail {
+    width: 1px;
+    height: 120px;
+    background: rgba(255,255,255,0.15);
+    position: relative;
+  }
+
+  .nav-02 .dot {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                height 0.15s ease,
+                margin-top 0.15s ease;
+  }
+
+  .nav-02 .dot.stretching {
+    height: 14px;
+    border-radius: 3px;
+  }
+
+  /* ====================================
+     案03：線が伸びる（アンダーライン系）
+  ==================================== */
+  .nav-03 {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-03 .track {
+    width: 1px;
+    height: 120px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-03 .fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ====================================
+     案04：輪郭のドット（アウトライン→フィル）
+  ==================================== */
+  .nav-04 {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-04 .rail {
+    width: 1px;
+    height: 120px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+  }
+
+  .nav-04 .dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                background 0.2s;
+    background: transparent;
+  }
+
+  .nav-04 .dot.filled {
+    background: rgba(255,255,255,0.8);
+  }
+
+  /* ====================================
+     案05：波紋が広がる
+  ==================================== */
+  .nav-05 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-05 .rail {
+    width: 1px;
+    height: 120px;
+    background: rgba(255,255,255,0.12);
+    position: relative;
+  }
+
+  .nav-05 .dot {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-05 .dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    animation: ripple 2s ease-out infinite;
+  }
+
+  @keyframes ripple {
+    0% { inset: -2px; opacity: 0.8; }
+    100% { inset: -12px; opacity: 0; }
+  }
+
+  /* ====================================
+     案06：数字カウンター
+  ==================================== */
+  .nav-06 {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .nav-06 .counter-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+
+  .nav-06 .current {
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: -0.02em;
+  }
+
+  .nav-06 .sep {
+    width: 24px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+  }
+
+  .nav-06 .total {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ====================================
+     案07：ダッシュ（横線）が縦移動
+  ==================================== */
+  .nav-07 {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0;
+  }
+
+  .nav-07 .rail {
+    width: 1px;
+    height: 120px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+  }
+
+  .nav-07 .dash {
+    width: 20px;
+    height: 1px;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    transition: top 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px rgba(255,255,255,0.4);
+  }
+
+  /* ====================================
+     案08：グロー光源
+  ==================================== */
+  .nav-08 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-08 .rail {
+    width: 2px;
+    height: 120px;
+    background: rgba(255,255,255,0.06);
+    position: relative;
+    border-radius: 1px;
+  }
+
+  .nav-08 .dot {
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+      0 0 6px 2px rgba(255,255,255,0.8),
+      0 0 20px 8px rgba(255,255,255,0.3),
+      0 0 40px 16px rgba(255,255,255,0.1);
+  }
+
+  /* ====================================
+     案09：テキスト "SCROLL" がフェード
+  ==================================== */
+  .nav-09 {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-09 .scroll-text {
+    writing-mode: vertical-rl;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .nav-09 .scroll-text.faded {
+    opacity: 0.1;
+    transform: translateY(6px);
+  }
+
+  .nav-09 .line {
+    width: 1px;
+    height: 50px;
+    background: rgba(255,255,255,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .nav-09 .line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, #fff, transparent);
+    animation: scanline 2.5s ease-in-out infinite;
+  }
+
+  @keyframes scanline {
+    0% { top: -100%; }
+    100% { top: 200%; }
+  }
+
+  /* ====================================
+     案10：ページドット（横並び）
+  ==================================== */
+  .nav-10 {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 40px;
+    transform: translateX(-50%);
+    flex-direction: row;
+  }
+
+  .nav-10 .pip {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+
+  .nav-10 .pip.active {
+    background: #fff;
+    width: 20px;
+    border-radius: 3px;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- 案名表示 -->
+<div class="case-title" id="caseTitle">案01 — 玉がレールを滑る</div>
+
+<!-- 切り替えボタン -->
+<div class="nav-btns" id="navBtns"></div>
+
+<!-- ======= 各ナビ ======= -->
+
+<!-- 案01 -->
+<div class="scroll-nav nav-01 visible" id="nav01">
+  <div class="rail"><div class="dot" id="dot01"></div></div>
+</div>
+
+<!-- 案02 -->
+<div class="scroll-nav nav-02" id="nav02">
+  <div class="rail"><div class="dot" id="dot02"></div></div>
+</div>
+
+<!-- 案03 -->
+<div class="scroll-nav nav-03" id="nav03">
+  <div class="track"><div class="fill" id="fill03" style="height:0%"></div></div>
+</div>
+
+<!-- 案04 -->
+<div class="scroll-nav nav-04" id="nav04">
+  <div class="rail"><div class="dot" id="dot04"></div></div>
+</div>
+
+<!-- 案05 -->
+<div class="scroll-nav nav-05" id="nav05">
+  <div class="rail"><div class="dot" id="dot05"></div></div>
+</div>
+
+<!-- 案06 -->
+<div class="scroll-nav nav-06" id="nav06">
+  <div class="counter-wrap">
+    <div class="current" id="counter06">01</div>
+    <div class="sep"></div>
+    <div class="total">05</div>
+  </div>
+</div>
+
+<!-- 案07 -->
+<div class="scroll-nav nav-07" id="nav07">
+  <div class="rail"><div class="dash" id="dash07"></div></div>
+</div>
+
+<!-- 案08 -->
+<div class="scroll-nav nav-08" id="nav08">
+  <div class="rail"><div class="dot" id="dot08"></div></div>
+</div>
+
+<!-- 案09 -->
+<div class="scroll-nav nav-09" id="nav09">
+  <div class="scroll-text" id="text09">SCROLL</div>
+  <div class="line"></div>
+</div>
+
+<!-- 案10 -->
+<div class="scroll-nav nav-10" id="nav10">
+  <!-- pips are generated by JS -->
+</div>
+
+<!-- ======= 5ページ分のコンテンツ ======= -->
+<div class="page" data-page="1">
+  <div class="page-bg"></div>
+  <div class="page-content">
+    <div class="page-num">01</div>
+    <div class="page-label">First Section</div>
+  </div>
+</div>
+
+<div class="page" data-page="2">
+  <div class="page-bg" style="background: linear-gradient(135deg, #0a0a12 0%, #12121e 100%);"></div>
+  <div class="page-content">
+    <div class="page-num">02</div>
+    <div class="page-label">Second Section</div>
+  </div>
+</div>
+
+<div class="page" data-page="3">
+  <div class="page-bg" style="background: linear-gradient(135deg, #0a1008 0%, #101a0e 100%);"></div>
+  <div class="page-content">
+    <div class="page-num">03</div>
+    <div class="page-label">Third Section</div>
+  </div>
+</div>
+
+<div class="page" data-page="4">
+  <div class="page-bg" style="background: linear-gradient(135deg, #100a08 0%, #1a100e 100%);"></div>
+  <div class="page-content">
+    <div class="page-num">04</div>
+    <div class="page-label">Fourth Section</div>
+  </div>
+</div>
+
+<div class="page" data-page="5">
+  <div class="page-bg" style="background: linear-gradient(135deg, #080a10 0%, #0e121a 100%);"></div>
+  <div class="page-content">
+    <div class="page-num">05</div>
+    <div class="page-label">Fifth Section</div>
+  </div>
+</div>
+
+<script>
+  const TOTAL = 5;
+
+  const cases = [
+    { id: 'nav01', label: '案01 — 玉がレールを滑る' },
+    { id: 'nav02', label: '案02 — 玉が伸び縮みする' },
+    { id: 'nav03', label: '案03 — 線が上から埋まる' },
+    { id: 'nav04', label: '案04 — アウトライン→フィル' },
+    { id: 'nav05', label: '案05 — 波紋が広がる' },
+    { id: 'nav06', label: '案06 — 数字カウンター' },
+    { id: 'nav07', label: '案07 — ダッシュが縦移動' },
+    { id: 'nav08', label: '案08 — グロー光源' },
+    { id: 'nav09', label: '案09 — SCROLL スキャンライン' },
+    { id: 'nav10', label: '案10 — ページドット' },
+  ];
+
+  let currentCase = 0;
+
+  // ボタン生成
+  const btnWrap = document.getElementById('navBtns');
+  cases.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (i === 0 ? ' active' : '');
+    btn.textContent = `0${i + 1}`;
+    btn.addEventListener('click', () => switchCase(i));
+    btnWrap.appendChild(btn);
+  });
+
+  // 案10：pip生成
+  const nav10 = document.getElementById('nav10');
+  for (let i = 0; i < TOTAL; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'pip' + (i === 0 ? ' active' : '');
+    pip.dataset.page = i + 1;
+    nav10.appendChild(pip);
+  }
+
+  function switchCase(idx) {
+    // 全ナビ非表示
+    cases.forEach(c => {
+      document.getElementById(c.id).classList.remove('visible');
+    });
+    // 選択案を表示
+    document.getElementById(cases[idx].id).classList.add('visible');
+    document.getElementById('caseTitle').textContent = cases[idx].label;
+
+    // ボタンのアクティブ
+    document.querySelectorAll('.nav-btn').forEach((b, i) => {
+      b.classList.toggle('active', i === idx);
+    });
+
+    currentCase = idx;
+    // 現在のスクロール位置で即時更新
+    updateNav();
+  }
+
+  // スクロール率（0〜1）と現在ページを計算
+  function getScrollInfo() {
+    const scrollTop = window.scrollY;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = Math.min(1, Math.max(0, scrollTop / docH));
+
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 1;
+    pages.forEach((p, i) => {
+      const rect = p.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.5) {
+        currentPage = i + 1;
+      }
+    });
+
+    return { ratio, currentPage };
+  }
+
+  function updateNav() {
+    const { ratio, currentPage } = getScrollInfo();
+    const railH = 120; // px
+
+    // 案01: 玉の位置
+    const dot01 = document.getElementById('dot01');
+    if (dot01) {
+      dot01.style.top = (ratio * (railH - 6)) + 'px';
+    }
+
+    // 案02: 伸び縮み
+    const dot02 = document.getElementById('dot02');
+    if (dot02) {
+      dot02.style.top = (ratio * (railH - 6)) + 'px';
+    }
+
+    // 案03: 線を埋める
+    const fill03 = document.getElementById('fill03');
+    if (fill03) fill03.style.height = (ratio * 100) + '%';
+
+    // 案04: フィル
+    const dot04 = document.getElementById('dot04');
+    if (dot04) {
+      dot04.style.top = (ratio * (railH - 10)) + 'px';
+      dot04.classList.toggle('filled', ratio > 0.1);
+    }
+
+    // 案05: 波紋
+    const dot05 = document.getElementById('dot05');
+    if (dot05) dot05.style.top = (ratio * (railH - 6)) + 'px';
+
+    // 案06: カウンター
+    const counter06 = document.getElementById('counter06');
+    if (counter06) counter06.textContent = String(currentPage).padStart(2, '0');
+
+    // 案07: ダッシュ
+    const dash07 = document.getElementById('dash07');
+    if (dash07) dash07.style.top = (ratio * railH) + 'px';
+
+    // 案08: グロー
+    const dot08 = document.getElementById('dot08');
+    if (dot08) dot08.style.top = (ratio * (railH - 8)) + 'px';
+
+    // 案09: テキストフェード
+    const text09 = document.getElementById('text09');
+    if (text09) text09.classList.toggle('faded', ratio > 0.05);
+
+    // 案10: pip
+    document.querySelectorAll('.nav-10 .pip').forEach(pip => {
+      pip.classList.toggle('active', parseInt(pip.dataset.page) === currentPage);
+    });
+  }
+
+  // 案02の伸び縮みアニメーション
+  let lastScrollY = 0;
+  let stretchTimer;
+
+  window.addEventListener('scroll', () => {
+    updateNav();
+
+    // 案02: スクロール中は伸ばす
+    const dot02 = document.getElementById('dot02');
+    if (dot02) {
+      dot02.classList.add('stretching');
+      clearTimeout(stretchTimer);
+      stretchTimer = setTimeout(() => dot02.classList.remove('stretching'), 200);
+    }
+
+    lastScrollY = window.scrollY;
+  });
+
+  // 初期化
+  updateNav();
+</script>
+</body>
+</html>
