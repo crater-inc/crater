@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>スクロール誘導 — 玉の動き比較</title>
+<title>スクロール誘導 — 03番ベース バリエーション</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -58,13 +58,12 @@ h1 {
   left: 0; right: 0;
   text-align: center;
   font-size: 8px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: rgba(255,255,255,0.22);
-  line-height: 1.6;
+  line-height: 1.7;
   padding: 0 6px;
 }
 
-/* ===== ライン＋玉の構造 ===== */
 .rail-wrap {
   position: relative;
   width: 1px;
@@ -83,74 +82,62 @@ h1 {
   top: 0;
 }
 
-/* ===== 01: linear ===== */
-.c1 .dot {
-  animation: move 1.8s linear infinite;
-}
+/* ========================================
+   全案共通：フェードイン→上から落ちる
+   ベース動き：ease-out（加速→ゆっくり）
+======================================== */
 
-/* ===== 02: ease-in（ゆっくり→加速） ===== */
-.c2 .dot {
-  animation: move 1.8s ease-in infinite;
-}
-
-/* ===== 03: ease-out（加速→ゆっくり） ===== */
-.c3 .dot {
-  animation: move 1.8s ease-out infinite;
-}
-
-/* ===== 04: バウンス ===== */
-.c4 .dot {
-  animation: move-bounce 2.4s ease-out infinite;
-}
-
-/* ===== 05: ためてから落ちる ===== */
-.c5 .dot {
-  animation: move-pause 2.4s ease-in-out infinite;
-}
-
-/* ===== 06: 点滅しながら落ちる ===== */
-.c6 .dot {
-  animation: move-pulse 2.2s linear infinite;
-}
-
-/* ===== keyframes ===== */
-@keyframes move {
-  0%   { top: -8px;  opacity: 0; }
+/* 01: ease-out 標準 */
+.c1 .dot { animation: v1 2s ease-out infinite; }
+@keyframes v1 {
+  0%   { top: -8px; opacity: 0; }
   10%  { opacity: 1; }
   85%  { opacity: 1; }
-  100% { top: 70px;  opacity: 0; }
-}
-
-@keyframes move-bounce {
-  0%   { top: -8px;  opacity: 0; }
-  10%  { opacity: 1; }
-  60%  { top: 70px; }
-  72%  { top: 50px; }
-  82%  { top: 68px; }
-  90%  { top: 58px; }
-  97%  { top: 66px; opacity: 1; }
-  100% { top: 66px; opacity: 0; }
-}
-
-@keyframes move-pause {
-  0%   { top: -8px;  opacity: 0; }
-  8%   { opacity: 1; }
-  20%  { top: 20px; }
-  50%  { top: 20px; }
-  90%  { top: 70px; opacity: 1; }
   100% { top: 70px; opacity: 0; }
 }
 
-@keyframes move-pulse {
-  0%   { top: -8px;  opacity: 0; }
+/* 02: cubic-bezier — 急加速してゆっくり止まる */
+.c2 .dot { animation: v2 2s cubic-bezier(0.7, 0, 0.3, 1) infinite; }
+@keyframes v2 {
+  0%   { top: -8px; opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 70px; opacity: 0; }
+}
+
+/* 03: 超なめらか・ゆっくりフェード（cubic-bezier 0.4 0 0.2 1）*/
+.c3 .dot { animation: v3 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+@keyframes v3 {
+  0%   { top: -8px; opacity: 0; }
+  12%  { opacity: 1; }
+  80%  { top: 70px; opacity: 1; }
+  100% { top: 70px; opacity: 0; }
+}
+
+/* 04: 速い（短い時間でズバッと落ちる） */
+.c4 .dot { animation: v4 1.2s ease-out infinite; animation-delay: 0s; }
+@keyframes v4 {
+  0%   { top: -8px; opacity: 0; }
+  10%  { opacity: 1; }
+  70%  { top: 70px; opacity: 1; }
+  100% { top: 70px; opacity: 0; }
+}
+
+/* 05: 遅い（ゆっくりじわっと落ちる） */
+.c5 .dot { animation: v5 3.2s ease-out infinite; }
+@keyframes v5 {
+  0%   { top: -8px; opacity: 0; }
   8%   { opacity: 1; }
-  22%  { top: 18px; opacity: 1; }
-  30%  { top: 18px; opacity: 0.1; }
-  40%  { top: 18px; opacity: 1; }
-  58%  { top: 46px; opacity: 1; }
-  65%  { top: 46px; opacity: 0.1; }
-  75%  { top: 46px; opacity: 1; }
-  90%  { top: 70px; opacity: 1; }
+  88%  { top: 70px; opacity: 1; }
+  100% { top: 70px; opacity: 0; }
+}
+
+/* 06: 重力感（最後に少し跳ねずに吸い込まれる） */
+.c6 .dot { animation: v6 2s cubic-bezier(0.55, 0, 1, 0.45) infinite; }
+@keyframes v6 {
+  0%   { top: -8px; opacity: 0; }
+  10%  { opacity: 1; }
+  78%  { top: 70px; opacity: 1; }
   100% { top: 70px; opacity: 0; }
 }
 
@@ -158,44 +145,44 @@ h1 {
 </head>
 <body>
 
-<h1>Scroll Indicator — 玉の動き 6パターン</h1>
+<h1>Scroll Indicator — 03番ベース（ease-out）加速度バリエーション</h1>
 
 <div class="grid">
 
   <div class="cell c1">
     <span class="cell-num">01</span>
     <div class="rail-wrap"><div class="dot"></div></div>
-    <span class="cell-label">一定速度<br>linear</span>
+    <span class="cell-label">標準<br>ease-out</span>
   </div>
 
   <div class="cell c2">
     <span class="cell-num">02</span>
     <div class="rail-wrap"><div class="dot"></div></div>
-    <span class="cell-label">ゆっくり→加速<br>ease-in</span>
+    <span class="cell-label">急加速→<br>ゆっくり止まる</span>
   </div>
 
   <div class="cell c3">
     <span class="cell-num">03</span>
     <div class="rail-wrap"><div class="dot"></div></div>
-    <span class="cell-label">加速→ゆっくり<br>ease-out</span>
+    <span class="cell-label">超なめらか<br>material ease</span>
   </div>
 
   <div class="cell c4">
     <span class="cell-num">04</span>
     <div class="rail-wrap"><div class="dot"></div></div>
-    <span class="cell-label">バウンス<br>跳ねる</span>
+    <span class="cell-label">速い<br>ズバッと落ちる</span>
   </div>
 
   <div class="cell c5">
     <span class="cell-num">05</span>
     <div class="rail-wrap"><div class="dot"></div></div>
-    <span class="cell-label">ためてから落ちる<br>pause → drop</span>
+    <span class="cell-label">遅い<br>じわっと落ちる</span>
   </div>
 
   <div class="cell c6">
     <span class="cell-num">06</span>
     <div class="rail-wrap"><div class="dot"></div></div>
-    <span class="cell-label">点滅しながら落ちる<br>pulse</span>
+    <span class="cell-label">重力感<br>吸い込まれる</span>
   </div>
 
 </div>
