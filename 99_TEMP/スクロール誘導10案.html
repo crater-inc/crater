@@ -9,222 +9,183 @@
 
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background: #0a0a0a;
+  background: #0d0d0d;
   color: #fff;
+  padding: 60px 40px 80px;
 }
 
-/* ===== KVエリア ===== */
-.kv {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 100%);
-}
-
-.kv-title {
-  font-size: clamp(32px, 6vw, 72px);
-  font-weight: 300;
-  letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.15);
-  text-transform: uppercase;
-  user-select: none;
-}
-
-/* ===== 案番号ラベル ===== */
-.case-label {
-  position: absolute;
-  top: 32px;
-  left: 50%;
-  transform: translateX(-50%);
+h1 {
   font-size: 11px;
-  letter-spacing: 0.3em;
-  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.25);
   text-transform: uppercase;
-  white-space: nowrap;
+  text-align: center;
+  margin-bottom: 60px;
 }
 
-/* ===== 切り替えUI ===== */
-.switcher {
-  position: fixed;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
-  z-index: 200;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.sw-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.4);
-  font-size: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sw-btn:hover, .sw-btn.active {
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  border-color: rgba(255,255,255,0.3);
-}
-
-/* ================================
-   共通：スクロール誘導の位置
-================================ */
-.scroll-hint {
-  position: absolute;
-  bottom: 48px;
-  left: 50%;
-  transform: translateX(-50%);
+.cell {
+  aspect-ratio: 9 / 16;
+  background: linear-gradient(160deg, #141414 0%, #1a1a2a 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-}
-
-/* ================================
-   案01：玉が線を流れ落ちる
-================================ */
-.hint-01 .line {
-  width: 1px;
-  height: 60px;
-  background: rgba(255,255,255,0.15);
+  justify-content: flex-end;
+  padding-bottom: 40px;
   position: relative;
   overflow: hidden;
 }
 
+.cell-num {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.2);
+}
+
+.cell-label {
+  position: absolute;
+  bottom: 14px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ================================
+   案01：光がスーッと落ちる
+================================ */
+.hint-01 .line {
+  width: 1px;
+  height: 70px;
+  background: rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+}
 .hint-01 .line::after {
   content: '';
   position: absolute;
-  top: -100%;
+  top: -40%;
   left: 0;
   width: 100%;
   height: 40%;
   background: linear-gradient(to bottom, transparent, #fff 50%, transparent);
-  animation: drop01 1.8s ease-in-out infinite;
+  animation: drop 1.8s ease-in-out infinite;
 }
-
-@keyframes drop01 {
-  0%   { top: -40%; opacity: 1; }
-  100% { top: 120%; opacity: 0.2; }
+@keyframes drop {
+  0%   { top: -40%; }
+  100% { top: 120%; }
 }
 
 /* ================================
-   案02：シェブロン（連続矢印）
+   案02：シェブロン連続
 ================================ */
 .hint-02 {
-  gap: 0;
+  gap: 3px;
 }
-
-.hint-02 .chevron {
-  width: 12px;
-  height: 12px;
-  border-right: 1px solid rgba(255,255,255,0.8);
-  border-bottom: 1px solid rgba(255,255,255,0.8);
+.hint-02 .ch {
+  width: 11px;
+  height: 11px;
+  border-right: 1px solid rgba(255,255,255,0.7);
+  border-bottom: 1px solid rgba(255,255,255,0.7);
   transform: rotate(45deg);
-  animation: fade-down 1.6s ease-in-out infinite;
+  animation: chfade 1.6s ease-in-out infinite;
 }
-
-.hint-02 .chevron:nth-child(1) { animation-delay: 0s;    opacity: 0.3; }
-.hint-02 .chevron:nth-child(2) { animation-delay: 0.2s;  opacity: 0.6; }
-.hint-02 .chevron:nth-child(3) { animation-delay: 0.4s;  opacity: 1; }
-
-@keyframes fade-down {
-  0%   { transform: rotate(45deg) translate(-4px, -4px); opacity: 0.1; }
-  50%  { opacity: 1; }
-  100% { transform: rotate(45deg) translate(4px, 4px); opacity: 0.1; }
+.hint-02 .ch:nth-child(1) { animation-delay: 0s; }
+.hint-02 .ch:nth-child(2) { animation-delay: 0.22s; }
+.hint-02 .ch:nth-child(3) { animation-delay: 0.44s; }
+@keyframes chfade {
+  0%,100% { opacity: 0.1; }
+  50%      { opacity: 1; }
 }
 
 /* ================================
-   案03：SCROLL テキスト点滅
+   案03：SCROLL テキスト＋ライン
 ================================ */
 .hint-03 {
-  gap: 12px;
+  gap: 10px;
 }
-
-.hint-03 .label {
-  font-size: 9px;
-  letter-spacing: 0.4em;
+.hint-03 .txt {
+  font-size: 8px;
+  letter-spacing: 0.45em;
   color: rgba(255,255,255,0.5);
   text-transform: uppercase;
-  animation: pulse03 2.5s ease-in-out infinite;
+  animation: pulse 2.4s ease-in-out infinite;
 }
-
-.hint-03 .arrow {
+.hint-03 .line {
   width: 1px;
-  height: 40px;
-  background: rgba(255,255,255,0.15);
+  height: 44px;
+  background: rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
 }
-
-.hint-03 .arrow::after {
+.hint-03 .line::after {
   content: '';
   position: absolute;
-  top: -100%;
+  top: -40%;
   left: 0;
   width: 100%;
   height: 50%;
   background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.7));
-  animation: drop01 2s ease-in-out infinite;
+  animation: drop 2s ease-in-out infinite;
   animation-delay: 0.5s;
 }
-
-@keyframes pulse03 {
-  0%, 100% { opacity: 0.3; }
-  50%       { opacity: 0.9; }
+@keyframes pulse {
+  0%,100% { opacity: 0.3; }
+  50%      { opacity: 1; }
 }
 
 /* ================================
    案04：マウスアイコン
 ================================ */
 .hint-04 .mouse {
-  width: 22px;
-  height: 34px;
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 11px;
+  width: 20px;
+  height: 30px;
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 10px;
   position: relative;
 }
-
 .hint-04 .wheel {
   width: 2px;
-  height: 6px;
+  height: 5px;
   background: #fff;
   border-radius: 1px;
   position: absolute;
-  top: 6px;
+  top: 5px;
   left: 50%;
   transform: translateX(-50%);
-  animation: wheel04 1.8s ease-in-out infinite;
+  animation: wheel 1.8s ease-in-out infinite;
 }
-
-@keyframes wheel04 {
-  0%   { top: 6px; opacity: 1; }
-  60%  { top: 16px; opacity: 0.2; }
-  100% { top: 6px; opacity: 0; }
+@keyframes wheel {
+  0%   { top: 5px; opacity: 1; }
+  60%  { top: 14px; opacity: 0.1; }
+  100% { top: 5px; opacity: 0; }
 }
 
 /* ================================
    案05：円の中を玉が落ちる
 ================================ */
-.hint-05 .outer {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255,255,255,0.2);
+.hint-05 {
+  gap: 10px;
+}
+.hint-05 .ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,0.18);
   border-radius: 50%;
   position: relative;
   overflow: hidden;
 }
-
 .hint-05 .ball {
   width: 8px;
   height: 8px;
@@ -233,318 +194,272 @@ body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  animation: fall05 2s ease-in-out infinite;
+  animation: fall 2s ease-in-out infinite;
   box-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
-
-@keyframes fall05 {
+@keyframes fall {
   0%   { top: -10px; opacity: 0; }
   20%  { opacity: 1; }
-  60%  { top: 50%; opacity: 1; }
+  70%  { top: 50%; opacity: 1; }
   100% { top: 110%; opacity: 0; }
 }
-
 .hint-05 .line {
   width: 1px;
-  height: 30px;
+  height: 24px;
   background: rgba(255,255,255,0.1);
 }
 
 /* ================================
-   案06：矢印が下へフェードアウト
+   案06：矢印が下へ流れる
 ================================ */
-.hint-06 .arrow-wrap {
-  position: relative;
-  width: 20px;
+.hint-06 .arr-wrap {
+  width: 18px;
   height: 48px;
+  position: relative;
 }
-
 .hint-06 .arr {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   border-right: 1px solid rgba(255,255,255,0.7);
   border-bottom: 1px solid rgba(255,255,255,0.7);
   transform: translateX(-50%) rotate(45deg);
-  animation: slide06 1.8s ease-out infinite;
+  animation: slide 1.8s ease-out infinite;
 }
-
 .hint-06 .arr:nth-child(1) { animation-delay: 0s; }
 .hint-06 .arr:nth-child(2) { animation-delay: 0.6s; }
-
-@keyframes slide06 {
-  0%   { top: 0; opacity: 0; }
+@keyframes slide {
+  0%   { top: 0;    opacity: 0; }
   30%  { opacity: 0.8; }
-  100% { top: 24px; opacity: 0; }
+  100% { top: 28px; opacity: 0; }
 }
 
 /* ================================
-   案07：左右の線がのびる
+   案07：左右の線＋テキスト
 ================================ */
 .hint-07 {
   flex-direction: row;
   align-items: center;
-  gap: 12px;
-  bottom: 60px;
+  gap: 10px;
 }
-
-.hint-07 .side-line {
+.hint-07 .sline {
   height: 1px;
-  background: rgba(255,255,255,0.25);
-  animation: expand07 2s ease-in-out infinite;
-  transform-origin: center;
+  background: rgba(255,255,255,0.3);
+  animation: expand 2s ease-in-out infinite;
 }
-
-@keyframes expand07 {
-  0%, 100% { width: 0px; opacity: 0; }
-  50%       { width: 40px; opacity: 1; }
+@keyframes expand {
+  0%,100% { width: 0; opacity: 0; }
+  50%      { width: 32px; opacity: 1; }
 }
-
-.hint-07 .text {
-  font-size: 9px;
+.hint-07 .txt {
+  font-size: 8px;
   letter-spacing: 0.35em;
   color: rgba(255,255,255,0.45);
   text-transform: uppercase;
   white-space: nowrap;
-  animation: pulse03 2s ease-in-out infinite;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 /* ================================
-   案08：長い縦線がフェードイン
+   案08：縦線がフワッと現れ消える
 ================================ */
 .hint-08 .long-line {
   width: 1px;
   height: 80px;
   background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6) 50%, transparent);
-  animation: grow08 2.2s ease-in-out infinite;
-  transform-origin: top;
+  animation: grow 2.2s ease-in-out infinite;
 }
-
-@keyframes grow08 {
-  0%   { transform: scaleY(0); opacity: 0; transform-origin: top; }
-  40%  { transform: scaleY(1); opacity: 1; transform-origin: top; }
-  60%  { transform: scaleY(1); opacity: 1; transform-origin: bottom; }
-  100% { transform: scaleY(0); opacity: 0; transform-origin: bottom; }
+@keyframes grow {
+  0%        { transform: scaleY(0); transform-origin: top; opacity: 0; }
+  40%,60%   { transform: scaleY(1); opacity: 1; }
+  100%      { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
 }
 
 /* ================================
    案09：グロー点滅
 ================================ */
+.hint-09 {
+  gap: 10px;
+}
 .hint-09 .dot {
   width: 6px;
   height: 6px;
   background: #fff;
   border-radius: 50%;
-  animation: glow09 2s ease-in-out infinite;
+  animation: glow 2s ease-in-out infinite;
 }
-
-@keyframes glow09 {
-  0%, 100% {
-    box-shadow: 0 0 4px 1px rgba(255,255,255,0.3);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 16px 6px rgba(255,255,255,0.6), 0 0 40px 16px rgba(255,255,255,0.15);
-    transform: scale(1.3);
-  }
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 3px 1px rgba(255,255,255,0.2); transform: scale(1); }
+  50%     { box-shadow: 0 0 14px 5px rgba(255,255,255,0.5), 0 0 36px 14px rgba(255,255,255,0.12); transform: scale(1.4); }
 }
-
 .hint-09 .line {
   width: 1px;
-  height: 50px;
-  background: rgba(255,255,255,0.12);
+  height: 44px;
+  background: rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
 }
-
 .hint-09 .line::after {
   content: '';
   position: absolute;
-  top: -100%;
+  top: -40%;
   left: 0;
   width: 100%;
   height: 50%;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6));
-  animation: drop01 2s ease-in-out infinite;
-  animation-delay: 0.3s;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5));
+  animation: drop 2s ease-in-out infinite;
+  animation-delay: 0.4s;
 }
 
 /* ================================
-   案10：回転する丸矢印
+   案10：回転リング
 ================================ */
-.hint-10 .ring-wrap {
-  position: relative;
-  width: 40px;
-  height: 40px;
+.hint-10 {
+  gap: 10px;
 }
-
-.hint-10 .ring {
-  width: 40px;
-  height: 40px;
+.hint-10 .rring {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
   border-top-color: rgba(255,255,255,0.7);
-  animation: spin10 2s linear infinite;
-  position: absolute;
-  top: 0; left: 0;
+  animation: spin 2s linear infinite;
+  position: relative;
 }
-
-.hint-10 .inner-dot {
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.hint-10 .rring::after {
+  content: '';
   width: 4px;
   height: 4px;
   background: #fff;
   border-radius: 50%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
   box-shadow: 0 0 6px rgba(255,255,255,0.5);
 }
-
-@keyframes spin10 {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
 .hint-10 .line {
   width: 1px;
-  height: 30px;
+  height: 24px;
   background: rgba(255,255,255,0.1);
   position: relative;
   overflow: hidden;
 }
-
 .hint-10 .line::after {
   content: '';
   position: absolute;
-  top: -100%;
+  top: -40%;
   left: 0;
   width: 100%;
   height: 50%;
   background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5));
-  animation: drop01 2s ease-in-out infinite;
+  animation: drop 2s ease-in-out infinite;
+}
+
+/* ================================
+   共通ヒント wrapper
+================================ */
+.hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 </style>
 </head>
 <body>
 
-<!-- KVエリア -->
-<div class="kv" id="kv">
-  <div class="case-label" id="caseLabel">案01 — 玉が線を流れ落ちる</div>
-  <div class="kv-title">KEY VISUAL</div>
+<h1>Scroll Indicator — 10 Variations</h1>
 
-  <!-- 案01 -->
-  <div class="scroll-hint hint-01" id="hint01">
-    <div class="line"></div>
+<div class="grid">
+
+  <div class="cell">
+    <span class="cell-num">01</span>
+    <div class="hint hint-01"><div class="line"></div></div>
+    <span class="cell-label">光が落ちる</span>
   </div>
 
-  <!-- 案02 -->
-  <div class="scroll-hint hint-02" id="hint02" style="display:none; bottom:56px; gap:4px;">
-    <div class="chevron"></div>
-    <div class="chevron"></div>
-    <div class="chevron"></div>
-  </div>
-
-  <!-- 案03 -->
-  <div class="scroll-hint hint-03" id="hint03" style="display:none;">
-    <div class="label">Scroll</div>
-    <div class="arrow"></div>
-  </div>
-
-  <!-- 案04 -->
-  <div class="scroll-hint hint-04" id="hint04" style="display:none;">
-    <div class="mouse"><div class="wheel"></div></div>
-  </div>
-
-  <!-- 案05 -->
-  <div class="scroll-hint hint-05" id="hint05" style="display:none;">
-    <div class="outer"><div class="ball"></div></div>
-    <div class="line"></div>
-  </div>
-
-  <!-- 案06 -->
-  <div class="scroll-hint hint-06" id="hint06" style="display:none;">
-    <div class="arrow-wrap">
-      <div class="arr"></div>
-      <div class="arr"></div>
+  <div class="cell">
+    <span class="cell-num">02</span>
+    <div class="hint hint-02">
+      <div class="ch"></div><div class="ch"></div><div class="ch"></div>
     </div>
+    <span class="cell-label">シェブロン</span>
   </div>
 
-  <!-- 案07 -->
-  <div class="scroll-hint hint-07" id="hint07" style="display:none;">
-    <div class="side-line"></div>
-    <div class="text">Scroll</div>
-    <div class="side-line"></div>
-  </div>
-
-  <!-- 案08 -->
-  <div class="scroll-hint hint-08" id="hint08" style="display:none;">
-    <div class="long-line"></div>
-  </div>
-
-  <!-- 案09 -->
-  <div class="scroll-hint hint-09" id="hint09" style="display:none;">
-    <div class="dot"></div>
-    <div class="line"></div>
-  </div>
-
-  <!-- 案10 -->
-  <div class="scroll-hint hint-10" id="hint10" style="display:none;">
-    <div class="ring-wrap">
-      <div class="ring"></div>
-      <div class="inner-dot"></div>
+  <div class="cell">
+    <span class="cell-num">03</span>
+    <div class="hint hint-03">
+      <div class="txt">Scroll</div>
+      <div class="line"></div>
     </div>
-    <div class="line"></div>
+    <span class="cell-label">テキスト＋ライン</span>
+  </div>
+
+  <div class="cell">
+    <span class="cell-num">04</span>
+    <div class="hint hint-04">
+      <div class="mouse"><div class="wheel"></div></div>
+    </div>
+    <span class="cell-label">マウスアイコン</span>
+  </div>
+
+  <div class="cell">
+    <span class="cell-num">05</span>
+    <div class="hint hint-05">
+      <div class="ring"><div class="ball"></div></div>
+      <div class="line"></div>
+    </div>
+    <span class="cell-label">円の中を玉が落ちる</span>
+  </div>
+
+  <div class="cell">
+    <span class="cell-num">06</span>
+    <div class="hint hint-06">
+      <div class="arr-wrap"><div class="arr"></div><div class="arr"></div></div>
+    </div>
+    <span class="cell-label">矢印が流れる</span>
+  </div>
+
+  <div class="cell">
+    <span class="cell-num">07</span>
+    <div class="hint hint-07">
+      <div class="sline"></div>
+      <div class="txt">Scroll</div>
+      <div class="sline"></div>
+    </div>
+    <span class="cell-label">左右の線が伸びる</span>
+  </div>
+
+  <div class="cell">
+    <span class="cell-num">08</span>
+    <div class="hint hint-08"><div class="long-line"></div></div>
+    <span class="cell-label">縦線がフワッと現れる</span>
+  </div>
+
+  <div class="cell">
+    <span class="cell-num">09</span>
+    <div class="hint hint-09">
+      <div class="dot"></div>
+      <div class="line"></div>
+    </div>
+    <span class="cell-label">グロー点滅</span>
+  </div>
+
+  <div class="cell">
+    <span class="cell-num">10</span>
+    <div class="hint hint-10">
+      <div class="rring"></div>
+      <div class="line"></div>
+    </div>
+    <span class="cell-label">回転リング</span>
   </div>
 
 </div>
-
-<!-- ページ下部（スクロール確認用） -->
-<div style="height:100vh; display:flex; align-items:center; justify-content:center; background:#080808;">
-  <p style="font-size:11px; letter-spacing:0.3em; color:rgba(255,255,255,0.2); text-transform:uppercase;">Next Section</p>
-</div>
-
-<!-- 切り替えボタン -->
-<div class="switcher">
-  <button class="sw-btn active" onclick="show(1)">1</button>
-  <button class="sw-btn" onclick="show(2)">2</button>
-  <button class="sw-btn" onclick="show(3)">3</button>
-  <button class="sw-btn" onclick="show(4)">4</button>
-  <button class="sw-btn" onclick="show(5)">5</button>
-  <button class="sw-btn" onclick="show(6)">6</button>
-  <button class="sw-btn" onclick="show(7)">7</button>
-  <button class="sw-btn" onclick="show(8)">8</button>
-  <button class="sw-btn" onclick="show(9)">9</button>
-  <button class="sw-btn" onclick="show(10)">10</button>
-</div>
-
-<script>
-const labels = {
-  1:  '案01 — 光がスーッと落ちる',
-  2:  '案02 — シェブロン（連続矢印）',
-  3:  '案03 — SCROLL テキスト＋ライン',
-  4:  '案04 — マウスアイコン',
-  5:  '案05 — 円の中を玉が落ちる',
-  6:  '案06 — 矢印が下へ流れる',
-  7:  '案07 — 左右の線が伸びる',
-  8:  '案08 — 長い縦線がフェード',
-  9:  '案09 — グロー点滅＋ライン',
-  10: '案10 — 回転リング',
-};
-
-function show(n) {
-  for (let i = 1; i <= 10; i++) {
-    const el = document.getElementById('hint' + String(i).padStart(2, '0'));
-    if (el) el.style.display = 'none';
-  }
-  document.getElementById('hint' + String(n).padStart(2, '0')).style.display = 'flex';
-  document.getElementById('caseLabel').textContent = labels[n];
-  document.querySelectorAll('.sw-btn').forEach((b, i) => b.classList.toggle('active', i + 1 === n));
-}
-</script>
 
 </body>
 </html>
