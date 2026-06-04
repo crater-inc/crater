@@ -60,85 +60,99 @@ h1 {
   font-size: 8px;
   letter-spacing: 0.1em;
   color: rgba(255,255,255,0.22);
-  line-height: 1.5;
+  line-height: 1.6;
   padding: 0 6px;
 }
 
-/* ===== 共通：ライン＋玉 ===== */
-.rail {
+/* ===== ライン＋玉の構造 ===== */
+.rail-wrap {
+  position: relative;
   width: 1px;
   height: 70px;
-  background: rgba(255,255,255,0.08);
-  position: relative;
-  overflow: hidden;
+  background: rgba(255,255,255,0.1);
 }
 
-.rail::after {
-  content: '';
+.dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
   position: absolute;
-  left: 0;
-  width: 100%;
-  height: 30%;
-  background: linear-gradient(to bottom, transparent, #fff 50%, transparent);
-  animation: var(--anim, drop-linear) var(--dur, 1.8s) var(--ease, linear) infinite;
-  animation-delay: var(--delay, 0s);
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
 }
 
-/* ===== イージング別アニメーション ===== */
-
-/* 01: 一定速度（リニア） */
-@keyframes drop-linear {
-  0%   { top: -30%; }
-  100% { top: 110%; }
+/* ===== 01: linear ===== */
+.c1 .dot {
+  animation: move 1.8s linear infinite;
 }
 
-/* 02: ゆっくり→加速（ease-in） */
-@keyframes drop-ease-in {
-  0%   { top: -30%; }
-  100% { top: 110%; }
+/* ===== 02: ease-in（ゆっくり→加速） ===== */
+.c2 .dot {
+  animation: move 1.8s ease-in infinite;
 }
 
-/* 03: 加速→ゆっくり（ease-out） */
-@keyframes drop-ease-out {
-  0%   { top: -30%; }
-  100% { top: 110%; }
+/* ===== 03: ease-out（加速→ゆっくり） ===== */
+.c3 .dot {
+  animation: move 1.8s ease-out infinite;
 }
 
-/* 04: バウンス（跳ねる） */
-@keyframes drop-bounce {
-  0%        { top: -30%; }
-  60%       { top: 100%; }
-  72%       { top: 75%; }
-  82%       { top: 100%; }
-  90%       { top: 88%; }
-  100%      { top: 100%; }
+/* ===== 04: バウンス ===== */
+.c4 .dot {
+  animation: move-bounce 2.4s ease-out infinite;
 }
 
-/* 05: 途中で止まる（ためてから落ちる） */
-@keyframes drop-pause {
-  0%    { top: -30%; }
-  25%   { top: 20%; }
-  50%   { top: 20%; }
-  100%  { top: 110%; }
+/* ===== 05: ためてから落ちる ===== */
+.c5 .dot {
+  animation: move-pause 2.4s ease-in-out infinite;
 }
 
-/* 06: 等間隔パルス（点滅しながら落ちる） */
-@keyframes drop-pulse {
-  0%         { top: -30%; opacity: 1; }
-  20%        { top: 20%; opacity: 0.2; }
-  35%        { top: 20%; opacity: 1; }
-  55%        { top: 60%; opacity: 0.2; }
-  70%        { top: 60%; opacity: 1; }
-  100%       { top: 110%; opacity: 0; }
+/* ===== 06: 点滅しながら落ちる ===== */
+.c6 .dot {
+  animation: move-pulse 2.2s linear infinite;
 }
 
-/* ===== セルごとの設定 ===== */
-.c1 .rail { --anim: drop-linear;  --ease: linear;     --dur: 1.8s; }
-.c2 .rail { --anim: drop-ease-in; --ease: ease-in;    --dur: 1.8s; }
-.c3 .rail { --anim: drop-ease-out;--ease: ease-out;   --dur: 1.8s; }
-.c4 .rail { --anim: drop-bounce;  --ease: ease-out;   --dur: 2.2s; }
-.c5 .rail { --anim: drop-pause;   --ease: ease-in-out;--dur: 2.4s; }
-.c6 .rail { --anim: drop-pulse;   --ease: linear;     --dur: 2.2s; }
+/* ===== keyframes ===== */
+@keyframes move {
+  0%   { top: -8px;  opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 70px;  opacity: 0; }
+}
+
+@keyframes move-bounce {
+  0%   { top: -8px;  opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { top: 70px; }
+  72%  { top: 50px; }
+  82%  { top: 68px; }
+  90%  { top: 58px; }
+  97%  { top: 66px; opacity: 1; }
+  100% { top: 66px; opacity: 0; }
+}
+
+@keyframes move-pause {
+  0%   { top: -8px;  opacity: 0; }
+  8%   { opacity: 1; }
+  20%  { top: 20px; }
+  50%  { top: 20px; }
+  90%  { top: 70px; opacity: 1; }
+  100% { top: 70px; opacity: 0; }
+}
+
+@keyframes move-pulse {
+  0%   { top: -8px;  opacity: 0; }
+  8%   { opacity: 1; }
+  22%  { top: 18px; opacity: 1; }
+  30%  { top: 18px; opacity: 0.1; }
+  40%  { top: 18px; opacity: 1; }
+  58%  { top: 46px; opacity: 1; }
+  65%  { top: 46px; opacity: 0.1; }
+  75%  { top: 46px; opacity: 1; }
+  90%  { top: 70px; opacity: 1; }
+  100% { top: 70px; opacity: 0; }
+}
 
 </style>
 </head>
@@ -150,37 +164,37 @@ h1 {
 
   <div class="cell c1">
     <span class="cell-num">01</span>
-    <div class="rail"></div>
+    <div class="rail-wrap"><div class="dot"></div></div>
     <span class="cell-label">一定速度<br>linear</span>
   </div>
 
   <div class="cell c2">
     <span class="cell-num">02</span>
-    <div class="rail"></div>
+    <div class="rail-wrap"><div class="dot"></div></div>
     <span class="cell-label">ゆっくり→加速<br>ease-in</span>
   </div>
 
   <div class="cell c3">
     <span class="cell-num">03</span>
-    <div class="rail"></div>
+    <div class="rail-wrap"><div class="dot"></div></div>
     <span class="cell-label">加速→ゆっくり<br>ease-out</span>
   </div>
 
   <div class="cell c4">
     <span class="cell-num">04</span>
-    <div class="rail"></div>
+    <div class="rail-wrap"><div class="dot"></div></div>
     <span class="cell-label">バウンス<br>跳ねる</span>
   </div>
 
   <div class="cell c5">
     <span class="cell-num">05</span>
-    <div class="rail"></div>
+    <div class="rail-wrap"><div class="dot"></div></div>
     <span class="cell-label">ためてから落ちる<br>pause → drop</span>
   </div>
 
   <div class="cell c6">
     <span class="cell-num">06</span>
-    <div class="rail"></div>
+    <div class="rail-wrap"><div class="dot"></div></div>
     <span class="cell-label">点滅しながら落ちる<br>pulse</span>
   </div>
 
