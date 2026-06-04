@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スクロール誘導 — 玉の動き比較</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: #0d0d0d;
+  color: #fff;
+  padding: 64px 40px 100px;
+}
+
+h1 {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.cell {
+  aspect-ratio: 3 / 5;
+  background: linear-gradient(160deg, #141414 0%, #181825 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cell-num {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.18);
+}
+
+.cell-label {
+  position: absolute;
+  bottom: 12px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.22);
+  line-height: 1.5;
+  padding: 0 6px;
+}
+
+/* ===== 共通：ライン＋玉 ===== */
+.rail {
+  width: 1px;
+  height: 70px;
+  background: rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.rail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, transparent, #fff 50%, transparent);
+  animation: var(--anim, drop-linear) var(--dur, 1.8s) var(--ease, linear) infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ===== イージング別アニメーション ===== */
+
+/* 01: 一定速度（リニア） */
+@keyframes drop-linear {
+  0%   { top: -30%; }
+  100% { top: 110%; }
+}
+
+/* 02: ゆっくり→加速（ease-in） */
+@keyframes drop-ease-in {
+  0%   { top: -30%; }
+  100% { top: 110%; }
+}
+
+/* 03: 加速→ゆっくり（ease-out） */
+@keyframes drop-ease-out {
+  0%   { top: -30%; }
+  100% { top: 110%; }
+}
+
+/* 04: バウンス（跳ねる） */
+@keyframes drop-bounce {
+  0%        { top: -30%; }
+  60%       { top: 100%; }
+  72%       { top: 75%; }
+  82%       { top: 100%; }
+  90%       { top: 88%; }
+  100%      { top: 100%; }
+}
+
+/* 05: 途中で止まる（ためてから落ちる） */
+@keyframes drop-pause {
+  0%    { top: -30%; }
+  25%   { top: 20%; }
+  50%   { top: 20%; }
+  100%  { top: 110%; }
+}
+
+/* 06: 等間隔パルス（点滅しながら落ちる） */
+@keyframes drop-pulse {
+  0%         { top: -30%; opacity: 1; }
+  20%        { top: 20%; opacity: 0.2; }
+  35%        { top: 20%; opacity: 1; }
+  55%        { top: 60%; opacity: 0.2; }
+  70%        { top: 60%; opacity: 1; }
+  100%       { top: 110%; opacity: 0; }
+}
+
+/* ===== セルごとの設定 ===== */
+.c1 .rail { --anim: drop-linear;  --ease: linear;     --dur: 1.8s; }
+.c2 .rail { --anim: drop-ease-in; --ease: ease-in;    --dur: 1.8s; }
+.c3 .rail { --anim: drop-ease-out;--ease: ease-out;   --dur: 1.8s; }
+.c4 .rail { --anim: drop-bounce;  --ease: ease-out;   --dur: 2.2s; }
+.c5 .rail { --anim: drop-pause;   --ease: ease-in-out;--dur: 2.4s; }
+.c6 .rail { --anim: drop-pulse;   --ease: linear;     --dur: 2.2s; }
+
+</style>
+</head>
+<body>
+
+<h1>Scroll Indicator — 玉の動き 6パターン</h1>
+
+<div class="grid">
+
+  <div class="cell c1">
+    <span class="cell-num">01</span>
+    <div class="rail"></div>
+    <span class="cell-label">一定速度<br>linear</span>
+  </div>
+
+  <div class="cell c2">
+    <span class="cell-num">02</span>
+    <div class="rail"></div>
+    <span class="cell-label">ゆっくり→加速<br>ease-in</span>
+  </div>
+
+  <div class="cell c3">
+    <span class="cell-num">03</span>
+    <div class="rail"></div>
+    <span class="cell-label">加速→ゆっくり<br>ease-out</span>
+  </div>
+
+  <div class="cell c4">
+    <span class="cell-num">04</span>
+    <div class="rail"></div>
+    <span class="cell-label">バウンス<br>跳ねる</span>
+  </div>
+
+  <div class="cell c5">
+    <span class="cell-num">05</span>
+    <div class="rail"></div>
+    <span class="cell-label">ためてから落ちる<br>pause → drop</span>
+  </div>
+
+  <div class="cell c6">
+    <span class="cell-num">06</span>
+    <div class="rail"></div>
+    <span class="cell-label">点滅しながら落ちる<br>pulse</span>
+  </div>
+
+</div>
+
+</body>
+</html>
