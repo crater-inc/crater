@@ -537,10 +537,10 @@ const labels = {
 
 function show(n) {
   for (let i = 1; i <= 10; i++) {
-    document.getElementById('hint0' + (i < 10 ? '0' + i : i).slice(-2))?.style &&
-      (document.getElementById('hint' + String(i).padStart(2,'0')).style.display = 'none');
+    const el = document.getElementById('hint' + String(i).padStart(2, '0'));
+    if (el) el.style.display = 'none';
   }
-  document.getElementById('hint' + String(n).padStart(2,'0')).style.display = 'flex';
+  document.getElementById('hint' + String(n).padStart(2, '0')).style.display = 'flex';
   document.getElementById('caseLabel').textContent = labels[n];
   document.querySelectorAll('.sw-btn').forEach((b, i) => b.classList.toggle('active', i + 1 === n));
 }
