@@ -773,9 +773,8 @@ function slide15Section07() {
 
 // P16-20: パッケージ画像スライド（全面）
 function slidePackageImg(num) {
-  return `<section class="slide" data-section="pkg${num}" style="background:#000;">
-  <img src="assets/package_0${num}.jpg" alt="PACKAGE 0${num}" style="position:absolute;top:0;left:0;width:1920px;height:1080px;object-fit:cover;">
-  <p class="slide-copy" style="color:#fff;z-index:2;position:absolute;">©CRATER Inc.</p>
+  return `<section class="slide" data-section="pkg${num}" style="background:#000;padding:0;">
+  <img src="assets/package_0${num}.jpg" alt="PACKAGE 0${num}" style="position:absolute;top:0;left:0;width:1920px;height:1080px;object-fit:cover;display:block;">
 </section>`;
 }
 function slide16Pkg1() { return slidePackageImg(1); }
@@ -814,7 +813,6 @@ window.slideFactories = [
   slide13Section06, slide14Lineup,
   slide15Section07,
   slide16Pkg1, slide17Pkg2, slide18Pkg3, slide19Pkg4, slide20Pkg5,
-  slide22Closing,
 ];
 window.agendaItems = [
   { id: 'cover',       label: '表紙' },
@@ -837,7 +835,6 @@ window.agendaItems = [
   { id: 'pkg3',        label: 'パッケージ 03' },
   { id: 'pkg4',        label: 'パッケージ 04' },
   { id: 'pkg5',        label: 'パッケージ 05' },
-  { id: 'closing',     label: 'クロージング' },
 ];
 </script>
 
