@@ -27,8 +27,8 @@
   .kv-bottle {
     position: absolute;
     left: 58.5%;
-    top: 50%;
-    height: 82%;
+    top: calc(50% + 35px);
+    height: calc(82% * 0.85);
     width: auto;
     animation: float 3.5s ease-in-out infinite;
   }
@@ -43,7 +43,7 @@
     position: absolute;
     left: 15.5%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(calc(-50% + 340px));
     width: 32%;
   }
   .kv-text img {
