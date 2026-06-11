@@ -828,67 +828,194 @@
   </footer>
 
   <script>
-    /* ── パーティクルネットワーク ── */
+    /* ── 大気圏突破ビジュアル ── */
     (function() {
       const canvas = document.getElementById('particle-canvas');
       const ctx = canvas.getContext('2d');
-      let W, H, dots, animId;
-      const NUM = 60;
-      const MAX_DIST = 160;
-      const SPEED = 0.35;
+      let W, H, stars, animId, startTime;
+
+      /* ロケット */
+      const rocket = {
+        x: 0, y: 0,
+        vx: 0, vy: 0,
+        trail: [],
+        opacity: 0,
+        active: false,
+        phase: 0, // 0=待機 1=上昇中
+      };
+
+      function resetRocket() {
+        rocket.x = W * 0.62;
+        rocket.y = H + 80;
+        rocket.vx = -0.45;
+        rocket.vy = -2.8;
+        rocket.trail = [];
+        rocket.opacity = 0;
+        rocket.active = true;
+      }
 
       function resize() {
         W = canvas.width  = window.innerWidth;
         H = canvas.height = window.innerHeight;
       }
 
-      function randomDot() {
-        return {
+      function initStars() {
+        stars = Array.from({ length: 90 }, () => ({
           x: Math.random() * W,
           y: Math.random() * H,
-          vx: (Math.random() - 0.5) * SPEED,
-          vy: (Math.random() - 0.5) * SPEED,
-          r: Math.random() * 1.2 + 0.4,
-        };
+          vy: -(Math.random() * 0.45 + 0.1),
+          vx: (Math.random() - 0.5) * 0.05,
+          r: Math.random() * 0.9 + 0.2,
+          alpha: Math.random() * 0.5 + 0.1,
+        }));
       }
 
       function init() {
         resize();
-        dots = Array.from({ length: NUM }, randomDot);
+        initStars();
+        startTime = Date.now();
+        /* 1.5秒後にロケット打ち上げ */
+        setTimeout(resetRocket, 1500);
+      }
+
+      /* 雲の層を描く */
+      function drawClouds() {
+        const t = (Date.now() - startTime) / 1000;
+        const clouds = [
+          { x: W * 0.15, y: H * 0.70, rx: 320, ry: 80, a: 0.055 },
+          { x: W * 0.55, y: H * 0.74, rx: 280, ry: 70, a: 0.045 },
+          { x: W * 0.82, y: H * 0.69, rx: 240, ry: 65, a: 0.04  },
+          { x: W * 0.32, y: H * 0.32, rx: 260, ry: 60, a: 0.028 },
+          { x: W * 0.70, y: H * 0.28, rx: 200, ry: 55, a: 0.022 },
+          /* ゆっくり横に動く薄い雲 */
+          { x: W * 0.45 + Math.sin(t * 0.08) * 30, y: H * 0.50, rx: 380, ry: 90, a: 0.018 },
+        ];
+
+        clouds.forEach(c => {
+          ctx.save();
+          ctx.scale(1, c.ry / c.rx);
+          const g = ctx.createRadialGradient(c.x, c.y * (c.rx / c.ry), 0, c.x, c.y * (c.rx / c.ry), c.rx);
+          g.addColorStop(0, `rgba(255,255,255,${c.a})`);
+          g.addColorStop(0.4, `rgba(255,255,255,${c.a * 0.5})`);
+          g.addColorStop(1, 'rgba(255,255,255,0)');
+          ctx.beginPath();
+          ctx.ellipse(c.x, c.y * (c.rx / c.ry), c.rx, c.rx, 0, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+          ctx.restore();
+        });
+      }
+
+      /* 大気圏グロー（上部の青白いグラデ） */
+      function drawAtmosphere() {
+        const g = ctx.createLinearGradient(0, 0, 0, H * 0.4);
+        g.addColorStop(0, 'rgba(180,210,255,0.04)');
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H * 0.4);
+      }
+
+      function drawRocket() {
+        if (!rocket.active) return;
+
+        rocket.x += rocket.vx;
+        rocket.y += rocket.vy;
+        if (rocket.opacity < 1) rocket.opacity += 0.025;
+
+        rocket.trail.unshift({ x: rocket.x, y: rocket.y, a: rocket.opacity });
+        if (rocket.trail.length > 80) rocket.trail.pop();
+
+        /* 軌跡 */
+        rocket.trail.forEach((p, i) => {
+          const prog = 1 - i / rocket.trail.length;
+          const size = prog * 5;
+          const alpha = prog * 0.18 * rocket.opacity;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y + 14, size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.fill();
+        });
+
+        /* 炎エフェクト */
+        if (rocket.trail.length > 3) {
+          const base = rocket.trail[2] || { x: rocket.x, y: rocket.y };
+          const fg = ctx.createRadialGradient(base.x, base.y + 18, 0, base.x, base.y + 18, 18);
+          fg.addColorStop(0, `rgba(255,255,255,${0.25 * rocket.opacity})`);
+          fg.addColorStop(0.5, `rgba(255,180,80,${0.12 * rocket.opacity})`);
+          fg.addColorStop(1, 'rgba(255,100,40,0)');
+          ctx.beginPath();
+          ctx.arc(base.x, base.y + 18, 18, 0, Math.PI * 2);
+          ctx.fillStyle = fg;
+          ctx.fill();
+        }
+
+        /* ロケット本体 */
+        ctx.save();
+        ctx.translate(rocket.x, rocket.y);
+        ctx.globalAlpha = rocket.opacity;
+
+        /* 胴体 */
+        ctx.beginPath();
+        ctx.moveTo(0, -26);
+        ctx.quadraticCurveTo(7, -14, 7, 0);
+        ctx.lineTo(7, 12);
+        ctx.lineTo(-7, 12);
+        ctx.lineTo(-7, 0);
+        ctx.quadraticCurveTo(-7, -14, 0, -26);
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fill();
+
+        /* 翼 左右 */
+        ctx.beginPath();
+        ctx.moveTo(7, 3);
+        ctx.lineTo(16, 18);
+        ctx.lineTo(7, 13);
+        ctx.closePath();
+        ctx.moveTo(-7, 3);
+        ctx.lineTo(-16, 18);
+        ctx.lineTo(-7, 13);
+        ctx.closePath();
+        ctx.fillStyle = 'rgba(255,255,255,0.55)';
+        ctx.fill();
+
+        /* 窓 */
+        ctx.beginPath();
+        ctx.arc(0, -8, 4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,0,0,0.6)';
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(-1, -9, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.fill();
+
+        ctx.restore();
+
+        /* 画面外に出たらリセット（ループ） */
+        if (rocket.y < -120) {
+          setTimeout(resetRocket, 4000);
+          rocket.active = false;
+        }
+      }
+
+      function drawStars() {
+        stars.forEach(s => {
+          s.y += s.vy;
+          s.x += s.vx;
+          if (s.y < -4) { s.y = H + 4; s.x = Math.random() * W; }
+
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+          ctx.fill();
+        });
       }
 
       function draw() {
         ctx.clearRect(0, 0, W, H);
-
-        dots.forEach(d => {
-          d.x += d.vx;
-          d.y += d.vy;
-          if (d.x < 0 || d.x > W) d.vx *= -1;
-          if (d.y < 0 || d.y > H) d.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255,255,255,0.35)';
-          ctx.fill();
-        });
-
-        for (let i = 0; i < dots.length; i++) {
-          for (let j = i + 1; j < dots.length; j++) {
-            const dx = dots[i].x - dots[j].x;
-            const dy = dots[i].y - dots[j].y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-            if (dist < MAX_DIST) {
-              const alpha = (1 - dist / MAX_DIST) * 0.12;
-              ctx.beginPath();
-              ctx.moveTo(dots[i].x, dots[i].y);
-              ctx.lineTo(dots[j].x, dots[j].y);
-              ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
-          }
-        }
-
+        drawAtmosphere();
+        drawClouds();
+        drawStars();
+        drawRocket();
         animId = requestAnimationFrame(draw);
       }
 
