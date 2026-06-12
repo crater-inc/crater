@@ -35,10 +35,15 @@
   function ensureRendered(i) {
     if (rendered[i] || i < 0 || i >= total) return;
     var frag = document.createRange().createContextualFragment(slideFactories[i]());
+    var el = frag.querySelector('.slide');
+    if (el) el.setAttribute('data-index', i);
     stage.appendChild(frag);
     rendered[i] = true;
-    // 追加後に全スライドへスケールを再適用（インデックスズレを防ぐ）
     scaleSlides();
+  }
+
+  function getSlide(i) {
+    return stage.querySelector('.slide[data-index="' + i + '"]');
   }
 
   // ===== スライド移動 =====
@@ -46,9 +51,9 @@
     if (i < 0 || i >= total) return;
     [i - 1, i, i + 1].forEach(function (j) { ensureRendered(j); });
 
-    var slides = stage.querySelectorAll('.slide');
-    slides.forEach(function (s) { s.classList.remove('active'); });
-    if (slides[i]) slides[i].classList.add('active');
+    stage.querySelectorAll('.slide').forEach(function (s) { s.classList.remove('active'); });
+    var target = getSlide(i);
+    if (target) target.classList.add('active');
 
     current = i;
 
@@ -71,8 +76,7 @@
     });
 
     // トークスクリプト
-    var slide = slides[i];
-    var notes = slide ? slide.getAttribute('data-notes') : '';
+    var notes = target ? target.getAttribute('data-notes') : '';
     scriptPanel.textContent = notes || '';
     scriptPanel.classList.remove('visible');
   }
@@ -84,7 +88,7 @@
     var p = parseInt(hash, 10) - 1;
     if (p >= 0 && p < total) initPage = p;
   }
-  scaleSlides(); // スケール値を確定してから
+  scaleSlides();
   [0, 1, 2].forEach(function (i) { ensureRendered(i); });
   goTo(initPage, true);
 

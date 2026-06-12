@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>玉手箱 — Brand Concept Proposal</title>
+<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="preload" as="image" href="../../brief/kv2.jpg">
+</head>
+<body>
+
+<!-- ロック画面 -->
+<div id="lockScreen" style="position:fixed;inset:0;background:#0D0D0D;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:20px;">
+  <div style="font-family:'EB Garamond',serif;font-size:14px;letter-spacing:0.5em;color:rgba(200,168,75,0.45);text-transform:uppercase;margin-bottom:8px;">The Oju · Tamatebako</div>
+  <input type="password" id="pwInput" placeholder="PASSWORD" onkeydown="if(event.key==='Enter')checkPw()" autofocus
+    style="background:#1a1a1a;border:1px solid #333;color:#fff;padding:14px 24px;font-size:16px;letter-spacing:0.3em;text-align:center;width:260px;outline:none;">
+  <button onclick="checkPw()"
+    style="background:#C8A84B;color:#000;border:none;padding:12px 48px;font-family:'EB Garamond',serif;font-size:13px;letter-spacing:0.4em;text-transform:uppercase;cursor:pointer;">ENTER</button>
+  <div id="pwErr" style="font-size:12px;color:#c66;letter-spacing:0.2em;height:16px;"></div>
+</div>
+
+<!-- ハンバーガー -->
+<button class="hamburger light" id="hamburger" aria-label="メニュー">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- サイドバー -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-title">Contents</div>
+  <div id="sidebar-list"></div>
+</nav>
+<div class="backdrop" id="backdrop"></div>
+
+<!-- スライドステージ -->
+<div class="slide-stage" id="slide-stage"></div>
+
+<!-- ナビ -->
+<div class="nav">
+  <button class="nav-btn light" id="nav-prev">← PREV</button>
+  <span class="nav-counter light" id="nav-counter">1 / 10</span>
+  <button class="nav-btn light" id="nav-next">NEXT →</button>
+</div>
+
+<script src="js/slides.js?v=3"></script>
+<script src="js/app.js?v=3"></script>
+<script>
+function checkPw() {
+  if (document.getElementById('pwInput').value === 'view') {
+    document.getElementById('lockScreen').style.display = 'none';
+    sessionStorage.setItem('tamatebako_auth', '1');
+  } else {
+    document.getElementById('pwErr').textContent = 'INCORRECT';
+    setTimeout(function() { document.getElementById('pwErr').textContent = ''; }, 2000);
+    document.getElementById('pwInput').value = '';
+  }
+}
+if (sessionStorage.getItem('tamatebako_auth') === '1') {
+  document.getElementById('lockScreen').style.display = 'none';
+}
+</script>
+</body>
+</html>

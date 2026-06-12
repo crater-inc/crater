@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297" font-family="'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif">
+
+  <rect width="210" height="297" fill="#fff"/>
+
+  <rect x="15" y="15" width="180" height="1.2" fill="#222"/>
+  <text x="105" y="25" text-anchor="middle" font-size="5" font-weight="bold" fill="#111" letter-spacing="1">メールアカウント・サーバー設定一覧</text>
+  <text x="105" y="32" text-anchor="middle" font-size="3" fill="#888">【社外秘・取り扱い注意】</text>
+  <line x1="15" y1="37" x2="195" y2="37" stroke="#ccc" stroke-width="0.3"/>
+
+  <!-- メールアカウント表 タイトル -->
+  <text x="15" y="47" font-size="3.8" font-weight="bold" fill="#111">■ メールアカウント一覧</text>
+
+  <!-- テーブルヘッダー -->
+  <rect x="15" y="51" width="180" height="8" fill="#222"/>
+  <text x="70" y="57" text-anchor="middle" font-size="3" fill="#fff" font-weight="bold">メールアドレス</text>
+  <text x="162" y="57" text-anchor="middle" font-size="3" fill="#fff" font-weight="bold">パスワード</text>
+  <line x1="115" y1="51" x2="115" y2="59" stroke="#555" stroke-width="0.3"/>
+
+  <!-- 行データ -->
+  <!-- 偶数行背景 -->
+  <rect x="15" y="59" width="180" height="7.5" fill="#fff"/>
+  <rect x="15" y="66.5" width="180" height="7.5" fill="#f7f7f7"/>
+  <rect x="15" y="74" width="180" height="7.5" fill="#fff"/>
+  <rect x="15" y="81.5" width="180" height="7.5" fill="#f7f7f7"/>
+  <rect x="15" y="89" width="180" height="7.5" fill="#fff"/>
+  <rect x="15" y="96.5" width="180" height="7.5" fill="#f7f7f7"/>
+  <rect x="15" y="104" width="180" height="7.5" fill="#fff"/>
+  <rect x="15" y="111.5" width="180" height="7.5" fill="#f7f7f7"/>
+  <rect x="15" y="119" width="180" height="7.5" fill="#fff"/>
+  <rect x="15" y="126.5" width="180" height="7.5" fill="#f7f7f7"/>
+  <rect x="15" y="134" width="180" height="7.5" fill="#fff"/>
+  <rect x="15" y="141.5" width="180" height="7.5" fill="#f7f7f7"/>
+
+  <!-- 縦線 -->
+  <line x1="115" y1="59" x2="115" y2="149" stroke="#ddd" stroke-width="0.3"/>
+
+  <!-- 行1 -->
+  <text x="18" y="64.5" font-size="3" fill="#333">saigika@oyama-jinja.or.jp</text>
+  <text x="118" y="64.5" font-size="3" fill="#333">vgtA53mq+</text>
+  <!-- 行2 -->
+  <text x="18" y="72" font-size="3" fill="#333">kito@oyama-jinja.or.jp</text>
+  <text x="118" y="72" font-size="3" fill="#333">Oym1873k+</text>
+  <!-- 行3 -->
+  <text x="18" y="79.5" font-size="3" fill="#333">keiri@oyama-jinja.or.jp</text>
+  <text x="118" y="79.5" font-size="3" fill="#333">s8h32410+</text>
+  <!-- 行4 -->
+  <text x="18" y="87" font-size="3" fill="#333">info61116@oyama-jinja.or.jp</text>
+  <text x="118" y="87" font-size="3" fill="#333">67jdyd7J5QSDE5+</text>
+  <!-- 行5 -->
+  <text x="18" y="94.5" font-size="3" fill="#333">miyatani-m@oyama-jinja.or.jp</text>
+  <text x="118" y="94.5" font-size="3" fill="#333">Oym1873mm+</text>
+  <!-- 行6 -->
+  <text x="18" y="102" font-size="3" fill="#333">hase-n@oyama-jinja.or.jp</text>
+  <text x="118" y="102" font-size="3" fill="#333">Oym1873hn+</text>
+  <!-- 行7 -->
+  <text x="18" y="109.5" font-size="3" fill="#333">otaki-n@oyama-jinja.or.jp</text>
+  <text x="118" y="109.5" font-size="3" fill="#333">Oym1873on+</text>
+  <!-- 行8 -->
+  <text x="18" y="117" font-size="3" fill="#333">hasegawa-k@oyama-jinja.or.jp</text>
+  <text x="118" y="117" font-size="3" fill="#333">Oym1873hk+</text>
+  <!-- 行9 -->
+  <text x="18" y="124.5" font-size="3" fill="#333">saito-m@oyama-jinja.or.jp</text>
+  <text x="118" y="124.5" font-size="3" fill="#333">Oym1873sm+</text>
+  <!-- 行10 -->
+  <text x="18" y="132" font-size="3" fill="#333">katsuragi-s@oyama-jinja.or.jp</text>
+  <text x="118" y="132" font-size="3" fill="#333">Oym1873ks+</text>
+  <!-- 行11 -->
+  <text x="18" y="139.5" font-size="3" fill="#333">atsumi-k@oyama-jinja.or.jp</text>
+  <text x="118" y="139.5" font-size="3" fill="#333">Oym1873ak+</text>
+  <!-- 行12 -->
+  <text x="18" y="147" font-size="3" fill="#333">kato-r@oyama-jinja.or.jp</text>
+  <text x="118" y="147" font-size="3" fill="#333">Oym1873kr+</text>
+
+  <!-- テーブル外枠 -->
+  <rect x="15" y="51" width="180" height="98" fill="none" stroke="#ccc" stroke-width="0.4"/>
+
+  <!-- サーバー設定 -->
+  <text x="15" y="165" font-size="3.8" font-weight="bold" fill="#111">■ メールサーバー設定</text>
+
+  <!-- 2カラムボックス -->
+  <!-- 受信用 -->
+  <rect x="15" y="170" width="85" height="46" rx="2" fill="#f7f7f7" stroke="#ddd" stroke-width="0.4"/>
+  <text x="57" y="178" text-anchor="middle" font-size="3.2" font-weight="bold" fill="#111">受信用（IMAP）</text>
+  <line x1="20" y1="181" x2="95" y2="181" stroke="#ddd" stroke-width="0.3"/>
+  <text x="20" y="189" font-size="3" fill="#555">サーバー</text>
+  <text x="20" y="196" font-size="3" fill="#222">mail1020.conoha.ne.jp</text>
+  <text x="20" y="205" font-size="3" fill="#555">ポート（SSL）</text>
+  <text x="20" y="212" font-size="3" fill="#222">993</text>
+  <text x="55" y="205" font-size="3" fill="#555">ポート（SSLなし）</text>
+  <text x="55" y="212" font-size="3" fill="#222">143</text>
+
+  <!-- 送信用 -->
+  <rect x="110" y="170" width="85" height="46" rx="2" fill="#f7f7f7" stroke="#ddd" stroke-width="0.4"/>
+  <text x="152" y="178" text-anchor="middle" font-size="3.2" font-weight="bold" fill="#111">送信用（SMTP）</text>
+  <line x1="115" y1="181" x2="190" y2="181" stroke="#ddd" stroke-width="0.3"/>
+  <text x="115" y="189" font-size="3" fill="#555">サーバー</text>
+  <text x="115" y="196" font-size="3" fill="#222">mail1020.conoha.ne.jp</text>
+  <text x="115" y="205" font-size="3" fill="#555">ポート（SSL）</text>
+  <text x="115" y="212" font-size="3" fill="#222">465</text>
+  <text x="150" y="205" font-size="3" fill="#555">ポート（SSLなし）</text>
+  <text x="150" y="212" font-size="3" fill="#222">587</text>
+
+  <!-- 注意書き -->
+  <rect x="15" y="222" width="180" height="14" rx="2" fill="#fff8e1" stroke="#f0c040" stroke-width="0.4"/>
+  <text x="105" y="228" text-anchor="middle" font-size="3" fill="#a07000">⚠ この資料は社外秘です。第三者への開示・共有はお控えください。</text>
+  <text x="105" y="234" text-anchor="middle" font-size="3" fill="#a07000">紛失・流出した場合は直ちに株式会社クレーターまでご連絡ください。</text>
+
+  <!-- ページ番号 -->
+  <rect x="15" y="282" width="180" height="0.5" fill="#ddd"/>
+  <text x="105" y="288" text-anchor="middle" font-size="2.8" fill="#aaa">3 / 3</text>
+  <rect x="15" y="281" width="180" height="1" fill="#222"/>
+
+</svg>

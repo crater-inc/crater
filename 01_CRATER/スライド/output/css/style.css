@@ -5,21 +5,23 @@
  */
 
 :root {
-  --c-base:    #C8C8C8;
+  --c-base:    #CECFCF;
   --c-black:   #111111;
   --c-text:    #111111;
   --c-sub:     #555555;
   --c-white:   #FFFFFF;
   --c-border:  rgba(0,0,0,0.15);
 
-  --font-en: 'urw-din', sans-serif;
-  --font-ja: 'Noto Sans JP', sans-serif;
+  --font-en:   'urw-din', sans-serif;
+  --font-ja:   'MFW-PA1GothicStdN-Regular', sans-serif;
+  --font-ja-m: 'MFW-PA1GothicStdN-Medium', sans-serif;
+  --font-ja-b: 'MFW-PA1GothicStdN-Bold', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #FFFFFF;
+  background: #E0E0E0;
   font-family: var(--font-ja);
   color: var(--c-text);
   overflow: hidden;
@@ -36,7 +38,7 @@ body {
 .slide-stage {
   width: 100vw;
   height: 100vh;
-  background: #FFFFFF;
+  background: #E0E0E0;
   overflow: hidden;
   position: relative;
 }
@@ -74,18 +76,18 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   display: inline-block;
   background: var(--c-black);
   color: var(--c-white);
-  font-family: var(--font-ja);
-  font-size: 0.9cqw;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 0.3cqw 0.8cqw;
+  font-family: var(--font-en);
+  font-size: 0.85cqw;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  padding: 0.55cqw 0.85cqw;
   border-radius: 0;
 }
 
 /* フッターコピーライト（各スライドで個別配置） */
 .copy {
   font-family: var(--font-en);
-  font-size: 0.75cqw;
+  font-size: 1.08cqw;
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--c-sub);
@@ -167,7 +169,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   display: flex; align-items: center; gap: 14px;
   width: 100%; padding: 11px 24px;
   background: none; border: none; cursor: pointer;
-  font-family: var(--font-ja); font-size: 12px; font-weight: 700;
+  font-family: var(--font-ja-m); font-size: 12px;
   letter-spacing: 0.06em; color: rgba(255,255,255,0.4);
   text-align: left; transition: all 0.15s;
 }
@@ -198,7 +200,6 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   cursor: pointer;
   font-family: var(--font-ja);
   font-size: 11px;
-  font-weight: 400;
   letter-spacing: 0.08em;
   color: rgba(0,0,0,0.25);
   white-space: nowrap;
@@ -219,7 +220,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 .pagination-item:hover { color: rgba(0,0,0,0.5); }
 .pagination-item.active {
   color: var(--c-text);
-  font-weight: 700;
+  font-family: var(--font-ja-m);
 }
 .pagination-num {
   font-family: var(--font-en);
@@ -266,16 +267,14 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 .s01-client {
   font-family: var(--font-ja);
   font-size: 1.45cqw;
-  font-weight: 400;
   color: var(--c-text);
   letter-spacing: 0.04em;
   line-height: 1;
 }
 
 .s01-title {
-  font-family: var(--font-ja);
+  font-family: var(--font-ja-m);
   font-size: 5.8cqw;
-  font-weight: 900;
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: var(--c-text);
@@ -303,7 +302,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 
 .s01-copy {
   font-family: var(--font-en);
-  font-size: 0.75cqw;
+  font-size: 1.08cqw;
   font-weight: 400;
   letter-spacing: 0.08em;
   color: var(--c-sub);
@@ -336,9 +335,8 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 }
 
 .s02-statement {
-  font-family: var(--font-ja);
+  font-family: var(--font-ja-m);
   font-size: 4.8cqw;
-  font-weight: 900;
   line-height: 1.45;
   color: var(--c-text);
   letter-spacing: -0.01em;
@@ -348,7 +346,6 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 .s02-body {
   font-family: var(--font-ja);
   font-size: 1.5cqw;
-  font-weight: 400;
   line-height: 1.9;
   color: var(--c-sub);
   letter-spacing: 0.02em;
@@ -359,7 +356,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   right: 5cqw;
   bottom: 5cqw;
   font-family: var(--font-en);
-  font-size: 0.75cqw;
+  font-size: 1.08cqw;
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--c-sub);
@@ -391,9 +388,8 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 }
 
 .s04svc-statement {
-  font-family: var(--font-ja);
+  font-family: var(--font-ja-m);
   font-size: 3.2cqw;
-  font-weight: 900;
   line-height: 1.45;
   color: var(--c-text);
   letter-spacing: -0.01em;
@@ -408,10 +404,10 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 
 .s04svc-item {
   display: grid;
-  grid-template-columns: 4cqw 14cqw 1fr;
+  grid-template-columns: 3.5cqw 18cqw 1fr;
   align-items: center;
   gap: 1.5cqw;
-  padding: 1.0cqw 0;
+  padding: 1.4cqw 0;
   border-bottom: 0.08cqw solid var(--c-border);
 }
 .s04svc-item:last-child {
@@ -420,24 +416,22 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 
 .s04svc-num {
   font-family: var(--font-en);
-  font-size: 0.85cqw;
+  font-size: 1.1cqw;
   font-weight: 400;
   color: var(--c-sub);
   letter-spacing: 0.05em;
 }
 
 .s04svc-name {
-  font-family: var(--font-ja);
-  font-size: 1.2cqw;
-  font-weight: 700;
+  font-family: var(--font-ja-m);
+  font-size: 1.6cqw;
   color: var(--c-text);
   letter-spacing: 0.02em;
 }
 
 .s04svc-desc {
   font-family: var(--font-ja);
-  font-size: 1.05cqw;
-  font-weight: 400;
+  font-size: 1.2cqw;
   color: var(--c-sub);
   letter-spacing: 0.02em;
 }
@@ -447,7 +441,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   right: 5cqw;
   bottom: 5cqw;
   font-family: var(--font-en);
-  font-size: 0.75cqw;
+  font-size: 1.08cqw;
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--c-sub);
@@ -508,16 +502,14 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 }
 
 .s03-unit {
-  font-family: var(--font-ja);
+  font-family: var(--font-ja-m);
   font-size: 2.5cqw;
-  font-weight: 900;
   color: var(--c-sub);
 }
 
 .s03-desc {
   font-family: var(--font-ja);
-  font-size: 1.35cqw;
-  font-weight: 400;
+  font-size: 1.5cqw;
   line-height: 1.8;
   color: var(--c-sub);
   letter-spacing: 0.02em;
@@ -528,7 +520,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   right: 5cqw;
   bottom: 5cqw;
   font-family: var(--font-en);
-  font-size: 0.75cqw;
+  font-size: 1.08cqw;
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--c-sub);
@@ -583,8 +575,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 .s04-table th {
   text-align: left;
   font-family: var(--font-ja);
-  font-size: 1.0cqw;
-  font-weight: 400;
+  font-size: 1.2cqw;
   color: var(--c-sub);
   padding: 0.8cqw 0;
   width: 12cqw;
@@ -594,8 +585,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 
 .s04-table td {
   font-family: var(--font-ja);
-  font-size: 1.2cqw;
-  font-weight: 400;
+  font-size: 1.4cqw;
   color: var(--c-text);
   padding: 0.8cqw 0 0.8cqw 2cqw;
   line-height: 1.6;
@@ -607,7 +597,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   right: 5cqw;
   bottom: 5cqw;
   font-family: var(--font-en);
-  font-size: 0.75cqw;
+  font-size: 1.08cqw;
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--c-sub);
@@ -661,8 +651,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 
 .s05-label {
   font-family: var(--font-ja);
-  font-size: 0.9cqw;
-  font-weight: 400;
+  font-size: 1.1cqw;
   color: var(--c-sub);
   letter-spacing: 0.2em;
   writing-mode: vertical-rl;
@@ -708,7 +697,6 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 .s05-desc {
   font-family: var(--font-ja);
   font-size: 1.3cqw;
-  font-weight: 400;
   line-height: 1.9;
   color: var(--c-text);
   letter-spacing: 0.02em;
@@ -716,8 +704,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
 
 .s05-source {
   font-family: var(--font-ja);
-  font-size: 0.8cqw;
-  font-weight: 400;
+  font-size: 1.0cqw;
   line-height: 1.6;
   color: var(--c-sub);
   letter-spacing: 0.02em;
@@ -728,7 +715,7 @@ p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; line-break
   right: 5cqw;
   bottom: 5cqw;
   font-family: var(--font-en);
-  font-size: 0.75cqw;
+  font-size: 1.08cqw;
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--c-sub);

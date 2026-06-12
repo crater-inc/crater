@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webサイト保守・運用サポート契約書 — 尾山神社</title>
+<link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
+<style>
+  :root {
+    --font-en: 'urw-din', sans-serif;
+    --font-ja: 'MFW-PA1GothicStdN-Regular', 'Hiragino Kaku Gothic ProN', sans-serif;
+    --font-ja-m: 'MFW-PA1GothicStdN-Medium', 'Hiragino Kaku Gothic ProN', sans-serif;
+    --font-ja-b: 'MFW-PA1GothicStdN-Bold', 'Hiragino Kaku Gothic ProN', sans-serif;
+    --c-black: #111;
+    --c-body: #333;
+    --c-sub: #666;
+    --c-light: #999;
+    --c-border: #ddd;
+    --c-bg: #f7f7f7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-ja);
+    background: #e8e8e8;
+    color: var(--c-body);
+  }
+
+  /* ページ */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: #fff;
+    margin: 0 auto 12mm;
+    padding: 16mm 16mm 14mm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ヘッダー */
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 5mm;
+    border-bottom: 0.6mm solid var(--c-black);
+    margin-bottom: 6mm;
+  }
+
+  .page-header-title {
+    font-family: var(--font-ja-b);
+    font-size: 5.5pt;
+    color: var(--c-black);
+    letter-spacing: 0.05em;
+  }
+
+  .logo svg {
+    width: 28mm;
+    height: auto;
+    display: block;
+  }
+
+  /* タイトル（P1のみ） */
+  .doc-title {
+    font-family: var(--font-ja-b);
+    font-size: 13pt;
+    color: var(--c-black);
+    letter-spacing: 0.12em;
+    text-align: center;
+    margin-bottom: 7mm;
+  }
+
+  /* 甲乙 */
+  .parties {
+    font-size: 8.5pt;
+    line-height: 1.9;
+    margin-bottom: 6mm;
+    padding-bottom: 5mm;
+    border-bottom: 0.3mm solid var(--c-border);
+  }
+
+  .parties .label {
+    font-family: var(--font-ja-m);
+    display: inline-block;
+    width: 22mm;
+  }
+
+  .parties .sub {
+    font-size: 7.5pt;
+    color: var(--c-sub);
+    padding-left: 22mm;
+    display: block;
+  }
+
+  /* 条文 */
+  .clause {
+    margin-bottom: 5.5mm;
+    padding-bottom: 5.5mm;
+    border-bottom: 0.2mm solid #eee;
+  }
+  .clause:last-of-type { border-bottom: none; }
+
+  .clause-title {
+    font-family: var(--font-ja-m);
+    font-size: 9pt;
+    color: var(--c-black);
+    margin-bottom: 2.5mm;
+  }
+
+  .clause-body {
+    font-size: 8pt;
+    line-height: 1.85;
+    color: var(--c-body);
+  }
+
+  .clause-body ol {
+    padding-left: 4mm;
+    list-style: none;
+  }
+
+  .clause-body ol li {
+    display: flex;
+    gap: 2mm;
+    margin-bottom: 1mm;
+  }
+
+  .clause-body ol li .num {
+    flex-shrink: 0;
+    font-family: var(--font-en);
+    color: var(--c-sub);
+  }
+
+  /* 振込先ボックス */
+  .bank-box {
+    background: var(--c-bg);
+    border: 0.3mm solid var(--c-border);
+    border-radius: 1.5mm;
+    padding: 3mm 4mm;
+    margin-top: 2.5mm;
+    font-size: 7.5pt;
+    line-height: 1.9;
+  }
+
+  .bank-box .bank-label {
+    font-family: var(--font-en);
+    font-size: 6.5pt;
+    color: var(--c-light);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-bottom: 1mm;
+  }
+
+  .highlight {
+    background: #fff3cd;
+    padding: 0 1mm;
+    border-radius: 0.5mm;
+  }
+
+  /* ページフッター */
+  .page-footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 16mm;
+    right: 16mm;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 0.2mm solid #ddd;
+    padding-top: 2.5mm;
+  }
+
+  .page-footer .footer-note {
+    font-size: 6.5pt;
+    color: var(--c-light);
+    font-family: var(--font-en);
+  }
+
+  .page-num {
+    font-family: var(--font-en);
+    font-size: 6.5pt;
+    color: var(--c-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* 署名欄 */
+  .sign-section {
+    margin-top: 7mm;
+    padding-top: 5mm;
+    border-top: 0.3mm solid var(--c-border);
+  }
+
+  .sign-intro {
+    font-size: 7.5pt;
+    color: var(--c-sub);
+    text-align: center;
+    margin-bottom: 6mm;
+  }
+
+  .sign-date {
+    font-size: 8pt;
+    margin-bottom: 7mm;
+    color: var(--c-body);
+  }
+
+  .sign-row {
+    display: flex;
+    gap: 10mm;
+  }
+
+  .sign-box {
+    flex: 1;
+  }
+
+  .sign-box .sign-label {
+    font-family: var(--font-ja-m);
+    font-size: 8pt;
+    color: var(--c-black);
+    margin-bottom: 2mm;
+  }
+
+  .sign-line {
+    border-bottom: 0.3mm solid #999;
+    height: 12mm;
+    position: relative;
+  }
+
+  .sign-line::after {
+    content: '署名・捺印';
+    position: absolute;
+    bottom: 2mm;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 6.5pt;
+    color: #ccc;
+    white-space: nowrap;
+  }
+
+  /* P3 テーブル */
+  .secret-header {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    margin-bottom: 5mm;
+    padding-bottom: 4mm;
+    border-bottom: 0.3mm solid var(--c-border);
+  }
+
+  .secret-badge {
+    font-family: var(--font-en);
+    font-size: 6pt;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: #c00;
+    padding: 0.8mm 2mm;
+    border-radius: 1mm;
+  }
+
+  .secret-title {
+    font-family: var(--font-ja-m);
+    font-size: 10pt;
+    color: var(--c-black);
+  }
+
+  .section-label {
+    font-family: var(--font-ja-m);
+    font-size: 8pt;
+    color: var(--c-black);
+    margin: 4mm 0 2mm;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.5pt;
+  }
+
+  thead tr {
+    background: var(--c-black);
+    color: #fff;
+  }
+
+  thead th {
+    font-family: var(--font-ja-m);
+    font-weight: normal;
+    padding: 2.5mm 3mm;
+    text-align: left;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr:nth-child(even) { background: var(--c-bg); }
+
+  tbody td {
+    padding: 2mm 3mm;
+    font-family: var(--font-en);
+    color: var(--c-body);
+    border-bottom: 0.2mm solid #eee;
+  }
+
+  tbody td.label-col {
+    font-family: var(--font-ja);
+    color: var(--c-sub);
+    font-size: 7pt;
+  }
+
+  /* サーバー設定 */
+  .server-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    margin-top: 2mm;
+  }
+
+  .server-box {
+    background: var(--c-bg);
+    border: 0.3mm solid var(--c-border);
+    border-radius: 1.5mm;
+    padding: 3mm 4mm;
+  }
+
+  .server-box-title {
+    font-family: var(--font-ja-m);
+    font-size: 7.5pt;
+    color: var(--c-black);
+    margin-bottom: 2mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.2mm solid var(--c-border);
+  }
+
+  .server-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 7pt;
+    line-height: 1.8;
+  }
+
+  .server-row .s-label { color: var(--c-sub); }
+  .server-row .s-val { font-family: var(--font-en); color: var(--c-body); }
+
+  /* 注意書き */
+  .caution-box {
+    margin-top: 4mm;
+    background: #fff8e1;
+    border: 0.3mm solid #f0c040;
+    border-radius: 1.5mm;
+    padding: 2.5mm 4mm;
+    font-size: 7pt;
+    line-height: 1.8;
+    color: #7a5500;
+  }
+
+  /* 印刷 */
+  @media print {
+    body { background: #fff; }
+    .page {
+      margin: 0;
+      page-break-after: always;
+      box-shadow: none;
+    }
+    .page:last-child { page-break-after: auto; }
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== PAGE 1 ========== -->
+<div class="page">
+  <div class="page-header">
+    <div>
+      <div class="doc-title" style="text-align:left; font-size:12pt; margin-bottom:0;">Webサイト保守・運用サポート契約書</div>
+    </div>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="110 238 615 124" fill="#111">
+        <g><g>
+          <path d="M204.5,323.6c-10.4,10.4-25.7,13.1-39.8,6.9-7.3-3.2-13-8.9-16.2-16.3-5-11.7-4.1-24.1,2.5-34.1,6.5-9.8,17.3-15.7,29-15.7s18,3.6,24.5,10.2l.4.4,16.9-16.9-.4-.4c-16.5-16.5-40.8-21.5-63.5-13.1-14.8,5.5-26.6,17.1-32.2,31.8-7.3,19.2-5.2,39.6,6,55.8,11,15.9,29,25.4,48.3,25.4s30.3-6.1,41.4-17.2l.4-.4-16.9-16.9-.4.4Z"/>
+          <path d="M324.3,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM289.5,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+          <path d="M720.4,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM685.6,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+          <path d="M544.7,242.1v114h71.8v-22.3h-47.1c-1.3,0-2.3-1-2.3-2.3v-19.8c0-1.3,1-2.3,2.3-2.3h42.9v-22.3h-42.9c-1.3,0-2.3-1-2.3-2.3v-17.9c0-1.3,1-2.3,2.3-2.3h47.1v-22.3h-71.8Z"/>
+          <path d="M440.9,264.4h29.2c1,0,1.9.8,1.9,1.9v89.7h22.3v-89.7c0-1,.8-1.9,1.9-1.9h29.2v-22.3h-84.5v22.3Z"/>
+          <path d="M377.4,242.1l-38.8,114h23.6l6.3-18.6c.7-2,2.6-3.3,4.7-3.3h33.3c2.1,0,4,1.3,4.7,3.3l6.3,18.6h23.6l-38.8-114h-24.9ZM377.7,310.5l12.1-35.6,12.1,35.6c.2.6-.3,1.3-.9,1.3h-22.4c-.7,0-1.2-.7-.9-1.3Z"/>
+        </g></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div>本契約は、以下の当事者間において締結されます。</div>
+    <div style="margin-top:3mm;">
+      <span class="label">甲（委託者）</span>尾山神社
+    </div>
+    <div>
+      <span class="label">乙（受託者）</span>株式会社クレーター　代表取締役　明里 圭修
+      <span class="sub">〒155-0031　東京都世田谷区北沢3丁目20-18 北沢宝ビル3F</span>
+    </div>
+  </div>
+
+  <!-- 第1条 -->
+  <div class="clause">
+    <div class="clause-title">第1条（委託業務の範囲）</div>
+    <div class="clause-body">
+      甲は乙に対し、以下の業務を委託します。
+      <ol style="margin-top:2mm;">
+        <li><span class="num">①</span><span>サーバー・ドメイン・メールアカウントの保守運用および不具合発生時の対応</span></li>
+        <li><span class="num">②</span><span>infoページの更新サポート（甲が操作方法を確認したい場合のサポートを含む）</span></li>
+        <li><span class="num">③</span><span>infoページ更新後にレイアウト不具合が発生した場合の修正対応</span></li>
+        <li><span class="num">④</span><span>ページ内の簡単な文字修正（大きなレイアウト調整が伴う場合は第3条に準ずる）</span></li>
+        <li><span class="num">⑤</span><span>授与品ページ（雲）のブランドリリース時に伴う追加対応（本契約の月額料金内にて対応）</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- 第2条 -->
+  <div class="clause">
+    <div class="clause-title">第2条（委託料および支払い方法）</div>
+    <div class="clause-body">
+      <div style="margin-bottom:1.5mm;">月額　<strong style="font-family:var(--font-ja-m); font-size:9pt;">金 8,000円（税抜）／税込 8,800円</strong>　※メールアカウント12件まで含む</div>
+      <div style="margin-bottom:1.5mm;">13件目以降は1件追加ごとに月額 <strong style="font-family:var(--font-ja-m);">500円（税抜）</strong>が加算されます。</div>
+      <div style="margin-bottom:1.5mm;">支払いは毎月払いまたは年間一括払い（96,000円税抜）のいずれかを選択できます。</div>
+      <div style="margin-bottom:1.5mm;">毎月払い・年間一括払いいずれの場合も、請求書を発行いたします。</div>
+      <div style="margin-bottom:1.5mm;">毎月払いの場合、当月末日までに翌月分を下記口座へお振込みください。振込手数料は甲のご負担とします。</div>
+      <div class="bank-box">
+        <span class="bank-label">BANK TRANSFER</span>
+        PayPay銀行　ビジネス営業部　普通預金　口座番号：2494606　　口座名義：カ）クレーター
+      </div>
+    </div>
+  </div>
+
+  <!-- 第3条 -->
+  <div class="clause">
+    <div class="clause-title">第3条（委託業務の対象外）</div>
+    <div class="clause-body">
+      以下の業務は本契約の対象外とし、発生した場合は別途お見積りのうえ対応いたします。
+      <ol style="margin-top:2mm;">
+        <li><span class="num">①</span><span>infoページ以外のページを操作したことによる不具合の修復作業</span></li>
+        <li><span class="num">②</span><span>新規ページの作成、既存ページの大幅な構成変更・デザイン変更</span></li>
+        <li><span class="num">③</span><span>その他、相当の工数を要する修正・追加対応</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-note">CRATER Inc. — Confidential</span>
+    <span class="page-num">1 / 3</span>
+  </div>
+</div>
+
+
+<!-- ========== PAGE 2 ========== -->
+<div class="page">
+  <div class="page-header">
+    <div class="page-header-title">Webサイト保守・運用サポート契約書</div>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="110 238 615 124" fill="#111">
+        <g><g>
+          <path d="M204.5,323.6c-10.4,10.4-25.7,13.1-39.8,6.9-7.3-3.2-13-8.9-16.2-16.3-5-11.7-4.1-24.1,2.5-34.1,6.5-9.8,17.3-15.7,29-15.7s18,3.6,24.5,10.2l.4.4,16.9-16.9-.4-.4c-16.5-16.5-40.8-21.5-63.5-13.1-14.8,5.5-26.6,17.1-32.2,31.8-7.3,19.2-5.2,39.6,6,55.8,11,15.9,29,25.4,48.3,25.4s30.3-6.1,41.4-17.2l.4-.4-16.9-16.9-.4.4Z"/>
+          <path d="M324.3,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM289.5,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+          <path d="M720.4,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM685.6,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+          <path d="M544.7,242.1v114h71.8v-22.3h-47.1c-1.3,0-2.3-1-2.3-2.3v-19.8c0-1.3,1-2.3,2.3-2.3h42.9v-22.3h-42.9c-1.3,0-2.3-1-2.3-2.3v-17.9c0-1.3,1-2.3,2.3-2.3h47.1v-22.3h-71.8Z"/>
+          <path d="M440.9,264.4h29.2c1,0,1.9.8,1.9,1.9v89.7h22.3v-89.7c0-1,.8-1.9,1.9-1.9h29.2v-22.3h-84.5v22.3Z"/>
+          <path d="M377.4,242.1l-38.8,114h23.6l6.3-18.6c.7-2,2.6-3.3,4.7-3.3h33.3c2.1,0,4,1.3,4.7,3.3l6.3,18.6h23.6l-38.8-114h-24.9ZM377.7,310.5l12.1-35.6,12.1,35.6c.2.6-.3,1.3-.9,1.3h-22.4c-.7,0-1.2-.7-.9-1.3Z"/>
+        </g></g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 第4条 -->
+  <div class="clause">
+    <div class="clause-title">第4条（契約期間および解約）</div>
+    <div class="clause-body">
+      本契約は締結日より効力を生じ、いずれかの当事者から書面または電子メールによる解約通知がない限り、自動的に継続します。<br>
+      解約を希望する場合は、終了希望月の1ヶ月前までに相手方へ通知するものとします。<br>
+      年間一括払いの場合、既払い分の返金は原則行いません。
+    </div>
+  </div>
+
+  <!-- 第5条 -->
+  <div class="clause">
+    <div class="clause-title">第5条（対応時間）</div>
+    <div class="clause-body">
+      問い合わせを受領後、原則3営業日以内にご返答いたします。
+    </div>
+  </div>
+
+  <!-- 第6条 -->
+  <div class="clause">
+    <div class="clause-title">第6条（免責事項）</div>
+    <div class="clause-body">
+      サーバー会社・ドメイン管理会社・その他第三者サービスに起因する障害・停止については、乙の責任範囲外とします。ただし乙は各サービス提供会社と速やかに連携し、迅速な復旧に向けて誠実に対応いたします。
+    </div>
+  </div>
+
+  <!-- 第7条 -->
+  <div class="clause">
+    <div class="clause-title">第7条（メール容量について）</div>
+    <div class="clause-body">
+      各メールアドレスの容量上限は10,000MB（最大20,000MBまで増量可能）です。上限に達した場合は手動での削除が必要となりますが、通常のメールのやりとりであれば10年以上経過しても上限に達しにくい容量です。
+    </div>
+  </div>
+
+  <!-- 第8条 -->
+  <div class="clause">
+    <div class="clause-title">第8条（秘密保持）</div>
+    <div class="clause-body">
+      甲乙双方は、本契約の履行上知り得た相手方の情報を、相手方の書面による同意なく第三者に開示・漏洩しないものとします。
+    </div>
+  </div>
+
+  <!-- 締結 -->
+  <div class="sign-section">
+    <div class="sign-intro">本契約の締結を証するため、本書を2通作成し、甲乙各1通を保管します。</div>
+    <div class="sign-date">締結日：　　　　　年　　　月　　　日</div>
+    <div class="sign-row">
+      <div class="sign-box">
+        <div class="sign-label">甲（委託者）尾山神社</div>
+        <div class="sign-line"></div>
+      </div>
+      <div class="sign-box">
+        <div class="sign-label">乙（受託者）株式会社クレーター</div>
+        <div class="sign-line"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-note">CRATER Inc. — Confidential</span>
+    <span class="page-num">2 / 3</span>
+  </div>
+</div>
+
+
+<!-- ========== PAGE 3 ========== -->
+<div class="page">
+  <div class="page-header">
+    <div class="secret-header" style="border:none; margin:0; padding:0;">
+      <span class="secret-badge">CONFIDENTIAL</span>
+      <span class="secret-title">メールアカウント・サーバー設定一覧</span>
+    </div>
+    <div class="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="110 238 615 124" fill="#111">
+        <g><g>
+          <path d="M204.5,323.6c-10.4,10.4-25.7,13.1-39.8,6.9-7.3-3.2-13-8.9-16.2-16.3-5-11.7-4.1-24.1,2.5-34.1,6.5-9.8,17.3-15.7,29-15.7s18,3.6,24.5,10.2l.4.4,16.9-16.9-.4-.4c-16.5-16.5-40.8-21.5-63.5-13.1-14.8,5.5-26.6,17.1-32.2,31.8-7.3,19.2-5.2,39.6,6,55.8,11,15.9,29,25.4,48.3,25.4s30.3-6.1,41.4-17.2l.4-.4-16.9-16.9-.4.4Z"/>
+          <path d="M324.3,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM289.5,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+          <path d="M720.4,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM685.6,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+          <path d="M544.7,242.1v114h71.8v-22.3h-47.1c-1.3,0-2.3-1-2.3-2.3v-19.8c0-1.3,1-2.3,2.3-2.3h42.9v-22.3h-42.9c-1.3,0-2.3-1-2.3-2.3v-17.9c0-1.3,1-2.3,2.3-2.3h47.1v-22.3h-71.8Z"/>
+          <path d="M440.9,264.4h29.2c1,0,1.9.8,1.9,1.9v89.7h22.3v-89.7c0-1,.8-1.9,1.9-1.9h29.2v-22.3h-84.5v22.3Z"/>
+          <path d="M377.4,242.1l-38.8,114h23.6l6.3-18.6c.7-2,2.6-3.3,4.7-3.3h33.3c2.1,0,4,1.3,4.7,3.3l6.3,18.6h23.6l-38.8-114h-24.9ZM377.7,310.5l12.1-35.6,12.1,35.6c.2.6-.3,1.3-.9,1.3h-22.4c-.7,0-1.2-.7-.9-1.3Z"/>
+        </g></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="section-label">■ メールアカウント一覧</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:60%;">メールアドレス</th>
+        <th>パスワード</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>saigika@oyama-jinja.or.jp</td><td>vgtA53mq+</td></tr>
+      <tr><td>kito@oyama-jinja.or.jp</td><td>Oym1873k+</td></tr>
+      <tr><td>keiri@oyama-jinja.or.jp</td><td>s8h32410+</td></tr>
+      <tr><td>info61116@oyama-jinja.or.jp</td><td>67jdyd7J5QSDE5+</td></tr>
+      <tr><td>miyatani-m@oyama-jinja.or.jp</td><td>Oym1873mm+</td></tr>
+      <tr><td>hase-n@oyama-jinja.or.jp</td><td>Oym1873hn+</td></tr>
+      <tr><td>otaki-n@oyama-jinja.or.jp</td><td>Oym1873on+</td></tr>
+      <tr><td>hasegawa-k@oyama-jinja.or.jp</td><td>Oym1873hk+</td></tr>
+      <tr><td>saito-m@oyama-jinja.or.jp</td><td>Oym1873sm+</td></tr>
+      <tr><td>katsuragi-s@oyama-jinja.or.jp</td><td>Oym1873ks+</td></tr>
+      <tr><td>atsumi-k@oyama-jinja.or.jp</td><td>Oym1873ak+</td></tr>
+      <tr><td>kato-r@oyama-jinja.or.jp</td><td>Oym1873kr+</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-label" style="margin-top:5mm;">■ メールサーバー設定</div>
+  <div class="server-grid">
+    <div class="server-box">
+      <div class="server-box-title">受信用（IMAP）</div>
+      <div class="server-row"><span class="s-label">サーバー</span><span class="s-val">mail1020.conoha.ne.jp</span></div>
+      <div class="server-row"><span class="s-label">ポート（SSL）</span><span class="s-val">993</span></div>
+      <div class="server-row"><span class="s-label">ポート（SSLなし）</span><span class="s-val">143</span></div>
+    </div>
+    <div class="server-box">
+      <div class="server-box-title">送信用（SMTP）</div>
+      <div class="server-row"><span class="s-label">サーバー</span><span class="s-val">mail1020.conoha.ne.jp</span></div>
+      <div class="server-row"><span class="s-label">ポート（SSL）</span><span class="s-val">465</span></div>
+      <div class="server-row"><span class="s-label">ポート（SSLなし）</span><span class="s-val">587</span></div>
+    </div>
+  </div>
+
+  <div class="caution-box">
+    ⚠ この資料は社外秘です。第三者への開示・共有はお控えください。紛失・流出した場合は直ちに株式会社クレーターまでご連絡ください。
+  </div>
+
+  <div class="page-footer">
+    <span class="footer-note">CRATER Inc. — Confidential</span>
+    <span class="page-num">3 / 3</span>
+  </div>
+</div>
+
+</body>
+</html>

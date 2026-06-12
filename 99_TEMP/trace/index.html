@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SVGトレース確認 - 春茶</title>
+<style>
+  body { background: #f0f0f0; display: flex; flex-direction: column; align-items: center; padding: 40px; font-family: sans-serif; gap: 40px; }
+  h2 { margin: 0 0 8px; font-size: 14px; color: #666; }
+  .box { background: white; padding: 32px; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,.1); text-align: center; }
+  img { max-width: 620px; height: auto; display: block; }
+</style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>元画像</h2>
+    <img src="img/CleanShot 2026-05-08 at 14.31.46.png" alt="元画像">
+  </div>
+
+  <div class="box">
+    <h2>SVG：まとめて（1パス）</h2>
+    <img src="svg/春茶.svg" alt="春茶">
+  </div>
+
+  <div class="box">
+    <h2>SVG：ストローク別（各色 = 1筆）</h2>
+    <img src="svg/春茶_ストローク別.svg" alt="春茶 ストローク別">
+  </div>
+
+</body>
+</html>

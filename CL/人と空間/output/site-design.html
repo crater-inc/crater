@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人と空間 | Site Design</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      color: #111;
+      background: #fff;
+      letter-spacing: 0;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+
+    :root {
+      --black: #0d0d0d;
+      --navy: #1a2e42;
+      --blue: #2b5f9f;
+      --green: #3a8a5c;
+      --red: #bf4c3a;
+      --paper: #ffffff;
+      --soft: #f4f5f6;
+      --soft-2: #ebedef;
+      --line: #d7dce1;
+      --muted: #72777d;
+      --faint: #aeb5bd;
+      --max: 1180px;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+    .header-inner {
+      width: min(var(--max), calc(100% - 40px));
+      min-height: 68px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+    .brand-mark { width: 50px; height: 32px; display: block; }
+    .brand-text strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1.1;
+      letter-spacing: 0.08em;
+    }
+    .brand-text span {
+      display: block;
+      margin-top: 3px;
+      font-size: 9px;
+      color: var(--faint);
+      letter-spacing: 0.22em;
+    }
+    .global-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex: 1;
+    }
+    .global-nav a {
+      font-size: 13px;
+      color: #4d545c;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      padding: 24px 0 21px;
+    }
+    .global-nav a:hover { color: var(--black); border-bottom-color: var(--black); }
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 18px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - 68px);
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.98) 0 46%, rgba(255,255,255,0.82) 68%, rgba(255,255,255,0.72) 100%),
+        #f2f4f6;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 64px 64px;
+      opacity: 0.45;
+    }
+    .hero-inner {
+      position: relative;
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 0.94fr) minmax(360px, 1.06fr);
+      gap: 56px;
+      padding: 80px 0 72px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 1px;
+      background: var(--navy);
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(42px, 5vw, 74px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+    .hero-lead {
+      max-width: 600px;
+      margin: 26px 0 0;
+      color: #424951;
+      font-size: 17px;
+      line-height: 2;
+      font-weight: 500;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 26px;
+      border: 1.5px solid var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn.primary { background: var(--navy); color: #fff; }
+    .btn.secondary { background: transparent; color: var(--navy); }
+    .btn:hover { transform: translateY(-1px); }
+    .hero-visual {
+      position: relative;
+      min-height: 540px;
+      border-left: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.48);
+      overflow: hidden;
+    }
+    .hero-visual svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .hero-visual .visual-panel {
+      position: absolute;
+      right: 30px;
+      bottom: 30px;
+      width: min(340px, calc(100% - 60px));
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+    .visual-panel p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+    .mini-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .mini-kpi {
+      padding: 16px 10px 0 0;
+      border-right: 1px solid var(--line);
+    }
+    .mini-kpi:last-child { border-right: 0; padding-left: 12px; }
+    .mini-kpi strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--navy);
+    }
+    .mini-kpi span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.45;
+    }
+
+    section { scroll-margin-top: 82px; }
+    .section {
+      padding: 104px 0;
+      border-top: 1px solid var(--line);
+    }
+    .section.soft { background: var(--soft); }
+    .section.dark {
+      background: var(--navy);
+      color: #fff;
+      border-top: 0;
+    }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    .section-head {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 56px;
+      align-items: end;
+      margin-bottom: 44px;
+    }
+    .section-label {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+    .dark .section-label { color: rgba(255,255,255,0.44); }
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 3.2vw, 46px);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .section-copy {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.95;
+    }
+    .dark .section-copy { color: rgba(255,255,255,0.68); }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .problem-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 30px;
+    }
+    .problem-box h3 {
+      margin: 0 0 18px;
+      font-size: 18px;
+    }
+    .check-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .check-list li {
+      position: relative;
+      padding-left: 26px;
+      color: #3c434b;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .check-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--navy);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+    .service-card {
+      min-height: 330px;
+      padding: 26px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .service-card:hover {
+      background: var(--navy);
+      color: #fff;
+    }
+    .service-card:hover p,
+    .service-card:hover .text-link { color: rgba(255,255,255,0.78); }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+    }
+    .service-card:hover .service-icon { color: #fff; border-color: rgba(255,255,255,0.28); }
+    .service-card h3 { margin: 0; font-size: 20px; line-height: 1.45; }
+    .service-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
+    .text-link {
+      margin-top: auto;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .axis-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 46px;
+      align-items: start;
+    }
+    .axis-panel {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 30px;
+    }
+    .axis-panel h3 { margin: 0 0 14px; font-size: 22px; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      display: inline-flex;
+      min-height: 32px;
+      align-items: center;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      color: #3e4650;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .tag.strong { background: var(--navy); border-color: var(--navy); color: #fff; }
+    .flow-steps {
+      display: grid;
+      gap: 10px;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .flow-step strong {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 13px;
+    }
+    .flow-step span { color: #39404a; font-size: 14px; line-height: 1.65; }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid rgba(255,255,255,0.18);
+      border-top: 1px solid rgba(255,255,255,0.18);
+    }
+    .kpi {
+      padding: 34px 24px;
+      border-right: 1px solid rgba(255,255,255,0.18);
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+    }
+    .kpi strong {
+      display: block;
+      font-size: clamp(34px, 4vw, 58px);
+      line-height: 1;
+      color: #fff;
+    }
+    .kpi span {
+      display: block;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.62);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .case-list { display: grid; gap: 20px; }
+    .case-card {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 36px;
+      padding: 34px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+    .case-card h3 {
+      margin: 12px 0 12px;
+      font-size: 25px;
+      line-height: 1.35;
+    }
+    .case-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+    .case-results {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .case-result {
+      padding: 18px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+    }
+    .case-result strong { display: block; color: var(--navy); font-size: 25px; line-height: 1; }
+    .case-result span { display: block; margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 1.55; }
+    .quote {
+      margin: 0;
+      padding: 20px;
+      background: #f8faf8;
+      border-left: 3px solid var(--green);
+      color: #404840;
+      font-size: 13px;
+      line-height: 1.85;
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 54px;
+      align-items: start;
+    }
+    .contact-note {
+      padding: 30px;
+      background: var(--navy);
+      color: #fff;
+    }
+    .contact-note h2 { font-size: clamp(26px, 3vw, 40px); }
+    .contact-note p { color: rgba(255,255,255,0.68); font-size: 14px; line-height: 1.9; }
+    .form {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .field { display: grid; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 12px; font-weight: 700; color: #303740; }
+    .req { color: var(--red); margin-left: 6px; font-size: 10px; }
+    input, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 13px 14px;
+      color: #111;
+      min-height: 48px;
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .checkbox-row { display: flex; flex-wrap: wrap; gap: 10px 16px; }
+    .checkbox-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      color: #3d454e;
+    }
+    .checkbox-row input { width: 16px; min-height: 16px; padding: 0; }
+    .submit-row { grid-column: 1 / -1; display: flex; justify-content: flex-end; margin-top: 10px; }
+
+    .footer {
+      background: #0d1720;
+      color: #fff;
+      padding: 56px 0 26px;
+    }
+    .footer-grid {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer p { margin: 14px 0 0; color: rgba(255,255,255,0.5); font-size: 13px; line-height: 1.8; }
+    .footer h4 {
+      margin: 0 0 14px;
+      color: rgba(255,255,255,0.42);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+    }
+    .footer a { display: block; color: rgba(255,255,255,0.66); font-size: 13px; margin-bottom: 10px; }
+    .copyright {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 34px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.28);
+      font-size: 11px;
+    }
+
+    @media (max-width: 960px) {
+      .global-nav { display: none; }
+      .header-inner { justify-content: space-between; }
+      .hero-inner,
+      .section-head,
+      .axis-wrap,
+      .case-card,
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-visual { min-height: 430px; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .header-inner { width: min(100% - 24px, var(--max)); min-height: 62px; }
+      .brand-mark { width: 42px; }
+      .brand-text strong { font-size: 15px; }
+      .header-cta { display: none; }
+      .hero { min-height: auto; }
+      .hero-inner { width: min(100% - 24px, var(--max)); padding: 56px 0 48px; gap: 36px; }
+      .hero-lead { font-size: 15px; }
+      .btn { width: 100%; }
+      .hero-visual { min-height: 360px; }
+      .section { padding: 72px 0; }
+      .container { width: min(100% - 24px, var(--max)); }
+      .problem-grid,
+      .service-grid,
+      .kpi-grid,
+      .case-results,
+      .form,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .problem-box,
+      .axis-panel,
+      .case-card { padding: 22px; }
+      .service-card { min-height: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="人と空間">
+        <svg class="brand-mark" viewBox="0 0 80 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="22" cy="26" r="20" fill="#0D0D0D"/>
+          <line x1="43" y1="12" x2="59" y2="40" stroke="#0D0D0D" stroke-width="3"/>
+          <line x1="59" y1="12" x2="43" y2="40" stroke="#0D0D0D" stroke-width="3"/>
+          <rect x="62" y="14" width="16" height="24" fill="#0D0D0D"/>
+        </svg>
+        <span class="brand-text"><strong>人と空間</strong><span>HUMAN AND SPACE</span></span>
+      </a>
+      <nav class="global-nav" aria-label="グローバルナビゲーション">
+        <a href="#about">私たちについて</a>
+        <a href="#services">サービス</a>
+        <a href="#cases">事例</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+      <a class="header-cta" href="#contact">まずは相談する</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">AI era CX / UX partner</div>
+          <h1>「人」と「空間」から、<br>お客様の体験を変える。</h1>
+          <p class="hero-lead">AI時代の店舗CX・UX改善のパイオニア。商空間運営における顧客体験価値と空間品質の改善を、調査・分析・伴走支援で実現します。</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#contact">まずは相談する（無料）</a>
+            <a class="btn secondary" href="#services">サービスを見る</a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="店舗内の人流と空間品質を表すビジュアル">
+          <svg viewBox="0 0 680 540" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="floor-grid" width="52" height="52" patternUnits="userSpaceOnUse">
+                <path d="M52 0H0V52" fill="none" stroke="#D7DCE1" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="680" height="540" fill="url(#floor-grid)"/>
+            <rect x="66" y="70" width="150" height="92" fill="#FFFFFF" stroke="#AEB5BD"/>
+            <rect x="470" y="92" width="118" height="160" fill="#FFFFFF" stroke="#AEB5BD"/>
+            <rect x="92" y="342" width="210" height="84" fill="#FFFFFF" stroke="#AEB5BD"/>
+            <rect x="374" y="352" width="154" height="92" fill="#FFFFFF" stroke="#AEB5BD"/>
+            <path d="M60 470 C 155 330, 248 384, 320 270 S 452 110, 612 146" fill="none" stroke="#1A2E42" stroke-width="3" stroke-dasharray="10 12"/>
+            <path d="M108 126 C 224 214, 360 166, 470 248 S 558 418, 628 350" fill="none" stroke="#2B5F9F" stroke-width="2" opacity="0.72"/>
+            <circle cx="116" cy="385" r="8" fill="#1A2E42"/>
+            <circle cx="262" cy="356" r="8" fill="#1A2E42"/>
+            <circle cx="398" cy="192" r="8" fill="#1A2E42"/>
+            <circle cx="526" cy="142" r="8" fill="#1A2E42"/>
+            <circle cx="210" cy="186" r="5" fill="#AEB5BD"/>
+            <circle cx="466" cy="254" r="5" fill="#AEB5BD"/>
+            <circle cx="574" cy="358" r="5" fill="#AEB5BD"/>
+          </svg>
+          <div class="visual-panel">
+            <p>人流データ、接客品質、空間品質をひとつの視点で捉え、現場の改善行動へつなげます。</p>
+            <div class="mini-kpis">
+              <div class="mini-kpi"><strong>+26%</strong><span>売上前年比</span></div>
+              <div class="mini-kpi"><strong>117%</strong><span>重点店舗売上</span></div>
+              <div class="mini-kpi"><strong>5年+</strong><span>継続支援</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-label">Problems</div>
+            <h2>こんな課題はありませんか？</h2>
+          </div>
+          <p class="section-copy">店舗運営は、外部環境・内部環境の変化により、より多くの悩みを抱えるようになりました。一方で、改善に向けた打ち手の進化が追い付いていない状況も多く見られます。</p>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-box">
+            <h3>CX（接客）の課題</h3>
+            <ul class="check-list">
+              <li>スタッフレベルの低下が気になる</li>
+              <li>店舗によって接客品質にばらつきがある</li>
+              <li>顧客満足度が思うように向上しない</li>
+              <li>スタッフのモチベーションが上がらない</li>
+              <li>競合との差別化が難しい</li>
+            </ul>
+          </div>
+          <div class="problem-box">
+            <h3>空間（VMD）の課題</h3>
+            <ul class="check-list">
+              <li>商空間運営の正解が分からない</li>
+              <li>施設の魅力・ブランディングを見直したい</li>
+              <li>ステークホルダーとの合意形成が難しい</li>
+              <li>自分たちの空間の良し悪しを把握したい</li>
+              <li>気づくと運営のルールが乱れている</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-label">Services</div>
+            <h2>4つのサービスで、調査から改善まで伴走する。</h2>
+          </div>
+          <p class="section-copy">生活者目線と専門知を合わせた調査、空間品質のスコア化、人流データの活用、そして現場の行動変化までを一貫して支援します。</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>CX調査</h3>
+            <p>生活者目線とプロの洞察を組み合わせ、現場の接客品質を可視化します。</p>
+            <span class="text-link">詳しく見る</span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.6"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.6"/></svg>
+            </div>
+            <h3>空間品質調査</h3>
+            <p>空間の価値を9つの視点からスコア化し、改善の起点をつくります。</p>
+            <span class="text-link">詳しく見る</span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M6 12h12M9 18h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="5" cy="6" r="2" fill="currentColor"/><circle cx="13" cy="12" r="2" fill="currentColor"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg>
+            </div>
+            <h3>AIカメラと店舗運営DX</h3>
+            <p>人流データとCXナレッジを掛け合わせ、KPI改善を戦略的に設計します。</p>
+            <span class="text-link">詳しく見る</span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="16" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 10.5l3 3M4 20c0-3 2-5 4-5M20 4c0 3-2 5-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>コンサルティング支援</h3>
+            <p>調査で終わらず、ロードマップづくりから改善実行まで伴走します。</p>
+            <span class="text-link">詳しく見る</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-label">About</div>
+            <h2>AI時代だからこそ、リアル店舗のCXが問われる。</h2>
+          </div>
+          <p class="section-copy">「人と空間」は商空間運営におけるCXとUXのエキスパートです。顧客との関係構築、ブランド体験、接客と空間の品質を、現場で使える改善知へ変換します。</p>
+        </div>
+        <div class="axis-wrap">
+          <div class="axis-panel">
+            <h3>「人」と「空間」の2軸</h3>
+            <p class="section-copy">人の接点で生まれる体験と、空間が生む行動や印象。その両方を測り、比較し、改善することで、ブランドの価値を店頭から高めます。</p>
+            <div class="tag-row" style="margin-top:22px">
+              <span class="tag strong">CX調査</span>
+              <span class="tag">空間品質</span>
+              <span class="tag">人流計測</span>
+              <span class="tag">KPI改善</span>
+              <span class="tag">伴走支援</span>
+            </div>
+          </div>
+          <div class="flow-steps">
+            <div class="flow-step"><strong>1</strong><span>商空間運営・接客に特化したCX・UX改善ノウハウ</span></div>
+            <div class="flow-step"><strong>2</strong><span>生活者感覚と専門分析を融合した独自調査</span></div>
+            <div class="flow-step"><strong>3</strong><span>全国比較・ベンチマーク分析による立ち位置の把握</span></div>
+            <div class="flow-step"><strong>4</strong><span>調査後の研修・セッションを含めた継続的な伴走</span></div>
+            <div class="flow-step"><strong>5</strong><span>店舗運営DXとCX・UXを橋渡しする専門性</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-label">Results</div>
+            <h2>導入企業の成果</h2>
+          </div>
+          <p class="section-copy">百貨店・アパレル・ライフスタイルショップなど、多様な業種でCXと空間品質の改善を支援しています。</p>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi"><strong>+26%</strong><span>売上前年比<br>ライフスタイルショップ</span></div>
+          <div class="kpi"><strong>117%</strong><span>重点店舗売上<br>アパレルブランド</span></div>
+          <div class="kpi"><strong>+7%</strong><span>コンバージョン<br>買上率改善</span></div>
+          <div class="kpi"><strong>5年+</strong><span>大手百貨店<br>継続支援年数</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="cases">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-label">Case Studies</div>
+            <h2>実施内容と成果が見える事例。</h2>
+          </div>
+          <p class="section-copy">数字、実施内容、お客様の声をセットで提示し、改善プロジェクトの具体像が伝わる構成にしています。</p>
+        </div>
+        <div class="case-list">
+          <article class="case-card">
+            <div>
+              <span class="tag">百貨店</span>
+              <h3>大手百貨店 — CX・空間品質改善の伴走支援</h3>
+              <p>全施設へのCX調査、空間品質調査、三者MTG、ワークショップを継続的に実施。施設が自律自走して改善を進める状態を支援しました。</p>
+            </div>
+            <div>
+              <div class="case-results">
+                <div class="case-result"><strong>5年+</strong><span>継続支援</span></div>
+                <div class="case-result"><strong>全施設</strong><span>CX・空間品質調査</span></div>
+              </div>
+              <blockquote class="quote">サービス力を高め、リアル店舗の価値を高めるためにご一緒頂いています。</blockquote>
+            </div>
+          </article>
+          <article class="case-card">
+            <div>
+              <span class="tag">ライフスタイルショップ</span>
+              <h3>旗艦店KPI改善 — 売上+26% / CV+7% / 客単価+9%</h3>
+              <p>人流計測、半年間のCX改善セッション、2回のCX調査を通じ、店舗が自ら考え行動する改善サイクルを設計しました。</p>
+            </div>
+            <div>
+              <div class="case-results">
+                <div class="case-result"><strong>+26%</strong><span>売上前年比</span></div>
+                <div class="case-result"><strong>+7%</strong><span>買上率改善</span></div>
+                <div class="case-result"><strong>+9%</strong><span>客単価前年比</span></div>
+                <div class="case-result"><strong>+8%</strong><span>セット率前年比</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="case-card">
+            <div>
+              <span class="tag">アパレルブランド</span>
+              <h3>CX調査・伴走コンサル — 3年連続最高売上</h3>
+              <p>全国店舗へのCX調査、重点店舗の人流計測、エリアマネージャー向けKPI活用セッションを実施しました。</p>
+            </div>
+            <div>
+              <div class="case-results">
+                <div class="case-result"><strong>117%</strong><span>重点店舗 売上前年比</span></div>
+                <div class="case-result"><strong>3年</strong><span>連続最高売上更新</span></div>
+              </div>
+              <blockquote class="quote">KPI活用とCX視点での支援プログラムを受けたマネージャーのレベルアップが目覚ましい。</blockquote>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-layout">
+          <div class="contact-note">
+            <div class="section-label">Contact</div>
+            <h2>どのサービスが自社に合うか分からなくても、まずはご相談ください。</h2>
+            <p>課題の整理から一緒に考えます。強引な営業は一切行いません。お気軽にご連絡ください。</p>
+          </div>
+          <form class="form">
+            <div class="field">
+              <label for="company">会社名<span class="req">必須</span></label>
+              <input id="company" type="text" placeholder="株式会社〇〇">
+            </div>
+            <div class="field">
+              <label for="name">お名前<span class="req">必須</span></label>
+              <input id="name" type="text" placeholder="山田 太郎">
+            </div>
+            <div class="field">
+              <label for="email">メールアドレス<span class="req">必須</span></label>
+              <input id="email" type="email" placeholder="example@company.com">
+            </div>
+            <div class="field">
+              <label for="tel">電話番号</label>
+              <input id="tel" type="tel" placeholder="03-0000-0000">
+            </div>
+            <div class="field full">
+              <label>興味のあるサービス</label>
+              <div class="checkbox-row">
+                <label><input type="checkbox">CX調査</label>
+                <label><input type="checkbox">空間品質調査</label>
+                <label><input type="checkbox">AIカメラ・DX</label>
+                <label><input type="checkbox">コンサルティング</label>
+              </div>
+            </div>
+            <div class="field full">
+              <label for="message">お問い合わせ内容<span class="req">必須</span></label>
+              <textarea id="message" placeholder="ご相談内容をご記入ください"></textarea>
+            </div>
+            <div class="submit-row">
+              <button class="btn primary" type="button">送信する</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="brand-mark" viewBox="0 0 80 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="22" cy="26" r="20" fill="#FFFFFF"/>
+            <line x1="43" y1="12" x2="59" y2="40" stroke="#FFFFFF" stroke-width="3"/>
+            <line x1="59" y1="12" x2="43" y2="40" stroke="#FFFFFF" stroke-width="3"/>
+            <rect x="62" y="14" width="16" height="24" fill="#FFFFFF"/>
+          </svg>
+          <span class="brand-text"><strong>人と空間</strong><span>HUMAN AND SPACE</span></span>
+        </a>
+        <p>AI時代の店舗CX・UX改善のパイオニア。商空間運営におけるCXとUXのエキスパート。</p>
+      </div>
+      <div>
+        <h4>SERVICES</h4>
+        <a href="#services">CX調査</a>
+        <a href="#services">空間品質調査</a>
+        <a href="#services">AIカメラ・店舗DX</a>
+        <a href="#services">コンサルティング支援</a>
+      </div>
+      <div>
+        <h4>COMPANY</h4>
+        <a href="#about">私たちについて</a>
+        <a href="#cases">事例</a>
+        <a href="#contact">お問い合わせ</a>
+        <a href="#">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="copyright">© 株式会社人と空間 All Rights Reserved.</div>
+  </footer>
+</body>
+</html>
