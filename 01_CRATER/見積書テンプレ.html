@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>見積書 - CRATER</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+    font-size: 11px;
+    color: #1a1a1a;
+    background: #f0f0f0;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: #fff;
+    padding: 14mm 14mm 14mm 14mm;
+    position: relative;
+  }
+
+  /* ヘッダー */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10mm;
+    padding-bottom: 6mm;
+    border-bottom: 2px solid #1e2d3d;
+  }
+
+  .header-left {}
+
+  .doc-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #1e2d3d;
+    margin-bottom: 4px;
+  }
+
+  .doc-meta {
+    font-size: 10px;
+    color: #666;
+    line-height: 1.8;
+  }
+
+  .doc-meta span {
+    display: inline-block;
+    min-width: 80px;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .company-name-logo {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: #1e2d3d;
+    margin-bottom: 4px;
+  }
+
+  .company-info {
+    font-size: 9px;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .invoice-number {
+    font-size: 9px;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  /* 宛先・金額エリア */
+  .billing-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 8mm;
+  }
+
+  .client-block {}
+
+  .client-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e2d3d;
+    border-bottom: 1.5px solid #1e2d3d;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .honorific {
+    font-size: 11px;
+    color: #444;
+  }
+
+  .subject-line {
+    font-size: 10px;
+    color: #555;
+    margin-top: 5px;
+  }
+
+  .subject-line span {
+    font-weight: 600;
+    color: #1e2d3d;
+  }
+
+  .total-block {
+    text-align: right;
+    background: #1e2d3d;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 4px;
+    min-width: 180px;
+  }
+
+  .total-label {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+    margin-bottom: 3px;
+  }
+
+  .total-amount {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .total-amount-sub {
+    font-size: 9px;
+    opacity: 0.6;
+    margin-top: 2px;
+  }
+
+  /* 有効期限 */
+  .validity {
+    font-size: 9px;
+    color: #999;
+    text-align: right;
+    margin-bottom: 6mm;
+  }
+
+  /* 明細テーブル */
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6mm;
+  }
+
+  .items-table thead tr {
+    background: #1e2d3d;
+    color: #fff;
+  }
+
+  .items-table thead th {
+    padding: 7px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: left;
+  }
+
+  .items-table thead th.num { width: 6%; text-align: center; }
+  .items-table thead th.item { width: 46%; }
+  .items-table thead th.qty { width: 8%; text-align: right; }
+  .items-table thead th.price { width: 20%; text-align: right; }
+  .items-table thead th.subtotal { width: 20%; text-align: right; }
+
+  .items-table tbody tr {
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .items-table tbody tr:hover {
+    background: #f8f9fb;
+  }
+
+  .items-table tbody td {
+    padding: 7px 10px;
+    font-size: 10.5px;
+    color: #333;
+    vertical-align: middle;
+  }
+
+  .items-table tbody td.num { text-align: center; color: #aaa; font-size: 9px; }
+  .items-table tbody td.qty { text-align: right; }
+  .items-table tbody td.price { text-align: right; }
+  .items-table tbody td.subtotal { text-align: right; font-weight: 600; }
+
+  /* セクション行 */
+  .section-row td {
+    background: #f0f2f5;
+    color: #1e2d3d !important;
+    font-weight: 700 !important;
+    font-size: 10px !important;
+    padding: 5px 10px !important;
+    letter-spacing: 0.05em;
+    border-bottom: none !important;
+  }
+
+  /* 調整・値引き行 */
+  .discount-row td {
+    color: #c0392b !important;
+  }
+
+  /* 合計エリア */
+  .totals-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8mm;
+  }
+
+  .totals-table {
+    width: 260px;
+    border-collapse: collapse;
+  }
+
+  .totals-table tr td {
+    padding: 5px 10px;
+    font-size: 10.5px;
+  }
+
+  .totals-table tr td:last-child {
+    text-align: right;
+    font-weight: 600;
+    min-width: 100px;
+  }
+
+  .totals-table .subtotal-row td {
+    color: #555;
+    border-bottom: 1px solid #eee;
+  }
+
+  .totals-table .tax-row td {
+    color: #888;
+    font-size: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .totals-table .grand-total-row {
+    background: #1e2d3d;
+    color: #fff;
+  }
+
+  .totals-table .grand-total-row td {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 10px;
+  }
+
+  /* 備考 */
+  .remarks {
+    background: #f8f9fb;
+    border-left: 3px solid #1e2d3d;
+    padding: 8px 12px;
+    font-size: 9.5px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 6mm;
+  }
+
+  .remarks-title {
+    font-weight: 700;
+    color: #1e2d3d;
+    margin-bottom: 4px;
+    font-size: 10px;
+  }
+
+  /* 振込先 */
+  .bank-info {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    font-size: 9.5px;
+    color: #555;
+    line-height: 1.8;
+    border-radius: 3px;
+  }
+
+  .bank-info-title {
+    font-weight: 700;
+    color: #1e2d3d;
+    margin-bottom: 3px;
+    font-size: 10px;
+  }
+
+  /* フッター */
+  .footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 14mm;
+    right: 14mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 4mm;
+    border-top: 1px solid #e8e8e8;
+  }
+
+  .footer-left {
+    font-size: 8.5px;
+    color: #bbb;
+  }
+
+  .footer-right {
+    font-size: 8.5px;
+    color: #bbb;
+  }
+
+  .tax-note {
+    font-size: 9px;
+    color: #aaa;
+    text-align: right;
+    margin-bottom: 4mm;
+  }
+
+  /* 印刷設定 */
+  @media print {
+    body { background: #fff; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      border-radius: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-left">
+      <div class="doc-title">お見積書</div>
+      <div class="doc-meta">
+        <div><span>発行日</span>2026年06月12日</div>
+        <div><span>見積番号</span>20260612-1</div>
+        <div><span>有効期限</span>2026年07月31日</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="company-name-logo">CRATER</div>
+      <div class="company-info">
+        株式会社クレーター　明里 圭修<br>
+        登録番号：T8011101087629<br>
+        〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F<br>
+        TEL：03-6665-0846　info@crater.co.jp
+      </div>
+    </div>
+  </div>
+
+  <!-- 宛先・合計金額 -->
+  <div class="billing-section">
+    <div class="client-block">
+      <div class="client-name">○○株式会社<span class="honorific">　御中</span></div>
+      <div class="subject-line">件名：<span>ウェブサイトリニューアル制作一式</span></div>
+      <div style="font-size:10px;color:#555;margin-top:4px;">下記のとおりお見積申し上げます。</div>
+    </div>
+    <div class="total-block">
+      <div class="total-label">お見積金額（税込）</div>
+      <div class="total-amount">¥2,262,700</div>
+      <div class="total-amount-sub">税抜 ¥2,057,000</div>
+    </div>
+  </div>
+
+  <!-- 明細テーブル -->
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th class="num">No</th>
+        <th class="item">品目</th>
+        <th class="qty">数量</th>
+        <th class="price">単価</th>
+        <th class="subtotal">金額</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- デザイン -->
+      <tr class="section-row">
+        <td colspan="5">▍ デザイン</td>
+      </tr>
+      <tr>
+        <td class="num">1</td>
+        <td>トップページデザイン制作</td>
+        <td class="qty">1</td>
+        <td class="price">¥450,000</td>
+        <td class="subtotal">¥450,000</td>
+      </tr>
+      <tr>
+        <td class="num">2</td>
+        <td>セカンドページデザイン制作（通常）<br>
+          <span style="font-size:9px;color:#999;">about / howto / application / uastandard / whyua / campany / blog / 投稿詳細テンプレ</span>
+        </td>
+        <td class="qty">8</td>
+        <td class="price">¥70,000</td>
+        <td class="subtotal">¥560,000</td>
+      </tr>
+      <tr>
+        <td class="num">3</td>
+        <td>セカンドページデザイン制作（簡易）<br>
+          <span style="font-size:9px;color:#999;">プライバシーポリシー / 利用規約</span>
+        </td>
+        <td class="qty">2</td>
+        <td class="price">¥25,000</td>
+        <td class="subtotal">¥50,000</td>
+      </tr>
+      <tr>
+        <td class="num">4</td>
+        <td>カテゴリ一覧テンプレートデザイン制作</td>
+        <td class="qty">1</td>
+        <td class="price">¥50,000</td>
+        <td class="subtotal">¥50,000</td>
+      </tr>
+
+      <!-- コーディング -->
+      <tr class="section-row">
+        <td colspan="5">▍ コーディング（HTML / CSS 納品）</td>
+      </tr>
+      <tr>
+        <td class="num">5</td>
+        <td>トップページコーディング（レスポンシブ）</td>
+        <td class="qty">1</td>
+        <td class="price">¥150,000</td>
+        <td class="subtotal">¥150,000</td>
+      </tr>
+      <tr>
+        <td class="num">6</td>
+        <td>セカンドページコーディング（通常）</td>
+        <td class="qty">8</td>
+        <td class="price">¥50,000</td>
+        <td class="subtotal">¥400,000</td>
+      </tr>
+      <tr>
+        <td class="num">7</td>
+        <td>セカンドページコーディング（簡易）</td>
+        <td class="qty">2</td>
+        <td class="price">¥30,000</td>
+        <td class="subtotal">¥60,000</td>
+      </tr>
+      <tr>
+        <td class="num">8</td>
+        <td>テンプレートコーディング（詳細 + 一覧）</td>
+        <td class="qty">2</td>
+        <td class="price">¥40,000</td>
+        <td class="subtotal">¥80,000</td>
+      </tr>
+
+      <!-- ディレクション -->
+      <tr class="section-row">
+        <td colspan="5">▍ ディレクション</td>
+      </tr>
+      <tr>
+        <td class="num">9</td>
+        <td>ディレクション費（制作費合計の10%）</td>
+        <td class="qty">1</td>
+        <td class="price">¥187,000</td>
+        <td class="subtotal">¥187,000</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <!-- 合計 -->
+  <div class="tax-note">※ 表示金額はすべて税抜き</div>
+  <div class="totals-section">
+    <table class="totals-table">
+      <tr class="subtotal-row">
+        <td>小計</td>
+        <td>¥1,987,000</td>
+      </tr>
+      <tr class="tax-row">
+        <td>消費税（10%）</td>
+        <td>¥198,700</td>
+      </tr>
+      <tr class="grand-total-row">
+        <td>合計（税込）</td>
+        <td>¥2,185,700</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 備考 -->
+  <div class="remarks">
+    <div class="remarks-title">備考</div>
+    ・納品物：HTML / CSS ファイル一式<br>
+    ・WordPress への実装・設定はクライアント様にて対応をお願いいたします。<br>
+    ・修正回数に上限は設けておりません。納品まで丁寧に対応いたします。<br>
+    ・交通費が発生する場合は別途実費にてご請求いたします。
+  </div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div class="footer-left">株式会社クレーター　T8011101087629</div>
+    <div class="footer-right">crater.co.jp</div>
+  </div>
+
+</div>
+
+</body>
+</html>
