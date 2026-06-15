@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人と空間 — Brand Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f7f5;
+  --bg2: #f0f0ed;
+  --black: #111111;
+  --text: #1a1a1a;
+  --sub: #888888;
+  --lt: rgba(0,0,0,0.07);
+  --lt2: rgba(0,0,0,0.04);
+  --font-jp: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+  --font-en: 'Inter', Arial, sans-serif;
+  --gap: 20px;
+  --pad: 48px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-jp);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 2.0;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Lock Screen ─────────────────────────── */
+#lockScreen {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 9999; gap: 48px;
+}
+.lock-brand {
+  font-family: var(--font-jp);
+  font-size: clamp(20px, 3.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--black);
+}
+.lock-sub {
+  font-family: var(--font-en);
+  font-size: 10px; letter-spacing: 0.3em;
+  color: var(--sub); margin-top: -36px;
+  text-transform: uppercase;
+}
+.lock-form { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.lock-form input {
+  background: transparent;
+  border: none; border-bottom: 1px solid rgba(0,0,0,0.15);
+  color: var(--black); padding: 10px 0;
+  font-family: var(--font-en);
+  font-size: 16px; letter-spacing: 0.25em;
+  text-align: center; width: 200px;
+  outline: none;
+}
+.lock-form input::placeholder { color: var(--sub); font-size: 11px; letter-spacing: 0.3em; }
+.lock-form button {
+  background: var(--black); color: var(--bg);
+  border: none; padding: 12px 40px;
+  font-family: var(--font-en);
+  font-size: 10px; letter-spacing: 0.3em;
+  cursor: pointer; margin-top: 8px;
+  transition: opacity 0.2s; text-transform: uppercase;
+}
+.lock-form button:hover { opacity: 0.6; }
+.lock-err { font-size: 11px; color: #b05050; letter-spacing: 0.1em; min-height: 16px; }
+
+/* ── Main ────────────────────────────────── */
+#mainWrap { display: none; }
+
+/* ── Header ──────────────────────────────── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  padding: 0 var(--pad);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  border-bottom: 1px solid var(--lt);
+}
+.header-brand {
+  font-family: var(--font-jp);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.2em; color: var(--black);
+}
+.header-en {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.25em;
+  color: var(--sub); text-transform: uppercase;
+  margin-top: 2px;
+}
+.header-sub {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.25em;
+  color: var(--sub); text-transform: uppercase;
+}
+
+/* ── Tab Nav ─────────────────────────────── */
+.tab-nav {
+  position: sticky; top: 64px; z-index: 99;
+  background: var(--bg);
+  border-bottom: 1px solid var(--lt);
+  display: flex;
+  padding: 0 calc(var(--pad) - 20px);
+  overflow-x: auto;
+}
+.tab-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  font-family: var(--font-en);
+  font-size: 10px; letter-spacing: 0.25em;
+  color: var(--black); background: none; border: none;
+  padding: 14px 20px; cursor: pointer;
+  border-bottom: 1.5px solid transparent;
+  margin-bottom: -1px;
+  transition: opacity 0.15s, border-color 0.15s;
+  flex-shrink: 0; opacity: 0.35;
+  text-transform: uppercase;
+}
+.tab-btn:hover { opacity: 0.7; }
+.tab-btn.active { opacity: 1; border-bottom-color: var(--black); }
+
+/* ── Tab Content ─────────────────────────── */
+.tab-panel { display: none; max-width: 1200px; margin: 0 auto; padding: 0 var(--pad) 100px; }
+.tab-panel.active { display: block; }
+
+/* ── Block ───────────────────────────────── */
+.block { padding: 56px 0; border-top: 1px solid var(--lt); }
+.block:first-child { border-top: none; padding-top: 64px; }
+
+/* ── Dark Block ──────────────────────────── */
+.block-dark {
+  background: var(--black);
+  color: #fff;
+  padding: 64px var(--pad);
+  margin: 0 calc(var(--pad) * -1);
+}
+
+/* ── グリッド ────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 32px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; }
+
+/* ── セクション見出し ────────────────────── */
+.lbl {
+  font-family: var(--font-en);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.3em; line-height: 1;
+  color: var(--sub);
+  margin-bottom: 32px;
+  display: flex; align-items: center; gap: 16px;
+  text-transform: uppercase;
+}
+.lbl::before {
+  content: ''; display: block;
+  width: 24px; height: 1px; background: var(--sub);
+  flex-shrink: 0;
+}
+.lbl-jp {
+  font-family: var(--font-jp);
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.1em; color: var(--sub);
+  opacity: 0.7;
+}
+
+.lbl-sm {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.25em;
+  color: var(--sub); text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── Brand Name ──────────────────────────── */
+.brand-name-display {
+  font-family: var(--font-jp);
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.1;
+  color: var(--black);
+}
+.brand-name-en {
+  font-family: var(--font-en);
+  font-size: clamp(11px, 1.2vw, 14px);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  color: var(--sub);
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+/* ── Tagline ─────────────────────────────── */
+.tagline-main {
+  font-family: var(--font-jp);
+  font-size: clamp(20px, 2.8vw, 34px);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.7;
+  color: var(--black);
+}
+
+/* ── Brand Voice ─────────────────────────── */
+.brand-voice-text {
+  font-family: var(--font-jp);
+  font-size: clamp(28px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.6;
+}
+.brand-voice-sub {
+  font-family: var(--font-jp);
+  font-size: 12px; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4); margin-top: 24px;
+  line-height: 2.0;
+}
+
+/* ── Principle ───────────────────────────── */
+.principle-item { padding: 24px 0; border-top: 1px solid var(--lt); }
+.principle-item:first-child { border-top: none; padding-top: 0; }
+.principle-en {
+  font-family: var(--font-en);
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.1em; color: var(--black);
+}
+.principle-jp {
+  font-family: var(--font-jp);
+  font-size: 11px; color: var(--sub);
+  margin-top: 2px; letter-spacing: 0.08em;
+}
+.principle-desc {
+  font-family: var(--font-jp);
+  font-size: 12px; color: var(--sub);
+  line-height: 2.0; margin-top: 10px;
+}
+
+/* ── Do Don't ────────────────────────────── */
+.dndlist { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.dndlist li {
+  display: flex; align-items: flex-start; gap: 20px;
+  font-size: 13px; line-height: 2.0;
+  padding: 14px 0; border-bottom: 1px solid var(--lt);
+}
+.dndlist li:first-child { padding-top: 0; }
+.dndlist li:last-child { border-bottom: none; }
+.dnd-mark {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.1em;
+  color: var(--sub); min-width: 28px;
+  padding-top: 5px;
+}
+
+/* ── Brand Codes ─────────────────────────── */
+.core-code-display {
+  font-family: var(--font-jp);
+  font-size: clamp(20px, 2.5vw, 30px);
+  font-weight: 700; line-height: 1.8;
+  letter-spacing: 0.1em; color: var(--black);
+}
+.code-item {
+  display: flex; gap: 24px; align-items: flex-start;
+  padding: 18px 0; border-top: 1px solid var(--lt);
+}
+.code-num {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.2em;
+  color: var(--sub); min-width: 28px; padding-top: 4px;
+}
+.code-title {
+  font-family: var(--font-jp);
+  font-size: 13px; font-weight: 500; letter-spacing: 0.08em;
+}
+.code-desc {
+  font-family: var(--font-jp);
+  font-size: 12px; color: var(--sub); margin-top: 6px; line-height: 2.0;
+}
+
+/* ── Accordion ───────────────────────────── */
+details.acc { margin-top: 28px; }
+details.acc summary {
+  cursor: pointer; list-style: none;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 0; border-top: 1px solid var(--lt);
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.25em; color: var(--sub);
+  text-transform: uppercase;
+}
+details.acc summary::after {
+  content: '+'; font-size: 14px;
+  transition: transform 0.3s ease;
+  font-family: var(--font-en);
+}
+details.acc[open] summary::after { transform: rotate(45deg); }
+details.acc summary::-webkit-details-marker { display: none; }
+.acc-body { overflow: hidden; opacity: 0; transition: opacity 0.3s ease; }
+details.acc[open] .acc-body { opacity: 1; }
+.acc-inner { padding: 20px 0 24px; }
+
+/* ── Story ───────────────────────────────── */
+.story-text {
+  font-family: var(--font-jp);
+  font-size: 13px; line-height: 2.2; color: var(--sub);
+}
+
+/* ═══════════════════════════════
+   DESIGN SYSTEM
+═══════════════════════════════ */
+
+/* 印象シート */
+.impression-summary {
+  font-family: var(--font-jp);
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.6;
+  color: var(--black);
+}
+.impression-card {
+  background: var(--bg2);
+  padding: 32px 36px;
+}
+.impression-card-label {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.25em;
+  color: var(--sub); text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.impression-row {
+  display: flex; gap: 0;
+  padding: 14px 0; border-top: 1px solid var(--lt);
+}
+.impression-row:first-of-type { border-top: none; padding-top: 0; }
+.impression-key {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.15em;
+  color: var(--sub); text-transform: uppercase;
+  min-width: 120px; padding-top: 4px; flex-shrink: 0;
+}
+.impression-val {
+  font-family: var(--font-jp);
+  font-size: 13px; color: var(--text); line-height: 2.0;
+}
+.keyword-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.keyword-chip {
+  font-family: var(--font-jp);
+  font-size: 11px; letter-spacing: 0.08em;
+  color: var(--sub);
+  border: 1px solid var(--lt);
+  padding: 5px 14px; background: var(--bg);
+}
+
+/* Typography */
+.typo-block { padding: 28px 0; border-top: 1px solid var(--lt); }
+.typo-block:first-child { border-top: none; padding-top: 0; }
+.typo-font-name {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.2em; color: var(--sub);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+.typo-display {
+  font-family: var(--font-jp);
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700; letter-spacing: 0.15em; line-height: 1.2;
+  color: var(--black);
+}
+.typo-scale { display: flex; flex-direction: column; gap: 0; margin-top: 20px; }
+.typo-scale-row {
+  display: flex; align-items: baseline; gap: 20px;
+  border-top: 1px solid var(--lt); padding: 10px 0;
+}
+.typo-scale-sz {
+  font-family: var(--font-en);
+  font-size: 9px; color: var(--sub); letter-spacing: 0.1em; min-width: 44px;
+}
+
+/* Color */
+.color-swatch-row { display: flex; flex-direction: column; gap: 2px; margin-bottom: 24px; }
+.cswatch {
+  height: 64px; display: flex;
+  align-items: flex-end; padding: 10px 14px;
+}
+.cswatch-sm { height: 40px; }
+.sw-info { display: flex; gap: 20px; align-items: center; margin-top: 16px; }
+.sw-name {
+  font-family: var(--font-jp);
+  font-size: 12px; color: var(--text);
+}
+.sw-hex {
+  font-family: var(--font-en);
+  font-size: 11px; color: var(--sub); letter-spacing: 0.08em;
+}
+
+/* Spacing */
+.spacing-row-item { display: flex; align-items: center; gap: 16px; padding: 10px 0; border-top: 1px solid var(--lt); }
+.spacing-row-item:first-child { border-top: none; padding-top: 0; }
+.spacing-bar { height: 1px; background: var(--black); }
+.spacing-val {
+  font-family: var(--font-en);
+  font-size: 10px; color: var(--sub); letter-spacing: 0.1em; min-width: 64px;
+}
+.spacing-desc {
+  font-family: var(--font-jp);
+  font-size: 11px; color: var(--sub);
+}
+
+/* UI */
+.ui-btn-primary {
+  display: inline-block; background: var(--black); color: var(--bg);
+  font-family: var(--font-en); font-size: 11px; letter-spacing: 0.2em;
+  padding: 13px 32px; text-decoration: none; margin-right: 8px; margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.ui-btn-outline {
+  display: inline-block; background: transparent; color: var(--black);
+  border: 1px solid var(--black);
+  font-family: var(--font-en); font-size: 11px; letter-spacing: 0.2em;
+  padding: 13px 32px; text-decoration: none; margin-right: 8px; margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.ui-tag {
+  display: inline-block; background: rgba(0,0,0,0.05); color: var(--sub);
+  font-family: var(--font-en); font-size: 9px; letter-spacing: 0.15em;
+  padding: 5px 14px; margin-right: 6px; margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.ui-badge {
+  display: inline-block; background: var(--black); color: var(--bg);
+  font-family: var(--font-en); font-size: 8px; letter-spacing: 0.2em;
+  padding: 3px 10px; text-transform: uppercase;
+}
+
+/* Web Hero */
+.web-hero {
+  background: var(--black); padding: 40px 32px;
+  min-height: 180px; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.web-hero-tag {
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.3em; color: rgba(255,255,255,0.25);
+  margin-bottom: 16px; text-transform: uppercase;
+}
+.web-hero-title {
+  font-family: var(--font-jp);
+  font-size: clamp(18px, 2.5vw, 28px); font-weight: 700;
+  color: rgba(255,255,255,0.9); letter-spacing: 0.12em; line-height: 1.6;
+}
+.web-hero-cta {
+  display: inline-block; margin-top: 24px;
+  font-family: var(--font-en);
+  font-size: 9px; letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 4px; width: fit-content; text-transform: uppercase;
+}
+
+/* LOGO tab */
+.sample-overlay {
+  position: absolute; inset: 0;
+  background: rgba(247,247,245,0.9);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 10;
+}
+.sample-tag {
+  font-family: var(--font-en);
+  font-size: 10px; letter-spacing: 0.4em; color: #CCCCCC;
+  background: var(--bg); padding: 8px 24px; border: 1px solid var(--lt);
+  text-transform: uppercase;
+}
+
+/* VISUAL tab */
+.visual-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.visual-cell {
+  position: relative; aspect-ratio: 16/9;
+  background: #e8e8e8; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.visual-cell-dark { background: #1a1a1a; }
+.visual-label {
+  position: absolute; bottom: 10px; left: 12px;
+  font-family: var(--font-en);
+  font-size: 8px; letter-spacing: 0.2em;
+  color: rgba(0,0,0,0.25); text-transform: uppercase; z-index: 5;
+}
+.visual-cell-dark .visual-label { color: rgba(255,255,255,0.25); }
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  :root { --pad: 24px; }
+  .lbl { margin-bottom: 24px; }
+  .grid-2, .grid-2-1 { grid-template-columns: 1fr; gap: 32px; }
+  .grid-3 { grid-template-columns: 1fr; gap: 28px; }
+  .grid-4 { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .visual-grid { grid-template-columns: 1fr 1fr; }
+  .block-dark { margin: 0 calc(var(--pad) * -1); padding: 48px var(--pad); }
+  .impression-key { min-width: 80px; font-size: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Lock Screen ────────────────────────── -->
+<div id="lockScreen">
+  <div>
+    <div class="lock-brand">人と空間</div>
+    <div class="lock-sub">HUMAN AND SPACE — BRAND BOARD</div>
+  </div>
+  <div class="lock-form">
+    <input type="password" id="pwInput" placeholder="PASSWORD" autocomplete="off">
+    <button onclick="checkPw()">ENTER</button>
+    <div class="lock-err" id="pwErr"></div>
+  </div>
+</div>
+
+<div id="mainWrap">
+
+<!-- ── Header ────────────────────────────── -->
+<header class="site-header">
+  <div>
+    <div class="header-brand">人と空間</div>
+    <div class="header-en">HUMAN AND SPACE</div>
+  </div>
+  <div class="header-sub">BRAND BOARD 2026</div>
+</header>
+
+<!-- ── Tab Nav ────────────────────────────── -->
+<nav class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('overview',this)">OVERVIEW</button>
+  <button class="tab-btn" onclick="switchTab('design',this)">DESIGN SYSTEM</button>
+  <button class="tab-btn" onclick="switchTab('logo',this)">LOGO</button>
+  <button class="tab-btn" onclick="switchTab('visual',this)">VISUAL</button>
+</nav>
+
+
+<!-- ══════════════════════════════
+     OVERVIEW
+══════════════════════════════ -->
+<div id="tab-overview" class="tab-panel active">
+
+  <!-- Brand Name -->
+  <div class="block">
+    <div class="lbl">Brand Name <span class="lbl-jp">ブランドネーム</span></div>
+    <div class="brand-name-display">人と空間</div>
+    <div class="brand-name-en">HUMAN AND SPACE</div>
+
+    <details class="acc">
+      <summary>NAMING STORY</summary>
+      <div class="acc-body"><div class="acc-inner">
+        <p class="story-text">「人」と「空間」——2つの要素が交差するとき、初めて体験が生まれる。<br><br>ロゴに込められた円（人）と四角（空間）をクロスで結ぶ幾何学構造のように、このブランドは人の動きと空間の質を科学し、交差点に価値を見出す。</p>
+      </div></div>
+    </details>
+  </div>
+
+  <!-- Tagline -->
+  <div class="block">
+    <div class="grid-2">
+      <div>
+        <div class="lbl">Mission <span class="lbl-jp">ミッション</span></div>
+        <div class="tagline-main">AI時代の店舗体験を、<br>科学する。</div>
+        <details class="acc">
+          <summary>BRAND STORY</summary>
+          <div class="acc-body"><div class="acc-inner">
+            <p class="story-text">人が空間を動くとき、そこには無数のデータが生まれている。どこで立ち止まり、何を見て、何を手にとるか。その行動の集積が、店舗の体験価値を形づくっている。<br><br>株式会社人と空間は、AIカメラと専門調査員のハイブリッド型調査によって、その見えない動線を可視化する。科学的根拠に基づいたCX改善を、百貨店・アパレル・ライフスタイルショップに提供する。</p>
+          </div></div>
+        </details>
+      </div>
+      <div>
+        <div class="lbl">Concept <span class="lbl-jp">コンセプト</span></div>
+        <p class="story-text">CX調査・空間品質調査・AIカメラによる人流計測・コンサルティング支援の4本柱で、商業施設の「体験の質」を科学的に改善する。感覚でなく、データで。主観でなく、構造で。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brand Voice -->
+  <div class="block-dark">
+    <div class="lbl" style="color:rgba(255,255,255,0.25);">Brand Voice</div>
+    <div class="brand-voice-text">静かな確信。<br>主張しないが、消えない。</div>
+    <div class="brand-voice-sub">データが語る。私たちは証明するだけだ。</div>
+  </div>
+
+  <!-- Brand Attributes -->
+  <div class="block">
+    <div class="lbl">Brand Attributes <span class="lbl-jp">ブランドらしさ</span></div>
+    <div class="grid-2">
+      <div>
+        <div class="principle-item">
+          <div class="principle-en">Scientific</div>
+          <div class="principle-jp">科学する視点</div>
+          <div class="principle-desc">感覚や勘に頼らず、データと構造で体験を解析する。調査設計から改善提案まで、根拠のある言葉しか使わない。</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-en">Invisible → Visible</div>
+          <div class="principle-jp">見えないものを見せる</div>
+          <div class="principle-desc">人の動線・感情・判断の瞬間は目に見えない。AIカメラと調査員の眼が、それを形にする。</div>
+        </div>
+      </div>
+      <div>
+        <div class="principle-item">
+          <div class="principle-en">Partnership</div>
+          <div class="principle-jp">伴走する姿勢</div>
+          <div class="principle-desc">レポートを渡して終わらない。改善が実現するまで、クライアントと共に考え続ける。</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-en">Quiet Confidence</div>
+          <div class="principle-jp">静かな確信</div>
+          <div class="principle-desc">主張せず、証明する。実績とデータが語るから、過剰な言葉は要らない。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Do's & Don'ts -->
+  <div class="block">
+    <div class="grid-2">
+      <div>
+        <div style="font-family:var(--font-en);font-size:18px;font-weight:500;letter-spacing:0.1em;line-height:1;margin-bottom:24px;color:var(--black);">DO'S <span style="font-size:10px;font-weight:400;color:var(--sub);letter-spacing:0.1em;">やること</span></div>
+        <ul class="dndlist">
+          <li><span class="dnd-mark">DO</span><span>データと根拠で、静かに誠実に語る</span></li>
+          <li><span class="dnd-mark">DO</span><span>B2B向けのプロフェッショナルな文脈で提示する</span></li>
+          <li><span class="dnd-mark">DO</span><span>余白と構造で、信頼を演出する</span></li>
+          <li><span class="dnd-mark">DO</span><span>調査→分析→改善の明確なロジックを見せる</span></li>
+          <li><span class="dnd-mark">DO</span><span>建築的・幾何学的なビジュアル言語を使う</span></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:var(--font-en);font-size:18px;font-weight:500;letter-spacing:0.1em;line-height:1;margin-bottom:24px;color:var(--black);">DON'TS <span style="font-size:10px;font-weight:400;color:var(--sub);letter-spacing:0.1em;">やらないこと</span></div>
+        <ul class="dndlist">
+          <li><span class="dnd-mark">—</span><span>根拠のない最上級表現・誇張を使う</span></li>
+          <li><span class="dnd-mark">—</span><span>カラフルな色・装飾過多なデザインをする</span></li>
+          <li><span class="dnd-mark">—</span><span>感情訴求・B2C的な温かみ路線にする</span></li>
+          <li><span class="dnd-mark">—</span><span>競合比較・防衛的な表現をする</span></li>
+          <li><span class="dnd-mark">—</span><span>情報を詰め込みすぎて余白を殺す</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Brand Codes -->
+  <div class="block">
+    <div class="lbl">Brand Codes <span class="lbl-jp">ブランドコード</span></div>
+    <div class="grid-2">
+      <div>
+        <div style="border-left:1px solid var(--black);padding-left:20px;margin-bottom:24px;">
+          <div style="font-family:var(--font-en);font-size:9px;letter-spacing:0.2em;color:var(--sub);margin-bottom:12px;text-transform:uppercase;">CORE CODE</div>
+          <div class="core-code-display">人の動きを科学し、<br>空間を変える</div>
+        </div>
+        <p class="story-text">CX調査会社は多い。しかしAIカメラとプロ調査員を組み合わせ、改善まで伴走するのは人と空間だけだ。</p>
+
+        <details class="acc" open>
+          <summary>OTHER BRAND CODES</summary>
+          <div class="acc-body" style="opacity:1;"><div class="acc-inner">
+            <div class="code-item" style="border-top:none;padding-top:0;">
+              <div class="code-num">01</div>
+              <div><div class="code-title">ハイブリッド調査</div><div class="code-desc">モニター型＋専門調査員。AIカメラ＋人間の眼。定量と定性を掛け合わせる。</div></div>
+            </div>
+            <div class="code-item">
+              <div class="code-num">02</div>
+              <div><div class="code-title">9つの視点でスコア化</div><div class="code-desc">空間品質を独自の9軸で数値化。比較・改善が可能な言語に変換する。</div></div>
+            </div>
+            <div class="code-item">
+              <div class="code-num">03</div>
+              <div><div class="code-title">AI人流計測</div><div class="code-desc">カメラが見た動線データで、店舗運営のKPIを可視化・改善する。</div></div>
+            </div>
+            <div class="code-item">
+              <div class="code-num">04</div>
+              <div><div class="code-title">伴走型コンサル</div><div class="code-desc">調査して終わらない。結果が出るまで共に考え、動く。</div></div>
+            </div>
+          </div></div>
+        </details>
+      </div>
+      <div></div>
+    </div>
+  </div>
+
+</div><!-- /overview -->
+
+
+<!-- ══════════════════════════════
+     DESIGN SYSTEM
+══════════════════════════════ -->
+<div id="tab-design" class="tab-panel">
+
+  <!-- 印象シート -->
+  <div class="block">
+    <div class="lbl">Impression Sheet <span class="lbl-jp">印象シート</span></div>
+
+    <div class="impression-summary" style="margin-bottom:48px;">静かな確信。<br>主張しないが、消えない。</div>
+
+    <div class="grid-2">
+      <!-- 左：印象ファクター -->
+      <div class="impression-card">
+        <div class="impression-card-label">Design Factors</div>
+
+        <div class="impression-row">
+          <div class="impression-key">Color</div>
+          <div class="impression-val">オフホワイト背景（#f7f7f5前後、85%）<br>テキスト #111〜#1a1a1a。差し色なし。完全モノクロ</div>
+        </div>
+        <div class="impression-row">
+          <div class="impression-key">Font — 見出し</div>
+          <div class="impression-val">太ゴシック（日本語）<br>letter-spacing: 0.15em前後</div>
+        </div>
+        <div class="impression-row">
+          <div class="impression-key">Font — 本文</div>
+          <div class="impression-val">細めゴシック（日本語）<br>letter-spacingはほぼ詰めない</div>
+        </div>
+        <div class="impression-row">
+          <div class="impression-key">Font — 英字</div>
+          <div class="impression-val">サンセリフ、細め〜レギュラーウェイト</div>
+        </div>
+        <div class="impression-row">
+          <div class="impression-key">行間</div>
+          <div class="impression-val">line-height 2.0〜2.4</div>
+        </div>
+        <div class="impression-row">
+          <div class="impression-key">余白</div>
+          <div class="impression-val">コンテンツ開始前に大きめ（上部余白がコンテンツの30〜40%）<br>要素間は広め。詰めない</div>
+        </div>
+        <div class="impression-row">
+          <div class="impression-key">密度</div>
+          <div class="impression-val">1画面の情報量：少ない<br>装飾：ゼロ（線・ボーダー・背景ブロックなし）</div>
+        </div>
+      </div>
+
+      <!-- 右：キーワード + トーン -->
+      <div>
+        <div style="margin-bottom:36px;">
+          <div class="impression-card-label" style="font-family:var(--font-en);font-size:9px;letter-spacing:0.25px;color:var(--sub);text-transform:uppercase;margin-bottom:16px;">Impression Keywords</div>
+          <div class="keyword-chips">
+            <span class="keyword-chip">静的</span>
+            <span class="keyword-chip">余白が呼吸している</span>
+            <span class="keyword-chip">主張しない高さ</span>
+            <span class="keyword-chip">冷たくない無彩色</span>
+            <span class="keyword-chip">削る選択</span>
+          </div>
+        </div>
+
+        <!-- サマリービジュアル -->
+        <div style="background:var(--black);padding:40px 32px;display:flex;flex-direction:column;justify-content:flex-end;min-height:220px;">
+          <div style="font-family:var(--font-jp);font-size:10px;letter-spacing:0.25em;color:rgba(255,255,255,0.2);text-transform:uppercase;margin-bottom:20px;">TONE PREVIEW</div>
+          <div style="font-family:var(--font-jp);font-size:clamp(16px,2.5vw,24px);font-weight:700;letter-spacing:0.15em;line-height:1.8;color:rgba(255,255,255,0.9);">人が動く。<br>空間が変わる。</div>
+        </div>
+
+        <div style="margin-top:20px;padding:20px 24px;border:1px solid var(--lt);">
+          <div style="font-family:var(--font-en);font-size:9px;letter-spacing:0.2em;color:var(--sub);text-transform:uppercase;margin-bottom:12px;">Size Hierarchy</div>
+          <div style="font-family:var(--font-jp);font-size:11px;color:var(--sub);line-height:2.2;">見出しと本文の差が大きい。<br>中間サイズを置かない。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Typography + Color -->
+  <div class="block">
+    <div class="grid-2-1">
+      <!-- Typography -->
+      <div>
+        <div class="lbl">Typography <span class="lbl-jp">タイポグラフィ</span></div>
+
+        <!-- JP: Noto Sans JP -->
+        <div class="typo-block" style="border-top:none;padding-top:0;">
+          <div class="typo-font-name">Noto Sans JP — 日本語</div>
+          <div class="typo-display" style="font-weight:700;">人と空間</div>
+          <div class="typo-scale">
+            <div class="typo-scale-row"><span class="typo-scale-sz">96px / 700</span><span style="font-family:'Noto Sans JP',sans-serif;font-size:24px;font-weight:700;letter-spacing:0.15em;color:var(--black);">見出し大</span></div>
+            <div class="typo-scale-row"><span class="typo-scale-sz">48px / 700</span><span style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.12em;color:var(--black);">見出し中</span></div>
+            <div class="typo-scale-row"><span class="typo-scale-sz">18px / 400</span><span style="font-family:'Noto Sans JP',sans-serif;font-size:14px;font-weight:400;letter-spacing:0.03em;color:var(--sub);">本文テキスト（line-height 2.0〜2.4）</span></div>
+            <div class="typo-scale-row"><span class="typo-scale-sz">11px / 300</span><span style="font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:300;letter-spacing:0.05em;color:var(--sub);">補足・キャプション</span></div>
+          </div>
+        </div>
+
+        <!-- EN: Inter -->
+        <div class="typo-block">
+          <div class="typo-font-name">Inter — English / Numbers</div>
+          <div style="font-family:'Inter',sans-serif;font-size:clamp(24px,4vw,48px);font-weight:300;line-height:1.1;letter-spacing:0.15em;color:var(--black);">HUMAN AND SPACE</div>
+          <div class="typo-scale">
+            <div class="typo-scale-row"><span class="typo-scale-sz">60px / 500</span><span style="font-family:'Inter',sans-serif;font-size:22px;font-weight:500;letter-spacing:0.05em;">Display</span></div>
+            <div class="typo-scale-row"><span class="typo-scale-sz">13px / 300</span><span style="font-family:'Inter',sans-serif;font-size:13px;font-weight:300;letter-spacing:0.2em;color:var(--sub);">LABEL / CAPTION</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color -->
+      <div>
+        <div class="lbl">Color System <span class="lbl-jp">カラー</span></div>
+
+        <div style="background:var(--bg2);padding:24px;">
+          <!-- スウォッチ -->
+          <div class="color-swatch-row">
+            <div class="cswatch" style="background:#111111;height:72px;"></div>
+            <div class="cswatch" style="background:#888888;height:44px;"></div>
+            <div class="cswatch" style="background:#f7f7f5;height:44px;border:1px solid var(--lt);"></div>
+          </div>
+
+          <!-- 凡例 -->
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--lt);padding-top:10px;">
+              <span style="font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--text);">Black</span>
+              <span style="font-family:'Inter',sans-serif;font-size:11px;color:var(--sub);">#111111</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--lt);padding-top:10px;">
+              <span style="font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--text);">補助テキスト</span>
+              <span style="font-family:'Inter',sans-serif;font-size:11px;color:var(--sub);">#888888</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--lt);padding-top:10px;">
+              <span style="font-family:'Noto Sans JP',sans-serif;font-size:12px;color:var(--text);">背景</span>
+              <span style="font-family:'Inter',sans-serif;font-size:11px;color:var(--sub);">#f7f7f5</span>
+            </div>
+          </div>
+
+          <!-- 使用比率 -->
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--lt);">
+            <div style="font-family:'Inter',sans-serif;font-size:9px;letter-spacing:0.2em;color:var(--sub);text-transform:uppercase;margin-bottom:12px;">Color Ratio</div>
+            <div style="display:flex;height:8px;gap:1px;margin-bottom:10px;">
+              <div style="flex:85;background:#f7f7f5;border:1px solid var(--lt);"></div>
+              <div style="flex:10;background:#111111;"></div>
+              <div style="flex:5;background:#888888;"></div>
+            </div>
+            <div style="font-family:'Inter',sans-serif;font-size:9px;color:var(--sub);letter-spacing:0.05em;">BG 85% · TEXT 10% · SUB 5%</div>
+          </div>
+
+          <!-- No Accent -->
+          <div style="margin-top:20px;padding:12px 16px;background:var(--bg);border:1px solid var(--lt);">
+            <div style="font-family:'Noto Sans JP',sans-serif;font-size:11px;color:var(--sub);line-height:2.0;">差し色なし。完全モノクロ。<br>色で語らず、構造で語る。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spacing & Rhythm -->
+  <div class="block">
+    <div class="lbl">Spacing &amp; Rhythm <span class="lbl-jp">余白とリズム</span></div>
+    <div class="grid-3">
+      <div>
+        <div class="impression-card-label" style="font-family:var(--font-en);font-size:9px;letter-spacing:0.25em;color:var(--sub);text-transform:uppercase;margin-bottom:16px;">Vertical Rhythm</div>
+        <div>
+          <div class="spacing-row-item">
+            <div class="spacing-val">line-height</div>
+            <div class="spacing-bar" style="width:80px;"></div>
+            <div class="spacing-desc">2.0〜2.4</div>
+          </div>
+          <div class="spacing-row-item">
+            <div class="spacing-val">letter-spacing</div>
+            <div class="spacing-bar" style="width:48px;"></div>
+            <div class="spacing-desc">見出し 0.15em</div>
+          </div>
+          <div class="spacing-row-item">
+            <div class="spacing-val">letter-spacing</div>
+            <div class="spacing-bar" style="width:20px;"></div>
+            <div class="spacing-desc">本文 ほぼ詰めない</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="impression-card-label" style="font-family:var(--font-en);font-size:9px;letter-spacing:0.25em;color:var(--sub);text-transform:uppercase;margin-bottom:16px;">Margin Rule</div>
+        <p class="story-text">コンテンツ開始前の上部余白は、コンテンツ量の30〜40%。<br><br>要素間は広め。詰めない。1画面の情報量を少なく保つ。</p>
+      </div>
+      <div>
+        <div class="impression-card-label" style="font-family:var(--font-en);font-size:9px;letter-spacing:0.25em;color:var(--sub);text-transform:uppercase;margin-bottom:16px;">Decoration Rule</div>
+        <p class="story-text">装飾はゼロ。<br>線・ボーダー・背景ブロックは使わない。<br><br>構造はタイポグラフィと余白だけで作る。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- UI · Web -->
+  <div class="block">
+    <div class="lbl">UI · Web <span class="lbl-jp">UIとウェブ</span></div>
+    <div class="grid-2" style="align-items:start;">
+
+      <!-- iPhoneモック -->
+      <div style="display:flex;justify-content:center;padding:20px 0;">
+        <div style="width:280px;background:#0a0a0a;border-radius:44px;padding:12px 10px;box-shadow:0 32px 64px rgba(0,0,0,0.2);">
+          <!-- notch -->
+          <div style="width:90px;height:28px;background:#0a0a0a;border-radius:14px;margin:0 auto 8px;"></div>
+          <!-- screen -->
+          <div style="background:#f7f7f5;border-radius:34px;overflow:hidden;min-height:520px;display:flex;flex-direction:column;font-family:'Noto Sans JP',sans-serif;">
+            <!-- 上部余白（コンテンツの30〜40%） -->
+            <div style="height:140px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 20px;">
+              <div style="font-family:'Inter',sans-serif;font-size:8px;letter-spacing:0.3em;color:#888;text-transform:uppercase;margin-bottom:8px;">HUMAN AND SPACE</div>
+              <div style="font-size:18px;font-weight:700;letter-spacing:0.12em;line-height:1.5;color:#111;">人が動く。<br>空間が変わる。</div>
+            </div>
+            <!-- コンテンツ -->
+            <div style="padding:0 24px 24px;flex:1;">
+              <div style="height:1px;background:rgba(0,0,0,0.07);margin-bottom:20px;"></div>
+              <div style="font-size:10px;font-weight:300;letter-spacing:0.05em;color:#888;line-height:2.2;margin-bottom:24px;">AI時代の店舗CX・UX改善の<br>パイオニア</div>
+              <!-- サービスカード（装飾なし） -->
+              <div style="display:flex;flex-direction:column;gap:14px;">
+                <div style="padding:14px 0;border-top:1px solid rgba(0,0,0,0.07);">
+                  <div style="font-size:9px;letter-spacing:0.2em;color:#888;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:4px;">01</div>
+                  <div style="font-size:12px;font-weight:500;letter-spacing:0.08em;color:#111;">CX調査</div>
+                </div>
+                <div style="padding:14px 0;border-top:1px solid rgba(0,0,0,0.07);">
+                  <div style="font-size:9px;letter-spacing:0.2em;color:#888;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:4px;">02</div>
+                  <div style="font-size:12px;font-weight:500;letter-spacing:0.08em;color:#111;">空間品質調査</div>
+                </div>
+                <div style="padding:14px 0;border-top:1px solid rgba(0,0,0,0.07);">
+                  <div style="font-size:9px;letter-spacing:0.2em;color:#888;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:4px;">03</div>
+                  <div style="font-size:12px;font-weight:500;letter-spacing:0.08em;color:#111;">AI人流計測・DX</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Webヒーロー + UIパーツ -->
+      <div>
+        <div class="web-hero" style="margin-bottom:2px;">
+          <div class="web-hero-tag">Human And Space</div>
+          <div class="web-hero-title">体験の質を、<br>数値で変える。</div>
+          <div class="web-hero-cta">サービスを見る</div>
+        </div>
+
+        <div style="background:var(--bg2);padding:28px;">
+          <div class="lbl-sm" style="margin-bottom:16px;">UI Components</div>
+          <div style="margin-bottom:20px;">
+            <a class="ui-btn-primary" href="#">お問い合わせ</a>
+            <a class="ui-btn-outline" href="#">サービスを見る</a>
+          </div>
+          <div style="margin-bottom:20px;">
+            <span class="ui-tag">CX調査</span>
+            <span class="ui-tag">AI人流計測</span>
+            <span class="ui-tag">空間品質</span>
+          </div>
+          <div>
+            <span class="ui-badge">New</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /design -->
+
+
+<!-- ══════════════════════════════
+     LOGO
+══════════════════════════════ -->
+<div id="tab-logo" class="tab-panel">
+
+  <!-- Primary Logo -->
+  <div class="block">
+    <div class="lbl">Primary Logo <span class="lbl-jp">プライマリロゴ</span></div>
+    <div class="grid-2">
+      <!-- Light BG -->
+      <div style="position:relative;background:var(--bg2);padding:60px;min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:0.2em;color:#111;line-height:1.2;">人と空間</div>
+          <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.35em;color:#888;margin-top:10px;text-transform:uppercase;">HUMAN AND SPACE</div>
+        </div>
+        <div class="sample-overlay"><div class="sample-tag">SAMPLE</div></div>
+      </div>
+      <!-- Dark BG -->
+      <div style="position:relative;background:#111;padding:60px;min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-family:'Noto Sans JP',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:0.2em;color:#f7f7f5;line-height:1.2;">人と空間</div>
+          <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.35em;color:rgba(255,255,255,0.35);margin-top:10px;text-transform:uppercase;">HUMAN AND SPACE</div>
+        </div>
+        <div class="sample-overlay" style="background:rgba(17,17,17,0.9);"><div class="sample-tag">SAMPLE</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo Rules -->
+  <div class="block">
+    <div class="lbl">Usage Rules <span class="lbl-jp">使用ルール</span></div>
+    <div class="grid-2">
+      <div>
+        <div style="font-family:var(--font-en);font-size:13px;font-weight:500;letter-spacing:0.1em;margin-bottom:20px;color:var(--black);">DO</div>
+        <div class="principle-item" style="border-top:none;padding-top:0;">
+          <div class="principle-desc">背景は白（#f7f7f5）または黒（#111）のみ使用する</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-desc">最小サイズ：横幅80px以上を確保する</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-desc">周囲にロゴ幅の1/4以上のクリアスペースを確保する</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--font-en);font-size:13px;font-weight:500;letter-spacing:0.1em;margin-bottom:20px;color:var(--black);">DON'T</div>
+        <div class="principle-item" style="border-top:none;padding-top:0;">
+          <div class="principle-desc">カラー背景にロゴを置かない</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-desc">ロゴの縦横比を変えない・歪めない</div>
+        </div>
+        <div class="principle-item">
+          <div class="principle-desc">ロゴにドロップシャドウや装飾を加えない</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /logo -->
+
+
+<!-- ══════════════════════════════
+     VISUAL
+══════════════════════════════ -->
+<div id="tab-visual" class="tab-panel">
+
+  <!-- Visual Concept -->
+  <div class="block">
+    <div class="lbl">Visual Concept <span class="lbl-jp">ビジュアルコンセプト</span></div>
+    <div class="grid-3">
+      <div>
+        <div class="impression-card-label" style="font-family:var(--font-en);font-size:9px;letter-spacing:0.25em;color:var(--sub);text-transform:uppercase;margin-bottom:12px;">Tone</div>
+        <div class="story-text">静的・建築的・構造的。<br>余白が呼吸している空間。</div>
+      </div>
+      <div>
+        <div class="impression-card-label" style="font-family:var(--font-en);font-size:9px;letter-spacing:0.25em;color:var(--sub);text-transform:uppercase;margin-bottom:12px;">Motif</div>
+        <div class="story-text">線・格子・経路・動線。<br>人の動きを幾何学で表現する。</div>
+      </div>
+      <div>
+        <div class="impression-card-label" style="font-family:var(--font-en);font-size:9px;letter-spacing:0.25em;color:var(--sub);text-transform:uppercase;margin-bottom:12px;">Palette</div>
+        <div class="story-text">完全モノクロ。<br>色より形と余白で語る。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visual Grid -->
+  <div class="block">
+    <div class="lbl">Visual Grid <span class="lbl-jp">ビジュアルグリッド</span></div>
+    <div class="visual-grid" style="position:relative;">
+      <!-- 各セル -->
+      <div class="visual-cell">
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:24px;font-weight:700;letter-spacing:0.15em;color:#111;">人が動く</div>
+        <div class="visual-label">Key Visual 01</div>
+        <div class="sample-overlay"><div class="sample-tag">SAMPLE</div></div>
+      </div>
+      <div class="visual-cell visual-cell-dark">
+        <div style="font-family:'Noto Sans JP',sans-serif;font-size:18px;font-weight:700;letter-spacing:0.12em;color:#f7f7f5;text-align:center;line-height:1.7;">体験の質を<br>数値で変える</div>
+        <div class="visual-label">Key Visual 02</div>
+        <div class="sample-overlay" style="background:rgba(17,17,17,0.9);"><div class="sample-tag">SAMPLE</div></div>
+      </div>
+      <div class="visual-cell">
+        <div style="font-family:'Inter',sans-serif;font-size:40px;font-weight:300;letter-spacing:0.2em;color:#888;">H+S</div>
+        <div class="visual-label">Symbol</div>
+        <div class="sample-overlay"><div class="sample-tag">SAMPLE</div></div>
+      </div>
+      <div class="visual-cell visual-cell-dark">
+        <div class="sample-overlay" style="background:rgba(17,17,17,0.9);"><div class="sample-tag">SAMPLE</div></div>
+        <div class="visual-label">Photo 01</div>
+      </div>
+      <div class="visual-cell">
+        <div class="sample-overlay"><div class="sample-tag">SAMPLE</div></div>
+        <div class="visual-label">Photo 02</div>
+      </div>
+      <div class="visual-cell visual-cell-dark">
+        <div class="sample-overlay" style="background:rgba(17,17,17,0.9);"><div class="sample-tag">SAMPLE</div></div>
+        <div class="visual-label">Photo 03</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-family:var(--font-en);font-size:9px;letter-spacing:0.15em;color:var(--sub);text-transform:uppercase;">SAMPLEは実素材と差し替え</div>
+  </div>
+
+</div><!-- /visual -->
+
+</div><!-- /mainWrap -->
+
+<script>
+function checkPw() {
+  const pw = document.getElementById('pwInput').value;
+  if (pw === 'hs2026') {
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('mainWrap').style.display = 'block';
+  } else {
+    document.getElementById('pwErr').textContent = 'Incorrect password.';
+    document.getElementById('pwInput').value = '';
+  }
+}
+document.getElementById('pwInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPw();
+});
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
