@@ -13,8 +13,9 @@
   --bg2: #f0f0ed;
   --black: #111111;
   --text: #1a1a1a;
-  --sub: #888888;
-  --lt: rgba(0,0,0,0.07);
+  --sub: #555555;
+  --meta: #888888;
+  --lt: rgba(0,0,0,0.09);
   --lt2: rgba(0,0,0,0.04);
   --font-jp: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
   --font-en: 'Inter', Arial, sans-serif;
@@ -104,7 +105,7 @@ body {
 .header-sub {
   font-family: var(--font-en);
   font-size: 9px; letter-spacing: 0.25em;
-  color: var(--sub); text-transform: uppercase;
+  color: var(--meta); text-transform: uppercase;
 }
 
 /* ── Tab Nav ─────────────────────────────── */
@@ -125,10 +126,10 @@ body {
   border-bottom: 1.5px solid transparent;
   margin-bottom: -1px;
   transition: opacity 0.15s, border-color 0.15s;
-  flex-shrink: 0; opacity: 0.35;
+  flex-shrink: 0; opacity: 0.45;
   text-transform: uppercase;
 }
-.tab-btn:hover { opacity: 0.7; }
+.tab-btn:hover { opacity: 0.75; }
 .tab-btn.active { opacity: 1; border-bottom-color: var(--black); }
 
 /* ── Tab Content ─────────────────────────── */
@@ -158,27 +159,26 @@ body {
   font-family: var(--font-en);
   font-size: 10px; font-weight: 500;
   letter-spacing: 0.3em; line-height: 1;
-  color: var(--sub);
+  color: var(--meta);
   margin-bottom: 32px;
   display: flex; align-items: center; gap: 16px;
   text-transform: uppercase;
 }
 .lbl::before {
   content: ''; display: block;
-  width: 24px; height: 1px; background: var(--sub);
+  width: 24px; height: 1px; background: var(--meta);
   flex-shrink: 0;
 }
 .lbl-jp {
   font-family: var(--font-jp);
   font-size: 11px; font-weight: 400;
-  letter-spacing: 0.1em; color: var(--sub);
-  opacity: 0.7;
+  letter-spacing: 0.1em; color: var(--meta);
 }
 
 .lbl-sm {
   font-family: var(--font-en);
   font-size: 9px; letter-spacing: 0.25em;
-  color: var(--sub); text-transform: uppercase;
+  color: var(--meta); text-transform: uppercase;
   margin-bottom: 10px;
 }
 
@@ -196,7 +196,7 @@ body {
   font-size: clamp(11px, 1.2vw, 14px);
   font-weight: 300;
   letter-spacing: 0.35em;
-  color: var(--sub);
+  color: var(--meta);
   margin-top: 20px;
   text-transform: uppercase;
 }
@@ -223,7 +223,7 @@ body {
 .brand-voice-sub {
   font-family: var(--font-jp);
   font-size: 12px; letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.4); margin-top: 24px;
+  color: rgba(255,255,255,0.7); margin-top: 24px;
   line-height: 2.0;
 }
 
@@ -242,7 +242,7 @@ body {
 }
 .principle-desc {
   font-family: var(--font-jp);
-  font-size: 12px; color: var(--sub);
+  font-size: 13px; color: var(--sub);
   line-height: 2.0; margin-top: 10px;
 }
 
@@ -284,7 +284,7 @@ body {
 }
 .code-desc {
   font-family: var(--font-jp);
-  font-size: 12px; color: var(--sub); margin-top: 6px; line-height: 2.0;
+  font-size: 13px; color: var(--sub); margin-top: 6px; line-height: 2.0;
 }
 
 /* ── Accordion ───────────────────────────── */
@@ -294,7 +294,7 @@ details.acc summary {
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px 0; border-top: 1px solid var(--lt);
   font-family: var(--font-en);
-  font-size: 9px; letter-spacing: 0.25em; color: var(--sub);
+  font-size: 9px; letter-spacing: 0.25em; color: var(--meta);
   text-transform: uppercase;
 }
 details.acc summary::after {
@@ -311,7 +311,7 @@ details.acc[open] .acc-body { opacity: 1; }
 /* ── Story ───────────────────────────────── */
 .story-text {
   font-family: var(--font-jp);
-  font-size: 13px; line-height: 2.2; color: var(--sub);
+  font-size: 13px; line-height: 2.2; color: var(--text);
 }
 
 /* ═══════════════════════════════
@@ -334,7 +334,7 @@ details.acc[open] .acc-body { opacity: 1; }
 .impression-card-label {
   font-family: var(--font-en);
   font-size: 9px; letter-spacing: 0.25em;
-  color: var(--sub); text-transform: uppercase;
+  color: var(--meta); text-transform: uppercase;
   margin-bottom: 16px;
 }
 .impression-row {
@@ -345,7 +345,7 @@ details.acc[open] .acc-body { opacity: 1; }
 .impression-key {
   font-family: var(--font-en);
   font-size: 9px; letter-spacing: 0.15em;
-  color: var(--sub); text-transform: uppercase;
+  color: var(--meta); text-transform: uppercase;
   min-width: 120px; padding-top: 4px; flex-shrink: 0;
 }
 .impression-val {
@@ -366,7 +366,7 @@ details.acc[open] .acc-body { opacity: 1; }
 .typo-block:first-child { border-top: none; padding-top: 0; }
 .typo-font-name {
   font-family: var(--font-en);
-  font-size: 9px; letter-spacing: 0.2em; color: var(--sub);
+  font-size: 9px; letter-spacing: 0.2em; color: var(--meta);
   text-transform: uppercase; margin-bottom: 12px;
 }
 .typo-display {
@@ -382,7 +382,7 @@ details.acc[open] .acc-body { opacity: 1; }
 }
 .typo-scale-sz {
   font-family: var(--font-en);
-  font-size: 9px; color: var(--sub); letter-spacing: 0.1em; min-width: 44px;
+  font-size: 9px; color: var(--meta); letter-spacing: 0.1em; min-width: 44px;
 }
 
 /* Color */
@@ -408,11 +408,11 @@ details.acc[open] .acc-body { opacity: 1; }
 .spacing-bar { height: 1px; background: var(--black); }
 .spacing-val {
   font-family: var(--font-en);
-  font-size: 10px; color: var(--sub); letter-spacing: 0.1em; min-width: 64px;
+  font-size: 10px; color: var(--meta); letter-spacing: 0.1em; min-width: 64px;
 }
 .spacing-desc {
   font-family: var(--font-jp);
-  font-size: 11px; color: var(--sub);
+  font-size: 12px; color: var(--sub);
 }
 
 /* UI */
@@ -449,7 +449,7 @@ details.acc[open] .acc-body { opacity: 1; }
 }
 .web-hero-tag {
   font-family: var(--font-en);
-  font-size: 9px; letter-spacing: 0.3em; color: rgba(255,255,255,0.25);
+  font-size: 9px; letter-spacing: 0.3em; color: rgba(255,255,255,0.55);
   margin-bottom: 16px; text-transform: uppercase;
 }
 .web-hero-title {
@@ -461,7 +461,7 @@ details.acc[open] .acc-body { opacity: 1; }
   display: inline-block; margin-top: 24px;
   font-family: var(--font-en);
   font-size: 9px; letter-spacing: 0.25em;
-  color: rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.65); border-bottom: 1px solid rgba(255,255,255,0.4);
   padding-bottom: 4px; width: fit-content; text-transform: uppercase;
 }
 
@@ -599,7 +599,7 @@ details.acc[open] .acc-body { opacity: 1; }
 
   <!-- Brand Voice -->
   <div class="block-dark">
-    <div class="lbl" style="color:rgba(255,255,255,0.25);">Brand in One Word</div>
+    <div class="lbl" style="color:rgba(255,255,255,0.55);">Brand in One Word</div>
     <div class="brand-voice-text">CXに対する<br>圧倒的当事者意識</div>
     <div class="brand-voice-sub">前向きに寄り添い、具体的な成果を見える形で届ける。信頼できるパートナー。</div>
   </div>
@@ -780,7 +780,7 @@ details.acc[open] .acc-body { opacity: 1; }
 
         <!-- サマリービジュアル -->
         <div style="background:var(--black);padding:40px 32px;display:flex;flex-direction:column;justify-content:flex-end;min-height:220px;">
-          <div style="font-family:var(--font-jp);font-size:10px;letter-spacing:0.25em;color:rgba(255,255,255,0.2);text-transform:uppercase;margin-bottom:20px;">TONE PREVIEW</div>
+          <div style="font-family:var(--font-jp);font-size:10px;letter-spacing:0.25em;color:rgba(255,255,255,0.55);text-transform:uppercase;margin-bottom:20px;">TONE PREVIEW</div>
           <div style="font-family:var(--font-jp);font-size:clamp(16px,2.5vw,24px);font-weight:700;letter-spacing:0.15em;line-height:1.8;color:rgba(255,255,255,0.9);">人が動く。<br>空間が変わる。</div>
         </div>
 
@@ -997,7 +997,7 @@ details.acc[open] .acc-body { opacity: 1; }
       <div style="position:relative;background:#111;padding:60px;min-height:220px;display:flex;align-items:center;justify-content:center;">
         <div style="text-align:center;">
           <div style="font-family:'Noto Sans JP',sans-serif;font-size:clamp(28px,4vw,48px);font-weight:700;letter-spacing:0.2em;color:#f7f7f5;line-height:1.2;">人と空間</div>
-          <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.35em;color:rgba(255,255,255,0.35);margin-top:10px;text-transform:uppercase;">HUMAN AND SPACE</div>
+          <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:0.35em;color:rgba(255,255,255,0.6);margin-top:10px;text-transform:uppercase;">HUMAN AND SPACE</div>
         </div>
         <div class="sample-overlay" style="background:rgba(17,17,17,0.9);"><div class="sample-tag">SAMPLE</div></div>
       </div>
