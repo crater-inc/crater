@@ -15,58 +15,26 @@
 
     /* ===== ビューアUI ===== */
     .viewer-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      background: #1A2E42;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      gap: 6px;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: #1A2E42; height: 44px;
+      display: flex; align-items: center; padding: 0 20px; gap: 4px;
     }
-    .viewer-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: rgba(255,255,255,0.4); margin-right: 16px; }
-    .viewer-chip { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.45); padding: 4px 12px; border-radius: 4px; cursor: pointer; border: none; background: transparent; }
+    .viewer-label { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: rgba(255,255,255,0.4); margin-right: 12px; white-space: nowrap; }
+    .viewer-chip { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.45); padding: 4px 10px; border-radius: 4px; cursor: pointer; border: none; background: transparent; white-space: nowrap; }
     .viewer-chip:hover { color: #fff; background: rgba(255,255,255,0.1); }
-    .viewer-sp { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+    .viewer-sp { margin-left: auto; display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
     .viewer-sp-label { font-size: 10px; color: rgba(255,255,255,0.3); }
     .viewer-toggle { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); border: none; padding: 4px 12px; border-radius: 4px; cursor: pointer; }
     .viewer-toggle.on { color: #fff; background: rgba(255,255,255,0.2); }
 
     /* ===== ページ枠 ===== */
-    .wf-canvas {
-      padding: 56px 40px 60px;
-    }
-    .wf-page {
-      max-width: 960px;
-      margin: 0 auto;
-      background: white;
-      box-shadow: 0 4px 40px rgba(0,0,0,0.14);
-    }
-    .wf-page-label {
-      background: #1A2E42;
-      color: rgba(255,255,255,0.4);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      padding: 7px 24px;
-      text-align: center;
-    }
-
-    /* SP表示モード */
+    .wf-canvas { padding: 56px 40px 60px; }
+    .wf-page { max-width: 960px; margin: 0 auto; background: white; box-shadow: 0 4px 40px rgba(0,0,0,0.14); }
+    .wf-page-label { background: #1A2E42; color: rgba(255,255,255,0.4); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; padding: 7px 24px; text-align: center; }
     body.sp-mode .wf-page { max-width: 390px; }
 
     /* ===== サイトヘッダー ===== */
-    .site-header {
-      background: #fff;
-      border-bottom: 2px solid #1A2E42;
-      padding: 14px 40px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
+    .site-header { background: #fff; border-bottom: 2px solid #1A2E42; padding: 14px 40px; display: flex; align-items: center; gap: 32px; }
     .site-logo { font-size: 15px; font-weight: 800; letter-spacing: 0.04em; color: #1A2E42; white-space: nowrap; }
     .site-logo-en { font-size: 9px; font-weight: 600; letter-spacing: 0.15em; color: #BBB; display: block; margin-bottom: 2px; }
     .site-nav { display: flex; gap: 24px; flex: 1; justify-content: center; }
@@ -78,107 +46,91 @@
     .sec:last-child { border-bottom: none; }
     .sec-gray { background: #F7F7F7; }
     .sec-dark { background: #1A2E42; }
-    .sec-id { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; color: #CCC; text-transform: uppercase; margin-bottom: 8px; }
-    .sec-dark .sec-id { color: rgba(255,255,255,0.3); }
+
+    /* アンカーライン */
+    .anchor-line { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    .anchor-dot { width: 6px; height: 6px; border-radius: 50%; background: #CCC; flex-shrink: 0; }
+    .anchor-label { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; color: #CCC; text-transform: uppercase; }
 
     /* ===== タイポ ===== */
     .t-h1 { font-size: 38px; font-weight: 800; line-height: 1.22; margin-bottom: 18px; color: #111; }
     .t-h2 { font-size: 26px; font-weight: 800; margin-bottom: 12px; color: #111; }
-    .t-h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #111; }
     .t-h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: #111; }
     .t-lead { font-size: 14px; color: #444; line-height: 1.8; margin-bottom: 28px; }
     .t-body { font-size: 13px; color: #555; line-height: 1.7; }
-    .sec-dark .t-h1, .sec-dark .t-h2 { color: #fff; }
+    .sec-dark .t-h2 { color: #fff; }
     .sec-dark .t-lead { color: rgba(255,255,255,0.7); }
     .center { text-align: center; }
 
     /* ===== 画像プレースホルダー ===== */
-    .img-ph {
-      background: #EFEFEF;
-      border: 1px dashed #CCC;
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: #BBB;
-      font-size: 11px;
-    }
+    .img-ph { background: #EFEFEF; border: 1px dashed #CCC; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #BBB; font-size: 11px; }
 
     /* ===== グリッド ===== */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
     .grid-6040 { display: grid; grid-template-columns: 6fr 4fr; gap: 48px; align-items: start; }
 
     /* ===== カード ===== */
     .card { border: 1px solid #E4E4E4; border-radius: 6px; padding: 24px; background: white; }
-    .card-icon { width: 40px; height: 40px; background: #EBEBEB; border-radius: 6px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
+
+    /* カードアイコン（サービス用） */
+    .card-icon { width: 44px; height: 44px; background: #EEF2F6; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; }
+
+    /* 選ばれる理由カード */
+    .reason-card { border: 1px solid #E4E4E4; border-radius: 6px; padding: 24px; background: white; display: flex; flex-direction: column; gap: 14px; }
+    .reason-icon { width: 40px; height: 40px; background: #1A2E42; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .reason-num { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.5); margin-bottom: 2px; }
+    .reason-title { font-size: 14px; font-weight: 700; color: #111; }
+    .reason-desc { font-size: 12px; color: #666; line-height: 1.65; margin-top: 4px; }
+
+    /* ===== 課題リスト ===== */
+    .issue-group { display: flex; flex-direction: column; gap: 0; border: 1px solid #E4E4E4; border-radius: 6px; overflow: hidden; }
+    .issue-header { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: #1A2E42; }
+    .issue-header-text { font-size: 13px; font-weight: 700; color: #fff; }
+    .issue-item { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-top: 1px solid #EBEBEB; font-size: 13px; color: #333; background: white; }
+    .issue-dot { width: 6px; height: 6px; border-radius: 50%; background: #CCC; flex-shrink: 0; }
 
     /* ===== KPI ===== */
     .kpi-row { display: flex; gap: 16px; }
-    .kpi { flex: 1; text-align: center; padding: 24px 12px; background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .kpi { flex: 1; text-align: center; padding: 28px 12px; background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .kpi-icon { margin: 0 auto 10px; opacity: 0.5; }
     .kpi-num { font-size: 36px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 8px; }
-    .kpi-label { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.5; }
-    .kpi-light { background: #F5F5F5; }
-    .kpi-light .kpi-num { color: #1A2E42; }
-    .kpi-light .kpi-label { color: #888; }
+    .kpi-label { font-size: 11px; color: rgba(255,255,255,0.6); line-height: 1.55; }
 
-    /* ===== ステップ ===== */
-    .step-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
-    .step-num { width: 28px; height: 28px; background: #1A2E42; color: white; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .step-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 2px; }
-    .step-desc { font-size: 12px; color: #666; line-height: 1.55; }
+    /* ===== ロゴウォール ===== */
+    .logo-wall { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; border-top: 1px solid #EBEBEB; border-left: 1px solid #EBEBEB; }
+    .logo-cell { flex: 0 0 20%; display: flex; align-items: center; justify-content: center; padding: 18px 20px; border-right: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB; min-height: 68px; }
+    .logo-ph { background: #F0F0F0; border-radius: 3px; width: 100%; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: #BBB; }
 
-    /* ===== リスト ===== */
-    .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-    .check-list li { font-size: 13px; color: #333; padding: 10px 14px 10px 36px; background: #F7F7F7; border-radius: 4px; position: relative; }
-    .check-list li::before { content: ''; position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border: 2px solid #CCC; border-radius: 50%; }
-
-    /* ===== タグ ===== */
-    .tag { display: inline-block; background: #EBEBEB; color: #555; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin: 2px; }
+    /* ===== テーブル ===== */
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table th { font-size: 12px; font-weight: 700; color: #555; padding: 12px 16px; text-align: left; border: 1px solid #E0E0E0; background: #F5F5F5; width: 140px; }
+    .info-table td { font-size: 13px; color: #333; padding: 12px 16px; border: 1px solid #E0E0E0; }
 
     /* ===== ボタン ===== */
     .btn-primary { display: inline-block; background: #1A2E42; color: white; padding: 15px 36px; border-radius: 4px; font-size: 14px; font-weight: 700; }
     .btn-outline { display: inline-block; border: 1.5px solid #1A2E42; color: #1A2E42; padding: 14px 36px; border-radius: 4px; font-size: 14px; font-weight: 600; margin-left: 12px; }
-    .btn-ghost { display: inline-block; border: 1.5px solid rgba(255,255,255,0.4); color: rgba(255,255,255,0.85); padding: 13px 32px; border-radius: 4px; font-size: 14px; font-weight: 600; }
-
-    /* ===== テーブル ===== */
-    .info-table { width: 100%; border-collapse: collapse; }
-    .info-table th { font-size: 12px; font-weight: 700; color: #555; padding: 12px 16px; text-align: left; border: 1px solid #E0E0E0; background: #F5F5F5; width: 160px; }
-    .info-table td { font-size: 13px; color: #333; padding: 12px 16px; border: 1px solid #E0E0E0; }
 
     /* ===== フォーム ===== */
     .form-row { display: flex; flex-direction: column; gap: 5px; margin-bottom: 18px; }
-    .form-label { font-size: 12px; font-weight: 700; color: #333; }
-    .req { color: #BF4C3A; font-size: 10px; margin-left: 4px; }
-    .opt { color: #999; font-size: 10px; margin-left: 4px; }
+    .form-label { font-size: 12px; font-weight: 700; color: #333; display: flex; align-items: center; gap: 4px; }
+    .req { color: #BF4C3A; font-size: 10px; }
+    .opt { color: #999; font-size: 10px; }
     .form-input { background: #F5F5F5; border: 1px solid #DDD; border-radius: 4px; padding: 12px 14px; font-size: 14px; color: #AAA; }
     .form-textarea { background: #F5F5F5; border: 1px solid #DDD; border-radius: 4px; padding: 12px 14px; font-size: 14px; color: #AAA; height: 120px; }
-    .checkbox-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; }
     .form-check-group { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
+    .checkbox-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #333; }
 
-    /* ===== プライバシーポリシー（インライン） ===== */
-    .pp-inline {
-      background: #F7F7F7;
-      border: 1px solid #E4E4E4;
-      border-radius: 6px;
-      padding: 28px 32px;
-      margin: 28px 0;
-    }
-    .pp-title { font-size: 14px; font-weight: 700; color: #1A2E42; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #E0E0E0; }
-    .pp-section { margin-bottom: 18px; }
-    .pp-section-title { font-size: 12px; font-weight: 700; color: #333; margin-bottom: 6px; }
-    .pp-body { font-size: 12px; color: #555; line-height: 1.75; }
+    /* ===== インラインPP ===== */
+    .pp-inline { background: #F7F7F7; border: 1px solid #E4E4E4; border-radius: 6px; padding: 24px 28px; margin: 24px 0; }
+    .pp-title { font-size: 13px; font-weight: 700; color: #1A2E42; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #E0E0E0; }
+    .pp-section { margin-bottom: 14px; }
+    .pp-section:last-child { margin-bottom: 0; }
+    .pp-section-title { font-size: 11px; font-weight: 700; color: #333; margin-bottom: 4px; }
+    .pp-body { font-size: 11px; color: #666; line-height: 1.75; }
 
     /* ===== ノート ===== */
     .note { background: #FFFBE6; border-left: 3px solid #F5C842; padding: 10px 14px; border-radius: 0 4px 4px 0; font-size: 11px; color: #666; margin-top: 14px; line-height: 1.65; }
-    .divider { border: none; border-top: 1px solid #EBEBEB; margin: 24px 0; }
-
-    /* ===== ロゴウォール ===== */
-    .logo-wall { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0; border-top: 1px solid #EBEBEB; border-left: 1px solid #EBEBEB; }
-    .logo-cell { flex: 0 0 20%; display: flex; align-items: center; justify-content: center; padding: 20px 24px; border-right: 1px solid #EBEBEB; border-bottom: 1px solid #EBEBEB; min-height: 72px; }
-    .logo-ph { background: #F0F0F0; border-radius: 3px; width: 100%; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: #BBB; }
 
     /* ===== フッター ===== */
     .site-footer { background: #1A2E42; padding: 48px 40px 24px; }
@@ -188,28 +140,6 @@
     .footer-col h4 { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); letter-spacing: 0.12em; margin-bottom: 12px; }
     .footer-link { display: block; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 8px; }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; font-size: 11px; color: rgba(255,255,255,0.25); text-align: center; }
-
-    /* ===== アンカーライン ===== */
-    .anchor-line {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-    .anchor-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #CCC;
-      flex-shrink: 0;
-    }
-    .anchor-label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      color: #CCC;
-      text-transform: uppercase;
-    }
   </style>
 </head>
 <body>
@@ -220,6 +150,7 @@
     <button class="viewer-chip" onclick="document.querySelector('#sec-hero').scrollIntoView({behavior:'smooth'})">HERO</button>
     <button class="viewer-chip" onclick="document.querySelector('#sec-issues').scrollIntoView({behavior:'smooth'})">課題</button>
     <button class="viewer-chip" onclick="document.querySelector('#sec-services').scrollIntoView({behavior:'smooth'})">サービス</button>
+    <button class="viewer-chip" onclick="document.querySelector('#sec-reasons').scrollIntoView({behavior:'smooth'})">選ばれる理由</button>
     <button class="viewer-chip" onclick="document.querySelector('#sec-kpi').scrollIntoView({behavior:'smooth'})">実績</button>
     <button class="viewer-chip" onclick="document.querySelector('#sec-about').scrollIntoView({behavior:'smooth'})">ABOUT</button>
     <button class="viewer-chip" onclick="document.querySelector('#sec-contact').scrollIntoView({behavior:'smooth'})">CONTACT</button>
@@ -260,7 +191,14 @@
             </div>
           </div>
           <div class="img-ph" style="height:280px;">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="8" width="40" height="32" rx="2" stroke="#CCC" stroke-width="1.5"/><path d="M4 36l11-9 8 6 8-11 13 14" stroke="#CCC" stroke-width="1.5" stroke-linejoin="round"/><circle cx="16" cy="20" r="4" stroke="#CCC" stroke-width="1.5"/></svg>
+            <!-- 店舗・空間のイメージ写真 -->
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none">
+              <rect x="4" y="14" width="44" height="30" rx="2" stroke="#CCC" stroke-width="1.5"/>
+              <path d="M4 8h44" stroke="#CCC" stroke-width="1.5"/>
+              <path d="M18 44V28h16v16" stroke="#CCC" stroke-width="1.5"/>
+              <path d="M8 8V4M44 8V4" stroke="#CCC" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="26" cy="21" r="4" stroke="#CCC" stroke-width="1.5"/>
+            </svg>
             <span>店舗・空間イメージ写真</span>
           </div>
         </div>
@@ -272,23 +210,36 @@
         <div class="t-h2 center" style="margin-bottom:8px">こんな課題はありませんか？</div>
         <div class="t-lead center" style="max-width:500px;margin:0 auto 36px">改善の打ち手が追いついていない——多くの現場でそんな声を耳にします。</div>
         <div class="grid-2">
-          <div>
-            <div class="t-h4" style="margin-bottom:12px">CX（接客）の課題</div>
-            <ul class="check-list">
-              <li>接客品質の店舗間ばらつきが気になる</li>
-              <li>顧客満足度が思うように向上しない</li>
-              <li>スタッフのモチベーションが上がらない</li>
-              <li>競合との差別化が難しい</li>
-            </ul>
+          <!-- CX課題 -->
+          <div class="issue-group">
+            <div class="issue-header">
+              <!-- 人・接客アイコン -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <circle cx="9" cy="7" r="4" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+                <path d="M2 21v-1a7 7 0 0 1 7-7h0" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M16 16l2 2 4-4" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="issue-header-text">CX（接客）の課題</div>
+            </div>
+            <div class="issue-item"><div class="issue-dot"></div>接客品質の店舗間ばらつきが気になる</div>
+            <div class="issue-item"><div class="issue-dot"></div>顧客満足度が思うように向上しない</div>
+            <div class="issue-item"><div class="issue-dot"></div>スタッフのモチベーションが上がらない</div>
+            <div class="issue-item"><div class="issue-dot"></div>競合との差別化が難しい</div>
           </div>
-          <div>
-            <div class="t-h4" style="margin-bottom:12px">空間（VMD）の課題</div>
-            <ul class="check-list">
-              <li>空間の良し悪しを把握する方法が分からない</li>
-              <li>施設のブランドイメージを見直したい</li>
-              <li>ステークホルダーとの合意形成が難しい</li>
-              <li>いつの間にか運営のルールが乱れている</li>
-            </ul>
+          <!-- 空間課題 -->
+          <div class="issue-group">
+            <div class="issue-header">
+              <!-- 空間・建物アイコン -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M3 21h18M3 21V9l9-6 9 6v12" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="9" y="14" width="6" height="7" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+              </svg>
+              <div class="issue-header-text">空間（VMD）の課題</div>
+            </div>
+            <div class="issue-item"><div class="issue-dot"></div>空間の良し悪しを把握する方法が分からない</div>
+            <div class="issue-item"><div class="issue-dot"></div>施設のブランドイメージを見直したい</div>
+            <div class="issue-item"><div class="issue-dot"></div>ステークホルダーとの合意形成が難しい</div>
+            <div class="issue-item"><div class="issue-dot"></div>いつの間にか運営のルールが乱れている</div>
           </div>
         </div>
       </section>
@@ -301,28 +252,48 @@
         <div class="grid-2">
           <div class="card">
             <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#AAA" stroke-width="1.5"/><path d="M20 20l-3-3" stroke="#AAA" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <!-- 虫眼鏡＋人 = CX調査 -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="10" cy="10" r="6" stroke="#1A2E42" stroke-width="1.5"/>
+                <path d="M18 18l-3.5-3.5" stroke="#1A2E42" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M8 8.5a2 2 0 0 1 2-1.5" stroke="#1A2E42" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
             </div>
             <div class="t-h4">CX調査</div>
             <div class="t-body">生活者×専門家のハイブリッド調査で接客品質を可視化。全国比較・ベンチマークで自社の立ち位置を把握できます。</div>
           </div>
           <div class="card">
             <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#AAA" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke="#AAA" stroke-width="1.5"/></svg>
+              <!-- グリッド＋チェック = 空間品質調査 -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="3" y="3" width="7" height="7" rx="1" stroke="#1A2E42" stroke-width="1.5"/>
+                <rect x="14" y="3" width="7" height="7" rx="1" stroke="#1A2E42" stroke-width="1.5"/>
+                <rect x="3" y="14" width="7" height="7" rx="1" stroke="#1A2E42" stroke-width="1.5"/>
+                <path d="M14 17.5l2 2 4-4" stroke="#1A2E42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
             <div class="t-h4">空間品質調査</div>
             <div class="t-body">9つの視点から空間の価値をスコア化する独自スキーム。改善への具体的な第一歩が踏み出せます。</div>
           </div>
           <div class="card">
             <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#AAA" stroke-width="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#AAA" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <!-- カメラ＋グラフ = AIカメラDX -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M23 7l-7 5 7 5V7z" stroke="#1A2E42" stroke-width="1.5" stroke-linejoin="round"/>
+                <rect x="1" y="5" width="15" height="14" rx="2" stroke="#1A2E42" stroke-width="1.5"/>
+                <path d="M5 15l3-4 3 2 3-5" stroke="#1A2E42" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
             <div class="t-h4">AIカメラ・店舗DX</div>
             <div class="t-body">人流データとCXナレッジを掛け合わせ、入店率・CVR・滞留時間などKPIを可視化。売上改善を戦略的に設計します。</div>
           </div>
           <div class="card">
             <div class="card-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#AAA" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#AAA" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#AAA" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <!-- 伴走・握手 = コンサル -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M12 20h9" stroke="#1A2E42" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" stroke="#1A2E42" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
             </div>
             <div class="t-h4">コンサルティング支援</div>
             <div class="t-body">調査で終わらず、あるべき姿からロードマップを引き、改善まで伴走。セミナー・ワークショップにも対応します。</div>
@@ -330,20 +301,113 @@
         </div>
       </section>
 
-      <!-- ===== S04: 実績KPI ===== -->
+      <!-- ===== S04: 選ばれる理由 ===== -->
+      <section class="sec sec-gray" id="sec-reasons">
+        <div class="anchor-line"><div class="anchor-dot"></div><div class="anchor-label">WHY US</div></div>
+        <div class="t-h2 center" style="margin-bottom:8px">人と空間が選ばれる理由</div>
+        <div class="t-lead center" style="max-width:480px;margin:0 auto 36px">商空間CXのエキスパートとして蓄積してきた、4つの強み</div>
+        <div class="grid-2">
+          <div class="reason-card">
+            <div class="reason-icon">
+              <!-- 専門知識・本 -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+                <path d="M9 7h6M9 11h4" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="reason-num">01</div>
+              <div class="reason-title">商空間CX・UXに特化したノウハウ</div>
+              <div class="reason-desc">百貨店・アパレル・ライフスタイルショップなど多様な業種での実践知を蓄積。業界全体のベンチマークを保有しています。</div>
+            </div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">
+              <!-- ハイブリッド調査・2人 -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <circle cx="9" cy="7" r="3" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+                <circle cx="17" cy="7" r="3" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+                <path d="M3 20v-1a6 6 0 0 1 6-6" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M21 20v-1a6 6 0 0 0-6-6" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="reason-num">02</div>
+              <div class="reason-title">独自のハイブリッド調査スキーム</div>
+              <div class="reason-desc">生活者感覚×専門分析を融合した独自スキームで、リアルな現場データを取得。「普通の客」と「専門家」双方の目線を活かします。</div>
+            </div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">
+              <!-- 伴走・矢印サイクル -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M23 4v6h-6" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="reason-num">03</div>
+              <div class="reason-title">継続的な伴走支援体制</div>
+              <div class="reason-desc">調査して終わりではなく、改善まで一緒に走るPDCA型の支援。「自走できる状態」になるまで継続的にサポートします。</div>
+            </div>
+          </div>
+          <div class="reason-card">
+            <div class="reason-icon">
+              <!-- DX×CX・チップ -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="7" y="7" width="10" height="10" rx="1" stroke="rgba(255,255,255,0.85)" stroke-width="1.5"/>
+                <path d="M7 9H4M7 12H2M7 15H4M17 9h3M17 12h5M17 15h3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M9 4V7M12 2v5M15 4v3" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="reason-num">04</div>
+              <div class="reason-title">DXとCXを橋渡しする専門性</div>
+              <div class="reason-desc">AIカメラによる人流データとCXナレッジを掛け合わせ、KPIと行動の因果関係を明確にし、売上改善を戦略的に設計します。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== S05: 実績KPI ===== -->
       <section class="sec sec-dark" id="sec-kpi">
         <div class="anchor-line"><div class="anchor-dot" style="background:rgba(255,255,255,0.3)"></div><div class="anchor-label">RESULTS</div></div>
         <div class="t-h2 center" style="margin-bottom:6px">導入企業の成果</div>
         <div class="t-lead center" style="margin-bottom:36px">百貨店・アパレル・ライフスタイルショップなど多様な業種での実績</div>
         <div class="kpi-row">
-          <div class="kpi"><div class="kpi-num">+26%</div><div class="kpi-label">売上前年比<br>（ライフスタイルショップ）</div></div>
-          <div class="kpi"><div class="kpi-num">117%</div><div class="kpi-label">重点店舗売上<br>前年比（アパレル）</div></div>
-          <div class="kpi"><div class="kpi-num">+7%</div><div class="kpi-label">コンバージョン<br>（買上率）改善</div></div>
-          <div class="kpi"><div class="kpi-num">5年+</div><div class="kpi-label">大手百貨店<br>継続支援年数</div></div>
+          <div class="kpi">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 6 23 6 23 12" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="kpi-num">+26%</div>
+            <div class="kpi-label">売上前年比<br>（ライフスタイルショップ）</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 6 23 6 23 12" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="kpi-num">117%</div>
+            <div class="kpi-label">重点店舗売上<br>前年比（アパレル）</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="kpi-num">+7%</div>
+            <div class="kpi-label">コンバージョン<br>（買上率）改善</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div class="kpi-num">5年+</div>
+            <div class="kpi-label">大手百貨店<br>継続支援年数</div>
+          </div>
         </div>
       </section>
 
-      <!-- ===== S04b: 実績企業ロゴ ===== -->
+      <!-- ===== S05b: 実績企業ロゴ ===== -->
       <section class="sec" style="padding:40px 40px;">
         <div class="anchor-line"><div class="anchor-dot"></div><div class="anchor-label">CLIENTS</div></div>
         <div class="t-body center" style="font-size:11px;letter-spacing:0.14em;color:#BBB;text-transform:uppercase;margin-bottom:20px">導入実績企業（一部）</div>
@@ -359,37 +423,27 @@
           <div class="logo-cell"><div class="logo-ph">LOGO</div></div>
           <div class="logo-cell"><div class="logo-ph">LOGO</div></div>
         </div>
-        <div class="note" style="margin-top:16px">ロゴ数・掲載可否はクライアントに確認が必要です。許可が得られたもののみ掲載。</div>
+        <div class="note">ロゴ数・掲載可否はクライアントに確認が必要です。許可が得られたもののみ掲載。</div>
       </section>
 
-      <!-- ===== S05: ABOUT ===== -->
+      <!-- ===== S06: ABOUT ===== -->
       <section class="sec" id="sec-about">
         <div class="anchor-line"><div class="anchor-dot"></div><div class="anchor-label">ABOUT</div></div>
         <div class="grid-6040">
           <div>
             <div class="t-h2">私たちについて</div>
             <div class="t-lead">「人と空間」は、AI時代の店舗CX・UX改善のパイオニアです。商空間運営に特化したノウハウと独自の調査スキームで、調査から伴走改善まで一貫して支援します。</div>
-            <div style="margin-bottom:28px">
-              <div class="step-row">
-                <div class="step-num">1</div>
-                <div><div class="step-title">商空間CX・UXに特化したノウハウ</div><div class="step-desc">百貨店・アパレルなど多様な業種での実践知を蓄積</div></div>
-              </div>
-              <div class="step-row">
-                <div class="step-num">2</div>
-                <div><div class="step-title">独自のハイブリッド調査スキーム</div><div class="step-desc">生活者感覚×専門分析を融合したリアルな現場データ</div></div>
-              </div>
-              <div class="step-row">
-                <div class="step-num">3</div>
-                <div><div class="step-title">継続的な伴走支援体制</div><div class="step-desc">調査して終わりではなく、改善まで一緒に走るPDCA型支援</div></div>
-              </div>
-              <div class="step-row">
-                <div class="step-num">4</div>
-                <div><div class="step-title">DXとCXを橋渡しする専門性</div><div class="step-desc">AIカメラ×CXナレッジで売上改善を戦略的に設計</div></div>
-              </div>
+            <!-- ミッション -->
+            <div style="background:#F7F7F7;border-radius:6px;padding:20px 24px;border-left:3px solid #1A2E42;">
+              <div style="font-size:10px;font-weight:700;letter-spacing:0.14em;color:#1A2E42;margin-bottom:8px">MISSION</div>
+              <div style="font-size:15px;font-weight:700;color:#111;line-height:1.65">AIを活用した店舗CXとUXの改善で<br>スピード感と高い精度を両立し、<br>お客様に高い価値を届ける</div>
             </div>
           </div>
           <div>
-            <div style="font-size: 9px; font-weight:700; letter-spacing:0.15em; color:#BBB; margin-bottom:12px">COMPANY INFO</div>
+            <div style="font-size: 9px; font-weight:700; letter-spacing:0.15em; color:#BBB; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#CCC" stroke-width="2"/><path d="M3 9h18M9 21V9" stroke="#CCC" stroke-width="2"/></svg>
+              COMPANY INFO
+            </div>
             <table class="info-table">
               <tr><th>社名</th><td>株式会社人と空間</td></tr>
               <tr><th>代表者</th><td>（要確認）</td></tr>
@@ -401,32 +455,49 @@
         </div>
       </section>
 
-      <!-- ===== S06: CONTACT ===== -->
+      <!-- ===== S07: CONTACT ===== -->
       <section class="sec sec-gray" id="sec-contact">
         <div class="anchor-line"><div class="anchor-dot"></div><div class="anchor-label">CONTACT</div></div>
         <div style="max-width:640px; margin:0 auto">
-          <div class="t-h2 center" style="margin-bottom:8px">まずはご相談ください</div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#1A2E42" stroke-width="1.5"/><path d="M22 6l-10 7L2 6" stroke="#1A2E42" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div class="t-h2" style="margin-bottom:0">まずはご相談ください</div>
+          </div>
           <div class="t-lead center" style="margin-bottom:36px">どのサービスが合うか分からなくても、課題の整理から一緒に考えます。<br>強引な営業は一切行いません。</div>
 
-          <!-- フォーム -->
           <div class="form-row">
-            <div class="form-label">会社名<span class="req">必須</span></div>
+            <div class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#888" stroke-width="1.5"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" stroke="#888" stroke-width="1.5"/></svg>
+              会社名<span class="req">必須</span>
+            </div>
             <div class="form-input">株式会社〇〇</div>
           </div>
           <div class="form-row">
-            <div class="form-label">お名前<span class="req">必須</span></div>
+            <div class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#888" stroke-width="1.5"/><path d="M4 20v-1a8 8 0 0 1 16 0v1" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></svg>
+              お名前<span class="req">必須</span>
+            </div>
             <div class="form-input">山田 太郎</div>
           </div>
           <div class="form-row">
-            <div class="form-label">メールアドレス<span class="req">必須</span></div>
+            <div class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#888" stroke-width="1.5"/><path d="M22 6l-10 7L2 6" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></svg>
+              メールアドレス<span class="req">必須</span>
+            </div>
             <div class="form-input">example@company.com</div>
           </div>
           <div class="form-row">
-            <div class="form-label">電話番号<span class="opt">任意</span></div>
+            <div class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.92 3.26 2 2 0 0 1 3.9 1.07h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="#888" stroke-width="1.5"/></svg>
+              電話番号<span class="opt">任意</span>
+            </div>
             <div class="form-input">03-0000-0000</div>
           </div>
           <div class="form-row">
-            <div class="form-label">興味のあるサービス<span class="opt">任意・複数可</span></div>
+            <div class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#888" stroke-width="1.5"/><path d="M20 20l-3-3" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></svg>
+              興味のあるサービス<span class="opt">任意・複数可</span>
+            </div>
             <div class="form-check-group">
               <label class="checkbox-row"><input type="checkbox" disabled> CX調査</label>
               <label class="checkbox-row"><input type="checkbox" disabled> 空間品質調査</label>
@@ -436,13 +507,21 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-label">お問い合わせ内容<span class="req">必須</span></div>
+            <div class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#888" stroke-width="1.5"/></svg>
+              お問い合わせ内容<span class="req">必須</span>
+            </div>
             <div class="form-textarea">ご相談内容をご記入ください...</div>
           </div>
 
           <!-- プライバシーポリシー（インライン） -->
           <div class="pp-inline">
-            <div class="pp-title">プライバシーポリシー</div>
+            <div class="pp-title">
+              <span style="display:inline-flex;align-items:center;gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#1A2E42" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                プライバシーポリシー
+              </span>
+            </div>
             <div class="pp-section">
               <div class="pp-section-title">1. 個人情報の収集</div>
               <div class="pp-body">サービスのご提供・お問い合わせへの対応等を目的として、お名前・会社名・メールアドレス・電話番号等の個人情報を収集することがあります。</div>
@@ -459,18 +538,16 @@
               <div class="pp-section-title">4. 安全管理</div>
               <div class="pp-body">個人情報への不正アクセス・漏洩等を防止するため、適切なセキュリティ対策を講じます。</div>
             </div>
-            <div class="pp-section" style="margin-bottom:0">
+            <div class="pp-section">
               <div class="pp-section-title">5. お問い合わせ先</div>
-              <div class="pp-body">個人情報に関するお問い合わせは、下記よりご連絡ください。<br>株式会社人と空間（HUMAN AND SPACE）/ 担当：（要確認）</div>
+              <div class="pp-body">株式会社人と空間（HUMAN AND SPACE）/ 担当：（要確認）</div>
             </div>
           </div>
 
-          <!-- 同意チェック + 送信 -->
           <div style="margin-bottom:24px">
             <label class="checkbox-row" style="font-size:13px;color:#333"><input type="checkbox" disabled style="margin-top:1px"><span>プライバシーポリシーに同意する</span></label>
           </div>
-          <div class="btn-primary" style="width:100%;text-align:center;padding:18px;display:block;font-size:15px">送信する</div>
-
+          <div class="btn-primary" style="width:100%;text-align:center;padding:18px;display:block;font-size:15px;border-radius:4px;">送信する</div>
           <div class="note" style="margin-top:20px">送信後、3営業日以内にご返信いたします。</div>
         </div>
       </section>
