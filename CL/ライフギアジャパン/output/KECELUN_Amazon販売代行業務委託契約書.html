@@ -16,12 +16,14 @@
 
   .page {
     width: 210mm;
-    min-height: 297mm;
+    height: 297mm;
     background: #fff;
-    margin: 0 auto;
-    padding: 25mm 25mm 30mm 25mm;
+    margin: 0 auto 16px;
+    padding: 25mm 25mm 25mm 25mm;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     position: relative;
+    overflow: hidden;
+    page-break-after: always;
   }
 
   .date {
@@ -161,8 +163,8 @@
     body { padding: 16px; }
     .page {
       width: 100%;
+      height: auto;
       padding: 24px 20px;
-      min-height: auto;
     }
     .title { font-size: 15pt; }
     .intro { font-size: 10.5pt; }
@@ -178,6 +180,8 @@
 </style>
 </head>
 <body>
+
+<!-- ページ1 -->
 <div class="page">
 
   <div class="date">2026年　　月　　日</div>
@@ -244,6 +248,11 @@
     </div>
   </div>
 
+</div>
+
+<!-- ページ2 -->
+<div class="page">
+
   <div class="section">
     <div class="section-title">第6条（契約期間）</div>
     <div class="section-body">
@@ -284,7 +293,7 @@
     </div>
   </div>
 
-  <p style="font-size:11pt; line-height:2; margin-top:16px; text-indent:1em;">以上を証するため、本契約書2通を作成し、甲乙各1通を保有する。</p>
+  <p style="font-size:11pt; line-height:2; margin-top:24px; text-indent:1em;">以上を証するため、本契約書2通を作成し、甲乙各1通を保有する。</p>
 
   <div class="signature-area">
     <div class="signature-block">
