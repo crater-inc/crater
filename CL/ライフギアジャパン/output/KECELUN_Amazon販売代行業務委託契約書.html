@@ -52,7 +52,7 @@
   .highlight-box {
     border: 1px solid #000;
     padding: 18px 24px;
-    margin: 0 0 36px;
+    margin: 0 0 32px;
     font-size: 11.5pt;
     line-height: 2;
   }
@@ -63,16 +63,11 @@
     gap: 4px 0;
   }
 
-  .highlight-box dt {
-    font-weight: bold;
-  }
-
-  .highlight-box dd {
-    margin: 0;
-  }
+  .highlight-box dt { font-weight: bold; }
+  .highlight-box dd { margin: 0; }
 
   .section {
-    margin-bottom: 28px;
+    margin-bottom: 22px;
   }
 
   .section-title {
@@ -80,39 +75,37 @@
     font-weight: bold;
     border-left: 3px solid #000;
     padding-left: 10px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
   }
 
   .section-body {
-    font-size: 11pt;
-    line-height: 2.1;
+    font-size: 10.5pt;
+    line-height: 2;
     padding-left: 1em;
   }
 
-  .section-body p {
-    margin-bottom: 8px;
-  }
+  .section-body p { margin-bottom: 6px; }
 
+  .section-body ol,
   .section-body ul {
-    padding-left: 1.5em;
+    padding-left: 1.6em;
   }
 
-  .section-body li {
-    margin-bottom: 4px;
+  .section-body li { margin-bottom: 4px; }
+
+  .section-body .item {
+    display: grid;
+    grid-template-columns: 5em 1fr;
+    gap: 4px 0;
+    margin-bottom: 6px;
   }
 
-  .note {
-    font-size: 10pt;
-    color: #444;
-    border: 1px solid #ccc;
-    padding: 12px 16px;
-    margin-top: 12px;
-    line-height: 1.9;
-    background: #fafafa;
+  .section-body .item-label {
+    font-weight: bold;
   }
 
   .signature-area {
-    margin-top: 60px;
+    margin-top: 48px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 40px;
@@ -122,7 +115,7 @@
 
   .signature-block {
     border-top: 1px solid #000;
-    padding-top: 16px;
+    padding-top: 14px;
   }
 
   .signature-block .label {
@@ -138,21 +131,19 @@
 
   .seal-area {
     display: inline-block;
-    width: 60px;
-    height: 60px;
+    width: 58px;
+    height: 58px;
     border: 1px solid #ccc;
     border-radius: 50%;
     vertical-align: middle;
-    margin-left: 12px;
+    margin-left: 10px;
     text-align: center;
-    line-height: 60px;
-    font-size: 8.5pt;
+    line-height: 58px;
+    font-size: 8pt;
     color: #999;
   }
 
-  .dummy {
-    color: #888;
-  }
+  .dummy { color: #888; }
 
   @media print {
     body { background: none; padding: 0; }
@@ -167,15 +158,9 @@
       padding: 24px 20px;
     }
     .title { font-size: 15pt; }
-    .intro { font-size: 10.5pt; }
-    .highlight-box dl {
-      grid-template-columns: 1fr;
-    }
+    .highlight-box dl { grid-template-columns: 1fr; }
     .highlight-box dt { margin-top: 8px; }
-    .signature-area {
-      grid-template-columns: 1fr;
-      gap: 32px 0;
-    }
+    .signature-area { grid-template-columns: 1fr; gap: 32px 0; }
   }
 </style>
 </head>
@@ -184,18 +169,18 @@
 <!-- ページ1 -->
 <div class="page">
 
-  <div class="date">2026年　　月　　日</div>
+  <div class="date">令和　　年　　月　　日</div>
 
   <div class="title">Amazon販売代行業務委託契約書</div>
 
-  <p class="intro">株式会社クレーター（以下「甲」という）と<span class="dummy">○○○○株式会社</span>（以下「乙」という）は、ブランド「KECELUN」のAmazon.co.jpにおける販売代行業務に関し、以下のとおり契約を締結する。</p>
+  <p class="intro">株式会社クレーター（以下「甲」という。）と<span class="dummy">○○○○株式会社</span>（以下「乙」という。）は、ブランド「KECELUN」のAmazon.co.jpにおける販売代行業務に関し、以下のとおり契約を締結する。</p>
 
   <div class="highlight-box">
     <dl>
       <dt>委託者（甲）</dt>
-      <dd>株式会社クレーター<br>東京都世田谷区北沢3丁目20-18 北沢宝ビル3F</dd>
+      <dd>株式会社クレーター<br>〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F</dd>
       <dt>受託者（乙）</dt>
-      <dd><span class="dummy">○○○○株式会社<br>○○県○○市○○町○丁目○番○号</span></dd>
+      <dd><span class="dummy">○○○○株式会社<br>〒○○○-○○○○ ○○県○○市○○町○丁目○番○号</span></dd>
       <dt>対象ブランド</dt>
       <dd>KECELUN（ケセルン）</dd>
       <dt>対象商品</dt>
@@ -206,45 +191,43 @@
   </div>
 
   <div class="section">
-    <div class="section-title">第1条（委託業務の範囲）</div>
+    <div class="section-title">第1条（目的）</div>
+    <div class="section-body">
+      <p>本契約は、甲が販売するKECELUNについて、乙がAmazon.co.jpにおける販売代行業務を行うにあたり、これに関わる諸条件を定めることを目的とする。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">第2条（委託業務の範囲）</div>
     <div class="section-body">
       <p>甲は乙に対し、Amazon.co.jpにおける以下の業務を委託する。</p>
-      <ul>
+      <ol>
         <li>商品の出品管理・ページ運用</li>
         <li>広告の運用・最適化</li>
         <li>注文処理・在庫管理</li>
-        <li>カスタマー対応（購入者からの問い合わせ・レビュー対応）</li>
+        <li>カスタマー対応（購入者からの問い合わせ・レビュー対応を含む）</li>
         <li>商品の発送・物流管理</li>
-      </ul>
+      </ol>
+      <p style="margin-top:8px;">乙は、本契約に基づき、自己の計算と責任において委託業務を遂行する。乙が業務の一部を第三者に再委託する場合、乙は当該第三者の行為について甲に対して同一の責任を負うものとする。</p>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">第2条（買取形式による商品供給）</div>
+    <div class="section-title">第3条（買取形式による商品供給）</div>
     <div class="section-body">
       <p>乙は甲から商品を買取形式にて仕入れ、Amazon.co.jpにて販売する。最低発注単位は20個とし、以後20個単位で追加発注を行うものとする。</p>
-      <p>買取単価は1個あたり<span class="dummy">○○,○○○円（税別）</span>とする。ただし、甲と製造元である株式会社ライフギアジャパンとの間の仕入れ価格の改定その他の事情により、甲乙協議のうえ買取単価を見直すことができる。価格変更が生じる場合、甲は乙に対して変更予定日の30日前までに書面または電磁的方法により通知するものとする。</p>
+      <p>買取単価は1個あたり<span class="dummy">○○,○○○円（税別）</span>とする。</p>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">第3条（広告費の負担）</div>
+    <div class="section-title">第4条（価格改定）</div>
     <div class="section-body">
-      <p>Amazon.co.jp上での広告出稿に要する費用（スポンサープロダクト広告・ブランド広告等）は甲が負担する。乙は甲の承認を得た予算の範囲内で広告を運用し、月次で実績を甲に報告するものとする。</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">第4条（価格設定・販売条件）</div>
-    <div class="section-body">
-      <p>Amazon.co.jp上での販売価格は、甲乙協議のうえ決定する。乙は甲の承認なく独自に価格を変更してはならない。</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">第5条（報告義務）</div>
-    <div class="section-body">
-      <p>乙は甲に対し、毎月末日までに当月の販売実績・在庫状況・広告費実績・カスタマー対応状況を書面または電磁的方法にて報告するものとする。</p>
+      <ol>
+        <li>買取単価は、輸入コストや為替等の変動、または甲と製造元である株式会社ライフギアジャパンとの間の仕入れ価格の改定その他の事情により、甲の判断で改定できるものとする。</li>
+        <li>甲は価格を改定する場合、乙に対し変更予定日の30日前までに書面または電磁的方法により通知するものとする。</li>
+        <li>価格改定に乙が同意しない場合、乙は通知受領から14日以内に書面で異議を申し出ることができ、甲乙誠意をもって協議するものとする。</li>
+      </ol>
     </div>
   </div>
 
@@ -254,57 +237,129 @@
 <div class="page">
 
   <div class="section">
-    <div class="section-title">第6条（契約期間）</div>
+    <div class="section-title">第5条（在庫通知義務）</div>
     <div class="section-body">
-      <p>本契約の有効期間は、契約締結日から1年間とする。期間満了の30日前までにいずれかの当事者から書面による解約の申し出がない場合、本契約は同一条件でさらに1年間自動更新されるものとし、以後も同様とする。</p>
+      <p>乙は管理在庫が残り5個以下になった場合、速やかに甲に対して書面または電磁的方法により通知するものとする。甲はこれを受け、乙と協議のうえ追加発注の要否を判断する。</p>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">第7条（秘密保持）</div>
+    <div class="section-title">第6条（広告費の負担）</div>
     <div class="section-body">
-      <p>甲および乙は、本契約の履行を通じて知り得た相手方の技術上・営業上その他の情報を、相手方の書面による事前承諾なく第三者に開示・漏洩してはならない。この義務は本契約終了後も2年間存続する。</p>
+      <p>Amazon.co.jp上での広告出稿に要する費用（スポンサープロダクト広告・ブランド広告等）は甲が負担する。乙は甲の承認を得た予算の範囲内で広告を運用し、月次で実績を甲に報告するものとする。</p>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">第8条（禁止事項）</div>
+    <div class="section-title">第7条（価格設定・販売条件）</div>
+    <div class="section-body">
+      <p>Amazon.co.jp上での販売価格は、甲乙協議のうえ決定する。乙は甲の承認なく独自に価格を変更してはならない。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">第8条（納品・不良対応）</div>
+    <div class="section-body">
+      <ol>
+        <li><span style="font-weight:bold;">納品：</span>本製品の納品は、乙からの発注および前払い確認後、甲が指定する場所へ配送することにより完了するものとする。</li>
+        <li><span style="font-weight:bold;">一次対応：</span>不良品および販売行為に関わるクレームの一次対応は乙が行うものとする。</li>
+        <li><span style="font-weight:bold;">責任の所在：</span>
+          <ul style="margin-top:4px;">
+            <li>製造上の不良に関する責任は製造元に帰属する。</li>
+            <li>保管状況等による劣化に関する責任は乙に帰属する。</li>
+            <li>販売行為に関わるクレームは乙の責任とする。</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">第9条（禁止事項）</div>
     <div class="section-body">
       <p>乙は以下の行為を行ってはならない。</p>
-      <ul>
+      <ol>
         <li>Amazon.co.jp以外のチャネルへの無断出品・販売</li>
         <li>甲の承認なく商品の内容・表記を改変すること</li>
         <li>本契約に基づく権利・義務の第三者への譲渡</li>
-      </ul>
+      </ol>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">第9条（契約の解除）</div>
+    <div class="section-title">第10条（契約期間）</div>
     <div class="section-body">
-      <p>甲または乙が本契約に違反し、相手方からの書面による催告後14日以内に是正されない場合、相手方は本契約を即時解除することができる。</p>
+      <ol>
+        <li>本契約の有効期間は、契約締結日から1年間とする。</li>
+        <li>期間満了の30日前までにいずれかの当事者から書面による解約の申し出がない場合、本契約は同一条件でさらに1年間自動更新されるものとし、以後も同様とする。</li>
+        <li>本契約の解除は、双方の合意により、30日以上前に書面で通知することで行うことができる。</li>
+        <li>甲または乙が本契約の重大な条項に違反した場合、相手方は催告を要せず直ちに本契約を解除することができる。</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<!-- ページ3 -->
+<div class="page">
+
+  <div class="section">
+    <div class="section-title">第11条（損害賠償）</div>
+    <div class="section-body">
+      <p>甲または乙は、本契約に違反し、相手方に損害を与えた場合、その損害を賠償する責任を負う。ただし、以下の場合はこの限りではない。</p>
+      <ol>
+        <li>天災地変や不可抗力など、合理的支配を超えた原因による損害。</li>
+        <li>故意または重過失による場合を除き、その損害賠償額は本契約に基づく年間取引総額を上限とする。</li>
+      </ol>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">第10条（協議・準拠法）</div>
+    <div class="section-title">第12条（秘密保持）</div>
     <div class="section-body">
-      <p>本契約に定めのない事項が生じた場合、甲乙誠意をもって協議し解決するものとする。本契約は日本法に準拠し、東京地方裁判所を第一審の専属的合意管轄裁判所とする。</p>
+      <p>甲および乙は、本契約に関連して知り得た相手方の営業上・技術上の秘密情報を、本契約終了後も含め、第三者に漏洩してはならない。</p>
     </div>
   </div>
 
-  <p style="font-size:11pt; line-height:2; margin-top:24px; text-indent:1em;">以上を証するため、本契約書2通を作成し、甲乙各1通を保有する。</p>
+  <div class="section">
+    <div class="section-title">第13条（反社会的勢力の排除）</div>
+    <div class="section-body">
+      <ol>
+        <li>甲および乙は、自らまたはその役員・従業員が反社会的勢力に該当しないこと、また将来にわたって該当しないことを確約する。</li>
+        <li>万が一、この確約に違反した場合、相手方は何らの通知・催告なしに本契約を解除することができる。</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">第14条（不可抗力）</div>
+    <div class="section-body">
+      <p>地震、台風、火災、戦争、暴動、疫病（パンデミックを含む）、法令の制定・改廃、公的機関の命令その他、当事者の責に帰することのできない不可抗力により本契約の履行が困難となった場合、当該当事者はその責を免れるものとする。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">第15条（準拠法および合意管轄）</div>
+    <div class="section-body">
+      <ol>
+        <li>本契約は日本法に準拠し、これに従って解釈されるものとする。</li>
+        <li>本契約に関する一切の紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とする。</li>
+      </ol>
+    </div>
+  </div>
+
+  <p style="font-size:11pt; line-height:2; margin-top:20px; text-indent:1em;">以上を証するため、本契約書2通を作成し、甲乙各1通を保有する。</p>
 
   <div class="signature-area">
     <div class="signature-block">
       <div class="label">委託者（甲）</div>
-      <div>東京都世田谷区北沢3丁目20-18<br>北沢宝ビル3F</div>
+      <div>〒155-0031<br>東京都世田谷区北沢3丁目20-18<br>北沢宝ビル3F</div>
       <div class="company">株式会社クレーター<span class="seal-area">印</span></div>
       <div>代表取締役　明里 圭修　　㊞</div>
     </div>
     <div class="signature-block">
       <div class="label">受託者（乙）</div>
-      <div class="dummy">○○県○○市○○町○丁目○番○号</div>
+      <div class="dummy">〒○○○-○○○○<br>○○県○○市○○町○丁目○番○号</div>
       <div class="company dummy">○○○○株式会社<span class="seal-area">印</span></div>
       <div class="dummy">代表取締役　○○ ○○　　㊞</div>
     </div>
