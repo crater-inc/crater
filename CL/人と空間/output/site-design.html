@@ -312,10 +312,13 @@
 
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      border-top: 1px solid var(--line);
       border-left: 1px solid var(--line);
     }
+    .service-grid.top { grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+    .service-grid.bottom { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .service-grid.top .service-card { min-height: 300px; padding: 38px; gap: 22px; }
+    .service-grid.top .service-card h3 { font-size: 26px; }
+    .service-grid.top .service-card p { font-size: 15px; }
     .service-card {
       min-height: 330px;
       padding: 26px;
@@ -731,7 +734,8 @@
         grid-template-columns: 1fr;
       }
       .hero-visual { min-height: 430px; }
-      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .service-grid.top,
+      .service-grid.bottom { grid-template-columns: repeat(2, 1fr); }
       .kpi-grid { grid-template-columns: repeat(2, 1fr); }
       .method-split { grid-template-columns: 1fr; }
       .area-grid { grid-template-columns: repeat(2, 1fr); }
@@ -751,7 +755,8 @@
       .section { padding: 72px 0; }
       .container { width: min(100% - 24px, var(--max)); }
       .problem-grid,
-      .service-grid,
+      .service-grid.top,
+      .service-grid.bottom,
       .kpi-grid,
       .case-results,
       .form,
@@ -787,6 +792,7 @@
       <nav class="global-nav" aria-label="グローバルナビゲーション">
         <a href="#services">サービス</a>
         <a href="#about">私たちについて</a>
+        <a href="#process">ご支援の流れ</a>
         <a href="#cases">事例</a>
         <a href="#company">会社概要</a>
         <a href="#contact">お問い合わせ</a>
@@ -880,11 +886,11 @@
         <div class="section-head">
           <div>
             <div class="section-label">Services</div>
-            <h2>4つのサービスで、調査から改善まで伴走する。</h2>
+            <h2>5つのサービスで、調査から改善まで伴走する。</h2>
           </div>
           <p class="section-copy">生活者目線と専門知を合わせた調査、空間品質のスコア化、人流データの活用、そして現場の行動変化までを一貫して支援します。</p>
         </div>
-        <div class="service-grid">
+        <div class="service-grid top">
           <article class="service-card">
             <div class="service-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -897,6 +903,8 @@
             </div>
             <h3>空間品質調査</h3>
             <p>空間の価値を9つの視点からスコア化し、改善の起点をつくります。</p>          </article>
+        </div>
+        <div class="service-grid bottom">
           <article class="service-card">
             <div class="service-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M6 12h12M9 18h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="5" cy="6" r="2" fill="currentColor"/><circle cx="13" cy="12" r="2" fill="currentColor"/><circle cx="18" cy="18" r="2" fill="currentColor"/></svg>
