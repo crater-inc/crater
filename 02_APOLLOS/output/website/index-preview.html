@@ -143,6 +143,23 @@
   .contact h2{font-family:var(--font-jp);font-weight:800;font-size:clamp(48px,8vw,96px);letter-spacing:-.04em;line-height:1.1;color:var(--ink);}
   .contact .sub{margin-top:28px;max-width:520px;font-size:17px;line-height:1.9;color:var(--body);}
   .bownow-form{margin-top:56px;max-width:680px;}
+  /* BowNowフォームの色をダーク背景に合わせて上書き */
+  .bownow-form, .bownow-form *{color:#ffffff !important;}
+  .bownow-form input:not([type="checkbox"]):not([type="radio"]),
+  .bownow-form textarea,
+  .bownow-form select{
+    background:#262626 !important;color:#ffffff !important;
+    border:1px solid #3a3a3a !important;border-radius:2px !important;
+  }
+  .bownow-form input::placeholder,.bownow-form textarea::placeholder{color:rgba(255,255,255,.4) !important;}
+  /* インラインで白背景になっている枠（プライバシーポリシー等）をグレーに */
+  .bownow-form div[style*="rgb(255, 255, 255)"],
+  .bownow-form div[style*="#fff"],
+  .bownow-form div[style*="#FFF"],
+  .bownow-form div[style*="background:#ffffff"],
+  .bownow-form div[style*="background-color: rgb(255, 255, 255)"]{
+    background:#1c1c1c !important;border-color:#3a3a3a !important;
+  }
   .contact .meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:80px;padding-top:40px;border-top:1px solid var(--line);}
   .contact .meta span{font-size:12px;font-weight:500;letter-spacing:2px;color:var(--meta);}
 
