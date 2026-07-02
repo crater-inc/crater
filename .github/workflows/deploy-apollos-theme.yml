@@ -18,6 +18,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: 02_APOLLOS/wp-theme/apollos/
           server-dir: public_html/apollos.jp/wp-content/themes/apollos/
+          state-name: .ftp-deploy-apollos-theme-v2.json
 
       - name: 自動有効化mu-pluginをデプロイ
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
