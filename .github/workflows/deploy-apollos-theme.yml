@@ -27,3 +27,10 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: 02_APOLLOS/wp-mu/
           server-dir: public_html/apollos.jp/wp-content/mu-plugins/
+
+      - name: .htaccess を配置（パーマリンク用・単体アップ／削除なし）
+        run: |
+          curl -sS --ftp-create-dirs -T 02_APOLLOS/wp-root/htaccess.txt \
+            "ftp://${{ secrets.FTP_HOST }}/public_html/apollos.jp/.htaccess" \
+            --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          echo "htaccess uploaded"
