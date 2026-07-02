@@ -1,0 +1,29 @@
+name: Deploy APOLLOS WP Theme
+
+# 手動実行でWPテーマ＋自動有効化mu-pluginをapollos.jpにFTPデプロイする。
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: テーマをデプロイ
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: 02_APOLLOS/wp-theme/apollos/
+          server-dir: public_html/apollos.jp/wp-content/themes/apollos/
+
+      - name: 自動有効化mu-pluginをデプロイ
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: 02_APOLLOS/wp-mu/
+          server-dir: public_html/apollos.jp/wp-content/mu-plugins/
