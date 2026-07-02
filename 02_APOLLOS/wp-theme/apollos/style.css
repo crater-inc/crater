@@ -3,7 +3,7 @@ Theme Name: APOLLOS
 Theme URI: https://apollos.jp
 Author: CRATER / APOLLOS
 Description: APOLLOS 公式テーマ。認知に特化したクリエイティブ会社のコーポレート＋INFO（ブログ）。ダークモノクロ・雲海KV・パララックス。
-Version: 1.1.1
+Version: 1.1.2
 Text Domain: apollos
 */
 
@@ -63,12 +63,15 @@ a{color:inherit;text-decoration:none;}
 .hero-jp{margin-top:-0.4vw;line-height:0.9;}
 .hero-jp span{display:inline-block;white-space:nowrap;font-family:var(--font-jp);font-weight:800;letter-spacing:0;color:#fff;font-size:80px;line-height:1;}
 .hero-tag{margin-top:clamp(24px,4vh,48px);text-align:center;font-family:var(--font-word);font-weight:700;font-size:clamp(13px,1.5vw,20px);letter-spacing:.05em;color:rgba(255,255,255,.92);}
-/* KVコピーを一行ごとにパラパラ出現 */
-.hero-word,.hero-jp,.hero-tag{opacity:0;transform:translateY(44px);transition:opacity 1.1s cubic-bezier(.2,.7,.2,1), transform 1.1s cubic-bezier(.2,.7,.2,1);}
-.hero.reveal-go .hero-word{opacity:1;transform:none;transition-delay:.65s;}
-.hero.reveal-go .hero-jp{opacity:1;transform:none;transition-delay:1.05s;}
-.hero.reveal-go .hero-tag{opacity:1;transform:none;transition-delay:1.45s;}
-@media (prefers-reduced-motion: reduce){.hero-word,.hero-jp,.hero-tag{opacity:1;transform:none;transition:none;}}
+/* KV：背景画像を最初にふわっとフェードイン */
+.hero-bg{opacity:0;transition:opacity 2s ease;}
+.hero.reveal-go .hero-bg{opacity:1;}
+/* KVコピーを一行ごとに、ゆっくり柔らかく出現 */
+.hero-word,.hero-jp,.hero-tag{opacity:0;transform:translateY(32px);transition:opacity 1.6s cubic-bezier(0.22,0.61,0.36,1), transform 1.6s cubic-bezier(0.22,0.61,0.36,1);}
+.hero.reveal-go .hero-word{opacity:1;transform:none;transition-delay:1.0s;}
+.hero.reveal-go .hero-jp{opacity:1;transform:none;transition-delay:1.7s;}
+.hero.reveal-go .hero-tag{opacity:1;transform:none;transition-delay:2.4s;}
+@media (prefers-reduced-motion: reduce){.hero-word,.hero-jp,.hero-tag,.hero-bg{opacity:1;transform:none;transition:none;}}
 .scroll-ind{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;}
 .scroll-ind span{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.6);}
 .scroll-ind i{width:1px;height:46px;background:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,0));animation:scroll 2s ease-in-out infinite;}
