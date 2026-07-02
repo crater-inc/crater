@@ -3,7 +3,7 @@ Theme Name: APOLLOS
 Theme URI: https://apollos.jp
 Author: CRATER / APOLLOS
 Description: APOLLOS 公式テーマ。認知に特化したクリエイティブ会社のコーポレート＋INFO（ブログ）。ダークモノクロ・雲海KV・パララックス。
-Version: 1.1.5
+Version: 1.1.6
 Text Domain: apollos
 */
 
@@ -196,7 +196,8 @@ section{position:relative;}
 /* ===== Statement ===== */
 .statement{position:relative;min-height:760px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#0A0A0A;}
 /* 丸窓（ポートホール）：黒背景の中央に宇宙の景色 */
-.statement-window{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(405px,64vw);border-radius:210px;overflow:hidden;border:1px solid rgba(255,255,255,.14);}
+/* 丸窓はPCの縦横比(405:628)を全デバイスで維持（SPで縦長になりすぎない） */
+.statement-window{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(405px,64vw);aspect-ratio:405/628;border-radius:9999px;overflow:hidden;border:1px solid rgba(255,255,255,.14);}
 .statement-window .sbg{position:absolute;inset:-28% 0;background-size:cover;background-position:center;background-repeat:no-repeat;will-change:transform;}
 .statement-window::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28);}
 .statement .inner{position:relative;z-index:2;padding:80px 24px;}
@@ -264,4 +265,9 @@ section{position:relative;}
   .article-body{grid-template-columns:1fr;gap:60px;padding-top:48px;}
   .article-main p{font-size:16px;}
   .related{padding:80px var(--pad) 96px;}
+
+  /* SP：KVタグラインの日本語↔英語を近づける */
+  .hero-taglines{gap:5px 18px;}
+  /* SP：丸窓の周りの黒余白を詰める */
+  .statement{min-height:560px;}
 }
