@@ -59,7 +59,7 @@ $img = get_template_directory_uri() . '/images';
   <section class="cta-band">
     <div class="wrap reveal">
       <h2>まだ知らないを、知っているへ。</h2>
-      <a class="btn" href="<?php echo esc_url(home_url('/#contact')); ?>">お問い合わせ <span>→</span></a>
+      <a class="btn" href="<?php echo esc_url(apollos_page_url('contact')); ?>">お問い合わせ <span>→</span></a>
     </div>
   </section>
 

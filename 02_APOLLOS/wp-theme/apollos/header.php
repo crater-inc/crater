@@ -19,6 +19,6 @@
     <a href="<?php echo esc_url(apollos_page_url('about')); ?>">ABOUT</a>
     <a href="<?php echo esc_url(apollos_page_url('company')); ?>">COMPANY</a>
     <a href="<?php echo esc_url(apollos_info_url()); ?>">INFO</a>
-    <a href="<?php echo esc_url(apollos_nav_link('#contact')); ?>">CONTACT</a>
+    <a href="<?php echo esc_url(apollos_page_url('contact')); ?>">CONTACT</a>
   </nav>
 </header>

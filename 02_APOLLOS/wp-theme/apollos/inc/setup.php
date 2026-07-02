@@ -49,13 +49,14 @@ if (!function_exists('apollos_run_setup')) {
  */
 if (!function_exists('apollos_ensure_pages')) {
     function apollos_ensure_pages() {
-        if (get_option('apollos_pages_v1')) return;
+        if (get_option('apollos_pages_v2')) return;
 
         $pages = array(
             'philosophy' => array('PHILOSOPHY', 'template-philosophy.php'),
             'service'    => array('SERVICE',    'template-service.php'),
             'about'      => array('ABOUT',      'template-about.php'),
             'company'    => array('COMPANY',    'template-company.php'),
+            'contact'    => array('CONTACT',    'template-contact.php'),
         );
         foreach ($pages as $slug => $data) {
             list($title, $template) = $data;
@@ -79,7 +80,7 @@ if (!function_exists('apollos_ensure_pages')) {
         global $wp_rewrite;
         if ($wp_rewrite) { $wp_rewrite->flush_rules(false); }
 
-        update_option('apollos_pages_v1', 1);
+        update_option('apollos_pages_v2', 1);
     }
 }
 add_action('after_setup_theme', 'apollos_ensure_pages');

@@ -49,7 +49,7 @@ $services = array(
   <section class="cta-band alt">
     <div class="wrap reveal">
       <h2>認知の設計から、はじめませんか。</h2>
-      <a class="btn" href="<?php echo esc_url(home_url('/#contact')); ?>">お問い合わせ <span>→</span></a>
+      <a class="btn" href="<?php echo esc_url(apollos_page_url('contact')); ?>">お問い合わせ <span>→</span></a>
     </div>
   </section>
 
