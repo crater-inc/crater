@@ -55,6 +55,11 @@ function apollos_nav_link($anchor) {
     return (is_front_page() ? '' : home_url('/')) . $anchor;
 }
 
+/* 下層ページ（固定ページ）のURL。スラッグ固定運用 */
+function apollos_page_url($slug) {
+    return home_url('/' . $slug . '/');
+}
+
 /* INFO（投稿一覧）ページのURL */
 function apollos_info_url() {
     $blog = get_option('page_for_posts');

@@ -28,6 +28,7 @@ $img = get_template_directory_uri() . '/images';
         </h2>
         <span class="en">Unseen value does not exist.</span>
         <p>良いものをつくっても、その価値が正しく届かなければ選ばれない。アポロスは「認知」を軸に、価値が届き・理解され・選ばれる状態をつくります。</p>
+        <a class="view-more" href="<?php echo esc_url(apollos_page_url('philosophy')); ?>">VIEW MORE <span class="ar">→</span></a>
       </div>
       <div class="phil-img reveal"><div class="pbg" data-parallax="0.32" style="background-image:url('<?php echo esc_url($img); ?>/philosophy.png');"></div></div>
     </div>
@@ -70,6 +71,7 @@ $img = get_template_directory_uri() . '/images';
         </div>
       </div>
     </div>
+    <a class="view-more reveal" href="<?php echo esc_url(apollos_page_url('service')); ?>">VIEW MORE <span class="ar">→</span></a>
   </div>
 </section>
 
@@ -90,6 +92,7 @@ $img = get_template_directory_uri() . '/images';
           <div class="stat"><div class="num">3+</div><div class="lab">CORE SERVICES</div></div>
           <div class="stat"><div class="num">1way</div><div class="lab">目的から逆算</div></div>
         </div>
+        <a class="view-more" href="<?php echo esc_url(apollos_page_url('about')); ?>">VIEW MORE <span class="ar">→</span></a>
       </div>
     </div>
   </div>

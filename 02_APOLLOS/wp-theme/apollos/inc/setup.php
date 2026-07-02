@@ -42,3 +42,44 @@ if (!function_exists('apollos_run_setup')) {
         update_option('apollos_setup_done', 1);
     }
 }
+
+/**
+ * 下層固定ページ（PHILOSOPHY/SERVICE/ABOUT/COMPANY）を自動生成し、
+ * それぞれ専用テンプレートを割り当てる。冪等・1回だけ実行。
+ */
+if (!function_exists('apollos_ensure_pages')) {
+    function apollos_ensure_pages() {
+        if (get_option('apollos_pages_v1')) return;
+
+        $pages = array(
+            'philosophy' => array('PHILOSOPHY', 'template-philosophy.php'),
+            'service'    => array('SERVICE',    'template-service.php'),
+            'about'      => array('ABOUT',      'template-about.php'),
+            'company'    => array('COMPANY',    'template-company.php'),
+        );
+        foreach ($pages as $slug => $data) {
+            list($title, $template) = $data;
+            $existing = get_page_by_path($slug);
+            if ($existing) {
+                $page_id = $existing->ID;
+            } else {
+                $page_id = wp_insert_post(array(
+                    'post_title'  => $title,
+                    'post_name'   => $slug,
+                    'post_type'   => 'page',
+                    'post_status' => 'publish',
+                ));
+            }
+            if ($page_id && !is_wp_error($page_id)) {
+                update_post_meta($page_id, '_wp_page_template', $template);
+            }
+        }
+
+        // 追加した固定ページのパーマリンクを確実に有効化
+        global $wp_rewrite;
+        if ($wp_rewrite) { $wp_rewrite->flush_rules(false); }
+
+        update_option('apollos_pages_v1', 1);
+    }
+}
+add_action('after_setup_theme', 'apollos_ensure_pages');

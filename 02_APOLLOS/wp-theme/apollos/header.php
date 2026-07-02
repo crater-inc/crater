@@ -14,9 +14,10 @@
   <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">APOLLOS</a>
   <button class="nav-toggle" id="navToggle" aria-label="メニュー"><span></span><span></span><span></span></button>
   <nav class="nav" id="nav">
-    <a href="<?php echo esc_url(apollos_nav_link('#philosophy')); ?>">PHILOSOPHY</a>
-    <a href="<?php echo esc_url(apollos_nav_link('#service')); ?>">SERVICE</a>
-    <a href="<?php echo esc_url(apollos_nav_link('#about')); ?>">ABOUT</a>
+    <a href="<?php echo esc_url(apollos_page_url('philosophy')); ?>">PHILOSOPHY</a>
+    <a href="<?php echo esc_url(apollos_page_url('service')); ?>">SERVICE</a>
+    <a href="<?php echo esc_url(apollos_page_url('about')); ?>">ABOUT</a>
+    <a href="<?php echo esc_url(apollos_page_url('company')); ?>">COMPANY</a>
     <a href="<?php echo esc_url(apollos_info_url()); ?>">INFO</a>
     <a href="<?php echo esc_url(apollos_nav_link('#contact')); ?>">CONTACT</a>
   </nav>
