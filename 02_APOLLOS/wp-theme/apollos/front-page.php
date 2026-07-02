@@ -122,7 +122,7 @@ $img = get_template_directory_uri() . '/images';
 
 <!-- Statement -->
 <section class="statement">
-  <div class="sbg" data-parallax="0.40" style="background-image:url('<?php echo esc_url($img); ?>/statement.png');"></div>
+  <div class="statement-window"><div class="sbg" data-parallax="0.30" style="background-image:url('<?php echo esc_url($img); ?>/statement.png');"></div></div>
   <div class="inner reveal">
     <div class="kicker">BRAND STATEMENT</div>
     <h2>埋もれている価値を、<br>次の世界へ。</h2>
