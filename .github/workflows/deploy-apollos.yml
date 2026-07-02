@@ -1,11 +1,9 @@
-name: Deploy APOLLOS
+name: Deploy APOLLOS (静的・停止中)
 
+# WordPress移行のため自動デプロイを停止（静的サイトがWPを上書きしないように）。
+# 必要時のみ手動実行。
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '02_APOLLOS/output/website/**'
+  workflow_dispatch:
 
 jobs:
   deploy:
