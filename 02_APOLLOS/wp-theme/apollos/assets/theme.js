@@ -10,15 +10,14 @@
     if (natural > 0) { span.style.fontSize = (base * ((wrap.clientWidth + 6) / natural)) + 'px'; }
   }
   function fitAll() {
-    fitWord('heroWord'); fitWord('heroJp'); fitWord('footWord');
-    // KVコピーを行ごとにパラパラ出現させる
+    fitWord('heroWord'); fitWord('footWord');
+    // KVコピーの出現をトリガー
     var h = document.querySelector('.hero');
     if (h) h.classList.add('reveal-go');
   }
   if (document.fonts && document.fonts.load) {
     Promise.all([
-      document.fonts.load('500 100px "Roboto Condensed"'),
-      document.fonts.load('800 80px "Zen Kaku Gothic New"')
+      document.fonts.load('500 100px "Roboto Condensed"')
     ]).then(fitAll).catch(fitAll);
     document.fonts.ready.then(fitAll);
   }
@@ -59,14 +58,11 @@
   }, { passive: true });
   onScroll();
 
-  // 一行ごとパラパラ出現：各.revealの子要素に段階的な遅延をセット
+  // 一行ごとパラパラ出現：同じ親の中の.reveal兄弟を順番にずらす
   document.querySelectorAll('.reveal').forEach(function (el) {
-    var i = 0;
-    Array.prototype.forEach.call(el.children, function (c) {
-      if (c.hasAttribute('data-parallax')) return;
-      c.style.transitionDelay = (i * 0.11) + 's';
-      i++;
-    });
+    var sibs = Array.prototype.filter.call(el.parentElement.children, function (c) { return c.classList.contains('reveal'); });
+    var idx = sibs.indexOf(el);
+    if (idx > 0) el.style.transitionDelay = (idx * 0.12) + 's';
   });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {

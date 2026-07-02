@@ -3,7 +3,7 @@ Theme Name: APOLLOS
 Theme URI: https://apollos.jp
 Author: CRATER / APOLLOS
 Description: APOLLOS 公式テーマ。認知に特化したクリエイティブ会社のコーポレート＋INFO（ブログ）。ダークモノクロ・雲海KV・パララックス。
-Version: 1.1.2
+Version: 1.1.3
 Text Domain: apollos
 */
 
@@ -37,10 +37,10 @@ a{color:inherit;text-decoration:none;}
 .label .dash{width:28px;height:1px;background:var(--ink);opacity:.6;}
 .label .cat{font-size:12px;font-weight:600;letter-spacing:4px;color:var(--meta);}
 
-/* スクロールで子要素（行）を順番にパラパラ出現（パララックス要素は除外） */
-.reveal > *:not([data-parallax]){opacity:0;transform:translateY(28px);transition:opacity .85s ease, transform .85s cubic-bezier(.2,.7,.2,1);}
-.reveal.in > *:not([data-parallax]){opacity:1;transform:none;}
-@media (prefers-reduced-motion: reduce){.reveal > *{opacity:1 !important;transform:none !important;transition:none !important;}}
+/* スクロールで出現（.reveal自身をアニメ。兄弟は順番にずれて出る＝一行ごと） */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 1s ease, transform 1s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1 !important;transform:none !important;transition:none !important;}}
 
 /* ===== ヘッダー ===== */
 .site-header{position:fixed;top:0;left:0;width:100%;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:var(--edge);transition:background .4s ease;}
@@ -57,21 +57,20 @@ a{color:inherit;text-decoration:none;}
 .hero-bg{position:absolute;inset:-20% 0;background-size:cover;background-position:center;background-repeat:no-repeat;will-change:transform;}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.15) 35%,rgba(0,0,0,.55) 100%);}
 .hero-inner{position:relative;z-index:2;width:100%;padding:0;}
-.hero-word,.hero-jp{width:100%;text-align:center;overflow:visible;}
-.hero-word{line-height:0.72;}
+.hero-word{width:100%;text-align:center;overflow:visible;line-height:0.72;}
 .hero-word span{display:inline-block;white-space:nowrap;font-family:var(--font-cond);font-weight:500;letter-spacing:.013em;color:#fff;font-size:100px;line-height:1;}
-.hero-jp{margin-top:-0.4vw;line-height:0.9;}
-.hero-jp span{display:inline-block;white-space:nowrap;font-family:var(--font-jp);font-weight:800;letter-spacing:0;color:#fff;font-size:80px;line-height:1;}
-.hero-tag{margin-top:clamp(24px,4vh,48px);text-align:center;font-family:var(--font-word);font-weight:700;font-size:clamp(13px,1.5vw,20px);letter-spacing:.05em;color:rgba(255,255,255,.92);}
+/* APOLLOSの下：日本語＋英語を横並び・小さく */
+.hero-taglines{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(18px,3.5vw,56px);margin-top:clamp(18px,3vh,40px);padding:0 24px;}
+.hero-jp-sm{font-family:var(--font-jp);font-weight:800;font-size:clamp(13px,1.5vw,20px);letter-spacing:0;color:#fff;}
+.hero-en-sm{font-family:var(--font-word);font-weight:700;font-size:clamp(12px,1.4vw,20px);letter-spacing:.05em;color:rgba(255,255,255,.92);}
 /* KV：背景画像を最初にふわっとフェードイン */
 .hero-bg{opacity:0;transition:opacity 2s ease;}
 .hero.reveal-go .hero-bg{opacity:1;}
-/* KVコピーを一行ごとに、ゆっくり柔らかく出現 */
-.hero-word,.hero-jp,.hero-tag{opacity:0;transform:translateY(32px);transition:opacity 1.6s cubic-bezier(0.22,0.61,0.36,1), transform 1.6s cubic-bezier(0.22,0.61,0.36,1);}
+/* KVコピーを、ゆっくり柔らかく出現 */
+.hero-word,.hero-taglines{opacity:0;transform:translateY(32px);transition:opacity 1.6s cubic-bezier(0.22,0.61,0.36,1), transform 1.6s cubic-bezier(0.22,0.61,0.36,1);}
 .hero.reveal-go .hero-word{opacity:1;transform:none;transition-delay:1.0s;}
-.hero.reveal-go .hero-jp{opacity:1;transform:none;transition-delay:1.7s;}
-.hero.reveal-go .hero-tag{opacity:1;transform:none;transition-delay:2.4s;}
-@media (prefers-reduced-motion: reduce){.hero-word,.hero-jp,.hero-tag,.hero-bg{opacity:1;transform:none;transition:none;}}
+.hero.reveal-go .hero-taglines{opacity:1;transform:none;transition-delay:1.9s;}
+@media (prefers-reduced-motion: reduce){.hero-word,.hero-taglines,.hero-bg{opacity:1;transform:none;transition:none;}}
 .scroll-ind{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;}
 .scroll-ind span{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.6);}
 .scroll-ind i{width:1px;height:46px;background:linear-gradient(rgba(255,255,255,.7),rgba(255,255,255,0));animation:scroll 2s ease-in-out infinite;}

@@ -8,8 +8,10 @@ $img = get_template_directory_uri() . '/images';
   <div class="hero-bg" data-parallax="0.45" style="background-image:url('<?php echo esc_url($img); ?>/hero.jpg');"></div>
   <div class="hero-inner">
     <div id="heroWord" class="hero-word"><span>APOLLOS</span></div>
-    <div id="heroJp" class="hero-jp"><span>埋もれている価値を、次の世界へ</span></div>
-    <p class="hero-tag">Bring buried value to the next world.</p>
+    <div class="hero-taglines">
+      <span class="hero-jp-sm">埋もれている価値を、次の世界へ</span>
+      <span class="hero-en-sm">Bring buried value to the next world.</span>
+    </div>
   </div>
   <div class="scroll-ind"><span>SCROLL</span><i></i></div>
 </section>
