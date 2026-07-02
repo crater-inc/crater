@@ -3,7 +3,7 @@ Theme Name: APOLLOS
 Theme URI: https://apollos.jp
 Author: CRATER / APOLLOS
 Description: APOLLOS 公式テーマ。認知に特化したクリエイティブ会社のコーポレート＋INFO（ブログ）。ダークモノクロ・雲海KV・パララックス。
-Version: 1.1.3
+Version: 1.1.4
 Text Domain: apollos
 */
 
@@ -60,7 +60,7 @@ a{color:inherit;text-decoration:none;}
 .hero-word{width:100%;text-align:center;overflow:visible;line-height:0.72;}
 .hero-word span{display:inline-block;white-space:nowrap;font-family:var(--font-cond);font-weight:500;letter-spacing:.013em;color:#fff;font-size:100px;line-height:1;}
 /* APOLLOSの下：日本語＋英語を横並び・小さく */
-.hero-taglines{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(18px,3.5vw,56px);margin-top:clamp(18px,3vh,40px);padding:0 24px;}
+.hero-taglines{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(18px,3.5vw,56px);margin-top:clamp(-26px,-1.4vw,-6px);padding:0 24px;}
 .hero-jp-sm{font-family:var(--font-jp);font-weight:800;font-size:clamp(13px,1.5vw,20px);letter-spacing:0;color:#fff;}
 .hero-en-sm{font-family:var(--font-word);font-weight:700;font-size:clamp(12px,1.4vw,20px);letter-spacing:.05em;color:rgba(255,255,255,.92);}
 /* KV：背景画像を最初にふわっとフェードイン */
