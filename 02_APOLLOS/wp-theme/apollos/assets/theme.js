@@ -30,9 +30,14 @@
   var toggle = document.getElementById('navToggle');
   var nav = document.getElementById('nav');
   if (toggle && nav) {
-    toggle.addEventListener('click', function () { nav.classList.toggle('open'); toggle.classList.toggle('open'); });
+    var setMenu = function (open) {
+      nav.classList.toggle('open', open);
+      toggle.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+    };
+    toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
     nav.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { nav.classList.remove('open'); toggle.classList.remove('open'); });
+      a.addEventListener('click', function () { setMenu(false); });
     });
   }
 
