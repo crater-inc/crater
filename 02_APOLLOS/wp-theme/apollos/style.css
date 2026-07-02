@@ -3,7 +3,7 @@ Theme Name: APOLLOS
 Theme URI: https://apollos.jp
 Author: CRATER / APOLLOS
 Description: APOLLOS 公式テーマ。認知に特化したクリエイティブ会社のコーポレート＋INFO（ブログ）。ダークモノクロ・雲海KV・パララックス。
-Version: 1.1.7
+Version: 1.1.8
 Text Domain: apollos
 */
 
@@ -236,6 +236,8 @@ section{position:relative;}
   .nav.open a:nth-child(4){transition-delay:.55s;}
   .nav.open a:nth-child(5){transition-delay:.65s;}
   body.menu-open{overflow:hidden;}
+  /* backdrop-filterはfixed子要素の基準をヘッダー枠に変えてしまうため、メニュー展開中は無効化（スクロール後の崩れ対策） */
+  body.menu-open .site-header{backdrop-filter:none;-webkit-backdrop-filter:none;background:none;}
   .nav-toggle{display:flex;z-index:60;}
   .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .nav-toggle.open span:nth-child(2){opacity:0;}
