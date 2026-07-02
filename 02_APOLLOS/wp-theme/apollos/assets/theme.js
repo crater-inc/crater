@@ -9,7 +9,12 @@
     var natural = span.getBoundingClientRect().width;
     if (natural > 0) { span.style.fontSize = (base * ((wrap.clientWidth + 6) / natural)) + 'px'; }
   }
-  function fitAll() { fitWord('heroWord'); fitWord('heroJp'); fitWord('footWord'); }
+  function fitAll() {
+    fitWord('heroWord'); fitWord('heroJp'); fitWord('footWord');
+    // KVコピーを行ごとにパラパラ出現させる
+    var h = document.querySelector('.hero');
+    if (h) h.classList.add('reveal-go');
+  }
   if (document.fonts && document.fonts.load) {
     Promise.all([
       document.fonts.load('500 100px "Roboto Condensed"'),
@@ -32,14 +37,13 @@
     });
   }
 
-  // パララックス
+  // パララックス（PC・SP両方で有効。reduced-motionのみ無効）
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isMobile = window.matchMedia('(max-width:768px)').matches;
   var items = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
   var ticking = false;
   function onScroll() {
     if (header) { if (window.scrollY > 40) header.classList.add('scrolled'); else header.classList.remove('scrolled'); }
-    if (!reduce && !isMobile) {
+    if (!reduce) {
       var vh = window.innerHeight;
       items.forEach(function (el) {
         var r = el.parentElement.getBoundingClientRect();
@@ -53,10 +57,17 @@
   window.addEventListener('scroll', function () {
     if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
   }, { passive: true });
-  window.addEventListener('resize', function () { isMobile = window.matchMedia('(max-width:768px)').matches; });
   onScroll();
 
-  // フェードアップ
+  // 一行ごとパラパラ出現：各.revealの子要素に段階的な遅延をセット
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    var i = 0;
+    Array.prototype.forEach.call(el.children, function (c) {
+      if (c.hasAttribute('data-parallax')) return;
+      c.style.transitionDelay = (i * 0.11) + 's';
+      i++;
+    });
+  });
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });

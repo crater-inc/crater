@@ -5,7 +5,7 @@ $img = get_template_directory_uri() . '/images';
 
 <!-- ヒーロー -->
 <section class="hero" id="top">
-  <div class="hero-bg" data-parallax="0.30" style="background-image:url('<?php echo esc_url($img); ?>/hero.jpg');"></div>
+  <div class="hero-bg" data-parallax="0.45" style="background-image:url('<?php echo esc_url($img); ?>/hero.jpg');"></div>
   <div class="hero-inner">
     <div id="heroWord" class="hero-word"><span>APOLLOS</span></div>
     <div id="heroJp" class="hero-jp"><span>埋もれている価値を、次の世界へ</span></div>
@@ -27,7 +27,7 @@ $img = get_template_directory_uri() . '/images';
         <span class="en">Unseen value does not exist.</span>
         <p>良いものをつくっても、その価値が正しく届かなければ選ばれない。アポロスは「認知」を軸に、価値が届き・理解され・選ばれる状態をつくります。</p>
       </div>
-      <div class="phil-img reveal"><div class="pbg" data-parallax="0.22" style="background-image:url('<?php echo esc_url($img); ?>/philosophy.png');"></div></div>
+      <div class="phil-img reveal"><div class="pbg" data-parallax="0.32" style="background-image:url('<?php echo esc_url($img); ?>/philosophy.png');"></div></div>
     </div>
   </div>
 </section>
@@ -75,7 +75,7 @@ $img = get_template_directory_uri() . '/images';
 <section class="about sec-pad" id="about">
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-img reveal"><div class="abg" data-parallax="0.20" style="background-image:url('https://images.unsplash.com/photo-1514810771018-276192729582?auto=format&fit=crop&w=1080&q=80');"></div></div>
+      <div class="about-img reveal"><div class="abg" data-parallax="0.30" style="background-image:url('https://images.unsplash.com/photo-1514810771018-276192729582?auto=format&fit=crop&w=1080&q=80');"></div></div>
       <div class="about-right reveal">
         <div class="label" style="margin-bottom:24px;"><span class="idx">(03)</span><span class="dash"></span><span class="cat">ABOUT</span></div>
         <h2>認知を起点に、<br>事業を動かす。</h2>
@@ -120,7 +120,7 @@ $img = get_template_directory_uri() . '/images';
 
 <!-- Statement -->
 <section class="statement">
-  <div class="sbg" data-parallax="0.28" style="background-image:url('<?php echo esc_url($img); ?>/statement.png');"></div>
+  <div class="sbg" data-parallax="0.40" style="background-image:url('<?php echo esc_url($img); ?>/statement.png');"></div>
   <div class="inner reveal">
     <div class="kicker">BRAND STATEMENT</div>
     <h2>埋もれている価値を、<br>次の世界へ。</h2>
