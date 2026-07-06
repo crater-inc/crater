@@ -27,13 +27,11 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 @keyframes kvZoom{0%,100%{transform:scale(1.0);}50%{transform:scale(1.05);}}
 .bottle{animation:bottleFloat 4.2s ease-in-out infinite;transform-origin:center center;}
 @keyframes bottleFloat{0%,100%{transform:rotate(-2.56deg) translateY(0);}50%{transform:rotate(-2.56deg) translateY(-15px);}}
-.plxmed,.plxweak{will-change:transform;backface-visibility:hidden;}
+.plx{will-change:transform;backface-visibility:hidden;}
 .ctabtn{cursor:pointer;}
-
-/* FAQアコーディオン（閉時タイト） */
-[data-pencil-name^="q"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
-[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
-[data-pencil-name^="q"].open [data-pencil-name="a"]{max-height:240px;opacity:1;margin-top:12px;}
+[data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
+[data-pencil-name="q0"]>[data-pencil-name="a"],[data-pencil-name="q1"]>[data-pencil-name="a"],[data-pencil-name="q2"]>[data-pencil-name="a"],[data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
+[data-pencil-name="q0"].open>[data-pencil-name="a"],[data-pencil-name="q1"].open>[data-pencil-name="a"],[data-pencil-name="q2"].open>[data-pencil-name="a"],[data-pencil-name="q3"].open>[data-pencil-name="a"]{max-height:240px;opacity:1;margin-top:12px;}
 </style>
 </head>
   <body>
@@ -158,7 +156,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
         data-pencil-name="Statement"
         style="background-color: #f5f6faff; box-sizing: border-box; height: 530px; left: 0px; overflow: hidden; position: absolute; top: 750px; width: 1199px; z-index: 1"
       >
-        <div
+        <div class="plx"
           data-pencil-name="St-Image(dummy)"
           style="background-image: url('a/ESION_________B_D____-3.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 530px; left: -8px; position: absolute; top: 0px; width: 1199px; z-index: 0"
         ></div>
@@ -170,7 +168,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
           data-pencil-name="eyebrow"
           style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; gap: 6px; height: 13px; justify-content: flex-start; left: 131px; position: absolute; top: 172px; width: 61px; z-index: 2"
         ></div>
-        <div
+        <div class="plx"
           style="background-image: url('a/ESION_________B_D____-4.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 668px; left: -187px; position: absolute; top: -79px; width: 1780px; z-index: 3"
         ></div>
         <div
@@ -243,16 +241,16 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
             data-pencil-name="フレックスオーダー（定期）"
             style="background-color: #081B52; border-radius: 6px; box-sizing: border-box; flex: 1 1 0; height: 470px; overflow: hidden; position: relative"
           >
-            <div class="plxweak"
+            <div class="plx"
               style="background-image: url('a/ESION_Photoshoot_ESION-SHAMPOO_Minimal-Oil-Bottle_2026-07-05_2x.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 654px; left: -69px; position: absolute; top: -103px; width: 489px; z-index: 0"
             ></div>
-            <div class="plxweak"
+            <div class="plx"
               style="background-image: url('a/ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x__1_.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 357px; left: 357px; position: absolute; top: -141px; transform-origin: top left; transform: rotate(90deg); width: 640px; z-index: 1"
             ></div>
-            <div class="plxweak"
+            <div class="plx"
               style="background-image: url('a/ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 455px; left: 352.248px; position: absolute; top: -188px; transform-origin: top left; transform: rotate(82.636deg); width: 815px; z-index: 2"
             ></div>
-            <div class="plxmed"
+            <div class="plx"
               style="background-image: url('a/ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 482px; left: -228px; position: absolute; top: -6px; width: 864px; z-index: 3"
             ></div>
           </div>
@@ -260,13 +258,13 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
             data-pencil-name="ボトル単品"
             style="background-color: #ffffffff; border-radius: 6px; box-sizing: border-box; flex: 1 1 0; height: 470px; overflow: hidden; position: relative"
           >
-            <div class="plxweak"
+            <div class="plx"
               style="background-image: url('a/ESION_Photoshoot_ESION-SHAMPOO_Minimal-Oil-Bottle_2026-07-05_2x__1_.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 537px; left: -33.833px; position: absolute; top: -33.258px; width: 400px; z-index: 0"
             ></div>
-            <div
+            <div class="plx"
               style="background-image: url('a/ESION_Edit_2026-07-06_2x.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 592px; left: -45.333px; position: absolute; top: -68px; width: 444px; z-index: 1"
             ></div>
-            <div
+            <div class="plx"
               style="background-image: url('a/ESION_Edit_2026-07-06_2x-1.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 639px; left: -62.728px; position: absolute; top: -84.5px; width: 479px; z-index: 2"
             ></div>
           </div>
@@ -285,10 +283,10 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
                 まずはお試し
               </div>
             </div>
-            <div
+            <div class="plx"
               style="background-image: url('a/CleanShot_2026-07-06_at_22.22.23.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 503px; left: -20.667px; position: absolute; top: -17px; width: 381px; z-index: 1"
             ></div>
-            <div
+            <div class="plx"
               style="background-image: url('a/ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 480px; left: -2.667px; position: absolute; top: -5px; width: 358px; z-index: 2"
             ></div>
           </div>
@@ -497,10 +495,10 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
                 data-pencil-name="img-inner"
                 style="background-image: linear-gradient(55deg, #081B52 14.099%, #0D41A8 85.901%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; height: 563px; left: -105.5px; position: absolute; top: -105.5px; width: 563px; z-index: 0"
               ></div>
-              <div
+              <div class="plx"
                 style="background-image: url('a/CleanShot_2026-07-05_at_03.36.31.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 739px; left: -264px; position: absolute; top: -380px; width: 803px; z-index: 1"
               ></div>
-              <div
+              <div class="plx"
                 style="background-image: url('a/CleanShot_2026-07-06_at_22.50.40.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 599px; left: -137px; position: absolute; top: -247px; width: 748px; z-index: 2"
               ></div>
             </div>
@@ -543,11 +541,11 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
               data-pencil-name="img"
               style="background-color: #e5e5e5; border-radius: 4px; box-sizing: border-box; flex-shrink: 0; height: 352px; overflow: hidden; position: relative; width: 100%"
             >
-              <div
+              <div class="plx"
                 data-pencil-name="img-inner"
                 style="background-image: url('a/BK3-4.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 393px; left: -13.333px; position: absolute; top: -8px; width: 946px; z-index: 0"
               ></div>
-              <div
+              <div class="plx"
                 style="background-image: url('a/CleanShot_2026-07-06_at_22.49.46.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 376px; left: -35.333px; position: absolute; top: -8px; width: 424px; z-index: 1"
               ></div>
             </div>
@@ -590,7 +588,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
               data-pencil-name="img"
               style="background-color: #e5e5e5; border-radius: 4px; box-sizing: border-box; flex-shrink: 0; height: 352px; overflow: hidden; position: relative; width: 100%"
             >
-              <div
+              <div class="plx"
                 style="background-image: url('a/1b2898d50c70e3a55e81ba6af774385dbb9a9fa6-large.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 373px; left: -143.667px; position: absolute; top: -11px; width: 640px; z-index: 0"
               ></div>
             </div>
@@ -690,14 +688,14 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
           data-pencil-name="Frame 3"
           style="box-sizing: border-box; height: 550px; left: 609px; overflow: hidden; position: absolute; top: 0px; width: 978px; z-index: 1"
         >
-          <div class="plxmed"
+          <div class="plx"
             data-pencil-name="St-Image(dummy)"
             style="background-image: url('a/Image_7__1_.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 565px; left: -255px; position: absolute; top: -18px; width: 1056px; z-index: 0"
           ></div>
-          <div class="plxmed"
+          <div class="plx"
             style="background-image: url('a/Image_7__1_-1.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 550px; left: -242px; position: absolute; top: 0px; width: 978px; z-index: 1"
           ></div>
-          <div class="plxmed"
+          <div class="plx"
             style="background-image: url('a/Image_7__1_-2.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 598px; left: -277px; position: absolute; top: -18px; width: 1063px; z-index: 2"
           ></div>
         </div>
@@ -1084,7 +1082,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
           data-pencil-name="Foam-Image(dummy)"
           style="background-image: linear-gradient(71.408deg, #081B52 10.751%, #0D41A8 89.249%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; height: 576px; left: 0px; position: absolute; top: 0px; width: 1199px; z-index: 0"
         ></div>
-        <div class="plxmed"
+        <div class="plx"
           style="background-image: url('a/ESION_Edit_2026-06-30_2x.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 930px; left: -50px; position: absolute; top: -252px; width: 1665px; z-index: 1"
         ></div>
         <div
@@ -1307,7 +1305,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
           data-pencil-name="bg-img"
           style="background-image: linear-gradient(72.968deg, #081B52 10.494%, #0D41A8 89.506%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; height: 700px; left: -200px; position: absolute; top: -115px; width: 1600px; z-index: 0"
         ></div>
-        <div class="plxmed"
+        <div class="plx"
           style="background-image: url('a/CleanShot_2026-07-05_at_03.38.19.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 827px; left: -92px; position: absolute; top: -268.186px; width: 1291px; z-index: 1"
         ></div>
         <div
@@ -1730,7 +1728,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
         data-pencil-name="Subscription"
         style="background-image: linear-gradient(67.537deg, #071b52 11.452%, #0d41a8 88.548%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; height: 708px; left: 0px; overflow: hidden; position: absolute; top: 5633px; width: 1199px; z-index: 10"
       >
-        <div class="plxmed"
+        <div class="plx"
           style="background-image: url('a/ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 705px; left: 0px; position: absolute; top: -2.602px; width: 600px; z-index: 0"
         ></div>
         <div
@@ -2559,7 +2557,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
         </div>
       </div>
       <div class="bottle"
-        style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 596px; left: 701.465px; position: absolute; top: 89px; transform-origin: top left; transform: rotate(13deg); width: 281px; z-index: 16"
+        style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 596px; left: 676.877px; position: absolute; top: 87.993px; transform-origin: top left; transform: rotate(2.558deg); width: 281px; z-index: 16"
       ></div>
       <div
         data-pencil-name="t"
@@ -2576,25 +2574,20 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  var faq=q('[data-pencil-name="FAQ"]'),news=q('[data-pencil-name="News"]'),contact=q('[data-pencil-name="Contact"]'),footer=q('[data-pencil-name="Footer"]');
  var faqTop=faq?faq.offsetTop:0, faqList=faq?faq.querySelector('[data-pencil-name="list"]'):null;
  if(faq)faq.style.overflow='visible';
- function relayout(){
-   if(!faq)return;
-   var faqH=56+(faqList?faqList.offsetHeight:0)+56;
-   faq.style.height=faqH+'px';
-   var y=faqTop+faqH;
-   news.style.top=y+'px'; y+=news.offsetHeight;
-   contact.style.top=y+'px'; y+=contact.offsetHeight;
-   footer.style.top=y+'px'; y+=footer.offsetHeight;
-   pageH=y;
- }
+ function relayout(){if(!faq)return;var faqH=56+(faqList?faqList.offsetHeight:0)+56;faq.style.height=faqH+'px';var y=faqTop+faqH;news.style.top=y+'px';y+=news.offsetHeight;contact.style.top=y+'px';y+=contact.offsetHeight;footer.style.top=y+'px';y+=footer.offsetHeight;pageH=y;}
  function apply(){sc=window.innerWidth/DW;root.style.transform='scale('+sc+')';document.body.style.height=(pageH*sc)+'px';}
  function fit(){relayout();apply();onScroll();}
  window.addEventListener('resize',fit);
- ['q0','q1','q2','q3'].forEach(function(id){var el=faq&&faq.querySelector('[data-pencil-name="'+id+'"]');if(!el)return;
-   el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(fit,60);setTimeout(fit,440);});});
- var med=[].slice.call(document.querySelectorAll('.plxmed')), weak=[].slice.call(document.querySelectorAll('.plxweak'));
- var ticking=false;
- function mv(arr,k){var vh=window.innerHeight;for(var i=0;i<arr.length;i++){var el=arr[i],r=el.getBoundingClientRect();if(r.bottom<-400||r.top>vh+400)continue;var c=(r.top+r.height/2-vh/2)/sc;el.style.transform='scale(1.1) translate3d(0,'+(-c*k)+'px,0)';}}
- function onScroll(){mv(med,0.05);mv(weak,0.028);ticking=false;}
+ ['q0','q1','q2','q3'].forEach(function(id){var el=faq&&faq.querySelector('[data-pencil-name="'+id+'"]');if(!el)return;el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(fit,60);setTimeout(fit,440);});});
+ // 統一パララックス（読み→書きを分離してカクつき防止）
+ var layers=[].slice.call(document.querySelectorAll('.plx'));
+ var K=0.045, ticking=false;
+ function onScroll(){
+   var vh=window.innerHeight, n=layers.length, ry=new Array(n), rb=new Array(n), rt=new Array(n);
+   for(var i=0;i<n;i++){var r=layers[i].getBoundingClientRect();rt[i]=r.top;rb[i]=r.bottom;ry[i]=r.top+r.height/2-vh/2;}
+   for(var j=0;j<n;j++){if(rb[j]<-400||rt[j]>vh+400)continue;layers[j].style.transform='scale(1.08) translate3d(0,'+(-(ry[j]/sc)*K)+'px,0)';}
+   ticking=false;
+ }
  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
  fit();
 })();
