@@ -25,18 +25,15 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 #pageRoot{position:absolute;top:0;left:0;transform-origin:top left;}
 .kvzoom{animation:kvZoom 9s ease-in-out infinite;transform-origin:center center;}
 @keyframes kvZoom{0%,100%{transform:scale(1.0);}50%{transform:scale(1.05);}}
-.bottle{animation:bottleFloat 4s ease-in-out infinite;transform-origin:center center;}
-@keyframes bottleFloat{0%,100%{transform:rotate(-6.5deg) translateY(0);}50%{transform:rotate(-6.5deg) translateY(-16px);}}
-.plxmed,.plxweak{will-change:transform;}
+.bottle{animation:bottleFloat 4.2s ease-in-out infinite;transform-origin:center center;}
+@keyframes bottleFloat{0%,100%{transform:rotate(-13deg) translateY(0);}50%{transform:rotate(-13deg) translateY(-15px);}}
+.plxmed,.plxweak{will-change:transform;backface-visibility:hidden;}
 .ctabtn{cursor:pointer;transition:transform .3s,box-shadow .3s;}
 .ctabtn:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(7,28,82,.4);}
-/* FAQアコーディオン */
-[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .35s ease,margin .3s ease;}
-[data-pencil-name="q0"].open [data-pencil-name="a"],
-[data-pencil-name="q1"].open [data-pencil-name="a"],
-[data-pencil-name="q2"].open [data-pencil-name="a"],
-[data-pencil-name="q3"].open [data-pencil-name="a"]{max-height:200px;opacity:1;}
-[data-pencil-name^="q"]{cursor:pointer;}
+/* FAQアコーディオン（閉時タイト） */
+[data-pencil-name^="q"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
+[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
+[data-pencil-name^="q"].open [data-pencil-name="a"]{max-height:240px;opacity:1;margin-top:12px;}
 </style>
 </head>
   <body>
@@ -159,7 +156,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
       </div>
       <div
         data-pencil-name="Statement"
-        style="background-color: #f5f6faff; box-sizing: border-box; height: 530px; left: 6px; overflow: hidden; position: absolute; top: 750px; width: 1199px; z-index: 1"
+        style="background-color: #f5f6faff; box-sizing: border-box; height: 530px; left: 0px; overflow: hidden; position: absolute; top: 750px; width: 1199px; z-index: 1"
       >
         <div
           data-pencil-name="St-Image(dummy)"
@@ -1101,13 +1098,13 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
         </div>
         <div
           data-pencil-name="h"
-          style='box-sizing: border-box; color: #FFFFFF; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 46px; font-style: normal; font-weight: 400; height: 54px; left: -18px; letter-spacing: 0px; line-height: 64px; position: absolute; text-align: center; top: 87px; width: 599px; z-index: 3'
+          style='box-sizing: border-box; color: #FFFFFF; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 46px; font-style: normal; font-weight: 400; height: 54px; left: 48px; letter-spacing: 0px; line-height: 64px; position: absolute; text-align: left; top: 87px; width: 900px; z-index: 3'
         >
           指と髪の間に、泡の層。
         </div>
         <div
           data-pencil-name="d"
-          style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13.5px; font-style: normal; font-weight: 400; left: 41.5px; letter-spacing: 0px; line-height: 26px; position: absolute; text-align: left; top: 161px; width: 480px; z-index: 4'
+          style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13.5px; font-style: normal; font-weight: 400; left: 48px; letter-spacing: 0px; line-height: 26px; position: absolute; text-align: left; top: 161px; width: 600px; z-index: 4'
         >
           まるで美容液のようなテクスチャー。無香料なのに泡立ちがよく、
           <br />
@@ -2562,7 +2559,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
         </div>
       </div>
       <div class="bottle"
-        style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 596px; left: 701.465px; position: absolute; top: 89px; transform-origin: top left; transform: rotate(-6.5deg); width: 281px; z-index: 16"
+        style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 596px; left: 701.465px; position: absolute; top: 89px; transform-origin: top left; transform: rotate(13deg); width: 281px; z-index: 16"
       ></div>
       <div
         data-pencil-name="t"
@@ -2574,14 +2571,14 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
   
 <script>
 (function(){
- var root=document.getElementById('pageRoot'),DW=1199,pageH=7999;
- function q(s){return document.querySelector(s);}
+ var root=document.getElementById('pageRoot'),DW=1199,pageH=7999,sc=1;
+ function q(x){return document.querySelector(x);}
  var faq=q('[data-pencil-name="FAQ"]'),news=q('[data-pencil-name="News"]'),contact=q('[data-pencil-name="Contact"]'),footer=q('[data-pencil-name="Footer"]');
- var faqTop=faq?faq.offsetTop:0;
- var faqList=faq?faq.querySelector('[data-pencil-name="list"]'):null;
- function relayoutTail(){
+ var faqTop=faq?faq.offsetTop:0, faqList=faq?faq.querySelector('[data-pencil-name="list"]'):null;
+ if(faq)faq.style.overflow='visible';
+ function relayout(){
    if(!faq)return;
-   var faqH=56 + (faqList?faqList.offsetHeight:0) + 64;
+   var faqH=56+(faqList?faqList.offsetHeight:0)+56;
    faq.style.height=faqH+'px';
    var y=faqTop+faqH;
    news.style.top=y+'px'; y+=news.offsetHeight;
@@ -2589,27 +2586,15 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
    footer.style.top=y+'px'; y+=footer.offsetHeight;
    pageH=y;
  }
- function applyScale(){var sc=window.innerWidth/DW;root.style.transform='scale('+sc+')';document.body.style.height=(pageH*sc)+'px';}
- function fit(){relayoutTail();applyScale();onScroll();}
+ function apply(){sc=window.innerWidth/DW;root.style.transform='scale('+sc+')';document.body.style.height=(pageH*sc)+'px';}
+ function fit(){relayout();apply();onScroll();}
  window.addEventListener('resize',fit);
- // FAQセクションはオーバーフロー可視・高さ自動
- if(faq){faq.style.overflow='visible';}
- // アコーディオン
- ['q0','q1','q2','q3'].forEach(function(id){
-   var el=faq&&faq.querySelector('[data-pencil-name="'+id+'"]');
-   if(!el)return;
-   el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(fit,50);setTimeout(fit,480);});
- });
- // パララックス
- var med=[].slice.call(document.querySelectorAll('.plxmed'));
- var weak=[].slice.call(document.querySelectorAll('.plxweak'));
+ ['q0','q1','q2','q3'].forEach(function(id){var el=faq&&faq.querySelector('[data-pencil-name="'+id+'"]');if(!el)return;
+   el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(fit,60);setTimeout(fit,440);});});
+ var med=[].slice.call(document.querySelectorAll('.plxmed')), weak=[].slice.call(document.querySelectorAll('.plxweak'));
  var ticking=false;
- function onScroll(){
-   var vh=window.innerHeight;
-   function mv(arr,k){for(var i=0;i<arr.length;i++){var el=arr[i],r=el.getBoundingClientRect();if(r.bottom<-400||r.top>vh+400)continue;var c=(r.top+r.height/2-vh/2);el.style.transform='translateY('+(-c*k)+'px)';}}
-   mv(med,0.09); mv(weak,0.035);
-   ticking=false;
- }
+ function mv(arr,k){var vh=window.innerHeight;for(var i=0;i<arr.length;i++){var el=arr[i],r=el.getBoundingClientRect();if(r.bottom<-400||r.top>vh+400)continue;var c=(r.top+r.height/2-vh/2)/sc;el.style.transform='scale(1.1) translate3d(0,'+(-c*k)+'px,0)';}}
+ function onScroll(){mv(med,0.05);mv(weak,0.028);ticking=false;}
  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
  fit();
 })();
