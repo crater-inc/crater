@@ -31,7 +31,25 @@ def tag(m):
     if c: t=t.replace('<div','<div class="%s"'%c,1) if 'class="' not in t else re.sub(r'class="','class="%s '%c,t,1)
     return t
 s=re.sub(r'<div\b[^>]*background-image: url\([^>]*>',tag,s)
+
+# KV裏の透明グリッド（空shaderがdata-URIでラスタライズされ一瞬見える）を除去し空色で塗る
+def fixfv(m):
+    t=m.group(0)
+    t=re.sub(r"background-image: url\('data:[^']*'\);?\s*","",t)
+    if 'background-color' not in t:
+        t=re.sub(r'(style=")','\\1background-color:#bfe0f5;',t,1)
+    return t
+s=re.sub(r'<div[^>]*data-pencil-name="FV"[^>]*>',fixfv,s)
 s=re.sub(r'(data-pencil-name="CTA"\s*\n?\s*style=)','class="ctabtn" \\1',s,1)
+
+# 見出し・ラベル・本文にrvtext（1行ずつフェード用）
+RVNAMES={'h','lab','eyebrow','sub','subh','d','catch'}
+def rvtag(m):
+    t=m.group(0); nm=re.search(r'data-pencil-name="([^"]*)"',t)
+    if nm and nm.group(1) in RVNAMES:
+        t=re.sub(r'class="','class="rvtext ',t,1) if 'class="' in t else t.replace('<div','<div class="rvtext"',1)
+    return t
+s=re.sub(r'<div\b[^>]*>',rvtag,s)
 
 # ボトルの実rotationを抽出
 rot='-2.56deg'
@@ -52,6 +70,15 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 [data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
 [data-pencil-name="q0"]>[data-pencil-name="a"],[data-pencil-name="q1"]>[data-pencil-name="a"],[data-pencil-name="q2"]>[data-pencil-name="a"],[data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
 [data-pencil-name="q0"].open>[data-pencil-name="a"],[data-pencil-name="q1"].open>[data-pencil-name="a"],[data-pencil-name="q2"].open>[data-pencil-name="a"],[data-pencil-name="q3"].open>[data-pencil-name="a"]{max-height:240px;opacity:1;margin-top:12px;}
+/* スクロールで柔らかくフェード（見出し・本文＝1行ずつ／タグ・カード＝順番に） */
+.rvtext,
+[data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div,
+[data-pencil-name="ForWhom"] [data-pencil-name="grid"] > div > div,
+[data-pencil-name="Voices"] [data-pencil-name="row"] > div{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);}
+.rvtext.shown,
+[data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div.shown,
+[data-pencil-name="ForWhom"] [data-pencil-name="grid"] > div > div.shown,
+[data-pencil-name="Voices"] [data-pencil-name="row"] > div.shown{opacity:1;transform:none;}
 </style>'''.replace('%ROT%',rot)
 s=s.replace('</head>',css+'\n</head>')
 
@@ -67,7 +94,7 @@ js='''
  function apply(){sc=window.innerWidth/DW;root.style.zoom=sc;root.style.height=pageH+'px';}
  // セクション単位パララックス（大きな背景写真のみ）。画像は元々縦にはみ出しているので基本は拡大せず平行移動。
  // s=基準スケール(1.0=拡大なし=トリミングそのまま), lim=移動量の上限(px, はみ出し内に収め隙間を防ぐ)
- var TSEC={Statement:{k:0.065,s:1.0,lim:22},Story:{k:0.045,s:1.0,lim:15},Foam:{k:0.045,s:1.0,lim:18},Voices:{k:0.045,s:1.0,lim:16},Subscription:{k:0.045,s:1.06,lim:18}};
+ var TSEC={Statement:{k:0.065,s:1.0,lim:22},Story:{k:0.045,s:1.0,lim:15},Foam:{k:0.045,s:1.0,lim:18},Voices:{k:0.045,s:1.0,lim:16},Subscription:{k:0.085,s:1.12,lim:34}};
  var layers=[],ks=[],ss=[],lims=[];
  Object.keys(TSEC).forEach(function(name){var se=q('[data-pencil-name="'+name+'"]');if(!se)return;var cfg=TSEC[name];
    [].slice.call(se.querySelectorAll('div')).forEach(function(d){var bg=d.style.backgroundImage||'';if(bg.indexOf('a/')>-1){layers.push(d);ks.push(cfg.k);ss.push(cfg.s);lims.push(cfg.lim);}});});
@@ -79,6 +106,13 @@ js='''
  window.addEventListener('resize',fit);
  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){onScroll();ticking=false;});ticking=true;}},{passive:true});
  ['q0','q1','q2','q3'].forEach(function(id){var el=faq&&faq.querySelector('[data-pencil-name="'+id+'"]');if(!el)return;el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(fit,60);setTimeout(fit,460);});});
+ // 柔らかいフェード：見出し・本文は1行ずつ／タグ・カードは順番に
+ var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('shown');tio.unobserve(e.target);}});},{threshold:0.2,rootMargin:'0px 0px -6% 0px'});
+ document.querySelectorAll('.rvtext').forEach(function(el){tio.observe(el);});
+ function stagGroup(cs,is,step){var c=q(cs);if(!c)return;var items=c.querySelectorAll(is);var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){[].slice.call(items).forEach(function(it,i){it.style.transitionDelay=(i*step)+'s';it.classList.add('shown');});io.disconnect();}},{threshold:0.15});io.observe(c);}
+ stagGroup('[data-pencil-name="13Free"]','[data-pencil-name="grid"] > div > div',0.05);
+ stagGroup('[data-pencil-name="ForWhom"]','[data-pencil-name="grid"] > div > div',0.07);
+ stagGroup('[data-pencil-name="Voices"]','[data-pencil-name="row"] > div',0.12);
  window.addEventListener('load',fit);
  fit();
 })();
