@@ -22,12 +22,12 @@
   
 <style>
 html,body{margin:0;background:#fff;overflow-x:hidden;}
-#pageRoot{position:absolute;top:0;left:0;transform-origin:top left;}
+#pageRoot{position:relative;transform-origin:top left;}
 .kvzoom{animation:kvZoom 9s ease-in-out infinite;transform-origin:center center;}
 @keyframes kvZoom{0%,100%{transform:scale(1.0);}50%{transform:scale(1.05);}}
 .bottle{animation:bottleFloat 4.2s ease-in-out infinite;transform-origin:center center;}
 @keyframes bottleFloat{0%,100%{transform:rotate(-2.56deg) translateY(0);}50%{transform:rotate(-2.56deg) translateY(-15px);}}
-.plx{will-change:transform;backface-visibility:hidden;}
+.plx{will-change:transform;}
 .ctabtn{cursor:pointer;}
 [data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
 [data-pencil-name="q0"]>[data-pencil-name="a"],[data-pencil-name="q1"]>[data-pencil-name="a"],[data-pencil-name="q2"]>[data-pencil-name="a"],[data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
@@ -2575,7 +2575,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  var faqTop=faq?faq.offsetTop:0, faqList=faq?faq.querySelector('[data-pencil-name="list"]'):null;
  if(faq)faq.style.overflow='visible';
  function relayout(){if(!faq)return;var faqH=56+(faqList?faqList.offsetHeight:0)+56;faq.style.height=faqH+'px';var y=faqTop+faqH;news.style.top=y+'px';y+=news.offsetHeight;contact.style.top=y+'px';y+=contact.offsetHeight;footer.style.top=y+'px';y+=footer.offsetHeight;pageH=y;}
- function apply(){sc=window.innerWidth/DW;root.style.transform='scale('+sc+')';document.body.style.height=(pageH*sc)+'px';}
+ function apply(){sc=window.innerWidth/DW;root.style.zoom=sc;root.style.height=pageH+'px';document.body.style.height='';}
  var layers=[].slice.call(document.querySelectorAll('.plx')), cache=[];
  function recache(){ // スクロール中はDOMを読まないよう、基準座標を先に測っておく
    var yNow=window.pageYOffset;
