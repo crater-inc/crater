@@ -26,10 +26,10 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 .kvzoom{animation:kvZoom 9s ease-in-out infinite;transform-origin:center center;}
 @keyframes kvZoom{0%,100%{transform:scale(1.0);}50%{transform:scale(1.05);}}
 .bottle{animation:bottleFloat 4.2s ease-in-out infinite;transform-origin:center center;}
-@keyframes bottleFloat{0%,100%{transform:rotate(-13deg) translateY(0);}50%{transform:rotate(-13deg) translateY(-15px);}}
+@keyframes bottleFloat{0%,100%{transform:rotate(-2.56deg) translateY(0);}50%{transform:rotate(-2.56deg) translateY(-15px);}}
 .plxmed,.plxweak{will-change:transform;backface-visibility:hidden;}
-.ctabtn{cursor:pointer;transition:transform .3s,box-shadow .3s;}
-.ctabtn:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(7,28,82,.4);}
+.ctabtn{cursor:pointer;}
+
 /* FAQアコーディオン（閉時タイト） */
 [data-pencil-name^="q"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
 [data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
