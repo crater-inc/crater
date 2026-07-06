@@ -65,14 +65,15 @@ js='''
  if(faq)faq.style.overflow='visible';
  function relayout(){if(!faq)return;var h=56+(faqList?faqList.offsetHeight:0)+56;faq.style.height=h+'px';var y=faqTop+h;news.style.top=y+'px';y+=news.offsetHeight;contact.style.top=y+'px';y+=contact.offsetHeight;footer.style.top=y+'px';y+=footer.offsetHeight;pageH=y;}
  function apply(){sc=window.innerWidth/DW;root.style.zoom=sc;root.style.height=pageH+'px';}
- // セクション単位パララックス（大きな背景写真のみ。Statementは気持ち強め）
- var TSEC={Statement:0.065,Story:0.045,Foam:0.045,Voices:0.045,Subscription:0.045};
- var layers=[],ks=[];
- Object.keys(TSEC).forEach(function(name){var se=q('[data-pencil-name="'+name+'"]');if(!se)return;
-   [].slice.call(se.querySelectorAll('div')).forEach(function(d){var bg=d.style.backgroundImage||'';if(bg.indexOf('a/')>-1){layers.push(d);ks.push(TSEC[name]);}});});
+ // セクション単位パララックス（大きな背景写真のみ）。画像は元々縦にはみ出しているので基本は拡大せず平行移動。
+ // s=基準スケール(1.0=拡大なし=トリミングそのまま), lim=移動量の上限(px, はみ出し内に収め隙間を防ぐ)
+ var TSEC={Statement:{k:0.065,s:1.0,lim:22},Story:{k:0.045,s:1.0,lim:15},Foam:{k:0.045,s:1.0,lim:18},Voices:{k:0.045,s:1.0,lim:16},Subscription:{k:0.045,s:1.06,lim:18}};
+ var layers=[],ks=[],ss=[],lims=[];
+ Object.keys(TSEC).forEach(function(name){var se=q('[data-pencil-name="'+name+'"]');if(!se)return;var cfg=TSEC[name];
+   [].slice.call(se.querySelectorAll('div')).forEach(function(d){var bg=d.style.backgroundImage||'';if(bg.indexOf('a/')>-1){layers.push(d);ks.push(cfg.k);ss.push(cfg.s);lims.push(cfg.lim);}});});
  var cache=[];
- function recache(){var y=window.pageYOffset;cache=layers.map(function(el){el.style.transform='scale(1.08) translate3d(0,0,0)';var r=el.getBoundingClientRect();return {top:r.top+y,h:r.height};});}
- function onScroll(){var vh=window.innerHeight,y=window.pageYOffset;for(var i=0;i<layers.length;i++){var c=cache[i],top=c.top-y;if(top+c.h<-400||top>vh+400)continue;var ctr=top+c.h/2-vh/2;layers[i].style.transform='scale(1.08) translate3d(0,'+(-(ctr/sc)*ks[i])+'px,0)';}}
+ function recache(){var y=window.pageYOffset;cache=layers.map(function(el,i){el.style.transform='scale('+ss[i]+') translate3d(0,0,0)';var r=el.getBoundingClientRect();return {top:r.top+y,h:r.height};});}
+ function onScroll(){var vh=window.innerHeight,y=window.pageYOffset;for(var i=0;i<layers.length;i++){var c=cache[i],top=c.top-y;if(top+c.h<-400||top>vh+400)continue;var ctr=top+c.h/2-vh/2;var ty=-(ctr/sc)*ks[i];var L=lims[i];if(ty>L)ty=L;if(ty<-L)ty=-L;layers[i].style.transform='scale('+ss[i]+') translate3d(0,'+ty+'px,0)';}}
  var ticking=false;
  function fit(){relayout();apply();recache();onScroll();}
  window.addEventListener('resize',fit);
