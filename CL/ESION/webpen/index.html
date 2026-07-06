@@ -2557,7 +2557,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
         </div>
       </div>
       <div class="bottle"
-        style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 596px; left: 676.877px; position: absolute; top: 87.993px; transform-origin: top left; transform: rotate(2.558deg); width: 281px; z-index: 16"
+        style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 596px; left: 656.877px; position: absolute; top: 87.993px; transform-origin: top left; transform: rotate(2.558deg); width: 281px; z-index: 16"
       ></div>
       <div
         data-pencil-name="t"
@@ -2569,26 +2569,28 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
   
 <script>
 (function(){
- var root=document.getElementById('pageRoot'),DW=1199,pageH=7999,sc=1;
+ var root=document.getElementById('pageRoot'),DW=1199,pageH=7999,sc=1,K=0.045;
  function q(x){return document.querySelector(x);}
  var faq=q('[data-pencil-name="FAQ"]'),news=q('[data-pencil-name="News"]'),contact=q('[data-pencil-name="Contact"]'),footer=q('[data-pencil-name="Footer"]');
  var faqTop=faq?faq.offsetTop:0, faqList=faq?faq.querySelector('[data-pencil-name="list"]'):null;
  if(faq)faq.style.overflow='visible';
  function relayout(){if(!faq)return;var faqH=56+(faqList?faqList.offsetHeight:0)+56;faq.style.height=faqH+'px';var y=faqTop+faqH;news.style.top=y+'px';y+=news.offsetHeight;contact.style.top=y+'px';y+=contact.offsetHeight;footer.style.top=y+'px';y+=footer.offsetHeight;pageH=y;}
  function apply(){sc=window.innerWidth/DW;root.style.transform='scale('+sc+')';document.body.style.height=(pageH*sc)+'px';}
- function fit(){relayout();apply();onScroll();}
- window.addEventListener('resize',fit);
- ['q0','q1','q2','q3'].forEach(function(id){var el=faq&&faq.querySelector('[data-pencil-name="'+id+'"]');if(!el)return;el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(fit,60);setTimeout(fit,440);});});
- // 統一パララックス（読み→書きを分離してカクつき防止）
- var layers=[].slice.call(document.querySelectorAll('.plx'));
- var K=0.045, ticking=false;
- function onScroll(){
-   var vh=window.innerHeight, n=layers.length, ry=new Array(n), rb=new Array(n), rt=new Array(n);
-   for(var i=0;i<n;i++){var r=layers[i].getBoundingClientRect();rt[i]=r.top;rb[i]=r.bottom;ry[i]=r.top+r.height/2-vh/2;}
-   for(var j=0;j<n;j++){if(rb[j]<-400||rt[j]>vh+400)continue;layers[j].style.transform='scale(1.08) translate3d(0,'+(-(ry[j]/sc)*K)+'px,0)';}
-   ticking=false;
+ var layers=[].slice.call(document.querySelectorAll('.plx')), cache=[];
+ function recache(){ // スクロール中はDOMを読まないよう、基準座標を先に測っておく
+   var yNow=window.pageYOffset;
+   cache=layers.map(function(el){el.style.transform='scale(1.08) translate3d(0,0,0)';var r=el.getBoundingClientRect();return {top:r.top+yNow,h:r.height};});
  }
- window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(onScroll);ticking=true;}},{passive:true});
+ function onScroll(){ // DOM読み取りなし・計算のみ
+   var vh=window.innerHeight,y=window.pageYOffset;
+   for(var i=0;i<layers.length;i++){var c=cache[i],top=c.top-y;if(top+c.h<-300||top>vh+300)continue;var center=top+c.h/2-vh/2;layers[i].style.transform='scale(1.08) translate3d(0,'+(-(center/sc)*K)+'px,0)';}
+ }
+ var ticking=false;
+ function fit(){relayout();apply();recache();onScroll();}
+ window.addEventListener('resize',fit);
+ window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(function(){onScroll();ticking=false;});ticking=true;}},{passive:true});
+ ['q0','q1','q2','q3'].forEach(function(id){var el=faq&&faq.querySelector('[data-pencil-name="'+id+'"]');if(!el)return;el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(fit,60);setTimeout(fit,460);});});
+ window.addEventListener('load',fit);
  fit();
 })();
 </script>
