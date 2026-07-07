@@ -76,7 +76,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 .rvtext,
 [data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div,
 [data-pencil-name="ForWhom"] [data-pencil-name="grid"] > div > div,
-[data-pencil-name="Voices"] [data-pencil-name="row"] > div{opacity:0;transform:translateY(16px);transition:opacity 1.3s cubic-bezier(.2,.7,.2,1),transform 1.3s cubic-bezier(.2,.7,.2,1);transition-delay:0.5s;}
+[data-pencil-name="Voices"] [data-pencil-name="row"] > div{opacity:0;transform:translateY(16px);transition:opacity 1.3s cubic-bezier(.2,.7,.2,1),transform 1.3s cubic-bezier(.2,.7,.2,1);transition-delay:0.2s;}
 .rvtext.shown,
 [data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div.shown,
 [data-pencil-name="ForWhom"] [data-pencil-name="grid"] > div > div.shown,
@@ -111,7 +111,7 @@ js='''
  // 柔らかいフェード：見出し・本文は1行ずつ／タグ・カードは順番に
  var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('shown');tio.unobserve(e.target);}});},{threshold:0.2,rootMargin:'0px 0px -6% 0px'});
  document.querySelectorAll('.rvtext').forEach(function(el){tio.observe(el);});
- function stagGroup(cs,is,step){var c=q(cs);if(!c)return;var items=c.querySelectorAll(is);var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){[].slice.call(items).forEach(function(it,i){it.style.transitionDelay=(0.5+i*step)+'s';it.classList.add('shown');});io.disconnect();}},{threshold:0.15});io.observe(c);}
+ function stagGroup(cs,is,step){var c=q(cs);if(!c)return;var items=c.querySelectorAll(is);var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){[].slice.call(items).forEach(function(it,i){it.style.transitionDelay=(0.2+i*step)+'s';it.classList.add('shown');});io.disconnect();}},{threshold:0.15});io.observe(c);}
  stagGroup('[data-pencil-name="13Free"]','[data-pencil-name="grid"] > div > div',0.05);
  stagGroup('[data-pencil-name="ForWhom"]','[data-pencil-name="grid"] > div > div',0.07);
  stagGroup('[data-pencil-name="Voices"]','[data-pencil-name="row"] > div',0.12);
