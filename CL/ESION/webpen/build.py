@@ -67,6 +67,8 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 .bottle{animation:bottleFloat 4.2s ease-in-out infinite;transform-origin:center center;}
 @keyframes bottleFloat{0%,100%{transform:rotate(%ROT%) translateY(0);}50%{transform:rotate(%ROT%) translateY(-15px);}}
 .ctabtn,[data-pencil-name="btn"],[data-pencil-name="link"],[data-pencil-name="cta"]{cursor:pointer;}
+/* VOICEの星を塗り(ソリッド)に */
+[data-icon-name="star"],[data-icon-name="star"] *{fill:#F5B301 !important;stroke:none !important;}
 /* 明朝見出しの左サイドベアリングを詰めて頭揃え（Story） */
 [data-pencil-name="Story"] [data-pencil-name="h"]{margin-left:-5px;}
 [data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
