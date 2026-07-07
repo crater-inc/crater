@@ -49,15 +49,15 @@
 
   /* ===== Hero（Pencil座標を1440幅基準のvwで正確に再現） ===== */
   .hero{position:relative;width:100%;height:73.13vw;overflow:hidden;background:var(--bg);}
-  /* 画像：文字（© / No name）のすぐ下まで上げてトリミング */
-  .hero-photo{position:absolute;left:0;right:0;top:17vw;bottom:0;overflow:hidden;}
+  /* 画像：さらに上げてトリミング（右コピーのすぐ下まで） */
+  .hero-photo{position:absolute;left:0;right:0;top:13.5vw;bottom:0;overflow:hidden;}
   .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
-  /* 左メニュー：x45 / y126、行ピッチ30px固定（Pencil y33/63/93/123） */
-  .hero-index{position:absolute;left:3.13vw;top:8.75vw;z-index:3;display:flex;flex-direction:column;gap:1.11vw;}
+  /* 左メニュー：ロゴ直下に配置（ロゴ左端に揃える） */
+  .hero-index{position:absolute;left:3.9vw;top:5vw;z-index:3;display:flex;flex-direction:column;gap:1.11vw;}
   .hero-index a{font-family:var(--en);font-size:clamp(11px,0.97vw,15px);line-height:1;letter-spacing:.16em;color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  /* 右上：© BIRTH（x1333/y201）＋ No name. Yet.（x1200/y226）＝画像すぐ上 */
-  .hero-mark{position:absolute;right:2.78vw;top:13.96vw;z-index:3;text-align:right;}
+  /* 右上：© BIRTH ＋ No name. Yet.＝画像のちょい上 */
+  .hero-mark{position:absolute;right:2.78vw;top:9.5vw;z-index:3;text-align:right;}
   .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:clamp(10px,0.83vw,13px);letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:.7vw;}
   .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:clamp(20px,2.08vw,32px);letter-spacing:.02em;color:var(--ink);}
   /* 縦書き見出し：右列 x1343 / 左列 x1280、y335、lineHeight1.1（Pencil準拠） */
@@ -171,10 +171,10 @@
     .sec{padding:84px 0;}
     /* モバイルはvw比率だと潰れるので専用配置 */
     .hero{height:92vh;min-height:540px;}
-    .hero-photo{top:24%;}
-    .hero-index{top:14%;left:32px;gap:13px;}
+    .hero-photo{top:19%;}
+    .hero-index{top:9%;left:32px;gap:13px;}
     .hero-index a{font-size:11px;}
-    .hero-mark{top:13%;right:32px;}
+    .hero-mark{top:12%;right:32px;}
     .hero-mark .cp{margin-bottom:6px;}
     .hero-mark .wm{font-size:22px;}
     .hero-head{top:33%;right:32px;font-size:26px;line-height:1.15;}
