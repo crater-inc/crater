@@ -47,21 +47,24 @@
     padding:11px 22px;border-radius:100px;white-space:nowrap;transition:transform .25s,opacity .25s;}
   .pill:hover{transform:translateY(-2px);opacity:.9;}
 
-  /* ===== Hero ===== */
-  .hero{position:relative;height:100vh;min-height:660px;overflow:hidden;background:var(--bg);}
-  /* Pencil通り：上に余白を空けて画像は約20%下から始まる */
-  .hero-photo{position:absolute;left:0;right:0;top:20%;bottom:0;overflow:hidden;}
+  /* ===== Hero（Pencil座標を1440幅基準のvwで正確に再現） ===== */
+  .hero{position:relative;width:100%;height:73.13vw;overflow:hidden;background:var(--bg);}
+  /* 画像：ページ上から286px = 19.86vw 下から開始（Pencil y193 + nav93） */
+  .hero-photo{position:absolute;left:0;right:0;top:19.86vw;bottom:0;overflow:hidden;}
   .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
-  .hero-index{position:absolute;top:15%;left:56px;z-index:3;display:flex;flex-direction:column;gap:16px;}
-  .hero-index a{font-family:var(--en);font-size:12px;letter-spacing:.2em;color:var(--ink);opacity:.7;transition:opacity .2s;}
+  /* 左メニュー：x45 / y126、行間30px */
+  .hero-index{position:absolute;left:3.13vw;top:8.75vw;z-index:3;display:flex;flex-direction:column;gap:2.08vw;}
+  .hero-index a{font-family:var(--en);font-size:clamp(11px,0.97vw,15px);letter-spacing:.16em;color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  .hero-mark{position:absolute;top:14%;right:60px;z-index:3;text-align:right;}
-  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:30px;letter-spacing:.02em;color:var(--ink);}
-  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:11px;letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:6px;}
-  .hero-head{position:absolute;top:26%;right:64px;z-index:3;
-    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:clamp(30px,3.4vw,42px);
-    line-height:1.95;letter-spacing:.1em;color:var(--ink);}
-  .hero-scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;
+  /* 右上：© BIRTH（x1333/y201）＋ No name. Yet.（x1200/y226） */
+  .hero-mark{position:absolute;right:2.78vw;top:7.5vw;z-index:3;text-align:right;}
+  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:clamp(10px,0.83vw,13px);letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:.9vw;}
+  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:clamp(20px,2.08vw,32px);letter-spacing:.02em;color:var(--ink);}
+  /* 縦書き見出し：右列 x1343 / 左列 x1280、y335 */
+  .hero-head{position:absolute;right:2.9vw;top:23.26vw;z-index:3;
+    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:clamp(28px,2.78vw,46px);
+    line-height:2;letter-spacing:.1em;color:var(--ink);}
+  .hero-scroll{position:absolute;bottom:2.2vw;left:50%;transform:translateX(-50%);z-index:3;
     font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--ink);opacity:.55;}
 
   /* ===== Section base ===== */
@@ -166,13 +169,16 @@
     .nav{padding:16px 32px;} .nav.scrolled{padding:12px 32px;}
     .nav .logo{font-size:22px;}
     .sec{padding:84px 0;}
-    .hero{min-height:560px;}
-    .hero-photo{top:23%;}
-    .hero-index{top:15%;left:32px;gap:13px;}
+    /* モバイルはvw比率だと潰れるので専用配置 */
+    .hero{height:92vh;min-height:540px;}
+    .hero-photo{top:28%;}
+    .hero-index{top:14%;left:32px;gap:13px;}
     .hero-index a{font-size:11px;}
-    .hero-mark{top:14%;right:32px;}
+    .hero-mark{top:13%;right:32px;}
+    .hero-mark .cp{margin-bottom:6px;}
     .hero-mark .wm{font-size:22px;}
-    .hero-head{top:31%;right:32px;font-size:26px;line-height:1.85;}
+    .hero-head{top:33%;right:32px;font-size:26px;line-height:1.9;}
+    .hero-scroll{bottom:26px;}
     .grid6{grid-template-columns:1fr;gap:32px;}
     .cases,.articles{grid-template-columns:1fr;}
     .steps{grid-template-columns:1fr;gap:34px;}
