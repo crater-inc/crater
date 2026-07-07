@@ -49,8 +49,8 @@
 
   /* ===== Hero（Pencil座標を1440幅基準のvwで正確に再現） ===== */
   .hero{position:relative;width:100%;height:73.13vw;overflow:hidden;background:var(--bg);}
-  /* 画像：ページ上から286px = 19.86vw 下から開始（Pencil y193 + nav93） */
-  .hero-photo{position:absolute;left:0;right:0;top:19.86vw;bottom:0;overflow:hidden;}
+  /* 画像：文字（© / No name）のすぐ下まで上げてトリミング */
+  .hero-photo{position:absolute;left:0;right:0;top:17vw;bottom:0;overflow:hidden;}
   .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
   /* 左メニュー：x45 / y126、行ピッチ30px固定（Pencil y33/63/93/123） */
   .hero-index{position:absolute;left:3.13vw;top:8.75vw;z-index:3;display:flex;flex-direction:column;gap:1.11vw;}
@@ -171,7 +171,7 @@
     .sec{padding:84px 0;}
     /* モバイルはvw比率だと潰れるので専用配置 */
     .hero{height:92vh;min-height:540px;}
-    .hero-photo{top:28%;}
+    .hero-photo{top:24%;}
     .hero-index{top:14%;left:32px;gap:13px;}
     .hero-index a{font-size:11px;}
     .hero-mark{top:13%;right:32px;}
