@@ -48,30 +48,36 @@
     padding:11px 22px;border-radius:100px;white-space:nowrap;transition:transform .25s,opacity .25s;}
   .pill:hover{transform:translateY(-2px);opacity:.9;}
 
-  /* ===== Hero（横型ロック：全要素1440幅基準のvw。幅が変わっても構成は不変・比率スケール） ===== */
-  .hero{position:relative;width:100%;height:68.75vw;overflow:hidden;background:var(--bg);}
-  /* ロゴ（左上） */
-  .h-logo{position:absolute;left:3.33vw;top:3.19vw;z-index:4;font-family:var(--en);font-weight:700;font-size:2.083vw;letter-spacing:.04em;color:var(--ink);}
-  /* CTAピル（右上） */
-  .h-cta{position:absolute;right:3.89vw;top:2.64vw;z-index:5;font-family:var(--jp);font-size:.9vw;letter-spacing:.06em;color:#fff;background:var(--dark);padding:.76vw 1.53vw;border-radius:100px;white-space:nowrap;transition:opacity .25s;}
+  /* ===== Hero（Pencil実寸で頭打ち＝min(px,vw)。1440以上はPencil通り、狭い時だけ縮む） ===== */
+  .hero{position:relative;width:100%;height:min(1053px,73.125vw);overflow:hidden;background:var(--bg);}
+  /* ロゴ x43/y39/30px */
+  .h-logo{position:absolute;left:min(43px,2.986vw);top:min(39px,2.708vw);z-index:4;
+    font-family:var(--en);font-weight:700;font-size:min(30px,2.083vw);letter-spacing:.03em;color:var(--ink);}
+  /* CTAピル 右上 */
+  .h-cta{position:absolute;right:min(56px,3.889vw);top:min(26px,1.806vw);z-index:5;
+    font-family:var(--jp);font-size:min(12px,0.833vw);letter-spacing:.06em;color:#fff;background:var(--dark);
+    padding:min(10px,0.694vw) min(20px,1.389vw);border-radius:100px;white-space:nowrap;transition:opacity .25s;}
   .h-cta:hover{opacity:.9;}
-  /* メニュー：ロゴ直下・左端揃え、行ピッチ30px固定 */
-  .hero-index{position:absolute;left:3.47vw;top:6.94vw;z-index:3;display:flex;flex-direction:column;gap:1.11vw;}
-  .hero-index a{font-family:var(--en);font-size:.972vw;line-height:1;letter-spacing:.16em;color:var(--ink);opacity:.72;transition:opacity .2s;}
+  /* メニュー x45/y126、行ピッチ30px（gap16+font14） */
+  .hero-index{position:absolute;left:min(45px,3.125vw);top:min(126px,8.75vw);z-index:3;
+    display:flex;flex-direction:column;gap:min(16px,1.111vw);}
+  .hero-index a{font-family:var(--en);font-size:min(14px,0.972vw);line-height:1;letter-spacing:.16em;
+    color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  /* 右：© BIRTH ＋ No name. Yet.＝画像のちょい上 */
-  .hero-mark{position:absolute;right:3.89vw;top:14.58vw;z-index:3;text-align:right;}
-  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:.833vw;letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:.5vw;}
-  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:2.083vw;letter-spacing:.02em;color:var(--ink);}
-  /* 縦書き見出し：lineHeight1.1（Pencil準拠） */
-  .hero-head{position:absolute;right:3.89vw;top:22.92vw;z-index:3;
-    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:2.778vw;
+  /* © BIRTH x1333/y201 ＋ No name. Yet. x1200/y226 */
+  .hero-mark{position:absolute;right:min(56px,3.889vw);top:min(201px,13.958vw);z-index:3;text-align:right;}
+  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:min(12px,0.833vw);letter-spacing:.12em;
+    color:var(--ink);opacity:.65;margin-bottom:min(13px,0.903vw);}
+  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:min(30px,2.083vw);letter-spacing:.02em;color:var(--ink);}
+  /* 縦書き見出し x1280-1343/y335/40px/lh1.1 */
+  .hero-head{position:absolute;right:min(24px,1.667vw);top:min(335px,23.264vw);z-index:3;
+    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:min(40px,2.778vw);
     line-height:1.1;color:var(--ink);}
-  /* 画像：右コピーのすぐ下から下端まで */
-  .hero-photo{position:absolute;left:0;right:0;top:18.75vw;bottom:0;overflow:hidden;}
+  /* 画像 y286 */
+  .hero-photo{position:absolute;left:0;right:0;top:min(286px,19.861vw);bottom:0;overflow:hidden;}
   .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
-  .hero-scroll{position:absolute;bottom:1.94vw;left:50%;transform:translateX(-50%);z-index:3;
-    font-family:var(--en);font-size:.7vw;letter-spacing:.3em;color:var(--ink);opacity:.55;}
+  .hero-scroll{position:absolute;bottom:min(22px,1.528vw);left:50%;transform:translateX(-50%);z-index:3;
+    font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--ink);opacity:.55;}
 
   /* ===== Section base ===== */
   section{position:relative;}
@@ -136,6 +142,15 @@
   .art .meta .date{font-family:var(--en);}
   .art h3{font-size:18px;font-weight:600;line-height:1.5;}
 
+  /* Works & Awards */
+  .s-works{background:#fff;}
+  .awards{list-style:none;margin-top:56px;}
+  .awards li{display:flex;gap:34px;align-items:baseline;padding:22px 2px;border-top:1px solid var(--line);}
+  .awards li:last-child{border-bottom:1px solid var(--line);}
+  .awards .yr{font-family:var(--en);font-size:16px;font-weight:600;letter-spacing:.04em;color:var(--ink);flex:0 0 70px;}
+  .awards .cat{font-family:var(--en);font-size:11px;letter-spacing:.14em;color:var(--meta);flex:0 0 88px;text-transform:uppercase;}
+  .awards .aw{font-size:15px;font-weight:400;line-height:1.7;color:var(--sub);}
+
   /* CTA */
   .s-cta{background:#fff;text-align:center;padding:130px 0;}
   .s-cta .big{font-size:clamp(30px,5vw,52px);font-weight:300;line-height:1.45;margin:22px auto 0;max-width:1000px;}
@@ -175,8 +190,13 @@
     .nav{padding:16px 32px;} .nav.scrolled{padding:12px 32px;}
     .nav .logo{font-size:22px;}
     .nav{padding:12px 32px;}
+    .nav-links{display:none;}
     .sec{padding:84px 0;}
     /* KVは横型のままロック（幅に応じて比率スケール）。専用配置は置かない。 */
+    .awards li{flex-wrap:wrap;gap:6px 20px;}
+    .awards .yr{flex-basis:auto;}
+    .awards .cat{flex-basis:auto;}
+    .awards .aw{flex-basis:100%;}
     .grid6{grid-template-columns:1fr;gap:32px;}
     .cases,.articles{grid-template-columns:1fr;}
     .steps{grid-template-columns:1fr;gap:34px;}
@@ -198,7 +218,16 @@
 <!-- ===== Nav ===== -->
 <nav class="nav" id="nav">
   <a href="#top" class="logo">BIRTH</a>
-  <a class="pill js-sheet" href="#cta">無料で相談する</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#service">SERVICE</a>
+      <a href="#cases">CASES</a>
+      <a href="#works">WORKS</a>
+      <a href="#plans">PLANS</a>
+      <a href="#journal">JOURNAL</a>
+    </div>
+    <a class="pill js-sheet" href="#cta">無料で相談する</a>
+  </div>
 </nav>
 
 <!-- ===== Hero（横型ロック：全要素を1440幅基準のvwで固定配置） ===== -->
@@ -330,6 +359,27 @@
   </div>
 </section>
 
+<!-- ===== Works & Awards（実績・仮データ） ===== -->
+<section class="sec s-works" id="works">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Works &amp; Awards</span>
+      <h2 class="title h-lead">これまでの、実績。</h2>
+      <p class="lead">BIRTHに集まるつくり手たちの、受賞・登壇・仕事の記録。ひとりの功績ではなく、チーム全体の厚みとして。</p>
+    </div>
+    <ul class="awards">
+      <li class="reveal"><span class="yr">2024</span><span class="cat">Award</span><span class="aw">グッドデザイン賞 受賞 ／ 自社ブランド「A CURRY」</span></li>
+      <li class="reveal"><span class="yr">2024</span><span class="cat">Talk</span><span class="aw">ブランディングカンファレンス 登壇（東京）</span></li>
+      <li class="reveal"><span class="yr">2023</span><span class="cat">Award</span><span class="aw">日本パッケージデザイン大賞 入選</span></li>
+      <li class="reveal"><span class="yr">2023</span><span class="cat">Award</span><span class="aw">地域産品リブランディング展 グランプリ</span></li>
+      <li class="reveal"><span class="yr">2022</span><span class="cat">Award</span><span class="aw">東京ADC賞 ノミネート</span></li>
+      <li class="reveal"><span class="yr">2022</span><span class="cat">Seminar</span><span class="aw">クリエイティブセミナー 講師（大阪・全3回）</span></li>
+      <li class="reveal"><span class="yr">2021</span><span class="cat">Award</span><span class="aw">グッドデザイン賞 受賞 ／ 地域プロジェクト</span></li>
+      <li class="reveal"><span class="yr">2020</span><span class="cat">Media</span><span class="aw">デザイン専門誌にて特集掲載</span></li>
+    </ul>
+  </div>
+</section>
+
 <!-- ===== CTA ===== -->
 <section class="s-cta" id="cta">
   <div class="wrap reveal">
@@ -350,6 +400,7 @@
         <a href="#top">HOME</a>
         <a href="#service">SERVICE</a>
         <a href="#cases">CASES</a>
+        <a href="#works">WORKS</a>
         <a href="#plans">PLANS</a>
         <a href="#journal">JOURNAL</a>
       </nav>
