@@ -111,8 +111,8 @@ js='''
  // 柔らかいフェード：見出し・本文は1行ずつ／タグ・カードは順番に
  var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('shown');tio.unobserve(e.target);}});},{threshold:0.2,rootMargin:'0px 0px -6% 0px'});
  document.querySelectorAll('.rvtext').forEach(function(el){tio.observe(el);});
- function stagGroup(cs,is,step){var c=q(cs);if(!c)return;var items=c.querySelectorAll(is);var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){[].slice.call(items).forEach(function(it,i){it.style.transitionDelay=(0.2+i*step)+'s';it.classList.add('shown');});io.disconnect();}},{threshold:0.15});io.observe(c);}
- stagGroup('[data-pencil-name="13Free"]','[data-pencil-name="grid"] > div > div',0.05);
+ function stagGroup(cs,is,step,base){var c=q(cs);if(!c)return;var items=c.querySelectorAll(is);var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){[].slice.call(items).forEach(function(it,i){it.style.transitionDelay=((base||0.2)+i*step)+'s';it.classList.add('shown');});io.disconnect();}},{threshold:0.15});io.observe(c);}
+ stagGroup('[data-pencil-name="13Free"]','[data-pencil-name="grid"] > div > div',0.05,0.6);
  stagGroup('[data-pencil-name="ForWhom"]','[data-pencil-name="grid"] > div > div',0.07);
  stagGroup('[data-pencil-name="Voices"]','[data-pencil-name="row"] > div',0.12);
  window.addEventListener('load',fit);
