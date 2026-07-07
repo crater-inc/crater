@@ -64,8 +64,8 @@
   .hero-index a{font-family:var(--en);font-size:14px;line-height:1;letter-spacing:.16em;
     color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  /* © BIRTH ＋ No name. Yet.＝画像に近づけ少し右へ・©はNo nameに寄せる */
-  .hero-mark{position:absolute;right:min(32px,2.222vw);top:min(222px,15.417vw);z-index:3;text-align:right;}
+  /* © BIRTH ＋ No name. Yet.＝画像に近づけ少し右へ・©はNo nameに寄せる（上端は固定） */
+  .hero-mark{position:absolute;right:min(32px,2.222vw);top:222px;z-index:3;text-align:right;}
   .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:min(12px,0.833vw);letter-spacing:.12em;
     color:var(--ink);opacity:.65;margin-bottom:min(4px,0.278vw);}
   .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:min(30px,2.083vw);letter-spacing:.02em;color:var(--ink);}
@@ -73,8 +73,8 @@
   .hero-head{position:absolute;right:min(48px,3.333vw);top:min(56px,3.889vw);z-index:3;
     writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:min(40px,2.778vw);
     line-height:1.5;color:var(--ink);}
-  /* 画像 */
-  .hero-photo{position:absolute;left:0;right:0;top:min(286px,19.861vw);bottom:0;overflow:hidden;}
+  /* 画像（上端は固定＝幅で上がってこない／下端は100vhまで） */
+  .hero-photo{position:absolute;left:0;right:0;top:286px;bottom:0;overflow:hidden;}
   .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
   .hero-scroll{position:absolute;bottom:min(22px,1.528vw);left:50%;transform:translateX(-50%);z-index:3;
     font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--ink);opacity:.55;}
