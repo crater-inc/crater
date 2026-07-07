@@ -69,8 +69,8 @@
   .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:min(12px,0.833vw);letter-spacing:.12em;
     color:var(--ink);opacity:.65;margin-bottom:min(4px,0.278vw);}
   .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:min(30px,2.083vw);letter-spacing:.02em;color:var(--ink);}
-  /* 縦書き見出し＝画像内の右上に紐づく（lh1.1） */
-  .hero-head{position:absolute;right:min(21px,1.458vw);top:min(335px,23.264vw);z-index:3;
+  /* 縦書き見出し＝画像の子要素として画像内右上に固定（絶対はみ出ない・lh1.1） */
+  .hero-head{position:absolute;right:min(21px,1.458vw);top:min(30px,2.08vw);z-index:3;
     writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:min(40px,2.778vw);
     line-height:1.1;color:var(--ink);}
   /* 画像 */
@@ -222,9 +222,9 @@
     <div class="nav-links">
       <a href="#service">SERVICE</a>
       <a href="#cases">CASES</a>
-      <a href="#works">WORKS</a>
       <a href="#plans">PLANS</a>
       <a href="#journal">JOURNAL</a>
+      <a href="#works">WORKS</a>
     </div>
     <a class="pill js-sheet" href="#cta">無料で相談する</a>
   </div>
@@ -237,17 +237,17 @@
   <nav class="hero-index">
     <a href="#service">SERVICE</a>
     <a href="#cases">CASES</a>
-    <a href="#works">WORKS</a>
     <a href="#plans">PLANS</a>
     <a href="#journal">JOURNAL</a>
+    <a href="#works">WORKS</a>
   </nav>
   <div class="hero-mark" data-speed="-0.18">
     <div class="cp">© BIRTH</div>
     <div class="wm">No name. Yet.</div>
   </div>
-  <div class="hero-head" data-speed="-0.34">まだ名前のない<br>事業がある。</div>
   <div class="hero-photo px">
     <div class="px-bg" data-speed="0.28" style="background-image:url('lp-img/1783430780978.jpg');"></div>
+    <div class="hero-head">まだ名前のない<br>事業がある。</div>
   </div>
   <div class="hero-scroll">SCROLL</div>
 </header>
@@ -401,9 +401,9 @@
         <a href="#top">HOME</a>
         <a href="#service">SERVICE</a>
         <a href="#cases">CASES</a>
-        <a href="#works">WORKS</a>
         <a href="#plans">PLANS</a>
         <a href="#journal">JOURNAL</a>
+        <a href="#works">WORKS</a>
       </nav>
     </div>
     <div class="ft-div"></div>
