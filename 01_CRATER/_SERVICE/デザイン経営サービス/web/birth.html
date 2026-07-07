@@ -52,18 +52,18 @@
   /* 画像：ページ上から286px = 19.86vw 下から開始（Pencil y193 + nav93） */
   .hero-photo{position:absolute;left:0;right:0;top:19.86vw;bottom:0;overflow:hidden;}
   .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
-  /* 左メニュー：x45 / y126、行間30px */
-  .hero-index{position:absolute;left:3.13vw;top:8.75vw;z-index:3;display:flex;flex-direction:column;gap:2.08vw;}
-  .hero-index a{font-family:var(--en);font-size:clamp(11px,0.97vw,15px);letter-spacing:.16em;color:var(--ink);opacity:.72;transition:opacity .2s;}
+  /* 左メニュー：x45 / y126、行ピッチ30px固定（Pencil y33/63/93/123） */
+  .hero-index{position:absolute;left:3.13vw;top:8.75vw;z-index:3;display:flex;flex-direction:column;gap:1.11vw;}
+  .hero-index a{font-family:var(--en);font-size:clamp(11px,0.97vw,15px);line-height:1;letter-spacing:.16em;color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  /* 右上：© BIRTH（x1333/y201）＋ No name. Yet.（x1200/y226） */
-  .hero-mark{position:absolute;right:2.78vw;top:7.5vw;z-index:3;text-align:right;}
-  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:clamp(10px,0.83vw,13px);letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:.9vw;}
+  /* 右上：© BIRTH（x1333/y201）＋ No name. Yet.（x1200/y226）＝画像すぐ上 */
+  .hero-mark{position:absolute;right:2.78vw;top:13.96vw;z-index:3;text-align:right;}
+  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:clamp(10px,0.83vw,13px);letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:.7vw;}
   .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:clamp(20px,2.08vw,32px);letter-spacing:.02em;color:var(--ink);}
-  /* 縦書き見出し：右列 x1343 / 左列 x1280、y335 */
+  /* 縦書き見出し：右列 x1343 / 左列 x1280、y335、lineHeight1.1（Pencil準拠） */
   .hero-head{position:absolute;right:2.9vw;top:23.26vw;z-index:3;
     writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:clamp(28px,2.78vw,46px);
-    line-height:2;letter-spacing:.1em;color:var(--ink);}
+    line-height:1.1;color:var(--ink);}
   .hero-scroll{position:absolute;bottom:2.2vw;left:50%;transform:translateX(-50%);z-index:3;
     font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--ink);opacity:.55;}
 
@@ -177,7 +177,7 @@
     .hero-mark{top:13%;right:32px;}
     .hero-mark .cp{margin-bottom:6px;}
     .hero-mark .wm{font-size:22px;}
-    .hero-head{top:33%;right:32px;font-size:26px;line-height:1.9;}
+    .hero-head{top:33%;right:32px;font-size:26px;line-height:1.15;}
     .hero-scroll{bottom:26px;}
     .grid6{grid-template-columns:1fr;gap:32px;}
     .cases,.articles{grid-template-columns:1fr;}
