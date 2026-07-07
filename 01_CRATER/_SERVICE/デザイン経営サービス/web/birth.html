@@ -48,35 +48,35 @@
     padding:11px 22px;border-radius:100px;white-space:nowrap;transition:transform .25s,opacity .25s;}
   .pill:hover{transform:translateY(-2px);opacity:.9;}
 
-  /* ===== Hero（Pencil実寸で頭打ち＝min(px,vw)。1440以上はPencil通り、狭い時だけ縮む） ===== */
-  .hero{position:relative;width:100%;height:min(1053px,73.125vw);overflow:hidden;background:var(--bg);}
-  /* ロゴ x43/y39/30px */
-  .h-logo{position:absolute;left:min(43px,2.986vw);top:min(39px,2.708vw);z-index:4;
-    font-family:var(--en);font-weight:700;font-size:min(30px,2.083vw);letter-spacing:.03em;color:var(--ink);}
+  /* ===== Hero（固定px。幅・高さが変わっても位置関係は不変。テキストは画像の角に固定） ===== */
+  .hero{--img-top:200px;position:relative;width:100%;height:720px;overflow:hidden;background:var(--bg);}
+  /* ロゴ 左上 */
+  .h-logo{position:absolute;left:43px;top:30px;z-index:4;
+    font-family:var(--en);font-weight:700;font-size:30px;letter-spacing:.03em;color:var(--ink);}
   /* CTAピル 右上 */
-  .h-cta{position:absolute;right:min(56px,3.889vw);top:min(26px,1.806vw);z-index:5;
-    font-family:var(--jp);font-size:min(12px,0.833vw);letter-spacing:.06em;color:#fff;background:var(--dark);
-    padding:min(10px,0.694vw) min(20px,1.389vw);border-radius:100px;white-space:nowrap;transition:opacity .25s;}
+  .h-cta{position:absolute;right:40px;top:26px;z-index:5;
+    font-family:var(--jp);font-size:12px;letter-spacing:.06em;color:#fff;background:var(--dark);
+    padding:10px 20px;border-radius:100px;white-space:nowrap;transition:opacity .25s;}
   .h-cta:hover{opacity:.9;}
-  /* メニュー x45/y126、行ピッチ30px（gap16+font14） */
-  .hero-index{position:absolute;left:min(45px,3.125vw);top:min(126px,8.75vw);z-index:3;
-    display:flex;flex-direction:column;gap:min(16px,1.111vw);}
-  .hero-index a{font-family:var(--en);font-size:min(14px,0.972vw);line-height:1;letter-spacing:.16em;
+  /* メニュー 左・ロゴ下、行ピッチ30px */
+  .hero-index{position:absolute;left:45px;top:96px;z-index:3;
+    display:flex;flex-direction:column;gap:16px;}
+  .hero-index a{font-family:var(--en);font-size:14px;line-height:1;letter-spacing:.16em;
     color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  /* Pencil実測：© BIRTH x1357/y204（右余白31）＋ No name. Yet. x1200/y222（右余白24・右端寄せ） */
-  .hero-mark{position:absolute;right:min(24px,1.667vw);top:min(204px,14.167vw);z-index:3;text-align:right;}
-  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:min(12px,0.833vw);letter-spacing:.12em;
-    color:var(--ink);opacity:.65;margin-bottom:min(4px,0.278vw);}
-  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:min(30px,2.083vw);letter-spacing:.02em;color:var(--ink);}
-  /* 縦書き見出し x1280-1343/y335/40px/lh1.1（右余白21・右端寄せ） */
-  .hero-head{position:absolute;right:min(21px,1.458vw);top:min(335px,23.264vw);z-index:3;
-    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:min(40px,2.778vw);
+  /* © BIRTH ＋ No name. Yet.＝画像の右上端に密着（下端を画像上端に合わせる） */
+  .hero-mark{position:absolute;right:24px;bottom:calc(720px - var(--img-top));z-index:3;text-align:right;padding-bottom:6px;}
+  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:12px;letter-spacing:.12em;
+    color:var(--ink);opacity:.65;margin-bottom:4px;}
+  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:30px;letter-spacing:.02em;color:var(--ink);}
+  /* 縦書き見出し＝画像の右上に紐づく（画像内に収める） */
+  .hero-head{position:absolute;right:21px;top:calc(var(--img-top) + 14px);z-index:3;
+    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:40px;
     line-height:1.1;color:var(--ink);}
-  /* 画像 y286 */
-  .hero-photo{position:absolute;left:0;right:0;top:min(286px,19.861vw);bottom:0;overflow:hidden;}
+  /* 画像 */
+  .hero-photo{position:absolute;left:0;right:0;top:var(--img-top);bottom:0;overflow:hidden;}
   .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
-  .hero-scroll{position:absolute;bottom:min(22px,1.528vw);left:50%;transform:translateX(-50%);z-index:3;
+  .hero-scroll{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:3;
     font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--ink);opacity:.55;}
 
   /* ===== Section base ===== */
@@ -237,6 +237,7 @@
   <nav class="hero-index">
     <a href="#service">SERVICE</a>
     <a href="#cases">CASES</a>
+    <a href="#works">WORKS</a>
     <a href="#plans">PLANS</a>
     <a href="#journal">JOURNAL</a>
   </nav>
