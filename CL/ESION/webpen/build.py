@@ -68,6 +68,9 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 @keyframes bottleFloat{0%,100%{transform:rotate(%ROT%) translateY(0);}50%{transform:rotate(%ROT%) translateY(-15px);}}
 .ctabtn,[data-pencil-name="btn"],[data-pencil-name="link"],[data-pencil-name="cta"]{cursor:pointer;}
 /* VOICEの星を塗り(ソリッド)に */
+/* 価格の行高を統一（¥200〜の全角チルダで下ズレするのを防ぐ） */
+[data-pencil-name="pr"]{line-height:1 !important;}
+
 [data-icon-name="star"],[data-icon-name="star"] *{fill:#F5B301 !important;stroke:none !important;}
 /* 明朝見出しの左サイドベアリングを詰めて頭揃え（Story） */
 [data-pencil-name="Story"] [data-pencil-name="h"]{margin-left:-5px;}
