@@ -36,8 +36,9 @@
   /* ===== Nav ===== */
   .nav{position:fixed;top:0;left:0;width:100%;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
-    padding:22px 56px;transition:background .4s,backdrop-filter .4s,padding .4s;}
-  .nav.scrolled{background:rgba(246,244,240,.82);backdrop-filter:blur(14px);padding:14px 56px;}
+    padding:14px 56px;opacity:0;pointer-events:none;
+    transition:opacity .4s,background .4s,backdrop-filter .4s;}
+  .nav.scrolled{opacity:1;pointer-events:auto;background:rgba(246,244,240,.82);backdrop-filter:blur(14px);}
   .nav .logo{font-family:var(--en);font-weight:700;font-size:26px;letter-spacing:.04em;color:var(--ink);}
   .nav-right{display:flex;align-items:center;gap:34px;}
   .nav-links{display:flex;gap:30px;}
@@ -47,25 +48,30 @@
     padding:11px 22px;border-radius:100px;white-space:nowrap;transition:transform .25s,opacity .25s;}
   .pill:hover{transform:translateY(-2px);opacity:.9;}
 
-  /* ===== Hero（Pencil座標を1440幅基準のvwで正確に再現） ===== */
-  .hero{position:relative;width:100%;height:73.13vw;overflow:hidden;background:var(--bg);}
-  /* 画像：さらに上げてトリミング（右コピーのすぐ下まで） */
-  .hero-photo{position:absolute;left:0;right:0;top:13.5vw;bottom:0;overflow:hidden;}
-  .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
-  /* 左メニュー：ロゴ直下に配置（ロゴ左端に揃える） */
-  .hero-index{position:absolute;left:3.9vw;top:5vw;z-index:3;display:flex;flex-direction:column;gap:1.11vw;}
-  .hero-index a{font-family:var(--en);font-size:clamp(11px,0.97vw,15px);line-height:1;letter-spacing:.16em;color:var(--ink);opacity:.72;transition:opacity .2s;}
+  /* ===== Hero（横型ロック：全要素1440幅基準のvw。幅が変わっても構成は不変・比率スケール） ===== */
+  .hero{position:relative;width:100%;height:68.75vw;overflow:hidden;background:var(--bg);}
+  /* ロゴ（左上） */
+  .h-logo{position:absolute;left:3.33vw;top:3.19vw;z-index:4;font-family:var(--en);font-weight:700;font-size:2.083vw;letter-spacing:.04em;color:var(--ink);}
+  /* CTAピル（右上） */
+  .h-cta{position:absolute;right:3.89vw;top:2.64vw;z-index:5;font-family:var(--jp);font-size:.9vw;letter-spacing:.06em;color:#fff;background:var(--dark);padding:.76vw 1.53vw;border-radius:100px;white-space:nowrap;transition:opacity .25s;}
+  .h-cta:hover{opacity:.9;}
+  /* メニュー：ロゴ直下・左端揃え、行ピッチ30px固定 */
+  .hero-index{position:absolute;left:3.47vw;top:6.94vw;z-index:3;display:flex;flex-direction:column;gap:1.11vw;}
+  .hero-index a{font-family:var(--en);font-size:.972vw;line-height:1;letter-spacing:.16em;color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  /* 右上：© BIRTH ＋ No name. Yet.＝画像のちょい上 */
-  .hero-mark{position:absolute;right:2.78vw;top:9.5vw;z-index:3;text-align:right;}
-  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:clamp(10px,0.83vw,13px);letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:.7vw;}
-  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:clamp(20px,2.08vw,32px);letter-spacing:.02em;color:var(--ink);}
-  /* 縦書き見出し：右列 x1343 / 左列 x1280、y335、lineHeight1.1（Pencil準拠） */
-  .hero-head{position:absolute;right:2.9vw;top:23.26vw;z-index:3;
-    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:clamp(28px,2.78vw,46px);
+  /* 右：© BIRTH ＋ No name. Yet.＝画像のちょい上 */
+  .hero-mark{position:absolute;right:3.89vw;top:14.58vw;z-index:3;text-align:right;}
+  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:.833vw;letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:.5vw;}
+  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:2.083vw;letter-spacing:.02em;color:var(--ink);}
+  /* 縦書き見出し：lineHeight1.1（Pencil準拠） */
+  .hero-head{position:absolute;right:3.89vw;top:22.92vw;z-index:3;
+    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:2.778vw;
     line-height:1.1;color:var(--ink);}
-  .hero-scroll{position:absolute;bottom:2.2vw;left:50%;transform:translateX(-50%);z-index:3;
-    font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--ink);opacity:.55;}
+  /* 画像：右コピーのすぐ下から下端まで */
+  .hero-photo{position:absolute;left:0;right:0;top:18.75vw;bottom:0;overflow:hidden;}
+  .hero-photo .px-bg{background-size:cover;background-position:center;top:-16%;height:132%;}
+  .hero-scroll{position:absolute;bottom:1.94vw;left:50%;transform:translateX(-50%);z-index:3;
+    font-family:var(--en);font-size:.7vw;letter-spacing:.3em;color:var(--ink);opacity:.55;}
 
   /* ===== Section base ===== */
   section{position:relative;}
@@ -168,17 +174,9 @@
     .wrap{padding:0 32px;}
     .nav{padding:16px 32px;} .nav.scrolled{padding:12px 32px;}
     .nav .logo{font-size:22px;}
+    .nav{padding:12px 32px;}
     .sec{padding:84px 0;}
-    /* モバイルはvw比率だと潰れるので専用配置 */
-    .hero{height:92vh;min-height:540px;}
-    .hero-photo{top:19%;}
-    .hero-index{top:9%;left:32px;gap:13px;}
-    .hero-index a{font-size:11px;}
-    .hero-mark{top:12%;right:32px;}
-    .hero-mark .cp{margin-bottom:6px;}
-    .hero-mark .wm{font-size:22px;}
-    .hero-head{top:33%;right:32px;font-size:26px;line-height:1.15;}
-    .hero-scroll{bottom:26px;}
+    /* KVは横型のままロック（幅に応じて比率スケール）。専用配置は置かない。 */
     .grid6{grid-template-columns:1fr;gap:32px;}
     .cases,.articles{grid-template-columns:1fr;}
     .steps{grid-template-columns:1fr;gap:34px;}
@@ -203,22 +201,24 @@
   <a class="pill js-sheet" href="#cta">無料で相談する</a>
 </nav>
 
-<!-- ===== Hero ===== -->
+<!-- ===== Hero（横型ロック：全要素を1440幅基準のvwで固定配置） ===== -->
 <header class="hero">
-  <div class="hero-photo px">
-    <div class="px-bg" data-speed="0.28" style="background-image:url('lp-img/1783430780978.jpg');"></div>
-  </div>
-  <div class="hero-index" data-speed="-0.1">
+  <a class="h-logo" href="#top">BIRTH</a>
+  <a class="h-cta js-sheet" href="#cta">無料で相談する</a>
+  <nav class="hero-index">
     <a href="#service">SERVICE</a>
     <a href="#cases">CASES</a>
     <a href="#plans">PLANS</a>
     <a href="#journal">JOURNAL</a>
-  </div>
+  </nav>
   <div class="hero-mark" data-speed="-0.18">
     <div class="cp">© BIRTH</div>
     <div class="wm">No name. Yet.</div>
   </div>
   <div class="hero-head" data-speed="-0.34">まだ名前のない<br>事業がある。</div>
+  <div class="hero-photo px">
+    <div class="px-bg" data-speed="0.28" style="background-image:url('lp-img/1783430780978.jpg');"></div>
+  </div>
   <div class="hero-scroll">SCROLL</div>
 </header>
 
