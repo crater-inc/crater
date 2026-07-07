@@ -192,7 +192,14 @@
     .nav{padding:12px 32px;}
     .nav-links{display:none;}
     .sec{padding:84px 0;}
-    /* KVは横型のままロック（幅に応じて比率スケール）。専用配置は置かない。 */
+    /* KV：狭い画面用に余白・サイズを調整（範囲内は固定px＝位置は動かない） */
+    .hero{min-height:520px;}
+    .hero-photo{top:190px;}
+    .hero-index{top:104px;left:32px;}
+    .hero-mark{top:150px;right:24px;}
+    .hero-mark .wm{font-size:24px;}
+    .hero-mark .cp{font-size:11px;margin-bottom:2px;}
+    .hero-head{top:24px;right:24px;font-size:26px;line-height:1.5;}
     .awards li{flex-wrap:wrap;gap:6px 20px;}
     .awards .yr{flex-basis:auto;}
     .awards .cat{flex-basis:auto;}
