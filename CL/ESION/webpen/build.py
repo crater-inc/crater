@@ -101,7 +101,7 @@ js='''
  function apply(){sc=window.innerWidth/DW;root.style.zoom=sc;root.style.height=pageH+'px';}
  // セクション単位パララックス（大きな背景写真のみ）。画像は元々縦にはみ出しているので基本は拡大せず平行移動。
  // s=基準スケール(1.0=拡大なし=トリミングそのまま), lim=移動量の上限(px, はみ出し内に収め隙間を防ぐ)
- var TSEC={Statement:{k:0.065,s:1.0,lim:22},Story:{k:0.045,s:1.0,lim:15},Foam:{k:0.045,s:1.0,lim:18},Voices:{k:0.045,s:1.0,lim:16},Subscription:{k:0.12,s:1.18,lim:50}};
+ var TSEC={Statement:{k:0.065,s:1.0,lim:22},Story:{k:0.045,s:1.0,lim:15},Foam:{k:0.1,s:1.15,lim:45},Voices:{k:0.045,s:1.0,lim:16},Subscription:{k:0.12,s:1.18,lim:50}};
  var layers=[],ks=[],ss=[],lims=[];
  Object.keys(TSEC).forEach(function(name){var se=q('[data-pencil-name="'+name+'"]');if(!se)return;var cfg=TSEC[name];
    [].slice.call(se.querySelectorAll('div')).forEach(function(d){var bg=d.style.backgroundImage||'';if(bg.indexOf('a/')>-1){layers.push(d);ks.push(cfg.k);ss.push(cfg.s);lims.push(cfg.lim);}});});
