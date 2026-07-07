@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIRTH ｜ まだ、名前のない事業がある。</title>
+<meta name="description" content="あなたの会社の資産から、もう一本の事業の柱を、一緒に作って、一緒に売る。まだ名前のない事業を、一緒に。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F4F0; --beige-d:#E7DECF; --dark:#181512; --ink:#1A1613;
+    --line:#DED6C8; --sub:#3d3833; --meta:#8C8578;
+    --en:'Inter',sans-serif; --jp:'Noto Sans JP',sans-serif; --logo:'Poppins',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--jp); color:var(--ink); background:var(--bg);
+    line-height:1.9; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1328px;margin:0 auto;padding:0 56px;}
+  .eyebrow{font-family:var(--en);font-size:12px;letter-spacing:.25em;color:var(--ink);text-transform:uppercase;}
+  .h-lead{font-family:var(--jp);font-weight:300;line-height:1.32;letter-spacing:.01em;}
+
+  /* ===== Parallax ===== */
+  .px{position:relative;overflow:hidden;}
+  .px>img,.px>.px-bg{
+    position:absolute;top:-18%;left:0;width:100%;height:136%;
+    object-fit:cover;will-change:transform;
+  }
+
+  /* ===== Nav ===== */
+  .nav{position:fixed;top:0;left:0;width:100%;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 56px;transition:background .4s,backdrop-filter .4s,padding .4s;}
+  .nav.scrolled{background:rgba(246,244,240,.82);backdrop-filter:blur(14px);padding:14px 56px;}
+  .nav .logo{font-family:var(--en);font-weight:700;font-size:26px;letter-spacing:.04em;color:var(--ink);}
+  .nav-right{display:flex;align-items:center;gap:34px;}
+  .nav-links{display:flex;gap:30px;}
+  .nav-links a{font-family:var(--en);font-size:13px;letter-spacing:.12em;color:var(--ink);opacity:.85;transition:opacity .2s;}
+  .nav-links a:hover{opacity:1;}
+  .pill{font-family:var(--jp);font-size:12.5px;letter-spacing:.08em;color:#fff;background:var(--dark);
+    padding:11px 22px;border-radius:100px;white-space:nowrap;transition:transform .25s,opacity .25s;}
+  .pill:hover{transform:translateY(-2px);opacity:.9;}
+
+  /* ===== Hero ===== */
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;background:var(--beige-d);}
+  .hero .px-bg{background-size:cover;background-position:center;top:-14%;height:128%;}
+  .hero-index{position:absolute;top:120px;left:56px;z-index:3;display:flex;flex-direction:column;gap:14px;}
+  .hero-index a{font-family:var(--en);font-size:12px;letter-spacing:.18em;color:var(--ink);opacity:.7;}
+  .hero-mark{position:absolute;top:112px;right:60px;z-index:3;text-align:right;}
+  .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:30px;letter-spacing:.02em;color:var(--ink);}
+  .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:11px;letter-spacing:.12em;color:var(--ink);opacity:.65;margin-bottom:6px;}
+  .hero-head{position:absolute;top:210px;right:64px;z-index:3;
+    writing-mode:vertical-rl;font-family:var(--jp);font-weight:300;font-size:clamp(30px,3.4vw,42px);
+    line-height:1.9;letter-spacing:.08em;color:var(--ink);}
+  .hero-scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;
+    font-family:var(--en);font-size:10px;letter-spacing:.3em;color:var(--ink);opacity:.6;}
+
+  /* ===== Section base ===== */
+  section{position:relative;}
+  .sec{padding:120px 0;}
+  .sec-head{display:flex;flex-direction:column;gap:20px;max-width:960px;}
+  .sec-head .title{font-size:clamp(30px,4vw,48px);}
+  .sec-head .lead{font-size:16px;font-weight:400;line-height:1.95;color:var(--sub);max-width:640px;}
+
+  /* S2 grid */
+  .grid6{display:grid;grid-template-columns:repeat(3,1fr);gap:38px 32px;margin-top:60px;}
+  .card .thumb{width:100%;aspect-ratio:16/11;border-radius:2px;margin-bottom:16px;}
+  .card h3{font-size:18px;font-weight:600;margin-bottom:6px;}
+  .card p{font-size:14px;font-weight:400;line-height:1.7;color:var(--sub);}
+  .closing{margin-top:64px;border-top:1px solid var(--line);padding-top:40px;display:flex;flex-direction:column;gap:16px;}
+  .closing .l1{font-size:clamp(20px,2.4vw,24px);font-weight:300;line-height:1.7;}
+  .closing .l2{font-size:15px;font-weight:400;line-height:2;color:var(--sub);max-width:980px;}
+
+  /* S3 */
+  .s-why{background:#fff;}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-top:8px;}
+  .why-grid .why-title{font-size:clamp(28px,3.6vw,44px);}
+  .why-body{display:flex;flex-direction:column;gap:22px;}
+  .why-body p{font-size:16px;font-weight:400;line-height:2;color:var(--sub);}
+  .why-img{margin-top:64px;height:clamp(300px,42vw,512px);border-radius:2px;}
+
+  /* S4 steps */
+  .s-how{background:var(--beige-d);}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:60px;}
+  .step .rule{height:2px;background:var(--ink);margin-bottom:18px;}
+  .step .no{font-family:var(--en);font-weight:700;font-size:40px;line-height:1;margin-bottom:14px;}
+  .step h3{font-size:18px;font-weight:600;margin-bottom:12px;}
+  .step p{font-size:14px;font-weight:400;line-height:1.75;color:var(--sub);}
+
+  /* S5 cases */
+  .s-cases{background:#7d7975;}
+  .s-cases .eyebrow,.s-cases .title{color:#fff;}
+  .s-cases .lead{color:#d7d5d2;}
+  .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:60px;}
+  .case .thumb{width:100%;aspect-ratio:3/2;border-radius:2px;margin-bottom:18px;}
+  .case .tag{font-family:var(--en);font-size:11px;letter-spacing:.15em;color:#e5e3e0;opacity:.75;display:block;margin-bottom:8px;}
+  .case h3{font-size:20px;font-weight:600;color:#fff;margin-bottom:8px;}
+  .case p{font-size:14px;font-weight:400;line-height:1.8;color:#ded9d5;}
+
+  /* Plans */
+  .s-plans{background:#fff;}
+  .plans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:52px;align-items:stretch;}
+  .plan{border:1px solid var(--line);border-radius:2px;padding:36px;display:flex;flex-direction:column;gap:18px;}
+  .plan .step{font-family:var(--en);font-size:12px;letter-spacing:.15em;color:var(--ink);}
+  .plan h3{font-size:20px;font-weight:600;}
+  .plan .price{font-family:var(--en);font-size:38px;font-weight:400;}
+  .plan .prule{height:1px;background:var(--line);}
+  .plan .desc{font-size:14px;font-weight:400;line-height:1.9;color:var(--sub);}
+  .plan-note{margin-top:26px;font-size:13px;font-weight:400;line-height:1.9;color:var(--sub);max-width:980px;}
+
+  /* Journal */
+  .s-journal{background:#f5f3f0;}
+  .journal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;}
+  .journal-head .more{font-size:13px;letter-spacing:.06em;white-space:nowrap;}
+  .articles{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;}
+  .art .thumb{width:100%;aspect-ratio:3/2;border-radius:2px;margin-bottom:16px;}
+  .art .meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:11px;letter-spacing:.06em;color:var(--sub);}
+  .art .meta .date{font-family:var(--en);}
+  .art h3{font-size:18px;font-weight:600;line-height:1.5;}
+
+  /* CTA */
+  .s-cta{background:#fff;text-align:center;padding:130px 0;}
+  .s-cta .big{font-size:clamp(30px,5vw,52px);font-weight:300;line-height:1.45;margin:22px auto 0;max-width:1000px;}
+  .s-cta .csub{font-size:15px;font-weight:400;line-height:1.9;color:var(--sub);margin:28px auto 0;max-width:600px;}
+  .btn-dark{display:inline-block;margin-top:36px;font-size:15px;letter-spacing:.06em;color:#fff;
+    background:var(--dark);padding:17px 44px;border-radius:100px;cursor:pointer;transition:transform .25s,opacity .25s;}
+  .btn-dark:hover{transform:translateY(-3px);opacity:.92;}
+  .cta-note{margin-top:16px;font-size:12px;letter-spacing:.04em;color:var(--meta);}
+
+  /* Footer */
+  footer{background:var(--dark);color:#fff;padding:56px 0 48px;}
+  .ft-top{display:flex;justify-content:space-between;align-items:center;gap:24px;}
+  .ft-top .logo{font-family:var(--en);font-weight:700;font-size:18px;letter-spacing:.04em;}
+  .ft-nav{display:flex;gap:28px;}
+  .ft-nav a{font-size:12px;letter-spacing:.08em;color:#9A9BA0;transition:color .2s;}
+  .ft-nav a:hover{color:#fff;}
+  .ft-div{height:1px;background:rgba(255,255,255,.1);margin:28px 0;}
+  .ft-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .ft-links{display:flex;gap:20px;}
+  .ft-links a{font-family:var(--en);font-size:12px;letter-spacing:.08em;color:#9A9BA0;}
+  .ft-links a:hover{color:#fff;}
+  .ft-copy{font-size:11px;letter-spacing:.08em;color:#6E6F74;}
+
+  /* ===== Reveal ===== */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ===== Responsive ===== */
+  @media (max-width:1024px){
+    .grid6{grid-template-columns:repeat(2,1fr);}
+    .steps{grid-template-columns:repeat(2,1fr);gap:36px 30px;}
+    .plans{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;gap:28px;}
+  }
+  @media (max-width:768px){
+    .wrap{padding:0 32px;}
+    .nav{padding:16px 32px;} .nav.scrolled{padding:12px 32px;}
+    .nav-links{display:none;}
+    .nav .logo{font-size:22px;}
+    .sec{padding:84px 0;}
+    .hero{min-height:560px;}
+    .hero-index{top:92px;left:32px;gap:11px;}
+    .hero-index a{font-size:11px;}
+    .hero-mark{top:88px;right:34px;}
+    .hero-mark .wm{font-size:22px;}
+    .hero-head{top:170px;right:34px;font-size:26px;line-height:1.8;}
+    .grid6{grid-template-columns:1fr;gap:32px;}
+    .cases,.articles{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr;gap:34px;}
+    .journal-head{flex-direction:column;align-items:flex-start;}
+    .ft-top{flex-direction:column;align-items:flex-start;gap:18px;}
+    .ft-nav{flex-wrap:wrap;gap:18px;}
+    .ft-bottom{flex-direction:column;align-items:flex-start;gap:12px;}
+    .px>img,.px>.px-bg{top:-10%;height:120%;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .px>img,.px>.px-bg{transform:none!important;top:0;height:100%;}
+    .reveal{opacity:1;transform:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body id="top">
+
+<!-- ===== Nav ===== -->
+<nav class="nav" id="nav">
+  <a href="#top" class="logo">BIRTH</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#top">HOME</a>
+      <a href="#service">SERVICE</a>
+      <a href="#cases">CASES</a>
+      <a href="#plans">PLANS</a>
+      <a href="#journal">JOURNAL</a>
+    </div>
+    <a class="pill js-sheet" href="#cta">無料で相談する</a>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="px-bg" data-speed="0.32" style="background-image:url('lp-img/1783430780978.jpg');"></div>
+  <div class="hero-index" data-speed="-0.12">
+    <a href="#service">SERVICE</a>
+    <a href="#cases">CASES</a>
+    <a href="#plans">PLANS</a>
+    <a href="#journal">JOURNAL</a>
+  </div>
+  <div class="hero-mark" data-speed="-0.22">
+    <div class="cp">© BIRTH</div>
+    <div class="wm">No name. Yet.</div>
+  </div>
+  <div class="hero-head" data-speed="-0.4">まだ名前のない<br>事業がある。</div>
+  <div class="hero-scroll">SCROLL</div>
+</header>
+
+<!-- ===== S2 何ができるか ===== -->
+<section class="sec" id="service">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">What We Make</span>
+      <h2 class="title h-lead">生まれるものに、決まりはない。</h2>
+      <p class="lead">あなたの会社の資産から、新しい事業をひとつ立ち上げる。その事業が、どんな形をとるかは決まっていない。</p>
+    </div>
+    <div class="grid6">
+      <div class="card reveal"><div class="thumb px"><img data-speed="0.1" src="lp-img/1783427199750.jpg" alt="プロダクト"></div><h3>プロダクト</h3><p>カタチある製品として。</p></div>
+      <div class="card reveal"><div class="thumb px"><img data-speed="0.1" src="lp-img/1783431041067.jpg" alt="Webサービス"></div><h3>Webサービス</h3><p>仕組みやアプリとして。</p></div>
+      <div class="card reveal"><div class="thumb px"><img data-speed="0.1" src="lp-img/1783427197883.jpg" alt="リブランディング"></div><h3>リブランディング</h3><p>今あるものを、別の売り方へ。</p></div>
+      <div class="card reveal"><div class="thumb px"><img data-speed="0.1" src="lp-img/1783427196875.jpg" alt="新ブランド・物販"></div><h3>新ブランド・物販</h3><p>もう一つの看板をつくる。</p></div>
+      <div class="card reveal"><div class="thumb px"><img data-speed="0.1" src="lp-img/1783427199649.jpg" alt="体験・場・仕組み"></div><h3>体験・場・仕組み</h3><p>人が集まる何かとして。</p></div>
+      <div class="card reveal"><div class="thumb px"><img data-speed="0.1" src="lp-img/1783427197043.jpg" alt="まだ名前のないもの"></div><h3>まだ名前のないもの</h3><p>誰も見たことのない形で。</p></div>
+    </div>
+    <div class="closing reveal">
+      <p class="l1">決まっているのは、ひとつだけ。「一緒に作って、一緒に売る」ということ。</p>
+      <p class="l2">何より大事にしているのは、最初のアイデアです。あなたの会社の資産をていねいにほどいて、まだ形になっていない事業の芽を、いくつも描き出す。ここに一番の時間と力を注ぎます。そして、描いて終わりにはしません。市場を調べ、誰にどう届けるかの戦略を立て、試作を重ね、ひとつのブランドとして仕立て、実際に売り出すところまで。プロダクト、CG、クリエイティブディレクション、ブランド設計——それぞれに尖った職能が、ひとつのチームとして揃っています。最初のひらめきから、世に届くその日まで、一貫して伴走します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S3 なぜ必要か ===== -->
+<section class="sec s-why">
+  <div class="wrap">
+    <div class="why-grid">
+      <div class="sec-head reveal" style="gap:26px;">
+        <span class="eyebrow">Why Now</span>
+        <h2 class="why-title h-lead">なぜ、このサービスが<br>必要なのか。</h2>
+      </div>
+      <div class="why-body reveal">
+        <p>価値観も、市場も、変わり続ける時代。変化が大きいときは、新しいものが受け入れられるときでもある。そんないまだからこそ、会社の新しい挑戦が、まだ見ぬ世界への扉になる。</p>
+        <p>新しい挑戦を重ねていくことは、これからの会社の力になる。ただ、新しいことを始めるのは、簡単じゃない。だからこのサービスが必要だと、僕らは思っています。あなたの会社の、まだ名前のない新しい事業を一緒に、つくりませんか。</p>
+      </div>
+    </div>
+    <div class="why-img px reveal"><img data-speed="0.16" src="lp-img/1783430780891.jpg" alt=""></div>
+  </div>
+</section>
+
+<!-- ===== S4 受注の流れ ===== -->
+<section class="sec s-how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How It Works</span>
+      <h2 class="title h-lead">はじめ方は、シンプルです。</h2>
+      <p class="lead">ヒアリングシートを書いて、話して、お互いに「いいな」と思えたら、一緒に。いきなり大きく始めるのではなく、順を追って進めていきます。</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="rule"></div><div class="no">01</div><h3>ヒアリングシート記入</h3><p>はじめに、御社の強みや挑戦してみたいことを、ヒアリングシートにご記入ください。ご相談は無料です。</p></div>
+      <div class="step reveal"><div class="rule"></div><div class="no">02</div><h3>選定面談</h3><p>オンラインで一度、お話しさせてください。方向性やお互いの相性を、一緒に確かめる時間です。ここまで無料です。</p></div>
+      <div class="step reveal"><div class="rule"></div><div class="no">03</div><h3>構想フェーズ</h3><p>御社の資産をもとに、新しい事業の候補を複数、おすすめとあわせてご提案します。どの案で進めるかは、御社のペースで決められます。（有償）</p></div>
+      <div class="step reveal"><div class="rule"></div><div class="no">04</div><h3>一緒に育てる</h3><p>選んだ一本を、試作・市場調査・ブランディング・販売まで、伴走しながら形にしていきます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== S5 事例 ===== -->
+<section class="sec s-cases" id="cases">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Cases</span>
+      <h2 class="title h-lead">こういう資産から、こういう一本を。</h2>
+      <p class="lead">実際に動いているもの、これから生まれうるもの。会社の資産が、新しい事業に変わっていく。</p>
+    </div>
+    <div class="cases">
+      <div class="case reveal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427208856.jpg" alt="A CURRY"></div><span class="tag">自社実績</span><h3>A CURRY</h3><p>デザイン会社の知見 → 自社ブランドのレトルトカレーへ。</p></div>
+      <div class="case reveal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427211407.jpg" alt="金属加工の町工場"></div><span class="tag">想定シナリオ</span><h3>金属加工の町工場</h3><p>精密加工の技術 → 生活に置きたくなるプロダクトへ。</p></div>
+      <div class="case reveal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427208847.jpg" alt="地域の食品メーカー"></div><span class="tag">想定シナリオ</span><h3>地域の食品メーカー</h3><p>独自の製法と販路 → 新しい食のブランドへ。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Plans ===== -->
+<section class="sec s-plans" id="plans">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Plans</span>
+      <h2 class="title h-lead">料金の、考え方。</h2>
+      <p class="lead">相談と選定面談までは無料。そこから先、本気で一本をつくるフェーズから費用が発生します。まずは構想から、その先は一緒に育てながら。</p>
+    </div>
+    <div class="plans">
+      <div class="plan reveal"><span class="step">STEP 00</span><h3>相談・選定面談</h3><div class="price">¥0</div><div class="prule"></div><p class="desc">ヒアリングシート記入から選定面談まで。ここまで費用はかかりません。組めそうかどうかではなく、まずお互いを知る時間です。ご一緒できそうだと感じられたら、次の構想フェーズへ進みます。</p></div>
+      <div class="plan reveal"><span class="step">STEP 01</span><h3>構想フェーズ</h3><div class="price">¥200,000〜</div><div class="prule"></div><p class="desc">御社の資産を棚卸しし、生まれうる新規事業の候補を3案、収支の試算とおすすめの優先順位までまとめた「事業構想書」をお渡しします（ブラッシュアップ1回込み）。構想書はそのまま御社の資産です。どの案で進めるかは、御社のタイミングで決められます。</p></div>
+      <div class="plan reveal"><span class="step">STEP 02</span><h3>協業フェーズ</h3><div class="price">ASK</div><div class="prule"></div><p class="desc">選んだ一本を、試作・市場調査・ブランディング・製造の座組づくり・販売まで一貫してご一緒します。つくって終わりではなく、事業を伸ばし続ける「もう一つの頭脳」として伴走。月額／レベニューシェア／年間契約など、案件に合わせた形でご相談します。</p></div>
+    </div>
+    <p class="plan-note reveal">※ 本気で新しい一本をつくる前提でご一緒します。構想フェーズには相応の費用がかかるため、ご予算が合わない場合は、無料の選定面談の時点で正直にお伝えします。金額は事業の規模・内容により変動します。</p>
+  </div>
+</section>
+
+<!-- ===== Journal ===== -->
+<section class="sec s-journal" id="journal">
+  <div class="wrap">
+    <div class="journal-head reveal">
+      <div class="sec-head" style="gap:16px;">
+        <span class="eyebrow">Journal</span>
+        <h2 class="title h-lead" style="font-size:clamp(28px,3.4vw,40px);">新しい事業の、考え方。</h2>
+      </div>
+      <a href="#journal" class="more">記事一覧へ →</a>
+    </div>
+    <div class="articles">
+      <a class="art reveal" href="#journal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427208967.jpg" alt=""></div><div class="meta"><span class="cat">視点</span><span class="date">2026.06.30</span></div><h3>会社の技術を「事業」に変える、最初の一歩。</h3></a>
+      <a class="art reveal" href="#journal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427208968.jpg" alt=""></div><div class="meta"><span class="cat">設計</span><span class="date">2026.06.18</span></div><h3>新規事業が続かない理由と、続ける仕組み。</h3></a>
+      <a class="art reveal" href="#journal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427210948.jpg" alt=""></div><div class="meta"><span class="cat">事例</span><span class="date">2026.06.05</span></div><h3>町工場から生まれた、もう一本の柱。</h3></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="s-cta" id="cta">
+  <div class="wrap reveal">
+    <span class="eyebrow">Start Here</span>
+    <h2 class="big h-lead">あなたの会社の、まだ名もない事業を<br>一緒につくりませんか。</h2>
+    <p class="csub">まずはヒアリングシートから。<br>まだ漠然とした段階でも、話を聞いてみたいだけでも大丈夫です。</p>
+    <a class="btn-dark js-sheet" href="#cta">ヒアリングシートを書く</a>
+    <p class="cta-note" id="ctaNote">※ ヒアリングフォームは現在準備中です。まもなく公開します。</p>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <a href="#top" class="logo">BIRTH</a>
+      <nav class="ft-nav">
+        <a href="#top">HOME</a>
+        <a href="#service">SERVICE</a>
+        <a href="#cases">CASES</a>
+        <a href="#plans">PLANS</a>
+        <a href="#journal">JOURNAL</a>
+      </nav>
+    </div>
+    <div class="ft-div"></div>
+    <div class="ft-bottom">
+      <div class="ft-links">
+        <a href="#top">COMPANY</a>
+        <a href="#top">PRIVACY</a>
+      </div>
+      <div class="ft-copy">© BIRTH</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Nav scroll state =====
+  var nav=document.getElementById('nav');
+  // ===== Parallax =====
+  var pxEls=[].slice.call(document.querySelectorAll('[data-speed]'));
+  var vh=window.innerHeight;
+  var ticking=false;
+  function onScroll(){
+    var y=window.pageYOffset;
+    nav.classList.toggle('scrolled',y>40);
+    for(var i=0;i<pxEls.length;i++){
+      var el=pxEls[i];
+      var r=el.getBoundingClientRect();
+      // 要素中心とビューポート中心の差分でパララックス量を決める
+      var center=r.top+r.height/2-vh/2;
+      var sp=parseFloat(el.getAttribute('data-speed'));
+      var move=-center*sp;
+      el.style.transform='translate3d(0,'+move.toFixed(2)+'px,0)';
+    }
+    ticking=false;
+  }
+  function req(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll);} }
+  window.addEventListener('scroll',req,{passive:true});
+  window.addEventListener('resize',function(){vh=window.innerHeight;req();});
+  onScroll();
+
+  // ===== Reveal on view =====
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.14,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // ===== フォーム準備中 =====
+  document.querySelectorAll('.js-sheet').forEach(function(b){
+    b.addEventListener('click',function(ev){
+      // CTAセクションへスクロール後、準備中を強調
+      var note=document.getElementById('ctaNote');
+      if(note){ note.style.transition='color .3s'; note.style.color='#1A1613'; setTimeout(function(){note.style.color='';},1600); }
+    });
+  });
+</script>
+</body>
+</html>
