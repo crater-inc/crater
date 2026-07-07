@@ -48,26 +48,26 @@
     padding:11px 22px;border-radius:100px;white-space:nowrap;transition:transform .25s,opacity .25s;}
   .pill:hover{transform:translateY(-2px);opacity:.9;}
 
-  /* ===== Hero（min(px,vw)。全要素が同じ倍率でスケール＝幅が変わっても位置関係は不変・画像から突き出ない） ===== */
-  .hero{position:relative;width:100%;height:min(1053px,73.125vw);overflow:hidden;background:var(--bg);}
-  /* ロゴ 左上 */
-  .h-logo{position:absolute;left:min(43px,2.986vw);top:min(39px,2.708vw);z-index:4;
-    font-family:var(--en);font-weight:700;font-size:min(30px,2.083vw);letter-spacing:.03em;color:var(--ink);}
-  /* CTAピル 右上 */
-  .h-cta{position:absolute;right:min(56px,3.889vw);top:min(26px,1.806vw);z-index:5;
-    font-family:var(--jp);font-size:min(12px,0.833vw);letter-spacing:.06em;color:#fff;background:var(--dark);
-    padding:min(10px,0.694vw) min(20px,1.389vw);border-radius:100px;white-space:nowrap;transition:opacity .25s;}
+  /* ===== Hero（画像は高さ上限なし＝画面を満たす。ロゴ/メニュー/CTAは固定サイズ） ===== */
+  .hero{position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;background:var(--bg);}
+  /* ロゴ 左上（固定サイズ） */
+  .h-logo{position:absolute;left:43px;top:39px;z-index:4;
+    font-family:var(--en);font-weight:700;font-size:30px;letter-spacing:.03em;color:var(--ink);}
+  /* CTAピル 右上（固定サイズ・上面をロゴ上端に合わせる） */
+  .h-cta{position:absolute;right:56px;top:39px;z-index:5;
+    font-family:var(--jp);font-size:12px;letter-spacing:.06em;color:#fff;background:var(--dark);
+    padding:10px 20px;border-radius:100px;white-space:nowrap;transition:opacity .25s;}
   .h-cta:hover{opacity:.9;}
-  /* メニュー 左・ロゴ下（画像に乗ってOK・下に増やせる）、行ピッチ30px */
-  .hero-index{position:absolute;left:min(45px,3.125vw);top:min(96px,6.667vw);z-index:3;
-    display:flex;flex-direction:column;gap:min(22px,1.528vw);}
-  .hero-index a{font-family:var(--en);font-size:min(14px,0.972vw);line-height:1;letter-spacing:.16em;
+  /* メニュー 左・ロゴ下（固定サイズ・画像に乗ってOK・下に増やせる） */
+  .hero-index{position:absolute;left:45px;top:124px;z-index:3;
+    display:flex;flex-direction:column;gap:22px;}
+  .hero-index a{font-family:var(--en);font-size:14px;line-height:1;letter-spacing:.16em;
     color:var(--ink);opacity:.72;transition:opacity .2s;}
   .hero-index a:hover{opacity:1;}
-  /* © BIRTH ＋ No name. Yet.＝画像上端のすぐ上・右端は縦見出しと揃える（48px） */
-  .hero-mark{position:absolute;right:min(48px,3.333vw);top:min(200px,13.889vw);z-index:3;text-align:right;}
+  /* © BIRTH ＋ No name. Yet.＝画像に近づけ少し右へ・©はNo nameに寄せる */
+  .hero-mark{position:absolute;right:min(32px,2.222vw);top:min(222px,15.417vw);z-index:3;text-align:right;}
   .hero-mark .cp{font-family:var(--logo);font-weight:300;font-size:min(12px,0.833vw);letter-spacing:.12em;
-    color:var(--ink);opacity:.65;margin-bottom:min(8px,0.556vw);}
+    color:var(--ink);opacity:.65;margin-bottom:min(4px,0.278vw);}
   .hero-mark .wm{font-family:var(--logo);font-weight:300;font-size:min(30px,2.083vw);letter-spacing:.02em;color:var(--ink);}
   /* 縦書き見出し＝画像内右上に固定・上右の余白を広めに・列間を開ける */
   .hero-head{position:absolute;right:min(48px,3.333vw);top:min(56px,3.889vw);z-index:3;
