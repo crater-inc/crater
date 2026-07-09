@@ -101,6 +101,9 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 [data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
 [data-pencil-name="q0"]>[data-pencil-name="a"],[data-pencil-name="q1"]>[data-pencil-name="a"],[data-pencil-name="q2"]>[data-pencil-name="a"],[data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
 [data-pencil-name="q0"].open>[data-pencil-name="a"],[data-pencil-name="q1"].open>[data-pencil-name="a"],[data-pencil-name="q2"].open>[data-pencil-name="a"],[data-pencil-name="q3"].open>[data-pencil-name="a"]{max-height:400px;opacity:1;margin-top:12px;}
+/* SPはFAQを常時表示（セクション高さ固定で開閉すると崩れるため） */
+.lyt-sp [data-pencil-name="q0"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q1"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q2"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:none !important;opacity:1 !important;margin-top:12px !important;}
+.lyt-sp [data-pencil-name="q0"],.lyt-sp [data-pencil-name="q1"],.lyt-sp [data-pencil-name="q2"],.lyt-sp [data-pencil-name="q3"]{cursor:default !important;}
 /* スクロールで柔らかくフェード（PCのみ／見出し・本文＝1行ずつ、タグ・カード＝順番に） */
 .lyt-pc .rvtext,
 .lyt-pc [data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div,

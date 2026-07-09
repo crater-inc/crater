@@ -29,6 +29,9 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 [data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
 [data-pencil-name="q0"]>[data-pencil-name="a"],[data-pencil-name="q1"]>[data-pencil-name="a"],[data-pencil-name="q2"]>[data-pencil-name="a"],[data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
 [data-pencil-name="q0"].open>[data-pencil-name="a"],[data-pencil-name="q1"].open>[data-pencil-name="a"],[data-pencil-name="q2"].open>[data-pencil-name="a"],[data-pencil-name="q3"].open>[data-pencil-name="a"]{max-height:400px;opacity:1;margin-top:12px;}
+/* SPはFAQを常時表示（セクション高さ固定で開閉すると崩れるため） */
+.lyt-sp [data-pencil-name="q0"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q1"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q2"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:none !important;opacity:1 !important;margin-top:12px !important;}
+.lyt-sp [data-pencil-name="q0"],.lyt-sp [data-pencil-name="q1"],.lyt-sp [data-pencil-name="q2"],.lyt-sp [data-pencil-name="q3"]{cursor:default !important;}
 /* スクロールで柔らかくフェード（PCのみ／見出し・本文＝1行ずつ、タグ・カード＝順番に） */
 .lyt-pc .rvtext,
 .lyt-pc [data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div,
@@ -107,7 +110,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           © 2026 ESION INC.
         </div>
         <div
-          style="box-sizing: border-box; height: 206px; left: 234.912px; position: absolute; top: 60px; width: 246.5px; z-index: 5"
+          style="box-sizing: border-box; height: 206px; left: 234.912px; position: absolute; top: 233px; width: 246.5px; z-index: 5"
         >
           <div
             data-pencil-name="title.svg"
@@ -2580,10 +2583,10 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           style="background-image: linear-gradient(180deg, #081B52B0 0%, #081B5240 50%, #081B5200 100%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; height: 120px; left: 0px; position: absolute; top: 0px; width: 390px; z-index: 1"
         ></div>
         <div class="bottle"
-          style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 382px; left: 105px; position: absolute; top: 70px; transform-origin: top left; transform: rotate(2.558deg); width: 180px; z-index: 2"
+          style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 366px; left: 109px; position: absolute; top: 40px; transform-origin: top left; transform: rotate(2.558deg); width: 172px; z-index: 2"
         ></div>
         <div
-          style="box-sizing: border-box; height: 206px; left: 71.75px; position: absolute; top: 442px; width: 246.5px; z-index: 3"
+          style="box-sizing: border-box; height: 206px; left: 71.75px; position: absolute; top: 410px; width: 246.5px; z-index: 3"
         >
           <div
             data-pencil-name="title.svg"
@@ -2652,7 +2655,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           class="ctabtn" data-pencil-name="CTA"
-          style="align-items: center; backdrop-filter: blur(3.15px); background-color: #071c52ff; border-radius: 40px; box-sizing: border-box; display: flex; flex-direction: row; gap: 8px; height: 57px; justify-content: center; left: 75px; position: absolute; top: 715px; width: 240px; z-index: 4"
+          style="align-items: center; backdrop-filter: blur(3.15px); background-color: #071c52ff; border-radius: 40px; box-sizing: border-box; display: flex; flex-direction: row; gap: 8px; height: 57px; justify-content: center; left: 75px; position: absolute; top: 712px; width: 240px; z-index: 4"
         >
           <div
             data-pencil-name="l"
@@ -2660,12 +2663,6 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           >
             まずはお試し！
           </div>
-        </div>
-        <div
-          data-pencil-name="Copyright"
-          style='box-sizing: border-box; color: #081B52; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; left: 24px; letter-spacing: 1px; line-height: normal; position: absolute; text-align: left; top: 760px; white-space: nowrap; z-index: 5'
-        >
-          © 2026 ESION INC.
         </div>
       </div>
       <div
@@ -2749,7 +2746,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
         </div>
         <div
-          style="box-sizing: border-box; height: 167px; left: 19px; position: absolute; top: 2034px; width: 352px; z-index: 3"
+          style="box-sizing: border-box; height: 167px; left: 32px; position: absolute; top: 2034px; width: 352px; z-index: 3"
         >
           <div
             data-pencil-name="nm"
@@ -2802,7 +2799,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
         </div>
         <div
-          style="box-sizing: border-box; height: 167px; left: 19px; position: absolute; top: 1337px; width: 352px; z-index: 4"
+          style="box-sizing: border-box; height: 167px; left: 32px; position: absolute; top: 1337px; width: 352px; z-index: 4"
         >
           <div
             data-pencil-name="btn"
@@ -2856,7 +2853,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           data-pencil-name="card1-text"
-          style="box-sizing: border-box; height: 167px; left: 19px; position: absolute; top: 640px; width: 352px; z-index: 5"
+          style="box-sizing: border-box; height: 167px; left: 32px; position: absolute; top: 640px; width: 352px; z-index: 5"
         >
           <div
             data-pencil-name="nm"
@@ -2910,7 +2907,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           data-pencil-name="フレックスオーダー（定期）"
-          style="background-color: #081B52; border-radius: 6px; box-sizing: border-box; height: 470px; left: 19px; overflow: hidden; position: absolute; top: 150px; width: 352px; z-index: 6"
+          style="background-color: #081B52; border-radius: 6px; box-sizing: border-box; height: 470px; left: 32px; overflow: hidden; position: absolute; top: 150px; width: 326px; z-index: 6"
         >
           <div
             style="background-image: url('a/ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 482px; left: -228px; position: absolute; top: -6px; width: 864px; z-index: 0"
@@ -2918,7 +2915,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           data-pencil-name="ボトル単品"
-          style="background-color: #ffffffff; border-radius: 6px; box-sizing: border-box; height: 470px; left: 19px; overflow: hidden; position: absolute; top: 847px; width: 352px; z-index: 7"
+          style="background-color: #ffffffff; border-radius: 6px; box-sizing: border-box; height: 470px; left: 32px; overflow: hidden; position: absolute; top: 847px; width: 326px; z-index: 7"
         >
           <div
             style="background-image: url('a/ESION_Edit_2026-07-06_2x-1.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 639px; left: -62.728px; position: absolute; top: -84.5px; width: 479px; z-index: 0"
@@ -2926,7 +2923,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           data-pencil-name="トライアルサシェ"
-          style="background-color: #ffffffff; border-radius: 6px; box-sizing: border-box; height: 470px; left: 19px; overflow: hidden; position: absolute; top: 1544px; width: 352px; z-index: 8"
+          style="background-color: #ffffffff; border-radius: 6px; box-sizing: border-box; height: 470px; left: 32px; overflow: hidden; position: absolute; top: 1544px; width: 326px; z-index: 8"
         >
           <div
             data-pencil-name="badge"
@@ -3014,7 +3011,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Reasons"
-        style="background-color: #f5f7faff; box-sizing: border-box; flex-shrink: 0; height: 1680px; overflow: hidden; position: relative; width: 390px; z-index: 4"
+        style="background-color: #f5f7faff; box-sizing: border-box; flex-shrink: 0; height: 1740px; overflow: hidden; position: relative; width: 390px; z-index: 4"
       >
         <div class="rvtext"
           data-pencil-name="lab"
@@ -3764,7 +3761,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Voices"
-        style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 900px; overflow: hidden; position: relative; width: 390px; z-index: 8"
+        style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 950px; overflow: hidden; position: relative; width: 390px; z-index: 8"
       >
         <div
           data-pencil-name="bg-img"
@@ -4123,7 +4120,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Stores"
-        style="background-color: #ffffffff; box-sizing: border-box; flex-shrink: 0; height: 730px; overflow: hidden; position: relative; width: 390px; z-index: 9"
+        style="background-color: #ffffffff; box-sizing: border-box; flex-shrink: 0; height: 720px; overflow: hidden; position: relative; width: 390px; z-index: 9"
       >
         <div class="rvtext"
           data-pencil-name="lab"
@@ -4191,7 +4188,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Subscription"
-        style="background-image: linear-gradient(35.185deg, #071b52 18.151%, #0d41a8 81.849%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; flex-shrink: 0; height: 790px; overflow: hidden; position: relative; width: 390px; z-index: 10"
+        style="background-image: linear-gradient(33.547deg, #071b52 18.431%, #0d41a8 81.569%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; flex-shrink: 0; height: 840px; overflow: hidden; position: relative; width: 390px; z-index: 10"
       >
         <div
           data-pencil-name="Sb-Panel"
@@ -4375,7 +4372,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="FAQ"
-        style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 620px; overflow: hidden; position: relative; width: 390px; z-index: 11"
+        style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 600px; overflow: hidden; position: relative; width: 390px; z-index: 11"
       >
         <div class="rvtext"
           data-pencil-name="lab"
@@ -4585,7 +4582,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="News"
-        style="background-color: #F5F7FA; box-sizing: border-box; flex-shrink: 0; height: 560px; overflow: hidden; position: relative; width: 390px; z-index: 12"
+        style="background-color: #F5F7FA; box-sizing: border-box; flex-shrink: 0; height: 480px; overflow: hidden; position: relative; width: 390px; z-index: 12"
       >
         <div class="rvtext"
           data-pencil-name="lab"
@@ -4675,7 +4672,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Contact"
-        style="background-image: linear-gradient(36.236deg, #081B52 17.965%, #0D41A8 82.035%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; flex-shrink: 0; height: 760px; overflow: hidden; position: relative; width: 390px; z-index: 13"
+        style="background-image: linear-gradient(33.236deg, #081B52 18.483%, #0D41A8 81.517%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; flex-shrink: 0; height: 850px; overflow: hidden; position: relative; width: 390px; z-index: 13"
       >
         <div class="rvtext"
           data-pencil-name="h"
