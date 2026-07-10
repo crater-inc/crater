@@ -111,9 +111,6 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 [data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
 [data-pencil-name="q0"]>[data-pencil-name="a"],[data-pencil-name="q1"]>[data-pencil-name="a"],[data-pencil-name="q2"]>[data-pencil-name="a"],[data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
 [data-pencil-name="q0"].open>[data-pencil-name="a"],[data-pencil-name="q1"].open>[data-pencil-name="a"],[data-pencil-name="q2"].open>[data-pencil-name="a"],[data-pencil-name="q3"].open>[data-pencil-name="a"]{max-height:400px;opacity:1;margin-top:12px;}
-/* SPはFAQを常時表示（セクション高さ固定で開閉すると崩れるため） */
-.lyt-sp [data-pencil-name="q0"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q1"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q2"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:none !important;opacity:1 !important;margin-top:12px !important;}
-.lyt-sp [data-pencil-name="q0"],.lyt-sp [data-pencil-name="q1"],.lyt-sp [data-pencil-name="q2"],.lyt-sp [data-pencil-name="q3"]{cursor:default !important;}
 /* スクロールで柔らかくフェード（PCのみ／見出し・本文＝1行ずつ、タグ・カード＝順番に） */
 .lyt-pc .rvtext,
 .lyt-pc [data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div,
@@ -160,18 +157,22 @@ jspc='''
 })();
 </script>'''
 
-# SP用JS（spRoot zoom・FAQアコーディオン。縦フローなので再レイアウト不要）
+# SP用JS（spRoot zoom・FAQアコーディオン＝デフォルト閉じ。開閉でFAQセクション高さを可変にしflexで下を押し出す）
 jssp='''
 <script>
 (function(){
  var sp=document.getElementById('spRoot');
  function z(){if(sp)sp.style.zoom=window.innerWidth/390;}
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
+ var faq=sp&&sp.querySelector('[data-pencil-name="FAQ"]');
+ var list=faq&&faq.querySelector('[data-pencil-name="list"]');
+ function faqLayout(){if(faq&&list){faq.style.height=(list.offsetTop+list.offsetHeight+48)+'px';}}
  ['q0','q1','q2','q3'].forEach(function(id){
    document.querySelectorAll('.lyt-sp [data-pencil-name="'+id+'"]').forEach(function(el){
-     el.addEventListener('click',function(){el.classList.toggle('open');});
+     el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(faqLayout,60);setTimeout(faqLayout,460);});
    });
  });
+ window.addEventListener('load',faqLayout);faqLayout();
 })();
 </script>'''
 

@@ -29,9 +29,6 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 [data-pencil-name="q0"],[data-pencil-name="q1"],[data-pencil-name="q2"],[data-pencil-name="q3"]{cursor:pointer;gap:0 !important;padding-top:16px !important;padding-bottom:16px !important;}
 [data-pencil-name="q0"]>[data-pencil-name="a"],[data-pencil-name="q1"]>[data-pencil-name="a"],[data-pencil-name="q2"]>[data-pencil-name="a"],[data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:0;overflow:hidden;opacity:0;margin-top:0;transition:max-height .4s ease,opacity .3s ease,margin-top .3s ease;}
 [data-pencil-name="q0"].open>[data-pencil-name="a"],[data-pencil-name="q1"].open>[data-pencil-name="a"],[data-pencil-name="q2"].open>[data-pencil-name="a"],[data-pencil-name="q3"].open>[data-pencil-name="a"]{max-height:400px;opacity:1;margin-top:12px;}
-/* SPはFAQを常時表示（セクション高さ固定で開閉すると崩れるため） */
-.lyt-sp [data-pencil-name="q0"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q1"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q2"]>[data-pencil-name="a"],.lyt-sp [data-pencil-name="q3"]>[data-pencil-name="a"]{max-height:none !important;opacity:1 !important;margin-top:12px !important;}
-.lyt-sp [data-pencil-name="q0"],.lyt-sp [data-pencil-name="q1"],.lyt-sp [data-pencil-name="q2"],.lyt-sp [data-pencil-name="q3"]{cursor:default !important;}
 /* スクロールで柔らかくフェード（PCのみ／見出し・本文＝1行ずつ、タグ・カード＝順番に） */
 .lyt-pc .rvtext,
 .lyt-pc [data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div,
@@ -2538,7 +2535,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           style="background-image: linear-gradient(180deg, #081B52B0 0%, #081B5240 50%, #081B5200 100%); background-repeat: no-repeat; background-size: 100% 100%; box-sizing: border-box; height: 120px; left: 0px; position: absolute; top: 0px; width: 390px; z-index: 1"
         ></div>
         <div class="bottle"
-          style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 436px; left: 60px; position: absolute; top: 79.188px; transform-origin: top left; transform: rotate(2.558deg); width: 205px; z-index: 2"
+          style="background-image: url('a/KV2_0001_______-1.png'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; height: 436px; left: 62.5px; position: absolute; top: 79.188px; transform-origin: top left; transform: rotate(2.558deg); width: 205px; z-index: 2"
         ></div>
         <div
           class="ctabtn" data-pencil-name="CTA"
@@ -3059,7 +3056,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             ></div>
             <div class="rvtext"
               data-pencil-name="d"
-              style='box-sizing: border-box; color: #3D4655; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 12.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #3D4655; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 12.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%'
             >
               肌と同じ弱酸性・アミノ酸系洗浄成分。低刺激で、家族みんなの地肌にやさしい。
             </div>
@@ -3102,7 +3099,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             ></div>
             <div class="rvtext"
               data-pencil-name="d"
-              style='box-sizing: border-box; color: #3D4655; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 12.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #3D4655; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 12.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 100%'
             >
               1本で洗う・補う・整える。コンディショナー不要で、バスタイムをシンプルに。
             </div>
@@ -3169,15 +3166,15 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           data-pencil-name="grid"
-          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; gap: 12px; height: fit-content; justify-content: flex-start; left: 32px; position: absolute; top: 377px; width: 326px; z-index: 3"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; gap: 12px; height: fit-content; justify-content: space-between; left: 32px; position: absolute; top: 377px; width: 326px; z-index: 3"
         >
           <div
             data-pencil-name="r0"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; width: fit-content"
           >
             <div
               data-pencil-name="香料"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3195,14 +3192,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 香料フリー
               </div>
             </div>
             <div
               data-pencil-name="シリコン"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3220,14 +3217,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 シリコンフリー
               </div>
             </div>
             <div
               data-pencil-name="着色料"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3245,14 +3242,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 着色料フリー
               </div>
             </div>
             <div
               data-pencil-name="パラベン"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3270,14 +3267,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 パラベンフリー
               </div>
             </div>
             <div
               data-pencil-name="鉱物油"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3295,14 +3292,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 鉱物油フリー
               </div>
             </div>
             <div
               data-pencil-name="動物性原料"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3320,14 +3317,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 動物性原料フリー
               </div>
             </div>
             <div
               data-pencil-name="石油系界面活性剤"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3345,7 +3342,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 石油系界面活性剤フリー
               </div>
@@ -3353,11 +3350,11 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="r7"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 8px; height: fit-content; justify-content: flex-start"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; width: fit-content"
           >
             <div
               data-pencil-name="サルフェート"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3375,14 +3372,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 サルフェートフリー
               </div>
             </div>
             <div
               data-pencil-name="エタノール"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3400,14 +3397,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 エタノールフリー
               </div>
             </div>
             <div
               data-pencil-name="合成ポリマー"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3425,14 +3422,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 合成ポリマーフリー
               </div>
             </div>
             <div
               data-pencil-name="紫外線吸収剤"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3450,14 +3447,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 紫外線吸収剤フリー
               </div>
             </div>
             <div
               data-pencil-name="フェノキシエタノール"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3475,14 +3472,14 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 フェノキシエタノールフリー
               </div>
             </div>
             <div
               data-pencil-name="旧表示指定成分"
-              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: 100%"
+              style="align-items: center; border-radius: 30px; border: 1px solid #2E5A7E; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 9px 14px; width: fit-content"
             >
               <svg
                 data-pencil-name="x"
@@ -3500,7 +3497,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               </svg>
               <div
                 data-pencil-name="t"
-                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 9px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                style='box-sizing: border-box; color: #E4ECF3; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
                 旧表示指定成分フリー
               </div>
@@ -4038,7 +4035,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         ></div>
         <div
           data-pencil-name="logos"
-          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; gap: 36px; height: fit-content; justify-content: space-between; left: 32px; position: absolute; top: 244px; width: 326px; z-index: 4"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px; height: fit-content; justify-content: space-between; left: 32px; position: absolute; top: 244px; width: 326px; z-index: 4"
         >
           <div
             data-pencil-name="logo-row1"
@@ -4938,11 +4935,15 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
  var sp=document.getElementById('spRoot');
  function z(){if(sp)sp.style.zoom=window.innerWidth/390;}
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
+ var faq=sp&&sp.querySelector('[data-pencil-name="FAQ"]');
+ var list=faq&&faq.querySelector('[data-pencil-name="list"]');
+ function faqLayout(){if(faq&&list){faq.style.height=(list.offsetTop+list.offsetHeight+48)+'px';}}
  ['q0','q1','q2','q3'].forEach(function(id){
    document.querySelectorAll('.lyt-sp [data-pencil-name="'+id+'"]').forEach(function(el){
-     el.addEventListener('click',function(){el.classList.toggle('open');});
+     el.addEventListener('click',function(){el.classList.toggle('open');setTimeout(faqLayout,60);setTimeout(faqLayout,460);});
    });
  });
+ window.addEventListener('load',faqLayout);faqLayout();
 })();
 </script>
   </body>
