@@ -1,0 +1,23 @@
+name: SEOキーワード自動抽出
+
+# 月曜・木曜 朝7:00(JST) に自動実行（UTCでは日曜・水曜 22:00）
+on:
+  schedule:
+    - cron: "0 22 * * 0,3"
+  workflow_dispatch: {}   # 手動実行も可能
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 依存インストール
+        run: pip install gspread google-auth
+      - name: キーワード抽出＆スプシ追記
+        env:
+          RAKKO_KEY: ${{ secrets.RAKKO_KEY }}
+          GOOGLE_SA_JSON: ${{ secrets.GOOGLE_SA_JSON }}
+        run: python "01_CRATER/_SERVICE/SEOキーワード自動抽出/engine.py"
