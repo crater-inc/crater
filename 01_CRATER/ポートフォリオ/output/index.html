@@ -782,6 +782,26 @@
       color: var(--c-sub); letter-spacing: 0.02em; line-height: 1.4;
     }
 
+    /* AWARD（受賞歴リスト） */
+    .s-award-list { display: flex; flex-direction: column; }
+    .s-award-row {
+      display: grid; grid-template-columns: 6cqw 1fr; align-items: baseline;
+      gap: 1cqw; padding: 1cqw 0; border-bottom: 1px solid var(--c-border);
+    }
+    .s-award-row:first-child { border-top: 1px solid var(--c-border); }
+    .s-award-year {
+      font-family: var(--font-en); font-size: 1.2cqw;
+      color: var(--c-sub); letter-spacing: 0.04em;
+    }
+    .s-award-title {
+      font-family: var(--font-ja-m); font-size: 1.15cqw;
+      color: var(--c-text); letter-spacing: 0.02em; line-height: 1.5;
+    }
+    .s-award-media {
+      font-family: var(--font-ja); font-size: 0.85cqw;
+      color: var(--c-sub); letter-spacing: 0.02em; line-height: 1.7; margin-top: 0.4cqw;
+    }
+
     /* PDFダウンロードボタン（ハンバーガー左・控えめ） */
     .pdf-btn {
       position: fixed; z-index: 300;
@@ -935,14 +955,16 @@ function slide03bSectionTitle() {
 function slide04Statement() {
   return `<section class="slide" data-section="concept" data-notes="クレーターとは、隕石が地面に衝突した跡。何かに全力でぶつかった証です。私たちは、デザインの力でブランドを世界に刻みます。">
   <div class="s-stmt">
-    <div class="s-stmt-top"><span class="badge">CONCEPT</span></div>
-    <div class="s-stmt-main">
-      <h2 class="s-stmt-heading">この星に、<br>つめあとを残せ。</h2>
-      <p class="s-stmt-body">
-        クレーターとは、隕石が地面に衝突した跡。<br>
-        何かに全力でぶつかった証です。<br>
-        私たちは、デザインの力で<br>
-        あなたのブランドを世界に刻みます。
+    <div class="s-stmt-top"><span class="badge">PURPOSE</span></div>
+    <div class="s-stmt-main" style="justify-content:center;gap:2cqw;">
+      <h2 class="s-stmt-heading" style="font-size:4cqw;">この星に、<br>つめあとを残せ。</h2>
+      <p class="s-stmt-body" style="font-size:1.15cqw;line-height:1.9;max-width:56cqw;">
+        アポロ11号の着陸成功も、隕石の衝突で生まれた無数のクレーターも、月に刻まれた歴史の足あとだ。<br>
+        生まれては消えていくものであふれたこの世界に、未来につながる何かを力強く残せたら。<br>
+        価値あるブランドが埋もれず、必要とする人や場所に届くように。その魅力を最大限引き出せるように。人々の暮らしに深く根づき、長く愛され続けるように。<br>
+        企業の迷い・悩み・こころざしと伴走しながら。目ざす景色を共有しながら。<br>
+        メッセージや物語をビジュアライズする力で、良いものがちゃんと評価される世の中を実現しよう。<br>
+        きっとできる。私たちはそう信じている。
       </p>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -1380,6 +1402,39 @@ function worksGrid(cfg) {
 }
 
 // ============================================================
+// AWARD（受賞歴）※選ばれる理由の裏付け
+// ============================================================
+function slideAward() {
+  const awards = [
+    { y: '2023', t: 'A’DESIGN AWARD 2023 ｜ 銀賞（SILVER）' },
+    { y: '2023', t: 'ASIA DESIGN PRIZE 2023 ｜ 金賞（GOLD）' },
+    { y: '2022', t: 'German Design Award 2023 ｜ Special Mention' },
+    { y: '2022', t: 'MUSE Creative Awards ｜ GOLD ×2 / SILVER ×1' },
+    { y: '2022', t: 'K-DESIGN AWARD ｜ GOLD ×2 / SILVER ×1' },
+    { y: '2022', t: '第10回 ジャパンシックスシートアワード ｜ 協賛企業賞' },
+    { y: '2023', t: '日本タイポグラフィ年鑑2023 ｜ VI部門 審査委員賞' },
+    { y: '2026', t: '日本タイポグラフィ年鑑2026 ｜ シンボルマーク部門 入選' },
+  ];
+  const rows = awards.map(function (a) {
+    return `<div class="s-award-row">
+        <span class="s-award-year">${a.y}</span>
+        <span class="s-award-title">${a.t}</span>
+      </div>`;
+  }).join('');
+  return `<section class="slide" data-section="award" data-notes="国内外のデザインアワード受賞歴。第三者評価の裏付けです。">
+  <div class="s-clients">
+    <div class="s-clients-top"><span class="badge">AWARD</span></div>
+    <div class="s-clients-main">
+      <h2 class="s-clients-head">国内外のデザイン賞で、<br>継続的に評価されています。</h2>
+      <div class="s-award-list">${rows}</div>
+      <p class="s-award-media">掲載：デザインノートPremium／パッケージand（日本パッケージデザイン協会）／日本タイポグラフィ年鑑／ジャパン・クリエイターズ2025 ほか</p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
 // クライアント（ロゴグリッド）※Pencilで実ロゴを差し込む
 // ============================================================
 function slideClients() {
@@ -1483,6 +1538,7 @@ window.slideFactories = [
   slide08Overview,
   slide05ServiceList,
   slide07Number,
+  slideAward,
   slideClients,
   worksBreak,
   worksDetailSeibu,
@@ -1499,6 +1555,7 @@ window.agendaItems = [
   { id: 'overview',     label: '会社概要' },
   { id: 'service',      label: 'サービス' },
   { id: 'number',       label: '選ばれる理由 / NUMBER' },
+  { id: 'award',        label: 'AWARD（受賞歴）' },
   { id: 'clients',      label: 'クライアント' },
   { id: 'works-break',  label: 'WORKS（扉）' },
   { id: 'works-feature',label: 'WORKS｜特集（1社）' },
