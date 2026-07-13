@@ -542,8 +542,8 @@
     }
     .s-overview-table td {
       padding: 0.9cqw 0 0.9cqw 2cqw;
-      font-family: var(--font-en), var(--font-ja-m); font-size: 1.15cqw;
-      line-height: 1.6;
+      font-family: var(--font-en), var(--font-ja-b); font-size: 1.2cqw;
+      line-height: 1.6; color: var(--c-text);
     }
 
 
@@ -724,17 +724,15 @@
       margin-bottom: 1.6cqw; padding-left: 0;
     }
     .s-works-cat-en {
-      font-family: var(--font-en); font-size: 2.2cqw;
-      font-weight: 500; letter-spacing: 0.02em; line-height: 1;
+      font-family: var(--font-en); font-size: 1.0cqw;
+      font-weight: 500; letter-spacing: 0.1em; line-height: 1;
+    }
+    .s-works-divider {
+      width: 1px; height: 1.1cqw; background: rgba(0,0,0,0.3);
     }
     .s-works-cat-ja {
-      font-family: var(--font-ja-m); font-size: 1.0cqw;
+      font-family: var(--font-ja-m); font-size: 0.95cqw;
       color: var(--c-sub); letter-spacing: 0.08em;
-    }
-    /* 1社特集ヘッダー */
-    .s-works-client-name {
-      font-family: var(--font-ja-m); font-size: 1.0cqw;
-      color: var(--c-text); letter-spacing: 0.04em; margin-left: auto;
     }
     .s-works-body { flex: 1; display: flex; gap: 1.6cqw; min-height: 0; }
     .s-works-hero { flex: 0 0 46%; display: flex; flex-direction: column; }
@@ -750,6 +748,20 @@
     /* パターン0：主役2枚横並び（左右1個ずつ） */
     .s-works-duo { flex: 1; display: flex; gap: 1.6cqw; min-height: 0; }
     .s-works-duo .s-works-hero { flex: 1; }
+    /* ロゴ大量ページ（ガシャッと敷き詰め・8列） */
+    .s-logowall {
+      flex: 1; display: grid;
+      grid-template-columns: repeat(8, 1fr); grid-auto-rows: 1fr;
+      gap: 0.8cqw; min-height: 0;
+    }
+    .s-logowall-cell {
+      background: #ffffff; display: flex; align-items: center; justify-content: center;
+      padding: 0.4cqw; text-align: center;
+    }
+    .s-logowall-cell span {
+      font-family: var(--font-ja-m); font-size: 0.6cqw;
+      color: var(--c-sub); letter-spacing: 0.01em; line-height: 1.3;
+    }
     /* キャプション（カテゴリー＋クライアント名） */
     .s-works-cap { padding-top: 0.55cqw; display: flex; flex-direction: column; gap: 0.1cqw; }
     .s-works-cap-cat {
@@ -773,14 +785,13 @@
     .s-clients-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; }
     .s-clients-head { font-family: var(--font-ja-m); font-size: 1.8cqw; letter-spacing: 0.04em; line-height: 1.4; }
     .s-clients-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr);
-      gap: 1.4cqw;
+      display: grid; grid-template-columns: repeat(6, 1fr);
+      gap: 1.6cqw 2cqw;
     }
     .s-clients-logo {
-      aspect-ratio: 3 / 2; background: #ffffff;
-      border: 1px solid var(--c-border);
+      aspect-ratio: 5 / 2;
       display: flex; align-items: center; justify-content: center;
-      padding: 0.6cqw; text-align: center;
+      padding: 0.4cqw; text-align: center;
     }
     .s-clients-logo span {
       font-family: var(--font-ja-m); font-size: 0.78cqw;
@@ -846,13 +857,17 @@
     /* PDFダウンロードボタン（ハンバーガー左・控えめ） */
     .pdf-btn {
       position: fixed; z-index: 300;
-      width: 34px; height: 34px;
+      height: 34px; padding: 0 8px;
       background: none; border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; gap: 5px;
       opacity: 0.55; transition: opacity 0.15s;
     }
     .pdf-btn:hover { opacity: 1; }
-    .pdf-btn svg { width: 20px; height: 20px; stroke: #111; fill: none; stroke-width: 1.5; }
+    .pdf-btn svg { width: 17px; height: 17px; stroke: #111; fill: none; stroke-width: 1.5; }
+    .pdf-btn span {
+      font-family: 'urw-din', sans-serif; font-size: 12px;
+      font-weight: 500; letter-spacing: 0.08em; color: #111;
+    }
 
     /* ============================================================
        印刷（PDF書き出し）：全スライドをフルサイズで縦に並べる
@@ -884,6 +899,7 @@
 <div class="status-bar" id="status-bar"></div>
 <button class="pdf-btn" id="pdf-btn" title="全ページをPDFで保存">
   <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+  <span>PDF</span>
 </button>
 <button class="menu-btn" id="menu-btn"><span></span><span></span><span></span></button>
 <div class="progress-bar" id="progress-bar" style="width:0"></div>
@@ -1202,7 +1218,6 @@ function slide08Overview() {
         <tr><th>所在地</th><td>〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F</td></tr>
         <tr><th>TEL</th><td>03-6868-7747</td></tr>
         <tr><th>事業内容</th><td>ブランディング、ロゴ、グラフィック、Web、パッケージデザイン</td></tr>
-        <tr><th>加盟団体</th><td>公益社団法人 日本グラフィックデザイナー協会（JAGDA）</td></tr>
       </table>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -1335,12 +1350,12 @@ function worksBreak() {
 }
 
 // 共通：WORKSヘッダー（タグ＋カテゴリを横並び＝被り解消）
-function worksHead(en, ja, clientName) {
+function worksHead(en, ja) {
   return `<div class="s-works-head">
       <span class="badge">WORKS</span>
       <span class="s-works-cat-en">${en}</span>
+      <span class="s-works-divider"></span>
       <span class="s-works-cat-ja">${ja}</span>
-      ${clientName ? `<span class="s-works-client-name">${clientName}</span>` : ''}
     </div>`;
 }
 // 共通：セル（キャプション付き）
@@ -1467,14 +1482,39 @@ function slideAward() {
 }
 
 // ============================================================
+// WORKS｜ロゴ大量ページ（ガシャッと敷き詰め・物量で見せる）
+// ============================================================
+function worksLogoWall() {
+  const logos = [
+    'エイベックス','明生電気商会','カディンチェ','瀬戸内海ベンダ','福岡女子商業高校','アズパートナーズ','泉屋旅館','秋山璃帆',
+    '東亜電機工業','ワークス・ジャパン','Madoromi','石川県立工業高校','ロココ企画装飾','FPS','人と空間','芝園開発',
+    'Branding Career','トーヨーコーケン','エンクル','合同会社YIIT','K Company','人力舎 鬼ヶ島','白井松器械','Global Shapers',
+    'プレスタイム','MU合同会社','LMIグループ','和住工業','ATG associates','accenti','Speranza','GATOON',
+    '株式会社NUTS','ローネジャパン','カシカ','たつみ会計事務所','LEPRE','株式会社ハル','LOCAL2','POCKET CREATIVE',
+  ];
+  const cells = logos.map(function (n) {
+    return `<div class="s-logowall-cell"><span>${n}</span></div>`;
+  }).join('');
+  return `<section class="slide" data-section="works-logowall" data-notes="ロゴは膨大な数を手がけています。物量で伝えるページ。">
+  <div class="s-works">
+    ${worksHead('LOGO', 'ロゴ制作実績（一部）')}
+    <div class="s-works-body">
+      <div class="s-logowall">${cells}</div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
 // クライアント（ロゴグリッド）※Pencilで実ロゴを差し込む
 // ============================================================
 function slideClients() {
   const list = [
-    '株式会社伊藤園','亀田製菓株式会社','株式会社西武ライオンズ','西武鉄道株式会社','日東紡績株式会社',
-    '株式会社山本海苔店','日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','株式会社マイナビ',
-    'アマノ株式会社','株式会社Gunosy','JR東日本スタートアップ株式会社','早稲田大学','東京大学',
-    'ココカラファイン','有限責任監査法人トーマツ','武田薬品工業株式会社','日本フルハーフ株式会社','EY Japan',
+    '株式会社伊藤園','亀田製菓株式会社','株式会社西武ライオンズ','西武鉄道株式会社','日東紡績株式会社','株式会社山本海苔店',
+    '日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','スポーツ庁','東京メトロ','アマノ株式会社',
+    '株式会社Gunosy','JR東日本スタートアップ株式会社','株式会社マイナビ','早稲田大学','東京農工大学','東京大学',
+    '明光義塾','ココカラファイン','有限責任監査法人トーマツ','武田薬品工業株式会社','EY Japan','福岡女子商業高等学校',
   ];
   const items = list.map(function (c) {
     return `<div class="s-clients-logo"><span>${c}</span></div>`;
@@ -1574,11 +1614,11 @@ window.slideFactories = [
   slideAward,
   slideClients,
   worksBreak,
-  worksDetailSeibu,
   worksPackage,
   worksVI,
   worksGraphic,
   worksLogo,
+  worksLogoWall,
   worksWeb,
   slideClosing,
 ];
@@ -1591,11 +1631,11 @@ window.agendaItems = [
   { id: 'award',        label: 'AWARD（受賞歴）' },
   { id: 'clients',      label: 'クライアント' },
   { id: 'works-break',  label: 'WORKS（扉）' },
-  { id: 'works-feature',label: 'WORKS｜特集（1社）' },
   { id: 'works-package',label: 'WORKS｜パッケージ' },
   { id: 'works-vi',     label: 'WORKS｜VI' },
   { id: 'works-graphic',label: 'WORKS｜グラフィック' },
   { id: 'works-logo',   label: 'WORKS｜ロゴ' },
+  { id: 'works-logowall',label: 'WORKS｜ロゴ大量' },
   { id: 'works-web',    label: 'WORKS｜Web' },
   { id: 'closing',      label: '締め / CTA' },
 ];
@@ -1637,7 +1677,7 @@ window.agendaItems = [
     var pdfBtn = document.getElementById('pdf-btn');
     if (pdfBtn) {
       pdfBtn.style.top   = (oy + margin) + 'px';
-      pdfBtn.style.right = (ox + margin + 40) + 'px';
+      pdfBtn.style.right = (ox + margin + 46) + 'px';
     }
   }
   window.addEventListener('resize', scaleSlides);
