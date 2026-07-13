@@ -837,17 +837,23 @@
     .s-clients-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
     .s-clients-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; padding-top: 3.2cqw; }
     .s-clients-head { font-family: var(--font-ja-m); font-size: 1.7cqw; letter-spacing: 0.04em; line-height: 1.4; }
+    /* 白の帯（ロゴを乗せる） */
+    .s-clients-band {
+      background: #ffffff; width: 100%;
+      padding: 2.8cqw 3cqw;
+    }
     .s-clients-grid {
       display: grid; grid-template-columns: repeat(8, 1fr);
-      gap: 1.8cqw 1.6cqw; align-items: center;
+      gap: 2.4cqw 1.6cqw; align-items: center; justify-items: center;
     }
     .s-clients-logo {
-      aspect-ratio: 3 / 2;
+      width: 100%; height: 2.8cqw;
       display: flex; align-items: center; justify-content: center;
-      padding: 0.3cqw;
     }
+    /* 大きさを統一：高さを揃え、幅は上限で抑えて光学的にバランス */
     .s-clients-logo img {
-      max-width: 100%; max-height: 100%; object-fit: contain; display: block;
+      max-height: 2.2cqw; max-width: 88%;
+      object-fit: contain; display: block;
     }
 
     /* TYPE 05b: サービス（アイコングリッド・2カラム×4） */
@@ -1698,10 +1704,10 @@ function worksLogoWall() {
 // ============================================================
 function slideClients() {
   const list = [
-    '株式会社伊藤園','亀田製菓株式会社','おやつカンパニー','株式会社サンドラッグ','株式会社西部ライオンズ','西武鉄道株式会社','日東紡績株式会社','株式会社山本海苔店',
-    '日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','スポーツ庁','東京メトロ','アマノ株式会社','株式会社Gunosy','JR東日本スタートアップ株式会社',
-    '株式会社マイナビ','早稲田大学','東京農工大学','東京大学','明光義塾','ココカラファイン','有限責任監査法人トーマツ','武田薬品工業株式会社',
-    'EY Japan','福岡女子商業高等学校','国立新美術館','エイベックス・エンターテイメント','日本フルハーフ株式会社','株式会社山洋','JRA','京葉ガス',
+    '株式会社伊藤園','亀田製菓株式会社','おやつカンパニー','株式会社サンドラッグ','JRA','京葉ガス','株式会社西部ライオンズ','西武鉄道株式会社',
+    '日東紡績株式会社','株式会社山本海苔店','日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','スポーツ庁','東京メトロ','アマノ株式会社',
+    '株式会社Gunosy','JR東日本スタートアップ株式会社','株式会社マイナビ','早稲田大学','東京農工大学','東京大学','明光義塾','ココカラファイン',
+    '有限責任監査法人トーマツ','武田薬品工業株式会社','EY Japan','福岡女子商業高等学校','国立新美術館','エイベックス・エンターテイメント','日本フルハーフ株式会社','株式会社山洋',
   ];
   const ext = {
     '株式会社伊藤園':'svg','亀田製菓株式会社':'svg','おやつカンパニー':'png','株式会社サンドラッグ':'png','株式会社西部ライオンズ':'svg','西武鉄道株式会社':'svg','日東紡績株式会社':'svg','株式会社山本海苔店':'svg',
@@ -1717,7 +1723,7 @@ function slideClients() {
     <div class="s-clients-top"><span class="badge">CLIENTS</span></div>
     <div class="s-clients-main">
       <h2 class="s-clients-head">幅広い業界のブランドと向き合ってきました。</h2>
-      <div class="s-clients-grid">${items}</div>
+      <div class="s-clients-band"><div class="s-clients-grid">${items}</div></div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
   </div>
