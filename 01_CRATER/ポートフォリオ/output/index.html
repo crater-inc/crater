@@ -748,6 +748,48 @@
     /* パターン0：主役2枚横並び（左右1個ずつ） */
     .s-works-duo { flex: 1; display: flex; gap: 1.6cqw; min-height: 0; }
     .s-works-duo .s-works-hero { flex: 1; }
+    /* スマホ縦：横向き推奨オーバーレイ */
+    .rotate-hint { display: none; }
+    @media (max-width: 950px) and (orientation: portrait) {
+      .rotate-hint {
+        display: flex; position: fixed; inset: 0; z-index: 1000;
+        background: #000; color: #fff;
+        align-items: center; justify-content: center; text-align: center;
+      }
+      .rotate-hint-inner { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 32px; }
+      .rotate-hint-inner svg {
+        width: 64px; height: 64px; fill: none; stroke: #fff;
+        stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+        animation: rotateHint 2s ease-in-out infinite;
+      }
+      @keyframes rotateHint { 0%,60%,100% { transform: rotate(0deg); } 30% { transform: rotate(90deg); } }
+      .rotate-hint-main { font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 18px; letter-spacing: 0.04em; }
+      .rotate-hint-sub { font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+      /* 縦のときは操作UIを隠す */
+      .menu-btn, .pdf-btn, .nav-prev, .nav-next, .progress-bar { display: none !important; }
+    }
+
+    /* パターンS：1社1枚 */
+    .s-works-single { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+    .s-works-single-img { flex: 1; background: #B8B8B8; overflow: hidden; min-height: 0; }
+    .s-works-single-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* パターンF：全幅ドカーン（フルブリード） */
+    .s-worksfull { height: 100%; position: relative; overflow: hidden; }
+    .s-worksfull-img { position: absolute; inset: 0; background: #9a9a9a; }
+    .s-worksfull-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .s-worksfull-top {
+      position: absolute; top: 2.4cqw; left: 2.4cqw; z-index: 2;
+      display: flex; align-items: center; gap: 1.4cqw;
+    }
+    .s-worksfull-cat { font-family: var(--font-en); font-size: 1.0cqw; font-weight: 500; letter-spacing: 0.1em; color: #fff; }
+    .s-worksfull-cat-ja { font-family: var(--font-ja-m); font-size: 0.95cqw; color: rgba(255,255,255,0.8); letter-spacing: 0.08em; }
+    .s-worksfull-cap {
+      position: absolute; left: 2.4cqw; bottom: 2.4cqw; z-index: 2;
+      display: flex; flex-direction: column; gap: 0.2cqw;
+    }
+    .s-worksfull-cap-cat { font-family: var(--font-en); font-size: 0.78cqw; letter-spacing: 0.16em; color: rgba(255,255,255,0.75); text-transform: uppercase; }
+    .s-worksfull-cap-client { font-family: var(--font-ja-m); font-size: 1.3cqw; color: #fff; letter-spacing: 0.02em; }
+
     /* ロゴ大量ページ（ガシャッと敷き詰め・8列） */
     .s-logowall {
       flex: 1; display: grid;
@@ -782,8 +824,8 @@
       display: flex; flex-direction: column; position: relative;
     }
     .s-clients-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
-    .s-clients-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; }
-    .s-clients-head { font-family: var(--font-ja-m); font-size: 1.8cqw; letter-spacing: 0.04em; line-height: 1.4; }
+    .s-clients-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; padding-top: 3.2cqw; }
+    .s-clients-head { font-family: var(--font-ja-m); font-size: 1.7cqw; letter-spacing: 0.04em; line-height: 1.4; }
     .s-clients-grid {
       display: grid; grid-template-columns: repeat(6, 1fr);
       gap: 1.6cqw 2cqw;
@@ -834,24 +876,48 @@
       color: var(--c-sub); line-height: 1.6; margin-top: 0.2cqw;
     }
 
-    /* AWARD（受賞歴リスト） */
-    .s-award-list { display: flex; flex-direction: column; }
-    .s-award-row {
-      display: grid; grid-template-columns: 6cqw 1fr; align-items: baseline;
-      gap: 1cqw; padding: 1cqw 0; border-bottom: 1px solid var(--c-border);
+    /* AWARD＆PUBLICITY（受賞歴・メディア掲載 2カラム全件） */
+    .s-award2 {
+      height: 100%; padding: 2.4cqw 3.6cqw 2.6cqw 2.4cqw;
+      display: flex; flex-direction: column; position: relative;
     }
-    .s-award-row:first-child { border-top: 1px solid var(--c-border); }
-    .s-award-year {
-      font-family: var(--font-en); font-size: 1.2cqw;
-      color: var(--c-sub); letter-spacing: 0.04em;
+    .s-award2-topbar {
+      flex-shrink: 0; display: flex; align-items: center; gap: 1.2cqw;
+      margin-bottom: 1.4cqw;
     }
-    .s-award-title {
-      font-family: var(--font-ja-m); font-size: 1.15cqw;
-      color: var(--c-text); letter-spacing: 0.02em; line-height: 1.5;
+    .s-award2-lead {
+      font-family: var(--font-ja-m); font-size: 1.0cqw;
+      letter-spacing: 0.06em; color: var(--c-text);
     }
-    .s-award-media {
-      font-family: var(--font-ja); font-size: 0.85cqw;
-      color: var(--c-sub); letter-spacing: 0.02em; line-height: 1.7; margin-top: 0.4cqw;
+    .s-award2-cols {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0 3.2cqw; min-height: 0;
+    }
+    .s-award2-col { display: flex; flex-direction: column; min-height: 0; }
+    .s-award2-h {
+      display: flex; align-items: baseline; gap: 0.8cqw;
+      padding-bottom: 0.5cqw; margin-bottom: 0.4cqw;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+    }
+    .s-award2-h-en {
+      font-family: var(--font-en); font-size: 1.15cqw;
+      font-weight: 500; letter-spacing: 0.1em;
+    }
+    .s-award2-h-ja {
+      font-family: var(--font-ja-m); font-size: 0.72cqw;
+      color: var(--c-sub); letter-spacing: 0.06em;
+    }
+    .s-award2-row {
+      display: grid; grid-template-columns: 2.6cqw 1fr;
+      gap: 0.6cqw; align-items: baseline; padding: 0.26cqw 0;
+    }
+    .s-award2-y {
+      font-family: var(--font-en); font-size: 0.66cqw;
+      color: var(--c-sub); letter-spacing: 0.02em;
+    }
+    .s-award2-t {
+      font-family: var(--font-ja-m); font-size: 0.66cqw;
+      color: var(--c-text); letter-spacing: 0.01em; line-height: 1.4;
     }
 
     /* PDFダウンロードボタン（ハンバーガー左・控えめ） */
@@ -893,6 +959,13 @@
 </head>
 <body>
 
+<div class="rotate-hint" id="rotate-hint">
+  <div class="rotate-hint-inner">
+    <svg viewBox="0 0 24 24"><path d="M2 8a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2z"/><path d="M17 6l3 3-3 3"/><path d="M20 9h-5a3 3 0 0 0-3 3"/></svg>
+    <p class="rotate-hint-main">スマホを横にしてご覧ください</p>
+    <p class="rotate-hint-sub">横向きで全画面表示されます</p>
+  </div>
+</div>
 <div class="slide-stage" id="slide-stage"></div>
 <div class="nav-prev" id="nav-prev"></div>
 <div class="nav-next" id="nav-next"></div>
@@ -926,23 +999,23 @@
 function slide01Cover() {
   return `<section class="slide" data-section="cover" data-notes="本日はお時間をいただきありがとうございます。株式会社クレーターの会社概要をご覧ください。">
   <div style="height:100%;background:#000;position:relative;display:flex;overflow:hidden;">
-    <!-- 左：宇宙飛行士ビジュアル（Pencilで実写真を配置） -->
-    <div style="width:52%;height:100%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;">
-      <span style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.2em;color:rgba(255,255,255,0.14);">ASTRONAUT VISUAL</span>
-    </div>
-    <!-- 右：CRATER | WORKS -->
-    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+    <!-- 左：CRATERロゴ | PROFILE -->
+    <div style="flex:1;display:flex;align-items:center;padding-left:7cqw;">
       <div style="display:flex;align-items:center;gap:2.4cqw;">
-        <div style="display:flex;flex-direction:column;gap:0.5cqw;align-items:flex-start;">
-          <span style="font-family:var(--font-en);font-weight:700;font-size:3.0cqw;color:#fff;letter-spacing:0.02em;line-height:1;">CRATER</span>
+        <div style="display:flex;flex-direction:column;gap:0.9cqw;align-items:flex-start;">
+          <img src="assets/logo.svg" alt="CRATER" style="height:2.2cqw;width:auto;filter:invert(1);display:block;">
           <span style="font-family:var(--font-ja-m);font-size:0.8cqw;color:rgba(255,255,255,0.55);letter-spacing:0.1em;">株式会社クレーター</span>
         </div>
-        <div style="width:1px;height:3.6cqw;background:rgba(255,255,255,0.3);"></div>
-        <div style="display:flex;flex-direction:column;gap:0.5cqw;align-items:flex-start;">
-          <span style="font-family:var(--font-en);font-style:italic;font-weight:500;font-size:3.0cqw;color:#fff;letter-spacing:0.02em;line-height:1;">WORKS</span>
-          <span style="font-family:var(--font-ja-m);font-size:0.8cqw;color:rgba(255,255,255,0.55);letter-spacing:0.1em;">制作実績</span>
+        <div style="width:1px;height:3.4cqw;background:rgba(255,255,255,0.3);"></div>
+        <div style="display:flex;flex-direction:column;gap:0.7cqw;align-items:flex-start;">
+          <span style="font-family:var(--font-en);font-weight:500;font-size:2.6cqw;color:#fff;letter-spacing:0.1em;line-height:1;">PROFILE</span>
+          <span style="font-family:var(--font-ja-m);font-size:0.8cqw;color:rgba(255,255,255,0.55);letter-spacing:0.1em;">会社案内</span>
         </div>
       </div>
+    </div>
+    <!-- 右：宇宙飛行士ビジュアル（Pencilで実写真を配置） -->
+    <div style="width:50%;height:100%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.2em;color:rgba(255,255,255,0.14);">ASTRONAUT VISUAL</span>
     </div>
     <p class="slide-copy" style="color:rgba(255,255,255,0.5);">©CRATER Inc. 2026</p>
   </div>
@@ -1432,6 +1505,49 @@ function worksDetail(cfg) {
 }
 
 // ============================================================
+// パターンS：1社1枚（大きく1点だけ・キャプション下）
+// ============================================================
+function worksSingle(cfg) {
+  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.hero.client} を1枚で大きく見せる。">
+  <div class="s-works">
+    ${worksHead(cfg.en, cfg.ja)}
+    <div class="s-works-body">
+      <div class="s-works-single">
+        <div class="s-works-single-img"></div>
+        <div class="s-works-cap">
+          <span class="s-works-cap-cat">${cfg.hero.cat}</span>
+          <span class="s-works-cap-client">${cfg.hero.client}</span>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// パターンF：全幅ドカーン（左右いっぱいフルブリード・文字オーバーレイ）
+// ============================================================
+function worksFull(cfg) {
+  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.client} をフルブリードで大きく見せる。">
+  <div class="s-worksfull">
+    <div class="s-worksfull-img"></div>
+    <div class="s-worksfull-top">
+      <span class="badge">WORKS</span>
+      <span class="s-worksfull-cat">${cfg.en}</span>
+      <span class="s-works-divider" style="background:rgba(255,255,255,0.4);"></span>
+      <span class="s-worksfull-cat-ja">${cfg.ja}</span>
+    </div>
+    <div class="s-worksfull-cap">
+      <span class="s-worksfull-cap-cat">${cfg.cat}</span>
+      <span class="s-worksfull-cap-client">${cfg.client}</span>
+    </div>
+    <p class="slide-copy" style="color:rgba(255,255,255,0.6);">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
 // パターンB：全面の密なグリッド（点数を多く）
 // ============================================================
 function worksGrid(cfg) {
@@ -1453,28 +1569,65 @@ function worksGrid(cfg) {
 // ============================================================
 function slideAward() {
   const awards = [
-    { y: '2023', t: 'A’DESIGN AWARD 2023 ｜ 銀賞（SILVER）' },
-    { y: '2023', t: 'ASIA DESIGN PRIZE 2023 ｜ 金賞（GOLD）' },
-    { y: '2022', t: 'German Design Award 2023 ｜ Special Mention' },
-    { y: '2022', t: 'MUSE Creative Awards ｜ GOLD ×2 / SILVER ×1' },
-    { y: '2022', t: 'K-DESIGN AWARD ｜ GOLD ×2 / SILVER ×1' },
-    { y: '2022', t: '第10回 ジャパンシックスシートアワード ｜ 協賛企業賞' },
-    { y: '2023', t: '日本タイポグラフィ年鑑2023 ｜ VI部門 審査委員賞' },
-    { y: '2026', t: '日本タイポグラフィ年鑑2026 ｜ シンボルマーク部門 入選' },
+    ['2026', '日本タイポグラフィ年鑑2026 シンボルマーク部門 入選'],
+    ['2023', '日本タイポグラフィ年鑑2023 VI部門 審査委員賞×1 入選×2'],
+    ['2023', 'A’DESIGN AWARD 2023 銀賞（SILVER）'],
+    ['2023', 'ASIA DESIGN PRIZE 2023 金賞（GOLD）'],
+    ['2022', 'C-IDEA DESIGN AWARD 2022 銀賞×1 デザイン賞×1'],
+    ['2022', '第10回 ジャパンシックスシートアワード2022 協賛企業賞'],
+    ['2022', '日本タイポグラフィ年鑑2022 VI部門 審査委員賞×1 入選×2'],
+    ['2022', 'German Design Award 2023 Special Mention'],
+    ['2022', 'MUSE Creative Awards GOLD×2 SILVER×1'],
+    ['2022', 'K-DESIGN AWARD GOLD×2 SILVER×1'],
+    ['2021', '日本タイポグラフィ年鑑2021 VI部門 入選'],
+    ['2021', 'K-DESIGN AWARD ファイナリスト'],
+    ['2020', 'c-idea design award 入賞'],
+    ['2020', '日本のロゴ・マーク50年 入選'],
+    ['2020', '日本タイポグラフィ年鑑2020 シンボルマーク部門 入選'],
+    ['2019', '日本タイポグラフィ年鑑2019 シンボルマーク部門 入選'],
   ];
-  const rows = awards.map(function (a) {
-    return `<div class="s-award-row">
-        <span class="s-award-year">${a.y}</span>
-        <span class="s-award-title">${a.t}</span>
-      </div>`;
-  }).join('');
-  return `<section class="slide" data-section="award" data-notes="国内外のデザインアワード受賞歴。第三者評価の裏付けです。">
-  <div class="s-clients">
-    <div class="s-clients-top"><span class="badge">AWARD</span></div>
-    <div class="s-clients-main">
-      <h2 class="s-clients-head">国内外のデザイン賞で、<br>継続的に評価されています。</h2>
-      <div class="s-award-list">${rows}</div>
-      <p class="s-award-media">掲載：デザインノートPremium／パッケージand（日本パッケージデザイン協会）／日本タイポグラフィ年鑑／ジャパン・クリエイターズ2025 ほか</p>
+  const media = [
+    ['2026', 'パッケージand（日本パッケージデザイン協会）'],
+    ['2026', '日本タイポグラフィ年鑑2026（パイインターナショナル）'],
+    ['2026', 'デザインノートPremium「梅原真のシゴト」（誠文堂新光社）'],
+    ['2025', 'デザインノートPremium「デザインと配色」（誠文堂新光社）'],
+    ['2025', 'ジャパン・クリエイターズ2025（カラーズ）'],
+    ['2025', '書と文字の年鑑（カラーズ）'],
+    ['2025', 'デザインノートPremium「デザインの攻略本」（誠文堂新光社）'],
+    ['2024', 'デザインノートPremium「今さら聞けないデザインのきほん」'],
+    ['2024', 'ジャパン・クリエイターズ2024（カラーズ）'],
+    ['2023', 'ジャパン・クリエイターズ2023（カラーズ）'],
+    ['2023', 'デザインノートPremium「文字を極める」（誠文堂新光社）'],
+    ['2023', '日本タイポグラフィ年鑑2022（パイインターナショナル）'],
+    ['2022', 'デザインノートPremium「成功するブランディングデザイン」（誠文堂新光社）'],
+    ['2022', 'ジャパン・クリエイターズ2022（カラーズ）'],
+    ['2021', 'デザインノートPremium「最強のブランディングデザイン」（誠文堂新光社）'],
+    ['2021', '日本タイポグラフィ年鑑2021（パイインターナショナル）'],
+    ['2021', 'ジャパン・クリエイターズ2021（カラーズ）'],
+    ['2020', '日本のロゴ・マーク50年（パイインターナショナル）'],
+    ['2020', '日本タイポグラフィ年鑑2020（パイインターナショナル）'],
+    ['2019', '日本タイポグラフィ年鑑2019（パイインターナショナル）'],
+  ];
+  const toRows = function (arr) {
+    return arr.map(function (r) {
+      return `<div class="s-award2-row"><span class="s-award2-y">${r[0]}</span><span class="s-award2-t">${r[1]}</span></div>`;
+    }).join('');
+  };
+  return `<section class="slide" data-section="award" data-notes="国内外のデザインアワード受賞歴とメディア掲載。第三者評価の裏付けです。">
+  <div class="s-award2">
+    <div class="s-award2-topbar">
+      <span class="badge">AWARD</span>
+      <span class="s-award2-lead">受賞歴・メディア掲載</span>
+    </div>
+    <div class="s-award2-cols">
+      <div class="s-award2-col">
+        <div class="s-award2-h"><span class="s-award2-h-en">AWARD</span><span class="s-award2-h-ja">受賞歴</span></div>
+        ${toRows(awards)}
+      </div>
+      <div class="s-award2-col">
+        <div class="s-award2-h"><span class="s-award2-h-en">PUBLICITY</span><span class="s-award2-h-ja">出版物・メディア掲載</span></div>
+        ${toRows(media)}
+      </div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
   </div>
@@ -1515,6 +1668,7 @@ function slideClients() {
     '日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','スポーツ庁','東京メトロ','アマノ株式会社',
     '株式会社Gunosy','JR東日本スタートアップ株式会社','株式会社マイナビ','早稲田大学','東京農工大学','東京大学',
     '明光義塾','ココカラファイン','有限責任監査法人トーマツ','武田薬品工業株式会社','EY Japan','福岡女子商業高等学校',
+    '国立新美術館','エイベックス・エンタテインメント','株式会社おやつカンパニー','株式会社サンドラッグ','日本フルハーフ株式会社','株式会社山洋',
   ];
   const items = list.map(function (c) {
     return `<div class="s-clients-logo"><span>${c}</span></div>`;
@@ -1544,6 +1698,18 @@ function worksDetailSeibu() {
       { cat: 'Web', client: '特設サイト' },
       { cat: 'Goods', client: 'グッズ・ノベルティ' },
     ],
+  });
+}
+function worksFullSeibu() {
+  return worksFull({
+    id: 'works-full', en: 'BRANDING / VI', ja: 'ブランディング・VI',
+    cat: 'VI / Key Visual', client: '株式会社西武ライオンズ｜ブルーシリーズ第一弾VI',
+  });
+}
+function worksSingleIto() {
+  return worksSingle({
+    id: 'works-single', en: 'PACKAGE', ja: 'パッケージデザイン',
+    hero: { cat: 'Package', client: '株式会社伊藤園｜お～いお茶 まろやか さくら緑茶パッケージ' },
   });
 }
 function worksPackage() {
@@ -1614,7 +1780,9 @@ window.slideFactories = [
   slideAward,
   slideClients,
   worksBreak,
+  worksFullSeibu,
   worksPackage,
+  worksSingleIto,
   worksVI,
   worksGraphic,
   worksLogo,
@@ -1631,7 +1799,9 @@ window.agendaItems = [
   { id: 'award',        label: 'AWARD（受賞歴）' },
   { id: 'clients',      label: 'クライアント' },
   { id: 'works-break',  label: 'WORKS（扉）' },
+  { id: 'works-full',   label: 'WORKS｜全幅ドカーン' },
   { id: 'works-package',label: 'WORKS｜パッケージ' },
+  { id: 'works-single', label: 'WORKS｜1社1枚' },
   { id: 'works-vi',     label: 'WORKS｜VI' },
   { id: 'works-graphic',label: 'WORKS｜グラフィック' },
   { id: 'works-logo',   label: 'WORKS｜ロゴ' },
