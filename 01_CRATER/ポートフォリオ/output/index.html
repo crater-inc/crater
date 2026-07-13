@@ -804,19 +804,25 @@
       font-family: var(--font-ja-m); font-size: 0.6cqw;
       color: var(--c-sub); letter-spacing: 0.01em; line-height: 1.3;
     }
-    /* キャプション（カテゴリー＋クライアント名） */
-    .s-works-cap { padding-top: 0.55cqw; display: flex; flex-direction: column; gap: 0.1cqw; }
-    .s-works-cap-cat {
-      font-family: var(--font-en); font-size: 0.62cqw;
-      letter-spacing: 0.16em; color: var(--c-sub); text-transform: uppercase;
+    /* キャプション（クライアント名＝左／カテゴリー＝右）
+       高さを固定して、主役・グリッドとも画像の下ラインを揃える */
+    .s-works-cap {
+      height: 2cqw; flex-shrink: 0; padding-top: 0.5cqw;
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1cqw;
     }
     .s-works-cap-client {
-      font-family: var(--font-ja-m); font-size: 0.82cqw;
-      letter-spacing: 0.02em; color: var(--c-text); line-height: 1.35;
+      font-family: var(--font-ja-m); font-size: 0.72cqw;
+      letter-spacing: 0.02em; color: var(--c-text); line-height: 1.3;
+      overflow: hidden;
     }
-    .s-works-hero .s-works-cap { padding-top: 0.7cqw; gap: 0.2cqw; }
-    .s-works-hero .s-works-cap-cat { font-size: 0.78cqw; }
-    .s-works-hero .s-works-cap-client { font-size: 1.05cqw; }
+    .s-works-cap-cat {
+      font-family: var(--font-en); font-size: 0.56cqw;
+      letter-spacing: 0.14em; color: var(--c-sub); text-transform: uppercase;
+      white-space: nowrap; flex-shrink: 0; text-align: right;
+    }
+    .s-works-hero .s-works-cap { height: 2cqw; padding-top: 0.5cqw; }
+    .s-works-hero .s-works-cap-client { font-size: 0.92cqw; }
+    .s-works-hero .s-works-cap-cat { font-size: 0.66cqw; }
 
     /* TYPE 14: クライアント（ロゴグリッド） */
     .s-clients {
@@ -1436,8 +1442,8 @@ function worksCell(w) {
   return `<div class="s-works-cell">
         <div class="s-works-cell-img"></div>
         <div class="s-works-cap">
-          <span class="s-works-cap-cat">${w.cat}</span>
           <span class="s-works-cap-client">${w.client}</span>
+          <span class="s-works-cap-cat">${w.cat}</span>
         </div>
       </div>`;
 }
@@ -1446,8 +1452,8 @@ function worksHero(w) {
   return `<div class="s-works-hero">
         <div class="s-works-hero-img"></div>
         <div class="s-works-cap">
-          <span class="s-works-cap-cat">${w.cat}</span>
           <span class="s-works-cap-client">${w.client}</span>
+          <span class="s-works-cap-cat">${w.cat}</span>
         </div>
       </div>`;
 }
@@ -1515,8 +1521,8 @@ function worksSingle(cfg) {
       <div class="s-works-single">
         <div class="s-works-single-img"></div>
         <div class="s-works-cap">
-          <span class="s-works-cap-cat">${cfg.hero.cat}</span>
           <span class="s-works-cap-client">${cfg.hero.client}</span>
+          <span class="s-works-cap-cat">${cfg.hero.cat}</span>
         </div>
       </div>
     </div>
