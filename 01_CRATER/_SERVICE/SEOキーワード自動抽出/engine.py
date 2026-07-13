@@ -165,12 +165,13 @@ def main(sites=None, dry=False):
         rows = []
         for k, it in enumerate(chosen, 1):
             ku = "トレンド" if it["fresh"] else "定番"
-            rows.append([max_no + k, today, it["kw"], "", ku, it["vol"], it["diff"],
+            # 列: No./抽出日/キーワード/区分/検索ボリューム/SEO難易度/ステータス/ブログカテゴリ/校正チェック日/アップ日/記事URL/アクセス数
+            rows.append([max_no + k, today, it["kw"], ku, it["vol"], it["diff"],
                          "", "", "", "", "", ""])
-        print(f"[{tab}] {len(rows)}個採用: " + ", ".join(f"{r[2]}({r[5]})" for r in rows))
+        print(f"[{tab}] {len(rows)}個採用: " + ", ".join(f"{r[2]}({r[4]})" for r in rows))
         if not dry:
             start = len(existing_vals) + 2
-            ws.update(rows, f"A{start}:M{start+len(rows)-1}", value_input_option="USER_ENTERED")
+            ws.update(rows, f"A{start}:L{start+len(rows)-1}", value_input_option="USER_ENTERED")
     print("完了", today)
 
 
