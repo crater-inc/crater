@@ -868,17 +868,26 @@
 
 function slide01Cover() {
   return `<section class="slide" data-section="cover" data-notes="本日はお時間をいただきありがとうございます。株式会社クレーターの会社概要をご覧ください。">
-  <div class="s-cover">
-    <div class="s-cover-top"></div>
-    <div class="s-cover-main">
-      <p class="s-cover-client">株式会社クレーター</p>
-      <h1 class="s-cover-title" style="font-family:var(--font-en);font-weight:500;font-size:3.0cqw;letter-spacing:0.01em;">Company Portfolio</h1>
-      <p class="s-cover-sub">この星に、つめあとを残せ。</p>
+  <div style="height:100%;background:#000;position:relative;display:flex;overflow:hidden;">
+    <!-- 左：宇宙飛行士ビジュアル（Pencilで実写真を配置） -->
+    <div style="width:52%;height:100%;background:#0a0a0a;display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:var(--font-en);font-size:0.85cqw;letter-spacing:0.2em;color:rgba(255,255,255,0.14);">ASTRONAUT VISUAL</span>
     </div>
-    <div class="s-cover-footer">
-      <img src="assets/logo.svg" alt="CRATER" style="height:1.4cqw;width:auto;">
-      <span class="logo-footer-copy">©CRATER Inc.</span>
+    <!-- 右：CRATER | WORKS -->
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+      <div style="display:flex;align-items:center;gap:2.4cqw;">
+        <div style="display:flex;flex-direction:column;gap:0.5cqw;align-items:flex-start;">
+          <span style="font-family:var(--font-en);font-weight:700;font-size:3.0cqw;color:#fff;letter-spacing:0.02em;line-height:1;">CRATER</span>
+          <span style="font-family:var(--font-ja-m);font-size:0.8cqw;color:rgba(255,255,255,0.55);letter-spacing:0.1em;">株式会社クレーター</span>
+        </div>
+        <div style="width:1px;height:3.6cqw;background:rgba(255,255,255,0.3);"></div>
+        <div style="display:flex;flex-direction:column;gap:0.5cqw;align-items:flex-start;">
+          <span style="font-family:var(--font-en);font-style:italic;font-weight:500;font-size:3.0cqw;color:#fff;letter-spacing:0.02em;line-height:1;">WORKS</span>
+          <span style="font-family:var(--font-ja-m);font-size:0.8cqw;color:rgba(255,255,255,0.55);letter-spacing:0.1em;">制作実績</span>
+        </div>
+      </div>
     </div>
+    <p class="slide-copy" style="color:rgba(255,255,255,0.5);">©CRATER Inc. 2026</p>
   </div>
 </section>`;
 }
@@ -1439,9 +1448,10 @@ function slideAward() {
 // ============================================================
 function slideClients() {
   const list = [
-    '株式会社伊藤園','株式会社西武ライオンズ','JRA 日本中央競馬会','亀田製菓株式会社','株式会社おやつカンパニー',
-    '株式会社山本海苔店','株式会社サンドラッグ','国立新美術館','エイベックス・エンタテインメント','日東紡績株式会社',
-    '株式会社Gunosy','TOKYO MX','西武鉄道株式会社','尾山神社','株式会社プロダクション人力舎',
+    '株式会社伊藤園','亀田製菓株式会社','株式会社西武ライオンズ','西武鉄道株式会社','日東紡績株式会社',
+    '株式会社山本海苔店','日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','株式会社マイナビ',
+    'アマノ株式会社','株式会社Gunosy','JR東日本スタートアップ株式会社','早稲田大学','東京大学',
+    'ココカラファイン','有限責任監査法人トーマツ','武田薬品工業株式会社','日本フルハーフ株式会社','EY Japan',
   ];
   const items = list.map(function (c) {
     return `<div class="s-clients-logo"><span>${c}</span></div>`;
