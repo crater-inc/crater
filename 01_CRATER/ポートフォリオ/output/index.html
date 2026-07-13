@@ -488,7 +488,7 @@
     .s-number-period {
       display: block; margin-top: 0.5cqw;
       font-family: var(--font-en); font-size: 0.72cqw;
-      letter-spacing: 0.06em; color: var(--c-light);
+      letter-spacing: 0.06em; color: #555;
     }
 
 
@@ -542,7 +542,7 @@
     }
     .s-overview-table td {
       padding: 0.9cqw 0 0.9cqw 2cqw;
-      font-family: var(--font-en), var(--font-ja-b); font-size: 1.2cqw;
+      font-family: var(--font-en), var(--font-ja-b); font-weight: 700; font-size: 1.05cqw;
       line-height: 1.6; color: var(--c-text);
     }
 
@@ -790,19 +790,24 @@
     .s-worksfull-cap-cat { font-family: var(--font-en); font-size: 0.78cqw; letter-spacing: 0.16em; color: rgba(255,255,255,0.75); text-transform: uppercase; }
     .s-worksfull-cap-client { font-family: var(--font-ja-m); font-size: 1.3cqw; color: #fff; letter-spacing: 0.02em; }
 
-    /* ロゴ大量ページ（ガシャッと敷き詰め・8列） */
+    /* ロゴ大量ページ（ガシャッと敷き詰め・9列＋社名キャプション） */
+    .s-works-wall { padding-bottom: 3.8cqw; }  /* 右下コピーの領域を確保 */
     .s-logowall {
       flex: 1; display: grid;
-      grid-template-columns: repeat(8, 1fr); grid-auto-rows: 1fr;
-      gap: 0.8cqw; min-height: 0;
+      grid-template-columns: repeat(9, 1fr); grid-auto-rows: 1fr;
+      gap: 0.7cqw; min-height: 0;
     }
-    .s-logowall-cell {
-      background: #ffffff; display: flex; align-items: center; justify-content: center;
-      padding: 0.4cqw; text-align: center;
+    .s-logowall-cell { display: flex; flex-direction: column; min-height: 0; }
+    .s-logowall-box {
+      flex: 1; background: #ffffff; min-height: 0;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-    .s-logowall-cell span {
-      font-family: var(--font-ja-m); font-size: 0.6cqw;
-      color: var(--c-sub); letter-spacing: 0.01em; line-height: 1.3;
+    .s-logowall-box img { max-width: 78%; max-height: 66%; object-fit: contain; }
+    .s-logowall-name {
+      font-family: var(--font-ja-m); font-size: 0.48cqw;
+      color: var(--c-sub); letter-spacing: 0.01em; line-height: 1.2;
+      text-align: center; padding-top: 0.25cqw;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     /* キャプション（クライアント名＝左／カテゴリー＝右）
        高さを固定して、主役・グリッドとも画像の下ラインを揃える */
@@ -902,29 +907,39 @@
     .s-award2-col { display: flex; flex-direction: column; min-height: 0; }
     .s-award2-h {
       display: flex; align-items: baseline; gap: 0.8cqw;
-      padding-bottom: 0.5cqw; margin-bottom: 0.4cqw;
+      padding-bottom: 0.6cqw; margin-bottom: 0.6cqw;
       border-bottom: 1px solid rgba(0,0,0,0.25);
     }
     .s-award2-h-en {
-      font-family: var(--font-en); font-size: 1.15cqw;
+      font-family: var(--font-en); font-size: 1.3cqw;
       font-weight: 500; letter-spacing: 0.1em;
     }
     .s-award2-h-ja {
-      font-family: var(--font-ja-m); font-size: 0.72cqw;
+      font-family: var(--font-ja-m); font-size: 0.8cqw;
       color: var(--c-sub); letter-spacing: 0.06em;
     }
+    .s-award2-body { flex: 1; display: flex; gap: 1.6cqw; min-height: 0; }
+    .s-award2-list {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: space-between; min-height: 0;
+    }
     .s-award2-row {
-      display: grid; grid-template-columns: 2.6cqw 1fr;
-      gap: 0.6cqw; align-items: baseline; padding: 0.26cqw 0;
+      display: grid; grid-template-columns: 2.8cqw 1fr;
+      gap: 0.7cqw; align-items: baseline;
     }
     .s-award2-y {
-      font-family: var(--font-en); font-size: 0.66cqw;
+      font-family: var(--font-en); font-size: 0.74cqw;
       color: var(--c-sub); letter-spacing: 0.02em;
     }
     .s-award2-t {
-      font-family: var(--font-ja-m); font-size: 0.66cqw;
+      font-family: var(--font-ja-m); font-size: 0.74cqw;
       color: var(--c-text); letter-spacing: 0.01em; line-height: 1.4;
     }
+    .s-award2-thumbs {
+      flex: 0 0 7cqw; display: flex; flex-direction: column; gap: 0.9cqw;
+    }
+    .s-award2-thumb { flex: 1; background: #c4c4c4; overflow: hidden; }
+    .s-award2-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* PDFダウンロードボタン（ハンバーガー左・控えめ） */
     .pdf-btn {
@@ -1238,6 +1253,16 @@ function slide07Number() {
       <div class="s-number-inner">
       <div class="s-number-item">
         <div class="s-number-upper">
+          <p class="s-number-label">SINCE 2013</p>
+          <div class="s-number-num-row">
+            <span class="s-number-num">13</span>
+            <span class="s-number-unit">年</span>
+          </div>
+        </div>
+        <p class="s-number-desc">2013年の創業以来、変わらずブランドの価値づくりに向き合い、実績を積み重ねてきました。</p>
+      </div>
+      <div class="s-number-item">
+        <div class="s-number-upper">
           <p class="s-number-label">CLIENTS</p>
           <div class="s-number-num-row">
             <span class="s-number-num">200</span>
@@ -1248,19 +1273,9 @@ function slide07Number() {
       </div>
       <div class="s-number-item">
         <div class="s-number-upper">
-          <p class="s-number-label">SINCE 2013</p>
-          <div class="s-number-num-row">
-            <span class="s-number-num">12</span>
-            <span class="s-number-unit">年</span>
-          </div>
-        </div>
-        <p class="s-number-desc">2013年の創業以来、変わらずブランドの価値づくりに向き合い、実績を積み重ねてきました。</p>
-      </div>
-      <div class="s-number-item">
-        <div class="s-number-upper">
           <p class="s-number-label">DIRECT</p>
           <div class="s-number-num-row">
-            <span class="s-number-num">83</span>
+            <span class="s-number-num">88</span>
             <span class="s-number-unit">%</span>
           </div>
         </div>
@@ -1270,7 +1285,7 @@ function slide07Number() {
         <div class="s-number-upper">
           <p class="s-number-label">REPEAT</p>
           <div class="s-number-num-row">
-            <span class="s-number-num">85</span>
+            <span class="s-number-num">91</span>
             <span class="s-number-unit">%</span>
           </div>
         </div>
@@ -1622,17 +1637,31 @@ function slideAward() {
   return `<section class="slide" data-section="award" data-notes="国内外のデザインアワード受賞歴とメディア掲載。第三者評価の裏付けです。">
   <div class="s-award2">
     <div class="s-award2-topbar">
-      <span class="badge">AWARD</span>
+      <span class="badge">AWARD &amp; MEDIA</span>
       <span class="s-award2-lead">受賞歴・メディア掲載</span>
     </div>
     <div class="s-award2-cols">
       <div class="s-award2-col">
         <div class="s-award2-h"><span class="s-award2-h-en">AWARD</span><span class="s-award2-h-ja">受賞歴</span></div>
-        ${toRows(awards)}
+        <div class="s-award2-body">
+          <div class="s-award2-list">${toRows(awards)}</div>
+          <div class="s-award2-thumbs">
+            <div class="s-award2-thumb"></div>
+            <div class="s-award2-thumb"></div>
+            <div class="s-award2-thumb"></div>
+          </div>
+        </div>
       </div>
       <div class="s-award2-col">
         <div class="s-award2-h"><span class="s-award2-h-en">PUBLICITY</span><span class="s-award2-h-ja">出版物・メディア掲載</span></div>
-        ${toRows(media)}
+        <div class="s-award2-body">
+          <div class="s-award2-list">${toRows(media)}</div>
+          <div class="s-award2-thumbs">
+            <div class="s-award2-thumb"></div>
+            <div class="s-award2-thumb"></div>
+            <div class="s-award2-thumb"></div>
+          </div>
+        </div>
       </div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -1645,17 +1674,19 @@ function slideAward() {
 // ============================================================
 function worksLogoWall() {
   const logos = [
-    'エイベックス','明生電気商会','カディンチェ','瀬戸内海ベンダ','福岡女子商業高校','アズパートナーズ','泉屋旅館','秋山璃帆',
-    '東亜電機工業','ワークス・ジャパン','Madoromi','石川県立工業高校','ロココ企画装飾','FPS','人と空間','芝園開発',
-    'Branding Career','トーヨーコーケン','エンクル','合同会社YIIT','K Company','人力舎 鬼ヶ島','白井松器械','Global Shapers',
-    'プレスタイム','MU合同会社','LMIグループ','和住工業','ATG associates','accenti','Speranza','GATOON',
-    '株式会社NUTS','ローネジャパン','カシカ','たつみ会計事務所','LEPRE','株式会社ハル','LOCAL2','POCKET CREATIVE',
+    'エイベックス','明生電気商会','カディンチェ','瀬戸内海ベンダ','福岡女子商業高校','アズパートナーズ','泉屋旅館','秋山璃帆','東亜電機工業',
+    'ワークス・ジャパン','Madoromi','石川県立工業高校','ロココ企画装飾','FPS','人と空間','芝園開発','Branding Career','トーヨーコーケン',
+    'エンクル','合同会社YIIT','K Company','人力舎 鬼ヶ島','白井松器械','Global Shapers','プレスタイム','MU合同会社','LMIグループ',
+    '和住工業','ATG associates','accenti','Speranza','GATOON','株式会社NUTS','ローネジャパン','カシカ','たつみ会計事務所',
+    'LEPRE','株式会社ハル','LOCAL2','POCKET CREATIVE','新日本エステート','アグラデッソ','悠々舎','B&Sパートナーズ','オーブ',
+    'タゴライン','三宅太鼓','東京ヨーロッパ食材','劇団 亜劇','合同会社rimy','tomotomo','ASANO太鼓 U.S.','リモートワーカー協会','Medical-Art',
+    'エレックジャパン','宇都宮酒造','中島醸造','千代田絨毯','米沢電商','タツミ会計','SK2','ノア精密','日本フルハーフ',
   ];
   const cells = logos.map(function (n) {
-    return `<div class="s-logowall-cell"><span>${n}</span></div>`;
+    return `<div class="s-logowall-cell"><div class="s-logowall-box"></div><p class="s-logowall-name">${n}</p></div>`;
   }).join('');
   return `<section class="slide" data-section="works-logowall" data-notes="ロゴは膨大な数を手がけています。物量で伝えるページ。">
-  <div class="s-works">
+  <div class="s-works s-works-wall">
     ${worksHead('LOGO', 'ロゴ制作実績（一部）')}
     <div class="s-works-body">
       <div class="s-logowall">${cells}</div>
@@ -1670,11 +1701,11 @@ function worksLogoWall() {
 // ============================================================
 function slideClients() {
   const list = [
-    '株式会社伊藤園','亀田製菓株式会社','株式会社西武ライオンズ','西武鉄道株式会社','日東紡績株式会社','株式会社山本海苔店',
-    '日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','スポーツ庁','東京メトロ','アマノ株式会社',
-    '株式会社Gunosy','JR東日本スタートアップ株式会社','株式会社マイナビ','早稲田大学','東京農工大学','東京大学',
-    '明光義塾','ココカラファイン','有限責任監査法人トーマツ','武田薬品工業株式会社','EY Japan','福岡女子商業高等学校',
-    '国立新美術館','エイベックス・エンタテインメント','株式会社おやつカンパニー','株式会社サンドラッグ','日本フルハーフ株式会社','株式会社山洋',
+    '株式会社伊藤園','亀田製菓株式会社','株式会社おやつカンパニー','株式会社サンドラッグ','株式会社西武ライオンズ','西武鉄道株式会社',
+    '日東紡績株式会社','株式会社山本海苔店','日本郵便株式会社','朝日新聞デジタル','アンファー株式会社','スポーツ庁',
+    '東京メトロ','アマノ株式会社','株式会社Gunosy','JR東日本スタートアップ株式会社','株式会社マイナビ','早稲田大学',
+    '東京農工大学','東京大学','明光義塾','ココカラファイン','有限責任監査法人トーマツ','武田薬品工業株式会社',
+    'EY Japan','福岡女子商業高等学校','国立新美術館','エイベックス・エンタテインメント','日本フルハーフ株式会社','株式会社山洋',
   ];
   const items = list.map(function (c) {
     return `<div class="s-clients-logo"><span>${c}</span></div>`;
