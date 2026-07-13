@@ -485,6 +485,11 @@
       font-family: var(--font-ja); font-size: 1.1cqw;
       line-height: 1.8; color: var(--c-sub); min-height: 5cqw;
     }
+    .s-number-period {
+      display: block; margin-top: 0.5cqw;
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.06em; color: var(--c-light);
+    }
 
 
     /* ============================================================
@@ -782,6 +787,42 @@
       color: var(--c-sub); letter-spacing: 0.02em; line-height: 1.4;
     }
 
+    /* TYPE 05b: サービス（アイコングリッド・2カラム×4） */
+    .s-svc {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-svc-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-svc-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; }
+    .s-svc-head { font-family: var(--font-ja-m); font-size: 2cqw; letter-spacing: 0.04em; }
+    .s-svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4cqw 5cqw; }
+    .s-svc-item {
+      display: flex; align-items: flex-start; gap: 1.6cqw;
+      padding: 1.5cqw 0; border-bottom: 1px solid var(--c-border);
+    }
+    .s-svc-icon {
+      width: 3cqw; height: 3cqw; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .s-svc-icon svg {
+      width: 2.6cqw; height: 2.6cqw;
+      fill: none; stroke: var(--c-text); stroke-width: 1.4;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .s-svc-text { display: flex; flex-direction: column; gap: 0.15cqw; padding-top: 0.15cqw; }
+    .s-svc-en {
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.16em; color: var(--c-sub);
+    }
+    .s-svc-name {
+      font-family: var(--font-ja-b); font-size: 1.25cqw;
+      letter-spacing: 0.03em; color: var(--c-text);
+    }
+    .s-svc-desc {
+      font-family: var(--font-ja); font-size: 0.9cqw;
+      color: var(--c-sub); line-height: 1.6; margin-top: 0.2cqw;
+    }
+
     /* AWARD（受賞歴リスト） */
     .s-award-list { display: flex; flex-direction: column; }
     .s-award-row {
@@ -982,57 +1023,40 @@ function slide04Statement() {
 }
 
 function slide05ServiceList() {
-  return `<section class="slide" data-section="service" data-notes="クレーターは5つの領域でデザインを提供しています。領域を限定せず、ブランドに必要なデザインを一貫して担当できることが強みです。">
-  <div class="s-list">
-    <div class="s-list-top"><span class="badge">SERVICE</span></div>
-    <div class="s-list-main">
-      <div class="s-list-left">
-        <h2 class="s-list-heading">価値を、<br>正しく届ける。<br>8つの手法。</h2>
-      </div>
-      <div class="s-list-right">
-        <ul class="s-list-items">
-          <li class="s-list-item">
-            <span class="s-list-num">01</span>
-            <span class="s-list-name">ブランディング</span>
-            <span class="s-list-desc">ブランドを好きになってもらうための活動全般</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">02</span>
-            <span class="s-list-name">VI構築</span>
-            <span class="s-list-desc">視覚的に統一された世界観で企業価値を伝える</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">03</span>
-            <span class="s-list-name">ロゴマーク</span>
-            <span class="s-list-desc">他と差別化する、ブランドの軸となるシンボル</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">04</span>
-            <span class="s-list-name">キービジュアル</span>
-            <span class="s-list-desc">広告・キャンペーンのメインビジュアル策定</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">05</span>
-            <span class="s-list-name">グラフィック</span>
-            <span class="s-list-desc">名刺・パンフ・ポスターなど販促ツール全般</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">06</span>
-            <span class="s-list-name">パッケージ</span>
-            <span class="s-list-desc">顧客に最も近いコミュニケーションツール</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">07</span>
-            <span class="s-list-name">Web</span>
-            <span class="s-list-desc">企画からコーディング・リリースまでワンストップ</span>
-          </li>
-          <li class="s-list-item">
-            <span class="s-list-num">08</span>
-            <span class="s-list-name">コピーライティング</span>
-            <span class="s-list-desc">ネーミング・タグライン・パーパス開発</span>
-          </li>
-        </ul>
-      </div>
+  const svc = [
+    { en: 'BRANDING', name: 'ブランディング', desc: 'ブランドを好きになってもらうための活動全般',
+      icon: '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>' },
+    { en: 'IDENTITY', name: 'VI構築', desc: '視覚的に統一された世界観で企業価値を伝える',
+      icon: '<circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/>' },
+    { en: 'LOGO', name: 'ロゴマーク', desc: '他と差別化する、ブランドの軸となるシンボル',
+      icon: '<path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L7.7 21l2.3-7-6-4.6h7.6z"/>' },
+    { en: 'KEY VISUAL', name: 'キービジュアル', desc: '広告・キャンペーンのメインビジュアル策定',
+      icon: '<rect x="3" y="4" width="18" height="14"/><circle cx="9" cy="10" r="2"/><path d="M3 16l5-4 4 3 3-2 6 5"/>' },
+    { en: 'GRAPHIC', name: 'グラフィック', desc: '名刺・パンフ・ポスターなど販促ツール全般',
+      icon: '<path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/>' },
+    { en: 'PACKAGE', name: 'パッケージ', desc: '顧客に最も近いコミュニケーションツール',
+      icon: '<path d="M21 8 12 3 3 8v8l9 5 9-5V8z"/><path d="M3 8l9 5 9-5M12 13v8"/>' },
+    { en: 'WEB', name: 'Web', desc: '企画からコーディング・リリースまでワンストップ',
+      icon: '<rect x="3" y="4" width="18" height="13"/><path d="M3 8h18M8 21h8"/>' },
+    { en: 'COPYWRITING', name: 'コピーライティング', desc: 'ネーミング・タグライン・パーパス開発',
+      icon: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>' },
+  ];
+  const items = svc.map(function (s) {
+    return `<div class="s-svc-item">
+        <span class="s-svc-icon"><svg viewBox="0 0 24 24">${s.icon}</svg></span>
+        <div class="s-svc-text">
+          <p class="s-svc-en">${s.en}</p>
+          <p class="s-svc-name">${s.name}</p>
+          <p class="s-svc-desc">${s.desc}</p>
+        </div>
+      </div>`;
+  }).join('');
+  return `<section class="slide" data-section="service" data-notes="クレーターが提供する8つのサービス。領域を限定せず、ブランドに必要なデザインを一貫して担えることが強みです。">
+  <div class="s-svc">
+    <div class="s-svc-top"><span class="badge">SERVICE</span></div>
+    <div class="s-svc-main">
+      <h2 class="s-svc-head">ブランドの価値を、正しく届けるために。</h2>
+      <div class="s-svc-grid">${items}</div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
   </div>
@@ -1113,10 +1137,9 @@ function slide07Number() {
   return `<section class="slide" data-section="number" data-notes="クレーターが選ばれる理由を、数字で示します。">
   <div class="s-number">
     <div class="s-number-top">
-      <span class="badge">WHY CRATER</span>
+      <span class="badge">NUMBER</span>
     </div>
-    <div class="s-number-grid" style="flex-direction:column;gap:2.6cqw;">
-      <p class="s-feature-headline" style="text-align:left;align-self:flex-start;">クレーターが選ばれる、理由。</p>
+    <div class="s-number-grid">
       <div class="s-number-inner">
       <div class="s-number-item">
         <div class="s-number-upper">
@@ -1126,17 +1149,17 @@ function slide07Number() {
             <span class="s-number-unit">社+</span>
           </div>
         </div>
-        <p class="s-number-desc">大手から個人まで、業界を限定せず幅広く手がけた実績。</p>
+        <p class="s-number-desc">大手企業から個人まで、業界を限定せず、これまで幅広いブランドの制作をお手伝いしてきました。</p>
       </div>
       <div class="s-number-item">
         <div class="s-number-upper">
-          <p class="s-number-label">FIELDS</p>
+          <p class="s-number-label">SINCE 2013</p>
           <div class="s-number-num-row">
-            <span class="s-number-num">5</span>
-            <span class="s-number-unit">領域</span>
+            <span class="s-number-num">12</span>
+            <span class="s-number-unit">年</span>
           </div>
         </div>
-        <p class="s-number-desc">ロゴからWebまで、全ての接点でブランドの世界観を一貫して統一。</p>
+        <p class="s-number-desc">2013年の創業以来、変わらずブランドの価値づくりに向き合い、実績を積み重ねてきました。</p>
       </div>
       <div class="s-number-item">
         <div class="s-number-upper">
@@ -1146,7 +1169,7 @@ function slide07Number() {
             <span class="s-number-unit">%</span>
           </div>
         </div>
-        <p class="s-number-desc">代理店を介さず、クライアントと直接向き合う。</p>
+        <p class="s-number-desc">代理店を介さず、クライアントと直接向き合った案件の割合。想いをそのまま形にします。<span class="s-number-period">※2022–2025年 自社調べ</span></p>
       </div>
       <div class="s-number-item">
         <div class="s-number-upper">
@@ -1156,7 +1179,7 @@ function slide07Number() {
             <span class="s-number-unit">%</span>
           </div>
         </div>
-        <p class="s-number-desc">想いを丁寧に汲み取り、継続的な信頼を得ている。</p>
+        <p class="s-number-desc">一度ご一緒したクライアントから、再びご依頼いただいた割合。継続的な信頼の証です。<span class="s-number-period">※2022–2025年 自社調べ</span></p>
       </div>
       </div>
     </div>
