@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRATER Company Portfolio</title>
+  <link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
+  <link rel="stylesheet" href="https://morisawafonts.net/c/01KSMBH35VT2E86JG92RAXZ7XC/mf.css">
+  <script>
+    (function(d) {
+      var config = { kitId: 'qwe2tdt', scriptTimeout: 3000, async: true },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s);
+    })(document);
+  </script>
+  <style>
+    :root {
+      --c-base:   #DBDDDD;
+      --c-black:  #000000;
+      --c-text:   #000000;
+      --c-sub:    #000000;
+      --c-light:  #B0B0B0;
+      --c-border: rgba(0,0,0,0.15);
+      --font-en:  'urw-din', sans-serif;
+      --font-ja:  'MFW-PA1GothicStdN-Regular', sans-serif;
+      --font-ja-m: 'MFW-PA1GothicStdN-Medium', sans-serif;
+      --font-ja-b: 'MFW-PA1GothicStdN-Bold', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #EBEBEB; overflow: hidden; }
+    :lang(ja) { line-break: strict; }
+    h1,h2,h3 { word-break: normal; overflow-wrap: normal; text-wrap: balance; }
+    p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; }
+
+    /* ステージ */
+    .slide-stage {
+      width: 100vw; height: 100vh;
+      background: #EBEBEB;
+      overflow: hidden; position: relative;
+    }
+
+    /* 1920×1080 固定キャンバス */
+    .slide {
+      width: 1920px; height: 1080px;
+      position: absolute; top: 50%; left: 50%;
+      overflow: hidden;
+      background: var(--c-base);
+      container-type: inline-size;
+      display: none;
+      transform-origin: center center;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+
+    /* 黒バッジ（左上固定） */
+    .badge {
+      display: inline-flex; align-items: center;
+      background: var(--c-black); color: #fff;
+      font-family: var(--font-en);
+      font-size: 0.85cqw; font-weight: 500;
+      letter-spacing: 0.14em;
+      padding: 0.55cqw 0.85cqw;
+      border-radius: 0; line-height: 1;
+    }
+
+    /* ページ番号（右下丸） */
+    .pg-num {
+      position: absolute; right: 4cqw; bottom: 3.5cqw;
+      width: 2.4cqw; height: 2.4cqw;
+      background: var(--c-black); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-en); font-size: 0.8cqw; font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ロゴフッター（左下） */
+    .logo-footer {
+      position: absolute; left: 4cqw; bottom: 3.5cqw;
+      display: flex; align-items: center; gap: 1cqw;
+    }
+    .logo-footer img { height: 1.2cqw; width: auto; }
+    .logo-footer-text {
+      font-family: var(--font-en); font-size: 1.0cqw;
+      font-weight: 500; letter-spacing: 0.12em; color: var(--c-black);
+    }
+    .logo-footer-copy {
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+
+    /* UI オーバーレイ */
+    .nav-prev, .nav-next {
+      position: fixed; top: 0; width: 50%; height: 100%;
+      z-index: 100; cursor: pointer;
+    }
+    .nav-prev { left: 0; } .nav-next { right: 0; }
+
+    .status-bar { display: none; }
+    .menu-btn {
+      position: fixed;
+      width: 36px; height: 36px; z-index: 300;
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 5px;
+    }
+    .menu-btn span { display: block; width: 18px; height: 1px; background: #111; }
+    .progress-bar {
+      position: fixed; bottom: 0; left: 0;
+      height: 2px; background: #111;
+      transition: width 0.3s ease; z-index: 200;
+    }
+
+    /* サイドバー */
+    .sidebar-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+    .sidebar {
+      position: absolute; top: 0; right: -300px; bottom: 0;
+      width: 280px; background: #2a2a2a; color: #fff;
+      transition: right 0.3s ease; display: flex; flex-direction: column;
+    }
+    .sidebar-overlay.open .sidebar { right: 0; }
+    .sidebar-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-logo { display: block; height: 14px; width: auto; filter: invert(1); opacity: 0.85; }
+    .sidebar-close { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 13px; cursor: pointer; }
+    .sidebar-list { padding: 8px 0; flex: 1; overflow-y: auto; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 14px;
+      width: 100%; padding: 11px 24px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-ja-m); font-size: 11px;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.35);
+      text-align: left; transition: color 0.15s;
+    }
+    .sidebar-item:hover { color: rgba(255,255,255,0.7); }
+    .sidebar-item.active { color: #fff; }
+    .sidebar-num { font-family: var(--font-en); font-size: 10px; opacity: 0.25; min-width: 20px; }
+
+    /* ページネーション */
+    .pagination {
+      display: none;
+    }
+    .pagination-item {
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 14px; background: none; border: none; cursor: pointer;
+      font-family: var(--font-ja); font-size: 10px;
+      letter-spacing: 0.06em; color: rgba(0,0,0,0.22);
+      transition: color 0.15s; position: relative;
+    }
+    .pagination-item::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%); width: 1px; height: 9px;
+      background: rgba(0,0,0,0.12);
+    }
+    .pagination-item:last-child::after { display: none; }
+    .pagination-item:hover { color: rgba(0,0,0,0.5); }
+    .pagination-item.active { color: #111; font-weight: 700; }
+    .pagination-num { font-family: var(--font-en); font-size: 9px; opacity: 0.35; }
+
+
+    /* 白ベタ（任意スライドに .slide-frame を追加すると表示） */
+    .slide-frame::before {
+      content: ''; pointer-events: none; z-index: 0;
+      position: absolute; inset: 1.2cqw;
+      background: #ffffff;
+    }
+    .slide-frame > * { position: relative; z-index: 1; }
+
+    /* 強調スタイル（インライン要素に適用） */
+    /* 黄色アンダーライン：文字の下に黄色線が重なる */
+    .em-line {
+      position: relative;
+      display: inline;
+      background: linear-gradient(#FFE500, #FFE500) 0 0.8em / 100% 0.18em no-repeat;
+      padding-bottom: 0;
+    }
+    /* 黒ベタ反転：黒背景＋白文字（バッジより余白少なめ） */
+    .em-black {
+      display: inline;
+      background: var(--c-black);
+      color: #ffffff;
+      padding: 0.12em 0.12em;
+      line-height: inherit;
+      font-family: inherit;
+    }
+
+    /* 右下コピーライト（全スライド共通） */
+    .slide-copy {
+      position: absolute; right: 2.4cqw; bottom: 2.4cqw;
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+    /* トークスクリプト */
+    .script-trigger { display: none; }
+    .script-panel { display: none; }
+
+
+    /* ============================================================
+       TYPE 01: 表紙（COVER）
+       白背景 / 大見出し左 / ロゴ左下 / ページ番号右下
+    ============================================================ */
+    .s-cover {
+      height: 100%; padding: 6cqw 7cqw;
+      display: flex; flex-direction: column;
+      justify-content: space-between; position: relative;
+    }
+    .s-cover-top { flex-shrink: 0; }
+    .s-cover-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 0.2cqw;
+    }
+    .s-cover-client {
+      font-family: var(--font-ja-m); font-size: 1.5cqw;
+      color: var(--c-sub); letter-spacing: 0.05em;
+    }
+    .s-cover-title {
+      font-family: var(--font-ja-m); font-size: 3.6cqw;
+      line-height: 1.2; letter-spacing: 0.04em;
+      position: relative; left: -2px;
+    }
+    .s-cover-sub {
+      font-family: var(--font-en); font-size: 1.35cqw;
+      font-weight: 400; color: var(--c-sub); letter-spacing: 0.1em;
+      margin-top: 0.6cqw;
+    }
+    .s-cover-footer {
+      flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: flex-start; gap: 1.2cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 02: 目次（AGENDA）
+       番号 / セクション名 / 点線 / ページ番号
+    ============================================================ */
+    .s-agenda {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-agenda-top { flex-shrink: 0; }
+    .s-agenda-list { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+    .s-agenda-item {
+      display: grid; grid-template-columns: 4cqw 1fr;
+      align-items: center; gap: 0;
+      padding: 1.6cqw 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .s-agenda-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-agenda-num {
+      font-family: var(--font-en); font-size: 2.2cqw;
+      font-weight: 500; color: var(--c-sub); letter-spacing: 0.05em;
+    }
+    .s-agenda-info { display: flex; flex-direction: column; padding-left: 1.5cqw; }
+    .s-agenda-name {
+      font-family: var(--font-ja-m); font-size: 2.2cqw;
+      color: var(--c-text); letter-spacing: 0.04em;
+    }
+    .s-agenda-copy {
+      position: absolute; right: 5cqw; bottom: 3.5cqw;
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+
+
+    /* ============================================================
+       TYPE 03: セクション区切り（SECTION BREAK）
+       大番号左 / 線 / セクション名と説明 右
+    ============================================================ */
+    .s-section {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-section-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-section-main {
+      flex: 1; display: flex; align-items: center; gap: 0;
+    }
+    .s-section-num-col {
+      flex: 0 0 auto; overflow: visible;
+      display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 0.6cqw;
+    }
+    .s-section-big-num {
+      font-family: var(--font-en); font-size: 9cqw;
+      font-weight: 500; line-height: 1; letter-spacing: -0.04em;
+      color: var(--c-text);
+    }
+    .s-section-num-sub {
+      font-family: var(--font-en); font-size: 1.15cqw;
+      color: var(--c-sub); letter-spacing: 0.06em; line-height: 1;
+    }
+    .s-section-num-main {
+      font-family: var(--font-en); font-size: 7.2cqw;
+      font-weight: 400; line-height: 1; letter-spacing: -0.04em;
+      color: var(--c-text); transform: translateY(-0.25cqw);
+    }
+    .s-section-divider {
+      width: 1px; height: 5.5cqw;
+      background: var(--c-border); flex-shrink: 0; margin: 0 2cqw;
+    }
+    .s-section-text-col {
+      flex: 1; display: flex; flex-direction: column; gap: 0.6cqw; justify-content: center;
+    }
+    .s-section-label {
+      font-family: var(--font-ja-m); font-size: 1.15cqw;
+      letter-spacing: 0.1em; color: var(--c-sub); line-height: 1;
+      padding-left: 4px;
+    }
+    .s-section-name {
+      font-family: var(--font-en); font-size: 3.8cqw;
+      font-weight: 500; line-height: 1; letter-spacing: 0.02em; /* Medium */
+    }
+    .s-section-desc {
+      font-family: var(--font-ja-m); font-size: 1.2cqw;
+      color: var(--c-sub); line-height: 1.9;
+      max-width: 38cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 04: ステートメント（STATEMENT）
+       大見出し中央 / サブテキスト
+    ============================================================ */
+    .s-stmt {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-stmt-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-stmt-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 1.6cqw;
+    }
+    .s-stmt-heading {
+      font-family: var(--font-ja-m); font-size: 4.8cqw;
+      line-height: 1.2; letter-spacing: 0.04em; margin-left: -2px;
+    }
+    .s-stmt-body {
+      font-family: var(--font-ja-m); font-size: 1.4cqw;
+      line-height: 1.95; color: var(--c-sub);
+      max-width: 52cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 05: テキスト＋リスト（TEXT + LIST）
+       左見出し / 右リスト
+    ============================================================ */
+    .s-list {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-list-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-list-main {
+      flex: 1; display: flex; align-items: center; gap: 6cqw;
+    }
+    .s-list-left { flex: 0 0 26cqw; }
+    .s-list-heading {
+      font-family: var(--font-ja-m); font-size: 3.4cqw;
+      line-height: 1.45; letter-spacing: 0.04em;
+    }
+    .s-list-right { flex: 1; }
+    .s-list-items { list-style: none; }
+    .s-list-item {
+      display: grid; grid-template-columns: 3.5cqw 14cqw 1fr;
+      align-items: baseline; gap: 1.2cqw;
+      padding: 1.2cqw 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .s-list-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-list-num {
+      font-family: var(--font-en); font-size: 1.2cqw;
+      color: var(--c-sub); letter-spacing: 0.06em;
+      transform: translateY(-0.15cqw);
+    }
+    .s-list-name {
+      font-family: var(--font-ja-m); font-size: 1.2cqw;
+      letter-spacing: 0.03em;
+    }
+    .s-list-desc {
+      font-family: var(--font-ja); font-size: 1.05cqw;
+      color: var(--c-sub); line-height: 1.7;
+    }
+
+
+    /* ============================================================
+       TYPE 06: 特徴グリッド（FEATURE GRID）
+       見出し上 / アイコン円＋テキスト 4列
+    ============================================================ */
+    .s-feature {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-feature-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-feature-main {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw;
+    }
+    .s-feature-headline {
+      font-family: var(--font-ja-m); font-size: 2.2cqw;
+      letter-spacing: 0.04em; text-align: center;
+    }
+    .s-feature-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2cqw; align-items: start;
+    }
+    .s-feature-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.8cqw; text-align: center; position: relative;
+    }
+    .s-feature-card:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 60%; background: var(--c-border);
+    }
+    .s-feature-icon {
+      width: 5cqw; height: 5cqw;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-bottom: 0.4cqw;
+    }
+    .s-feature-icon svg {
+      width: 4cqw; height: 4cqw;
+      fill: none; stroke: var(--c-text); stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .s-feature-en {
+      font-family: var(--font-en); font-size: 2.6cqw;
+      font-weight: 500; letter-spacing: 0.06em; line-height: 1;
+    }
+    .s-feature-name {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 1.0cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+    .s-feature-desc {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.0cqw;
+      color: var(--c-sub); line-height: 1.8; max-width: 16cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 07: NUMBER（黒背景・大数字）
+    ============================================================ */
+    .s-number {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column;
+      background: var(--c-base); position: relative;
+    }
+    .s-number-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-number-grid {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+    .s-number-inner {
+      display: flex; align-items: flex-start; width: 100%;
+    }
+    .s-number-item {
+      flex: 1; display: flex; flex-direction: column;
+      gap: 0.2cqw;
+      padding: 0 2.5cqw;
+      position: relative;
+    }
+    .s-number-item:first-child { padding-left: 0; }
+    .s-number-item:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 8cqw; background: var(--c-border);
+    }
+    .s-number-upper {
+      display: flex; flex-direction: column; gap: 0.4cqw;
+      min-height: 11cqw; justify-content: flex-end;
+    }
+    .s-number-label {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.18em; color: var(--c-sub);
+    }
+    .s-number-num-row { display: flex; align-items: baseline; gap: 0.4cqw; }
+    .s-number-num {
+      font-family: var(--font-en); font-size: 7.5cqw;
+      font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: var(--c-text);
+    }
+    .s-number-unit {
+      font-family: var(--font-ja-m); font-size: 2.4cqw;
+      color: var(--c-sub); transform: translateY(-6px);
+    }
+    .s-number-desc {
+      font-family: var(--font-ja); font-size: 1.1cqw;
+      line-height: 1.8; color: var(--c-sub); min-height: 5cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 07b: コピードン（COPY）
+    ============================================================ */
+    .s-copy-slide {
+      height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 5cqw; position: relative;
+    }
+    .s-copy-slide-main {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.6cqw; text-align: center;
+    }
+    .s-copy-slide-heading {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 4.4cqw;
+      line-height: 1.3; letter-spacing: 0.05em; color: var(--c-text);
+    }
+    .s-copy-slide-sub {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.6cqw;
+      letter-spacing: 0.04em; color: var(--c-text); transform: translateY(-14px);
+    }
+
+
+    /* ============================================================
+       TYPE 08: 会社概要テーブル（OVERVIEW）
+    ============================================================ */
+    .s-overview {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-overview-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-overview-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2cqw; align-items: flex-start;
+      margin-top: 40px;
+    }
+    .s-overview-logo { height: 1.8cqw; width: auto; display: block; }
+    .s-overview-logo-text {
+      font-family: var(--font-en); font-size: 2.4cqw;
+      font-weight: 500; letter-spacing: 0.1em;
+    }
+    .s-overview-table { width: 100%; border-collapse: collapse; }
+    .s-overview-table tr { border-bottom: 1px solid var(--c-border); }
+    .s-overview-table tr:last-child { border-bottom: none; }
+    .s-overview-table th {
+      text-align: left; width: 12cqw; padding: 0.9cqw 0;
+      font-family: var(--font-en), var(--font-ja-m); font-size: 0.95cqw;
+      color: var(--c-sub); vertical-align: middle;
+    }
+    .s-overview-table td {
+      padding: 0.9cqw 0 0.9cqw 2cqw;
+      font-family: var(--font-en), var(--font-ja-m); font-size: 1.15cqw;
+      line-height: 1.6;
+    }
+
+
+    /* ============================================================
+       TYPE 10: 箇条書き（BULLET LIST）
+       大見出し上 / 丸チェックアイコン＋テキスト縦並び
+    ============================================================ */
+    .s-bullet {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-bullet-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
+    .s-bullet-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2.4cqw;
+    }
+    .s-bullet-heading {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 4.2cqw;
+      line-height: 1.2; letter-spacing: 0.04em;
+    }
+    .s-bullet-list {
+      list-style: none; display: flex; flex-direction: column; gap: 0;
+    }
+    .s-bullet-item {
+      display: flex; align-items: baseline; gap: 1.2cqw;
+      padding: 0.12cqw 0;
+    }
+    .s-bullet-icon {
+      flex-shrink: 0; width: 1.4cqw; height: 1.4cqw;
+      position: relative; top: 0.12cqw;
+    }
+    .s-bullet-icon svg {
+      width: 100%; height: 100%;
+      fill: var(--c-text);
+    }
+    .s-bullet-text {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.3cqw;
+      line-height: 1.75; color: var(--c-text); max-width: 72cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 11: テキスト＋写真 2分割（SPLIT）
+       左60%テキスト / 右40%写真フルブリード
+       左60%テキスト / 右40%写真フルブリード
+    ============================================================ */
+    .s-split-text {
+      position: absolute; top: 0; left: 0; width: 60%; height: 1080px;
+      display: flex; flex-direction: column; padding: 4cqw 5cqw 4cqw 7cqw;
+    }
+    .s-split-top { flex-shrink: 0; }
+    .s-split-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 1.8cqw;
+    }
+    .s-split-label {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.18em; color: var(--c-sub);
+    }
+    .s-split-heading {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 3.2cqw;
+      line-height: 1.3; letter-spacing: 0.04em;
+    }
+    .s-split-body {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.15cqw;
+      line-height: 1.95; color: var(--c-sub); max-width: 40cqw;
+    }
+    .s-split-photo {
+      position: absolute; top: 0; right: 0; width: 40%; height: 1080px;
+      overflow: hidden;
+    }
+    .s-split-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .s-split-photo-placeholder {
+      width: 100%; height: 100%; background: #B8B8B8;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .s-split-photo-placeholder span {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.2em; color: rgba(0,0,0,0.2);
+    }
+
+
+    /* ============================================================
+       TYPE 11: 引用（QUOTE）
+       大きな引用符 / 引用テキスト中央 / 出典
+    ============================================================ */
+    .s-quote {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-quote-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-quote-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2.4cqw;
+    }
+    .s-quote-mark {
+      font-family: var(--font-en); font-size: 8cqw;
+      line-height: 0.6; color: var(--c-border);
+      letter-spacing: -0.04em; user-select: none;
+    }
+    .s-quote-text {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 3.0cqw;
+      line-height: 1.5; letter-spacing: 0.04em; max-width: 72cqw;
+    }
+    .s-quote-source {
+      font-family: var(--font-en); font-size: 0.9cqw;
+      letter-spacing: 0.14em; color: var(--c-sub);
+    }
+
+
+    /* ============================================================
+       TYPE 12: 締め / CTA（CLOSING）
+       ロゴ中央 / メッセージ / 連絡先
+    ============================================================ */
+    .s-closing {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-closing-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-closing-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start; gap: 3.2cqw;
+    }
+.s-closing-message {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.2cqw;
+      line-height: 1.9; color: var(--c-sub); max-width: 44cqw;
+    }
+    .s-closing-divider {
+      width: 3cqw; height: 1px; background: var(--c-border);
+    }
+    .s-closing-contact {
+      display: flex; flex-direction: column; gap: 0.6cqw;
+    }
+    .s-closing-url {
+      font-family: var(--font-en); font-size: 1.1cqw;
+      letter-spacing: 0.08em; color: var(--c-text);
+    }
+    .s-closing-tel {
+      font-family: var(--font-en); font-size: 1.0cqw;
+      letter-spacing: 0.06em; color: var(--c-sub);
+    }
+
+
+    /* ============================================================
+       TYPE 09: デザインイメージ（白背景・グレー背景 2パターン）
+       white variant = スライド全体が白
+       gray  variant = グレー背景のまま（標準）
+    ============================================================ */
+    .s-image {
+      height: 100%; position: relative;
+    }
+    .s-image-top {
+      position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2;
+    }
+    .s-image-main {
+      position: absolute; top: 1.2cqw; left: 1.2cqw; right: 1.2cqw; bottom: 1.2cqw;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .s-image-main--white { background: #ffffff; }
+    .s-image-placeholder {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.2em; color: rgba(0,0,0,0.12);
+    }
+
+
+    /* ============================================================
+       TYPE 13: WORKS（エディトリアル：主役大＋詰めグリッド）
+       主役を大きく／残りを密なグリッドで／全カットにキャプション
+    ============================================================ */
+    .s-works {
+      height: 100%; padding: 3.4cqw 3.6cqw 3cqw 3.6cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-works-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
+    .s-works-head {
+      flex-shrink: 0; display: flex; align-items: baseline; gap: 1.2cqw;
+      margin-bottom: 1.6cqw; padding-left: 0.2cqw;
+    }
+    .s-works-cat-en {
+      font-family: var(--font-en); font-size: 2.4cqw;
+      font-weight: 500; letter-spacing: 0.02em; line-height: 1;
+    }
+    .s-works-cat-ja {
+      font-family: var(--font-ja-m); font-size: 1.05cqw;
+      color: var(--c-sub); letter-spacing: 0.08em;
+    }
+    .s-works-body { flex: 1; display: flex; gap: 1.6cqw; min-height: 0; }
+    .s-works-hero { flex: 0 0 46%; display: flex; flex-direction: column; }
+    .s-works-hero-img { flex: 1; background: #B8B8B8; overflow: hidden; min-height: 0; }
+    .s-works-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .s-works-grid {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 1fr; gap: 1.1cqw; min-height: 0;
+    }
+    .s-works-cell { display: flex; flex-direction: column; min-height: 0; }
+    .s-works-cell-img { flex: 1; background: #C4C4C4; overflow: hidden; min-height: 0; }
+    .s-works-cell-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* キャプション（カテゴリー＋クライアント名） */
+    .s-works-cap { padding-top: 0.5cqw; display: flex; flex-direction: column; gap: 0.1cqw; }
+    .s-works-cap-cat {
+      font-family: var(--font-en); font-size: 0.6cqw;
+      letter-spacing: 0.16em; color: var(--c-sub); text-transform: uppercase;
+    }
+    .s-works-cap-client {
+      font-family: var(--font-ja-m); font-size: 0.8cqw;
+      letter-spacing: 0.02em; color: var(--c-text); line-height: 1.35;
+    }
+    .s-works-hero .s-works-cap { padding-top: 0.7cqw; gap: 0.2cqw; }
+    .s-works-hero .s-works-cap-cat { font-size: 0.78cqw; }
+    .s-works-hero .s-works-cap-client { font-size: 1.05cqw; }
+
+    /* TYPE 14: クライアント一覧（CLIENTS） */
+    .s-clients {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-clients-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-clients-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2cqw; }
+    .s-clients-head { font-family: var(--font-ja-m); font-size: 1.8cqw; letter-spacing: 0.04em; }
+    .s-clients-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.1cqw 2.4cqw;
+    }
+    .s-clients-item {
+      font-family: var(--font-ja-m); font-size: 1.05cqw;
+      letter-spacing: 0.02em; color: var(--c-text); line-height: 1.5;
+      padding: 0.5cqw 0; border-bottom: 1px solid var(--c-border);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="slide-stage" id="slide-stage"></div>
+<div class="nav-prev" id="nav-prev"></div>
+<div class="nav-next" id="nav-next"></div>
+<div class="status-bar" id="status-bar"></div>
+<button class="menu-btn" id="menu-btn"><span></span><span></span><span></span></button>
+<div class="progress-bar" id="progress-bar" style="width:0"></div>
+
+<div class="sidebar-overlay" id="sidebar-overlay">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img class="sidebar-logo" src="assets/logo.svg" alt="CRATER">
+      <button class="sidebar-close" id="sidebar-close">✕</button>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </nav>
+</div>
+
+<nav class="pagination" id="pagination"></nav>
+<div class="script-trigger" id="script-trigger"></div>
+<div class="script-panel" id="script-panel"></div>
+
+<script>
+// ============================================================
+// SLIDES
+// ============================================================
+
+function slide01Cover() {
+  return `<section class="slide" data-section="cover" data-notes="本日はお時間をいただきありがとうございます。株式会社クレーターの会社概要をご覧ください。">
+  <div class="s-cover">
+    <div class="s-cover-top"></div>
+    <div class="s-cover-main">
+      <p class="s-cover-client">株式会社クレーター</p>
+      <h1 class="s-cover-title">Company Portfolio</h1>
+      <p class="s-cover-sub">この星に、つめあとを残せ。</p>
+    </div>
+    <div class="s-cover-footer">
+      <img src="assets/logo.svg" alt="CRATER" style="height:1.4cqw;width:auto;">
+      <span class="logo-footer-copy">©CRATER Inc.</span>
+    </div>
+  </div>
+</section>`;
+}
+
+function slide02Agenda() {
+  return `<section class="slide" data-section="agenda" data-notes="本日の流れをご説明します。コンセプト・サービス・実績・会社概要の順でご紹介します。">
+  <div class="s-agenda">
+    <div class="s-agenda-top">
+      <span class="badge">CONTENTS</span>
+    </div>
+    <div class="s-agenda-list">
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">01</span>
+        <div class="s-agenda-info">
+          <span class="s-agenda-name">コンセプト</span>
+        </div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">02</span>
+        <div class="s-agenda-info">
+          <span class="s-agenda-name">サービス</span>
+        </div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">03</span>
+        <div class="s-agenda-info">
+          <span class="s-agenda-name">実績</span>
+        </div>
+      </div>
+      <div class="s-agenda-item">
+        <span class="s-agenda-num">04</span>
+        <div class="s-agenda-info">
+          <span class="s-agenda-name">会社概要</span>
+        </div>
+      </div>
+    </div>
+    <span class="s-agenda-copy">©CRATER Inc.</span>
+  </div>
+</section>`;
+}
+
+function slide03SectionBreak() {
+  return `<section class="slide" data-section="section01" data-notes="第1章、コンセプトです。クレーターの考え方と使命をお伝えします。">
+  <div class="s-section">
+    <div class="s-section-main">
+      <div class="s-section-num-col">
+        <span class="s-section-num-main">01</span>
+      </div>
+      <div class="s-section-divider"></div>
+      <div class="s-section-text-col">
+        <span class="s-section-label">コンセプト</span>
+        <h2 class="s-section-name">CONCEPT</h2>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide03bSectionTitle() {
+  return `<section class="slide" data-section="section01-title" data-notes="コンセプトの扉ページ。">
+  <div class="s-section">
+    <div class="s-section-main">
+      <div class="s-section-text-col">
+        <span class="s-section-label">コンセプト</span>
+        <h2 class="s-section-name">CONCEPT</h2>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide04Statement() {
+  return `<section class="slide" data-section="concept" data-notes="クレーターとは、隕石が地面に衝突した跡。何かに全力でぶつかった証です。私たちは、デザインの力でブランドを世界に刻みます。">
+  <div class="s-stmt">
+    <div class="s-stmt-top"><span class="badge">CONCEPT</span></div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading">この星に、<br>つめあとを残せ。</h2>
+      <p class="s-stmt-body">
+        クレーターとは、隕石が地面に衝突した跡。<br>
+        何かに全力でぶつかった証です。<br>
+        私たちは、デザインの力で<br>
+        あなたのブランドを世界に刻みます。
+      </p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide05ServiceList() {
+  return `<section class="slide" data-section="service" data-notes="クレーターは5つの領域でデザインを提供しています。領域を限定せず、ブランドに必要なデザインを一貫して担当できることが強みです。">
+  <div class="s-list">
+    <div class="s-list-top"><span class="badge">SERVICE</span></div>
+    <div class="s-list-main">
+      <div class="s-list-left">
+        <h2 class="s-list-heading">デザインで、<br>ブランドの<br>価値を伝える。</h2>
+      </div>
+      <div class="s-list-right">
+        <ul class="s-list-items">
+          <li class="s-list-item">
+            <span class="s-list-num">01</span>
+            <span class="s-list-name">ブランディング</span>
+            <span class="s-list-desc">ブランドを好きになってもらうための活動全般</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">02</span>
+            <span class="s-list-name">VI構築</span>
+            <span class="s-list-desc">視覚的に統一された世界観で企業価値を伝える</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">03</span>
+            <span class="s-list-name">ロゴマーク</span>
+            <span class="s-list-desc">他と差別化する、ブランドの軸となるシンボル</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">04</span>
+            <span class="s-list-name">キービジュアル</span>
+            <span class="s-list-desc">広告・キャンペーンのメインビジュアル策定</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">05</span>
+            <span class="s-list-name">グラフィック</span>
+            <span class="s-list-desc">名刺・パンフ・ポスターなど販促ツール全般</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">06</span>
+            <span class="s-list-name">パッケージ</span>
+            <span class="s-list-desc">顧客に最も近いコミュニケーションツール</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">07</span>
+            <span class="s-list-name">Web</span>
+            <span class="s-list-desc">企画からコーディング・リリースまでワンストップ</span>
+          </li>
+          <li class="s-list-item">
+            <span class="s-list-num">08</span>
+            <span class="s-list-name">コピーライティング</span>
+            <span class="s-list-desc">ネーミング・タグライン・パーパス開発</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide06FeatureGrid() {
+  return `<section class="slide" data-section="feature" data-notes="クレーターの4つの特長をご説明します。">
+  <div class="s-feature">
+    <div class="s-feature-top"><span class="badge">FEATURE</span></div>
+    <div class="s-feature-main">
+      <p class="s-feature-headline">クレーターが選ばれる4つの理由</p>
+      <div class="s-feature-grid">
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <p class="s-feature-en">DESIGN</p>
+          <p class="s-feature-name">［一貫したデザイン］</p>
+          <p class="s-feature-desc">ロゴからWebまで、<br>すべての接点で<br>ブランドの世界観を統一。</p>
+        </div>
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <p class="s-feature-en">SPEED</p>
+          <p class="s-feature-name">［スピード対応］</p>
+          <p class="s-feature-desc">迅速なレスポンスと<br>的確なスケジュール管理で<br>納期を守ります。</p>
+        </div>
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p class="s-feature-en">DIRECT</p>
+          <p class="s-feature-name">［直接取引83%］</p>
+          <p class="s-feature-desc">代理店を介さず<br>クライアントと直接向き合い、<br>想いに寄り添います。</p>
+        </div>
+        <div class="s-feature-card">
+          <div class="s-feature-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <p class="s-feature-en">REPEAT</p>
+          <p class="s-feature-name">［リピート率85%］</p>
+          <p class="s-feature-desc">クライアントの想いを<br>丁寧に汲み取り、<br>高いリピート率を実現。</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slideCopyDon() {
+  return `<section class="slide" data-section="copy" data-notes="コピードン。大見出し＋サブコピーのシンプルなスライド。">
+  <div class="s-copy-slide">
+    <div class="s-copy-slide-main">
+      <p class="s-copy-slide-heading">デザインで、<br>この星に<span class="em-black">つめあとを</span>残せ。</p>
+      <p class="s-copy-slide-sub">クレーターは<span class="em-black">ブランドの本質</span>から、デザインを構築します。</p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slideCopyDon2() {
+  return `<section class="slide" data-section="copy2" data-notes="強調スタイル反転バージョン。見出しに黒ベタ、サブコピーに黄色アンダーライン。">
+  <div class="s-copy-slide">
+    <div class="s-copy-slide-main">
+      <p class="s-copy-slide-heading">デザインで、<br>この星に<span class="em-line">つめあとを</span>残せ。</p>
+      <p class="s-copy-slide-sub">クレーターは<span class="em-line">ブランドの本質</span>から、デザインを構築します。</p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide07Number() {
+  return `<section class="slide" data-section="number" data-notes="3つの数字でクレーターの実績をお伝えします。">
+  <div class="s-number">
+    <div class="s-number-top">
+      <span class="badge">NUMBER</span>
+    </div>
+    <div class="s-number-grid">
+      <div class="s-number-inner">
+      <div class="s-number-item">
+        <div class="s-number-upper">
+          <p class="s-number-label">SINCE</p>
+          <div class="s-number-num-row">
+            <span class="s-number-num">12</span>
+            <span class="s-number-unit">年</span>
+          </div>
+        </div>
+        <p class="s-number-desc">2013年の創業から変わらず設計し続けています。</p>
+      </div>
+      <div class="s-number-item">
+        <div class="s-number-upper">
+          <p class="s-number-label">REPEAT RATE</p>
+          <div class="s-number-num-row">
+            <span class="s-number-num">85</span>
+            <span class="s-number-unit">%</span>
+          </div>
+        </div>
+        <p class="s-number-desc">クライアントの想いを丁寧に汲み取り、継続的な信頼を得ています。</p>
+      </div>
+      <div class="s-number-item">
+        <div class="s-number-upper">
+          <p class="s-number-label">CLIENTS</p>
+          <div class="s-number-num-row">
+            <span class="s-number-num">200</span>
+            <span class="s-number-unit">社+</span>
+          </div>
+        </div>
+        <p class="s-number-desc">業界を限定せず、幅広いブランドと向き合ってきました。</p>
+      </div>
+      <div class="s-number-item">
+        <div class="s-number-upper">
+          <p class="s-number-label">DIRECT RATE</p>
+          <div class="s-number-num-row">
+            <span class="s-number-num">83</span>
+            <span class="s-number-unit">%</span>
+          </div>
+        </div>
+        <p class="s-number-desc">代理店を介さずクライアントと直接向き合います。</p>
+      </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+function slide08Overview() {
+  return `<section class="slide" data-section="overview" data-notes="会社概要をご説明します。株式会社クレーターは2013年創業、東京・世田谷区のデザイン事務所です。">
+  <div class="s-overview">
+    <div class="s-overview-top"><span class="badge">OVERVIEW</span></div>
+    <div class="s-overview-main">
+      <img src="assets/logo.svg" class="s-overview-logo" alt="CRATER">
+      <table class="s-overview-table">
+        <tr><th>社名</th><td>株式会社クレーター　／　CRATER Inc.</td></tr>
+        <tr><th>創立</th><td>2013年10月1日</td></tr>
+        <tr><th>設立</th><td>2019年4月26日</td></tr>
+        <tr><th>代表取締役</th><td>明里 圭修（KEISUKE AKARI）</td></tr>
+        <tr><th>所在地</th><td>〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F</td></tr>
+        <tr><th>TEL</th><td>03-6868-7747</td></tr>
+        <tr><th>事業内容</th><td>ブランディング、ロゴ、グラフィック、Web、パッケージデザイン</td></tr>
+        <tr><th>加盟団体</th><td>公益社団法人 日本グラフィックデザイナー協会（JAGDA）</td></tr>
+      </table>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// TYPE 09A: デザインイメージ（内側白）
+function slide09ImageWhite() {
+  return `<section class="slide">
+  <div class="s-image">
+    <div class="s-image-top"><span class="badge">IMAGE</span></div>
+    <div class="s-image-main s-image-main--white">
+      <p class="s-image-placeholder">DESIGN IMAGE</p>
+    </div>
+    <p class="slide-copy" style="position:absolute;right:2.4cqw;bottom:2.4cqw;">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// TYPE 09B: デザインイメージ（内側グレー＝標準）
+function slide09ImageGray() {
+  return `<section class="slide">
+  <div class="s-image">
+    <div class="s-image-top"><span class="badge">IMAGE</span></div>
+    <div class="s-image-main">
+      <p class="s-image-placeholder">DESIGN IMAGE</p>
+    </div>
+    <p class="slide-copy" style="position:absolute;right:2.4cqw;bottom:2.4cqw;">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// TYPE 10: 箇条書き（BULLET LIST）
+// 丸チェックSVGアイコン：circle(cx=12,cy=12,r=10) + polyline(6,12 10,16 18,8)
+// ============================================================
+// スライドマスター：箇条書きアイコン（丸チェック・塗り）
+// 使用箇所：slideBullet() およびすべての箇条書き系スライド
+// ============================================================
+window.bulletIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12,1.5A10.5,10.5,0,1,0,22.5,12,10.51,10.51,0,0,0,12,1.5ZM12,3A9,9,0,1,1,3,12,9,9,0,0,1,12,3Z"/><polygon points="10.5,16.5 6,12 8.25,10.5 10.5,12.75 15.75,6.75 18,9"/></svg>`;
+
+function slideBullet() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="bullet" data-notes="箇条書きスライド。丸チェックアイコン＋テキストの縦並びリスト。">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">CONCEPT</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading">見出しをここに入れる。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">箇条書きの項目テキストをここに入れる。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">箇条書きの項目テキストをここに入れる。説明が長い場合は折り返して表示されます。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">箇条書きの項目テキストをここに入れる。</span>
+        </li>
+        <li class="s-bullet-item">
+          <span class="s-bullet-icon">${icon}</span>
+          <span class="s-bullet-text">箇条書きの項目テキストをここに入れる。</span>
+        </li>
+      </ul>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// TYPE 11: テキスト＋写真 2分割
+// TYPE 11: コピードン（強調なし・左揃え）
+function slideCopyDon3() {
+  return `<section class="slide" data-section="copy3" data-notes="コピードン 左揃え・強調なしバージョン。">
+  <div class="s-copy-slide" style="align-items:flex-start; padding-left:7cqw; padding-right:7cqw;">
+    <div class="s-copy-slide-main" style="align-items:flex-start; text-align:left;">
+      <p class="s-copy-slide-heading">大見出しコピーをここに入れる。</p>
+      <p class="s-copy-slide-sub">サブコピーや補足文をここに入れる。</p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// TYPE 12: 締め / CTA（CLOSING）
+function slideClosing() {
+  return `<section class="slide" data-section="closing" data-notes="デッキの最後。ロゴ・メッセージ・連絡先を配置する締めスライド。">
+  <div class="s-closing">
+    <div class="s-closing-main">
+      <div style="display:flex; flex-direction:column; gap:3.2cqw; align-items:flex-start; margin-top:30px;">
+        <img src="assets/logo.svg" alt="CRATER" style="height:2.4cqw; width:auto; display:block;">
+        <p class="s-closing-message">ご覧いただきありがとうございました。<br>ご相談・お問い合わせはお気軽にどうぞ。</p>
+        <div class="s-closing-divider"></div>
+        <div class="s-closing-contact">
+          <p class="s-closing-url">crater.co.jp</p>
+          <p class="s-closing-tel">03-6665-0846</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// WORKS：セクション扉
+// ============================================================
+function worksBreak() {
+  return `<section class="slide" data-section="works-break" data-notes="実績セクションの扉。">
+  <div class="s-section">
+    <div class="s-section-main">
+      <div class="s-section-text-col">
+        <span class="s-section-label">実績</span>
+        <h2 class="s-section-name">WORKS</h2>
+        <p class="s-section-desc" style="margin-top:1cqw;">創業以来、業界を限定せず幅広いブランドと向き合ってきました。<br>カテゴリーごとに代表的な実績をご紹介します。</p>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// WORKS パターンA：主役大＋詰めグリッド（エディトリアル）
+// cfg = { id, en, ja, hero:{cat,client}, grid:[{cat,client}...] }
+// ============================================================
+function worksEditorial(cfg) {
+  const cells = cfg.grid.map(function (w) {
+    return `<div class="s-works-cell">
+        <div class="s-works-cell-img"></div>
+        <div class="s-works-cap">
+          <span class="s-works-cap-cat">${w.cat}</span>
+          <span class="s-works-cap-client">${w.client}</span>
+        </div>
+      </div>`;
+  }).join('');
+  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.en} の実績。">
+  <div class="s-works">
+    <div class="s-works-top"><span class="badge">WORKS</span></div>
+    <div class="s-works-head">
+      <span class="s-works-cat-en">${cfg.en}</span>
+      <span class="s-works-cat-ja">${cfg.ja}</span>
+    </div>
+    <div class="s-works-body">
+      <div class="s-works-hero">
+        <div class="s-works-hero-img"></div>
+        <div class="s-works-cap">
+          <span class="s-works-cap-cat">${cfg.hero.cat}</span>
+          <span class="s-works-cap-client">${cfg.hero.client}</span>
+        </div>
+      </div>
+      <div class="s-works-grid">${cells}</div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// WORKS パターンB：全面の密なグリッド（点数を多く）
+// cfg = { id, en, ja, cols, items:[{cat,client}...] }
+// ============================================================
+function worksGrid(cfg) {
+  const cols = cfg.cols || 4;
+  const cells = cfg.items.map(function (w) {
+    return `<div class="s-works-cell">
+        <div class="s-works-cell-img"></div>
+        <div class="s-works-cap">
+          <span class="s-works-cap-cat">${w.cat}</span>
+          <span class="s-works-cap-client">${w.client}</span>
+        </div>
+      </div>`;
+  }).join('');
+  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.en} の実績一覧。">
+  <div class="s-works">
+    <div class="s-works-top"><span class="badge">WORKS</span></div>
+    <div class="s-works-head">
+      <span class="s-works-cat-en">${cfg.en}</span>
+      <span class="s-works-cat-ja">${cfg.ja}</span>
+    </div>
+    <div class="s-works-body">
+      <div class="s-works-grid" style="flex:1;grid-template-columns:repeat(${cols},1fr);">${cells}</div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// クライアント一覧
+// ============================================================
+function slideClients() {
+  const list = [
+    '株式会社伊藤園','株式会社西武ライオンズ','JRA 日本中央競馬会','亀田製菓株式会社',
+    '株式会社おやつカンパニー','株式会社山本海苔店','株式会社サンドラッグ','国立新美術館',
+    'エイベックス・エンタテインメント','日東紡績株式会社','株式会社Gunosy','TOKYO MX',
+    '西武鉄道株式会社','中島醸造株式会社','和歌山産業株式会社','株式会社キャスター',
+    '尾山神社','クリエイトアイエムエス株式会社','ちば醤油株式会社','株式会社プロダクション人力舎',
+  ];
+  const items = list.map(function (c) { return `<div class="s-clients-item">${c}</div>`; }).join('');
+  return `<section class="slide" data-section="clients" data-notes="主なクライアント。業界を限定せず幅広く手がけています。">
+  <div class="s-clients">
+    <div class="s-clients-top"><span class="badge">CLIENTS</span></div>
+    <div class="s-clients-main">
+      <h2 class="s-clients-head">幅広い業界の<br>ブランドと向き合ってきました。</h2>
+      <div class="s-clients-grid">${items}</div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// WORKS カテゴリー別データ（グレーワイヤー・キャプションのみ実データ）
+// ============================================================
+function worksPackage() {
+  return worksEditorial({
+    id: 'works-package', en: 'PACKAGE', ja: 'パッケージデザイン',
+    hero: { cat: 'Package', client: '株式会社伊藤園｜お～いお茶 まろやか さくら緑茶' },
+    grid: [
+      { cat: 'Package', client: '亀田製菓｜バリッとポテト' },
+      { cat: 'Package', client: 'おやつカンパニー｜ベビースター' },
+      { cat: 'Package', client: '山本海苔店｜焼き海苔' },
+      { cat: 'Package', client: 'サンドラッグ｜PB商品' },
+      { cat: 'Package', client: '和歌山産業｜いつものジュレ' },
+      { cat: 'Package', client: '中島醸造｜日本酒 Fukuro' },
+    ],
+  });
+}
+function worksVI() {
+  return worksEditorial({
+    id: 'works-vi', en: 'BRANDING / VI', ja: 'ブランディング・VI',
+    hero: { cat: 'VI', client: '西武ライオンズ｜ブルーシリーズ第一弾VI' },
+    grid: [
+      { cat: 'VI', client: '焼肉 さぶろく｜VI' },
+      { cat: 'VI', client: '芝園開発｜リクスタフィットネス' },
+      { cat: 'VI', client: '有限会社サンペイ｜epe' },
+      { cat: 'VI', client: '新日本エステート｜コーポレートVI' },
+      { cat: 'VI', client: 'MU合同会社｜muVI' },
+      { cat: 'VI', client: 'スパイスワークス｜JUGEM' },
+    ],
+  });
+}
+function worksLogo() {
+  return worksGrid({
+    id: 'works-logo', en: 'LOGO', ja: 'ロゴデザイン', cols: 4,
+    items: [
+      { cat: 'Logo', client: 'エイベックス｜ユニットロゴ' },
+      { cat: 'Logo', client: '明生電気商会｜60周年' },
+      { cat: 'Logo', client: 'カディンチェ｜リニューアル' },
+      { cat: 'Logo', client: '瀬戸内海ベンダ｜周年ロゴ' },
+      { cat: 'Logo', client: '福岡女子商業高校｜スクールロゴ' },
+      { cat: 'Logo', client: 'アズパートナーズ｜20周年' },
+      { cat: 'Logo', client: '泉屋旅館｜旅館ロゴ' },
+      { cat: 'Logo', client: '秋山璃帆｜アーティストロゴ' },
+    ],
+  });
+}
+function worksGraphic() {
+  return worksEditorial({
+    id: 'works-graphic', en: 'GRAPHIC / KV', ja: 'グラフィック・キービジュアル',
+    hero: { cat: 'KV', client: 'JRA 日本中央競馬会｜有馬記念キャンペーンVI' },
+    grid: [
+      { cat: 'Graphic', client: '国立新美術館｜バレエ・リュス展' },
+      { cat: 'KV', client: 'TOKYO MX｜恋愛ルビの正しいふりかた' },
+      { cat: 'KV', client: 'K Company｜堀口恭司様KV' },
+      { cat: 'Graphic', client: 'クリエイトアイエムエス｜JAPAN ART FESTIVAL' },
+      { cat: 'Graphic', client: '日東紡績｜100周年ツール' },
+      { cat: 'Graphic', client: '西武鉄道｜記念乗車券' },
+    ],
+  });
+}
+function worksWeb() {
+  return worksEditorial({
+    id: 'works-web', en: 'WEB', ja: 'ウェブデザイン',
+    hero: { cat: 'Web', client: '中央競馬ピーアール・センター｜日本ダービー特設サイト' },
+    grid: [
+      { cat: 'Web', client: '尾山神社｜ウェブサイト' },
+      { cat: 'Web', client: 'キャスター｜casterbiz' },
+      { cat: 'Web', client: 'Gunosy｜マクドナルドコラボ' },
+      { cat: 'Web', client: 'たつみ会計事務所｜ウェブサイト' },
+      { cat: 'Web', client: 'サンペイ鞄店｜コーポレート' },
+      { cat: 'Web', client: '確定拠出年金診断協会｜コーポレート' },
+    ],
+  });
+}
+
+window.slideFactories = [
+  slide01Cover,
+  slide04Statement,
+  slide08Overview,
+  slide05ServiceList,
+  slide06FeatureGrid,
+  slide07Number,
+  worksBreak,
+  worksPackage,
+  worksVI,
+  worksLogo,
+  worksGraphic,
+  worksWeb,
+  slideClients,
+  slideClosing,
+];
+window.agendaItems = [
+  { id: 'cover',        label: '表紙' },
+  { id: 'concept',      label: 'ステートメント' },
+  { id: 'overview',     label: '会社概要' },
+  { id: 'service',      label: 'サービス' },
+  { id: 'feature',      label: '強み' },
+  { id: 'number',       label: 'NUMBER' },
+  { id: 'works-break',  label: 'WORKS（扉）' },
+  { id: 'works-package',label: 'WORKS｜パッケージ' },
+  { id: 'works-vi',     label: 'WORKS｜VI' },
+  { id: 'works-logo',   label: 'WORKS｜ロゴ' },
+  { id: 'works-graphic',label: 'WORKS｜グラフィック' },
+  { id: 'works-web',    label: 'WORKS｜Web' },
+  { id: 'clients',      label: 'クライアント' },
+  { id: 'closing',      label: '締め / CTA' },
+];
+</script>
+
+<script>
+(function () {
+  var stage       = document.getElementById('slide-stage');
+  var statusBar   = document.getElementById('status-bar');
+  var menuBtn     = document.getElementById('menu-btn');
+  var overlay     = document.getElementById('sidebar-overlay');
+  var sideClose   = document.getElementById('sidebar-close');
+  var sideList    = document.getElementById('sidebar-list');
+  var progress    = document.getElementById('progress-bar');
+  var navPrev     = document.getElementById('nav-prev');
+  var navNext     = document.getElementById('nav-next');
+  var scriptTrig  = document.getElementById('script-trigger');
+  var scriptPanel = document.getElementById('script-panel');
+  var pagination  = document.getElementById('pagination');
+  var current = 0;
+  var total   = slideFactories.length;
+  var rendered = {};
+  var currentScale = 1;
+
+  function scaleSlides() {
+    currentScale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.querySelectorAll('.slide').forEach(function (s) {
+      s.style.transform = 'translate(-50%, -50%) scale(' + currentScale + ')';
+    });
+    // ハンバーガーメニューをアートボード右上 2.4cqw に追従
+    var artW = 1920 * currentScale;
+    var artH = 1080 * currentScale;
+    var ox = (window.innerWidth  - artW) / 2;
+    var oy = (window.innerHeight - artH) / 2;
+    var margin = 46.08 * currentScale; // 2.4cqw = 46.08px
+    menuBtn.style.top   = (oy + margin) + 'px';
+    menuBtn.style.right = (ox + margin) + 'px';
+  }
+  window.addEventListener('resize', scaleSlides);
+
+  function ensureRendered(i) {
+    if (rendered[i] || i < 0 || i >= total) return;
+    var frag = document.createRange().createContextualFragment(slideFactories[i]());
+    // data-index を付けてインデックスで検索できるようにする
+    var el = frag.querySelector('.slide');
+    if (el) el.setAttribute('data-index', i);
+    stage.appendChild(frag);
+    rendered[i] = true;
+    scaleSlides();
+  }
+
+  function getSlide(i) {
+    return stage.querySelector('.slide[data-index="' + i + '"]');
+  }
+
+  function goTo(i, skipHash) {
+    if (i < 0 || i >= total) return;
+    [i - 1, i, i + 1].forEach(function (j) { ensureRendered(j); });
+    stage.querySelectorAll('.slide').forEach(function (s) { s.classList.remove('active'); });
+    var target = getSlide(i);
+    if (target) target.classList.add('active');
+    current = i;
+    if (!skipHash) history.replaceState(null, '', '#' + (i + 1));
+    var item = agendaItems[i] || { label: '' };
+    statusBar.textContent = item.label + '  ' + (i + 1) + ' / ' + total;
+    progress.style.width = ((i + 1) / total * 100) + '%';
+    document.querySelectorAll('.sidebar-item').forEach(function (el, idx) {
+      el.classList.toggle('active', idx === i);
+    });
+    document.querySelectorAll('.pagination-item').forEach(function (el, idx) {
+      el.classList.toggle('active', idx === i);
+    });
+  }
+
+  var initPage = 0;
+  var hash = window.location.hash.replace('#', '');
+  if (hash && !isNaN(hash)) {
+    var p = parseInt(hash, 10) - 1;
+    if (p >= 0 && p < total) initPage = p;
+  }
+  scaleSlides();
+  [0, 1, 2].forEach(function (i) { ensureRendered(i); });
+  goTo(initPage, true);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ')         { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'Backspace') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home')  { e.preventDefault(); goTo(0); }
+    if (e.key === 'End')   { e.preventDefault(); goTo(total - 1); }
+    if (e.key === 'Escape') { overlay.classList.remove('open'); }
+  });
+  navPrev.addEventListener('click', function () { goTo(current - 1); });
+  navNext.addEventListener('click', function () { goTo(current + 1); });
+  menuBtn.addEventListener('click', function () { overlay.classList.toggle('open'); });
+  sideClose.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) {
+    if (!e.target.closest('.sidebar')) overlay.classList.remove('open');
+  });
+
+  agendaItems.forEach(function (item, i) {
+    var btn = document.createElement('button');
+    btn.className = 'sidebar-item';
+    btn.innerHTML = '<span class="sidebar-num">' + String(i + 1).padStart(2, '0') + '</span><span>' + item.label + '</span>';
+    btn.addEventListener('click', function (e) { e.stopPropagation(); goTo(i); overlay.classList.remove('open'); });
+    sideList.appendChild(btn);
+
+    var pBtn = document.createElement('button');
+    pBtn.className = 'pagination-item';
+    pBtn.innerHTML = '<span class="pagination-num">' + String(i + 1).padStart(2, '0') + '</span><span>' + item.label + '</span>';
+    pBtn.addEventListener('click', function (e) { e.stopPropagation(); goTo(i); });
+    pagination.appendChild(pBtn);
+  });
+
+})();
+</script>
+
+</body>
+</html>
