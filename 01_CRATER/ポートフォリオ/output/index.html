@@ -708,24 +708,28 @@
 
     /* ============================================================
        TYPE 13: WORKS（エディトリアル：主役大＋詰めグリッド）
-       主役を大きく／残りを密なグリッドで／全カットにキャプション
+       ヘッダー行に［WORKSタグ｜カテゴリー英日］を横並び（タグとカテゴリの被り解消）
     ============================================================ */
     .s-works {
-      height: 100%; padding: 3.4cqw 3.6cqw 3cqw 3.6cqw;
+      height: 100%; padding: 2.4cqw 3.6cqw 2.8cqw 2.4cqw;
       display: flex; flex-direction: column; position: relative;
     }
-    .s-works-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
     .s-works-head {
-      flex-shrink: 0; display: flex; align-items: baseline; gap: 1.2cqw;
-      margin-bottom: 1.6cqw; padding-left: 0.2cqw;
+      flex-shrink: 0; display: flex; align-items: center; gap: 1.4cqw;
+      margin-bottom: 1.6cqw; padding-left: 0;
     }
     .s-works-cat-en {
-      font-family: var(--font-en); font-size: 2.4cqw;
+      font-family: var(--font-en); font-size: 2.2cqw;
       font-weight: 500; letter-spacing: 0.02em; line-height: 1;
     }
     .s-works-cat-ja {
-      font-family: var(--font-ja-m); font-size: 1.05cqw;
+      font-family: var(--font-ja-m); font-size: 1.0cqw;
       color: var(--c-sub); letter-spacing: 0.08em;
+    }
+    /* 1社特集ヘッダー */
+    .s-works-client-name {
+      font-family: var(--font-ja-m); font-size: 1.0cqw;
+      color: var(--c-text); letter-spacing: 0.04em; margin-left: auto;
     }
     .s-works-body { flex: 1; display: flex; gap: 1.6cqw; min-height: 0; }
     .s-works-hero { flex: 0 0 46%; display: flex; flex-direction: column; }
@@ -733,41 +737,80 @@
     .s-works-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .s-works-grid {
       flex: 1; display: grid; grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 1fr; gap: 1.1cqw; min-height: 0;
+      grid-auto-rows: 1fr; gap: 1.2cqw; min-height: 0;
     }
     .s-works-cell { display: flex; flex-direction: column; min-height: 0; }
     .s-works-cell-img { flex: 1; background: #C4C4C4; overflow: hidden; min-height: 0; }
     .s-works-cell-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* パターン0：主役2枚横並び（左右1個ずつ） */
+    .s-works-duo { flex: 1; display: flex; gap: 1.6cqw; min-height: 0; }
+    .s-works-duo .s-works-hero { flex: 1; }
     /* キャプション（カテゴリー＋クライアント名） */
-    .s-works-cap { padding-top: 0.5cqw; display: flex; flex-direction: column; gap: 0.1cqw; }
+    .s-works-cap { padding-top: 0.55cqw; display: flex; flex-direction: column; gap: 0.1cqw; }
     .s-works-cap-cat {
-      font-family: var(--font-en); font-size: 0.6cqw;
+      font-family: var(--font-en); font-size: 0.62cqw;
       letter-spacing: 0.16em; color: var(--c-sub); text-transform: uppercase;
     }
     .s-works-cap-client {
-      font-family: var(--font-ja-m); font-size: 0.8cqw;
+      font-family: var(--font-ja-m); font-size: 0.82cqw;
       letter-spacing: 0.02em; color: var(--c-text); line-height: 1.35;
     }
     .s-works-hero .s-works-cap { padding-top: 0.7cqw; gap: 0.2cqw; }
     .s-works-hero .s-works-cap-cat { font-size: 0.78cqw; }
     .s-works-hero .s-works-cap-client { font-size: 1.05cqw; }
 
-    /* TYPE 14: クライアント一覧（CLIENTS） */
+    /* TYPE 14: クライアント（ロゴグリッド） */
     .s-clients {
       height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
       display: flex; flex-direction: column; position: relative;
     }
     .s-clients-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
-    .s-clients-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2cqw; }
-    .s-clients-head { font-family: var(--font-ja-m); font-size: 1.8cqw; letter-spacing: 0.04em; }
+    .s-clients-main { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw; }
+    .s-clients-head { font-family: var(--font-ja-m); font-size: 1.8cqw; letter-spacing: 0.04em; line-height: 1.4; }
     .s-clients-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1.1cqw 2.4cqw;
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 1.4cqw;
     }
-    .s-clients-item {
-      font-family: var(--font-ja-m); font-size: 1.05cqw;
-      letter-spacing: 0.02em; color: var(--c-text); line-height: 1.5;
-      padding: 0.5cqw 0; border-bottom: 1px solid var(--c-border);
+    .s-clients-logo {
+      aspect-ratio: 3 / 2; background: #ffffff;
+      border: 1px solid var(--c-border);
+      display: flex; align-items: center; justify-content: center;
+      padding: 0.6cqw; text-align: center;
+    }
+    .s-clients-logo span {
+      font-family: var(--font-ja-m); font-size: 0.78cqw;
+      color: var(--c-sub); letter-spacing: 0.02em; line-height: 1.4;
+    }
+
+    /* PDFダウンロードボタン（ハンバーガー左・控えめ） */
+    .pdf-btn {
+      position: fixed; z-index: 300;
+      width: 34px; height: 34px;
+      background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0.55; transition: opacity 0.15s;
+    }
+    .pdf-btn:hover { opacity: 1; }
+    .pdf-btn svg { width: 20px; height: 20px; stroke: #111; fill: none; stroke-width: 1.5; }
+
+    /* ============================================================
+       印刷（PDF書き出し）：全スライドをフルサイズで縦に並べる
+       文字はベクター維持で高画質PDFに
+    ============================================================ */
+    @media print {
+      @page { size: 1920px 1080px; margin: 0; }
+      html, body { background: #fff !important; width: 1920px; }
+      .nav-prev, .nav-next, .menu-btn, .pdf-btn, .progress-bar,
+      .sidebar-overlay, .pagination, .status-bar { display: none !important; }
+      .slide-stage { width: 1920px !important; height: auto !important; overflow: visible !important; }
+      .slide {
+        display: flex !important; flex-direction: column;
+        position: relative !important; top: auto !important; left: auto !important;
+        transform: none !important; margin: 0 !important;
+        width: 1920px !important; height: 1080px !important;
+        page-break-after: always; break-after: page;
+        overflow: hidden;
+      }
     }
 
   </style>
@@ -778,6 +821,9 @@
 <div class="nav-prev" id="nav-prev"></div>
 <div class="nav-next" id="nav-next"></div>
 <div class="status-bar" id="status-bar"></div>
+<button class="pdf-btn" id="pdf-btn" title="全ページをPDFで保存">
+  <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+</button>
 <button class="menu-btn" id="menu-btn"><span></span><span></span><span></span></button>
 <div class="progress-bar" id="progress-bar" style="width:0"></div>
 
@@ -806,7 +852,7 @@ function slide01Cover() {
     <div class="s-cover-top"></div>
     <div class="s-cover-main">
       <p class="s-cover-client">株式会社クレーター</p>
-      <h1 class="s-cover-title">Company Portfolio</h1>
+      <h1 class="s-cover-title" style="font-family:var(--font-en);font-weight:500;font-size:3.0cqw;letter-spacing:0.01em;">Company Portfolio</h1>
       <p class="s-cover-sub">この星に、つめあとを残せ。</p>
     </div>
     <div class="s-cover-footer">
@@ -910,7 +956,7 @@ function slide05ServiceList() {
     <div class="s-list-top"><span class="badge">SERVICE</span></div>
     <div class="s-list-main">
       <div class="s-list-left">
-        <h2 class="s-list-heading">デザインで、<br>ブランドの<br>価値を伝える。</h2>
+        <h2 class="s-list-heading">価値を、<br>正しく届ける。<br>8つの手法。</h2>
       </div>
       <div class="s-list-right">
         <ul class="s-list-items">
@@ -1033,33 +1079,14 @@ function slideCopyDon2() {
 }
 
 function slide07Number() {
-  return `<section class="slide" data-section="number" data-notes="3つの数字でクレーターの実績をお伝えします。">
+  return `<section class="slide" data-section="number" data-notes="クレーターが選ばれる理由を、数字で示します。">
   <div class="s-number">
     <div class="s-number-top">
-      <span class="badge">NUMBER</span>
+      <span class="badge">WHY CRATER</span>
     </div>
-    <div class="s-number-grid">
+    <div class="s-number-grid" style="flex-direction:column;gap:2.6cqw;">
+      <p class="s-feature-headline" style="text-align:left;align-self:flex-start;">クレーターが選ばれる、理由。</p>
       <div class="s-number-inner">
-      <div class="s-number-item">
-        <div class="s-number-upper">
-          <p class="s-number-label">SINCE</p>
-          <div class="s-number-num-row">
-            <span class="s-number-num">12</span>
-            <span class="s-number-unit">年</span>
-          </div>
-        </div>
-        <p class="s-number-desc">2013年の創業から変わらず設計し続けています。</p>
-      </div>
-      <div class="s-number-item">
-        <div class="s-number-upper">
-          <p class="s-number-label">REPEAT RATE</p>
-          <div class="s-number-num-row">
-            <span class="s-number-num">85</span>
-            <span class="s-number-unit">%</span>
-          </div>
-        </div>
-        <p class="s-number-desc">クライアントの想いを丁寧に汲み取り、継続的な信頼を得ています。</p>
-      </div>
       <div class="s-number-item">
         <div class="s-number-upper">
           <p class="s-number-label">CLIENTS</p>
@@ -1068,17 +1095,37 @@ function slide07Number() {
             <span class="s-number-unit">社+</span>
           </div>
         </div>
-        <p class="s-number-desc">業界を限定せず、幅広いブランドと向き合ってきました。</p>
+        <p class="s-number-desc">大手から個人まで、業界を限定せず幅広く手がけた実績。</p>
       </div>
       <div class="s-number-item">
         <div class="s-number-upper">
-          <p class="s-number-label">DIRECT RATE</p>
+          <p class="s-number-label">FIELDS</p>
+          <div class="s-number-num-row">
+            <span class="s-number-num">5</span>
+            <span class="s-number-unit">領域</span>
+          </div>
+        </div>
+        <p class="s-number-desc">ロゴからWebまで、全ての接点でブランドの世界観を一貫して統一。</p>
+      </div>
+      <div class="s-number-item">
+        <div class="s-number-upper">
+          <p class="s-number-label">DIRECT</p>
           <div class="s-number-num-row">
             <span class="s-number-num">83</span>
             <span class="s-number-unit">%</span>
           </div>
         </div>
-        <p class="s-number-desc">代理店を介さずクライアントと直接向き合います。</p>
+        <p class="s-number-desc">代理店を介さず、クライアントと直接向き合う。</p>
+      </div>
+      <div class="s-number-item">
+        <div class="s-number-upper">
+          <p class="s-number-label">REPEAT</p>
+          <div class="s-number-num-row">
+            <span class="s-number-num">85</span>
+            <span class="s-number-unit">%</span>
+          </div>
+        </div>
+        <p class="s-number-desc">想いを丁寧に汲み取り、継続的な信頼を得ている。</p>
       </div>
       </div>
     </div>
@@ -1199,7 +1246,14 @@ function slideClosing() {
         <div class="s-closing-divider"></div>
         <div class="s-closing-contact">
           <p class="s-closing-url">crater.co.jp</p>
-          <p class="s-closing-tel">03-6665-0846</p>
+          <p class="s-closing-tel" style="display:flex;align-items:center;gap:0.5cqw;">
+            <svg viewBox="0 0 24 24" style="width:1.0cqw;height:1.0cqw;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            03-6665-0846
+          </p>
+          <p class="s-closing-tel" style="display:flex;align-items:center;gap:0.5cqw;">
+            <svg viewBox="0 0 24 24" style="width:1.0cqw;height:1.0cqw;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            info@crater.co.jp
+          </p>
         </div>
       </div>
     </div>
@@ -1226,35 +1280,64 @@ function worksBreak() {
 </section>`;
 }
 
-// ============================================================
-// WORKS パターンA：主役大＋詰めグリッド（エディトリアル）
-// cfg = { id, en, ja, hero:{cat,client}, grid:[{cat,client}...] }
-// ============================================================
-function worksEditorial(cfg) {
-  const cells = cfg.grid.map(function (w) {
-    return `<div class="s-works-cell">
+// 共通：WORKSヘッダー（タグ＋カテゴリを横並び＝被り解消）
+function worksHead(en, ja, clientName) {
+  return `<div class="s-works-head">
+      <span class="badge">WORKS</span>
+      <span class="s-works-cat-en">${en}</span>
+      <span class="s-works-cat-ja">${ja}</span>
+      ${clientName ? `<span class="s-works-client-name">${clientName}</span>` : ''}
+    </div>`;
+}
+// 共通：セル（キャプション付き）
+function worksCell(w) {
+  return `<div class="s-works-cell">
         <div class="s-works-cell-img"></div>
         <div class="s-works-cap">
           <span class="s-works-cap-cat">${w.cat}</span>
           <span class="s-works-cap-client">${w.client}</span>
         </div>
       </div>`;
-  }).join('');
-  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.en} の実績。">
-  <div class="s-works">
-    <div class="s-works-top"><span class="badge">WORKS</span></div>
-    <div class="s-works-head">
-      <span class="s-works-cat-en">${cfg.en}</span>
-      <span class="s-works-cat-ja">${cfg.ja}</span>
-    </div>
-    <div class="s-works-body">
-      <div class="s-works-hero">
+}
+// 共通：主役（hero）
+function worksHero(w) {
+  return `<div class="s-works-hero">
         <div class="s-works-hero-img"></div>
         <div class="s-works-cap">
-          <span class="s-works-cap-cat">${cfg.hero.cat}</span>
-          <span class="s-works-cap-client">${cfg.hero.client}</span>
+          <span class="s-works-cap-cat">${w.cat}</span>
+          <span class="s-works-cap-client">${w.client}</span>
         </div>
+      </div>`;
+}
+
+// ============================================================
+// パターン0：主役2枚（左右1個ずつ・大きく2点見せ）
+// ============================================================
+function worksDuo(cfg) {
+  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.en} の代表作を2点。">
+  <div class="s-works">
+    ${worksHead(cfg.en, cfg.ja)}
+    <div class="s-works-body">
+      <div class="s-works-duo">
+        ${worksHero(cfg.left)}
+        ${worksHero(cfg.right)}
       </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// パターンA：主役大＋詰めグリッド（右2×2＝4点）
+// ============================================================
+function worksEditorial(cfg) {
+  const cells = cfg.grid.slice(0, 4).map(worksCell).join('');
+  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.en} の実績。">
+  <div class="s-works">
+    ${worksHead(cfg.en, cfg.ja)}
+    <div class="s-works-body">
+      ${worksHero(cfg.hero)}
       <div class="s-works-grid">${cells}</div>
     </div>
     <p class="slide-copy">©CRATER Inc.</p>
@@ -1263,27 +1346,31 @@ function worksEditorial(cfg) {
 }
 
 // ============================================================
-// WORKS パターンB：全面の密なグリッド（点数を多く）
-// cfg = { id, en, ja, cols, items:[{cat,client}...] }
+// パターン02：1社特集（主役＋詳細4枚・同一クライアント）
+// ============================================================
+function worksDetail(cfg) {
+  const cells = cfg.details.slice(0, 4).map(worksCell).join('');
+  return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.client} の1社特集。">
+  <div class="s-works">
+    ${worksHead(cfg.en, cfg.ja, cfg.client)}
+    <div class="s-works-body">
+      ${worksHero(cfg.hero)}
+      <div class="s-works-grid">${cells}</div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// ============================================================
+// パターンB：全面の密なグリッド（点数を多く）
 // ============================================================
 function worksGrid(cfg) {
   const cols = cfg.cols || 4;
-  const cells = cfg.items.map(function (w) {
-    return `<div class="s-works-cell">
-        <div class="s-works-cell-img"></div>
-        <div class="s-works-cap">
-          <span class="s-works-cap-cat">${w.cat}</span>
-          <span class="s-works-cap-client">${w.client}</span>
-        </div>
-      </div>`;
-  }).join('');
+  const cells = cfg.items.map(worksCell).join('');
   return `<section class="slide" data-section="${cfg.id}" data-notes="${cfg.en} の実績一覧。">
   <div class="s-works">
-    <div class="s-works-top"><span class="badge">WORKS</span></div>
-    <div class="s-works-head">
-      <span class="s-works-cat-en">${cfg.en}</span>
-      <span class="s-works-cat-ja">${cfg.ja}</span>
-    </div>
+    ${worksHead(cfg.en, cfg.ja)}
     <div class="s-works-body">
       <div class="s-works-grid" style="flex:1;grid-template-columns:repeat(${cols},1fr);">${cells}</div>
     </div>
@@ -1293,17 +1380,17 @@ function worksGrid(cfg) {
 }
 
 // ============================================================
-// クライアント一覧
+// クライアント（ロゴグリッド）※Pencilで実ロゴを差し込む
 // ============================================================
 function slideClients() {
   const list = [
-    '株式会社伊藤園','株式会社西武ライオンズ','JRA 日本中央競馬会','亀田製菓株式会社',
-    '株式会社おやつカンパニー','株式会社山本海苔店','株式会社サンドラッグ','国立新美術館',
-    'エイベックス・エンタテインメント','日東紡績株式会社','株式会社Gunosy','TOKYO MX',
-    '西武鉄道株式会社','中島醸造株式会社','和歌山産業株式会社','株式会社キャスター',
-    '尾山神社','クリエイトアイエムエス株式会社','ちば醤油株式会社','株式会社プロダクション人力舎',
+    '株式会社伊藤園','株式会社西武ライオンズ','JRA 日本中央競馬会','亀田製菓株式会社','株式会社おやつカンパニー',
+    '株式会社山本海苔店','株式会社サンドラッグ','国立新美術館','エイベックス・エンタテインメント','日東紡績株式会社',
+    '株式会社Gunosy','TOKYO MX','西武鉄道株式会社','尾山神社','株式会社プロダクション人力舎',
   ];
-  const items = list.map(function (c) { return `<div class="s-clients-item">${c}</div>`; }).join('');
+  const items = list.map(function (c) {
+    return `<div class="s-clients-logo"><span>${c}</span></div>`;
+  }).join('');
   return `<section class="slide" data-section="clients" data-notes="主なクライアント。業界を限定せず幅広く手がけています。">
   <div class="s-clients">
     <div class="s-clients-top"><span class="badge">CLIENTS</span></div>
@@ -1319,6 +1406,18 @@ function slideClients() {
 // ============================================================
 // WORKS カテゴリー別データ（グレーワイヤー・キャプションのみ実データ）
 // ============================================================
+function worksDetailSeibu() {
+  return worksDetail({
+    id: 'works-feature', en: 'FEATURED', ja: '特集', client: '株式会社西武ライオンズ',
+    hero: { cat: 'VI', client: 'ブルーシリーズ第一弾VI｜メインビジュアル' },
+    details: [
+      { cat: 'Logo', client: 'シリーズロゴ' },
+      { cat: 'Graphic', client: '球場装飾・サイン' },
+      { cat: 'Web', client: '特設サイト' },
+      { cat: 'Goods', client: 'グッズ・ノベルティ' },
+    ],
+  });
+}
 function worksPackage() {
   return worksEditorial({
     id: 'works-package', en: 'PACKAGE', ja: 'パッケージデザイン',
@@ -1328,21 +1427,17 @@ function worksPackage() {
       { cat: 'Package', client: 'おやつカンパニー｜ベビースター' },
       { cat: 'Package', client: '山本海苔店｜焼き海苔' },
       { cat: 'Package', client: 'サンドラッグ｜PB商品' },
-      { cat: 'Package', client: '和歌山産業｜いつものジュレ' },
-      { cat: 'Package', client: '中島醸造｜日本酒 Fukuro' },
     ],
   });
 }
 function worksVI() {
   return worksEditorial({
     id: 'works-vi', en: 'BRANDING / VI', ja: 'ブランディング・VI',
-    hero: { cat: 'VI', client: '西武ライオンズ｜ブルーシリーズ第一弾VI' },
+    hero: { cat: 'VI', client: '芝園開発｜リクスタフィットネス' },
     grid: [
       { cat: 'VI', client: '焼肉 さぶろく｜VI' },
-      { cat: 'VI', client: '芝園開発｜リクスタフィットネス' },
       { cat: 'VI', client: '有限会社サンペイ｜epe' },
       { cat: 'VI', client: '新日本エステート｜コーポレートVI' },
-      { cat: 'VI', client: 'MU合同会社｜muVI' },
       { cat: 'VI', client: 'スパイスワークス｜JUGEM' },
     ],
   });
@@ -1363,17 +1458,10 @@ function worksLogo() {
   });
 }
 function worksGraphic() {
-  return worksEditorial({
+  return worksDuo({
     id: 'works-graphic', en: 'GRAPHIC / KV', ja: 'グラフィック・キービジュアル',
-    hero: { cat: 'KV', client: 'JRA 日本中央競馬会｜有馬記念キャンペーンVI' },
-    grid: [
-      { cat: 'Graphic', client: '国立新美術館｜バレエ・リュス展' },
-      { cat: 'KV', client: 'TOKYO MX｜恋愛ルビの正しいふりかた' },
-      { cat: 'KV', client: 'K Company｜堀口恭司様KV' },
-      { cat: 'Graphic', client: 'クリエイトアイエムエス｜JAPAN ART FESTIVAL' },
-      { cat: 'Graphic', client: '日東紡績｜100周年ツール' },
-      { cat: 'Graphic', client: '西武鉄道｜記念乗車券' },
-    ],
+    left: { cat: 'KV', client: 'JRA 日本中央競馬会｜有馬記念キャンペーンVI' },
+    right: { cat: 'Graphic', client: '国立新美術館｜バレエ・リュス展' },
   });
 }
 function worksWeb() {
@@ -1382,11 +1470,9 @@ function worksWeb() {
     hero: { cat: 'Web', client: '中央競馬ピーアール・センター｜日本ダービー特設サイト' },
     grid: [
       { cat: 'Web', client: '尾山神社｜ウェブサイト' },
-      { cat: 'Web', client: 'キャスター｜casterbiz' },
       { cat: 'Web', client: 'Gunosy｜マクドナルドコラボ' },
       { cat: 'Web', client: 'たつみ会計事務所｜ウェブサイト' },
       { cat: 'Web', client: 'サンペイ鞄店｜コーポレート' },
-      { cat: 'Web', client: '確定拠出年金診断協会｜コーポレート' },
     ],
   });
 }
@@ -1396,15 +1482,15 @@ window.slideFactories = [
   slide04Statement,
   slide08Overview,
   slide05ServiceList,
-  slide06FeatureGrid,
   slide07Number,
+  slideClients,
   worksBreak,
+  worksDetailSeibu,
   worksPackage,
   worksVI,
-  worksLogo,
   worksGraphic,
+  worksLogo,
   worksWeb,
-  slideClients,
   slideClosing,
 ];
 window.agendaItems = [
@@ -1412,15 +1498,15 @@ window.agendaItems = [
   { id: 'concept',      label: 'ステートメント' },
   { id: 'overview',     label: '会社概要' },
   { id: 'service',      label: 'サービス' },
-  { id: 'feature',      label: '強み' },
-  { id: 'number',       label: 'NUMBER' },
+  { id: 'number',       label: '選ばれる理由 / NUMBER' },
+  { id: 'clients',      label: 'クライアント' },
   { id: 'works-break',  label: 'WORKS（扉）' },
+  { id: 'works-feature',label: 'WORKS｜特集（1社）' },
   { id: 'works-package',label: 'WORKS｜パッケージ' },
   { id: 'works-vi',     label: 'WORKS｜VI' },
-  { id: 'works-logo',   label: 'WORKS｜ロゴ' },
   { id: 'works-graphic',label: 'WORKS｜グラフィック' },
+  { id: 'works-logo',   label: 'WORKS｜ロゴ' },
   { id: 'works-web',    label: 'WORKS｜Web' },
-  { id: 'clients',      label: 'クライアント' },
   { id: 'closing',      label: '締め / CTA' },
 ];
 </script>
@@ -1457,6 +1543,12 @@ window.agendaItems = [
     var margin = 46.08 * currentScale; // 2.4cqw = 46.08px
     menuBtn.style.top   = (oy + margin) + 'px';
     menuBtn.style.right = (ox + margin) + 'px';
+    // PDFボタンはハンバーガーの左に並べる
+    var pdfBtn = document.getElementById('pdf-btn');
+    if (pdfBtn) {
+      pdfBtn.style.top   = (oy + margin) + 'px';
+      pdfBtn.style.right = (ox + margin + 40) + 'px';
+    }
   }
   window.addEventListener('resize', scaleSlides);
 
@@ -1514,6 +1606,17 @@ window.agendaItems = [
   navPrev.addEventListener('click', function () { goTo(current - 1); });
   navNext.addEventListener('click', function () { goTo(current + 1); });
   menuBtn.addEventListener('click', function () { overlay.classList.toggle('open'); });
+
+  // PDF書き出し：全スライドを描画してからブラウザの印刷（PDF保存）を起動
+  var pdfBtn = document.getElementById('pdf-btn');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', function () {
+      for (var i = 0; i < total; i++) { ensureRendered(i); }
+      window.print();
+    });
+    // 印刷後にスケールを元へ戻す（プレビュー崩れ防止）
+    window.addEventListener('afterprint', function () { scaleSlides(); });
+  }
   sideClose.addEventListener('click', function () { overlay.classList.remove('open'); });
   overlay.addEventListener('click', function (e) {
     if (!e.target.closest('.sidebar')) overlay.classList.remove('open');
