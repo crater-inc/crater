@@ -1,0 +1,26 @@
+{%- comment -%} A CURRY ブランドストーリー {%- endcomment -%}
+<style>
+  .acu-story{background:#c2c2c2;padding:96px 64px;}
+  .acu-story__eye{font-family:var(--acu-en);font-size:12px;letter-spacing:3px;color:var(--acu-sub);}
+  .acu-story__t{font-family:var(--acu-en);font-weight:600;font-size:clamp(40px,5vw,64px);color:var(--acu-ink);margin:6px 0 20px;line-height:1;}
+  .acu-story__jp{font-family:var(--acu-jp);font-weight:600;font-size:13px;letter-spacing:3px;color:var(--acu-sub);}
+  .acu-story__d{font-family:var(--acu-jp);font-size:16px;line-height:2;color:#444;max-width:760px;margin:22px 0 0;}
+  @media(max-width:768px){.acu-story{padding:64px 32px;}}
+</style>
+<section class="acu acu-story">
+  <h2 class="acu-story__t">{{ section.settings.heading }}</h2>
+  <div class="acu-story__jp">{{ section.settings.subheading }}</div>
+  <p class="acu-story__d">{{ section.settings.body }}</p>
+</section>
+{% schema %}
+{
+  "name": "A CURRY Story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "上ラベル", "default": "STORY" },
+    { "type": "text", "id": "heading", "label": "見出し(英語)", "default": "Our Story" },
+    { "type": "text", "id": "subheading", "label": "サブ(日本語)", "default": "私たちの物語" },
+    { "type": "textarea", "id": "body", "label": "本文", "default": "驚きは、丁寧にしか作れない。素材と素材、時には素材とカレーの、まだ知られていない相性を探して。奇をてらうのではなく、必然としての新しさを。ひと口ごとに、小さな発見がある。そんな一皿を、私たちはつくっています。" }
+  ],
+  "presets": [{ "name": "A CURRY Story" }]
+}
+{% endschema %}

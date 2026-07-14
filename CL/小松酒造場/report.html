@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本酒アンケート分析レポート｜小松酒造場</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ==============================
+       基本設定
+    ============================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:       #1a1410;
+      --gold:      #c8a84b;
+      --gold-lt:   #e8d08a;
+      --red:       #8b2020;
+      --cream:     #f7f3ec;
+      --cream-dk:  #ede7db;
+      --gray:      #6b6057;
+      --white:     #ffffff;
+      --border:    rgba(200,168,75,.25);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Hiragino Mincho ProN', 'Yu Mincho', Georgia, serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.8;
+    }
+
+    /* ==============================
+       ヘッダー
+    ============================== */
+    .site-header {
+      background: var(--ink);
+      color: var(--white);
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .site-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(200,168,75,.18) 0%, transparent 70%);
+    }
+
+    .header-label {
+      font-size: 11px;
+      letter-spacing: .25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .header-title {
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 400;
+      letter-spacing: .08em;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .header-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,.55);
+    }
+
+    .header-meta span b {
+      display: block;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .02em;
+    }
+
+    /* ==============================
+       レイアウト
+    ============================== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 400;
+      letter-spacing: .05em;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 48px;
+    }
+
+    /* ==============================
+       ランキング棒グラフ
+    ============================== */
+    .ranking-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .ranking-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .rank-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .rank-badge.gold   { background: var(--gold);   color: var(--ink); }
+    .rank-badge.silver { background: #a8a09a; color: var(--white); }
+    .rank-badge.bronze { background: #a06040; color: var(--white); }
+    .rank-badge.gray   { background: var(--cream-dk); color: var(--gray); }
+
+    .rank-info { min-width: 0; }
+
+    .rank-keyword {
+      font-size: 11px;
+      letter-spacing: .12em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .rank-name {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .bar-wrap {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .bar-row { display: flex; align-items: center; gap: 8px; }
+
+    .bar-label {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 10px;
+      color: var(--gray);
+      width: 20px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .bar-track {
+      width: 200px;
+      height: 8px;
+      background: var(--cream-dk);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    .bar-fill.first  { background: var(--gold); }
+    .bar-fill.second { background: #a8c0d0; }
+
+    .bar-count {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 11px;
+      color: var(--gray);
+    }
+
+    .rank-total {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .rank-total-num {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .rank-total-pct {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 13px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .rank-total-label {
+      font-size: 10px;
+      color: var(--gray);
+      letter-spacing: .05em;
+    }
+
+    /* ==============================
+       比較表
+    ============================== */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 14px;
+    }
+
+    .comparison-table th {
+      background: var(--ink);
+      color: var(--gold);
+      padding: 14px 20px;
+      text-align: left;
+      font-weight: 400;
+      letter-spacing: .08em;
+      font-size: 12px;
+    }
+
+    .comparison-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .comparison-table tr:nth-child(even) td { background: rgba(255,255,255,.6); }
+    .comparison-table tr:nth-child(odd) td  { background: var(--white); }
+
+    .table-keyword { font-family: 'Hiragino Mincho ProN', Georgia, serif; font-size: 13px; }
+    .table-num { font-size: 18px; font-weight: 700; }
+    .table-pct { color: var(--gray); font-size: 13px; }
+
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .pill.hitomebore { background: #fff0e0; color: #c06020; border: 1px solid #f0c080; }
+    .pill.jiwajika   { background: #e8f0ff; color: #3060a0; border: 1px solid #a0b8e0; }
+
+    /* ==============================
+       ギャップ分析
+    ============================== */
+    .gap-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 680px) {
+      .gap-grid { grid-template-columns: 1fr; }
+    }
+
+    .gap-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 28px;
+    }
+
+    .gap-card.highlight { border-color: var(--gold); }
+
+    .gap-card-label {
+      font-size: 10px;
+      letter-spacing: .18em;
+      color: var(--gold);
+      font-family: 'Helvetica Neue', sans-serif;
+      margin-bottom: 8px;
+    }
+
+    .gap-card-name { font-size: 18px; margin-bottom: 16px; line-height: 1.4; }
+
+    .gap-arrows {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+      margin-bottom: 14px;
+    }
+
+    .gap-arrow-item { text-align: center; }
+
+    .gap-arrow-bar {
+      width: 50px;
+      background: var(--cream-dk);
+      border-radius: 3px 3px 0 0;
+      margin: 0 auto 4px;
+      transition: height .8s ease;
+    }
+
+    .gap-arrow-bar.first  { background: var(--gold); }
+    .gap-arrow-bar.second { background: #a8c0d0; }
+
+    .gap-arrow-val {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .gap-arrow-lbl {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 10px;
+      color: var(--gray);
+    }
+
+    .gap-card-tag { margin-top: 10px; }
+    .gap-card-desc { font-size: 13px; color: var(--gray); margin-top: 6px; line-height: 1.6; }
+
+    /* ==============================
+       コメント5選
+    ============================== */
+    .comments-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .comment-card {
+      background: var(--white);
+      border-left: 4px solid var(--gold);
+      padding: 28px 32px;
+      border-radius: 0 4px 4px 0;
+      position: relative;
+    }
+
+    .comment-number {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 60px;
+      font-weight: 700;
+      color: var(--cream-dk);
+      position: absolute;
+      top: 12px;
+      right: 24px;
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+
+    .comment-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    .comment-text {
+      font-size: 17px;
+      line-height: 1.85;
+      position: relative;
+      z-index: 1;
+    }
+
+    .comment-attr {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 14px;
+      font-family: 'Helvetica Neue', sans-serif;
+    }
+
+    /* ==============================
+       キーワード
+    ============================== */
+    .keyword-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .kw-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px 24px;
+      text-align: center;
+    }
+
+    .kw-word {
+      display: block;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: .05em;
+      margin-bottom: 4px;
+    }
+
+    .kw-desc {
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 11px;
+      color: var(--gray);
+    }
+
+    .kw-item.large  { font-size: 32px; border-color: var(--gold); }
+    .kw-item.medium { font-size: 24px; }
+    .kw-item.small  { font-size: 18px; }
+
+    /* ==============================
+       インサイト
+    ============================== */
+    .insight-box {
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 4px;
+      padding: 60px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .insight-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% -20%, rgba(200,168,75,.2) 0%, transparent 60%);
+    }
+
+    .insight-quote {
+      font-size: clamp(20px, 3.5vw, 32px);
+      line-height: 1.8;
+      letter-spacing: .06em;
+      font-weight: 400;
+      position: relative;
+      margin-bottom: 32px;
+    }
+
+    .insight-quote em {
+      font-style: normal;
+      color: var(--gold-lt);
+      border-bottom: 1px solid rgba(200,168,75,.4);
+      padding-bottom: 2px;
+    }
+
+    .insight-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.9;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* ==============================
+       フッター
+    ============================== */
+    .site-footer {
+      background: var(--ink);
+      color: rgba(255,255,255,.35);
+      text-align: center;
+      padding: 32px;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    /* ==============================
+       legend
+    ============================== */
+    .legend {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      font-family: 'Helvetica Neue', sans-serif;
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 2px; }
+    .legend-dot.first  { background: var(--gold); }
+    .legend-dot.second { background: #a8c0d0; }
+
+    /* ==============================
+       チャートラッパー
+    ============================== */
+    .chart-wrapper {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 680px) {
+      .ranking-item {
+        grid-template-columns: 36px 1fr;
+        grid-template-rows: auto auto;
+      }
+      .rank-total { grid-column: 2; text-align: left; }
+      .bar-track { width: 140px; }
+      .insight-box { padding: 40px 24px; }
+      .comparison-table { font-size: 12px; }
+      .comparison-table th, .comparison-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==============================
+     ヘッダー
+============================== -->
+<header class="site-header">
+  <p class="header-label">Survey Analysis Report — Komatsu Sake Brewery</p>
+  <h1 class="header-title">
+    「飲みたくなる・買ってみたくなる」<br>
+    <em>5つの切り口</em>アンケート分析
+  </h1>
+  <div class="header-meta">
+    <span><b>500</b>総回答数</span>
+    <span><b>5</b>切り口（選択肢）</span>
+    <span><b>2026.03.05</b>調査日</span>
+  </div>
+</header>
+
+
+<!-- ==============================
+     セクション1: 定量分析
+============================== -->
+<main>
+<section class="section">
+  <div class="container">
+    <p class="section-label">Quantitative Analysis</p>
+    <h2 class="section-title">定量分析 — 数字でわかる強み</h2>
+    <p class="section-sub">1位と2位の合算で「総合支持率」を算出。500人中、何人がこの切り口を選んだか。</p>
+
+    <!-- 凡例 -->
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot first"></div> 1位に選んだ票数</div>
+      <div class="legend-item"><div class="legend-dot second"></div> 2位に選んだ票数</div>
+    </div>
+
+    <!-- ランキング -->
+    <div class="ranking-grid">
+
+      <!-- 1位 幻の米 -->
+      <div class="ranking-item">
+        <div class="rank-badge gold">1</div>
+        <div class="rank-info">
+          <p class="rank-keyword">幻の米</p>
+          <p class="rank-name">日本で唯一、ここでしか出会えない『復活の米』。<br>一粒一粒に宿る、圧倒的な米の存在感を味わう。</p>
+          <div class="bar-wrap">
+            <div class="bar-row">
+              <span class="bar-label">1位</span>
+              <div class="bar-track"><div class="bar-fill first" style="width:100%"></div></div>
+              <span class="bar-count">278票</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2位</span>
+              <div class="bar-track"><div class="bar-fill second" style="width:41%"></div></div>
+              <span class="bar-count">113票</span>
+            </div>
+          </div>
+        </div>
+        <div class="rank-total">
+          <div class="rank-total-num" style="color:var(--gold)">391</div>
+          <div class="rank-total-label">合計票</div>
+          <div class="rank-total-pct">支持率 <b>78.2%</b></div>
+        </div>
+      </div>
+
+      <!-- 2位 世界の評価 -->
+      <div class="ranking-item">
+        <div class="rank-badge silver">2</div>
+        <div class="rank-info">
+          <p class="rank-keyword">世界の評価</p>
+          <p class="rank-name">美食の国フランスが認めた、料理の味を最大限に引き出す「最高の名コンビ」。</p>
+          <div class="bar-wrap">
+            <div class="bar-row">
+              <span class="bar-label">1位</span>
+              <div class="bar-track"><div class="bar-fill first" style="width:17%"></div></div>
+              <span class="bar-count">46票</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2位</span>
+              <div class="bar-track"><div class="bar-fill second" style="width:39%"></div></div>
+              <span class="bar-count">109票</span>
+            </div>
+          </div>
+        </div>
+        <div class="rank-total">
+          <div class="rank-total-num" style="color:#a8a09a">155</div>
+          <div class="rank-total-label">合計票</div>
+          <div class="rank-total-pct">支持率 <b>31.0%</b></div>
+        </div>
+      </div>
+
+      <!-- 3位 復活の物語 -->
+      <div class="ranking-item">
+        <div class="rank-badge bronze">3</div>
+        <div class="rank-info">
+          <p class="rank-keyword">復活の物語</p>
+          <p class="rank-name">20年の沈黙を破り、家族で再び灯した「情熱の雫」。</p>
+          <div class="bar-wrap">
+            <div class="bar-row">
+              <span class="bar-label">1位</span>
+              <div class="bar-track"><div class="bar-fill first" style="width:24%"></div></div>
+              <span class="bar-count">67票</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2位</span>
+              <div class="bar-track"><div class="bar-fill second" style="width:31%"></div></div>
+              <span class="bar-count">87票</span>
+            </div>
+          </div>
+        </div>
+        <div class="rank-total">
+          <div class="rank-total-num" style="color:#a06040">154</div>
+          <div class="rank-total-label">合計票</div>
+          <div class="rank-total-pct">支持率 <b>30.8%</b></div>
+        </div>
+      </div>
+
+      <!-- 4位 太古の記憶 -->
+      <div class="ranking-item">
+        <div class="rank-badge gray">4</div>
+        <div class="rank-info">
+          <p class="rank-keyword">太古の記憶</p>
+          <p class="rank-name">かつては海だった地層が磨いた「中硬水」がもたらす、鮮やかなキレ。</p>
+          <div class="bar-wrap">
+            <div class="bar-row">
+              <span class="bar-label">1位</span>
+              <div class="bar-track"><div class="bar-fill first" style="width:20%"></div></div>
+              <span class="bar-count">56票</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2位</span>
+              <div class="bar-track"><div class="bar-fill second" style="width:31%"></div></div>
+              <span class="bar-count">87票</span>
+            </div>
+          </div>
+        </div>
+        <div class="rank-total">
+          <div class="rank-total-num" style="color:var(--gray)">143</div>
+          <div class="rank-total-label">合計票</div>
+          <div class="rank-total-pct">支持率 <b>28.6%</b></div>
+        </div>
+      </div>
+
+      <!-- 5位 究極の脇役 -->
+      <div class="ranking-item">
+        <div class="rank-badge gray">5</div>
+        <div class="rank-info">
+          <p class="rank-keyword">究極の脇役</p>
+          <p class="rank-name">料理を主役にする、食卓に欠かせない「名脇役」。</p>
+          <div class="bar-wrap">
+            <div class="bar-row">
+              <span class="bar-label">1位</span>
+              <div class="bar-track"><div class="bar-fill first" style="width:17%"></div></div>
+              <span class="bar-count">46票</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-label">2位</span>
+              <div class="bar-track"><div class="bar-fill second" style="width:33%"></div></div>
+              <span class="bar-count">92票</span>
+            </div>
+          </div>
+        </div>
+        <div class="rank-total">
+          <div class="rank-total-num" style="color:var(--gray)">138</div>
+          <div class="rank-total-label">合計票</div>
+          <div class="rank-total-pct">支持率 <b>27.6%</b></div>
+        </div>
+      </div>
+
+    </div><!-- /ranking-grid -->
+  </div>
+</section>
+
+
+<!-- ==============================
+     セクション2: ギャップ分析
+============================== -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Gap Analysis</p>
+    <h2 class="section-title">期待のギャップ分析</h2>
+    <p class="section-sub">「1位票」と「2位票」の差から、即決で選ばれるか・じわじわ評価されるかがわかる。</p>
+
+    <div class="gap-grid">
+
+      <!-- 一目惚れ -->
+      <div class="gap-card highlight">
+        <p class="gap-card-label">★ 圧倒的 一目惚れ型</p>
+        <p class="gap-card-name">幻の米</p>
+        <div class="gap-arrows">
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar first" style="height:120px"></div>
+            <div class="gap-arrow-val">278</div>
+            <div class="gap-arrow-lbl">1位票</div>
+          </div>
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar second" style="height:49px"></div>
+            <div class="gap-arrow-val">113</div>
+            <div class="gap-arrow-lbl">2位票</div>
+          </div>
+        </div>
+        <div class="gap-card-tag"><span class="pill hitomebore">差 +165票 → 圧倒的に最初に選ばれる</span></div>
+        <p class="gap-card-desc">見た瞬間に「これだ」と感じる力がある。広告のファーストビューやパッケージに最適なキーワード。</p>
+      </div>
+
+      <!-- じわじわ -->
+      <div class="gap-card">
+        <p class="gap-card-label">じわじわ効く 後押し型</p>
+        <p class="gap-card-name">世界の評価</p>
+        <div class="gap-arrows">
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar first" style="height:20px"></div>
+            <div class="gap-arrow-val">46</div>
+            <div class="gap-arrow-lbl">1位票</div>
+          </div>
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar second" style="height:47px"></div>
+            <div class="gap-arrow-val">109</div>
+            <div class="gap-arrow-lbl">2位票</div>
+          </div>
+        </div>
+        <div class="gap-card-tag"><span class="pill jiwajika">差 −63票 → 2位になりやすい安心感の軸</span></div>
+        <p class="gap-card-desc">最初の一押しにはなりにくいが、「これも気になる」と思わせる信頼の裏付けとして機能する。</p>
+      </div>
+
+      <div class="gap-card">
+        <p class="gap-card-label">じわじわ効く 物語型</p>
+        <p class="gap-card-name">復活の物語</p>
+        <div class="gap-arrows">
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar first" style="height:29px"></div>
+            <div class="gap-arrow-val">67</div>
+            <div class="gap-arrow-lbl">1位票</div>
+          </div>
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar second" style="height:38px"></div>
+            <div class="gap-arrow-val">87</div>
+            <div class="gap-arrow-lbl">2位票</div>
+          </div>
+        </div>
+        <div class="gap-card-tag"><span class="pill jiwajika">差 −20票 → 読むほど刺さるストーリー型</span></div>
+        <p class="gap-card-desc">ブランドの背景や蔵の歴史を知るほど評価が上がる。SNS長尺コンテンツや記事との相性が良い。</p>
+      </div>
+
+      <div class="gap-card">
+        <p class="gap-card-label">じわじわ効く 日常使い型</p>
+        <p class="gap-card-name">究極の脇役</p>
+        <div class="gap-arrows">
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar first" style="height:20px"></div>
+            <div class="gap-arrow-val">46</div>
+            <div class="gap-arrow-lbl">1位票</div>
+          </div>
+          <div class="gap-arrow-item">
+            <div class="gap-arrow-bar second" style="height:40px"></div>
+            <div class="gap-arrow-val">92</div>
+            <div class="gap-arrow-lbl">2位票</div>
+          </div>
+        </div>
+        <div class="gap-card-tag"><span class="pill jiwajika">差 −46票 → 選ばれないが、納得度は高い</span></div>
+        <p class="gap-card-desc">単体では地味に見えるが、食シーン訴求や料理写真との組み合わせで刺さる軸。リピート購入に強い。</p>
+      </div>
+
+    </div><!-- /gap-grid -->
+
+    <!-- 比較表 -->
+    <div style="margin-top:40px; overflow-x:auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>切り口</th>
+            <th>1位票数</th>
+            <th>2位票数</th>
+            <th>合計</th>
+            <th>支持率</th>
+            <th>タイプ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="table-keyword">幻の米</td>
+            <td><span class="table-num" style="color:var(--gold)">278</span></td>
+            <td><span class="table-num">113</span></td>
+            <td><span class="table-num">391</span></td>
+            <td class="table-pct"><b>78.2%</b></td>
+            <td><span class="pill hitomebore">一目惚れ型</span></td>
+          </tr>
+          <tr>
+            <td class="table-keyword">世界の評価</td>
+            <td><span class="table-num">46</span></td>
+            <td><span class="table-num">109</span></td>
+            <td><span class="table-num">155</span></td>
+            <td class="table-pct">31.0%</td>
+            <td><span class="pill jiwajika">じわじわ型</span></td>
+          </tr>
+          <tr>
+            <td class="table-keyword">復活の物語</td>
+            <td><span class="table-num">67</span></td>
+            <td><span class="table-num">87</span></td>
+            <td><span class="table-num">154</span></td>
+            <td class="table-pct">30.8%</td>
+            <td><span class="pill jiwajika">じわじわ型</span></td>
+          </tr>
+          <tr>
+            <td class="table-keyword">太古の記憶</td>
+            <td><span class="table-num">56</span></td>
+            <td><span class="table-num">87</span></td>
+            <td><span class="table-num">143</span></td>
+            <td class="table-pct">28.6%</td>
+            <td><span class="pill jiwajika">じわじわ型</span></td>
+          </tr>
+          <tr>
+            <td class="table-keyword">究極の脇役</td>
+            <td><span class="table-num">46</span></td>
+            <td><span class="table-num">92</span></td>
+            <td><span class="table-num">138</span></td>
+            <td class="table-pct">27.6%</td>
+            <td><span class="pill jiwajika">じわじわ型</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ==============================
+     セクション3: 定性分析 コメント
+============================== -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Qualitative Analysis</p>
+    <h2 class="section-title">定性分析 — 心に刺さる生の声</h2>
+    <p class="section-sub">そのままキャッチコピーやコンセプトに転用できる、熱量の高いコメント5選。</p>
+
+    <div class="comments-grid">
+
+      <div class="comment-card">
+        <div class="comment-number">01</div>
+        <span class="comment-tag">幻の米 ／ 希少性</span>
+        <p class="comment-text">「日本で唯一というパワーワードに惹かれたから。<br>唯一や限定など、希少価値が高いことを表す言葉を使用されていると飲んでみたいと感じた。」</p>
+        <p class="comment-attr">女性・20〜30代 / 複数回答より抽出</p>
+      </div>
+
+      <div class="comment-card">
+        <div class="comment-number">02</div>
+        <span class="comment-tag">復活の物語 ／ 感動・物語性</span>
+        <p class="comment-text">「20年の沈黙を破って家族で再起した、という背景に惹かれます。味だけじゃなくて『続けること』『守ること』の重みが入っていそうで、飲む時間が特別になりそう。」</p>
+        <p class="comment-attr">女性・30〜40代</p>
+      </div>
+
+      <div class="comment-card">
+        <div class="comment-number">03</div>
+        <span class="comment-tag">世界の評価 ／ 安心・信頼</span>
+        <p class="comment-text">「自分の舌やチョイスに自信がないので、世界の評価という太鼓判があると、安心します。」</p>
+        <p class="comment-attr">女性・40〜50代</p>
+      </div>
+
+      <div class="comment-card">
+        <div class="comment-number">04</div>
+        <span class="comment-tag">太古の記憶 ／ ロマン・水</span>
+        <p class="comment-text">「かつては海だった地層が磨いた」という説明から、長い年月をかけてろ過され、ただの水ではなく、<em style="font-style:normal; font-weight:700">時間そのものに価値が宿っている</em>ように感じられた。」</p>
+        <p class="comment-attr">女性・30代</p>
+      </div>
+
+      <div class="comment-card">
+        <div class="comment-number">05</div>
+        <span class="comment-tag">究極の脇役 ／ 逆張り・食中酒</span>
+        <p class="comment-text">「メインとして推す日本酒は多い印象があるけれど、<em style="font-style:normal; font-weight:700">あえて脇役としてアピールするところに興味を惹かれた</em>。」</p>
+        <p class="comment-attr">女性・40代</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     セクション4: キーワード
+============================== -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Keyword Extraction</p>
+    <h2 class="section-title">頻出ポジティブキーワード</h2>
+    <p class="section-sub">選んだ理由の自由記述から頻繁に登場した言葉。ブランドの言語を作るヒント。</p>
+
+    <div class="keyword-cloud">
+      <div class="kw-item" style="border-color:var(--gold)">
+        <span class="kw-word" style="font-size:32px">唯一・限定</span>
+        <span class="kw-desc">希少性 ／ レア感への反応が最多</span>
+      </div>
+      <div class="kw-item">
+        <span class="kw-word" style="font-size:26px">物語・ストーリー</span>
+        <span class="kw-desc">背景・歴史を知りたい欲求</span>
+      </div>
+      <div class="kw-item">
+        <span class="kw-word" style="font-size:22px">水・水質</span>
+        <span class="kw-desc">日本酒の品質軸として認識</span>
+      </div>
+      <div class="kw-item">
+        <span class="kw-word" style="font-size:20px">料理・食事</span>
+        <span class="kw-desc">飲み方・シーンの具体性</span>
+      </div>
+      <div class="kw-item">
+        <span class="kw-word" style="font-size:18px">世界・フランス</span>
+        <span class="kw-desc">外部評価による信頼の担保</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ==============================
+     セクション5: インサイト
+============================== -->
+<section class="section" style="border-bottom:none">
+  <div class="container">
+    <p class="section-label">User Insight</p>
+    <h2 class="section-title">ユーザーの共通インサイト</h2>
+    <p class="section-sub">500人の回答の根底にある、たった一つの心理的動機。</p>
+
+    <div class="insight-box">
+      <p class="insight-quote">
+        人は日本酒の<em>「味」</em>より、<br>
+        その酒を選ぶ<em>「理由」</em>を求めている。
+      </p>
+      <p class="insight-desc">
+        希少性、物語、産地の個性、海外の評価——<br>
+        選ばれた理由はさまざまに見えるが、どれも本質は同じだ。<br>
+        「なぜこれを飲むのか」という<strong style="color:rgba(255,255,255,.8)">自分を納得させる言葉</strong>が欲しい。<br>
+        小松酒造場が伝えるべきは、味の説明ではなく、<br>
+        <strong style="color:var(--gold-lt)">この一本を手に取る"意味"</strong>である。
+      </p>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<!-- フッター -->
+<footer class="site-footer">
+  <p>KOMATSU SAKE BREWERY — Survey Analysis 2026.03.05 ／ n=500</p>
+</footer>
+
+</body>
+</html>

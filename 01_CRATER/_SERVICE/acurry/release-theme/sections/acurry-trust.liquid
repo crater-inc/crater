@@ -1,0 +1,30 @@
+{%- comment -%} A CURRY 信頼アイコン帯 {%- endcomment -%}
+<style>
+  .acu-trust{background:var(--acu-paper2);padding:48px 64px;display:flex;justify-content:center;align-items:center;gap:48px;flex-wrap:wrap;}
+  .acu-trust__item{display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .acu-trust__item svg{width:30px;height:30px;stroke:var(--acu-ink);fill:none;stroke-width:1.4;}
+  .acu-trust__lb{font-family:var(--acu-jp);font-size:14px;color:var(--acu-ink);}
+  .acu-trust__div{width:1px;height:40px;background:#d0d0d0;}
+  @media(max-width:768px){.acu-trust{gap:24px;}.acu-trust__div{display:none;}}
+</style>
+<section class="acu acu-trust">
+  <div class="acu-trust__item"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 4 13c0-5 7-9 7-9s7 4 7 9a7 7 0 0 1-7 7z"/><path d="M11 20V9"/></svg><div class="acu-trust__lb">{{ section.settings.label1 }}</div></div>
+  <span class="acu-trust__div"></span>
+  <div class="acu-trust__item"><svg viewBox="0 0 24 24"><path d="M6 14h12v6H6z"/><path d="M7 14a5 5 0 1 1 10 0"/></svg><div class="acu-trust__lb">{{ section.settings.label2 }}</div></div>
+  <span class="acu-trust__div"></span>
+  <div class="acu-trust__item"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><polyline points="9 12 11 14 15 10"/></svg><div class="acu-trust__lb">{{ section.settings.label3 }}</div></div>
+  <span class="acu-trust__div"></span>
+  <div class="acu-trust__item"><svg viewBox="0 0 24 24"><polygon points="12 3 14.5 9 21 9.3 16 13.5 17.5 20 12 16.3 6.5 20 8 13.5 3 9.3 9.5 9"/></svg><div class="acu-trust__lb">{{ section.settings.label4 }}</div></div>
+</section>
+{% schema %}
+{
+  "name": "A CURRY Trust",
+  "settings": [
+    { "type": "text", "id": "label1", "label": "1", "default": "国産素材" },
+    { "type": "text", "id": "label2", "label": "2", "default": "専門店監修" },
+    { "type": "text", "id": "label3", "label": "3", "default": "安心品質" },
+    { "type": "text", "id": "label4", "label": "4", "default": "レビュー★5.0" }
+  ],
+  "presets": [{ "name": "A CURRY Trust" }]
+}
+{% endschema %}

@@ -1,0 +1,3392 @@
+{
+  "version": "2.14",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "sF6tY",
+      "x": -3816,
+      "y": -875,
+      "name": "参考A",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "RYz5H",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../../ESION/webpen/CleanShot%202026-07-03%20at%2016.26.57.png",
+            "mode": "fill"
+          },
+          "width": 1199,
+          "height": 5335
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "kvhjc",
+      "x": -4715,
+      "y": -875,
+      "name": "Frame 2",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "w4z0hN",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../../ESION/webpen/Rectangle.png",
+            "mode": "fill"
+          },
+          "width": 717,
+          "height": 8192
+        }
+      ]
+    },
+    {
+      "type": "rectangle",
+      "id": "KalhI",
+      "x": -7737,
+      "y": -875,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "../../../Pencil%E5%8F%82%E8%80%83/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_8-7-2026_142959_lifecatalog.cowcamo.jp.jpeg",
+        "mode": "fill"
+      },
+      "width": 1170,
+      "height": 7208
+    },
+    {
+      "type": "rectangle",
+      "id": "zsfvI",
+      "x": -6255,
+      "y": -875,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "../../../Pencil%E5%8F%82%E8%80%83/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_8-7-2026_13341_www.koyama-gr.com.jpeg",
+        "mode": "fill"
+      },
+      "width": 1194,
+      "height": 10012
+    },
+    {
+      "type": "frame",
+      "id": "Y5WH6h",
+      "x": 1040,
+      "y": -875,
+      "name": "人と空間 LP",
+      "clip": true,
+      "width": 1440,
+      "fill": "$paper",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Y4SqT3",
+          "name": "Header",
+          "width": "fill_container",
+          "height": 76,
+          "fill": "$paper",
+          "stroke": "$line",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "padding": [
+            0,
+            64
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "I2Gsy",
+              "type": "ref",
+              "ref": "H2kbg",
+              "name": "Header Logo",
+              "width": 145,
+              "height": 27
+            },
+            {
+              "type": "frame",
+              "id": "yvaBl",
+              "name": "Nav",
+              "width": "fill_container",
+              "gap": 30,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ofoUT",
+                  "name": "サービス",
+                  "fill": "#4A5058",
+                  "content": "サービス",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Xynlo",
+                  "name": "私たちについて",
+                  "fill": "#4A5058",
+                  "content": "私たちについて",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "eVbkz",
+                  "name": "ご支援の流れ",
+                  "fill": "#4A5058",
+                  "content": "ご支援の流れ",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "AX76C",
+                  "name": "事例",
+                  "fill": "#4A5058",
+                  "content": "事例",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "IUVzw",
+                  "name": "会社概要",
+                  "fill": "#4A5058",
+                  "content": "会社概要",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bi06M",
+              "name": "Header CTA",
+              "fill": "#00000000",
+              "stroke": "$ink",
+              "strokeWidth": 1.2,
+              "gap": 8,
+              "padding": [
+                11,
+                20
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "E7rDSB",
+                  "name": "CTA Label",
+                  "fill": "$ink",
+                  "content": "まずは相談する",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "icon",
+                  "id": "HHhLe",
+                  "name": "Arw",
+                  "width": 14,
+                  "height": 14,
+                  "icon": "arrow-right",
+                  "library": "feather",
+                  "fill": "$ink"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Y5K3V",
+          "name": "Hero",
+          "width": "fill_container",
+          "height": 720,
+          "fill": "$paper",
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "KYVS0",
+              "x": 36,
+              "y": 162,
+              "name": "Hero Left",
+              "width": "fill_container(840)",
+              "height": "fit_content(264)",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gts7m",
+                  "x": 72,
+                  "y": 0,
+                  "name": "Kicker",
+                  "width": "fit_content(191)",
+                  "height": "fit_content(13)",
+                  "gap": 12,
+                  "alignItems": "center"
+                },
+                {
+                  "type": "text",
+                  "id": "NaWDt",
+                  "x": 65,
+                  "y": 62,
+                  "name": "Kicker Text",
+                  "fill": "$muted",
+                  "content": "AI ERA CX / UX PARTNER",
+                  "fontFamily": "$font-en",
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "letterSpacing": 2.6
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "Hc5X5",
+              "x": 840,
+              "y": 0,
+              "name": "Hero Image",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1783691556783.png",
+                "mode": "fill"
+              },
+              "width": 600,
+              "height": 720
+            },
+            {
+              "type": "text",
+              "id": "WNeXC",
+              "x": -13,
+              "y": 201,
+              "name": "H1",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": "fill_container(686)",
+              "content": "People &",
+              "lineHeight": 1,
+              "fontFamily": "$font-en",
+              "fontSize": 159,
+              "fontWeight": "700",
+              "letterSpacing": -2
+            },
+            {
+              "type": "frame",
+              "id": "UtyJ9",
+              "x": 119,
+              "y": 447,
+              "name": "H1 Wrap",
+              "width": "fill_container(696)",
+              "height": "fit_content(39)",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "zCgzb",
+                  "x": -130,
+                  "y": -130,
+                  "name": "H1",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container(686)",
+                  "content": "Space",
+                  "lineHeight": 1,
+                  "fontFamily": "$font-en",
+                  "fontSize": 159,
+                  "fontWeight": "700",
+                  "letterSpacing": -2
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Tqsgb",
+              "x": 119,
+              "y": 486,
+              "name": "Sub Wrap",
+              "width": "fill_container(696)",
+              "height": "fit_content(52)",
+              "layout": "none"
+            },
+            {
+              "type": "frame",
+              "id": "uUwBo",
+              "x": 119,
+              "y": 538,
+              "name": "Lead Wrap",
+              "width": 440,
+              "height": "fit_content(76)",
+              "layout": "none"
+            },
+            {
+              "type": "frame",
+              "id": "JperU",
+              "x": 119,
+              "y": 614,
+              "name": "Actions",
+              "width": "fit_content(420)",
+              "height": "fit_content(84)",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "T7nhc",
+                  "x": 0,
+                  "y": 34,
+                  "name": "Btn Primary",
+                  "fill": "#00000000",
+                  "cornerRadius": 125,
+                  "stroke": "$ink",
+                  "strokeWidth": 1.5,
+                  "gap": 10,
+                  "padding": [
+                    15,
+                    26
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CzdFs",
+                      "name": "BP Label",
+                      "fill": "$ink",
+                      "content": "まずは相談する（無料）",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "m0vhi",
+                      "name": "Arw",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "arrow-right",
+                      "library": "feather",
+                      "fill": "$ink"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "E8gJh",
+                  "x": 244,
+                  "y": 34,
+                  "name": "Btn Secondary",
+                  "fill": "#00000000",
+                  "cornerRadius": 125,
+                  "stroke": "$line",
+                  "strokeWidth": 1.5,
+                  "gap": 10,
+                  "padding": [
+                    15,
+                    26
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qdXs1",
+                      "name": "BS Label",
+                      "fill": "$muted",
+                      "content": "サービスを見る",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "F0nbLU",
+                      "name": "Arw",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "arrow-right",
+                      "library": "feather",
+                      "fill": "$muted"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "xICoh",
+              "x": 108,
+              "y": 525,
+              "name": "JP Sub",
+              "fill": "$navy",
+              "textGrowth": "fixed-width",
+              "width": "fill_container(696)",
+              "content": "「人」と「空間」から、お客様の体験を変える。",
+              "lineHeight": 1.6,
+              "fontFamily": "$font-jp",
+              "fontSize": 19,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "ZHEoD",
+              "x": 116,
+              "y": 569,
+              "name": "Lead",
+              "fill": "#464D55",
+              "textGrowth": "fixed-width",
+              "width": "fill_container(440)",
+              "content": "AI時代の店舗CX・UX改善のパイオニア。顧客体験価値と空間品質の改善を、調査・分析・伴走支援で実現します。",
+              "lineHeight": 1.95,
+              "fontFamily": "$font-jp",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "yDldP",
+          "name": "Services",
+          "width": "fill_container",
+          "fill": "$paper",
+          "layout": "vertical",
+          "padding": [
+            130,
+            72
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "fZC9k",
+              "name": "SV Head",
+              "width": "fill_container",
+              "gap": 56,
+              "padding": [
+                0,
+                0,
+                64,
+                0
+              ],
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "K4cm6I",
+                  "name": "SV Head Left",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "rTqZB",
+                      "name": "SV Label",
+                      "fill": "$faint",
+                      "content": "( SERVICES )",
+                      "fontFamily": "$font-en",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "KHpDF",
+                      "name": "SV H2",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "調査から改善まで、\n5つの領域で伴走する。",
+                      "lineHeight": 1.28,
+                      "fontFamily": "$font-en",
+                      "fontSize": 40,
+                      "fontWeight": "700",
+                      "letterSpacing": -0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Irf3B",
+                  "name": "SV Head Right",
+                  "width": 360,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EVCWs",
+                      "name": "SV Lead",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "生活者目線と専門知を合わせた調査から、空間品質のスコア化、人流データの活用、現場の行動変化までを一貫して支援します。",
+                      "lineHeight": 2,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "A9eYY",
+              "name": "SV List",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "EaSYs",
+                  "name": "Row 01",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 44,
+                  "padding": [
+                    40,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "JjI1v",
+                      "name": "SV Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "search",
+                      "library": "feather",
+                      "fill": "$ink"
+                    },
+                    {
+                      "type": "text",
+                      "id": "mHXDN",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "CX調査",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 23,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zx3Wh",
+                      "name": "Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "生活者目線とプロの洞察を組み合わせ、現場の接客品質を可視化します。",
+                      "lineHeight": 1.95,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LzC6g",
+                  "name": "Row 02",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 44,
+                  "padding": [
+                    40,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "OZbaV",
+                      "name": "SV Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "grid",
+                      "library": "feather",
+                      "fill": "$ink"
+                    },
+                    {
+                      "type": "text",
+                      "id": "O1uau",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "空間品質調査",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 23,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "y5iMX",
+                      "name": "Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "空間の価値を9つの視点からスコア化し、改善の起点をつくります。",
+                      "lineHeight": 1.95,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YSTwZ",
+                  "name": "Row 03",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 44,
+                  "padding": [
+                    40,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "a47etl",
+                      "name": "SV Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "camera",
+                      "library": "feather",
+                      "fill": "$ink"
+                    },
+                    {
+                      "type": "text",
+                      "id": "x2nVO",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "AIカメラと店舗運営DX",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 23,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "DBoNw",
+                      "name": "Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "人流データとCXナレッジを掛け合わせ、KPI改善を戦略的に設計します。",
+                      "lineHeight": 1.95,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "v3Pw9",
+                  "name": "Row 04",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 44,
+                  "padding": [
+                    40,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "jOidS",
+                      "name": "SV Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "compass",
+                      "library": "feather",
+                      "fill": "$ink"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fZsY3",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "コンサルティング支援",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 23,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ykpqg",
+                      "name": "Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "調査で終わらず、ロードマップづくりから改善実行まで伴走します。",
+                      "lineHeight": 1.95,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CBni0",
+                  "name": "Row 05",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1,
+                    "bottom": 1
+                  },
+                  "gap": 44,
+                  "padding": [
+                    40,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "xQr3C",
+                      "name": "SV Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "award",
+                      "library": "feather",
+                      "fill": "$ink"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h5wTcu",
+                      "name": "Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": 300,
+                      "content": "役員・リーダー研修",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 23,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zto6h",
+                      "name": "Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "経営層・リーダークラスに、CXと空間品質を経営判断へ活かす視点を養います。",
+                      "lineHeight": 1.95,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S7OIHW",
+          "name": "About",
+          "width": "fill_container",
+          "fill": "$soft",
+          "layout": "vertical",
+          "gap": 70,
+          "padding": [
+            130,
+            72
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "uMFNE",
+              "name": "AB Head",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ah2OP",
+                  "name": "AB Label",
+                  "fill": "$faint",
+                  "content": "( ABOUT )",
+                  "fontFamily": "$font-en",
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "bE2wi",
+                  "name": "AB H2",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": 900,
+                  "content": "AI時代だからこそ、\nリアル店舗のCXが問われる。",
+                  "lineHeight": 1.3,
+                  "fontFamily": "$font-en",
+                  "fontSize": 46,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Tc0y0",
+              "name": "AB Body",
+              "width": "fill_container",
+              "gap": 70,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "W0w1m",
+                  "name": "AB Image",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./images/generated-1783691556834.png",
+                    "mode": "fill"
+                  },
+                  "width": 340,
+                  "height": 470
+                },
+                {
+                  "type": "frame",
+                  "id": "M1UFDi",
+                  "name": "AB Body Left",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fP2rX",
+                      "name": "AB Sub",
+                      "fill": "$ink",
+                      "content": "「人」と「空間」、\n2つの軸で価値を測る。",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 22,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nRbcn",
+                      "name": "AB Body Text",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": 440,
+                      "content": "人の接点で生まれる体験と、空間が生む行動や印象。私たちは商空間運営におけるCXとUXのエキスパートとして、その両方を測り、比較し、改善することで、ブランドの価値を店頭から高めます。",
+                      "lineHeight": 2.05,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "h4898",
+                  "name": "AB Strengths",
+                  "width": 440,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "gmVlV",
+                      "name": "St 01",
+                      "width": "fill_container",
+                      "stroke": "#00000018",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 24,
+                      "padding": [
+                        22,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "NabAz",
+                          "name": "St Num",
+                          "fill": "$faint",
+                          "content": "01",
+                          "fontFamily": "$font-en",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "k1zMy",
+                          "name": "St Txt",
+                          "fill": "#2A2E33",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "商空間運営・接客に特化したCX・UX改善ノウハウ",
+                          "lineHeight": 1.6,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FzL5u",
+                      "name": "St 02",
+                      "width": "fill_container",
+                      "stroke": "#00000018",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 24,
+                      "padding": [
+                        22,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fJ3Au",
+                          "name": "St Num",
+                          "fill": "$faint",
+                          "content": "02",
+                          "fontFamily": "$font-en",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "R9uKq4",
+                          "name": "St Txt",
+                          "fill": "#2A2E33",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "生活者感覚と専門分析を融合した独自調査",
+                          "lineHeight": 1.6,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zMwJa",
+                      "name": "St 03",
+                      "width": "fill_container",
+                      "stroke": "#00000018",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 24,
+                      "padding": [
+                        22,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "LbN8u",
+                          "name": "St Num",
+                          "fill": "$faint",
+                          "content": "03",
+                          "fontFamily": "$font-en",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "gVqC1",
+                          "name": "St Txt",
+                          "fill": "#2A2E33",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "全国比較・ベンチマーク分析による立ち位置の把握",
+                          "lineHeight": 1.6,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "VrfFB",
+                      "name": "St 04",
+                      "width": "fill_container",
+                      "stroke": "#00000018",
+                      "strokeWidth": {
+                        "top": 1
+                      },
+                      "gap": 24,
+                      "padding": [
+                        22,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "uxCIY",
+                          "name": "St Num",
+                          "fill": "$faint",
+                          "content": "04",
+                          "fontFamily": "$font-en",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "dALJg",
+                          "name": "St Txt",
+                          "fill": "#2A2E33",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "調査後の研修・セッションを含む継続的な伴走",
+                          "lineHeight": 1.6,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KR2WG",
+                      "name": "St 05",
+                      "width": "fill_container",
+                      "stroke": "#00000018",
+                      "strokeWidth": {
+                        "top": 1,
+                        "bottom": 1
+                      },
+                      "gap": 24,
+                      "padding": [
+                        22,
+                        0
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "m533c",
+                          "name": "St Num",
+                          "fill": "$faint",
+                          "content": "05",
+                          "fontFamily": "$font-en",
+                          "fontSize": 13,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IClBb",
+                          "name": "St Txt",
+                          "fill": "#2A2E33",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "店舗運営DXとCX・UXを橋渡しする専門性",
+                          "lineHeight": 1.6,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 15,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "wlP37",
+          "name": "Image Band",
+          "clip": true,
+          "width": "fill_container",
+          "height": 460,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/generated-1783691557104.png",
+            "mode": "fill"
+          },
+          "layout": "vertical",
+          "padding": 48,
+          "justifyContent": "end",
+          "children": [
+            {
+              "type": "frame",
+              "id": "gajDD",
+              "name": "Band Panel",
+              "fill": "#FFFFFFEB",
+              "layout": "vertical",
+              "gap": 6,
+              "padding": [
+                20,
+                24
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "U7edS",
+                  "name": "Band EN",
+                  "fill": "$faint",
+                  "content": "IN-STORE EXPERIENCE",
+                  "fontFamily": "$font-en",
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "letterSpacing": 2.4
+                },
+                {
+                  "type": "text",
+                  "id": "QObvB",
+                  "name": "Band JP",
+                  "fill": "$ink",
+                  "content": "人が動き、空間が応える。その瞬間を、データにする。",
+                  "lineHeight": 1.5,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 20,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "I4gFRe",
+          "name": "Process",
+          "width": "fill_container",
+          "fill": "$paper",
+          "layout": "vertical",
+          "gap": 60,
+          "padding": [
+            130,
+            72
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Mh5pK",
+              "name": "PR Head",
+              "width": "fill_container",
+              "gap": 56,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hhm6z",
+                  "name": "PR Head Left",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "I2Gb7",
+                      "name": "PR Label",
+                      "fill": "$faint",
+                      "content": "( PROCESS )",
+                      "fontFamily": "$font-en",
+                      "fontSize": 11,
+                      "fontWeight": "600",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "text",
+                      "id": "PKqg3",
+                      "name": "PR H2",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": 600,
+                      "content": "調査して終わり、\nにしない。",
+                      "lineHeight": 1.28,
+                      "fontFamily": "$font-en",
+                      "fontSize": 40,
+                      "fontWeight": "700",
+                      "letterSpacing": -0.5
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "WVoc6",
+                  "name": "PR Lead",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width",
+                  "width": 360,
+                  "content": "課題の発見から現場が自ら動き出すまで。一連のプロセスを伴走型で支援し、改善が続く状態をつくります。",
+                  "lineHeight": 2,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "glvcj",
+              "name": "PR Steps",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "wOVL1",
+                  "name": "Step 01",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    8,
+                    32,
+                    8,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IYujs",
+                      "name": "Step Num",
+                      "fill": "$ink",
+                      "content": "01",
+                      "fontFamily": "$font-en",
+                      "fontSize": 34,
+                      "fontWeight": "700",
+                      "letterSpacing": -1
+                    },
+                    {
+                      "type": "text",
+                      "id": "xC56a",
+                      "name": "Step Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "現状把握・調査",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "RS4LD",
+                      "name": "Step Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "ハイブリッドCX調査・空間品質調査・人流計測で現場を可視化。",
+                      "lineHeight": 1.9,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bobVg",
+                  "name": "Step 02",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "left": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    8,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "IDk5d",
+                      "name": "Step Num",
+                      "fill": "$ink",
+                      "content": "02",
+                      "fontFamily": "$font-en",
+                      "fontSize": 34,
+                      "fontWeight": "700",
+                      "letterSpacing": -1
+                    },
+                    {
+                      "type": "text",
+                      "id": "d04rU",
+                      "name": "Step Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "分析・比較",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "cRn43",
+                      "name": "Step Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "全国／ベンチマーク比較とGAP分析で優先課題を特定。",
+                      "lineHeight": 1.9,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jRLy5",
+                  "name": "Step 03",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "left": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    8,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WTlsj",
+                      "name": "Step Num",
+                      "fill": "$ink",
+                      "content": "03",
+                      "fontFamily": "$font-en",
+                      "fontSize": 34,
+                      "fontWeight": "700",
+                      "letterSpacing": -1
+                    },
+                    {
+                      "type": "text",
+                      "id": "AzOBx",
+                      "name": "Step Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "改善設計・実行",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rrBmc",
+                      "name": "Step Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "KPIに紐づく打ち手を設計し、現場の行動へ落とし込む。",
+                      "lineHeight": 1.9,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "H2hao",
+                  "name": "Step 04",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "left": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    8,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WgxUD",
+                      "name": "Step Num",
+                      "fill": "$ink",
+                      "content": "04",
+                      "fontFamily": "$font-en",
+                      "fontSize": 34,
+                      "fontWeight": "700",
+                      "letterSpacing": -1
+                    },
+                    {
+                      "type": "text",
+                      "id": "pFNf8",
+                      "name": "Step Title",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "定着・自走支援",
+                      "lineHeight": 1.5,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 17,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h9N25",
+                      "name": "Step Desc",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "継続的な伴走で、自律して改善を回す状態をつくる。",
+                      "lineHeight": 1.9,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GluRj",
+          "name": "Results & Cases",
+          "width": "fill_container",
+          "fill": "$soft",
+          "layout": "vertical",
+          "gap": 72,
+          "padding": [
+            130,
+            72
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "iy2D0",
+              "name": "RC Head",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "O0BIc",
+                  "name": "RC Label",
+                  "fill": "$faint",
+                  "content": "( RESULTS & CASES )",
+                  "fontFamily": "$font-en",
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "yhb3L",
+                  "name": "RC H2",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": 900,
+                  "content": "数字と事例で見る、改善の成果。",
+                  "lineHeight": 1.28,
+                  "fontFamily": "$font-en",
+                  "fontSize": 46,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "P2HiZK",
+              "name": "KPI Row",
+              "width": "fill_container",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "WxQ3a",
+                  "name": "KPI 0",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    4,
+                    32,
+                    4,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qt7s5",
+                      "name": "KPI Num",
+                      "fill": "$ink",
+                      "content": "+26%",
+                      "lineHeight": 1,
+                      "fontFamily": "$font-en",
+                      "fontSize": 56,
+                      "fontWeight": "700",
+                      "letterSpacing": -2
+                    },
+                    {
+                      "type": "text",
+                      "id": "NerGO",
+                      "name": "KPI Label",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "売上前年比 / ライフスタイル",
+                      "lineHeight": 1.6,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yGZE8",
+                  "name": "KPI 1",
+                  "width": "fill_container",
+                  "stroke": "#00000018",
+                  "strokeWidth": {
+                    "left": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    4,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "ueQJa",
+                      "name": "KPI Num",
+                      "fill": "$ink",
+                      "content": "117%",
+                      "lineHeight": 1,
+                      "fontFamily": "$font-en",
+                      "fontSize": 56,
+                      "fontWeight": "700",
+                      "letterSpacing": -2
+                    },
+                    {
+                      "type": "text",
+                      "id": "yP5Il",
+                      "name": "KPI Label",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "重点店舗売上 / アパレル",
+                      "lineHeight": 1.6,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tdiSc",
+                  "name": "KPI 2",
+                  "width": "fill_container",
+                  "stroke": "#00000018",
+                  "strokeWidth": {
+                    "left": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    4,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "OhkHF",
+                      "name": "KPI Num",
+                      "fill": "$ink",
+                      "content": "+7%",
+                      "lineHeight": 1,
+                      "fontFamily": "$font-en",
+                      "fontSize": 56,
+                      "fontWeight": "700",
+                      "letterSpacing": -2
+                    },
+                    {
+                      "type": "text",
+                      "id": "PMWXX",
+                      "name": "KPI Label",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "コンバージョン改善",
+                      "lineHeight": 1.6,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "V68mJ",
+                  "name": "KPI 3",
+                  "width": "fill_container",
+                  "stroke": "#00000018",
+                  "strokeWidth": {
+                    "left": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": [
+                    4,
+                    32
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PMj20",
+                      "name": "KPI Num",
+                      "fill": "$ink",
+                      "content": "5年+",
+                      "lineHeight": 1,
+                      "fontFamily": "$font-en",
+                      "fontSize": 56,
+                      "fontWeight": "700",
+                      "letterSpacing": -2
+                    },
+                    {
+                      "type": "text",
+                      "id": "oOann",
+                      "name": "KPI Label",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "大手百貨店 継続支援",
+                      "lineHeight": 1.6,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "WvRJH",
+              "name": "Case List",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "XDtu4",
+                  "name": "Case 0",
+                  "width": "fill_container",
+                  "stroke": "#00000018",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 48,
+                  "padding": [
+                    44,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "yANmq",
+                      "name": "Case Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "al1Bw",
+                          "name": "Case Tag",
+                          "fill": "#00000000",
+                          "stroke": "$faint",
+                          "strokeWidth": 1,
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "zUEIG",
+                              "name": "Tag Txt",
+                              "fill": "$muted",
+                              "content": "百貨店",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "M7sYZ4",
+                          "name": "Case Title",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "大手百貨店 — CX・空間品質改善の伴走支援",
+                          "lineHeight": 1.45,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 21,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "hgSEG",
+                          "name": "Case Desc",
+                          "fill": "$muted",
+                          "textGrowth": "fixed-width",
+                          "width": 560,
+                          "content": "全施設へのCX調査・空間品質調査、三者MTG、ワークショップを継続実施。自律自走する状態を支援。",
+                          "lineHeight": 1.9,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "CV3We",
+                      "name": "Case Metric",
+                      "width": 220,
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "QJRiL",
+                          "name": "Metric Num",
+                          "fill": "$ink",
+                          "content": "5年+",
+                          "lineHeight": 1,
+                          "fontFamily": "$font-en",
+                          "fontSize": 40,
+                          "fontWeight": "700",
+                          "letterSpacing": -1.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "EUnn7",
+                          "name": "Metric Label",
+                          "fill": "$muted",
+                          "content": "継続支援",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "gF6Ee",
+                  "name": "Case 1",
+                  "width": "fill_container",
+                  "stroke": "#00000018",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 48,
+                  "padding": [
+                    44,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Jw1hU",
+                      "name": "Case Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "oF9MY",
+                          "name": "Case Tag",
+                          "fill": "#00000000",
+                          "stroke": "$faint",
+                          "strokeWidth": 1,
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "yueHI",
+                              "name": "Tag Txt",
+                              "fill": "$muted",
+                              "content": "ライフスタイルショップ",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "oVpie",
+                          "name": "Case Title",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "旗艦店KPI改善 — 売上 +26% / CV +7%",
+                          "lineHeight": 1.45,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 21,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "CFCLv",
+                          "name": "Case Desc",
+                          "fill": "$muted",
+                          "textGrowth": "fixed-width",
+                          "width": 560,
+                          "content": "人流計測と半年間のCX改善セッションで、店舗が自ら動く改善サイクルを設計。",
+                          "lineHeight": 1.9,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "pnl7t",
+                      "name": "Case Metric",
+                      "width": 220,
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "DFLQj",
+                          "name": "Metric Num",
+                          "fill": "$ink",
+                          "content": "+26%",
+                          "lineHeight": 1,
+                          "fontFamily": "$font-en",
+                          "fontSize": 40,
+                          "fontWeight": "700",
+                          "letterSpacing": -1.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "LPrNs",
+                          "name": "Metric Label",
+                          "fill": "$muted",
+                          "content": "売上前年比",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "QjgLf",
+                  "name": "Case 2",
+                  "width": "fill_container",
+                  "stroke": "#00000018",
+                  "strokeWidth": {
+                    "top": 1,
+                    "bottom": 1
+                  },
+                  "gap": 48,
+                  "padding": [
+                    44,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "r3JF42",
+                      "name": "Case Left",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "lnLVr",
+                          "name": "Case Tag",
+                          "fill": "#00000000",
+                          "stroke": "$faint",
+                          "strokeWidth": 1,
+                          "padding": [
+                            6,
+                            12
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jqv7c",
+                              "name": "Tag Txt",
+                              "fill": "$muted",
+                              "content": "アパレルブランド",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "500",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Fe5bt",
+                          "name": "Case Title",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "CX調査・伴走コンサル — 3年連続最高売上",
+                          "lineHeight": 1.45,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 21,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ewrkd",
+                          "name": "Case Desc",
+                          "fill": "$muted",
+                          "textGrowth": "fixed-width",
+                          "width": 560,
+                          "content": "全国店舗のCX調査、重点店舗の人流計測、AM向けKPI活用セッションを実施。",
+                          "lineHeight": 1.9,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TzHJO",
+                      "name": "Case Metric",
+                      "width": 220,
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "O4yjJ",
+                          "name": "Metric Num",
+                          "fill": "$ink",
+                          "content": "117%",
+                          "lineHeight": 1,
+                          "fontFamily": "$font-en",
+                          "fontSize": 40,
+                          "fontWeight": "700",
+                          "letterSpacing": -1.5
+                        },
+                        {
+                          "type": "text",
+                          "id": "xSXWl",
+                          "name": "Metric Label",
+                          "fill": "$muted",
+                          "content": "重点店舗売上",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S5vo6",
+          "name": "Company",
+          "width": "fill_container",
+          "fill": "$paper",
+          "layout": "vertical",
+          "gap": 56,
+          "padding": [
+            130,
+            72
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "VyJXM",
+              "name": "CP Head",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yL9Rp",
+                  "name": "CP Label",
+                  "fill": "$faint",
+                  "content": "( COMPANY )",
+                  "fontFamily": "$font-en",
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "Ld4OL",
+                  "name": "CP H2",
+                  "fill": "$ink",
+                  "content": "会社概要",
+                  "fontFamily": "$font-en",
+                  "fontSize": 40,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.5
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NiDtX",
+              "name": "CP List",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tj5J0",
+                  "name": "CO 0",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 48,
+                  "padding": [
+                    26,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YnXVm",
+                      "name": "CO Term",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "content": "社名",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "700",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "lUlzh",
+                      "name": "CO Val",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "株式会社人と空間（HUMAN AND SPACE）",
+                      "lineHeight": 1.85,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "V3z2BX",
+                  "name": "CO 1",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 48,
+                  "padding": [
+                    26,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QyCh3",
+                      "name": "CO Term",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "content": "事業内容",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "700",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "LEArv",
+                      "name": "CO Val",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "店舗CX・UX調査／空間品質調査／AIカメラ・店舗運営DX／コンサルティング・伴走支援／役員・リーダー研修",
+                      "lineHeight": 1.85,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Dd3Zu",
+                  "name": "CO 2",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1
+                  },
+                  "gap": 48,
+                  "padding": [
+                    26,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TkkoA",
+                      "name": "CO Term",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "content": "ミッション",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "700",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "b004u",
+                      "name": "CO Val",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "AIを活用した店舗CXとUXの改善で、スピードと精度を両立し、お客様に高い価値を届ける",
+                      "lineHeight": 1.85,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U4Lv9",
+                  "name": "CO 3",
+                  "width": "fill_container",
+                  "stroke": "$line",
+                  "strokeWidth": {
+                    "top": 1,
+                    "bottom": 1
+                  },
+                  "gap": 48,
+                  "padding": [
+                    26,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oRHGi",
+                      "name": "CO Term",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": 200,
+                      "content": "対象",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "700",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "aJqsI",
+                      "name": "CO Val",
+                      "fill": "$ink",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "商業施設・百貨店／アパレル・コスメ・ライフスタイル系ブランド／多店舗展開チェーン",
+                      "lineHeight": 1.85,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cXP1o",
+          "name": "Contact",
+          "width": "fill_container",
+          "fill": "$soft",
+          "gap": 80,
+          "padding": [
+            130,
+            72
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "iaa7Y",
+              "name": "CT Left",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z7mrQ",
+                  "name": "CT Label",
+                  "fill": "$faint",
+                  "content": "( CONTACT )",
+                  "fontFamily": "$font-en",
+                  "fontSize": 11,
+                  "fontWeight": "600",
+                  "letterSpacing": 3
+                },
+                {
+                  "type": "text",
+                  "id": "LFN0I",
+                  "name": "CT H2",
+                  "fill": "$ink",
+                  "textGrowth": "fixed-width",
+                  "width": 440,
+                  "content": "どのサービスが合うか\n分からなくても、まず相談を。",
+                  "lineHeight": 1.3,
+                  "fontFamily": "$font-en",
+                  "fontSize": 38,
+                  "fontWeight": "700",
+                  "letterSpacing": -0.5
+                },
+                {
+                  "type": "text",
+                  "id": "S9ORn",
+                  "name": "CT Note",
+                  "fill": "$muted",
+                  "textGrowth": "fixed-width",
+                  "width": 400,
+                  "content": "課題の整理から一緒に考えます。強引な営業は一切行いません。お気軽にご連絡ください。",
+                  "lineHeight": 2,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "Qas2E",
+                  "name": "CT Meta",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "padding": [
+                    8,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "nvUMr",
+                      "name": "Meta mail",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "Gv1wE",
+                          "name": "Meta Icon",
+                          "width": 17,
+                          "height": 17,
+                          "icon": "mail",
+                          "library": "feather",
+                          "fill": "$muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "LK7Z0",
+                          "name": "Meta Txt",
+                          "fill": "#3A4048",
+                          "content": "contact@human-and-space.co.jp",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JBXUP",
+                      "name": "Meta phone",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "GDBG7",
+                          "name": "Meta Icon",
+                          "width": 17,
+                          "height": 17,
+                          "icon": "phone",
+                          "library": "feather",
+                          "fill": "$muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "X64Tbk",
+                          "name": "Meta Txt",
+                          "fill": "#3A4048",
+                          "content": "03-0000-0000",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EQSeP",
+                      "name": "Meta map-pin",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "fnK4R",
+                          "name": "Meta Icon",
+                          "width": 17,
+                          "height": 17,
+                          "icon": "map-pin",
+                          "library": "feather",
+                          "fill": "$muted"
+                        },
+                        {
+                          "type": "text",
+                          "id": "u1L7iu",
+                          "name": "Meta Txt",
+                          "fill": "#3A4048",
+                          "content": "東京都〇〇区〇〇 0-0-0",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "VvFe3",
+                  "name": "CT Image",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "./images/generated-1783689053645.png",
+                    "mode": "fill"
+                  },
+                  "width": "fill_container",
+                  "height": 230
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "GV915",
+              "name": "CT Form",
+              "width": 520,
+              "layout": "vertical",
+              "gap": 26,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "k4Wwm",
+                  "name": "Field 会社名",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "km6TE",
+                      "name": "F Label",
+                      "fill": "#3A4048",
+                      "content": "会社名",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZJI2i",
+                      "name": "F Input",
+                      "width": "fill_container",
+                      "height": 46,
+                      "fill": "#00000000",
+                      "stroke": "$faint",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WaqPT",
+                          "name": "F Placeholder",
+                          "fill": "#B4B8BD",
+                          "content": "株式会社〇〇",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "i0aKw",
+                  "name": "Field お名前",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "R1I7zh",
+                      "name": "F Label",
+                      "fill": "#3A4048",
+                      "content": "お名前",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "l20GzZ",
+                      "name": "F Input",
+                      "width": "fill_container",
+                      "height": 46,
+                      "fill": "#00000000",
+                      "stroke": "$faint",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "L6vcC",
+                          "name": "F Placeholder",
+                          "fill": "#B4B8BD",
+                          "content": "山田 太郎",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vm0yL",
+                  "name": "Field メールアドレス",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "y4pcgg",
+                      "name": "F Label",
+                      "fill": "#3A4048",
+                      "content": "メールアドレス",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rVPJZ",
+                      "name": "F Input",
+                      "width": "fill_container",
+                      "height": 46,
+                      "fill": "#00000000",
+                      "stroke": "$faint",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Wqena",
+                          "name": "F Placeholder",
+                          "fill": "#B4B8BD",
+                          "content": "example@company.com",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uZlJl",
+                  "name": "Field お問い合わせ内容",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SnVmx",
+                      "name": "F Label",
+                      "fill": "#3A4048",
+                      "content": "お問い合わせ内容",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ngb8U",
+                      "name": "F Input",
+                      "width": "fill_container",
+                      "height": 96,
+                      "fill": "#00000000",
+                      "stroke": "$faint",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RE5O4",
+                          "name": "F Placeholder",
+                          "fill": "#B4B8BD",
+                          "content": "ご相談内容をご記入ください",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "eWGNu",
+                  "name": "Submit",
+                  "fill": "#00000000",
+                  "stroke": "$ink",
+                  "strokeWidth": 1.5,
+                  "gap": 10,
+                  "padding": [
+                    16,
+                    30
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PEM3z",
+                      "name": "Submit Label",
+                      "fill": "$ink",
+                      "content": "送信する",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "ULYul",
+                      "name": "Arw",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "arrow-right",
+                      "library": "feather",
+                      "fill": "$ink"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uZJPH",
+          "name": "Footer",
+          "width": "fill_container",
+          "fill": "$paper",
+          "stroke": "$line",
+          "strokeWidth": {
+            "top": 1
+          },
+          "layout": "vertical",
+          "gap": 44,
+          "padding": [
+            64,
+            72
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Dme2e",
+              "name": "FT Top",
+              "width": "fill_container",
+              "gap": 60,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "CFldi",
+                  "name": "FT Brand",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "id": "INeJG",
+                      "type": "ref",
+                      "ref": "H2kbg",
+                      "name": "Footer Logo",
+                      "width": 158,
+                      "height": 30
+                    },
+                    {
+                      "type": "text",
+                      "id": "uolSC",
+                      "name": "FT Brand Note",
+                      "fill": "$muted",
+                      "textGrowth": "fixed-width",
+                      "width": 320,
+                      "content": "AI時代の店舗CX・UX改善のパイオニア。商空間運営におけるCXとUXのエキスパート。",
+                      "lineHeight": 1.85,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vD7pB",
+                  "name": "FT Col SERVICES",
+                  "width": 220,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XMHrK",
+                      "name": "FT Col H",
+                      "fill": "$faint",
+                      "content": "SERVICES",
+                      "fontFamily": "$font-en",
+                      "fontSize": 10,
+                      "fontWeight": "600",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "PU6Lt",
+                      "name": "CX調査",
+                      "fill": "#4A5058",
+                      "content": "CX調査",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gClBU",
+                      "name": "空間品質調査",
+                      "fill": "#4A5058",
+                      "content": "空間品質調査",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CKdxg",
+                      "name": "AIカメラ・店舗DX",
+                      "fill": "#4A5058",
+                      "content": "AIカメラ・店舗DX",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "C2bCa",
+                      "name": "コンサルティング",
+                      "fill": "#4A5058",
+                      "content": "コンサルティング",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "KgTil",
+                      "name": "役員・リーダー研修",
+                      "fill": "#4A5058",
+                      "content": "役員・リーダー研修",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FvxfN",
+                  "name": "FT Col COMPANY",
+                  "width": 220,
+                  "layout": "vertical",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Uig2g",
+                      "name": "FT Col H",
+                      "fill": "$faint",
+                      "content": "COMPANY",
+                      "fontFamily": "$font-en",
+                      "fontSize": 10,
+                      "fontWeight": "600",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "zviqK",
+                      "name": "私たちについて",
+                      "fill": "#4A5058",
+                      "content": "私たちについて",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "x4FeA",
+                      "name": "ご支援の流れ",
+                      "fill": "#4A5058",
+                      "content": "ご支援の流れ",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "x2f4mC",
+                      "name": "事例",
+                      "fill": "#4A5058",
+                      "content": "事例",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YhzRi",
+                      "name": "会社概要",
+                      "fill": "#4A5058",
+                      "content": "会社概要",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SnXS9",
+                      "name": "お問い合わせ",
+                      "fill": "#4A5058",
+                      "content": "お問い合わせ",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "BO6g4",
+              "name": "Copyright",
+              "fill": "$faint",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "© 株式会社人と空間　All Rights Reserved.",
+              "fontFamily": "$font-en",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "H2kbg",
+      "x": -7737,
+      "y": -1055,
+      "name": "Logo 人と空間 横",
+      "reusable": true,
+      "width": 139,
+      "height": 26,
+      "fill": "#00000000",
+      "layout": "none",
+      "children": [
+        {
+          "type": "path",
+          "id": "I3o7Kl",
+          "x": 0,
+          "y": 0,
+          "name": "p0",
+          "geometry": "M193.51 18.45h-49.4c-0.32 0-0.6 0.11-0.84 0.29h0s-30.36 23.85-30.36 23.85l-41.9-33.4-0.02 0.02c-7.45-5.76-16.79-9.21-26.92-9.21-24.3 0-44.07 19.77-44.07 44.07s19.77 44.07 44.07 44.07c9.51 0 18.32-3.04 25.52-8.18l0.07 0.09 43.23-33.97 30.36 24.21h0c0.23 0.18 0.53 0.3 0.85 0.3h49.4c0.75 0 1.37-0.61 1.37-1.37v-49.41c0-0.75-0.61-1.37-1.37-1.37z m-108.91 46.39c-0.66 0.52-1.55-0.22-1.17-0.97 3.01-5.96 4.71-12.68 4.71-19.8s-1.63-13.57-4.53-19.44c-0.37-0.75 0.53-1.47 1.19-0.95l25.9 20.65-26.1 20.51z m56.72 0.41l-26.22-20.91 26.23-20.61c0.57-0.45 1.41-0.04 1.41 0.69v40.15c0 0.73-0.85 1.14-1.42 0.68z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "N7ByR4",
+          "x": 0,
+          "y": 0,
+          "name": "p1",
+          "geometry": "M229.29 76.69h5.14v-5.51h2.26v13.43h-2.26v-5.97h-5.14v5.97h-2.26v-13.43h2.26v5.51z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "WL9dY",
+          "x": 0,
+          "y": 0,
+          "name": "p2",
+          "geometry": "M255.13 71.18v7.98c0 3.97-2.04 5.62-5.02 5.62s-5.02-1.65-5.02-5.6v-8h2.26v8c0 2.57 0.91 3.64 2.76 3.64s2.76-1.07 2.76-3.64v-8h2.26z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "beQmg",
+          "x": 0,
+          "y": 0,
+          "name": "p3",
+          "geometry": "M269.54 78.96l3.87-7.78h2.16v13.43h-2.18v-8.99l-3.07 6.4h-1.6l-3.02-6.34v8.93h-2.18v-13.43h2.14l3.87 7.78z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "G9NWh1",
+          "x": 0,
+          "y": 0,
+          "name": "p4",
+          "geometry": "M282.53 84.61l4.67-13.43h2.14l4.67 13.43h-2.39l-0.92-2.78h-4.85l-0.91 2.78h-2.41z m3.95-4.73h3.58l-1.79-5.43-1.79 5.43z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "uSyHN",
+          "x": 0,
+          "y": 0,
+          "name": "p5",
+          "geometry": "M310.64 71.18v13.43h-2l-5.47-9.13v9.13h-2.18v-13.43h1.95l5.53 9.24v-9.24h2.18z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "Z8Ars3",
+          "x": 0,
+          "y": 0,
+          "name": "p6",
+          "geometry": "M327.91 84.61l4.67-13.43h2.14l4.67 13.43h-2.39l-0.91-2.78h-4.85l-0.91 2.78h-2.41z m3.95-4.73h3.58l-1.79-5.43-1.79 5.43z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "PCLsN",
+          "x": 0,
+          "y": 0,
+          "name": "p7",
+          "geometry": "M356.02 71.18v13.43h-2l-5.47-9.13v9.13h-2.18v-13.43h1.95l5.53 9.24v-9.24h2.18z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "L0CdEc",
+          "x": 0,
+          "y": 0,
+          "name": "p8",
+          "geometry": "M364.42 84.61v-13.43h4.53c3.02 0 5.04 1.61 5.04 5.92v1.6c0 4.3-2.02 5.92-5.04 5.92h-4.53z m7.32-5.92v-1.6c0-2.76-0.86-3.95-2.78-3.95h-2.28v9.52h2.28c1.93 0 2.78-1.21 2.78-3.97z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "VDeDe",
+          "x": 0,
+          "y": 0,
+          "name": "p9",
+          "geometry": "M399.15 74.43c-0.66-0.92-1.38-1.46-2.9-1.46-1.38 0-2.2 0.62-2.2 1.75 0 1.28 1.01 1.79 2.88 2.2 2.71 0.58 4.11 1.6 4.11 4.01 0 2-1.34 3.85-4.57 3.85-2.3 0-3.91-0.7-5.02-2.2l1.77-1.23c0.8 0.95 1.59 1.46 3.13 1.46 1.85 0 2.43-0.82 2.43-1.79 0-1.07-0.6-1.73-2.94-2.24-2.59-0.55-4.05-1.79-4.05-4.07 0-2.02 1.32-3.72 4.48-3.72 2.14 0 3.64 0.72 4.59 2.2l-1.71 1.23z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "U2UgD",
+          "x": 0,
+          "y": 0,
+          "name": "p10",
+          "geometry": "M411.01 79.7v4.9h-2.26v-13.43h4.57c3.09 0 4.94 1.48 4.94 4.24s-1.83 4.28-4.94 4.28h-2.32z m2.08-1.94c2.06 0 2.92-0.8 2.92-2.34s-0.86-2.28-2.92-2.28h-2.08v4.61h2.08z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "IzYGX",
+          "x": 0,
+          "y": 0,
+          "name": "p11",
+          "geometry": "M424.21 84.61l4.67-13.43h2.14l4.67 13.43h-2.39l-0.92-2.78h-4.85l-0.91 2.78h-2.41z m3.95-4.73h3.58l-1.79-5.43-1.79 5.43z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "xYgZZ",
+          "x": 0,
+          "y": 0,
+          "name": "p12",
+          "geometry": "M449.86 75.34c-0.35-1.63-1.23-2.37-2.71-2.37-1.79 0-2.76 1.17-2.76 4.07v1.71c0 2.86 0.97 4.07 2.76 4.07 1.54 0 2.35-0.74 2.71-2.37h2.16c-0.45 3.02-2.2 4.34-4.87 4.34-3 0-5.02-1.81-5.02-6.03v-1.71c0-4.22 2.02-6.03 5.02-6.03 2.67 0 4.44 1.42 4.88 4.34h-2.18z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "j6lra",
+          "x": 0,
+          "y": 0,
+          "name": "p13",
+          "geometry": "M467.77 71.18v1.97h-5.97v3.54h5.39v1.95h-5.39v4.03h5.97v1.95h-8.23v-13.43h8.23z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "QEQXy",
+          "x": 0,
+          "y": 0,
+          "name": "p14",
+          "geometry": "M275.57 53.91c-3.02-1.08-15.78-6.57-22.48-23.97-0.4-1.03-1.36-1.7-2.46-1.7s-2.06 0.67-2.46 1.7c-6.7 17.4-19.46 22.89-22.48 23.97l-0.99-3.35c3.82-1.59 23.94-11.66 24.2-46.35h3.47c0.26 34.68 20.37 44.75 24.2 46.35l-0.99 3.35z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "wJjsr",
+          "x": 0,
+          "y": 0,
+          "name": "p15",
+          "geometry": "M352.34 54.1l0.88-3.47h17.93c1.29 0 2.34-1.05 2.34-2.34v-5.38c0-1.29-1.05-2.34-2.34-2.34h-15.18l0.88-3.47h36.75l0.88 3.47h-15.18c-1.29 0-2.34 1.05-2.34 2.34v5.38c0 1.29 1.05 2.34 2.34 2.34h17.93l0.88 3.47h-45.77z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "a5DmMS",
+          "x": 0,
+          "y": 0,
+          "name": "p16",
+          "geometry": "M387.9 30.12c-6.66 0-6.66-3.41-6.66-7.02v-4.83h3.46v4.83c0 1.75 0.04 2.54 0.26 2.95l0.19 0.35h0.3c0.56 0.17 1.38 0.25 2.45 0.25h7.59l0.88 3.47h-8.47z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "Y5leXE",
+          "x": 0,
+          "y": 0,
+          "name": "p17",
+          "geometry": "M354.08 30.12l0.88-3.47h7.59c1.93 0 2.59-0.28 2.81-0.44l0.13-0.1 0.07-0.15c0.16-0.34 0.19-1.05 0.19-2.87v-4.83h3.47v4.83c0 3.61 0 7.02-6.66 7.02h-8.47z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "kOjcf",
+          "x": 0,
+          "y": 0,
+          "name": "p18",
+          "geometry": "M395.03 17.37v-2.38c0-1.5-1.22-2.73-2.73-2.73h-34.15c-1.51 0-2.73 1.22-2.73 2.73v2.38l-3.46 0.88v-9.46h21.54v-5.43h3.47v5.43h21.54v9.46l-3.47-0.88z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "s0JVK",
+          "x": 0,
+          "y": 0,
+          "name": "p19",
+          "geometry": "M437.6 53.34v-20.91h15.91v20.91h-15.91z m3.46-3.46h8.98v-5.26h-8.98v5.26z m0-8.73h8.98v-5.26h-8.98v5.26z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "cAIXE",
+          "x": 0,
+          "y": 0,
+          "name": "p20",
+          "geometry": "M420.78 54.1v-50.13h18v22.83h-11.38c-1.74 0-3.16 1.42-3.16 3.16v24.13h-3.46z m3.47-30.76h11.07v-6.17h-11.07v6.17z m0-9.64h11.07v-6.26h-11.07v6.26z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "uGRU2",
+          "x": 0,
+          "y": 0,
+          "name": "p21",
+          "geometry": "M466.53 54.14l-2.38-3.47h2.69v-20.71c0-1.74-1.42-3.16-3.16-3.16h-11.38v-22.83h18v50.12h-0.44v0.04h-3.34z m-10.76-30.8h11.07v-6.17h-11.07v6.17z m0-9.64h11.07v-6.26h-11.07v6.26z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        },
+        {
+          "type": "path",
+          "id": "tnRqo",
+          "x": 0,
+          "y": 0,
+          "name": "p22",
+          "geometry": "M317.93 52.63c-7.04 0-11.67-0.54-14.48-3.31-1.71-1.68-2.54-4.03-2.54-7.19 0-2.72 1.22-5.5 3.64-8.25 1.04-1.19 1.38-2.9 0.89-4.46l-4.35-13.83 3.21-1.01 3.54 11.28c0.4 1.26 1.55 2.11 2.87 2.11 0.56 0 1.11-0.16 1.59-0.47 6.41-4.09 13.56-6.81 16.02-7.69l1.09 3.18c-5.53 1.96-11.42 4.83-15.85 7.75-6.17 4.05-9.29 7.88-9.29 11.41 0 2.94 0.88 4.14 1.53 4.79 1.99 1.95 6.17 2.34 12.28 2.34 1.65 0 3.42-0.03 5.27-0.06 1.98-0.03 4.01-0.07 6.17-0.07l-0.88 3.36c-1.52 0-2.51 0.02-3.69 0.05l-1.54 0.03c-1.99 0.03-3.79 0.06-5.48 0.06z",
+          "viewBox": [
+            0,
+            0,
+            470.31,
+            88.14
+          ],
+          "fill": "$ink",
+          "width": 139,
+          "height": 26
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "navy": {
+      "type": "color",
+      "value": "#1A1A1A"
+    },
+    "blue": {
+      "type": "color",
+      "value": "#6E7175"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#111214"
+    },
+    "line": {
+      "type": "color",
+      "value": "#E4E4E6"
+    },
+    "muted": {
+      "type": "color",
+      "value": "#6B6E73"
+    },
+    "faint": {
+      "type": "color",
+      "value": "#9A9DA2"
+    },
+    "soft": {
+      "type": "color",
+      "value": "#F3F3F3"
+    },
+    "paper": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "font-serif": {
+      "type": "string",
+      "value": "Playfair Display"
+    },
+    "font-jp": {
+      "type": "string",
+      "value": "Noto Sans JP"
+    },
+    "font-en": {
+      "type": "string",
+      "value": "Inter"
+    }
+  },
+  "fileToken": "9c000629-8a17-49b0-b5a4-150745829423"
+}

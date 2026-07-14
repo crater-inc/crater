@@ -1,0 +1,56 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "all-products": {
+      "type": "featured-collection",
+      "settings": {
+        "heading_size": "h2",
+        "show_description": false,
+        "description_style": "subtitle",
+        "collection": "all",
+        "products_to_show": 24,
+        "columns_desktop": 3,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 48,
+        "padding_bottom": 56,
+        "heading": "A CURRY のカレー"
+      }
+    },
+    "acurry-hero": {
+      "type": "acurry-hero",
+      "settings": {
+        "eyebrow": "A CURRY",
+        "heading": "記憶に残る、この一皿。",
+        "button_label": "商品を見る",
+        "button_link": "",
+        "bg": "#111111",
+        "height": 660,
+        "height_mobile": 500
+      }
+    }
+  },
+  "order": [
+    "acurry-hero",
+    "all-products"
+  ]
+}

@@ -6,3 +6,13 @@ node_modules/
 CL/ESION/webpen/*.png
 CL/ESION/webpen/*.jpg
 .mcp.json
+
+# デザイン元データ（重い・GitHub上限超過のため追跡しない。Mac側には残る）
+*.psd
+*.PSD
+# A CURRY 撮影生データ・EC高解像度素材（元データ）
+01_CRATER/_SERVICE/acurry/brief/製品写真/
+01_CRATER/_SERVICE/acurry/ECsite/
+# ESION KV元データ（高解像度）
+CL/ESION/brief/KV001/
+CL/ESION/brief/KVweb/*.png

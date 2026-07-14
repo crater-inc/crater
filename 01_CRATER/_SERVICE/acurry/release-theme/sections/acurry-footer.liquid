@@ -1,0 +1,61 @@
+{%- comment -%} A CURRY フッター {%- endcomment -%}
+<style>
+  .acu-ft{background:var(--acu-footer);color:var(--acu-white);padding:76px 64px 44px;}
+  .acu-ft__top{display:flex;justify-content:space-between;gap:56px;flex-wrap:wrap;}
+  .acu-ft__nl{max-width:380px;display:flex;flex-direction:column;gap:16px;}
+  .acu-ft__nlh{font-family:var(--acu-en);font-size:12px;letter-spacing:3px;color:#f7f4ef99;}
+  .acu-ft__nld{font-family:var(--acu-jp);font-size:14px;line-height:1.7;color:#f7f4efcc;margin:0;}
+  .acu-ft__form{display:flex;align-items:center;justify-content:space-between;background:#f2f2f2;padding:0 20px;height:50px;}
+  .acu-ft__form input{border:0;background:transparent;flex:1;font-family:var(--acu-jp);font-size:16px;color:#1a1a1a;outline:none;}
+  .acu-ft__form button{border:0;background:transparent;cursor:pointer;font-family:var(--acu-en);font-size:12px;letter-spacing:2px;color:#1a1a1a;}
+  .acu-ft__cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .acu-ft__col h4{font-family:var(--acu-en);font-size:12px;letter-spacing:2px;color:#f7f4ef99;margin:0 0 14px;}
+  .acu-ft__col a{display:block;font-family:var(--acu-jp);font-size:13px;color:#f7f4efcc;text-decoration:none;margin-bottom:12px;}
+  .acu-ft__col a:hover{color:#fff;}
+  .acu-ft__bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:64px;flex-wrap:wrap;gap:24px;}
+  .acu-ft__logo{width:150px;}
+  .acu-ft__logo img{width:100%;height:auto;display:block;}
+  .acu-ft__tag{font-family:var(--acu-jp);font-size:13px;color:#f7f4ef99;margin-top:16px;}
+  .acu-ft__sns a{color:#f7f4ef;}
+  .acu-ft__sns svg{width:20px;height:20px;stroke:#f7f4ef;fill:none;stroke-width:1.5;}
+  @media(max-width:768px){.acu-ft{padding:56px 32px 40px;}.acu-ft__cols{gap:36px;}}
+</style>
+<section class="acu acu-ft">
+  <div class="acu-ft__top">
+    <div class="acu-ft__nl">
+      <div class="acu-ft__nlh">NEWSLETTER</div>
+      <p class="acu-ft__nld">{{ section.settings.nl_text }}</p>
+      <form class="acu-ft__form" onsubmit="return false;">
+        <input type="email" placeholder="メールアドレス" aria-label="email">
+        <button type="submit">SUBSCRIBE</button>
+      </form>
+    </div>
+    <div class="acu-ft__cols">
+      <div class="acu-ft__col"><h4>SHOP</h4>
+        <a href="/collections/all">肉じゃがカレー</a><a href="/collections/all">牡蠣ココナッツ</a><a href="/collections/all">柚子胡椒豚</a><a href="/collections/all">セット商品</a></div>
+      <div class="acu-ft__col"><h4>MENU</h4>
+        <a href="/">ホーム</a><a href="/pages/about">ブランドについて</a><a href="/pages/about">こだわり</a><a href="/pages/about">お客様の声</a><a href="/blogs/journal">ジャーナル</a></div>
+      <div class="acu-ft__col"><h4>SUPPORT</h4>
+        <a href="/pages/faq">よくある質問</a><a href="/pages/contact">お問い合わせ</a>{%- if shop.refund_policy != blank -%}<a href="{{ shop.refund_policy.url }}">返品・返金</a>{%- endif -%}{%- if shop.privacy_policy != blank -%}<a href="{{ shop.privacy_policy.url }}">プライバシー</a>{%- endif -%}{%- if shop.terms_of_service != blank -%}<a href="{{ shop.terms_of_service.url }}">利用規約</a>{%- endif -%}<a href="/policies/legal-notice">特定商取引法</a></div>
+    </div>
+  </div>
+  <div class="acu-ft__bottom">
+    <div>
+      <div class="acu-ft__logo"><img src="{{ 'acurry-logo-white.png' | asset_url }}" alt="{{ shop.name }}" width="150"></div>
+      <div class="acu-ft__tag">{{ section.settings.tagline }}</div>
+    </div>
+    <div class="acu-ft__sns">
+      <a href="{{ section.settings.instagram | default: '#' }}" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#f7f4ef" stroke="none"/></svg></a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "A CURRY Footer",
+  "settings": [
+    { "type": "textarea", "id": "nl_text", "label": "ニュースレター文", "default": "初めての方へ。ご登録で10%OFFクーポンをお届けします。" },
+    { "type": "text", "id": "tagline", "label": "タグライン", "default": "あ！となる一皿。" },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" }
+  ]
+}
+{% endschema %}

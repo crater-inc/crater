@@ -1,0 +1,54 @@
+{%- comment -%} A CURRY セット売り2枚タイル {%- endcomment -%}
+<style>
+  .acu-sets{display:grid;grid-template-columns:repeat({{ section.blocks.size }},1fr);}
+  /* Pencil準拠：コピー左上・ボタン右下。タイル比率も合わせる */
+  .acu-sets__tile{position:relative;overflow:hidden;aspect-ratio:720/742;min-height:420px;
+    background:linear-gradient(150deg,#6f6f6f,#454545);display:block;color:var(--acu-white);text-decoration:none;}
+  .acu-sets__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;z-index:0;}
+  .acu-sets__ov{position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(0,0,0,.5),rgba(0,0,0,.14) 45%,rgba(0,0,0,.45));}
+  .acu-sets__copy{position:absolute;top:56px;left:56px;z-index:2;}
+  .acu-sets__t{font-family:var(--acu-en);font-weight:600;font-size:clamp(34px,4vw,52px);margin:0;color:var(--acu-white);letter-spacing:.02em;}
+  .acu-sets__d{font-family:var(--acu-jp);font-size:14px;line-height:1.6;color:#f7f4efcc;margin:0 0 6px;}
+  .acu-sets__btn{position:absolute;right:56px;bottom:56px;z-index:2;border:1px solid #f7f4ef;border-radius:30px;padding:13px 34px;
+    color:#f7f4ef;font-family:var(--acu-en);font-size:12px;letter-spacing:2px;}
+  @media(max-width:768px){.acu-sets{grid-template-columns:1fr;}.acu-sets__copy{top:36px;left:32px;}.acu-sets__btn{right:32px;bottom:36px;}}
+</style>
+<section class="acu acu-sets">
+  {%- for block in section.blocks -%}
+    {%- assign tfallback = '' -%}
+    {%- if block.settings.title contains 'Value' -%}{%- assign tfallback = 'acurry-set-value.jpg' -%}{%- elsif block.settings.title contains 'Tasting' -%}{%- assign tfallback = 'acurry-set-tasting.jpg' -%}{%- endif -%}
+    <a class="acu-sets__tile" href="{{ block.settings.link | default: '/collections/all' }}" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}
+        <img class="acu-sets__bg" src="{{ block.settings.image | image_url: width: 1600 }}" alt="{{ block.settings.title | escape }}" loading="lazy"><div class="acu-sets__ov"></div>
+      {%- elsif tfallback != blank -%}
+        <img class="acu-sets__bg" src="{{ tfallback | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy"><div class="acu-sets__ov"></div>
+      {%- endif -%}
+      <div class="acu-sets__copy">
+        <p class="acu-sets__d">{{ block.settings.desc }}</p>
+        <h2 class="acu-sets__t">{{ block.settings.title }}</h2>
+      </div>
+      <span class="acu-sets__btn">{{ block.settings.button | default: 'SHOP NOW' }}</span>
+    </a>
+  {%- endfor -%}
+</section>
+{% schema %}
+{
+  "name": "A CURRY Sets",
+  "blocks": [
+    { "type": "tile", "name": "タイル", "settings": [
+      { "type": "image_picker", "id": "image", "label": "タイル背景画像（未設定＝Value/Tastingで自動）" },
+      { "type": "text", "id": "title", "label": "英語タイトル", "default": "Tasting Set" },
+      { "type": "textarea", "id": "desc", "label": "説明", "default": "3種を1個ずつ。はじめての方に" },
+      { "type": "text", "id": "button", "label": "ボタン", "default": "SHOP NOW" },
+      { "type": "url", "id": "link", "label": "リンク" }
+    ]}
+  ],
+  "presets": [{
+    "name": "A CURRY Sets",
+    "blocks": [
+      { "type": "tile", "settings": { "title": "Tasting Set", "desc": "3種を1個ずつ。はじめての方に" } },
+      { "type": "tile", "settings": { "title": "Value Pack", "desc": "同じ味を3食。お気に入りをストック" } }
+    ]
+  }]
+}
+{% endschema %}

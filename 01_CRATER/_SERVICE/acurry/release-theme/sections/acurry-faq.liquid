@@ -1,0 +1,53 @@
+{%- comment -%} A CURRY FAQ（全幅アコーディオン） {%- endcomment -%}
+<style>
+  .acu-faq{background:var(--acu-paper);padding:84px 64px;}
+  .acu-faq__t{font-family:var(--acu-en);font-weight:600;font-size:clamp(40px,5vw,64px);color:var(--acu-ink);margin:0;line-height:1;}
+  .acu-faq__jp{font-family:var(--acu-jp);font-weight:600;font-size:13px;letter-spacing:3px;color:var(--acu-sub);margin:8px 0 24px;}
+  .acu-faq details{border-bottom:1px solid var(--acu-line);}
+  .acu-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+    padding:24px 4px;font-family:var(--acu-jp);font-size:16px;color:var(--acu-ink);}
+  .acu-faq summary::-webkit-details-marker{display:none;}
+  .acu-faq summary .ic{position:relative;width:18px;height:18px;flex:0 0 18px;}
+  .acu-faq summary .ic::before,.acu-faq summary .ic::after{content:"";position:absolute;background:var(--acu-ink);}
+  .acu-faq summary .ic::before{top:8px;left:0;width:18px;height:1.5px;}
+  .acu-faq summary .ic::after{left:8px;top:0;width:1.5px;height:18px;transition:.25s;}
+  .acu-faq details[open] summary .ic::after{transform:rotate(90deg);opacity:0;}
+  .acu-faq__a{padding:0 4px 24px;font-family:var(--acu-jp);font-size:15px;line-height:1.8;color:#555;margin:0;white-space:pre-line;}
+  @media(max-width:768px){.acu-faq{padding:56px 32px;}}
+</style>
+<section class="acu acu-faq">
+  <h2 class="acu-faq__t">{{ section.settings.heading }}</h2>
+  <div class="acu-faq__jp">{{ section.settings.subheading }}</div>
+  <div class="acu-faq__list">
+    {%- for block in section.blocks -%}
+      <details {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.q }}<span class="ic"></span></summary>
+        <p class="acu-faq__a">{{ block.settings.a }}</p>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "A CURRY FAQ",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "見出し", "default": "FAQ" },
+    { "type": "text", "id": "subheading", "label": "サブ", "default": "よくあるご質問" }
+  ],
+  "blocks": [
+    { "type": "qa", "name": "Q&A", "settings": [
+      { "type": "text", "id": "q", "label": "質問", "default": "賞味期限はどのくらいですか？" },
+      { "type": "textarea", "id": "a", "label": "回答", "default": "商品によって異なります。パッケージに記載の期限をご確認ください。" }
+    ]}
+  ],
+  "presets": [{
+    "name": "A CURRY FAQ",
+    "blocks": [
+      { "type": "qa", "settings": { "q": "賞味期限はどのくらいですか？" } },
+      { "type": "qa", "settings": { "q": "調理方法を教えてください" } },
+      { "type": "qa", "settings": { "q": "ギフト用の対応はできますか？" } },
+      { "type": "qa", "settings": { "q": "アレルギー情報はどこで見られますか？" } }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,0 +1,87 @@
+{%- comment -%} A CURRY 3商品ラインナップ {%- endcomment -%}
+<style>
+  .acu-lineup{background:#a6a6a6;padding:84px 64px;}
+  .acu-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:40px;}
+  .acu-head__t{font-family:var(--acu-en);font-weight:600;font-size:clamp(40px,5vw,64px);color:var(--acu-ink);margin:0;line-height:1;}
+  .acu-head__jp{font-family:var(--acu-jp);font-weight:600;font-size:13px;letter-spacing:3px;color:var(--acu-sub);margin-top:8px;}
+  .acu-head__va{font-family:var(--acu-en);font-size:15px;letter-spacing:1px;color:var(--acu-ink);text-decoration:none;display:flex;align-items:center;gap:7px;}
+  .acu-head__va:hover{opacity:.6;}
+  .acu-lineup__row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .acu-card{display:block;text-decoration:none;color:inherit;}
+  .acu-card__img{width:100%;aspect-ratio:3/4;background:linear-gradient(135deg,#d6d6d6,#aeaeae);overflow:hidden;border-radius:8px;}
+  .acu-card__img img{width:100%;height:100%;object-fit:cover;display:block;opacity:1!important;}
+  .acu-card__nm{font-family:var(--acu-jp);font-weight:600;font-size:18px;color:var(--acu-ink);margin:14px 0 4px;}
+  .acu-card__pr{font-family:var(--acu-jp);font-size:15px;color:#555;}
+  @media(max-width:768px){.acu-lineup{padding:56px 32px;}.acu-lineup__row{grid-template-columns:1fr;gap:36px;}}
+</style>
+<section class="acu acu-lineup">
+  <div class="acu-head">
+    <div>
+      <h2 class="acu-head__t">{{ section.settings.heading }}</h2>
+      <div class="acu-head__jp">{{ section.settings.subheading }}</div>
+    </div>
+    {%- if section.settings.view_all_label != blank -%}
+      <a class="acu-head__va" href="{{ section.settings.view_all_link | default: '/collections/all' }}">{{ section.settings.view_all_label }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></a>
+    {%- endif -%}
+  </div>
+  <div class="acu-lineup__row">
+    {%- assign acu_col = section.settings.collection -%}
+    {%- if acu_col == blank -%}{%- assign acu_col = collections.all -%}{%- endif -%}
+    {%- if acu_col.products.size > 0 -%}
+      {%- comment -%} Pencil準拠の固定表示順：肉じゃが → 柚子胡椒 → 牡蠣 {%- endcomment -%}
+      {%- assign acu_order = '肉じゃが|acurry-thumb-nikujaga.jpg,柚子|acurry-thumb-yuzu.jpg,牡蠣|acurry-thumb-kaki.jpg' | split: ',' -%}
+      {%- for entry in acu_order -%}
+        {%- assign parts = entry | split: '|' -%}
+        {%- assign kw = parts[0] -%}
+        {%- assign acu_thumb = parts[1] -%}
+        {%- for product in acu_col.products -%}
+          {%- if product.title contains kw -%}
+            <a class="acu-card" href="{{ product.url }}">
+              <div class="acu-card__img"><img src="{{ acu_thumb | asset_url }}" alt="{{ product.title | escape }}" loading="lazy"></div>
+              <div class="acu-card__nm">{{ product.title }}</div>
+              <div class="acu-card__pr">{{ product.price | money }}</div>
+            </a>
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for block in section.blocks -%}
+        <a class="acu-card" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+          <div class="acu-card__img">{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.name | escape }}" loading="lazy">{%- else -%}<img src="{{ 'acurry-dummy-product.jpg' | asset_url }}" alt="" loading="lazy">{%- endif -%}</div>
+          <div class="acu-card__nm">{{ block.settings.name }}</div>
+          <div class="acu-card__pr">{{ block.settings.price }}</div>
+        </a>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "A CURRY Lineup",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "見出し(英語)", "default": "Our Lineup" },
+    { "type": "collection", "id": "collection", "label": "表示するコレクション（未選択＝全商品を自動表示）" },
+    { "type": "text", "id": "subheading", "label": "サブ(日本語)", "default": "三種類の、あ！" },
+    { "type": "text", "id": "view_all_label", "label": "View allラベル", "default": "View all" },
+    { "type": "url", "id": "view_all_link", "label": "View allリンク" }
+  ],
+  "blocks": [
+    { "type": "item", "name": "商品", "settings": [
+      { "type": "image_picker", "id": "image", "label": "商品画像（未設定＝グレーのダミー）" },
+      { "type": "text", "id": "name", "label": "商品名", "default": "肉じゃがカレー" },
+      { "type": "text", "id": "price", "label": "価格", "default": "¥1,180（税込）" },
+      { "type": "url", "id": "link", "label": "リンク" }
+    ]}
+  ],
+  "presets": [{
+    "name": "A CURRY Lineup",
+    "blocks": [
+      { "type": "item", "settings": { "name": "肉じゃがカレー", "price": "¥1,080（税込）" } },
+      { "type": "item", "settings": { "name": "牡蠣とココナッツのスープカレー", "price": "¥1,180（税込）" } },
+      { "type": "item", "settings": { "name": "柚子胡椒プリプリ豚カレー", "price": "¥1,180（税込）" } }
+    ]
+  }]
+}
+{% endschema %}

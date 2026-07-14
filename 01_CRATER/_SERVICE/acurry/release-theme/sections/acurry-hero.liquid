@@ -1,0 +1,61 @@
+{%- comment -%} A CURRY KV ヒーロー {%- endcomment -%}
+<style>
+  /* KVはPencilの構図比率(1440:956)そのまま表示。コピー/コピーライトは画像の下端基準で配置＝画像が縮んでも下基準で追従 */
+  .acu-hero{position:relative;width:100%;aspect-ratio:1440/956;min-height:460px;overflow:hidden;
+    background:linear-gradient(160deg,var(--acu-dark1),var(--acu-dark2));color:var(--acu-white);}
+  /* 幅変化時は上下左右の中心を起点に拡大縮小（中心アンカー） */
+  .acu-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;z-index:0;}
+  .acu-hero__ov{position:absolute;inset:0;z-index:1;
+    background:linear-gradient(120deg,rgba(0,0,0,.45),rgba(0,0,0,.12) 55%,rgba(0,0,0,.35));}
+  /* コピー＝画像の左下（画像下端からの%で追従） */
+  .acu-hero__copy{position:absolute;left:64px;bottom:7%;z-index:2;display:flex;flex-direction:column;align-items:flex-start;}
+  .acu-hero__title{font-family:var(--acu-en);font-weight:600;margin:0;color:var(--acu-white)!important;
+    font-size:clamp(48px,9vw,128px);line-height:.9;letter-spacing:.02em;}
+  .acu-hero__sub{font-family:'Noto Serif JP',serif;font-weight:600;margin:0 0 10px;
+    font-size:clamp(14px,1.4vw,18px);letter-spacing:.12em;color:#ffffff;}
+  .acu-hero__btn{display:inline-block;width:max-content;margin-top:24px;border:1px solid var(--acu-white);border-radius:30px;
+    padding:14px 40px;color:var(--acu-white);text-decoration:none;
+    font-family:var(--acu-en);font-size:14px;letter-spacing:2px;transition:.3s;}
+  .acu-hero__btn:hover{background:var(--acu-white);color:var(--acu-ink);}
+  /* コピーライト＝画像の右下（常に・画像下端からの%で追従） */
+  .acu-hero__cr{position:absolute;right:64px;bottom:5%;z-index:2;
+    font-family:var(--acu-en);font-size:clamp(11px,1vw,13px);letter-spacing:1px;color:#f7f4efbb;}
+  @media(max-width:768px){
+    /* SPはKV高さを約2倍に（縦長比率に上書き・中央基準でトリミング） */
+    .acu-hero{aspect-ratio:1440/1912;min-height:600px;}
+    .acu-hero__copy{left:32px;bottom:9%;}
+    .acu-hero__cr{right:32px;font-size:10px;}
+  }
+</style>
+<section class="acu acu-hero">
+  {%- assign kv = section.settings.kv_image -%}
+  {%- if kv != blank -%}
+    <img class="acu-hero__bg" src="{{ kv | image_url: width: 2400 }}" alt="{{ shop.name }}" loading="eager">
+  {%- else -%}
+    <img class="acu-hero__bg" src="{{ 'acurry-kv.jpg' | asset_url }}" alt="{{ shop.name }}" loading="eager">
+  {%- endif -%}
+  <div class="acu-hero__ov"></div>
+  <div class="acu-hero__copy">
+    {%- if section.settings.subtitle != blank -%}<p class="acu-hero__sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+    <h1 class="acu-hero__title">{{ section.settings.title_l1 }}{%- if section.settings.title_l2 != blank -%}<br>{{ section.settings.title_l2 }}{%- endif -%}</h1>
+    {%- if section.settings.button_label != blank -%}
+      <a class="acu-hero__btn" href="{{ section.settings.button_link | default: '/collections/all' }}">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </div>
+  {%- if section.settings.copyright != blank -%}<div class="acu-hero__cr">{{ section.settings.copyright }}</div>{%- endif -%}
+</section>
+{% schema %}
+{
+  "name": "A CURRY Hero",
+  "settings": [
+    { "type": "image_picker", "id": "kv_image", "label": "KV背景画像（未設定＝acurry-kv.jpg）" },
+    { "type": "text", "id": "title_l1", "label": "見出し1行目", "default": "Say Ah!" },
+    { "type": "text", "id": "title_l2", "label": "見出し2行目" },
+    { "type": "text", "id": "subtitle", "label": "サブ(日本語)", "default": "あ！となる一皿。" },
+    { "type": "text", "id": "button_label", "label": "ボタン", "default": "DISCOVER MORE" },
+    { "type": "url", "id": "button_link", "label": "ボタンリンク" },
+    { "type": "text", "id": "copyright", "label": "コピーライト", "default": "© 2025 A CURRY. ALL RIGHTS RESERVED." }
+  ],
+  "presets": [{ "name": "A CURRY Hero" }]
+}
+{% endschema %}

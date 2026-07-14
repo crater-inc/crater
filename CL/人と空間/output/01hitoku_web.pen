@@ -1,0 +1,289 @@
+{
+  "version": "2.14",
+  "children": [
+    {
+      "type": "frame",
+      "id": "LqS6D",
+      "x": 880,
+      "y": 0,
+      "name": "Hero",
+      "clip": true,
+      "width": 1440,
+      "height": 760,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "tsaHl",
+          "layoutPosition": "absolute",
+          "x": 409,
+          "y": 73,
+          "name": "Hero Image",
+          "opacity": 0.6,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "./images/generated-1782439374713.png",
+            "mode": "fill"
+          },
+          "width": 1031,
+          "height": 614
+        },
+        {
+          "type": "text",
+          "id": "dmyyE",
+          "x": 42,
+          "y": 36,
+          "name": "H1",
+          "fill": "$ink",
+          "textGrowth": "fixed-width",
+          "width": 230,
+          "content": "ロゴ",
+          "lineHeight": 1.1,
+          "fontFamily": "$font-en",
+          "fontSize": 66,
+          "fontWeight": "800",
+          "letterSpacing": -0.5
+        },
+        {
+          "type": "frame",
+          "id": "jkvUr",
+          "x": 58,
+          "y": 226,
+          "name": "Hero Left",
+          "width": 560,
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "MMUIF",
+              "name": "Eyebrow",
+              "gap": 10,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "sByse",
+                  "name": "Eyebrow Line",
+                  "fill": "$navy",
+                  "width": 38,
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "qYwHs",
+                  "name": "Eyebrow Text",
+                  "fill": "$muted",
+                  "content": "AI ERA CX / UX PARTNER",
+                  "fontFamily": "$font-en",
+                  "fontSize": 11,
+                  "fontWeight": "700",
+                  "letterSpacing": 2.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "h2wqB",
+              "name": "H1",
+              "fill": "$ink",
+              "textGrowth": "fixed-width-height",
+              "width": 1215,
+              "height": 123,
+              "content": "People & Space,",
+              "lineHeight": 1.1,
+              "fontFamily": "$font-en",
+              "fontSize": 106,
+              "fontWeight": "800",
+              "letterSpacing": -0.5
+            },
+            {
+              "type": "text",
+              "id": "JLpOz",
+              "name": "H1",
+              "fill": "$ink",
+              "textGrowth": "fixed-width",
+              "width": 1187,
+              "content": "Shaping Experience.",
+              "lineHeight": 1.1,
+              "fontFamily": "$font-en",
+              "fontSize": 51,
+              "letterSpacing": -0.5
+            },
+            {
+              "type": "frame",
+              "id": "BI7aA",
+              "name": "JP Subline Wrap",
+              "width": "fill_container",
+              "layout": "vertical",
+              "padding": [
+                18,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "u3RY6T",
+                  "name": "JP Subline",
+                  "fill": "$navy",
+                  "textGrowth": "fixed-width-height",
+                  "width": "fill_container",
+                  "height": 15,
+                  "content": "「人」と「空間」から、お客様の体験を変える。",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 16,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "J5Q2Zc",
+              "name": "Lead Wrap",
+              "width": 480,
+              "height": 67,
+              "layout": "vertical",
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "justifyContent": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "h2wpd",
+                  "name": "Lead",
+                  "fill": "#424951",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "AI時代の店舗CX・UX改善のパイオニア。商空間運営における顧客体験価値と空間品質の改善を、調査・分析・伴走支援で実現します。",
+                  "lineHeight": 2,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 12,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "KPib0",
+              "name": "Actions",
+              "height": 75,
+              "gap": 12,
+              "padding": [
+                36,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "W94Cp",
+                  "name": "Btn Primary",
+                  "fill": "$navy",
+                  "cornerRadius": 521,
+                  "padding": [
+                    16,
+                    26
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EZPTy",
+                      "name": "Btn Primary Label",
+                      "fill": "#FFFFFF",
+                      "content": "まずは相談する（無料）",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qDLLH",
+                  "name": "Btn Secondary",
+                  "fill": "#00000000",
+                  "cornerRadius": 112,
+                  "stroke": "$navy",
+                  "strokeWidth": 1.5,
+                  "padding": [
+                    16,
+                    26
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cnd3e",
+                      "name": "Btn Secondary Label",
+                      "fill": "$navy",
+                      "content": "サービスを見る",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "navy": {
+      "type": "color",
+      "value": "#1A2E42"
+    },
+    "blue": {
+      "type": "color",
+      "value": "#2B5F9F"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#0D0D0D"
+    },
+    "line": {
+      "type": "color",
+      "value": "#D7DCE1"
+    },
+    "muted": {
+      "type": "color",
+      "value": "#5A616A"
+    },
+    "faint": {
+      "type": "color",
+      "value": "#AEB5BD"
+    },
+    "soft": {
+      "type": "color",
+      "value": "#F2F4F6"
+    },
+    "paper": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "font-jp": {
+      "type": "string",
+      "value": "Noto Sans JP"
+    },
+    "font-en": {
+      "type": "string",
+      "value": "Inter"
+    }
+  },
+  "fileToken": "137b6270-fa6a-4c67-8ebf-c18aa8e68434"
+}

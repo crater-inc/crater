@@ -1,0 +1,65 @@
+{
+  "sections": {
+    "hero": { "type": "acurry-hero", "settings": {} },
+    "lineup": {
+      "type": "acurry-lineup",
+      "blocks": {
+        "b1": { "type": "item", "settings": { "name": "肉じゃがカレー", "price": "¥1,180（税込）" } },
+        "b2": { "type": "item", "settings": { "name": "牡蠣とココナッツのスープカレー", "price": "¥1,180（税込）" } },
+        "b3": { "type": "item", "settings": { "name": "柚子胡椒プリプリ豚カレー", "price": "¥1,180（税込）" } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": {}
+    },
+    "sets": {
+      "type": "acurry-sets",
+      "blocks": {
+        "t1": { "type": "tile", "settings": { "title": "Tasting Set", "desc": "3種を1個ずつ。はじめての方に" } },
+        "t2": { "type": "tile", "settings": { "title": "Value Pack", "desc": "同じ味を3食。お気に入りをストック" } }
+      },
+      "block_order": ["t2", "t1"],
+      "settings": {}
+    },
+    "statement": { "type": "acurry-statement", "settings": {} },
+    "craft": { "type": "acurry-craft", "settings": {} },
+    "story": { "type": "acurry-story", "settings": {} },
+    "pick": { "type": "acurry-pick", "settings": {} },
+    "voice": {
+      "type": "acurry-voice",
+      "blocks": {
+        "v1": { "type": "voice", "settings": { "title": "一口目で、思わず声が出た", "quote": "想像してなかった味で、思わず笑ってしまいました。" } },
+        "v2": { "type": "voice", "settings": { "title": "贈って、喜ばれた", "quote": "珍しさがちょうどよくて、ギフトに選んで正解でした。" } },
+        "v3": { "type": "voice", "settings": { "title": "温めるだけ、なのに本格的", "quote": "忙しい日でも、ちゃんとしたものを食べた気持ちになれます。" } }
+      },
+      "block_order": ["v1", "v2", "v3"],
+      "settings": {}
+    },
+    "trust": { "type": "acurry-trust", "settings": {} },
+    "faq": {
+      "type": "acurry-faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "q": "賞味期限はどのくらい？", "a": "常温で長期保存できます（未開封）。賞味期限は、肉じゃがカレー＝2027年6月13日、牡蠣とココナッツのスープカレー＝2028年6月25日、柚子胡椒豚カレー＝2028年6月26日です。各パッケージにも記載しています。" } },
+        "q2": { "type": "qa", "settings": { "q": "どの味から試すのがおすすめ？", "a": "まずは肉じゃがカレーから。驚きと親しみやすさのバランスが入り口に最適です。ただ、どの味もご好評をいただいており、このたび食べ比べできるテイストボックスをご用意しました。ぜひ一度ご賞味ください。" } },
+        "q3": { "type": "qa", "settings": { "q": "ギフトにできますか？", "a": "はい。食べ比べセットは贈りものにも好評です。専用のギフトボックスも現在ご用意を進めております。" } },
+        "q4": { "type": "qa", "settings": { "q": "アレルギー情報を教えてください", "a": "各商品に含まれるアレルゲン（原材料の一部）です。肉じゃがカレー：小麦・乳成分・牛肉・豚肉・鶏肉・大豆・さば。牡蠣とココナッツのスープカレー：小麦・乳成分・豚肉・鶏肉・大豆・りんご・バナナ。柚子胡椒豚カレー：小麦・乳成分・豚肉・鶏肉・大豆・りんご・バナナ。製造工場では、卵・えび・かに・落花生・くるみ（牡蠣・柚子胡椒豚はカシューナッツも）を含む製品を製造しています。" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"],
+      "settings": {}
+    },
+    "blog": {
+      "type": "acurry-blog",
+      "blocks": {
+        "a1": { "type": "article", "settings": { "date": "2026.06.01", "title": "記憶に残る味の、つくり方", "excerpt": "スパイスの配合から余韻の設計まで。A CURRYが味づくりで大切にしていることを綴ります。" } },
+        "a2": { "type": "article", "settings": { "date": "2026.05.20", "title": "カレーランド監修の舞台裏", "excerpt": "ご当地レトルト専門店との共同開発。監修で生まれた新しい2つの味の裏側。" } },
+        "a3": { "type": "article", "settings": { "date": "2026.05.02", "title": "レトルトを、ちゃんとごちそうに", "excerpt": "手抜きに見えない一皿へ。盛り付けとひと手間で変わる、レトルトの楽しみ方。" } },
+        "a4": { "type": "article", "settings": { "date": "2026.04.18", "title": "スパイスと記憶の関係", "excerpt": "香りは記憶を呼び起こす。食べたあとも残る“余韻”を、感覚と設計の両面から。" } },
+        "a5": { "type": "article", "settings": { "date": "2026.04.05", "title": "贈りものとしてのカレー", "excerpt": "気の張らない、でも特別な贈りもの。A CURRYがギフトに選ばれる理由。" } },
+        "a6": { "type": "article", "settings": { "date": "2026.03.22", "title": "A CURRYができるまで", "excerpt": "ブランドの誕生から今日まで。「記憶に残る、この一皿。」に込めた想い。" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4", "a5", "a6"],
+      "settings": {}
+    },
+    "cta": { "type": "acurry-cta", "settings": {} }
+  },
+  "order": ["hero", "lineup", "sets", "statement", "craft", "story", "pick", "voice", "trust", "faq", "blog", "cta"]
+}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APOLLOS｜Bring buried value to the next world.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef0ee;
+    --ink: #ffffff;        /* メイン文字（白） */
+    --ink-soft: rgba(255,255,255,0.78);  /* 補助テキスト */
+    --ink-faint: rgba(255,255,255,0.6);
+    --line: rgba(255,255,255,0.3);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body {
+    font-family: "Inter", "Noto Sans JP", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .fv {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 640px;
+    overflow: hidden;
+  }
+  .fv-bg {
+    position: absolute;
+    inset: 0;
+    background: url("images/fv/clouds-bright.jpg") center 42% / cover no-repeat;
+    z-index: 0;
+  }
+  /* 白文字を読みやすくするため雲を少し沈める */
+  .fv-veil {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(20,24,30,0.34) 0%, rgba(20,24,30,0.12) 45%, rgba(20,24,30,0) 80%),
+      linear-gradient(to bottom, rgba(20,24,30,0.22) 0%, rgba(20,24,30,0) 28%, rgba(20,24,30,0) 72%, rgba(20,24,30,0.22) 100%);
+    z-index: 1;
+  }
+
+  /* ヘッダー */
+  .header {
+    position: absolute;
+    top: 0; left: 0; width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(34px, 4.5vw, 60px) clamp(40px, 6vw, 76px);
+    z-index: 5;
+  }
+  .header-logo {
+    font-weight: 800;
+    font-size: clamp(15px, 1.4vw, 18px);
+    letter-spacing: 0.34em;
+    color: var(--ink);
+  }
+  .nav { display: flex; gap: clamp(20px, 2.6vw, 44px); }
+  .nav a {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .nav a:hover { color: var(--ink); }
+
+  /* 左右の縦メタ情報 */
+  .side {
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    color: var(--ink-faint);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  .side.left  { left: clamp(28px, 3.4vw, 46px); transform: translateY(-50%); }
+  .side.right { right: clamp(28px, 3.4vw, 46px); transform: translateY(-50%); }
+
+  /* 中央コピー */
+  .fv-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 5;
+    padding: 0 24px;
+  }
+  .eyebrow {
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 600;
+    letter-spacing: 0.42em;
+    color: var(--ink-soft);
+    margin-bottom: clamp(22px, 3vw, 34px);
+    text-indent: 0.42em;
+  }
+  .fv-mark {
+    font-weight: 600;
+    font-size: 20vw;   /* ブラウザ幅に追従して常に左右いっぱい */
+    letter-spacing: 0.02em;
+    line-height: 0.9;
+    color: var(--ink);
+    text-indent: 0.02em;
+    white-space: nowrap;
+  }
+  .fv-tagline {
+    margin-top: -0.6vw;   /* APOLLOSにさらに近づける */
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .fv-tagline .en {
+    display: inline-block;
+    font-size: 4.05vw;   /* JSで幅をAPOLLOSに合わせて上書き */
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+  }
+  .fv-tagline .jp {
+    display: block;
+    margin-top: 14px;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: clamp(11px, 1.1vw, 13px);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--ink-soft);
+  }
+
+  /* フッター行 */
+  .footer {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: clamp(30px, 4vw, 54px) clamp(40px, 6vw, 76px);
+    z-index: 5;
+  }
+  .copyright {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--ink-faint);
+  }
+  .footer-meta {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--ink-faint);
+  }
+
+  /* スクロール誘導（中央下・動くドット） */
+  .scroll-hint {
+    position: absolute;
+    bottom: clamp(30px, 4vw, 54px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .scroll-hint span {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.34em;
+    color: var(--ink-soft);
+    text-indent: 0.34em;
+  }
+  .scroll-track {
+    position: relative;
+    width: 1px;
+    height: 46px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .scroll-track::after {
+    content: "";
+    position: absolute;
+    left: 0; top: 0;
+    width: 1px;
+    height: 16px;
+    background: var(--ink);
+    animation: scrollDot 1.8s cubic-bezier(0.7,0,0.3,1) infinite;
+  }
+  @keyframes scrollDot {
+    0%   { transform: translateY(-18px); opacity: 0; }
+    35%  { opacity: 1; }
+    100% { transform: translateY(46px); opacity: 0; }
+  }
+
+  /* スマホ対応 */
+  @media (max-width: 768px) {
+    .header { padding: 28px 26px; }
+    .nav { gap: 16px; }
+    .nav a { font-size: 10px; letter-spacing: 0.14em; }
+    .side { display: none; }
+    .fv-mark { font-size: 20vw; letter-spacing: 0.01em; }
+    .eyebrow { font-size: 10px; letter-spacing: 0.32em; }
+    .fv-tagline .en { font-size: 4.05vw; letter-spacing: 0; }
+    .fv-tagline .jp { font-size: 11px; }
+    .footer { padding: 22px 26px; }
+    .footer-meta { display: none; }
+    .copyright { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="fv">
+    <div class="fv-bg"></div>
+    <div class="fv-veil"></div>
+
+    <header class="header">
+      <div class="header-logo">APOLLOS</div>
+      <nav class="nav">
+        <a href="#about">ABOUT</a>
+        <a href="#service">SERVICE</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+    </header>
+
+    <div class="side left">COGNITION&nbsp;&nbsp;DESIGN</div>
+    <div class="side right">EST.&nbsp;2026&nbsp;&nbsp;—&nbsp;&nbsp;TOKYO</div>
+
+    <div class="fv-center">
+      <p class="eyebrow">AWARENESS DESIGN STUDIO</p>
+      <h1 class="fv-mark">APOLLOS</h1>
+      <p class="fv-tagline">
+        <span class="en">Bring buried value to the next world.</span>
+        <span class="jp">埋もれている価値を、次の世界へ。</span>
+      </p>
+    </div>
+
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-track"></div>
+    </div>
+
+    <div class="footer">
+      <div class="copyright">© 2026 APOLLOS</div>
+      <div class="footer-meta">VALUE / AWARENESS / NEXT</div>
+    </div>
+  </section>
+
+  <script>
+    // APOLLOSとタグラインを同じ幅にぴったり揃える
+    function fitToWidth(el, targetPx) {
+      el.style.fontSize = "100px";
+      const natural = el.getBoundingClientRect().width;
+      if (natural > 0) el.style.fontSize = (100 * targetPx / natural) + "px";
+    }
+    function fitAll() {
+      const mark = document.querySelector(".fv-mark");
+      const en = document.querySelector(".fv-tagline .en");
+      const target = Math.min(window.innerWidth * 0.9, 1700); // 共通の目標幅
+      fitToWidth(mark, target);
+      fitToWidth(en, target);
+    }
+    window.addEventListener("load", fitAll);
+    window.addEventListener("resize", fitAll);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+  </script>
+
+</body>
+</html>

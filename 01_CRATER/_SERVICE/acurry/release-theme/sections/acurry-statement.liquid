@@ -1,0 +1,29 @@
+{%- comment -%} A CURRY ブランドステートメント帯（2カラム） {%- endcomment -%}
+<style>
+  .acu-stmt{background:linear-gradient(160deg,var(--acu-dark1),var(--acu-dark2));color:var(--acu-white);
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;padding:112px 64px;align-items:start;}
+  .acu-stmt__eye{font-family:var(--acu-en);font-size:12px;letter-spacing:4px;color:#f7f4ef99;margin-top:28px;}
+  .acu-stmt__t{font-family:var(--acu-jp)!important;font-weight:600;color:var(--acu-white)!important;
+    font-size:clamp(34px,3.8vw,50px);margin:0;line-height:1.4;letter-spacing:.04em;}
+  .acu-stmt__body{font-family:var(--acu-jp);font-size:16px;line-height:2;letter-spacing:.04em;
+    color:#f7f4efcc;margin:0;white-space:pre-line;}
+  @media(max-width:768px){.acu-stmt{grid-template-columns:1fr;gap:32px;padding:72px 32px;}}
+</style>
+<section class="acu acu-stmt">
+  <div class="acu-stmt__left">
+    <h2 class="acu-stmt__t">{{ section.settings.heading }}</h2>
+    {%- if section.settings.eyebrow != blank -%}<div class="acu-stmt__eye">{{ section.settings.eyebrow }}</div>{%- endif -%}
+  </div>
+  <p class="acu-stmt__body">{{ section.settings.body }}</p>
+</section>
+{% schema %}
+{
+  "name": "A CURRY Statement",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "上ラベル", "default": "CONCEPT" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "あ！となる一皿。" },
+    { "type": "textarea", "id": "body", "label": "ステートメント本文", "default": "人が「あ！」と声を漏らすのは、どんな時だろう。\n\n思いがけない場所で、探し物を見つけた時。\nふとした瞬間に、いい考えがひらめいた時。\n\n「あ！」と言うとき、そこにはいつも小さな発見がある。\n日常の中でふと訪れる、あの無防備に心が揺れる瞬間。\n\n私たちがこの一皿に込めたのも、その体験だ。\n食べたその瞬間、あなたの中に「あ！」が生まれる。\n今日の食卓に、最高の「あ！」が響きますように。" }
+  ],
+  "presets": [{ "name": "A CURRY Statement" }]
+}
+{% endschema %}

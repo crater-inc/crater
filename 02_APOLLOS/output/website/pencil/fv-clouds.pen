@@ -1,0 +1,456 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "LEEAk",
+      "x": 0,
+      "y": 0,
+      "name": "APOLLOS FV",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "K7p2xR",
+          "x": 0,
+          "y": 0,
+          "name": "Base Dark BG",
+          "fill": "#07090F",
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "type": "rectangle",
+          "id": "HWsA3",
+          "x": 0,
+          "y": 0,
+          "name": "Edge Vignette",
+          "enabled": false,
+          "opacity": 0.45,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 0.72,
+              "height": 0.72
+            },
+            "colors": [
+              {
+                "color": "#00000000",
+                "position": 0
+              },
+              {
+                "color": "#030408",
+                "position": 1
+              }
+            ],
+            "center": {
+              "y": 0.45
+            }
+          },
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "type": "ellipse",
+          "id": "QyjWt",
+          "x": -280,
+          "y": -180,
+          "name": "Cloud Mass UL",
+          "opacity": 0.7,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#1C2540",
+                "position": 0
+              },
+              {
+                "color": "#12193000",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1050,
+          "height": 720
+        },
+        {
+          "type": "ellipse",
+          "id": "HQ2yp",
+          "x": 680,
+          "y": -220,
+          "name": "Cloud Mass UR",
+          "opacity": 0.6,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#192238",
+                "position": 0
+              },
+              {
+                "color": "#10182800",
+                "position": 1
+              }
+            ]
+          },
+          "width": 960,
+          "height": 700
+        },
+        {
+          "type": "ellipse",
+          "id": "F3mMUP",
+          "x": 120,
+          "y": 160,
+          "name": "Cloud Mid Center",
+          "opacity": 0.55,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#152030",
+                "position": 0
+              },
+              {
+                "color": "#0D151E00",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1200,
+          "height": 640
+        },
+        {
+          "type": "ellipse",
+          "id": "u4PUFL",
+          "x": 480,
+          "y": -240,
+          "name": "Cloud Glow Center",
+          "opacity": 0.5,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#2C3F60",
+                "position": 0
+              },
+              {
+                "color": "#1A264000",
+                "position": 1
+              }
+            ]
+          },
+          "width": 520,
+          "height": 560
+        },
+        {
+          "type": "ellipse",
+          "id": "I5Vfz",
+          "x": -320,
+          "y": 480,
+          "name": "Cloud Lower Left",
+          "opacity": 0.45,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#10192C",
+                "position": 0
+              },
+              {
+                "color": "#08101800",
+                "position": 1
+              }
+            ]
+          },
+          "width": 880,
+          "height": 580
+        },
+        {
+          "type": "rectangle",
+          "id": "fa8ez",
+          "x": 0,
+          "y": 560,
+          "name": "Bottom Shadow",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#04060A",
+                "position": 0
+              },
+              {
+                "color": "#04060A00",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1440,
+          "height": 340
+        },
+        {
+          "type": "rectangle",
+          "id": "BweL1",
+          "x": 0,
+          "y": 0,
+          "name": "Edge Vignette V2",
+          "opacity": 0.75,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 0.68,
+              "height": 0.68
+            },
+            "colors": [
+              {
+                "color": "#00000000",
+                "position": 0
+              },
+              {
+                "color": "#020306",
+                "position": 1
+              }
+            ],
+            "center": {
+              "y": 0.42
+            }
+          },
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "type": "ellipse",
+          "id": "WHNBD",
+          "x": 440,
+          "y": -80,
+          "name": "Center Light Glow",
+          "opacity": 0.22,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1,
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#2E445E",
+                "position": 0
+              },
+              {
+                "color": "#18263A00",
+                "position": 1
+              }
+            ]
+          },
+          "width": 560,
+          "height": 500
+        },
+        {
+          "type": "frame",
+          "id": "sLF6R",
+          "x": 0,
+          "y": 0,
+          "name": "Header",
+          "width": 1440,
+          "padding": [
+            30,
+            64
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "AAlre",
+              "name": "Header Logo",
+              "fill": "#FFFFFF4A",
+              "content": "APOLLOS",
+              "fontFamily": "Cormorant Garamond",
+              "fontSize": 11,
+              "fontWeight": "300",
+              "letterSpacing": 5
+            },
+            {
+              "type": "frame",
+              "id": "Bdk47",
+              "name": "Nav",
+              "gap": 40,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "swHoE",
+                  "name": "Nav ABOUT",
+                  "fill": "#FFFFFF38",
+                  "content": "ABOUT",
+                  "fontFamily": "Josefin Sans",
+                  "fontSize": 9,
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "SZHsE",
+                  "name": "Nav SERVICE",
+                  "fill": "#FFFFFF38",
+                  "content": "SERVICE",
+                  "fontFamily": "Josefin Sans",
+                  "fontSize": 9,
+                  "letterSpacing": 2
+                },
+                {
+                  "type": "text",
+                  "id": "Mj10v",
+                  "name": "Nav CONTACT",
+                  "fill": "#FFFFFF38",
+                  "content": "CONTACT",
+                  "fontFamily": "Josefin Sans",
+                  "fontSize": 9,
+                  "letterSpacing": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pg3ob",
+          "x": 0,
+          "y": 0,
+          "name": "Hero Overlay",
+          "width": 1440,
+          "height": 900,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "W40WYH",
+              "name": "Hero Content",
+              "layout": "vertical",
+              "gap": 22,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rnAZf",
+                  "name": "Wordmark",
+                  "fill": "#E9E6DD",
+                  "content": "APOLLOS",
+                  "fontFamily": "Cormorant Garamond",
+                  "fontSize": 15,
+                  "fontWeight": "300",
+                  "letterSpacing": 12
+                },
+                {
+                  "type": "rectangle",
+                  "id": "Q8CiW",
+                  "name": "Divider",
+                  "fill": "#FFFFFF28",
+                  "width": 48,
+                  "height": 1
+                },
+                {
+                  "type": "text",
+                  "id": "FO9Jv",
+                  "name": "Tagline JP",
+                  "fill": "#B8B5AE",
+                  "content": "埋もれている価値を、次の世界へ。",
+                  "fontFamily": "Noto Sans JP",
+                  "fontSize": 12,
+                  "fontWeight": "300",
+                  "letterSpacing": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "PZjfv",
+          "x": 0,
+          "y": 848,
+          "name": "Scroll Hint",
+          "width": 1440,
+          "height": 44,
+          "layout": "vertical",
+          "gap": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "Q9CPHz",
+              "name": "Scroll Label",
+              "fill": "#FFFFFF3A",
+              "content": "SCROLL",
+              "fontFamily": "Josefin Sans",
+              "fontSize": 8,
+              "letterSpacing": 4
+            },
+            {
+              "type": "rectangle",
+              "id": "E7EFOz",
+              "name": "Scroll Line",
+              "fill": "#FFFFFF28",
+              "width": 1,
+              "height": 14
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

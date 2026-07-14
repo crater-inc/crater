@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>請求書 - CRATER</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  #pw-lock { position: fixed; inset: 0; background: #1e2d3d; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; z-index: 9999; }
+  #pw-lock svg { width: 120px; height: auto; }
+  #pw-lock svg path { fill: #fff; }
+  #pw-input { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); border-radius: 0; padding: 12px 20px; font-size: 16px; color: #fff; width: 240px; text-align: center; letter-spacing: 0.15em; outline: none; }
+  #pw-error { font-size: 11px; color: #e05555; display: none; }
+  #pdf-btn { position: fixed; bottom: 24px; right: 24px; background: #1e2d3d; color: #fff; border: none; border-radius: 0; padding: 10px 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; cursor: pointer; z-index: 100; }
+  #pdf-btn:hover { background: #2c3f57; }
+  @media print { #pdf-btn, #pw-lock { display: none !important; } }
+  body { font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; font-size: 11px; color: #1a1a1a; background: #f0f0f0; }
+  .page { width: 210mm; min-height: 297mm; margin: 20px auto; background: #fff; padding: 14mm; position: relative; }
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10mm; padding-bottom: 6mm; border-bottom: 2px solid #1e2d3d; }
+  .doc-title { font-size: 22px; font-weight: 700; letter-spacing: 0.1em; color: #1e2d3d; margin-bottom: 4px; }
+  .doc-meta { font-size: 10px; color: #666; line-height: 1.8; }
+  .doc-meta span { display: inline-block; min-width: 80px; }
+  .header-right { text-align: right; }
+  .company-name-logo { display: block; width: 100px; height: auto; margin-bottom: 6px; margin-left: auto; }
+  .company-header { position: relative; display: inline-block; }
+  .hanko { position: absolute; top: -8px; left: -44px; width: 52px; height: 52px; opacity: 0.85; }
+  .company-info { font-size: 9px; color: #666; line-height: 1.7; }
+  .billing-section { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8mm; }
+  .client-name { font-size: 16px; font-weight: 700; color: #1e2d3d; border-bottom: 1.5px solid #1e2d3d; padding-bottom: 3px; margin-bottom: 3px; letter-spacing: 0.05em; }
+  .honorific { font-size: 11px; color: #444; }
+  .subject-line { font-size: 10px; color: #555; margin-top: 5px; }
+  .subject-line span { font-weight: 600; color: #1e2d3d; }
+  .total-block { text-align: right; background: #1e2d3d; color: #fff; padding: 10px 16px; border-radius: 4px; min-width: 180px; }
+  .total-label { font-size: 9px; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 3px; }
+  .total-amount { font-size: 22px; font-weight: 700; letter-spacing: 0.02em; }
+  .total-amount-sub { font-size: 9px; opacity: 0.6; margin-top: 2px; }
+  .items-table { width: 100%; border-collapse: collapse; margin-bottom: 6mm; }
+  .items-table thead tr { background: #1e2d3d; color: #fff; }
+  .items-table thead th { padding: 7px 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-align: left; }
+  .items-table thead th.num { width: 6%; text-align: center; }
+  .items-table thead th.item { width: 46%; }
+  .items-table thead th.qty { width: 8%; text-align: right; }
+  .items-table thead th.price { width: 20%; text-align: right; }
+  .items-table thead th.subtotal { width: 20%; text-align: right; }
+  .items-table tbody tr { border-bottom: 1px solid #e8e8e8; }
+  .items-table tbody td { padding: 7px 10px; font-size: 10.5px; color: #333; vertical-align: middle; }
+  .items-table tbody td.num { text-align: center; color: #aaa; font-size: 9px; }
+  .items-table tbody td.qty { text-align: right; }
+  .items-table tbody td.price { text-align: right; }
+  .items-table tbody td.subtotal { text-align: right; font-weight: 600; }
+  .section-row td { background: #f0f2f5; color: #1e2d3d !important; font-weight: 700 !important; font-size: 10px !important; padding: 5px 10px !important; letter-spacing: 0.05em; border-bottom: none !important; }
+  .totals-section { display: flex; justify-content: flex-end; margin-bottom: 8mm; }
+  .totals-table { width: 260px; border-collapse: collapse; }
+  .totals-table tr td { padding: 5px 10px; font-size: 10.5px; }
+  .totals-table tr td:last-child { text-align: right; font-weight: 600; min-width: 100px; }
+  .totals-table .subtotal-row td { color: #555; border-bottom: 1px solid #eee; }
+  .totals-table .tax-row td { color: #888; font-size: 10px; border-bottom: 1px solid #eee; }
+  .totals-table .grand-total-row { background: #1e2d3d; color: #fff; }
+  .totals-table .grand-total-row td { color: #fff; font-size: 13px; font-weight: 700; padding: 8px 10px; }
+  .remarks { background: #f8f9fb; border-left: 3px solid #1e2d3d; padding: 8px 12px; font-size: 9.5px; color: #555; line-height: 1.8; margin-bottom: 6mm; }
+  .remarks-title { font-weight: 700; color: #1e2d3d; margin-bottom: 4px; font-size: 10px; }
+  .bank-info { border: 1px solid #ddd; padding: 8px 12px; font-size: 9.5px; color: #555; line-height: 1.8; border-radius: 3px; margin-bottom: 6mm; }
+  .bank-info-title { font-weight: 700; color: #1e2d3d; margin-bottom: 3px; font-size: 10px; }
+  .footer { position: absolute; bottom: 10mm; left: 14mm; right: 14mm; display: flex; justify-content: space-between; align-items: center; padding-top: 4mm; border-top: 1px solid #e8e8e8; }
+  .footer-left, .footer-right { font-size: 8.5px; color: #bbb; }
+  .tax-note { font-size: 9px; color: #aaa; text-align: right; margin-bottom: 4mm; }
+  @media print { body { background: #fff; } .page { margin: 0; box-shadow: none; border-radius: 0; } }
+</style>
+</head>
+<body>
+
+<div id="pw-lock">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="110 238 615 124">
+    <g><g>
+      <path d="M204.5,323.6c-10.4,10.4-25.7,13.1-39.8,6.9-7.3-3.2-13-8.9-16.2-16.3-5-11.7-4.1-24.1,2.5-34.1,6.5-9.8,17.3-15.7,29-15.7s18,3.6,24.5,10.2l.4.4,16.9-16.9-.4-.4c-16.5-16.5-40.8-21.5-63.5-13.1-14.8,5.5-26.6,17.1-32.2,31.8-7.3,19.2-5.2,39.6,6,55.8,11,15.9,29,25.4,48.3,25.4s30.3-6.1,41.4-17.2l.4-.4-16.9-16.9-.4.4Z"/>
+      <path d="M324.3,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM289.5,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+      <path d="M720.4,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM685.6,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+      <path d="M544.7,242.1v114h71.8v-22.3h-47.1c-1.3,0-2.3-1-2.3-2.3v-19.8c0-1.3,1-2.3,2.3-2.3h42.9v-22.3h-42.9c-1.3,0-2.3-1-2.3-2.3v-17.9c0-1.3,1-2.3,2.3-2.3h47.1v-22.3h-71.8Z"/>
+      <path d="M440.9,264.4h29.2c1,0,1.9.8,1.9,1.9v89.7h22.3v-89.7c0-1,.8-1.9,1.9-1.9h29.2v-22.3h-84.5v22.3Z"/>
+      <path d="M377.4,242.1l-38.8,114h23.6l6.3-18.6c.7-2,2.6-3.3,4.7-3.3h33.3c2.1,0,4,1.3,4.7,3.3l6.3,18.6h23.6l-38.8-114h-24.9ZM377.7,310.5l12.1-35.6,12.1,35.6c.2.6-.3,1.3-.9,1.3h-22.4c-.7,0-1.2-.7-.9-1.3Z"/>
+    </g></g>
+  </svg>
+  <input id="pw-input" type="password" placeholder="PASSWORD" autofocus onkeydown="if(event.key==='Enter')pwCheck()">
+  <div id="pw-error">パスワードが違います</div>
+</div>
+
+<button id="pdf-btn" onclick="window.print()">PDF で保存</button>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="doc-title">請求書</div>
+      <div class="doc-meta">
+        <div><span>発行日</span>2026年07月14日</div>
+        <div><span>請求番号</span>2026-020</div>
+        <div><span>支払期限</span>2026年08月31日</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="company-header">
+        <img class="hanko" src="../_brief/20190601133710.png" alt="印鑑">
+        <svg class="company-name-logo" xmlns="http://www.w3.org/2000/svg" viewBox="110 238 615 124">
+          <g><g>
+            <path d="M204.5,323.6c-10.4,10.4-25.7,13.1-39.8,6.9-7.3-3.2-13-8.9-16.2-16.3-5-11.7-4.1-24.1,2.5-34.1,6.5-9.8,17.3-15.7,29-15.7s18,3.6,24.5,10.2l.4.4,16.9-16.9-.4-.4c-16.5-16.5-40.8-21.5-63.5-13.1-14.8,5.5-26.6,17.1-32.2,31.8-7.3,19.2-5.2,39.6,6,55.8,11,15.9,29,25.4,48.3,25.4s30.3-6.1,41.4-17.2l.4-.4-16.9-16.9-.4.4Z"/>
+            <path d="M324.3,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM289.5,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+            <path d="M720.4,276.3c-1.3-19.4-18-34.2-37.4-34.2h-46.1s0,114,0,114h22.3v-38.6c0-1,.8-1.9,1.9-1.9h12.4c2.9,0,5.6,1.7,6.9,4.3l17.4,36.2h24.8l-21.5-44.7c0,0,0-.1,0-.1,12.2-6.6,20.4-19.9,19.3-34.9ZM685.6,293.2h-24.6c-1,0-1.9-.8-1.9-1.9v-24.9c0-1,.8-1.9,1.9-1.9h22.7c10.9,0,19.1,12.3,11.3,23.8-2.1,3.1-5.7,5-9.4,5Z"/>
+            <path d="M544.7,242.1v114h71.8v-22.3h-47.1c-1.3,0-2.3-1-2.3-2.3v-19.8c0-1.3,1-2.3,2.3-2.3h42.9v-22.3h-42.9c-1.3,0-2.3-1-2.3-2.3v-17.9c0-1.3,1-2.3,2.3-2.3h47.1v-22.3h-71.8Z"/>
+            <path d="M440.9,264.4h29.2c1,0,1.9.8,1.9,1.9v89.7h22.3v-89.7c0-1,.8-1.9,1.9-1.9h29.2v-22.3h-84.5v22.3Z"/>
+            <path d="M377.4,242.1l-38.8,114h23.6l6.3-18.6c.7-2,2.6-3.3,4.7-3.3h33.3c2.1,0,4,1.3,4.7,3.3l6.3,18.6h23.6l-38.8-114h-24.9ZM377.7,310.5l12.1-35.6,12.1,35.6c.2.6-.3,1.3-.9,1.3h-22.4c-.7,0-1.2-.7-.9-1.3Z"/>
+          </g></g>
+        </svg>
+      </div>
+      <div class="company-info">
+        株式会社クレーター　明里 圭修<br>
+        登録番号：T8011101087629<br>
+        〒155-0031 東京都世田谷区北沢3丁目20-18 北沢宝ビル3F<br>
+        TEL：03-6665-0846　info@crater.co.jp
+      </div>
+    </div>
+  </div>
+
+  <div class="billing-section">
+    <div class="client-block">
+      <div class="client-name">株式会社Roub<span class="honorific">　御中</span></div>
+      <div style="font-size:9px;color:#777;margin-top:4px;line-height:1.6;">〒220-0072　神奈川県横浜市西区浅間町1丁目4番3号 ウィザードビル402</div>
+      <div class="subject-line">件名：<span>a curry（アカリー）商品卸 ／ 初回ローンチ分</span></div>
+      <div style="font-size:10px;color:#555;margin-top:4px;">下記のとおりご請求申し上げます。</div>
+    </div>
+    <div class="total-block">
+      <div class="total-label">ご請求金額（税込）</div>
+      <div class="total-amount">¥86,832</div>
+      <div class="total-amount-sub">税抜 ¥80,400</div>
+    </div>
+  </div>
+
+  <table class="items-table">
+    <thead>
+      <tr>
+        <th class="num">No</th>
+        <th class="item">品目</th>
+        <th class="qty">数量</th>
+        <th class="price">単価</th>
+        <th class="subtotal">金額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="section-row">
+        <td colspan="5">▍ 商品卸（1ケースより送料無料）</td>
+      </tr>
+      <tr>
+        <td class="num">1</td>
+        <td>a curry 柚子胡椒プリプリ豚カレー（200g・ちょい辛）<br>
+          <span style="font-size:9px;color:#999;">レトルトカレー単品 ／ JAN 4595775371029 ／ 卸単価</span>
+        </td>
+        <td class="qty">60</td>
+        <td class="price">¥670</td>
+        <td class="subtotal">¥40,200</td>
+      </tr>
+      <tr>
+        <td class="num">2</td>
+        <td>a curry 牡蠣とココナッツのスープカレー（200g・中辛）<br>
+          <span style="font-size:9px;color:#999;">レトルトカレー単品 ／ JAN 4595775371012 ／ 卸単価</span>
+        </td>
+        <td class="qty">60</td>
+        <td class="price">¥670</td>
+        <td class="subtotal">¥40,200</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tax-note">※ 表示金額はすべて税抜き（食品につき軽減税率8%）</div>
+  <div class="totals-section">
+    <table class="totals-table">
+      <tr class="subtotal-row">
+        <td>小計</td>
+        <td>¥80,400</td>
+      </tr>
+      <tr class="tax-row">
+        <td>消費税（軽減税率8%）</td>
+        <td>¥6,432</td>
+      </tr>
+      <tr class="grand-total-row">
+        <td>合計（税込）</td>
+        <td>¥86,832</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="bank-info">
+    <div class="bank-info-title">お振込先</div>
+    PayPay銀行　ビジネス営業部　普通　2494606　カ）クレーター
+  </div>
+
+  <div class="remarks">
+    <div class="remarks-title">備考</div>
+    ・商品は常温保存のレトルトカレー（各200g・1人前）です。<br>
+    ・卸単価¥670（税抜）。<strong>2ケース（60食）以上のご注文で配送料無料（弊社負担）</strong>となります。1ケース（30食）のみのご注文は別途送料（1ケース＝100サイズ相当／1,500円〜・配送地域により変動）を申し受けます。<br>
+    ・数量は柚子胡椒プリプリ豚カレー 60食＋牡蠣とココナッツのスープカレー 60食＝計120食（各2ケース・1ケース30食）です。<br>
+    ・賞味期限：柚子胡椒豚 2028年6月26日／牡蠣ココナッツ 2028年6月25日。<br>
+    ・お支払期限：2026年8月31日<br>
+    ※恐れ入りますが振込手数料はご負担ください。<br>
+    ※本PDFをもって原本といたします。
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">株式会社クレーター</div>
+    <div class="footer-right">crater.co.jp</div>
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    if (sessionStorage.getItem('cp_auth') === '1') {
+      document.getElementById('pw-lock').style.display = 'none';
+    }
+  })();
+  function pwCheck() {
+    if (document.getElementById('pw-input').value === 'view') {
+      document.getElementById('pw-lock').style.display = 'none';
+      sessionStorage.setItem('cp_auth', '1');
+    } else {
+      document.getElementById('pw-error').style.display = 'block';
+      document.getElementById('pw-input').value = '';
+    }
+  }
+</script>
+</body>
+</html>

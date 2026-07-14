@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APOLLOS — Font Preview</title>
+
+<script>
+  const MARK = 'APOLLOS';
+  const TAGLINE_EN = 'Bring buried value to the next world.';
+  const TAGLINE_JP = '埋もれている価値を、次の世界へ。';
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Archivo:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600;700&family=Outfit:wght@200;300;400;500;600&family=Syne:wght@400;500;600;700;800&family=Unbounded:wght@300;400;500;600;700&family=Bricolage+Grotesque:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&family=Lexend:wght@200;300;400;500;600&family=Epilogue:wght@300;400;500;600&family=DM+Sans:wght@400;500;600;700&family=Marcellus&family=Cormorant+Garamond:wght@300;400;500&family=Fraunces:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { overflow-x:hidden; }
+  body {
+    font-family:'Inter', sans-serif;
+    background:#0a0c10;
+    color:#fff;
+    padding:clamp(28px,5vw,64px);
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s, color .3s;
+  }
+  body.light { background:#eceee9; color:#1c1f22; }
+
+  .head { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:40px; }
+  .title { font-size:11px; letter-spacing:0.35em; opacity:.6; text-transform:uppercase; }
+  .toggle {
+    font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.18em;
+    background:none; border:1px solid currentColor; color:inherit;
+    padding:9px 18px; border-radius:40px; cursor:pointer; opacity:.8;
+  }
+  .toggle:hover { opacity:1; }
+
+  .card {
+    padding:clamp(26px,4vw,46px) 0;
+    border-top:1px solid rgba(128,128,128,0.22);
+  }
+  .card .label {
+    font-size:10px; letter-spacing:0.26em; text-transform:uppercase;
+    opacity:.5; margin-bottom:18px;
+  }
+  .mark {
+    font-size:clamp(40px,8vw,104px);
+    line-height:1;
+    letter-spacing:0.02em;
+    margin-bottom:18px;
+    white-space:nowrap;
+  }
+  .tag-en { font-size:clamp(14px,1.6vw,20px); letter-spacing:0.06em; opacity:.85; }
+  .tag-jp { font-family:'Noto Sans JP',sans-serif; font-size:13px; letter-spacing:0.18em; opacity:.6; margin-top:8px; }
+
+  /* 各フォント＋ウェイト指定 */
+  .f-inter        { font-family:'Inter';            font-weight:500; }
+  .f-inter-l      { font-family:'Inter';            font-weight:300; }
+  .f-archivo      { font-family:'Archivo';          font-weight:600; letter-spacing:0.06em; }
+  .f-manrope      { font-family:'Manrope';          font-weight:600; }
+  .f-space        { font-family:'Space Grotesk';    font-weight:500; }
+  .f-sora         { font-family:'Sora';             font-weight:500; }
+  .f-outfit       { font-family:'Outfit';           font-weight:300; letter-spacing:0.1em; }
+  .f-syne         { font-family:'Syne';             font-weight:700; letter-spacing:0.04em; }
+  .f-unbounded    { font-family:'Unbounded';        font-weight:400; }
+  .f-bricolage    { font-family:'Bricolage Grotesque'; font-weight:500; }
+  .f-jost         { font-family:'Jost';             font-weight:400; letter-spacing:0.14em; }
+  .f-lexend       { font-family:'Lexend';           font-weight:300; letter-spacing:0.06em; }
+  .f-epilogue     { font-family:'Epilogue';         font-weight:500; }
+  .f-dmsans       { font-family:'DM Sans';          font-weight:600; }
+  .f-marcellus    { font-family:'Marcellus';        font-weight:400; letter-spacing:0.1em; }
+  .f-cormorant    { font-family:'Cormorant Garamond'; font-weight:400; letter-spacing:0.12em; }
+  .f-fraunces     { font-family:'Fraunces';         font-weight:400; letter-spacing:0.02em; }
+  .f-playfair     { font-family:'Playfair Display'; font-weight:500; }
+</style>
+</head>
+<body>
+
+  <div class="head">
+    <div class="title">APOLLOS — FONT PREVIEW</div>
+    <button class="toggle" onclick="document.body.classList.toggle('light')">BG: DARK / LIGHT</button>
+  </div>
+
+  <div id="list"></div>
+
+<script>
+  const fonts = [
+    ['Inter (Medium) — 現状', 'f-inter'],
+    ['Inter (Light)', 'f-inter-l'],
+    ['Archivo (SemiBold)', 'f-archivo'],
+    ['Manrope (SemiBold)', 'f-manrope'],
+    ['Space Grotesk', 'f-space'],
+    ['Sora', 'f-sora'],
+    ['Outfit (Light · 広め)', 'f-outfit'],
+    ['Syne (Bold · 個性派)', 'f-syne'],
+    ['Unbounded (個性派)', 'f-unbounded'],
+    ['Bricolage Grotesque', 'f-bricolage'],
+    ['Jost (Geometric · 広め)', 'f-jost'],
+    ['Lexend (Light)', 'f-lexend'],
+    ['Epilogue', 'f-epilogue'],
+    ['DM Sans (SemiBold)', 'f-dmsans'],
+    ['Marcellus (Serif · 上品)', 'f-marcellus'],
+    ['Cormorant Garamond (Serif)', 'f-cormorant'],
+    ['Fraunces (Serif · モダン)', 'f-fraunces'],
+    ['Playfair Display (Serif)', 'f-playfair'],
+  ];
+  const list = document.getElementById('list');
+  fonts.forEach(([name, cls]) => {
+    const c = document.createElement('div');
+    c.className = 'card';
+    c.innerHTML =
+      '<div class="label">' + name + '</div>' +
+      '<div class="mark ' + cls + '">' + MARK + '</div>' +
+      '<div class="tag-en ' + cls + '">' + TAGLINE_EN + '</div>' +
+      '<div class="tag-jp">' + TAGLINE_JP + '</div>';
+    list.appendChild(c);
+  });
+</script>
+
+</body>
+</html>

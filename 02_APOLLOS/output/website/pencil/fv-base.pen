@@ -1,0 +1,237 @@
+{
+  "version": "2.13",
+  "children": [
+    {
+      "type": "frame",
+      "id": "Kl9GN",
+      "x": 0,
+      "y": 0,
+      "name": "APOLLOS Hero",
+      "clip": true,
+      "width": 1440,
+      "height": 900,
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "C56ErG",
+          "x": 0,
+          "y": 0,
+          "name": "Cloud Background",
+          "metadata": {
+            "type": "unsplash",
+            "username": "haiku_ted",
+            "link": "https://unsplash.com/@haiku_ted",
+            "author": "Tadeusz Zachwieja"
+          },
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://images.unsplash.com/photo-1718651716512-ea4c7e6c09e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3ODI0MDg3MDZ8&ixlib=rb-4.1.0&q=80&w=1080",
+            "mode": "fill"
+          },
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "type": "rectangle",
+          "id": "rZnfi",
+          "x": 0,
+          "y": 0,
+          "name": "Dark Overlay",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "width": 1.4,
+              "height": 1.4
+            },
+            "colors": [
+              {
+                "color": "#00000025",
+                "position": 0
+              },
+              {
+                "color": "#00000045",
+                "position": 0.55
+              },
+              {
+                "color": "#000000A0",
+                "position": 1
+              }
+            ]
+          },
+          "width": 1440,
+          "height": 900
+        },
+        {
+          "type": "frame",
+          "id": "EDdEB",
+          "x": 0,
+          "y": 0,
+          "name": "Header",
+          "width": 1440,
+          "height": 112,
+          "padding": [
+            0,
+            60
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "b4Qiw",
+              "name": "Brand Name",
+              "fill": "#FFFFFF",
+              "content": "APOLLOS",
+              "fontFamily": "Inter",
+              "fontSize": 16,
+              "fontWeight": "700",
+              "letterSpacing": 6
+            },
+            {
+              "type": "text",
+              "id": "fcIYl",
+              "name": "Nav",
+              "fill": "#FFFFFFB3",
+              "content": "ABOUT   SERVICE   CONTACT",
+              "fontFamily": "Inter",
+              "fontSize": 11,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S4CTg",
+          "x": 0,
+          "y": 248,
+          "name": "Center Content",
+          "width": 1440,
+          "layout": "vertical",
+          "gap": 20,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "K5uAHg",
+              "name": "Eyebrow",
+              "fill": "#FFFFFFBF",
+              "content": "AWARENESS DESIGN STUDIO",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 8
+            },
+            {
+              "type": "frame",
+              "id": "K9a0A",
+              "name": "Text Block",
+              "layout": "vertical",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "P5aE1p",
+                  "name": "Wordmark",
+                  "fill": "#FFFFFF",
+                  "content": "APOLLOS",
+                  "fontFamily": "Inter",
+                  "fontSize": 280,
+                  "fontWeight": "500",
+                  "letterSpacing": 5
+                },
+                {
+                  "type": "text",
+                  "id": "Go5O2",
+                  "name": "Tagline",
+                  "fill": "#FFFFFF",
+                  "content": "Bring buried value to the next world.",
+                  "fontFamily": "Inter",
+                  "fontSize": 77,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "m9RBb",
+          "x": 0,
+          "y": 770,
+          "name": "Scroll Indicator",
+          "width": 1440,
+          "layout": "vertical",
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "c8GjPy",
+              "name": "Scroll Label",
+              "fill": "#FFFFFFCC",
+              "content": "SCROLL",
+              "fontFamily": "Inter",
+              "fontSize": 9,
+              "fontWeight": "normal",
+              "letterSpacing": 6
+            },
+            {
+              "type": "rectangle",
+              "id": "WIGUt",
+              "name": "Scroll Line",
+              "fill": "#FFFFFF99",
+              "width": 1,
+              "height": 46
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fDVMP",
+          "x": 0,
+          "y": 852,
+          "name": "Footer",
+          "width": 1440,
+          "height": 48,
+          "padding": [
+            0,
+            60
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "diUps",
+              "name": "Copyright",
+              "fill": "#FFFFFF73",
+              "content": "© 2026 APOLLOS",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "YBhYX",
+              "name": "Footer Right",
+              "fill": "#FFFFFF73",
+              "content": "VALUE / AWARENESS / NEXT",
+              "fontFamily": "Inter",
+              "fontSize": 10,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
