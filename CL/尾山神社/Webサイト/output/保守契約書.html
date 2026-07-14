@@ -152,7 +152,7 @@
   }
 
   .highlight {
-    background: #fff3cd;
+    background: #eee;
     padding: 0 1mm;
     border-radius: 0.5mm;
   }
@@ -212,28 +212,18 @@
     flex: 1;
   }
 
-  .sign-box .sign-label {
+  .sign-box .sign-name {
     font-family: var(--font-ja-m);
+    font-size: 9.5pt;
+    color: var(--c-black);
+    line-height: 1.6;
+    margin-bottom: 2.5mm;
+  }
+
+  .sign-box .sign-detail {
     font-size: 8pt;
     color: var(--c-black);
-    margin-bottom: 2mm;
-  }
-
-  .sign-line {
-    border-bottom: 0.3mm solid #999;
-    height: 12mm;
-    position: relative;
-  }
-
-  .sign-line::after {
-    content: '署名・捺印';
-    position: absolute;
-    bottom: 2mm;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 6.5pt;
-    color: #ccc;
-    white-space: nowrap;
+    line-height: 1.9;
   }
 
   /* P3 テーブル */
@@ -251,7 +241,7 @@
     font-size: 6pt;
     letter-spacing: 0.1em;
     color: #fff;
-    background: #c00;
+    background: #111;
     padding: 0.8mm 2mm;
     border-radius: 1mm;
   }
@@ -340,13 +330,13 @@
   /* 注意書き */
   .caution-box {
     margin-top: 4mm;
-    background: #fff8e1;
-    border: 0.3mm solid #f0c040;
+    background: var(--c-bg);
+    border: 0.3mm solid var(--c-border);
     border-radius: 1.5mm;
     padding: 2.5mm 4mm;
     font-size: 7pt;
     line-height: 1.8;
-    color: #7a5500;
+    color: var(--c-body);
   }
 
   /* 印刷 */
@@ -516,12 +506,12 @@
     <div class="sign-date">締結日：　　　　　年　　　月　　　日</div>
     <div class="sign-row">
       <div class="sign-box">
-        <div class="sign-label">甲（委託者）尾山神社</div>
-        <div class="sign-line"></div>
+        <div class="sign-name">甲（委託者）　尾山神社</div>
+        <div class="sign-detail">〒920-0918　石川県金沢市尾山町11-1<br>代表者　</div>
       </div>
       <div class="sign-box">
-        <div class="sign-label">乙（受託者）株式会社クレーター</div>
-        <div class="sign-line"></div>
+        <div class="sign-name">乙（受託者）　株式会社クレーター</div>
+        <div class="sign-detail">〒155-0031　東京都世田谷区北沢3-20-18 北沢宝ビル3F<br>代表取締役　明里 圭修</div>
       </div>
     </div>
   </div>
