@@ -120,6 +120,32 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 .lyt-pc [data-pencil-name="13Free"] [data-pencil-name="grid"] > div > div.shown,
 .lyt-pc [data-pencil-name="ForWhom"] [data-pencil-name="grid"] > div > div.shown,
 .lyt-pc [data-pencil-name="Voices"] [data-pencil-name="row"] > div.shown{opacity:1;transform:none;}
+/* SP ハンバーガーメニュー（全面ネイビー・ふわっとフェード） */
+#sp-menu{display:none;}
+@media (max-width:768px){
+ #sp-menu{display:flex;position:fixed;inset:0;z-index:4900;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,#071b52 0%,#0d41a8 100%);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;padding:0 44px;}
+ #sp-menu.open{opacity:1;visibility:visible;}
+ #sp-close{position:absolute;top:16px;right:18px;width:44px;height:44px;background:none;border:none;cursor:pointer;}
+ #sp-close span{position:absolute;top:50%;left:50%;width:26px;height:2px;background:#fff;border-radius:2px;}
+ #sp-close span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg);}
+ #sp-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
+ #sp-menu nav{display:flex;flex-direction:column;gap:24px;width:100%;}
+ #sp-menu nav a{display:flex;flex-direction:column;gap:3px;text-decoration:none;cursor:pointer;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+ #sp-menu.open nav a{opacity:1;transform:none;}
+ #sp-menu nav a em{font-family:'Barlow Condensed',sans-serif;font-style:normal;font-weight:600;font-size:29px;letter-spacing:.05em;color:#fff;line-height:1;}
+ #sp-menu nav a i{font-family:'Zen Kaku Gothic New',sans-serif;font-style:normal;font-size:11.5px;letter-spacing:.08em;color:#9FB6CC;}
+ #sp-menu .sp-menu-cta{display:flex;align-items:center;justify-content:center;height:52px;margin-top:40px;width:100%;background:#fff;color:#071C52;border-radius:100px;font-family:'Zen Kaku Gothic New',sans-serif;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+ #sp-menu.open .sp-menu-cta{opacity:1;transform:none;}
+ #sp-menu.open nav a:nth-child(1){transition-delay:.10s}
+ #sp-menu.open nav a:nth-child(2){transition-delay:.15s}
+ #sp-menu.open nav a:nth-child(3){transition-delay:.20s}
+ #sp-menu.open nav a:nth-child(4){transition-delay:.25s}
+ #sp-menu.open nav a:nth-child(5){transition-delay:.30s}
+ #sp-menu.open nav a:nth-child(6){transition-delay:.35s}
+ #sp-menu.open nav a:nth-child(7){transition-delay:.40s}
+ #sp-menu.open nav a:nth-child(8){transition-delay:.45s}
+ #sp-menu.open .sp-menu-cta{transition-delay:.52s}
+}
 </style>'''.replace('%ROT%',rot)
 
 # PC用JS（pageRoot=最初の出現＝PC。zoom拡大・セクション別パララックス・FAQ・フェード）
@@ -176,6 +202,28 @@ jssp='''
 })();
 </script>'''
 
+# SP ハンバーガーメニュー（全面ネイビー・フルスクリーン）
+spmenu='''
+<div id="sp-menu">
+  <button id="sp-close" aria-label="閉じる" onclick="spMenu(0)"><span></span><span></span></button>
+  <nav>
+    <a data-t="Lineup"><em>LINEUP</em><i>商品ラインナップ</i></a>
+    <a data-t="Story"><em>STORY</em><i>ブランドストーリー</i></a>
+    <a data-t="Reasons"><em>WHY ESION</em><i>選ばれる3つの理由</i></a>
+    <a data-t="13Free"><em>THE 13 FREE</em><i>13の無添加処方</i></a>
+    <a data-t="Voices"><em>VOICE</em><i>お客様の声</i></a>
+    <a data-t="Stores"><em>STORES</em><i>取扱店舗</i></a>
+    <a data-t="FAQ"><em>FAQ</em><i>よくある質問</i></a>
+    <a data-t="Contact"><em>CONTACT</em><i>お問い合わせ</i></a>
+  </nav>
+  <a class="sp-menu-cta" data-t="Subscription">定期便を始める</a>
+</div>
+<script>
+function spMenu(o){var m=document.getElementById('sp-menu');if(o){m.classList.add('open');document.body.style.overflow='hidden';}else{m.classList.remove('open');document.body.style.overflow='';}}
+document.querySelectorAll('.lyt-sp [data-icon-name="menu"]').forEach(function(b){b.style.cursor='pointer';b.addEventListener('click',function(){spMenu(1);});});
+document.querySelectorAll('#sp-menu [data-t]').forEach(function(a){a.addEventListener('click',function(){var t=document.querySelector('.lyt-sp [data-pencil-name="'+a.getAttribute('data-t')+'"]');spMenu(0);if(t)setTimeout(function(){t.scrollIntoView({behavior:'smooth',block:'start'});},380);});});
+</script>'''
+
 # パスワード保護（クライアント共有用: view / sessionStorage）
 pw='''
 <div id="pw-lock" style="position:fixed;inset:0;background:#071C52;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'Zen Kaku Gothic New',sans-serif;">
@@ -210,7 +258,7 @@ out=head+css+'''
 '''+pw+'''
     <div class="lyt-pc">'''+pcb+'''</div>
     <div class="lyt-sp">'''+spb+'''</div>
-'''+jspc+jssp+'''
+'''+spmenu+jspc+jssp+'''
   </body>
 </html>'''
 
