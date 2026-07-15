@@ -48,6 +48,12 @@ def tag_rv(s):
 def tag_cta(s):
     return re.sub(r'(data-pencil-name="CTA"\s*\n?\s*style=)','class="ctabtn" \\1',s,1)
 
+# ネイビーのテキスト色を #002677 に変更（テキストのcolor:のみ。背景・グラデは変えない）
+def navy_text(s):
+    s=re.sub(r'(color:\s*)#081[Bb]52',r'\g<1>#002677',s)
+    s=re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?',r'\g<1>#002677',s)
+    return s
+
 # VOICEの星：lucideのアウトライン星（線）を塗りつぶしの星に差し替え（PC/SP両方）
 STAR_PATH='M12 1.5l3.09 6.26 6.91 1.005-5 4.867 1.18 6.876L12 17.25l-6.18 3.258 1.18-6.876-5-4.867 6.91-1.005z'
 def solid_stars(s):
@@ -81,12 +87,12 @@ if mb:
 # PC body
 pcb=body_inner(pc)
 pcb=pcb.replace('data-pencil-name="ESION Top v1"','id="pageRoot" data-pencil-name="ESION Top v1"',1)
-pcb=tag_media(pcb); pcb=fixfv(pcb); pcb=tag_cta(pcb); pcb=tag_rv(pcb); pcb=solid_stars(pcb)
+pcb=tag_media(pcb); pcb=fixfv(pcb); pcb=tag_cta(pcb); pcb=tag_rv(pcb); pcb=solid_stars(pcb); pcb=navy_text(pcb)
 
 # SP body
 spb=body_inner(sp)
 spb=spb.replace('data-pencil-name="ESION Top SP"','id="spRoot" data-pencil-name="ESION Top SP"',1)
-spb=tag_media(spb); spb=tag_cta(spb); spb=tag_rv(spb); spb=solid_stars(spb)
+spb=tag_media(spb); spb=tag_cta(spb); spb=tag_rv(spb); spb=solid_stars(spb); spb=navy_text(spb)
 
 css='''
 <style>
