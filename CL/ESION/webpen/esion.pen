@@ -15278,7 +15278,7 @@
       "name": "ESION 商品詳細 PC",
       "clip": true,
       "width": 1199,
-      "height": 5507,
+      "height": 5036,
       "fill": "#FFFFFF",
       "layout": "none",
       "children": [
@@ -15290,7 +15290,7 @@
           "name": "left-fixed",
           "clip": true,
           "width": 600,
-          "height": 4147,
+          "height": 3746,
           "fill": "#EDF1F7",
           "layout": "none",
           "children": [
@@ -15321,99 +15321,84 @@
                   "height": 954
                 },
                 {
-                  "type": "rectangle",
-                  "cornerRadius": 6,
-                  "id": "y0iOD",
-                  "x": -304.5378151260502,
-                  "y": 0,
-                  "fill": {
-                    "type": "image",
-                    "enabled": true,
-                    "url": "ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.jpg",
-                    "mode": "fill"
-                  },
-                  "width": 1209,
-                  "height": 880
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "qtK8b",
-              "x": 40,
-              "y": 786,
-              "name": "thumbs",
-              "height": 60,
-              "gap": 10,
-              "children": [
-                {
-                  "type": "rectangle",
-                  "cornerRadius": 6,
-                  "id": "rHooB",
-                  "name": "t0",
-                  "fill": {
-                    "type": "image",
-                    "enabled": true,
-                    "url": "KV2_0001_グループ-1.png",
-                    "mode": "fill"
-                  },
-                  "width": 44,
+                  "type": "frame",
+                  "id": "qtK8b",
+                  "x": 40,
+                  "y": 786,
+                  "name": "thumbs",
                   "height": 60,
-                  "stroke": "#0D41A8"
-                },
-                {
-                  "type": "rectangle",
-                  "cornerRadius": 6,
-                  "id": "V5f8i",
-                  "name": "t1",
-                  "fill": [
+                  "gap": 10,
+                  "children": [
                     {
-                      "type": "image",
-                      "enabled": true,
-                      "url": "ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.png",
-                      "mode": "fill"
+                      "type": "rectangle",
+                      "cornerRadius": 6,
+                      "id": "rHooB",
+                      "name": "t0",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "ESION_Edit_2026-07-06_2x-1.jpg",
+                        "mode": "fill"
+                      },
+                      "width": 44,
+                      "height": 60,
+                      "stroke": "#0D41A8"
                     },
-                    "#FFFFFF80"
-                  ],
-                  "width": 44,
-                  "height": 60,
-                  "stroke": "#FFFFFF"
-                },
-                {
-                  "type": "rectangle",
-                  "cornerRadius": 6,
-                  "id": "CmhMx",
-                  "name": "t2",
-                  "fill": [
                     {
-                      "type": "image",
-                      "enabled": true,
-                      "url": "ESION_Edit_2026-06-30_2xのコピー.png",
-                      "mode": "fill"
+                      "type": "rectangle",
+                      "cornerRadius": 6,
+                      "id": "V5f8i",
+                      "name": "t1",
+                      "fill": [
+                        {
+                          "type": "image",
+                          "enabled": true,
+                          "url": "ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.png",
+                          "mode": "fill"
+                        },
+                        "#FFFFFFB3"
+                      ],
+                      "width": 44,
+                      "height": 60,
+                      "stroke": "#FFFFFF"
                     },
-                    "#FFFFFF80"
-                  ],
-                  "width": 44,
-                  "height": 60,
-                  "stroke": "#FFFFFF"
-                },
-                {
-                  "type": "rectangle",
-                  "cornerRadius": 6,
-                  "id": "LhS3G",
-                  "name": "t3",
-                  "fill": [
                     {
-                      "type": "image",
-                      "enabled": true,
-                      "url": "ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x.jpg",
-                      "mode": "fill"
+                      "type": "rectangle",
+                      "cornerRadius": 6,
+                      "id": "CmhMx",
+                      "name": "t2",
+                      "fill": [
+                        {
+                          "type": "image",
+                          "enabled": true,
+                          "url": "ESION_Edit_2026-06-30_2xのコピー.png",
+                          "mode": "fill"
+                        },
+                        "#FFFFFFB3"
+                      ],
+                      "width": 44,
+                      "height": 60,
+                      "stroke": "#FFFFFF"
                     },
-                    "#FFFFFF80"
-                  ],
-                  "width": 44,
-                  "height": 60,
-                  "stroke": "#FFFFFF"
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 6,
+                      "id": "LhS3G",
+                      "name": "t3",
+                      "fill": [
+                        {
+                          "type": "image",
+                          "enabled": true,
+                          "url": "ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x.jpg",
+                          "mode": "fill"
+                        },
+                        "#FFFFFFB3"
+                      ],
+                      "width": 44,
+                      "height": 60,
+                      "stroke": "#FFFFFF"
+                    }
+                  ]
                 }
               ]
             }
@@ -16011,6 +15996,213 @@
                           "fontFamily": "$font-jp",
                           "fontSize": 11,
                           "fontWeight": "700"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mGqZc",
+                  "name": "フレックスオーダー",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": [
+                    28,
+                    0,
+                    0,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "HG5Og",
+                      "name": "lab",
+                      "fill": "#0D41A8",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "FLEX ORDER",
+                      "fontFamily": "$font-en",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "shvNB",
+                      "name": "ttl",
+                      "fill": "#002677",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "フレックスオーダー",
+                      "fontFamily": "$font-jp-head",
+                      "fontSize": 23,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f29ks",
+                      "name": "fbox",
+                      "width": "fill_container",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 305,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#071b52",
+                            "position": 0
+                          },
+                          {
+                            "color": "#0d41a8",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 12,
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": 26,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bCGfs",
+                          "name": "lead-h",
+                          "fill": "#FFFFFF",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "しばりのない、あなたのペースの定期便。",
+                          "lineHeight": 1.5,
+                          "fontFamily": "$font-jp-head",
+                          "fontSize": 19,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Bme3O",
+                          "name": "lead",
+                          "fill": "#E4ECF3",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "フレックスオーダーは、回数の縛りがない“自由な定期便”です。通常の定期購入のような「〇回は続けないと解約できない」といった制約は一切ありません。お届け周期の変更・スキップ・停止・解約まで、すべてマイページから自由に。使うペースに合わせて、無理なく続けられます。",
+                          "lineHeight": 1.9,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "I56Oi",
+                          "name": "li",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "wVrSb",
+                              "name": "c",
+                              "fill": "#7FA8CC",
+                              "content": "✓",
+                              "fontFamily": "$font-en",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Jhu1R",
+                              "name": "t",
+                              "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "1回でのストップ・スキップが自由",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "iPt75",
+                          "name": "li",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ZgQHN",
+                              "name": "c",
+                              "fill": "#7FA8CC",
+                              "content": "✓",
+                              "fontFamily": "$font-en",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "E6y0x",
+                              "name": "t",
+                              "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "アイテムの組み合わせ・数量を変更可能",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "udFeu",
+                          "name": "li",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "S394FV",
+                              "name": "c",
+                              "fill": "#7FA8CC",
+                              "content": "✓",
+                              "fontFamily": "$font-en",
+                              "fontSize": 15,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "DJ7mv",
+                              "name": "t",
+                              "fill": "#FFFFFF",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "累計購入金額に応じて最大30%OFFの会員ランク特典",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "xYSoY",
+                          "name": "note",
+                          "fill": "#9FB6CC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "※次回お届け予定日の前日まで、いつでも変更・スキップ・解約が可能です。初回から解約OK。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 11.5,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -16748,345 +16940,10 @@
             },
             {
               "type": "frame",
-              "id": "v4ncfP",
-              "name": "band",
-              "width": "fill_container",
-              "fill": "#FFFFFF",
-              "layout": "vertical",
-              "padding": [
-                52,
-                72
-              ],
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "mGqZc",
-                  "name": "フレックスオーダー",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 16,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "HG5Og",
-                      "name": "lab",
-                      "fill": "#0D41A8",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "FLEX ORDER",
-                      "fontFamily": "$font-en",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "letterSpacing": 2
-                    },
-                    {
-                      "type": "text",
-                      "id": "shvNB",
-                      "name": "ttl",
-                      "fill": "#002677",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "フレックスオーダー",
-                      "fontFamily": "$font-jp-head",
-                      "fontSize": 23,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "f29ks",
-                      "name": "fbox",
-                      "width": "fill_container",
-                      "fill": {
-                        "type": "gradient",
-                        "gradientType": "linear",
-                        "enabled": true,
-                        "rotation": 305,
-                        "size": {
-                          "height": 1
-                        },
-                        "colors": [
-                          {
-                            "color": "#071b52",
-                            "position": 0
-                          },
-                          {
-                            "color": "#0d41a8",
-                            "position": 1
-                          }
-                        ]
-                      },
-                      "cornerRadius": 12,
-                      "layout": "vertical",
-                      "gap": 14,
-                      "padding": 26,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "bCGfs",
-                          "name": "lead-h",
-                          "fill": "#FFFFFF",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "しばりのない、あなたのペースの定期便。",
-                          "lineHeight": 1.5,
-                          "fontFamily": "$font-jp-head",
-                          "fontSize": 19,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Bme3O",
-                          "name": "lead",
-                          "fill": "#E4ECF3",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "フレックスオーダーは、回数の縛りがない“自由な定期便”です。通常の定期購入のような「〇回は続けないと解約できない」といった制約は一切ありません。お届け周期の変更・スキップ・停止・解約まで、すべてマイページから自由に。使うペースに合わせて、無理なく続けられます。",
-                          "lineHeight": 1.9,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "frame",
-                          "id": "I56Oi",
-                          "name": "li",
-                          "width": "fill_container",
-                          "gap": 10,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "wVrSb",
-                              "name": "c",
-                              "fill": "#7FA8CC",
-                              "content": "✓",
-                              "fontFamily": "$font-en",
-                              "fontSize": 15,
-                              "fontWeight": "700"
-                            },
-                            {
-                              "type": "text",
-                              "id": "Jhu1R",
-                              "name": "t",
-                              "fill": "#FFFFFF",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "1回でのストップ・スキップが自由",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "iPt75",
-                          "name": "li",
-                          "width": "fill_container",
-                          "gap": 10,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "ZgQHN",
-                              "name": "c",
-                              "fill": "#7FA8CC",
-                              "content": "✓",
-                              "fontFamily": "$font-en",
-                              "fontSize": 15,
-                              "fontWeight": "700"
-                            },
-                            {
-                              "type": "text",
-                              "id": "E6y0x",
-                              "name": "t",
-                              "fill": "#FFFFFF",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "アイテムの組み合わせ・数量を変更可能",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "udFeu",
-                          "name": "li",
-                          "width": "fill_container",
-                          "gap": 10,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "S394FV",
-                              "name": "c",
-                              "fill": "#7FA8CC",
-                              "content": "✓",
-                              "fontFamily": "$font-en",
-                              "fontSize": 15,
-                              "fontWeight": "700"
-                            },
-                            {
-                              "type": "text",
-                              "id": "DJ7mv",
-                              "name": "t",
-                              "fill": "#FFFFFF",
-                              "textGrowth": "fixed-width",
-                              "width": "fill_container",
-                              "content": "累計購入金額に応じて最大30%OFFの会員ランク特典",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "xYSoY",
-                          "name": "note",
-                          "fill": "#9FB6CC",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "※次回お届け予定日の前日まで、いつでも変更・スキップ・解約が可能です。初回から解約OK。",
-                          "lineHeight": 1.8,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 11.5,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "g3vG3",
-              "name": "band",
-              "width": "fill_container",
-              "fill": "#F5F7FA",
-              "layout": "vertical",
-              "padding": [
-                52,
-                72
-              ],
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "U5TrO",
-                  "name": "お客様の声",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 16,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "TBpKu",
-                      "name": "lab",
-                      "fill": "#0D41A8",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "REVIEW",
-                      "fontFamily": "$font-en",
-                      "fontSize": 12,
-                      "fontWeight": "600",
-                      "letterSpacing": 2
-                    },
-                    {
-                      "type": "text",
-                      "id": "n7JD47",
-                      "name": "ttl",
-                      "fill": "#002677",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "お客様の声",
-                      "fontFamily": "$font-jp-head",
-                      "fontSize": 23,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "B2Hb0w",
-                      "name": "rcard",
-                      "width": "fill_container",
-                      "fill": "#F5F8FC",
-                      "cornerRadius": 10,
-                      "layout": "vertical",
-                      "gap": 8,
-                      "padding": [
-                        20,
-                        22
-                      ],
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "qIdXL",
-                          "name": "rh",
-                          "width": "fill_container",
-                          "gap": 10,
-                          "alignItems": "center",
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "eCakV",
-                              "name": "s",
-                              "fill": "#F5B301",
-                              "content": "★★★★★",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 14,
-                              "fontWeight": "normal"
-                            },
-                            {
-                              "type": "text",
-                              "id": "xcXcc",
-                              "name": "n",
-                              "fill": "#002677",
-                              "content": "5.0",
-                              "fontFamily": "$font-en",
-                              "fontSize": 14,
-                              "fontWeight": "600"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "P3fht4",
-                          "name": "rt",
-                          "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "驚きの泡立ち！すっきり潤うオールインワン",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 14,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "kFdv6",
-                          "name": "rb",
-                          "fill": "#4A5578",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "無香料なのに豊かな泡で、地肌までしっかり洗えます。洗い上がりは爽快なのにつっぱらず、しっとり。これ1本でケアが完結するのも嬉しい。",
-                          "lineHeight": 1.85,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 12.5,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "type": "frame",
               "id": "noegt",
               "name": "band-notes",
               "width": "fill_container",
-              "fill": "#FFFFFF",
+              "fill": "#F5F7FA",
               "layout": "vertical",
               "padding": [
                 40,
@@ -17270,11 +17127,11 @@
           "type": "frame",
           "id": "JyEmS",
           "x": 0,
-          "y": 4147,
+          "y": 3746,
           "name": "Voices",
           "clip": true,
           "width": 1199,
-          "height": 560,
+          "height": 490,
           "fill": "#FFFFFF",
           "layout": "none",
           "children": [
@@ -17312,7 +17169,7 @@
               "fill": "#8A93A6",
               "textGrowth": "fixed-width",
               "width": 127,
-              "content": "← 横にスクロール →",
+              "content": "← SCROLL →",
               "textAlign": "right",
               "fontFamily": "$font-jp",
               "fontSize": 11,
@@ -17330,7 +17187,9 @@
                   "type": "frame",
                   "id": "XADb7",
                   "name": "card",
-                  "width": 300,
+                  "clip": true,
+                  "width": 236,
+                  "height": 266,
                   "fill": "#FFFFFF",
                   "cornerRadius": 14,
                   "stroke": "#E3E8EF",
@@ -17413,7 +17272,9 @@
                   "type": "frame",
                   "id": "h7C8Wt",
                   "name": "card",
-                  "width": 300,
+                  "clip": true,
+                  "width": 236,
+                  "height": 266,
                   "fill": "#FFFFFF",
                   "cornerRadius": 14,
                   "stroke": "#E3E8EF",
@@ -17496,7 +17357,9 @@
                   "type": "frame",
                   "id": "LiTNw",
                   "name": "card",
-                  "width": 300,
+                  "clip": true,
+                  "width": 236,
+                  "height": 266,
                   "fill": "#FFFFFF",
                   "cornerRadius": 14,
                   "stroke": "#E3E8EF",
@@ -17579,7 +17442,9 @@
                   "type": "frame",
                   "id": "M7J5J",
                   "name": "card",
-                  "width": 300,
+                  "clip": true,
+                  "width": 236,
+                  "height": 266,
                   "fill": "#FFFFFF",
                   "cornerRadius": 14,
                   "stroke": "#E3E8EF",
@@ -17662,7 +17527,9 @@
                   "type": "frame",
                   "id": "rYmZ4",
                   "name": "card",
-                  "width": 300,
+                  "clip": true,
+                  "width": 236,
+                  "height": 266,
                   "fill": "#FFFFFF",
                   "cornerRadius": 14,
                   "stroke": "#E3E8EF",
@@ -17749,7 +17616,7 @@
           "type": "frame",
           "id": "FlqGg",
           "x": 0,
-          "y": 4707,
+          "y": 4236,
           "name": "こだわりバナー",
           "clip": true,
           "width": 1199,
@@ -17758,18 +17625,17 @@
           "children": [
             {
               "type": "rectangle",
-              "id": "sOBiy",
+              "id": "TdplZ",
               "x": 0,
-              "y": 0,
-              "name": "bg",
+              "y": -274,
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "ESION_Edit_2026-06-30_2xのコピー.png",
+                "url": "ESION_Edit_2026-06-30_2x.png",
                 "mode": "fill"
               },
-              "width": 1199,
-              "height": 440
+              "width": 1748,
+              "height": 976
             },
             {
               "type": "rectangle",
@@ -17791,7 +17657,7 @@
                     "position": 0
                   },
                   {
-                    "color": "#071b52B3",
+                    "color": "#071b5200",
                     "position": 1
                   }
                 ]
@@ -17802,8 +17668,8 @@
             {
               "type": "text",
               "id": "oxR1N",
-              "x": 120,
-              "y": 150,
+              "x": 121,
+              "y": 121,
               "name": "lab",
               "fill": "#9FB6CC",
               "content": "COMMITMENT",
@@ -17815,8 +17681,8 @@
             {
               "type": "text",
               "id": "uUuPD",
-              "x": 120,
-              "y": 178,
+              "x": 119,
+              "y": 138,
               "name": "h",
               "fill": "#FFFFFF",
               "content": "エシオンのこだわり",
@@ -17827,13 +17693,13 @@
             {
               "type": "text",
               "id": "tckuH",
-              "x": 120,
-              "y": 256,
+              "x": 121,
+              "y": 205,
               "name": "sub",
               "fill": "#E4ECF3",
               "textGrowth": "fixed-width",
               "width": 640,
-              "content": "洗うために、香りはいらなかった。ESIONが無香料にこだわる理由を、ぜひご覧ください。",
+              "content": "洗うために、香りはいらなかった。\nESIONが無香料にこだわる理由を、ぜひご覧ください。",
               "lineHeight": 1.9,
               "fontFamily": "$font-jp",
               "fontSize": 15,
@@ -17842,8 +17708,8 @@
             {
               "type": "frame",
               "id": "zWQ4D",
-              "x": 120,
-              "y": 320,
+              "x": 121,
+              "y": 281,
               "name": "btn",
               "fill": "#FFFFFF",
               "cornerRadius": 40,
@@ -17883,7 +17749,7 @@
           "type": "frame",
           "id": "Zq0pi",
           "x": 0,
-          "y": 5147,
+          "y": 4676,
           "name": "Footer",
           "clip": true,
           "width": 1199,
