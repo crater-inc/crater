@@ -12,7 +12,3678 @@
       "height": 600,
       "fill": "#FFFFFF",
       "layout": "none"
+    },
+    {
+      "type": "frame",
+      "id": "X7xvG3",
+      "x": 17469,
+      "y": -10038,
+      "name": "テンプレ03｜2案件・主役+サムネ2",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#DBDDDD",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "BNxwl",
+          "layoutPosition": "absolute",
+          "x": 1780,
+          "y": 1032,
+          "name": "Copyright",
+          "fill": "#555555",
+          "content": "©CRATER Inc.",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "Y8PAZq",
+          "x": 46,
+          "y": 46,
+          "name": "Header",
+          "width": 1805,
+          "height": 37,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "R0wje",
+              "x": 0,
+              "y": 0,
+              "name": "Badge",
+              "fill": "#000000",
+              "padding": [
+                9,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "J5gta",
+                  "name": "WORKS",
+                  "fill": "#FFFFFF",
+                  "content": "WORKS",
+                  "fontFamily": "Barlow",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "J2G3I",
+              "x": 100,
+              "y": 9,
+              "name": "CatEN",
+              "fill": "#000000",
+              "content": "CATEGORY",
+              "fontFamily": "Barlow",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 1.4
+            },
+            {
+              "type": "rectangle",
+              "id": "r6ddh",
+              "x": 186,
+              "y": 10.5,
+              "name": "Divider",
+              "fill": "#00000050",
+              "width": 1,
+              "height": 16
+            },
+            {
+              "type": "text",
+              "id": "wh27k",
+              "x": 214,
+              "y": 8.5,
+              "name": "CatJP",
+              "fill": "#555555",
+              "content": "カテゴリー",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "TZGMc",
+          "x": 46,
+          "y": 129,
+          "name": "L-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "M6j9Cv",
+              "x": 0,
+              "y": 0,
+              "name": "L-hero-img",
+              "fill": "#C9C9C9",
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kNR6r",
+          "x": 46,
+          "y": 645,
+          "name": "L-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "F9IsY",
+              "x": 0,
+              "y": 0,
+              "name": "L-t1-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Fn1Sc",
+          "x": 346,
+          "y": 645,
+          "name": "L-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "h5r6i",
+              "x": 0,
+              "y": 0,
+              "name": "L-t2-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fpB8K",
+          "x": 646,
+          "y": 645,
+          "name": "L-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "mY5xb",
+              "x": 0,
+              "y": 0,
+              "name": "L-t3-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GWnq0",
+          "x": 46,
+          "y": 823,
+          "name": "L-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "EIEaO",
+              "x": 0,
+              "y": 0,
+              "name": "L-t4-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j2vKXI",
+          "x": 346,
+          "y": 823,
+          "name": "L-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "yFXwG",
+              "x": 0,
+              "y": 0,
+              "name": "L-t5-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "lRqKY",
+          "x": 646,
+          "y": 823,
+          "name": "L-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "EXdNM",
+              "x": 0,
+              "y": 0,
+              "name": "L-t6-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "JaPtT",
+          "x": 46,
+          "y": 997,
+          "name": "L-cat",
+          "fill": "#555555",
+          "content": "CATEGORY",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "kBPaD",
+          "x": 102,
+          "y": 995,
+          "name": "L-client",
+          "fill": "#000000",
+          "content": "クライアント名｜案件名",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "VOxaG",
+          "x": 990,
+          "y": 129,
+          "name": "R-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "LQClV",
+              "x": 0,
+              "y": 0,
+              "name": "R-hero-img",
+              "fill": "#C9C9C9",
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Y7je6",
+          "x": 990,
+          "y": 645,
+          "name": "R-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "wEJk9",
+              "x": 0,
+              "y": 0,
+              "name": "R-t1-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Qzils",
+          "x": 1290,
+          "y": 645,
+          "name": "R-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "G7dEf4",
+              "x": 0,
+              "y": 0,
+              "name": "R-t2-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xtJYX",
+          "x": 1590,
+          "y": 645,
+          "name": "R-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "aMp9U",
+              "x": 0,
+              "y": 0,
+              "name": "R-t3-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vKtNt",
+          "x": 990,
+          "y": 823,
+          "name": "R-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "t1odBr",
+              "x": 0,
+              "y": 0,
+              "name": "R-t4-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vUWQR",
+          "x": 1290,
+          "y": 823,
+          "name": "R-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "S2yNO2",
+              "x": 0,
+              "y": 0,
+              "name": "R-t5-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "K9ezAI",
+          "x": 1590,
+          "y": 823,
+          "name": "R-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Guy4K",
+              "x": 0,
+              "y": 0,
+              "name": "R-t6-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "po9Lw",
+          "x": 990,
+          "y": 997,
+          "name": "R-cat",
+          "fill": "#555555",
+          "content": "CATEGORY",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "G6Lkba",
+          "x": 1046,
+          "y": 995,
+          "name": "R-client",
+          "fill": "#000000",
+          "content": "クライアント名｜案件名",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "S0AI9",
+      "x": 15440,
+      "y": 1380,
+      "name": "VI｜さぶろく+鰻ジロー",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#DBDDDD",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "LF7qH",
+          "layoutPosition": "absolute",
+          "x": 1780,
+          "y": 1032,
+          "name": "Copyright",
+          "fill": "#555555",
+          "content": "©CRATER Inc.",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "x67TFD",
+          "x": 46,
+          "y": 46,
+          "name": "Header",
+          "width": 1805,
+          "height": 37,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "van5J",
+              "x": 0,
+              "y": 0,
+              "name": "Badge",
+              "fill": "#000000",
+              "padding": [
+                9,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "nSevE",
+                  "name": "WORKS",
+                  "fill": "#FFFFFF",
+                  "content": "WORKS",
+                  "fontFamily": "Barlow",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "CVJIA",
+              "x": 100,
+              "y": 9,
+              "name": "CatEN",
+              "fill": "#000000",
+              "content": "BRANDING / VI",
+              "fontFamily": "Barlow",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 1.4
+            },
+            {
+              "type": "rectangle",
+              "id": "xVl37",
+              "x": 186,
+              "y": 10.5,
+              "name": "Divider",
+              "fill": "#00000050",
+              "width": 1,
+              "height": 16
+            },
+            {
+              "type": "text",
+              "id": "pIcsT",
+              "x": 214,
+              "y": 8.5,
+              "name": "CatJP",
+              "fill": "#555555",
+              "content": "ブランディング・VI",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "MMow7",
+          "x": 46,
+          "y": 129,
+          "name": "L-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "CqNBr",
+              "x": 0,
+              "y": 0,
+              "name": "L-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_subloc_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "jL62s",
+          "x": 46,
+          "y": 645,
+          "name": "L-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "cDToU",
+              "x": 0,
+              "y": 0,
+              "name": "L-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_subloc_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "FwSbR",
+          "x": 346,
+          "y": 645,
+          "name": "L-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "H83NbV",
+              "x": 0,
+              "y": 0,
+              "name": "L-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_subloc_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hX1a6",
+          "x": 646,
+          "y": 645,
+          "name": "L-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "GJcpl",
+              "x": 0,
+              "y": 0,
+              "name": "L-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_subloc_3.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cGoYl",
+          "x": 46,
+          "y": 823,
+          "name": "L-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "sYhr3",
+              "x": 0,
+              "y": 0,
+              "name": "L-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_subloc_4.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "z4W02",
+          "x": 346,
+          "y": 823,
+          "name": "L-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Zdxk7",
+              "x": 0,
+              "y": 0,
+              "name": "L-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_subloc_5.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Usw3b",
+          "x": 646,
+          "y": 823,
+          "name": "L-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "iYOQ0",
+              "x": 0,
+              "y": 0,
+              "name": "L-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_subloc_6.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "lb2Rl",
+          "x": 46,
+          "y": 997,
+          "name": "L-cat",
+          "fill": "#555555",
+          "content": "VI",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "ji4xa",
+          "x": 102,
+          "y": 995,
+          "name": "L-client",
+          "fill": "#000000",
+          "content": "合同会社subloc｜焼肉 さぶろくVI",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "DWJpL",
+          "x": 990,
+          "y": 129,
+          "name": "R-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "XQxzk",
+              "x": 0,
+              "y": 0,
+              "name": "R-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_unagi_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "cXSuk",
+          "x": 990,
+          "y": 645,
+          "name": "R-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "kRbzD",
+              "x": 0,
+              "y": 0,
+              "name": "R-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_unagi_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YZdnr",
+          "x": 1290,
+          "y": 645,
+          "name": "R-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "V8Tbny",
+              "x": 0,
+              "y": 0,
+              "name": "R-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_unagi_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "N9Ufk",
+          "x": 1590,
+          "y": 645,
+          "name": "R-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "W5BKi",
+              "x": 0,
+              "y": 0,
+              "name": "R-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_unagi_3.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "DBEAm",
+          "x": 990,
+          "y": 823,
+          "name": "R-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "sS2jm",
+              "x": 0,
+              "y": 0,
+              "name": "R-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_unagi_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KDcBv",
+          "x": 1290,
+          "y": 823,
+          "name": "R-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "b3msco",
+              "x": 0,
+              "y": 0,
+              "name": "R-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_unagi_5.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "iziSc",
+          "x": 1590,
+          "y": 823,
+          "name": "R-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "m4RMuz",
+              "x": 0,
+              "y": 0,
+              "name": "R-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_unagi_6.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "VUE38",
+          "x": 990,
+          "y": 997,
+          "name": "R-cat",
+          "fill": "#555555",
+          "content": "VI",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "qqJof",
+          "x": 1046,
+          "y": 995,
+          "name": "R-client",
+          "fill": "#000000",
+          "content": "スパイスワークス｜近江町ごっつぉ飯 鰻ジローVI",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "W1758",
+      "x": 17510,
+      "y": 1380,
+      "name": "VI｜リクスタ+西武ブルー",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#DBDDDD",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "zUU2a",
+          "layoutPosition": "absolute",
+          "x": 1780,
+          "y": 1032,
+          "name": "Copyright",
+          "fill": "#555555",
+          "content": "©CRATER Inc.",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "O9ICU",
+          "x": 46,
+          "y": 46,
+          "name": "Header",
+          "width": 1805,
+          "height": 37,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "Q59ie",
+              "x": 0,
+              "y": 0,
+              "name": "Badge",
+              "fill": "#000000",
+              "padding": [
+                9,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FGSVo",
+                  "name": "WORKS",
+                  "fill": "#FFFFFF",
+                  "content": "WORKS",
+                  "fontFamily": "Barlow",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "AFECO",
+              "x": 100,
+              "y": 9,
+              "name": "CatEN",
+              "fill": "#000000",
+              "content": "BRANDING / VI",
+              "fontFamily": "Barlow",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 1.4
+            },
+            {
+              "type": "rectangle",
+              "id": "Y2db9o",
+              "x": 186,
+              "y": 10.5,
+              "name": "Divider",
+              "fill": "#00000050",
+              "width": 1,
+              "height": 16
+            },
+            {
+              "type": "text",
+              "id": "E7nVTJ",
+              "x": 214,
+              "y": 8.5,
+              "name": "CatJP",
+              "fill": "#555555",
+              "content": "ブランディング・VI",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "x1YqD",
+          "x": 46,
+          "y": 129,
+          "name": "L-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "eixPy",
+              "x": 0,
+              "y": 0,
+              "name": "L-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_lixta_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pYU6z",
+          "x": 46,
+          "y": 645,
+          "name": "L-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r9UkLu",
+              "x": 0,
+              "y": 0,
+              "name": "L-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_lixta_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "W2q8jf",
+          "x": 346,
+          "y": 645,
+          "name": "L-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "j9WFK",
+              "x": 0,
+              "y": 0,
+              "name": "L-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_lixta_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uRLK4",
+          "x": 646,
+          "y": 645,
+          "name": "L-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "CwuF4",
+              "x": 0,
+              "y": 0,
+              "name": "L-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_lixta_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "KZf0m",
+          "x": 46,
+          "y": 823,
+          "name": "L-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "XzUgc",
+              "x": 0,
+              "y": 0,
+              "name": "L-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_lixta_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "C9LSX",
+          "x": 346,
+          "y": 823,
+          "name": "L-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "N7iXrn",
+              "x": 0,
+              "y": 0,
+              "name": "L-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_lixta_5.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Xr8dG",
+          "x": 646,
+          "y": 823,
+          "name": "L-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "zPzNP",
+              "x": 0,
+              "y": 0,
+              "name": "L-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_lixta_6.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "ri9C1",
+          "x": 46,
+          "y": 997,
+          "name": "L-cat",
+          "fill": "#555555",
+          "content": "VI",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "l1PUlM",
+          "x": 102,
+          "y": 995,
+          "name": "L-client",
+          "fill": "#000000",
+          "content": "芝園開発株式会社｜リクスタフィットネスブランディング",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "ug38j",
+          "x": 990,
+          "y": 129,
+          "name": "R-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "C3a1mh",
+              "x": 0,
+              "y": 0,
+              "name": "R-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_seibu_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "p2TE1",
+          "x": 990,
+          "y": 645,
+          "name": "R-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "YfUGj",
+              "x": 0,
+              "y": 0,
+              "name": "R-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_seibu_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Dr8p8",
+          "x": 1290,
+          "y": 645,
+          "name": "R-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "PTlRb",
+              "x": 0,
+              "y": 0,
+              "name": "R-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_seibu_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "clIf9",
+          "x": 1590,
+          "y": 645,
+          "name": "R-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "T8o4q",
+              "x": 0,
+              "y": 0,
+              "name": "R-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_seibu_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qRuUr",
+          "x": 990,
+          "y": 823,
+          "name": "R-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "haTEb",
+              "x": 0,
+              "y": 0,
+              "name": "R-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_seibu_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uhm1p",
+          "x": 1290,
+          "y": 823,
+          "name": "R-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "r8BjI",
+              "x": 0,
+              "y": 0,
+              "name": "R-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_seibu_5.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "G7Idz",
+          "x": 1590,
+          "y": 823,
+          "name": "R-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "f4HSoY",
+              "x": 0,
+              "y": 0,
+              "name": "R-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_seibu_6.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "q3IO8",
+          "x": 990,
+          "y": 997,
+          "name": "R-cat",
+          "fill": "#555555",
+          "content": "VI",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "L88swU",
+          "x": 1046,
+          "y": 995,
+          "name": "R-client",
+          "fill": "#000000",
+          "content": "株式会社西武ライオンズ｜ブルーシリーズ第一弾VI",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Vc46B",
+      "x": 19580,
+      "y": 1380,
+      "name": "VI｜有馬記念+WMG2027",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#DBDDDD",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "NxQkV",
+          "layoutPosition": "absolute",
+          "x": 1780,
+          "y": 1032,
+          "name": "Copyright",
+          "fill": "#555555",
+          "content": "©CRATER Inc.",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "E76Lk9",
+          "x": 46,
+          "y": 46,
+          "name": "Header",
+          "width": 1805,
+          "height": 37,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "fUBk5",
+              "x": 0,
+              "y": 0,
+              "name": "Badge",
+              "fill": "#000000",
+              "padding": [
+                9,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "lD7ct",
+                  "name": "WORKS",
+                  "fill": "#FFFFFF",
+                  "content": "WORKS",
+                  "fontFamily": "Barlow",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "aDGah",
+              "x": 100,
+              "y": 9,
+              "name": "CatEN",
+              "fill": "#000000",
+              "content": "BRANDING / VI",
+              "fontFamily": "Barlow",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 1.4
+            },
+            {
+              "type": "rectangle",
+              "id": "r84q6",
+              "x": 186,
+              "y": 10.5,
+              "name": "Divider",
+              "fill": "#00000050",
+              "width": 1,
+              "height": 16
+            },
+            {
+              "type": "text",
+              "id": "faOQD",
+              "x": 214,
+              "y": 8.5,
+              "name": "CatJP",
+              "fill": "#555555",
+              "content": "ブランディング・VI",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fczqj",
+          "x": 46,
+          "y": 129,
+          "name": "L-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "eBbic",
+              "x": 0,
+              "y": 0,
+              "name": "L-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_arima_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f7DPo4",
+          "x": 46,
+          "y": 645,
+          "name": "L-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "P3XEiJ",
+              "x": 0,
+              "y": 0,
+              "name": "L-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_arima_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nTKio",
+          "x": 346,
+          "y": 645,
+          "name": "L-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "lhEdT",
+              "x": 0,
+              "y": 0,
+              "name": "L-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_arima_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Qr6bs",
+          "x": 646,
+          "y": 645,
+          "name": "L-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "lWnTO",
+              "x": 0,
+              "y": 0,
+              "name": "L-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_arima_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "A8Kbo",
+          "x": 46,
+          "y": 823,
+          "name": "L-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "F11pgs",
+              "x": 0,
+              "y": 0,
+              "name": "L-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_arima_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "z4xvpr",
+          "x": 346,
+          "y": 823,
+          "name": "L-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "TXnSZ",
+              "x": 0,
+              "y": 0,
+              "name": "L-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_arima_5.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WJoly",
+          "x": 646,
+          "y": 823,
+          "name": "L-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "y08F8",
+              "x": 0,
+              "y": 0,
+              "name": "L-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_arima_6.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "ca7Kx",
+          "x": 46,
+          "y": 997,
+          "name": "L-cat",
+          "fill": "#555555",
+          "content": "VI",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "dctss",
+          "x": 102,
+          "y": 995,
+          "name": "L-client",
+          "fill": "#000000",
+          "content": "JRA 日本中央競馬会｜有馬記念キャンペーンVI",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "f0y5P",
+          "x": 990,
+          "y": 129,
+          "name": "R-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "EHjiY",
+              "x": 0,
+              "y": 0,
+              "name": "R-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_wmg_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GH8T9",
+          "x": 990,
+          "y": 645,
+          "name": "R-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "ix6ej",
+              "x": 0,
+              "y": 0,
+              "name": "R-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_wmg_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "UskQS",
+          "x": 1290,
+          "y": 645,
+          "name": "R-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "lyr8o",
+              "x": 0,
+              "y": 0,
+              "name": "R-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_wmg_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Z7Roh",
+          "x": 1590,
+          "y": 645,
+          "name": "R-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "qmCh4",
+              "x": 0,
+              "y": 0,
+              "name": "R-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_wmg_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "J0604",
+          "x": 990,
+          "y": 823,
+          "name": "R-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "DiA6h",
+              "x": 0,
+              "y": 0,
+              "name": "R-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_wmg_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Un1fi",
+          "x": 1290,
+          "y": 823,
+          "name": "R-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "t24vgg",
+              "x": 0,
+              "y": 0,
+              "name": "R-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_wmg_5.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XxPaW",
+          "x": 1590,
+          "y": 823,
+          "name": "R-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "U6SPm7",
+              "x": 0,
+              "y": 0,
+              "name": "R-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/VI_wmg_6.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "KeUF5",
+          "x": 990,
+          "y": 997,
+          "name": "R-cat",
+          "fill": "#555555",
+          "content": "VI",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "Xkgbo",
+          "x": 1046,
+          "y": 995,
+          "name": "R-client",
+          "fill": "#000000",
+          "content": "関西広域連合｜WMG2027関西in台湾ブース",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "L1aAEn",
+      "x": 15440,
+      "y": 5520,
+      "name": "WEB｜芝園採用+有馬特設",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#DBDDDD",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "sWSXJ",
+          "layoutPosition": "absolute",
+          "x": 1780,
+          "y": 1032,
+          "name": "Copyright",
+          "fill": "#555555",
+          "content": "©CRATER Inc.",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "Kyp1D",
+          "x": 46,
+          "y": 46,
+          "name": "Header",
+          "width": 1805,
+          "height": 37,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "CwRnC",
+              "x": 0,
+              "y": 0,
+              "name": "Badge",
+              "fill": "#000000",
+              "padding": [
+                9,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "gxy9p",
+                  "name": "WORKS",
+                  "fill": "#FFFFFF",
+                  "content": "WORKS",
+                  "fontFamily": "Barlow",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "ec1Wg",
+              "x": 100,
+              "y": 9,
+              "name": "CatEN",
+              "fill": "#000000",
+              "content": "WEB",
+              "fontFamily": "Barlow",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 1.4
+            },
+            {
+              "type": "rectangle",
+              "id": "h8dtsB",
+              "x": 186,
+              "y": 10.5,
+              "name": "Divider",
+              "fill": "#00000050",
+              "width": 1,
+              "height": 16
+            },
+            {
+              "type": "text",
+              "id": "BV1mG",
+              "x": 214,
+              "y": 8.5,
+              "name": "CatJP",
+              "fill": "#555555",
+              "content": "ウェブデザイン",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "RnNpq",
+          "x": 46,
+          "y": 129,
+          "name": "L-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "zln0l",
+              "x": 0,
+              "y": 0,
+              "name": "L-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_shiba_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "kxji3",
+          "x": 46,
+          "y": 645,
+          "name": "L-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "s4y4fE",
+              "x": 0,
+              "y": 0,
+              "name": "L-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_shiba_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "rF5EJ",
+          "x": 346,
+          "y": 645,
+          "name": "L-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "wbvR2",
+              "x": 0,
+              "y": 0,
+              "name": "L-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_shiba_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "rm67D",
+          "x": 646,
+          "y": 645,
+          "name": "L-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "kSRz4",
+              "x": 0,
+              "y": 0,
+              "name": "L-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_shiba_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "g9J4SV",
+          "x": 46,
+          "y": 823,
+          "name": "L-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "G8JfCi",
+              "x": 0,
+              "y": 0,
+              "name": "L-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_shiba_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "zYQMr",
+          "x": 346,
+          "y": 823,
+          "name": "L-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "MHCVM",
+              "x": 0,
+              "y": 0,
+              "name": "L-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_shiba_5.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "CIxSA",
+          "x": 646,
+          "y": 823,
+          "name": "L-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "OUfy0",
+              "x": 0,
+              "y": 0,
+              "name": "L-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_shiba_6.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "x6Qne9",
+          "x": 46,
+          "y": 997,
+          "name": "L-cat",
+          "fill": "#555555",
+          "content": "WEB",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "C1w9kj",
+          "x": 102,
+          "y": 995,
+          "name": "L-client",
+          "fill": "#000000",
+          "content": "芝園開発株式会社｜採用サイト",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "c6T5q9",
+          "x": 990,
+          "y": 129,
+          "name": "R-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "nWe1d",
+              "x": 0,
+              "y": 0,
+              "name": "R-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_arimaweb_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OGmhk",
+          "x": 990,
+          "y": 645,
+          "name": "R-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "GiFvW",
+              "x": 0,
+              "y": 0,
+              "name": "R-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_arimaweb_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WWGR0",
+          "x": 1290,
+          "y": 645,
+          "name": "R-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "GSPO9",
+              "x": 0,
+              "y": 0,
+              "name": "R-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_arimaweb_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Um2Ui",
+          "x": 1590,
+          "y": 645,
+          "name": "R-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "gQYEf",
+              "x": 0,
+              "y": 0,
+              "name": "R-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_arimaweb_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "i86LT",
+          "x": 990,
+          "y": 823,
+          "name": "R-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "vxrOp",
+              "x": 0,
+              "y": 0,
+              "name": "R-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_arimaweb_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "q6Ou6N",
+          "x": 1290,
+          "y": 823,
+          "name": "R-t5",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "RUpvu",
+              "x": 0,
+              "y": 0,
+              "name": "R-t5-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "t7DgI9",
+          "x": 1590,
+          "y": 823,
+          "name": "R-t6",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "I8QQO",
+              "x": 0,
+              "y": 0,
+              "name": "R-t6-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "Cbvg7",
+          "x": 990,
+          "y": 997,
+          "name": "R-cat",
+          "fill": "#555555",
+          "content": "WEB",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "wE5vk",
+          "x": 1046,
+          "y": 995,
+          "name": "R-client",
+          "fill": "#000000",
+          "content": "中央競馬ピーアール・センター｜有馬記念特設サイト",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "s8DGV",
+      "x": 17510,
+      "y": 5520,
+      "name": "WEB｜尾山神社",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#DBDDDD",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "YIRUj",
+          "layoutPosition": "absolute",
+          "x": 1780,
+          "y": 1032,
+          "name": "Copyright",
+          "fill": "#555555",
+          "content": "©CRATER Inc.",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "f42QOk",
+          "x": 46,
+          "y": 46,
+          "name": "Header",
+          "width": 1805,
+          "height": 37,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "goOVN",
+              "x": 0,
+              "y": 0,
+              "name": "Badge",
+              "fill": "#000000",
+              "padding": [
+                9,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "KDP9q",
+                  "name": "WORKS",
+                  "fill": "#FFFFFF",
+                  "content": "WORKS",
+                  "fontFamily": "Barlow",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "x9NnT",
+              "x": 100,
+              "y": 9,
+              "name": "CatEN",
+              "fill": "#000000",
+              "content": "WEB",
+              "fontFamily": "Barlow",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 1.4
+            },
+            {
+              "type": "rectangle",
+              "id": "g6qPV",
+              "x": 186,
+              "y": 10.5,
+              "name": "Divider",
+              "fill": "#00000050",
+              "width": 1,
+              "height": 16
+            },
+            {
+              "type": "text",
+              "id": "W7cT0",
+              "x": 214,
+              "y": 8.5,
+              "name": "CatJP",
+              "fill": "#555555",
+              "content": "ウェブデザイン",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "g6XrJ",
+          "x": 46,
+          "y": 129,
+          "name": "L-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "gKMCn",
+              "x": 0,
+              "y": 0,
+              "name": "L-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_oyama_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "qrxSB",
+          "x": 46,
+          "y": 645,
+          "name": "L-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "LEJle",
+              "x": 0,
+              "y": 0,
+              "name": "L-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_oyama_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XL5rA",
+          "x": 346,
+          "y": 645,
+          "name": "L-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "pX4NX",
+              "x": 0,
+              "y": 0,
+              "name": "L-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_oyama_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "vNTX8",
+          "x": 646,
+          "y": 645,
+          "name": "L-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "lrrve",
+              "x": 0,
+              "y": 0,
+              "name": "L-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_oyama_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "TtveB",
+          "x": 46,
+          "y": 823,
+          "name": "L-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "npg1y",
+              "x": 0,
+              "y": 0,
+              "name": "L-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_oyama_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "o4G8JN",
+          "x": 346,
+          "y": 823,
+          "name": "L-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Ik6CA",
+              "x": 0,
+              "y": 0,
+              "name": "L-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_oyama_5.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mWgkj",
+          "x": 646,
+          "y": 823,
+          "name": "L-t6",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "MuxAT",
+              "x": 0,
+              "y": 0,
+              "name": "L-t6-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/WEB_oyama_6.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "q5UAQ",
+          "x": 46,
+          "y": 997,
+          "name": "L-cat",
+          "fill": "#555555",
+          "content": "WEB",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "O2G4E",
+          "x": 102,
+          "y": 995,
+          "name": "L-client",
+          "fill": "#000000",
+          "content": "尾山神社｜ウェブサイト制作",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "b13G7",
+          "x": 990,
+          "y": 129,
+          "name": "R-hero",
+          "enabled": false,
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "b1Ccd",
+              "x": 0,
+              "y": 0,
+              "name": "R-hero-img",
+              "fill": "#C9C9C9",
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ySqbF",
+          "x": 990,
+          "y": 645,
+          "name": "R-t1",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "J5wdv",
+              "x": 0,
+              "y": 0,
+              "name": "R-t1-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "US0Yj",
+          "x": 1290,
+          "y": 645,
+          "name": "R-t2",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "sQUcg",
+              "x": 0,
+              "y": 0,
+              "name": "R-t2-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "iMa7l",
+          "x": 1590,
+          "y": 645,
+          "name": "R-t3",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "qtWOS",
+              "x": 0,
+              "y": 0,
+              "name": "R-t3-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "S06nM",
+          "x": 990,
+          "y": 823,
+          "name": "R-t4",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "C0DoFC",
+              "x": 0,
+              "y": 0,
+              "name": "R-t4-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "JwPKe",
+          "x": 1290,
+          "y": 823,
+          "name": "R-t5",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "nlQVP",
+              "x": 0,
+              "y": 0,
+              "name": "R-t5-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OkEDZ",
+          "x": 1590,
+          "y": 823,
+          "name": "R-t6",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Nh2yj",
+              "x": 0,
+              "y": 0,
+              "name": "R-t6-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "GBOzL",
+          "x": 990,
+          "y": 997,
+          "name": "R-cat",
+          "enabled": false,
+          "fill": "#555555",
+          "content": "CATEGORY",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "HQNiW",
+          "x": 1046,
+          "y": 995,
+          "name": "R-client",
+          "enabled": false,
+          "fill": "#000000",
+          "content": "クライアント名｜案件名",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "NCIVL",
+      "x": 21650,
+      "y": 4140,
+      "name": "PKG｜米心+A CURRY",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#DBDDDD",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "lwL6i",
+          "layoutPosition": "absolute",
+          "x": 1780,
+          "y": 1032,
+          "name": "Copyright",
+          "fill": "#555555",
+          "content": "©CRATER Inc.",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "eL5Lv",
+          "x": 46,
+          "y": 46,
+          "name": "Header",
+          "width": 1805,
+          "height": 37,
+          "layout": "none",
+          "children": [
+            {
+              "type": "frame",
+              "id": "R3gPdK",
+              "x": 0,
+              "y": 0,
+              "name": "Badge",
+              "fill": "#000000",
+              "padding": [
+                9,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IDwhq",
+                  "name": "WORKS",
+                  "fill": "#FFFFFF",
+                  "content": "WORKS",
+                  "fontFamily": "Barlow",
+                  "fontSize": 16,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1.4
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "OKBzB",
+              "x": 100,
+              "y": 9,
+              "name": "CatEN",
+              "fill": "#000000",
+              "content": "PACKAGE",
+              "fontFamily": "Barlow",
+              "fontSize": 16,
+              "fontWeight": "normal",
+              "letterSpacing": 1.4
+            },
+            {
+              "type": "rectangle",
+              "id": "WPLiK",
+              "x": 186,
+              "y": 10.5,
+              "name": "Divider",
+              "fill": "#00000050",
+              "width": 1,
+              "height": 16
+            },
+            {
+              "type": "text",
+              "id": "l1EwX",
+              "x": 214,
+              "y": 8.5,
+              "name": "CatJP",
+              "fill": "#555555",
+              "content": "パッケージデザイン",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "zjWrS",
+          "x": 46,
+          "y": 129,
+          "name": "L-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "cJwMA",
+              "x": 0,
+              "y": 0,
+              "name": "L-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_kome_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uN6ou",
+          "x": 46,
+          "y": 645,
+          "name": "L-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "ZDcxi",
+              "x": 0,
+              "y": 0,
+              "name": "L-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_kome_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HQx1n",
+          "x": 346,
+          "y": 645,
+          "name": "L-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "mxXyE",
+              "x": 0,
+              "y": 0,
+              "name": "L-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_kome_2.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "m4pW0",
+          "x": 646,
+          "y": 645,
+          "name": "L-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "gibK9",
+              "x": 0,
+              "y": 0,
+              "name": "L-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_kome_3.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BPArq",
+          "x": 46,
+          "y": 823,
+          "name": "L-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "IsZO6",
+              "x": 0,
+              "y": 0,
+              "name": "L-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_kome_4.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "izBFb",
+          "x": 346,
+          "y": 823,
+          "name": "L-t5",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "F2nBFN",
+              "x": 0,
+              "y": 0,
+              "name": "L-t5-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "WRuUa",
+          "x": 646,
+          "y": 823,
+          "name": "L-t6",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "YUjAr",
+              "x": 0,
+              "y": 0,
+              "name": "L-t6-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "YXsIJ",
+          "x": 46,
+          "y": 997,
+          "name": "L-cat",
+          "fill": "#555555",
+          "content": "PACKAGE",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "m3dJcR",
+          "x": 102,
+          "y": 995,
+          "name": "L-client",
+          "fill": "#000000",
+          "content": "株式会社米心石川｜ひゃくまん穀おにぎりパッケージ",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "ABnaz",
+          "x": 990,
+          "y": 129,
+          "name": "R-hero",
+          "clip": true,
+          "width": 884,
+          "height": 497,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "ssrEO",
+              "x": 0,
+              "y": 0,
+              "name": "R-hero-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_acurry_h.jpg",
+                "mode": "fill"
+              },
+              "width": 884,
+              "height": 497
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j8xq9",
+          "x": 990,
+          "y": 645,
+          "name": "R-t1",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "rU6wU",
+              "x": 0,
+              "y": 0,
+              "name": "R-t1-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_acurry_1.jpg",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "PD2eD",
+          "x": 1290,
+          "y": 645,
+          "name": "R-t2",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Vdhm6",
+              "x": 0,
+              "y": 0,
+              "name": "R-t2-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_acurry_2.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "YPAVr",
+          "x": 1590,
+          "y": 645,
+          "name": "R-t3",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "t4zqE6",
+              "x": 0,
+              "y": 0,
+              "name": "R-t3-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_acurry_3.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "gVZY1",
+          "x": 990,
+          "y": 823,
+          "name": "R-t4",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "lCq4P",
+              "x": 0,
+              "y": 0,
+              "name": "R-t4-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_acurry_4.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "gvg8D",
+          "x": 1290,
+          "y": 823,
+          "name": "R-t5",
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "XooAP",
+              "x": 0,
+              "y": 0,
+              "name": "R-t5-img",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "works-img/PKG_acurry_5.png",
+                "mode": "fill"
+              },
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "n0Q6ew",
+          "x": 1590,
+          "y": 823,
+          "name": "R-t6",
+          "enabled": false,
+          "clip": true,
+          "width": 284,
+          "height": 160,
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "uVTBu",
+              "x": 0,
+              "y": 0,
+              "name": "R-t6-img",
+              "fill": "#C9C9C9",
+              "width": 284,
+              "height": 160
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "fWUnN",
+          "x": 990,
+          "y": 997,
+          "name": "R-cat",
+          "fill": "#555555",
+          "content": "PACKAGE",
+          "fontFamily": "Barlow",
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "letterSpacing": 1
+        },
+        {
+          "type": "text",
+          "id": "ivOTj",
+          "x": 1046,
+          "y": 995,
+          "name": "R-client",
+          "fill": "#000000",
+          "content": "自社｜A CURRY",
+          "fontFamily": "Zen Kaku Gothic New",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        }
+      ]
     }
   ],
-  "fileToken": "8232d5b4-4196-4d15-95ca-07d725b047c2"
+  "fileToken": "528c062e-31a4-42a4-ae8a-ffd950e31aba"
 }
