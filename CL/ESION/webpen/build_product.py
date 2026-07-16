@@ -64,7 +64,6 @@ js='''
  var thumbs=[].slice.call(document.querySelectorAll('[data-pencil-name="thumbs"] > div'));
  var main=null;
  [].slice.call(mask.children).forEach(function(c){ if(c.style.backgroundImage && c.getAttribute('data-pencil-name')!=='thumbs' && !main){ main=c; } });
- if(main){ main.style.left='0'; main.style.top='0'; main.style.width='100%'; main.style.height='100%'; }
  function baseUrl(el){ var m=el.style.backgroundImage.match(/url\\((["']?)([^"')]+)\\1\\)/g)||[]; if(!m.length)return ''; var last=m[m.length-1]; return last.match(/url\\((["']?)([^"')]+)/)[2]; }
  var gallery=thumbs.map(baseUrl);
  var cur=0, timer;
@@ -75,30 +74,28 @@ js='''
      t.classList.toggle('active', j===i);
    });
  }
- // フェード用レイヤーは1枚だけ（切替のたびに使い回す＝重ならず安定）
- var fade=null, fadeT=null;
+ // 2枚のレイヤーを交互にクロスフェード（初期ズレ・逆戻りが起きない堅牢方式）
+ var layers=[], vis=0;
  if(main){
-   fade=main.cloneNode(false);
-   fade.removeAttribute('data-pencil-name');
-   fade.style.left='0';fade.style.top='0';fade.style.width='100%';fade.style.height='100%';
-   fade.style.opacity='0'; fade.style.zIndex='2'; fade.style.pointerEvents='none';
-   main.parentNode.insertBefore(fade, main.nextSibling);
+   main.style.left='0';main.style.top='0';main.style.width='100%';main.style.height='100%';
+   main.style.zIndex='1';main.style.transition='opacity .9s ease';main.style.opacity='1';
+   if(gallery[0]) main.style.backgroundImage="url('"+gallery[0]+"')";
+   var L2=main.cloneNode(false); L2.removeAttribute('data-pencil-name');
+   L2.style.left='0';L2.style.top='0';L2.style.width='100%';L2.style.height='100%';
+   L2.style.zIndex='1';L2.style.transition='opacity .9s ease';L2.style.opacity='0';L2.style.pointerEvents='none';
+   main.parentNode.insertBefore(L2, main.nextSibling);
+   layers=[main,L2];
  }
- function crossfade(url){
-   if(!main)return;
-   if(!fade){ main.style.backgroundImage="url('"+url+"')"; return; }
-   // フェード層に「今の（古い）画像」を乗せて上に置く
-   fade.style.transition='none';
-   fade.style.backgroundImage=main.style.backgroundImage;
-   fade.style.opacity='1';
-   void fade.offsetWidth;
-   // メインは即座に新画像へ（アクティブなサムネと常に一致）
-   main.style.backgroundImage="url('"+url+"')";
-   // 古い画像を上からふわっとフェードアウト
-   fade.style.transition='opacity 1.1s ease';
-   fade.style.opacity='0';
+ function show(i){
+   if(i===cur||!layers.length)return;
+   cur=i;
+   var hidden=layers[1-vis];
+   hidden.style.backgroundImage="url('"+gallery[i]+"')";
+   hidden.style.opacity='1';
+   layers[vis].style.opacity='0';
+   vis=1-vis;
+   setActive(i);
  }
- function show(i){ if(i===cur)return; cur=i; crossfade(gallery[i]); setActive(i); }
  function tick(){ show((cur+1)%gallery.length); }
  function restart(){ clearInterval(timer); timer=setInterval(tick,5000); }
  thumbs.forEach(function(t,i){ t.addEventListener('click',function(){ show(i); restart(); }); });
