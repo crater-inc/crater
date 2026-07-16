@@ -62,8 +62,10 @@ js='''
 
  // ---- 左メイン画像 ふわっとクロスフェード ＋ サムネ切替 ----
  var thumbs=[].slice.call(document.querySelectorAll('[data-pencil-name="thumbs"] > div'));
- var main=null;
- [].slice.call(mask.children).forEach(function(c){ if(c.style.backgroundImage && c.getAttribute('data-pencil-name')!=='thumbs' && !main){ main=c; } });
+ // photo-mask 内の画像レイヤー（thumbs以外）を集める。複数重なっている場合は1枚だけ残し、余分は除去
+ var imgs=[].slice.call(mask.children).filter(function(c){ return c.style.backgroundImage && c.getAttribute('data-pencil-name')!=='thumbs'; });
+ var main=imgs[0]||null;
+ imgs.slice(1).forEach(function(c){ c.parentNode.removeChild(c); });
  function baseUrl(el){ var m=el.style.backgroundImage.match(/url\\((["']?)([^"')]+)\\1\\)/g)||[]; if(!m.length)return ''; var last=m[m.length-1]; return last.match(/url\\((["']?)([^"')]+)/)[2]; }
  var gallery=thumbs.map(baseUrl);
  var cur=0, timer;
