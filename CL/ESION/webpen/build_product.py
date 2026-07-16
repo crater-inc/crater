@@ -36,12 +36,14 @@ css='''
 html,body{margin:0;background:#fff;overflow-x:hidden;}
 #pdpRoot{position:relative!important;overflow:visible!important;transform-origin:top left;}
 [data-pencil-name="left-fixed"]{overflow:visible!important;}
-/* 左画像＝JSで固定（右だけスクロール） */
-[data-pencil-name="photo-mask"]{will-change:transform;}
-/* サムネ：クリック可・アクティブはふわふわ */
-[data-pencil-name="thumbs"]>div{cursor:pointer;transition:transform .6s ease;}
-[data-pencil-name="thumbs"]>div.active{animation:thumbFloat 3.2s ease-in-out infinite;}
-@keyframes thumbFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+/* 左画像＝完全固定（position:fixed・カクつき無し）。右だけスクロール */
+[data-pencil-name="photo-mask"]{position:fixed!important;top:0!important;left:0!important;z-index:1;}
+/* 全幅セクションは固定画像の上に重ねてスクロールで覆う */
+[data-pencil-name="Voices"],[data-pencil-name="こだわりバナー"],[data-pencil-name="Footer"]{z-index:3;}
+[data-pencil-name="Header"]{z-index:20;}
+[data-pencil-name="thumbs"]{top:auto!important;bottom:40px!important;z-index:6;}
+/* サムネ：クリック可（跳ねる動作なし） */
+[data-pencil-name="thumbs"]>div{cursor:pointer;transition:opacity .5s ease;}
 /* カード横スライド */
 [data-pencil-name="cardrow"]{cursor:grab;will-change:transform;}
 [data-pencil-name="cardrow"].grab{cursor:grabbing;}
@@ -53,30 +55,22 @@ js='''
 (function(){
  var root=document.getElementById('pdpRoot');
  var S=1;
- function z(){ S=window.innerWidth/1199; root.style.zoom=S; fixLeft(); }
- window.addEventListener('resize',z);
-
- // ---- 左画像＝固定（右だけスクロール）。zoom環境でも効くJS制御 ----
  var mask=document.querySelector('[data-pencil-name="photo-mask"]');
- var leftCol=document.querySelector('[data-pencil-name="left-fixed"]');
- var maxT=0, curT=0;
- function measure(){ maxT=Math.max(0,(leftCol?leftCol.offsetHeight:4071)-(mask?mask.offsetHeight:880)); }
- function fixLeft(){ if(!mask)return; var t=Math.max(0,Math.min(maxT, window.pageYOffset/(S||1))); if(t!==curT){ curT=t; mask.style.transform='translateY('+t+'px)'; } }
- window.addEventListener('scroll',function(){ requestAnimationFrame(fixLeft); },{passive:true});
- window.addEventListener('load',function(){ measure(); z(); });
- measure(); z();
+ function z(){ S=window.innerWidth/1199; root.style.zoom=S; if(mask){ mask.style.width='600px'; mask.style.height=(window.innerHeight/S)+'px'; } }
+ window.addEventListener('resize',z); z();
 
  // ---- 左メイン画像 ふわっとクロスフェード ＋ サムネ切替 ----
  var thumbs=[].slice.call(document.querySelectorAll('[data-pencil-name="thumbs"] > div'));
  var main=null;
  [].slice.call(mask.children).forEach(function(c){ if(c.style.backgroundImage && c.getAttribute('data-pencil-name')!=='thumbs' && !main){ main=c; } });
+ if(main){ main.style.left='0'; main.style.top='0'; main.style.width='100%'; main.style.height='100%'; }
  function baseUrl(el){ var m=el.style.backgroundImage.match(/url\\((["']?)([^"')]+)\\1\\)/g)||[]; if(!m.length)return ''; var last=m[m.length-1]; return last.match(/url\\((["']?)([^"')]+)/)[2]; }
  var gallery=thumbs.map(baseUrl);
  var cur=0, timer;
  function setActive(i){
    thumbs.forEach(function(t,j){
      var u=gallery[j];
-     t.style.backgroundImage = (j===i) ? "url('"+u+"')" : "linear-gradient(#FFFFFF80, #FFFFFF80), url('"+u+"')";
+     t.style.backgroundImage = (j===i) ? "url('"+u+"')" : "linear-gradient(#FFFFFFB3, #FFFFFFB3), url('"+u+"')";
      t.classList.toggle('active', j===i);
    });
  }

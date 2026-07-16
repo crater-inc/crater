@@ -12,12 +12,14 @@
 html,body{margin:0;background:#fff;overflow-x:hidden;}
 #pdpRoot{position:relative!important;overflow:visible!important;transform-origin:top left;}
 [data-pencil-name="left-fixed"]{overflow:visible!important;}
-/* 左画像＝JSで固定（右だけスクロール） */
-[data-pencil-name="photo-mask"]{will-change:transform;}
-/* サムネ：クリック可・アクティブはふわふわ */
-[data-pencil-name="thumbs"]>div{cursor:pointer;transition:transform .6s ease;}
-[data-pencil-name="thumbs"]>div.active{animation:thumbFloat 3.2s ease-in-out infinite;}
-@keyframes thumbFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+/* 左画像＝完全固定（position:fixed・カクつき無し）。右だけスクロール */
+[data-pencil-name="photo-mask"]{position:fixed!important;top:0!important;left:0!important;z-index:1;}
+/* 全幅セクションは固定画像の上に重ねてスクロールで覆う */
+[data-pencil-name="Voices"],[data-pencil-name="こだわりバナー"],[data-pencil-name="Footer"]{z-index:3;}
+[data-pencil-name="Header"]{z-index:20;}
+[data-pencil-name="thumbs"]{top:auto!important;bottom:40px!important;z-index:6;}
+/* サムネ：クリック可（跳ねる動作なし） */
+[data-pencil-name="thumbs"]>div{cursor:pointer;transition:opacity .5s ease;}
 /* カード横スライド */
 [data-pencil-name="cardrow"]{cursor:grab;will-change:transform;}
 [data-pencil-name="cardrow"].grab{cursor:grabbing;}
@@ -44,11 +46,11 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
 
     <div
       id="pdpRoot" data-pencil-name="ESION 商品詳細 PC"
-      style="background-color: #FFFFFF; box-sizing: border-box; height: 5431px; overflow: hidden; position: relative; width: 1199px"
+      style="background-color: #FFFFFF; box-sizing: border-box; height: 5106px; overflow: hidden; position: relative; width: 1199px"
     >
       <div
         data-pencil-name="left-fixed"
-        style="background-color: #EDF1F7; box-sizing: border-box; height: 4071px; left: 0px; overflow: hidden; position: absolute; top: 0px; width: 600px; z-index: 0"
+        style="background-color: #EDF1F7; box-sizing: border-box; height: 3746px; left: 0px; overflow: hidden; position: absolute; top: 0px; width: 600px; z-index: 0"
       >
         <div
           data-pencil-name="photo-mask"
@@ -70,15 +72,15 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             ></div>
             <div
               data-pencil-name="t1"
-              style="background-image: linear-gradient(#FFFFFF80, #FFFFFF80), url('a/ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.jpg'); background-position: 0% 0%, center; background-repeat: no-repeat, no-repeat; background-size: 100% 100%, cover; border-radius: 6px; box-sizing: border-box; flex-shrink: 0; height: 60px; width: 44px"
+              style="background-image: linear-gradient(#FFFFFFB3, #FFFFFFB3), url('a/ESION_Photoshoot_ESION-SHAMPOO_Chilled-Soda-Can-Assortment_2026-07-06_2x-1.jpg'); background-position: 0% 0%, center; background-repeat: no-repeat, no-repeat; background-size: 100% 100%, cover; border-radius: 6px; box-sizing: border-box; flex-shrink: 0; height: 60px; width: 44px"
             ></div>
             <div
               data-pencil-name="t2"
-              style="background-image: linear-gradient(#FFFFFF80, #FFFFFF80), url('a/ESION_Edit_2026-06-30_2x____.jpg'); background-position: 0% 0%, center; background-repeat: no-repeat, no-repeat; background-size: 100% 100%, cover; border-radius: 6px; box-sizing: border-box; flex-shrink: 0; height: 60px; width: 44px"
+              style="background-image: linear-gradient(#FFFFFFB3, #FFFFFFB3), url('a/ESION_Edit_2026-06-30_2x____.jpg'); background-position: 0% 0%, center; background-repeat: no-repeat, no-repeat; background-size: 100% 100%, cover; border-radius: 6px; box-sizing: border-box; flex-shrink: 0; height: 60px; width: 44px"
             ></div>
             <div
               data-pencil-name="t3"
-              style="background-image: linear-gradient(#FFFFFF80, #FFFFFF80), url('a/ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x.jpg'); background-position: 0% 0%, center; background-repeat: no-repeat, no-repeat; background-size: 100% 100%, cover; border-radius: 6px; box-sizing: border-box; flex-shrink: 0; height: 60px; width: 44px"
+              style="background-image: linear-gradient(#FFFFFFB3, #FFFFFFB3), url('a/ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x.jpg'); background-position: 0% 0%, center; background-repeat: no-repeat, no-repeat; background-size: 100% 100%, cover; border-radius: 6px; box-sizing: border-box; flex-shrink: 0; height: 60px; width: 44px"
             ></div>
           </div>
         </div>
@@ -776,62 +778,6 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
         </div>
         <div
-          data-pencil-name="band"
-          style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 52px 72px; width: 100%"
-        >
-          <div
-            data-pencil-name="お客様の声"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="lab"
-              style='box-sizing: border-box; color: #0D41A8; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; letter-spacing: 2px; line-height: normal; text-align: left; width: 100%'
-            >
-              REVIEW
-            </div>
-            <div
-              data-pencil-name="ttl"
-              style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 23px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
-            >
-              お客様の声
-            </div>
-            <div
-              data-pencil-name="rcard"
-              style="align-items: flex-start; background-color: #F5F8FC; border-radius: 10px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; padding: 20px 22px; width: 100%"
-            >
-              <div
-                data-pencil-name="rh"
-                style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; width: 100%"
-              >
-                <div
-                  data-pencil-name="s"
-                  style='box-sizing: border-box; color: #F5B301; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-                >
-                  ★★★★★
-                </div>
-                <div
-                  data-pencil-name="n"
-                  style='box-sizing: border-box; color: #002677; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 600; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-                >
-                  5.0
-                </div>
-              </div>
-              <div
-                data-pencil-name="rt"
-                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
-              >
-                驚きの泡立ち！すっきり潤うオールインワン
-              </div>
-              <div
-                data-pencil-name="rb"
-                style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 12.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
-              >
-                無香料なのに豊かな泡で、地肌までしっかり洗えます。洗い上がりは爽快なのにつっぱらず、しっとり。これ1本でケアが完結するのも嬉しい。
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
           data-pencil-name="band-notes"
           style="align-items: flex-start; background-color: #F5F7FA; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 40px 72px 60px 72px; width: 100%"
         >
@@ -946,7 +892,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Voices"
-        style="background-color: #FFFFFF; box-sizing: border-box; height: 560px; left: 0px; overflow: hidden; position: absolute; top: 4071px; width: 1199px; z-index: 3"
+        style="background-color: #FFFFFF; box-sizing: border-box; height: 560px; left: 0px; overflow: hidden; position: absolute; top: 3746px; width: 1199px; z-index: 3"
       >
         <div
           data-pencil-name="lab"
@@ -964,7 +910,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           data-pencil-name="hint"
           style='box-sizing: border-box; color: #8A93A6; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; left: 1000px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: right; top: 78px; width: 127px; z-index: 2'
         >
-          ← 横にスクロール →
+          ← SCROLL →
         </div>
         <div
           data-pencil-name="cardrow"
@@ -972,7 +918,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         >
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 26px; width: 300px"
+            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: 344px; justify-content: flex-start; overflow: hidden; padding: 26px; width: 236px"
           >
             <div
               data-pencil-name="sh"
@@ -1012,7 +958,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 26px; width: 300px"
+            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: 344px; justify-content: flex-start; overflow: hidden; padding: 26px; width: 236px"
           >
             <div
               data-pencil-name="sh"
@@ -1052,7 +998,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 26px; width: 300px"
+            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: 344px; justify-content: flex-start; overflow: hidden; padding: 26px; width: 236px"
           >
             <div
               data-pencil-name="sh"
@@ -1092,7 +1038,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 26px; width: 300px"
+            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: 344px; justify-content: flex-start; overflow: hidden; padding: 26px; width: 236px"
           >
             <div
               data-pencil-name="sh"
@@ -1132,7 +1078,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 26px; width: 300px"
+            style="align-items: flex-start; background-color: #FFFFFF; border-radius: 14px; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: 344px; justify-content: flex-start; overflow: hidden; padding: 26px; width: 236px"
           >
             <div
               data-pencil-name="sh"
@@ -1174,7 +1120,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="こだわりバナー"
-        style="box-sizing: border-box; height: 440px; left: 0px; overflow: hidden; position: absolute; top: 4631px; width: 1199px; z-index: 4"
+        style="box-sizing: border-box; height: 440px; left: 0px; overflow: hidden; position: absolute; top: 4306px; width: 1199px; z-index: 4"
       >
         <div
           data-pencil-name="bg"
@@ -1222,7 +1168,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Footer"
-        style="background-color: #002677; box-sizing: border-box; height: 360px; left: 0px; overflow: hidden; position: absolute; top: 5071px; width: 1199px; z-index: 5"
+        style="background-color: #002677; box-sizing: border-box; height: 360px; left: 0px; overflow: hidden; position: absolute; top: 4746px; width: 1199px; z-index: 5"
       >
         <div
           data-pencil-name="logo"
@@ -1341,30 +1287,22 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
 (function(){
  var root=document.getElementById('pdpRoot');
  var S=1;
- function z(){ S=window.innerWidth/1199; root.style.zoom=S; fixLeft(); }
- window.addEventListener('resize',z);
-
- // ---- 左画像＝固定（右だけスクロール）。zoom環境でも効くJS制御 ----
  var mask=document.querySelector('[data-pencil-name="photo-mask"]');
- var leftCol=document.querySelector('[data-pencil-name="left-fixed"]');
- var maxT=0, curT=0;
- function measure(){ maxT=Math.max(0,(leftCol?leftCol.offsetHeight:4071)-(mask?mask.offsetHeight:880)); }
- function fixLeft(){ if(!mask)return; var t=Math.max(0,Math.min(maxT, window.pageYOffset/(S||1))); if(t!==curT){ curT=t; mask.style.transform='translateY('+t+'px)'; } }
- window.addEventListener('scroll',function(){ requestAnimationFrame(fixLeft); },{passive:true});
- window.addEventListener('load',function(){ measure(); z(); });
- measure(); z();
+ function z(){ S=window.innerWidth/1199; root.style.zoom=S; if(mask){ mask.style.width='600px'; mask.style.height=(window.innerHeight/S)+'px'; } }
+ window.addEventListener('resize',z); z();
 
  // ---- 左メイン画像 ふわっとクロスフェード ＋ サムネ切替 ----
  var thumbs=[].slice.call(document.querySelectorAll('[data-pencil-name="thumbs"] > div'));
  var main=null;
  [].slice.call(mask.children).forEach(function(c){ if(c.style.backgroundImage && c.getAttribute('data-pencil-name')!=='thumbs' && !main){ main=c; } });
+ if(main){ main.style.left='0'; main.style.top='0'; main.style.width='100%'; main.style.height='100%'; }
  function baseUrl(el){ var m=el.style.backgroundImage.match(/url\((["']?)([^"')]+)\1\)/g)||[]; if(!m.length)return ''; var last=m[m.length-1]; return last.match(/url\((["']?)([^"')]+)/)[2]; }
  var gallery=thumbs.map(baseUrl);
  var cur=0, timer;
  function setActive(i){
    thumbs.forEach(function(t,j){
      var u=gallery[j];
-     t.style.backgroundImage = (j===i) ? "url('"+u+"')" : "linear-gradient(#FFFFFF80, #FFFFFF80), url('"+u+"')";
+     t.style.backgroundImage = (j===i) ? "url('"+u+"')" : "linear-gradient(#FFFFFFB3, #FFFFFFB3), url('"+u+"')";
      t.classList.toggle('active', j===i);
    });
  }
