@@ -36,8 +36,8 @@ css='''
 html,body{margin:0;background:#fff;overflow-x:hidden;}
 #pdpRoot{position:relative!important;overflow:visible!important;transform-origin:top left;}
 [data-pencil-name="left-fixed"]{overflow:visible!important;}
-/* 左画像＝スティッキー固定（右だけスクロール） */
-[data-pencil-name="photo-mask"]{position:sticky!important;top:0!important;}
+/* 左画像＝JSで固定（右だけスクロール） */
+[data-pencil-name="photo-mask"]{will-change:transform;}
 /* サムネ：クリック可・アクティブはふわふわ */
 [data-pencil-name="thumbs"]>div{cursor:pointer;transition:transform .6s ease;}
 [data-pencil-name="thumbs"]>div.active{animation:thumbFloat 3.2s ease-in-out infinite;}
@@ -52,11 +52,21 @@ js='''
 <script>
 (function(){
  var root=document.getElementById('pdpRoot');
- function z(){ root.style.zoom=window.innerWidth/1199; }
- window.addEventListener('resize',z); z();
+ var S=1;
+ function z(){ S=window.innerWidth/1199; root.style.zoom=S; fixLeft(); }
+ window.addEventListener('resize',z);
+
+ // ---- 左画像＝固定（右だけスクロール）。zoom環境でも効くJS制御 ----
+ var mask=document.querySelector('[data-pencil-name="photo-mask"]');
+ var leftCol=document.querySelector('[data-pencil-name="left-fixed"]');
+ var maxT=0, curT=0;
+ function measure(){ maxT=Math.max(0,(leftCol?leftCol.offsetHeight:4071)-(mask?mask.offsetHeight:880)); }
+ function fixLeft(){ if(!mask)return; var t=Math.max(0,Math.min(maxT, window.pageYOffset/(S||1))); if(t!==curT){ curT=t; mask.style.transform='translateY('+t+'px)'; } }
+ window.addEventListener('scroll',function(){ requestAnimationFrame(fixLeft); },{passive:true});
+ window.addEventListener('load',function(){ measure(); z(); });
+ measure(); z();
 
  // ---- 左メイン画像 ふわっとクロスフェード ＋ サムネ切替 ----
- var mask=document.querySelector('[data-pencil-name="photo-mask"]');
  var thumbs=[].slice.call(document.querySelectorAll('[data-pencil-name="thumbs"] > div'));
  var main=null;
  [].slice.call(mask.children).forEach(function(c){ if(c.style.backgroundImage && c.getAttribute('data-pencil-name')!=='thumbs' && !main){ main=c; } });
