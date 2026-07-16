@@ -40,8 +40,8 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 [data-pencil-name="photo-mask"]{position:fixed!important;top:0!important;left:0!important;z-index:1;}
 /* 全幅セクションは固定画像の上に重ねてスクロールで覆う */
 [data-pencil-name="Voices"],[data-pencil-name="こだわりバナー"],[data-pencil-name="Footer"]{z-index:3;}
-/* ヘッダー＝固定（ロゴ・メニュー）。フロスト背景で可読性確保 */
-[data-pencil-name="Header"]{position:fixed!important;top:0!important;left:0!important;z-index:20;background:rgba(255,255,255,.72)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+/* ヘッダー＝固定（ロゴ・メニュー）。白帯なし・透明 */
+[data-pencil-name="Header"]{position:fixed!important;top:0!important;left:0!important;z-index:20;background:transparent!important;}
 [data-pencil-name="thumbs"]{top:auto!important;bottom:40px!important;z-index:6;}
 /* サムネ：クリック可（跳ねる動作なし） */
 [data-pencil-name="thumbs"]>div{cursor:pointer;transition:opacity .5s ease;}
@@ -75,16 +75,22 @@ js='''
      t.classList.toggle('active', j===i);
    });
  }
+ // フェード用レイヤーは1枚だけ（切替のたびに使い回す＝重ならず安定）
+ var fade=null, fadeT=null;
+ if(main){
+   fade=main.cloneNode(false);
+   fade.removeAttribute('data-pencil-name');
+   fade.style.left='0';fade.style.top='0';fade.style.width='100%';fade.style.height='100%';
+   fade.style.opacity='0'; fade.style.zIndex='2'; fade.style.pointerEvents='none';
+   main.parentNode.insertBefore(fade, main.nextSibling);
+ }
  function crossfade(url){
-   if(!main)return;
-   var f=main.cloneNode(false);
-   f.removeAttribute('data-pencil-name');
-   f.style.left='0';f.style.top='0';f.style.width='100%';f.style.height='100%';
-   f.style.opacity='0'; f.style.transition='opacity 1.1s ease'; f.style.zIndex='2';
-   f.style.backgroundImage="url('"+url+"')";
-   main.parentNode.appendChild(f);
-   setTimeout(function(){ f.style.opacity='1'; },30);
-   setTimeout(function(){ main.style.backgroundImage="url('"+url+"')"; if(f.parentNode)f.parentNode.removeChild(f); },1200);
+   if(!fade){ if(main)main.style.backgroundImage="url('"+url+"')"; return; }
+   clearTimeout(fadeT);
+   fade.style.transition='none'; fade.style.opacity='0'; fade.style.backgroundImage="url('"+url+"')";
+   void fade.offsetWidth;
+   fade.style.transition='opacity 1.1s ease'; fade.style.opacity='1';
+   fadeT=setTimeout(function(){ main.style.backgroundImage="url('"+url+"')"; fade.style.transition='none'; fade.style.opacity='0'; },1150);
  }
  function show(i){ if(i===cur)return; cur=i; crossfade(gallery[i]); setActive(i); }
  function tick(){ show((cur+1)%gallery.length); }
