@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ボイスメモ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  :root {
+    --bg: #0e1116;
+    --panel: #171b22;
+    --panel2: #1f242d;
+    --line: #2a303b;
+    --text: #f2f4f7;
+    --sub: #b8c0cc;
+    --meta: #7f8895;
+    --accent: #4f7cff;
+    --rec: #ff4d4f;
+    --ok: #35c46b;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { max-width: 720px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+
+  /* 画面共通 */
+  .screen { display: none; flex-direction: column; flex: 1; padding: 24px; }
+  .screen.active { display: flex; }
+
+  .topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; min-height: 40px; }
+  .topbar h1 { font-size: 18px; font-weight: 700; letter-spacing: .02em; }
+  .back { background: none; border: none; color: var(--sub); font-size: 15px; cursor: pointer; padding: 8px 4px; }
+  .spacer { flex: 1; }
+  .icon-btn { background: var(--panel2); border: 1px solid var(--line); color: var(--sub); border-radius: 10px; padding: 8px 12px; font-size: 14px; cursor: pointer; }
+
+  /* ホーム */
+  #home { justify-content: center; align-items: center; gap: 20px; text-align: center; }
+  .logo { font-size: 15px; letter-spacing: .35em; color: var(--meta); text-transform: uppercase; margin-bottom: 8px; }
+  .home-title { font-size: 26px; font-weight: 700; margin-bottom: 28px; }
+  .big-rec {
+    width: 200px; height: 200px; border-radius: 50%;
+    background: var(--rec); border: none; color: #fff;
+    font-size: 20px; font-weight: 700; cursor: pointer;
+    box-shadow: 0 12px 40px rgba(255,77,79,.35);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    transition: transform .12s ease;
+  }
+  .big-rec:active { transform: scale(.96); }
+  .big-rec .dot { width: 20px; height: 20px; border-radius: 50%; background: #fff; }
+  .ghost-btn {
+    background: var(--panel); border: 1px solid var(--line); color: var(--text);
+    border-radius: 14px; padding: 16px 28px; font-size: 16px; font-weight: 600; cursor: pointer;
+    width: 100%; max-width: 320px;
+  }
+
+  /* 録音画面 */
+  #record { }
+  .rec-status { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: var(--sub); font-size: 15px; }
+  .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--rec); animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+  .transcript {
+    flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px; font-size: 18px; line-height: 1.8; overflow-y: auto; min-height: 240px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .transcript .interim { color: var(--meta); }
+  .transcript .placeholder { color: var(--meta); font-size: 16px; }
+  .rec-actions { display: flex; gap: 12px; margin-top: 18px; }
+  .rec-actions button { flex: 1; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; border: none; }
+  .btn-stop { background: var(--rec); color: #fff; }
+  .btn-cancel { background: var(--panel2); color: var(--sub); border: 1px solid var(--line); }
+
+  /* 一覧 */
+  .cat-group { margin-bottom: 26px; }
+  .cat-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .cat-name { font-size: 14px; font-weight: 700; letter-spacing: .04em; color: var(--accent); }
+  .cat-count { font-size: 12px; color: var(--meta); }
+  .cat-name.inbox { color: var(--meta); }
+  .memo {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px; margin-bottom: 10px; cursor: pointer;
+  }
+  .memo .memo-text { font-size: 15px; color: var(--text); line-height: 1.7;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .memo .memo-meta { font-size: 12px; color: var(--meta); margin-top: 8px; }
+  .empty { color: var(--meta); text-align: center; padding: 60px 20px; font-size: 15px; }
+
+  /* メモ詳細 / モーダル */
+  .detail-text {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px; font-size: 17px; line-height: 1.85; white-space: pre-wrap; word-break: break-word;
+    flex: 1; overflow-y: auto; width: 100%; resize: none; color: var(--text);
+  }
+  .tag-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 16px 0; }
+  .tag-label { font-size: 13px; color: var(--meta); }
+  select, input[type=text] {
+    font-size: 16px; background: var(--panel2); color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; width: 100%;
+  }
+  .detail-actions { display: flex; gap: 12px; margin-top: 16px; }
+  .detail-actions button { border-radius: 12px; padding: 14px; font-size: 15px; font-weight: 600; cursor: pointer; border: 1px solid var(--line); }
+  .btn-save { background: var(--accent); color: #fff; border: none; flex: 2; }
+  .btn-del { background: transparent; color: var(--rec); flex: 1; }
+
+  /* 設定 */
+  .cat-edit { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
+  .cat-edit .fields { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .cat-edit input { width: 100%; }
+  .cat-edit .kw { font-size: 14px; }
+  .cat-edit .remove { background: transparent; border: 1px solid var(--line); color: var(--rec); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-size: 14px; }
+  .field-hint { font-size: 12px; color: var(--meta); margin: 2px 0 14px; }
+  .add-cat { background: var(--panel2); border: 1px dashed var(--line); color: var(--sub); border-radius: 12px; padding: 14px; width: 100%; cursor: pointer; font-size: 15px; margin-top: 6px; }
+  .save-cats { background: var(--accent); border: none; color: #fff; border-radius: 12px; padding: 15px; width: 100%; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 16px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(20px);
+    background: var(--ok); color: #fff; padding: 12px 22px; border-radius: 30px; font-size: 14px; font-weight: 600;
+    opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 50;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .notice { background: var(--panel2); border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-size: 14px; color: var(--sub); line-height: 1.7; margin-bottom: 16px; }
+
+  @media (max-width: 768px) {
+    .screen { padding: 20px 24px; }
+    .big-rec { width: 170px; height: 170px; font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ホーム -->
+  <section id="home" class="screen active">
+    <div class="logo">Voice Memo</div>
+    <div class="home-title">ボイスメモ</div>
+    <button class="big-rec" onclick="goRecord()">
+      <span class="dot"></span>
+      録音
+    </button>
+    <button class="ghost-btn" onclick="showScreen('list'); renderList();">メモを見る</button>
+    <button class="back" style="margin-top:8px" onclick="showScreen('settings'); renderSettings();">カテゴリー設定</button>
+  </section>
+
+  <!-- 録音 -->
+  <section id="record" class="screen">
+    <div class="topbar">
+      <button class="back" onclick="cancelRecord()">‹ 戻る</button>
+      <div class="spacer"></div>
+    </div>
+    <div class="rec-status" id="recStatus"><span class="pulse"></span>録音中… 話してください</div>
+    <div class="transcript" id="transcript"><span class="placeholder">ここに話した内容がテキストで出ます</span></div>
+    <div class="rec-actions">
+      <button class="btn-cancel" onclick="cancelRecord()">破棄</button>
+      <button class="btn-stop" onclick="stopAndSave()">停止して保存</button>
+    </div>
+  </section>
+
+  <!-- 一覧 -->
+  <section id="list" class="screen">
+    <div class="topbar">
+      <button class="back" onclick="showScreen('home')">‹ ホーム</button>
+      <h1>メモ一覧</h1>
+      <div class="spacer"></div>
+      <button class="icon-btn" onclick="showScreen('settings'); renderSettings();">設定</button>
+    </div>
+    <div id="listBody"></div>
+  </section>
+
+  <!-- メモ詳細 -->
+  <section id="detail" class="screen">
+    <div class="topbar">
+      <button class="back" onclick="showScreen('list'); renderList();">‹ 一覧</button>
+      <h1>メモ</h1>
+      <div class="spacer"></div>
+    </div>
+    <textarea class="detail-text" id="detailText"></textarea>
+    <div class="tag-row">
+      <span class="tag-label">カテゴリー</span>
+      <select id="detailCat"></select>
+    </div>
+    <div class="detail-actions">
+      <button class="btn-del" onclick="deleteCurrent()">削除</button>
+      <button class="btn-save" onclick="saveDetail()">保存</button>
+    </div>
+  </section>
+
+  <!-- 設定 -->
+  <section id="settings" class="screen">
+    <div class="topbar">
+      <button class="back" onclick="showScreen('home')">‹ ホーム</button>
+      <h1>カテゴリー設定</h1>
+    </div>
+    <div class="notice">
+      カテゴリー名と、そこに入れたい<b>キーワード</b>（カンマ区切り）を登録します。<br>
+      録音したメモの中にキーワードが含まれると、自動でそのカテゴリーに振り分けます。どれにも当てはまらなければ「未分類」に入ります。
+    </div>
+    <div id="catEditList"></div>
+    <button class="add-cat" onclick="addCatRow()">＋ カテゴリーを追加</button>
+    <button class="save-cats" onclick="saveCats()">保存する</button>
+  </section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ データ ============ */
+const LS_MEMOS = 'vm_memos';
+const LS_CATS  = 'vm_cats';
+const INBOX = '未分類';
+
+function loadMemos() { try { return JSON.parse(localStorage.getItem(LS_MEMOS)) || []; } catch(e){ return []; } }
+function saveMemos(m) { localStorage.setItem(LS_MEMOS, JSON.stringify(m)); }
+
+function loadCats() {
+  try {
+    const c = JSON.parse(localStorage.getItem(LS_CATS));
+    if (c && c.length) return c;
+  } catch(e){}
+  // 初期サンプル
+  return [
+    { name: 'アイデア', keywords: ['アイデア','思いつ','企画','考えた'] },
+    { name: '仕事', keywords: ['仕事','案件','クライアント','会議','タスク'] },
+    { name: '買い物', keywords: ['買う','買い物','購入','注文'] },
+  ];
+}
+function saveCatsData(c) { localStorage.setItem(LS_CATS, JSON.stringify(c)); }
+
+/* ============ 画面遷移 ============ */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ============ 自動タグ付け（キーワード方式） ============ */
+function autoCategorize(text) {
+  const cats = loadCats();
+  for (const c of cats) {
+    for (const kw of (c.keywords||[])) {
+      const k = kw.trim();
+      if (k && text.includes(k)) return c.name;
+    }
+  }
+  return INBOX;
+}
+
+/* ============ 録音（Web Speech API） ============ */
+let recognition = null;
+let finalText = '';
+let recording = false;
+
+function speechSupported() {
+  return 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
+}
+
+function goRecord() {
+  if (!speechSupported()) {
+    alert('このブラウザは音声認識に対応していません。Google Chrome で開いてください。');
+    return;
+  }
+  showScreen('record');
+  startRecording();
+}
+
+function startRecording() {
+  finalText = '';
+  document.getElementById('transcript').innerHTML = '<span class="placeholder">ここに話した内容がテキストで出ます</span>';
+  document.getElementById('recStatus').innerHTML = '<span class="pulse"></span>録音中… 話してください';
+
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = 'ja-JP';
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  recognition.onresult = (e) => {
+    let interim = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const t = e.results[i][0].transcript;
+      if (e.results[i].isFinal) finalText += t;
+      else interim += t;
+    }
+    renderTranscript(interim);
+  };
+
+  recognition.onerror = (e) => {
+    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+      document.getElementById('recStatus').innerHTML = '⚠️ マイクの使用が許可されていません';
+    } else if (e.error === 'no-speech') {
+      // 無音は無視して継続
+    }
+  };
+
+  recognition.onend = () => {
+    // continuousでも切れることがあるので、録音中なら自動再開
+    if (recording) { try { recognition.start(); } catch(e){} }
+  };
+
+  recording = true;
+  try { recognition.start(); } catch(e){}
+}
+
+function renderTranscript(interim) {
+  const el = document.getElementById('transcript');
+  if (!finalText && !interim) {
+    el.innerHTML = '<span class="placeholder">ここに話した内容がテキストで出ます</span>';
+    return;
+  }
+  el.innerHTML = escapeHtml(finalText) + '<span class="interim">' + escapeHtml(interim) + '</span>';
+  el.scrollTop = el.scrollHeight;
+}
+
+function stopRecognition() {
+  recording = false;
+  if (recognition) { try { recognition.stop(); } catch(e){} recognition = null; }
+}
+
+function stopAndSave() {
+  stopRecognition();
+  const text = finalText.trim();
+  if (!text) { toast('内容が空でした'); showScreen('home'); return; }
+  const cat = autoCategorize(text);
+  const memos = loadMemos();
+  memos.unshift({ id: genId(), text, category: cat, createdAt: nowStr() });
+  saveMemos(memos);
+  toast(cat === INBOX ? '未分類に保存しました' : '「' + cat + '」に保存しました');
+  showScreen('list'); renderList();
+}
+
+function cancelRecord() {
+  stopRecognition();
+  showScreen('home');
+}
+
+/* ============ 一覧 ============ */
+function renderList() {
+  const memos = loadMemos();
+  const body = document.getElementById('listBody');
+  if (!memos.length) {
+    body.innerHTML = '<div class="empty">まだメモがありません。<br>ホームの「録音」から話してみてください。</div>';
+    return;
+  }
+  const cats = loadCats().map(c => c.name);
+  const order = [...cats, INBOX];
+  const groups = {};
+  memos.forEach(m => { (groups[m.category] = groups[m.category] || []).push(m); });
+
+  let html = '';
+  order.forEach(catName => {
+    const items = groups[catName];
+    if (!items || !items.length) return;
+    html += '<div class="cat-group"><div class="cat-head">' +
+      '<span class="cat-name ' + (catName===INBOX?'inbox':'') + '">' + escapeHtml(catName) + '</span>' +
+      '<span class="cat-count">' + items.length + '</span></div>';
+    items.forEach(m => {
+      html += '<div class="memo" onclick="openDetail(\'' + m.id + '\')">' +
+        '<div class="memo-text">' + escapeHtml(m.text) + '</div>' +
+        '<div class="memo-meta">' + m.createdAt + '</div></div>';
+    });
+    html += '</div>';
+  });
+  body.innerHTML = html;
+}
+
+/* ============ 詳細 ============ */
+let currentId = null;
+function openDetail(id) {
+  const m = loadMemos().find(x => x.id === id);
+  if (!m) return;
+  currentId = id;
+  document.getElementById('detailText').value = m.text;
+  const sel = document.getElementById('detailCat');
+  const cats = loadCats().map(c => c.name);
+  sel.innerHTML = [...cats, INBOX].map(c =>
+    '<option value="' + escapeHtml(c) + '"' + (c===m.category?' selected':'') + '>' + escapeHtml(c) + '</option>').join('');
+  showScreen('detail');
+}
+function saveDetail() {
+  const memos = loadMemos();
+  const m = memos.find(x => x.id === currentId);
+  if (!m) return;
+  m.text = document.getElementById('detailText').value.trim();
+  m.category = document.getElementById('detailCat').value;
+  saveMemos(memos);
+  toast('保存しました');
+  showScreen('list'); renderList();
+}
+function deleteCurrent() {
+  if (!confirm('このメモを削除しますか？')) return;
+  let memos = loadMemos().filter(x => x.id !== currentId);
+  saveMemos(memos);
+  toast('削除しました');
+  showScreen('list'); renderList();
+}
+
+/* ============ 設定 ============ */
+function renderSettings() {
+  const cats = loadCats();
+  const wrap = document.getElementById('catEditList');
+  wrap.innerHTML = cats.map((c,i) => catRowHtml(c.name, (c.keywords||[]).join(', '))).join('');
+}
+function catRowHtml(name, kw) {
+  return '<div class="cat-edit">' +
+    '<div class="fields">' +
+      '<input type="text" class="cname" placeholder="カテゴリー名" value="' + escapeAttr(name) + '">' +
+      '<input type="text" class="kw" placeholder="キーワード（カンマ区切り）" value="' + escapeAttr(kw) + '">' +
+    '</div>' +
+    '<button class="remove" onclick="this.parentElement.remove()">削除</button>' +
+  '</div>';
+}
+function addCatRow() {
+  document.getElementById('catEditList').insertAdjacentHTML('beforeend', catRowHtml('', ''));
+}
+function saveCats() {
+  const rows = document.querySelectorAll('#catEditList .cat-edit');
+  const cats = [];
+  rows.forEach(r => {
+    const name = r.querySelector('.cname').value.trim();
+    const kw = r.querySelector('.kw').value.split(',').map(s => s.trim()).filter(Boolean);
+    if (name) cats.push({ name, keywords: kw });
+  });
+  saveCatsData(cats);
+  toast('カテゴリーを保存しました');
+  showScreen('home');
+}
+
+/* ============ ユーティリティ ============ */
+function genId() { return 'm' + Date.now() + Math.floor(Math.random()*1000); }
+function nowStr() {
+  const d = new Date();
+  const p = n => String(n).padStart(2,'0');
+  return d.getFullYear() + '/' + p(d.getMonth()+1) + '/' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+}
+function escapeHtml(s){ return (s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function escapeAttr(s){ return (s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+</script>
+</body>
+</html>
