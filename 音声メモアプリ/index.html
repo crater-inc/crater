@@ -6,6 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>ボイスメモ</title>
+<link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { overflow-x: hidden; }
@@ -40,6 +41,23 @@
   .spacer { flex: 1; }
   .icon-btn { background: var(--panel2); border: 1px solid var(--line); color: var(--sub); border-radius: 10px; padding: 8px 12px; font-size: 14px; cursor: pointer; }
 
+  /* ブランド見出し（スライドと同じ URW DIN・2行） */
+  .brand {
+    font-family: 'urw-din', -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 0.98;
+    letter-spacing: .01em;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  .text-link {
+    color: var(--text); font-size: 16px; font-weight: 600; cursor: pointer;
+    text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 3px;
+  }
+  .text-link.sub { color: var(--sub); font-size: 14px; font-weight: 500; border-bottom: none; }
+
   /* ログイン */
   #login { justify-content: center; align-items: center; gap: 18px; text-align: center; }
   .g-btn {
@@ -55,30 +73,23 @@
   .logo { font-size: 15px; letter-spacing: .35em; color: var(--meta); text-transform: uppercase; margin-bottom: 8px; }
   .home-title { font-size: 26px; font-weight: 700; margin-bottom: 28px; }
   .big-rec {
-    width: 200px; height: 200px; border-radius: 50%;
-    background: var(--rec); border: none; color: #fff;
-    font-size: 20px; font-weight: 700; cursor: pointer;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: var(--rec); border: none; cursor: pointer;
     box-shadow: 0 12px 40px rgba(255,77,79,.35);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
     transition: transform .12s ease;
   }
   .big-rec:active { transform: scale(.96); }
-  .big-rec .dot { width: 20px; height: 20px; border-radius: 50%; background: #fff; }
-  .ghost-btn {
-    background: var(--panel); border: 1px solid var(--line); color: var(--text);
-    border-radius: 14px; padding: 16px 28px; font-size: 16px; font-weight: 600; cursor: pointer;
-    width: 100%; max-width: 320px;
-  }
   .who { font-size: 12px; color: var(--meta); margin-top: 10px; }
   .who a { color: var(--sub); cursor: pointer; text-decoration: underline; }
 
-  /* 録音 */
+  /* 録音（画面ちょうどに収める） */
+  #record { height: 100vh; height: 100dvh; }
   .rec-status { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: var(--sub); font-size: 15px; }
   .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--rec); animation: pulse 1.2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
   .transcript {
-    flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
-    padding: 20px; font-size: 18px; line-height: 1.8; overflow-y: auto; min-height: 240px;
+    flex: 1; min-height: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px; font-size: 18px; line-height: 1.8; overflow-y: auto;
     white-space: pre-wrap; word-break: break-word;
   }
   .transcript .interim { color: var(--meta); }
@@ -149,8 +160,7 @@
 
   <!-- ログイン -->
   <section id="login" class="screen active">
-    <div class="logo">Voice Memo</div>
-    <div class="home-title">ボイスメモ</div>
+    <div class="brand">Voice<br>Memo</div>
     <button class="g-btn" onclick="doLogin()">
       <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="">
       Googleでログイン
@@ -160,14 +170,10 @@
 
   <!-- ホーム -->
   <section id="home" class="screen">
-    <div class="logo">Voice Memo</div>
-    <div class="home-title">ボイスメモ</div>
-    <button class="big-rec" onclick="goRecord()">
-      <span class="dot"></span>
-      録音
-    </button>
-    <button class="ghost-btn" onclick="showScreen('list'); renderList();">メモを見る</button>
-    <button class="back" style="margin-top:8px" onclick="showScreen('settings'); renderSettings();">カテゴリー設定</button>
+    <div class="brand">Voice<br>Memo</div>
+    <button class="big-rec" onclick="goRecord()" aria-label="録音"></button>
+    <a class="text-link" onclick="showScreen('list'); renderList();">メモを見る</a>
+    <a class="text-link sub" onclick="showScreen('settings'); renderSettings();">カテゴリー設定</a>
     <div class="who">同期中：<span id="whoEmail">-</span> ・ <a onclick="doLogout()">ログアウト</a></div>
   </section>
 
