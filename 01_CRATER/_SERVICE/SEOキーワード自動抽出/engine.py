@@ -20,8 +20,9 @@ else:
     SA_KEY = str(pathlib.Path("~/.seo-keyword/key.json").expanduser())
 SHEET_ID  = "1R5ChrlAgXvco7WzKkyP9ZB3Pno-U2XLQ2GMAp0yjcL4"
 MCP_URL   = "https://api.rakkokeyword.com/mcp"
-MIN_VOLUME = 100   # 検索ボリューム下限
-PER_SITE   = 8     # 1サイト/回の採用数
+MIN_VOLUME = 100     # 検索ボリューム下限
+MAX_VOLUME = 10000   # 上限（これ以上はビッグすぎ＝激戦区なので除外）
+PER_SITE   = 8       # 1サイト/回の採用数
 
 # 各サイトの設計（種＝切り口／誤解NGワード）。クロコが買い手の行動導線から発案。
 SITES = {
@@ -44,9 +45,10 @@ SITES = {
                  "ミセス", "green apple", "ジャニーズ", "スヌーピー", "サンリオ", "ディズニー", "阪神", "巨人"],
     },
     "A CURRY KW": {
-        "seeds": ["高級レトルトカレー", "レトルトカレー おすすめ", "レトルトカレー ギフト",
-                   "非常食 カレー", "内祝い 食べ物", "レトルトカレー お取り寄せ"],
-        "ng": ["無添加", "葉山牛", "無印", "業務スーパー", "カルディ", "ファミマ", "セブン", "レシピ"],
+        # 商品の食材まわりの知識・雑学まで広げる（レシピに縛らない）。柚子胡椒/牡蠣/肉じゃが。レトルトカレー直球は下げる
+        "seeds": ["柚子胡椒 とは", "柚子胡椒 産地", "柚子胡椒 辛い",
+                   "牡蠣 栄養", "牡蠣 旨味", "肉じゃが 由来"],
+        "ng": ["無添加", "葉山牛", "無印", "業務スーパー", "カルディ", "ファミマ", "セブン"],
     },
     "BIRTH KW": {
         "seeds": ["新規事業", "事業 多角化", "第二の柱", "中小企業 新規事業",
@@ -108,7 +110,7 @@ def collect_candidates(seeds, ng, seen):
             kw = clean_kw(it["keyword"]); m = it.get("metrics", {})
             vol = m.get("searchVolume") or 0; diff = m.get("seoDifficulty")
             n = norm(kw)
-            if not kw or vol < MIN_VOLUME: continue
+            if not kw or vol < MIN_VOLUME or vol >= MAX_VOLUME: continue
             if any(norm(w) in n for w in ng): continue
             if n in seen: continue
             if n in picked: continue
