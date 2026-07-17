@@ -31,7 +31,6 @@
   }
   .app { max-width: 720px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
 
-  /* 画面共通 */
   .screen { display: none; flex-direction: column; flex: 1; padding: 24px; }
   .screen.active { display: flex; }
 
@@ -40,6 +39,16 @@
   .back { background: none; border: none; color: var(--sub); font-size: 15px; cursor: pointer; padding: 8px 4px; }
   .spacer { flex: 1; }
   .icon-btn { background: var(--panel2); border: 1px solid var(--line); color: var(--sub); border-radius: 10px; padding: 8px 12px; font-size: 14px; cursor: pointer; }
+
+  /* ログイン */
+  #login { justify-content: center; align-items: center; gap: 18px; text-align: center; }
+  .g-btn {
+    background: #fff; color: #1f1f1f; border: none; border-radius: 14px;
+    padding: 15px 26px; font-size: 16px; font-weight: 600; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .g-btn img { width: 20px; height: 20px; }
+  .login-note { font-size: 13px; color: var(--meta); max-width: 300px; line-height: 1.7; }
 
   /* ホーム */
   #home { justify-content: center; align-items: center; gap: 20px; text-align: center; }
@@ -60,9 +69,10 @@
     border-radius: 14px; padding: 16px 28px; font-size: 16px; font-weight: 600; cursor: pointer;
     width: 100%; max-width: 320px;
   }
+  .who { font-size: 12px; color: var(--meta); margin-top: 10px; }
+  .who a { color: var(--sub); cursor: pointer; text-decoration: underline; }
 
-  /* 録音画面 */
-  #record { }
+  /* 録音 */
   .rec-status { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: var(--sub); font-size: 15px; }
   .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--rec); animation: pulse 1.2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
@@ -92,8 +102,9 @@
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .memo .memo-meta { font-size: 12px; color: var(--meta); margin-top: 8px; }
   .empty { color: var(--meta); text-align: center; padding: 60px 20px; font-size: 15px; }
+  .loading { color: var(--meta); text-align: center; padding: 40px 20px; font-size: 14px; }
 
-  /* メモ詳細 / モーダル */
+  /* 詳細 */
   .detail-text {
     background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
     padding: 20px; font-size: 17px; line-height: 1.85; white-space: pre-wrap; word-break: break-word;
@@ -116,7 +127,6 @@
   .cat-edit input { width: 100%; }
   .cat-edit .kw { font-size: 14px; }
   .cat-edit .remove { background: transparent; border: 1px solid var(--line); color: var(--rec); border-radius: 10px; padding: 10px 12px; cursor: pointer; font-size: 14px; }
-  .field-hint { font-size: 12px; color: var(--meta); margin: 2px 0 14px; }
   .add-cat { background: var(--panel2); border: 1px dashed var(--line); color: var(--sub); border-radius: 12px; padding: 14px; width: 100%; cursor: pointer; font-size: 15px; margin-top: 6px; }
   .save-cats { background: var(--accent); border: none; color: #fff; border-radius: 12px; padding: 15px; width: 100%; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 16px; }
 
@@ -126,7 +136,6 @@
     opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 50;
   }
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
   .notice { background: var(--panel2); border: 1px solid var(--line); border-radius: 12px; padding: 16px; font-size: 14px; color: var(--sub); line-height: 1.7; margin-bottom: 16px; }
 
   @media (max-width: 768px) {
@@ -138,8 +147,19 @@
 <body>
 <div class="app">
 
+  <!-- ログイン -->
+  <section id="login" class="screen active">
+    <div class="logo">Voice Memo</div>
+    <div class="home-title">ボイスメモ</div>
+    <button class="g-btn" onclick="doLogin()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="">
+      Googleでログイン
+    </button>
+    <div class="login-note">最初の1回だけログインすれば、以降は自動で開きます。あなたのメモは本人しか見られません。</div>
+  </section>
+
   <!-- ホーム -->
-  <section id="home" class="screen active">
+  <section id="home" class="screen">
     <div class="logo">Voice Memo</div>
     <div class="home-title">ボイスメモ</div>
     <button class="big-rec" onclick="goRecord()">
@@ -148,6 +168,7 @@
     </button>
     <button class="ghost-btn" onclick="showScreen('list'); renderList();">メモを見る</button>
     <button class="back" style="margin-top:8px" onclick="showScreen('settings'); renderSettings();">カテゴリー設定</button>
+    <div class="who">同期中：<span id="whoEmail">-</span> ・ <a onclick="doLogout()">ログアウト</a></div>
   </section>
 
   <!-- 録音 -->
@@ -172,10 +193,10 @@
       <div class="spacer"></div>
       <button class="icon-btn" onclick="showScreen('settings'); renderSettings();">設定</button>
     </div>
-    <div id="listBody"></div>
+    <div id="listBody"><div class="loading">読み込み中…</div></div>
   </section>
 
-  <!-- メモ詳細 -->
+  <!-- 詳細 -->
   <section id="detail" class="screen">
     <div class="topbar">
       <button class="back" onclick="showScreen('list'); renderList();">‹ 一覧</button>
@@ -212,28 +233,95 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- Firebase SDK (compat) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
 <script>
-/* ============ データ ============ */
-const LS_MEMOS = 'vm_memos';
-const LS_CATS  = 'vm_cats';
+/* ============ Firebase 初期化 ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyCzc6L5KaG-NqH3mpnE0j3y8O4Dkkd-zZI",
+  authDomain: "voice-memo-crater.firebaseapp.com",
+  projectId: "voice-memo-crater",
+  storageBucket: "voice-memo-crater.firebasestorage.app",
+  messagingSenderId: "170999474276",
+  appId: "1:170999474276:web:ae69d6e63c73ed6af91771"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+// オフラインでも使えるようにキャッシュ有効化
+db.enablePersistence({ synchronizeTabs: true }).catch(()=>{});
+
 const INBOX = '未分類';
+const DEFAULT_CATS = [
+  { name: 'アイデア', keywords: ['アイデア','思いつ','企画','考えた'] },
+  { name: '仕事', keywords: ['仕事','案件','クライアント','会議','タスク'] },
+  { name: '買い物', keywords: ['買う','買い物','購入','注文'] },
+];
 
-function loadMemos() { try { return JSON.parse(localStorage.getItem(LS_MEMOS)) || []; } catch(e){ return []; } }
-function saveMemos(m) { localStorage.setItem(LS_MEMOS, JSON.stringify(m)); }
+let uid = null;
+let MEMOS = [];   // メモのキャッシュ（新しい順）
+let CATS = [];    // カテゴリーのキャッシュ
 
-function loadCats() {
-  try {
-    const c = JSON.parse(localStorage.getItem(LS_CATS));
-    if (c && c.length) return c;
-  } catch(e){}
-  // 初期サンプル
-  return [
-    { name: 'アイデア', keywords: ['アイデア','思いつ','企画','考えた'] },
-    { name: '仕事', keywords: ['仕事','案件','クライアント','会議','タスク'] },
-    { name: '買い物', keywords: ['買う','買い物','購入','注文'] },
-  ];
+/* ============ 認証 ============ */
+function doLogin() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(err => {
+    // モバイル等でポップアップがダメな場合はリダイレクト
+    if (err && (err.code === 'auth/popup-blocked' || err.code === 'auth/operation-not-supported-in-this-environment' || err.code === 'auth/cancelled-popup-request')) {
+      auth.signInWithRedirect(provider);
+    } else {
+      alert('ログインに失敗しました：' + (err && err.message));
+    }
+  });
 }
-function saveCatsData(c) { localStorage.setItem(LS_CATS, JSON.stringify(c)); }
+function doLogout() {
+  auth.signOut();
+}
+
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    uid = user.uid;
+    document.getElementById('whoEmail').textContent = user.email || 'ログイン中';
+    await loadCloud();
+    showScreen('home');
+  } else {
+    uid = null;
+    MEMOS = []; CATS = [];
+    showScreen('login');
+  }
+});
+
+/* ============ クラウド読み込み ============ */
+function userRef() { return db.collection('users').doc(uid); }
+
+async function loadCloud() {
+  // カテゴリー
+  try {
+    const catDoc = await userRef().collection('meta').doc('categories').get();
+    if (catDoc.exists && Array.isArray(catDoc.data().list) && catDoc.data().list.length) {
+      CATS = catDoc.data().list;
+    } else {
+      CATS = DEFAULT_CATS;
+      await saveCatsCloud(CATS); // 初回はデフォルトを保存
+    }
+  } catch(e) { CATS = DEFAULT_CATS; }
+  // メモ
+  await reloadMemos();
+}
+
+async function reloadMemos() {
+  try {
+    const snap = await userRef().collection('memos').orderBy('createdAtMs', 'desc').get();
+    MEMOS = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch(e) { MEMOS = []; }
+}
+
+async function saveCatsCloud(cats) {
+  await userRef().collection('meta').doc('categories').set({ list: cats });
+}
 
 /* ============ 画面遷移 ============ */
 function showScreen(id) {
@@ -244,10 +332,9 @@ function showScreen(id) {
 
 /* ============ 自動タグ付け（キーワード方式） ============ */
 function autoCategorize(text) {
-  const cats = loadCats();
-  for (const c of cats) {
+  for (const c of CATS) {
     for (const kw of (c.keywords||[])) {
-      const k = kw.trim();
+      const k = (kw||'').trim();
       if (k && text.includes(k)) return c.name;
     }
   }
@@ -292,19 +379,12 @@ function startRecording() {
     }
     renderTranscript(interim);
   };
-
   recognition.onerror = (e) => {
     if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
       document.getElementById('recStatus').innerHTML = '⚠️ マイクの使用が許可されていません';
-    } else if (e.error === 'no-speech') {
-      // 無音は無視して継続
     }
   };
-
-  recognition.onend = () => {
-    // continuousでも切れることがあるので、録音中なら自動再開
-    if (recording) { try { recognition.start(); } catch(e){} }
-  };
+  recognition.onend = () => { if (recording) { try { recognition.start(); } catch(e){} } };
 
   recording = true;
   try { recognition.start(); } catch(e){}
@@ -325,16 +405,24 @@ function stopRecognition() {
   if (recognition) { try { recognition.stop(); } catch(e){} recognition = null; }
 }
 
-function stopAndSave() {
+async function stopAndSave() {
   stopRecognition();
   const text = finalText.trim();
   if (!text) { toast('内容が空でした'); showScreen('home'); return; }
   const cat = autoCategorize(text);
-  const memos = loadMemos();
-  memos.unshift({ id: genId(), text, category: cat, createdAt: nowStr() });
-  saveMemos(memos);
-  toast(cat === INBOX ? '未分類に保存しました' : '「' + cat + '」に保存しました');
-  showScreen('list'); renderList();
+  const now = new Date();
+  const memo = { text, category: cat, createdAtMs: now.getTime(), createdAt: fmtDate(now) };
+  toast('保存中…');
+  showScreen('list');
+  document.getElementById('listBody').innerHTML = '<div class="loading">保存中…</div>';
+  try {
+    const ref = await userRef().collection('memos').add(memo);
+    MEMOS.unshift({ id: ref.id, ...memo });
+    toast(cat === INBOX ? '未分類に保存しました' : '「' + cat + '」に保存しました');
+  } catch(e) {
+    toast('保存に失敗（通信を確認）');
+  }
+  renderList();
 }
 
 function cancelRecord() {
@@ -344,16 +432,15 @@ function cancelRecord() {
 
 /* ============ 一覧 ============ */
 function renderList() {
-  const memos = loadMemos();
   const body = document.getElementById('listBody');
-  if (!memos.length) {
+  if (!MEMOS.length) {
     body.innerHTML = '<div class="empty">まだメモがありません。<br>ホームの「録音」から話してみてください。</div>';
     return;
   }
-  const cats = loadCats().map(c => c.name);
-  const order = [...cats, INBOX];
+  const catNames = CATS.map(c => c.name);
+  const order = [...catNames, INBOX];
   const groups = {};
-  memos.forEach(m => { (groups[m.category] = groups[m.category] || []).push(m); });
+  MEMOS.forEach(m => { (groups[m.category] = groups[m.category] || []).push(m); });
 
   let html = '';
   order.forEach(catName => {
@@ -365,7 +452,7 @@ function renderList() {
     items.forEach(m => {
       html += '<div class="memo" onclick="openDetail(\'' + m.id + '\')">' +
         '<div class="memo-text">' + escapeHtml(m.text) + '</div>' +
-        '<div class="memo-meta">' + m.createdAt + '</div></div>';
+        '<div class="memo-meta">' + (m.createdAt||'') + '</div></div>';
     });
     html += '</div>';
   });
@@ -375,39 +462,41 @@ function renderList() {
 /* ============ 詳細 ============ */
 let currentId = null;
 function openDetail(id) {
-  const m = loadMemos().find(x => x.id === id);
+  const m = MEMOS.find(x => x.id === id);
   if (!m) return;
   currentId = id;
   document.getElementById('detailText').value = m.text;
   const sel = document.getElementById('detailCat');
-  const cats = loadCats().map(c => c.name);
-  sel.innerHTML = [...cats, INBOX].map(c =>
-    '<option value="' + escapeHtml(c) + '"' + (c===m.category?' selected':'') + '>' + escapeHtml(c) + '</option>').join('');
+  const catNames = CATS.map(c => c.name);
+  sel.innerHTML = [...catNames, INBOX].map(c =>
+    '<option value="' + escapeAttr(c) + '"' + (c===m.category?' selected':'') + '>' + escapeHtml(c) + '</option>').join('');
   showScreen('detail');
 }
-function saveDetail() {
-  const memos = loadMemos();
-  const m = memos.find(x => x.id === currentId);
+async function saveDetail() {
+  const m = MEMOS.find(x => x.id === currentId);
   if (!m) return;
   m.text = document.getElementById('detailText').value.trim();
   m.category = document.getElementById('detailCat').value;
-  saveMemos(memos);
-  toast('保存しました');
+  try {
+    await userRef().collection('memos').doc(currentId).update({ text: m.text, category: m.category });
+    toast('保存しました');
+  } catch(e) { toast('保存に失敗（通信を確認）'); }
   showScreen('list'); renderList();
 }
-function deleteCurrent() {
+async function deleteCurrent() {
   if (!confirm('このメモを削除しますか？')) return;
-  let memos = loadMemos().filter(x => x.id !== currentId);
-  saveMemos(memos);
-  toast('削除しました');
+  try {
+    await userRef().collection('memos').doc(currentId).delete();
+    MEMOS = MEMOS.filter(x => x.id !== currentId);
+    toast('削除しました');
+  } catch(e) { toast('削除に失敗（通信を確認）'); }
   showScreen('list'); renderList();
 }
 
 /* ============ 設定 ============ */
 function renderSettings() {
-  const cats = loadCats();
   const wrap = document.getElementById('catEditList');
-  wrap.innerHTML = cats.map((c,i) => catRowHtml(c.name, (c.keywords||[]).join(', '))).join('');
+  wrap.innerHTML = CATS.map(c => catRowHtml(c.name, (c.keywords||[]).join(', '))).join('');
 }
 function catRowHtml(name, kw) {
   return '<div class="cat-edit">' +
@@ -421,7 +510,7 @@ function catRowHtml(name, kw) {
 function addCatRow() {
   document.getElementById('catEditList').insertAdjacentHTML('beforeend', catRowHtml('', ''));
 }
-function saveCats() {
+async function saveCats() {
   const rows = document.querySelectorAll('#catEditList .cat-edit');
   const cats = [];
   rows.forEach(r => {
@@ -429,15 +518,14 @@ function saveCats() {
     const kw = r.querySelector('.kw').value.split(',').map(s => s.trim()).filter(Boolean);
     if (name) cats.push({ name, keywords: kw });
   });
-  saveCatsData(cats);
-  toast('カテゴリーを保存しました');
+  CATS = cats;
+  try { await saveCatsCloud(cats); toast('カテゴリーを保存しました'); }
+  catch(e) { toast('保存に失敗（通信を確認）'); }
   showScreen('home');
 }
 
 /* ============ ユーティリティ ============ */
-function genId() { return 'm' + Date.now() + Math.floor(Math.random()*1000); }
-function nowStr() {
-  const d = new Date();
+function fmtDate(d) {
   const p = n => String(n).padStart(2,'0');
   return d.getFullYear() + '/' + p(d.getMonth()+1) + '/' + p(d.getDate()) + ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
 }
