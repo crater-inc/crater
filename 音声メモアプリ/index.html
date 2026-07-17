@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { overflow-x: hidden; }
+  html, body { overflow: hidden; height: 100%; }
   :root {
     --bg: #0e1116;
     --panel: #171b22;
@@ -30,10 +30,13 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  .app { max-width: 720px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+  .app { max-width: 720px; margin: 0 auto; height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; }
 
-  .screen { display: none; flex-direction: column; flex: 1; padding: 24px; }
+  .screen { display: none; flex-direction: column; flex: 1; min-height: 0; padding: 24px; overflow: hidden; }
   .screen.active { display: flex; }
+  /* スクロールを許す内側エリア（一覧・設定の中身だけ） */
+  #listBody, #settings { overflow-y: auto; }
+  #listBody { flex: 1; min-height: 0; }
 
   .topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; min-height: 40px; }
   .topbar h1 { font-size: 18px; font-weight: 700; letter-spacing: .02em; }
@@ -59,7 +62,7 @@
   .text-link.sub { color: var(--sub); font-size: 14px; font-weight: 500; border-bottom: none; }
 
   /* ログイン */
-  #login { height: 100vh; height: 100dvh; justify-content: center; align-items: center; gap: 18px; text-align: center; }
+  #login { justify-content: center; align-items: center; gap: 18px; text-align: center; }
   .g-btn {
     background: #fff; color: #1f1f1f; border: none; border-radius: 14px;
     padding: 15px 26px; font-size: 16px; font-weight: 600; cursor: pointer;
@@ -69,7 +72,7 @@
   .login-note { font-size: 13px; color: var(--meta); max-width: 300px; line-height: 1.7; }
 
   /* ホーム */
-  #home { height: 100vh; height: 100dvh; justify-content: center; align-items: center; gap: 20px; text-align: center; }
+  #home { justify-content: center; align-items: center; gap: 20px; text-align: center; }
   .logo { font-size: 15px; letter-spacing: .35em; color: var(--meta); text-transform: uppercase; margin-bottom: 8px; }
   .home-title { font-size: 26px; font-weight: 700; margin-bottom: 28px; }
   .big-rec {
@@ -83,7 +86,6 @@
   .who a { color: var(--sub); cursor: pointer; text-decoration: underline; }
 
   /* 録音（画面ちょうどに収める） */
-  #record { height: 100vh; height: 100dvh; }
   .rec-status { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: var(--sub); font-size: 15px; }
   .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--rec); animation: pulse 1.2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
