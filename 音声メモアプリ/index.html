@@ -417,8 +417,11 @@ function stopRecognition() {
 
 async function stopAndSave() {
   stopRecognition();
-  // 確定前(グレー)の文字も含めて保存する（iPhoneで確定しないケース対策）
-  const text = (finalText + interimText).trim();
+  // 画面に見えている文字をそのまま保存（変数の確定状態に依存しない・iPhone対策の決定版）
+  const el = document.getElementById('transcript');
+  let domText = '';
+  if (el && !el.querySelector('.placeholder')) domText = (el.innerText || el.textContent || '').trim();
+  const text = (domText || (finalText + interimText)).trim();
   if (!text) { toast('内容が空でした'); showScreen('home'); return; }
   const cat = autoCategorize(text);
   const now = new Date();
