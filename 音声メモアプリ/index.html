@@ -351,6 +351,7 @@ function autoCategorize(text) {
 /* ============ 録音（Web Speech API） ============ */
 let recognition = null;
 let finalText = '';
+let interimText = '';
 let recording = false;
 
 function speechSupported() {
@@ -368,6 +369,7 @@ function goRecord() {
 
 function startRecording() {
   finalText = '';
+  interimText = '';
   document.getElementById('transcript').innerHTML = '<span class="placeholder">ここに話した内容がテキストで出ます</span>';
   document.getElementById('recStatus').innerHTML = '<span class="pulse"></span>録音中… 話してください';
 
@@ -384,6 +386,7 @@ function startRecording() {
       if (e.results[i].isFinal) finalText += t;
       else interim += t;
     }
+    interimText = interim;   // 確定前テキストも保持（iPhone対策）
     renderTranscript(interim);
   };
   recognition.onerror = (e) => {
@@ -414,7 +417,8 @@ function stopRecognition() {
 
 async function stopAndSave() {
   stopRecognition();
-  const text = finalText.trim();
+  // 確定前(グレー)の文字も含めて保存する（iPhoneで確定しないケース対策）
+  const text = (finalText + interimText).trim();
   if (!text) { toast('内容が空でした'); showScreen('home'); return; }
   const cat = autoCategorize(text);
   const now = new Date();
