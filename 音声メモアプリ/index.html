@@ -293,7 +293,9 @@ auth.onAuthStateChanged(async (user) => {
     uid = user.uid;
     document.getElementById('whoEmail').textContent = user.email || 'ログイン中';
     await loadCloud();
-    showScreen('home');
+    // URLに #list が付いていれば一発で一覧を開く（PCブックマーク用）
+    if (location.hash === '#list') { openList(); }
+    else { showScreen('home'); }
   } else {
     uid = null;
     MEMOS = []; CATS = [];
