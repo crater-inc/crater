@@ -174,7 +174,7 @@
   <section id="home" class="screen">
     <div class="brand">Voice<br>Memo</div>
     <button class="big-rec" onclick="goRecord()" aria-label="録音"></button>
-    <a class="text-link" onclick="showScreen('list'); renderList();">メモを見る</a>
+    <a class="text-link" onclick="openList()">メモを見る</a>
     <a class="text-link sub" onclick="showScreen('settings'); renderSettings();">カテゴリー設定</a>
     <div class="who">同期中：<span id="whoEmail">-</span> ・ <a onclick="doLogout()">ログアウト</a></div>
   </section>
@@ -259,8 +259,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-// オフラインでも使えるようにキャッシュ有効化
-db.enablePersistence({ synchronizeTabs: true }).catch(()=>{});
+// ※ iPhoneでのオフラインキャッシュ(IndexedDB)は2件目以降の保存を固める不具合があるため使わない（オンライン保存に統一）
 
 const INBOX = '未分類';
 const DEFAULT_CATS = [
@@ -428,7 +427,7 @@ async function stopAndSave() {
     MEMOS.unshift({ id: ref.id, ...memo });
     toast(cat === INBOX ? '未分類に保存しました' : '「' + cat + '」に保存しました');
   } catch(e) {
-    toast('保存に失敗（通信を確認）');
+    toast('保存失敗: ' + (e && e.code ? e.code : e && e.message ? e.message : e));
   }
   renderList();
 }
@@ -439,6 +438,12 @@ function cancelRecord() {
 }
 
 /* ============ 一覧 ============ */
+async function openList() {
+  showScreen('list');
+  document.getElementById('listBody').innerHTML = '<div class="loading">読み込み中…</div>';
+  await reloadMemos();   // クラウドから最新を取り直す（他端末の分も反映）
+  renderList();
+}
 function renderList() {
   const body = document.getElementById('listBody');
   if (!MEMOS.length) {
