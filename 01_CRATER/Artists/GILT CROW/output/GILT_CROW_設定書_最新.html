@@ -1,0 +1,369 @@
+<title>GILT CROW ／ バンド設定書</title>
+<style>
+  :root{
+    --bg:#0a0a0d;
+    --bg2:#111117;
+    --panel:#15151d;
+    --panel2:#1b1b24;
+    --ink:#e8e6e0;
+    --sub:#b8b4aa;
+    --meta:#7c7870;
+    --line:#2a2a34;
+    --gilt:#c9a24b;      /* 金メッキ */
+    --gilt-soft:#e3c987;
+    --kon:#5b4b8a;       /* 紫紺 */
+    --sui:#4a6aa0;       /* 鋼青 */
+    --kii:#3a3a42;       /* 墨 */
+    --luna:#c9ccd4;      /* 白銀 */
+    --karasu:#a8323a;    /* 赤 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{overflow-x:hidden}
+  .wrap{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,"Segoe UI",sans-serif;
+    line-height:1.85;
+    font-size:16px;
+    letter-spacing:.02em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:920px;margin:0 auto;padding:0 32px 120px}
+
+  /* ---- hero ---- */
+  .hero{
+    position:relative;
+    padding:110px 32px 70px;
+    text-align:center;
+    background:
+      radial-gradient(120% 90% at 50% -10%, rgba(201,162,75,.14), transparent 60%),
+      linear-gradient(180deg,#08080b,#0a0a0d);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"GILT CROW";
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Times New Roman",serif;
+    font-size:26vw;font-weight:700;
+    color:rgba(201,162,75,.035);
+    letter-spacing:-.04em;white-space:nowrap;pointer-events:none;
+  }
+  .hero-kicker{position:relative;font-size:11px;letter-spacing:.55em;color:var(--gilt);margin-bottom:26px;text-indent:.55em}
+  .hero h1{
+    position:relative;
+    font-family:"Helvetica Neue","Segoe UI","Hiragino Kaku Gothic ProN",sans-serif;
+    font-size:clamp(46px,10vw,96px);
+    font-weight:200;line-height:1;letter-spacing:.22em;text-indent:.22em;
+    background:linear-gradient(180deg,#f4e7c4 0%,var(--gilt) 55%,#8a6a28 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .kana{position:relative;margin-top:20px;font-size:14px;letter-spacing:.5em;color:var(--sub);text-indent:.5em}
+  .hero .tag{position:relative;margin-top:8px;font-size:12px;letter-spacing:.35em;color:var(--meta)}
+
+  .note{
+    max-width:920px;margin:28px auto 0;padding:14px 20px;
+    border:1px solid rgba(201,162,75,.28);border-left:3px solid var(--gilt);
+    background:rgba(201,162,75,.05);border-radius:4px;
+    font-size:12.5px;color:var(--gilt-soft);line-height:1.7;
+  }
+
+  .lead{color:var(--sub);font-size:14.5px;margin:52px 0 0;padding-bottom:8px}
+
+  /* ---- section ---- */
+  section{margin-top:64px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:28px}
+  .sec-no{font-family:"Times New Roman",serif;font-size:13px;color:var(--gilt);letter-spacing:.1em}
+  .sec-head h2{font-size:19px;font-weight:700;letter-spacing:.06em}
+  .sec-head .en{margin-left:auto;font-size:10px;letter-spacing:.3em;color:var(--meta);text-transform:uppercase}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:26px 28px;margin-bottom:16px}
+  .card.hi{background:linear-gradient(180deg,var(--panel2),var(--panel));border-color:rgba(201,162,75,.25)}
+
+  .oneline{
+    font-size:clamp(20px,3.4vw,28px);font-weight:700;line-height:1.5;
+    background:linear-gradient(120deg,#f4e7c4,var(--gilt));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    margin-bottom:6px;
+  }
+  .oneline-sub{font-size:12px;letter-spacing:.3em;color:var(--meta)}
+
+  ul{list-style:none}
+  li{position:relative;padding-left:20px;margin:11px 0;color:var(--sub);font-size:14.5px}
+  li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--gilt);transform:rotate(45deg)}
+  li b,li strong{color:var(--ink);font-weight:700}
+  .k{color:var(--gilt-soft);font-weight:700}
+
+  .ng{color:#d98a8a}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mini{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+  .mini h4{font-size:12px;letter-spacing:.2em;color:var(--gilt);margin-bottom:8px}
+  .mini p{font-size:13.5px;color:var(--sub);line-height:1.7}
+
+  /* ---- members ---- */
+  .members{display:flex;flex-direction:column;gap:12px}
+  .m{display:grid;grid-template-columns:70px 1fr;gap:20px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;position:relative;overflow:hidden}
+  .m::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
+  .m-badge{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .m-day{font-family:"Times New Roman",serif;font-size:30px;font-weight:700;color:var(--mc);line-height:1}
+  .m-color{margin-top:8px;font-size:10px;letter-spacing:.15em;color:var(--meta)}
+  .m-swatch{width:100%;height:5px;border-radius:3px;background:var(--mc);margin-top:8px}
+  .m-body h3{font-size:20px;font-weight:700;letter-spacing:.04em;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .m-role{font-size:11px;letter-spacing:.2em;color:var(--mc);border:1px solid var(--mc);padding:3px 9px;border-radius:20px;font-weight:400}
+  .m-kana{font-size:12px;color:var(--meta);letter-spacing:.1em}
+  .m-body p{margin-top:9px;font-size:13.5px;color:var(--sub);line-height:1.75}
+  .m-note{margin-top:9px;font-size:12.5px;color:var(--meta);line-height:1.7;padding-top:9px;border-top:1px dashed var(--line)}
+
+  .logic{background:rgba(201,162,75,.06);border:1px solid rgba(201,162,75,.2);border-radius:8px;padding:18px 22px;margin-bottom:14px}
+  .logic .days{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .logic .day{font-size:12px;padding:6px 12px;background:var(--panel2);border:1px solid var(--line);border-radius:5px;color:var(--sub)}
+  .logic .day b{color:var(--gilt-soft)}
+
+  .lyric{background:#08080b;border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-top:14px}
+  .lyric pre{font-family:inherit;white-space:pre-wrap;font-size:13px;color:var(--sub);line-height:1.9;overflow-x:auto}
+  .lyric .tag{color:var(--meta);font-size:11px}
+
+  .code{background:#08080b;border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-top:10px;overflow-x:auto}
+  .code p{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#9fb0c4;line-height:1.7;white-space:pre-wrap;word-break:break-word}
+
+  .steps{counter-reset:s}
+  .steps li{padding-left:34px}
+  .steps li::before{content:counter(s);counter-increment:s;top:2px;left:0;width:22px;height:22px;background:transparent;border:1px solid var(--gilt);border-radius:50%;transform:none;color:var(--gilt);font-size:11px;display:flex;align-items:center;justify-content:center;font-family:"Times New Roman",serif}
+
+  footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--line);text-align:center;color:var(--meta);font-size:11px;letter-spacing:.2em}
+
+  @media (max-width:768px){
+    .container{padding:0 24px 90px}
+    .hero{padding:80px 24px 54px}
+    .grid2{grid-template-columns:1fr}
+    .m{grid-template-columns:56px 1fr;gap:14px;padding:18px}
+    .m-day{font-size:24px}
+    .sec-head .en{display:none}
+  }
+</style>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="hero-kicker">CRATER ARTISTS ／ SECRET PRODUCTION</div>
+    <h1>GILT CROW</h1>
+    <div class="kana">ギルト・クロウ</div>
+    <div class="tag">AI DARK VISUAL-KEI BAND</div>
+  </div>
+
+  <div class="container">
+    <div class="note">
+      GILT CROW 内部設定書（秘匿）。<b>これが最新の正。</b> 最終更新 2026-07-17。
+    </div>
+
+    <p class="lead">
+      株式会社クレーターが<b style="color:var(--ink)">全プロデュース</b>するAIビジュアル系バンド。全編AI制作（ビジュアル・楽曲・歌声・MV）。表向きは実在のV系バンドとして世に出し、人気が出たらクレーターの所属アーティストとして紐づける（秘匿設定）。根っこにあるのは、クレーターの想い——<b style="color:var(--ink)">まだ埋もれている価値を、大きな世界へ知らせていく</b>。
+    </p>
+
+    <!-- 01 concept -->
+    <section>
+      <div class="sec-head"><span class="sec-no">01</span><h2>本質軸 ／ コンセプト</h2><span class="en">The Core</span></div>
+      <div class="card hi">
+        <div class="oneline">王道の、懐かしいV系。</div>
+        <div class="oneline-sub" style="margin-top:12px">＝ 芯。半端に今っぽくすると埋もれる → 振り切った懐かしさこそニッチで、話題になる。</div>
+      </div>
+
+      <div class="grid2">
+        <div class="mini"><h4>これは何か</h4><p>株式会社クレーターが全プロデュースする、AI制作のビジュアル系バンド。この設定書は<b>内部専用（秘匿）</b>。表の世界観とは分け、ここには制作サイドの本音・狙いを書く。</p></div>
+        <div class="mini"><h4>芯の方向</h4><p>90〜00年代の<b>王道・懐かしいV系</b>。耽美と様式美をちゃんと再現する。今っぽさは隠し味程度に少量。ダークに振りすぎない（濃度は今後の整理事項）。</p></div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <ul>
+          <li><b>AI技術を鍛える</b>：AI制作の実力を上げる・実証する場。</li>
+          <li><b>デザイン性を出せる器</b>：ビジュアル主導だから、クレーターの強み＝デザイン性を表現しやすい。</li>
+          <li><b>ケイスケの偏愛</b>：昔ビジュアル系が好きだった。その熱を形にする。</li>
+          <li><b>差別化</b>：ビジュアルがメイン＝他と明確に区別できる。表現として面白い。</li>
+          <li><b>ビジネス直結</b>：遊びで終わらせず、クレーター発アーティストとして資産化・商売につなげる。</li>
+          <li class="k"><b>戦略の核＝話題性</b>：中途半端に現代化すると逆に埋もれる。<b>振り切った"王道の懐かしいV系"だからこそニッチで刺さり、話題になる。</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 02 name -->
+    <section>
+      <div class="sec-head"><span class="sec-no">02</span><h2>バンド名（確定）</h2><span class="en">Name</span></div>
+      <div class="card hi">
+        <div class="oneline" style="font-size:clamp(22px,3.6vw,30px)">偽りの輝きを纏ったカラス</div>
+        <div class="oneline-sub" style="margin-top:10px;color:var(--sub);font-size:14.5px;letter-spacing:.02em">真っ黒な世界から、光を求め、偽りの輝きを纏う。</div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <ul>
+          <li><span class="k">GILT CROW</span>（ギルト・クロウ）。gilt＝金箔／金メッキ、crow＝カラス。両方英語で統一。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 03 members -->
+    <section>
+      <div class="sec-head"><span class="sec-no">03</span><h2>メンバー 5人</h2><span class="en">Members</span></div>
+
+      <div class="logic">
+        <b class="k">【隠しロジック】メンバー名＝平日5日</b>（積極的には言わない。ペルソナ「土日は働かないバンド」と連結する遊び心）
+        <div class="days">
+          <span class="day"><b>月</b> Luna</span>
+          <span class="day"><b>火</b> 鴉（カー）</span>
+          <span class="day"><b>水</b> Sui</span>
+          <span class="day"><b>木</b> KII</span>
+          <span class="day"><b>金</b> KON</span>
+        </div>
+      </div>
+
+      <div class="members">
+        <div class="m" style="--mc:var(--kon)">
+          <div class="m-badge"><div class="m-day">金</div><div class="m-color">紫紺</div><div class="m-swatch"></div></div>
+          <div class="m-body">
+            <h3>KON <span class="m-kana">コン／金曜</span> <span class="m-role">Vocal</span></h3>
+            <p>両性の耽美フロント。歌うフロントマン。GACKT系"歌う耽美"、Manaではない。低〜高音レンジ広い。名がGiltを体現＝バンドの華。</p>
+          </div>
+        </div>
+
+        <div class="m" style="--mc:var(--sui)">
+          <div class="m-badge"><div class="m-day">水</div><div class="m-color">鋼青</div><div class="m-swatch"></div></div>
+          <div class="m-body">
+            <h3>Sui <span class="m-kana">スイ／水曜</span> <span class="m-role">Guitar Lead</span></h3>
+            <p>寡黙で硬派・男性感。L'Arc ken系。髪は短髪orパーマでうっすらストリート感。冷たさより骨太。KONの華と対をなす芯。</p>
+          </div>
+        </div>
+
+        <div class="m" style="--mc:var(--kii)">
+          <div class="m-badge"><div class="m-day">木</div><div class="m-color">墨</div><div class="m-swatch"></div></div>
+          <div class="m-body">
+            <h3>KII <span class="m-kana">キイ／木曜</span> <span class="m-role">Bass</span></h3>
+            <p>硬派ではなく、木＝幹＝土台。しなる低音、繊細で寡黙、最年少格。バンドの根。</p>
+          </div>
+        </div>
+
+        <div class="m" style="--mc:var(--luna)">
+          <div class="m-badge"><div class="m-day" style="color:#8a8d95">月</div><div class="m-color">白銀</div><div class="m-swatch"></div></div>
+          <div class="m-body">
+            <h3>Luna <span class="m-kana">ルナ／月曜</span> <span class="m-role" style="color:#8a8d95;border-color:#8a8d95">Guitar Side</span></h3>
+            <p>腰まで長髪・女性装的・病的耽美。Mana的妖艶はここ。</p>
+          </div>
+        </div>
+
+        <div class="m" style="--mc:var(--karasu)">
+          <div class="m-badge"><div class="m-day">火</div><div class="m-color">赤</div><div class="m-swatch"></div></div>
+          <div class="m-body">
+            <h3>鴉 <span class="m-kana">からす／火曜</span> <span class="m-role">Drums</span></h3>
+            <p>顔なき獣。漆黒のくちばしマスク（ペスト医師）で顔を隠す唯一の"顔なき者"＝Crowの化身。派手な縁取りはやめ→<b>燻し色をどこか一箇所にさりげなく</b>、基本は漆黒。嘴の色は曲ごと可変（一旦漆黒）。素顔裏設定＝最も幼く無垢な顔、人気後にマスクなし版リビール予定。漢字1人枠。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <ul>
+          <li><b>役どころ被りなし</b>：KON=華／Sui=芯(硬派)／KII=根(繊細)／Luna=毒(妖艶)／鴉=謎(顔なき獣)。ボーカル中心だが全員主役級。</li>
+          <li><b>ビジュアル制作メモ</b>：AI集合絵は雰囲気良好だが「全員同じ顔」問題あり→<b>LoRAで各メンバー別人固定が必須</b>。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 04 song -->
+    <section>
+      <div class="sec-head"><span class="sec-no">04</span><h2>1st Single ／ GILT SKY</h2><span class="en">Song</span></div>
+      <div class="card hi">
+        <div class="oneline">GILT SKY</div>
+        <div class="oneline-sub" style="margin-top:8px">1stシングル（確定）。Sunoで制作中。</div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <ul>
+          <li><b>曲構成＝Aサビ（cold open）→ メインサビ → 間奏 → Aメロ → Bメロ → Aサビ → メインサビ。</b> サビ始まりで掴む。Aメロ→Bメロで助走をつけてサビで開く。間奏はラクリマ的ツインリードの美旋律。</li>
+          <li><b>Aサビとメインサビで落差をつける。</b> Aサビは静か・スカスカ、メインサビでドンっと分厚く。Sunoの生成だけでは抑揚が付かないため、最終はStudio（Premier）でstem分解→Aサビのドラム抜き／メインサビに楽器追加で作り込む。</li>
+        </ul>
+        <div class="lyric">
+          <span class="tag">＊歌詞・確定版（2026-07-19ロック／芯：偽りの輝きを纏ったカラス／「憧れの羽根」＝憧れが付くことで意味が立つ）</span>
+          <pre><span class="tag">［Aサビ（cold open）］</span>
+本物じゃなくていい
+偽物でも構わない
+光をまとって飛べるなら
+どこまでも行ける気がする。
+
+<span class="tag">［メインサビ］</span>
+憧れの羽根 広げて
+届かなかった世界へ
+剥がれ落ちることがあろうが
+行けない場所はない
+
+<span class="tag">［間奏 Guitar Solo］</span>
+（ラクリマ的ツインリードの美旋律）
+
+<span class="tag">［Aメロ］</span>
+生まれつきの輝きなど
+持たない漆黒の闇で、
+暗いほど眩しく光れると
+知ったあの日から願う
+
+<span class="tag">［Bメロ］</span>
+剥がれる振動を 数えながら
+それでも前へ 手を伸ばす
+
+<span class="tag">［Aサビ reprise］</span>
+本物じゃなくていい
+偽物でも構わない
+光をまとって飛べるなら
+どこまでも行ける気がする。
+
+<span class="tag">［メインサビ］</span>
+憧れの羽根 手に入れ
+誰かの目に灼きつく
+存在しないことがバレぬよう、
+夜を切り裂いていく</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 music -->
+    <section>
+      <div class="sec-head"><span class="sec-no">05</span><h2>音楽性・スタイル</h2><span class="en">Sound</span></div>
+      <div class="card">
+        <ul>
+          <li>叫ばない・喉を潰さない。絶叫NG。低〜中音で言い切る、レンジ広いバランス型ボーカル。</li>
+          <li><b>参照＝PIERROT系をベースに、少し前（90s〜00s王道V系）の劇性＋La'cryma Christiのメロディアスさをブレンド。</b> ミッドテンポ（125前後）の冷たい耽美ロック＋タイトなバンド感＋角のあるギター。そこに<b>ラクリマ的な美旋律ツインリード・泣き・壮大さ・ゴシックな空気</b>を乗せる。冷たくも歌えるアンセミックなサビ。</li>
+          <li class="k"><b>【核心的こだわり】うるさくしたくない＝クオリティを高く。</b> 「うるさい＝クオリティが低く聞こえる／やかましいだけ」を回避。音圧で殴らず、品と密度で聴かせる。「うるさい≠かっこいい」が一番の判断軸。</li>
+          <li>ダーク濃度・劇性の足し引きは今後調整（PIERROT寄りすぎず、90s王道の泣きも残す）。</li>
+        </ul>
+        <div class="code"><p>Japanese visual kei rock, late-90s to early-2000s style, cool dark and decadent with rich melodic beauty, mid-tempo around 125 BPM, tight driving band, ornate and highly melodic twin-lead guitar harmonies, subtle symphonic and gothic atmosphere, sensual emotive mid-to-high male tenor with expressive vibrato, absolutely no screaming, soaring memorable anthemic chorus, melancholic minor key, sophisticated elegant and refined, never noisy</p></div>
+        <p style="color:var(--meta);font-size:12px;margin-top:8px;padding-left:2px">※Sunoはアーティスト名（L'Arc-en-Ciel等）を入れると自動削除→無難なジャンルに置換される。<b>バンド名は書かず、音の特徴を言葉で描写する。</b></p>
+      </div>
+    </section>
+
+    <!-- 06 suno -->
+    <section>
+      <div class="sec-head"><span class="sec-no">06</span><h2>Suno 運用</h2><span class="en">Workflow</span></div>
+      <div class="card">
+        <ul>
+          <li>Sunoで作る（アカウント <b>"redlee"</b>・Pro契約済み）。スタイル指示は英語（英語じゃないと効きにくい／歌詞は日本語OK・タグは歌われない）。</li>
+        </ul>
+        <ul class="steps" style="margin-top:6px">
+          <li>いい感じのテイクをいくつか作る</li>
+          <li><b>良いパーツを組み合わせて1曲に仕上げる</b>（部分差し替え＝Extend／Replace／Crop）</li>
+          <li>気に入った声は固定して、全曲で同じボーカルにできる（Persona）</li>
+          <li><b>ゴール＝最後にボーカルの声を差し替える</b>（AI感を消す／狙った声に。人間の声に置換も可）</li>
+        </ul>
+        <p style="color:var(--meta);font-size:12.5px;margin-top:10px;padding-left:2px">コツ＝スタイルは一度に1つだけ変える。良いテイクは保存して声の資産を貯める。</p>
+      </div>
+    </section>
+
+    <!-- 07 roadmap -->
+    <section>
+      <div class="sec-head"><span class="sec-no">07</span><h2>道標 ＆ 次アクション</h2><span class="en">Roadmap</span></div>
+      <div class="card">
+        <ul class="steps">
+          <li><b>GILT SKY を1曲仕上げる</b>：Sunoでテイク量産 → 良いパーツを組み合わせ → 最後にボーカルの声を差し替え。</li>
+          <li><b>歌詞を本チャンに</b>（最終はケイスケが書く／今はダミー）。</li>
+          <li><b>音楽性をPIERROT系ブレンドで確定</b>（ダーク濃度・劇性の最終調整）。</li>
+          <li><b>メンバー5人の顔を1人ずつ生成 → LoRAで別人固定</b>（"全員同じ顔"の解決）。</li>
+          <li><b>バンドロゴ。</b></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>GILT CROW ／ CRATER SECRET PRODUCTION ／ 最終更新 2026-07-17</footer>
+  </div>
+</div>
