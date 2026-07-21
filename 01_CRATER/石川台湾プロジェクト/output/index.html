@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>石川→台湾 伝統工芸プロジェクト（社内構想）</title>
+  <link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
+  <link rel="stylesheet" href="https://morisawafonts.net/c/01KSMBH35VT2E86JG92RAXZ7XC/mf.css">
+  <script>
+    (function(d) {
+      var config = { kitId: 'qwe2tdt', scriptTimeout: 3000, async: true },
+      h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s);
+    })(document);
+  </script>
+  <style>
+    :root {
+      --c-base:   #DBDDDD;
+      --c-black:  #000000;
+      --c-text:   #000000;
+      --c-sub:    #000000;
+      --c-light:  #B0B0B0;
+      --c-border: rgba(0,0,0,0.15);
+      --font-en:  'urw-din', sans-serif;
+      --font-ja:  'MFW-PA1GothicStdN-Regular', sans-serif;
+      --font-ja-m: 'MFW-PA1GothicStdN-Medium', sans-serif;
+      --font-ja-b: 'MFW-PA1GothicStdN-Bold', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #EBEBEB; overflow: hidden; }
+    :lang(ja) { line-break: strict; }
+    h1,h2,h3 { word-break: normal; overflow-wrap: normal; text-wrap: balance; }
+    p, li { word-break: normal; overflow-wrap: normal; text-wrap: pretty; }
+
+    /* ステージ */
+    .slide-stage {
+      width: 100vw; height: 100vh;
+      background: #EBEBEB;
+      overflow: hidden; position: relative;
+    }
+
+    /* 1920×1080 固定キャンバス */
+    .slide {
+      width: 1920px; height: 1080px;
+      position: absolute; top: 50%; left: 50%;
+      overflow: hidden;
+      background: var(--c-base);
+      container-type: inline-size;
+      display: none;
+      transform-origin: center center;
+    }
+    .slide.active { display: flex; flex-direction: column; }
+
+    /* 黒バッジ（左上固定） */
+    .badge {
+      display: inline-flex; align-items: center;
+      background: var(--c-black); color: #fff;
+      font-family: var(--font-en);
+      font-size: 0.85cqw; font-weight: 500;
+      letter-spacing: 0.14em;
+      padding: 0.55cqw 0.85cqw;
+      border-radius: 0; line-height: 1;
+    }
+
+    /* ページ番号（右下丸） */
+    .pg-num {
+      position: absolute; right: 4cqw; bottom: 3.5cqw;
+      width: 2.4cqw; height: 2.4cqw;
+      background: var(--c-black); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-en); font-size: 0.8cqw; font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ロゴフッター（左下） */
+    .logo-footer {
+      position: absolute; left: 4cqw; bottom: 3.5cqw;
+      display: flex; align-items: center; gap: 1cqw;
+    }
+    .logo-footer img { height: 1.2cqw; width: auto; }
+    .logo-footer-text {
+      font-family: var(--font-en); font-size: 1.0cqw;
+      font-weight: 500; letter-spacing: 0.12em; color: var(--c-black);
+    }
+    .logo-footer-copy {
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+
+    /* UI オーバーレイ */
+    .nav-prev, .nav-next {
+      position: fixed; top: 0; width: 50%; height: 100%;
+      z-index: 100; cursor: pointer;
+    }
+    .nav-prev { left: 0; } .nav-next { right: 0; }
+
+    .status-bar { display: none; }
+    .menu-btn {
+      position: fixed;
+      width: 36px; height: 36px; z-index: 300;
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 5px;
+    }
+    .menu-btn span { display: block; width: 18px; height: 1px; background: #111; }
+    .progress-bar {
+      position: fixed; bottom: 0; left: 0;
+      height: 2px; background: #111;
+      transition: width 0.3s ease; z-index: 200;
+    }
+
+    /* サイドバー */
+    .sidebar-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+      z-index: 400; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    }
+    .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+    .sidebar {
+      position: absolute; top: 0; right: -300px; bottom: 0;
+      width: 280px; background: #2a2a2a; color: #fff;
+      transition: right 0.3s ease; display: flex; flex-direction: column;
+    }
+    .sidebar-overlay.open .sidebar { right: 0; }
+    .sidebar-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 24px 20px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .sidebar-logo { display: block; height: 14px; width: auto; filter: invert(1); opacity: 0.85; }
+    .sidebar-close { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 13px; cursor: pointer; }
+    .sidebar-list { padding: 8px 0; flex: 1; overflow-y: auto; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 14px;
+      width: 100%; padding: 11px 24px;
+      background: none; border: none; cursor: pointer;
+      font-family: var(--font-ja-m); font-size: 11px;
+      letter-spacing: 0.06em; color: rgba(255,255,255,0.35);
+      text-align: left; transition: color 0.15s;
+    }
+    .sidebar-item:hover { color: rgba(255,255,255,0.7); }
+    .sidebar-item.active { color: #fff; }
+    .sidebar-num { font-family: var(--font-en); font-size: 10px; opacity: 0.25; min-width: 20px; }
+
+    /* ページネーション */
+    .pagination {
+      display: none;
+    }
+    .pagination-item {
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 14px; background: none; border: none; cursor: pointer;
+      font-family: var(--font-ja); font-size: 10px;
+      letter-spacing: 0.06em; color: rgba(0,0,0,0.22);
+      transition: color 0.15s; position: relative;
+    }
+    .pagination-item::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%); width: 1px; height: 9px;
+      background: rgba(0,0,0,0.12);
+    }
+    .pagination-item:last-child::after { display: none; }
+    .pagination-item:hover { color: rgba(0,0,0,0.5); }
+    .pagination-item.active { color: #111; font-weight: 700; }
+    .pagination-num { font-family: var(--font-en); font-size: 9px; opacity: 0.35; }
+
+
+    /* 白ベタ（任意スライドに .slide-frame を追加すると表示） */
+    .slide-frame::before {
+      content: ''; pointer-events: none; z-index: 0;
+      position: absolute; inset: 1.2cqw;
+      background: #ffffff;
+    }
+    .slide-frame > * { position: relative; z-index: 1; }
+
+    /* 強調スタイル（インライン要素に適用） */
+    /* 黄色アンダーライン：文字の下に黄色線が重なる */
+    .em-line {
+      position: relative;
+      display: inline;
+      background: linear-gradient(#FFE500, #FFE500) 0 0.8em / 100% 0.18em no-repeat;
+      padding-bottom: 0;
+    }
+    /* 黒ベタ反転：黒背景＋白文字（バッジより余白少なめ） */
+    .em-black {
+      display: inline;
+      background: var(--c-black);
+      color: #ffffff;
+      padding: 0.12em 0.12em;
+      line-height: inherit;
+      font-family: inherit;
+    }
+
+    /* 右下コピーライト（全スライド共通） */
+    .slide-copy {
+      position: absolute; right: 2.4cqw; bottom: 2.4cqw;
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+    /* トークスクリプト */
+    .script-trigger { display: none; }
+    .script-panel { display: none; }
+
+
+    /* ============================================================
+       TYPE 01: 表紙（COVER）
+       白背景 / 大見出し左 / ロゴ左下 / ページ番号右下
+    ============================================================ */
+    .s-cover {
+      height: 100%; padding: 6cqw 7cqw;
+      display: flex; flex-direction: column;
+      justify-content: space-between; position: relative;
+    }
+    .s-cover-top { flex-shrink: 0; }
+    .s-cover-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 0.2cqw;
+    }
+    .s-cover-client {
+      font-family: var(--font-ja-m); font-size: 1.5cqw;
+      color: var(--c-sub); letter-spacing: 0.05em;
+    }
+    .s-cover-title {
+      font-family: var(--font-ja-m); font-size: 3.6cqw;
+      line-height: 1.2; letter-spacing: 0.04em;
+      position: relative; left: -2px;
+    }
+    .s-cover-sub {
+      font-family: var(--font-en); font-size: 1.35cqw;
+      font-weight: 400; color: var(--c-sub); letter-spacing: 0.1em;
+      margin-top: 0.6cqw;
+    }
+    .s-cover-footer {
+      flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: flex-start; gap: 1.2cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 02: 目次（AGENDA）
+       番号 / セクション名 / 点線 / ページ番号
+    ============================================================ */
+    .s-agenda {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-agenda-top { flex-shrink: 0; }
+    .s-agenda-list { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+    .s-agenda-item {
+      display: grid; grid-template-columns: 4cqw 1fr;
+      align-items: center; gap: 0;
+      padding: 1.6cqw 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .s-agenda-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-agenda-num {
+      font-family: var(--font-en); font-size: 2.2cqw;
+      font-weight: 500; color: var(--c-sub); letter-spacing: 0.05em;
+    }
+    .s-agenda-info { display: flex; flex-direction: column; padding-left: 1.5cqw; }
+    .s-agenda-name {
+      font-family: var(--font-ja-m); font-size: 2.2cqw;
+      color: var(--c-text); letter-spacing: 0.04em;
+    }
+    .s-agenda-copy {
+      position: absolute; right: 5cqw; bottom: 3.5cqw;
+      font-family: var(--font-en); font-size: 0.72cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+
+
+    /* ============================================================
+       TYPE 03: セクション区切り（SECTION BREAK）
+       大番号左 / 線 / セクション名と説明 右
+    ============================================================ */
+    .s-section {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-section-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-section-main {
+      flex: 1; display: flex; align-items: center; gap: 0;
+    }
+    .s-section-num-col {
+      flex: 0 0 auto; overflow: visible;
+      display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 0.6cqw;
+    }
+    .s-section-big-num {
+      font-family: var(--font-en); font-size: 9cqw;
+      font-weight: 500; line-height: 1; letter-spacing: -0.04em;
+      color: var(--c-text);
+    }
+    .s-section-num-sub {
+      font-family: var(--font-en); font-size: 1.15cqw;
+      color: var(--c-sub); letter-spacing: 0.06em; line-height: 1;
+    }
+    .s-section-num-main {
+      font-family: var(--font-en); font-size: 7.2cqw;
+      font-weight: 400; line-height: 1; letter-spacing: -0.04em;
+      color: var(--c-text); transform: translateY(-0.25cqw);
+    }
+    .s-section-divider {
+      width: 1px; height: 5.5cqw;
+      background: var(--c-border); flex-shrink: 0; margin: 0 2cqw;
+    }
+    .s-section-text-col {
+      flex: 1; display: flex; flex-direction: column; gap: 0.6cqw; justify-content: center;
+    }
+    .s-section-label {
+      font-family: var(--font-ja-m); font-size: 1.15cqw;
+      letter-spacing: 0.1em; color: var(--c-sub); line-height: 1;
+      padding-left: 4px;
+    }
+    .s-section-name {
+      font-family: var(--font-en); font-size: 3.8cqw;
+      font-weight: 500; line-height: 1; letter-spacing: 0.02em; /* Medium */
+    }
+    .s-section-desc {
+      font-family: var(--font-ja-m); font-size: 1.2cqw;
+      color: var(--c-sub); line-height: 1.9;
+      max-width: 38cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 04: ステートメント（STATEMENT）
+       大見出し中央 / サブテキスト
+    ============================================================ */
+    .s-stmt {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-stmt-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-stmt-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 1.6cqw;
+    }
+    .s-stmt-heading {
+      font-family: var(--font-ja-m); font-size: 4.8cqw;
+      line-height: 1.2; letter-spacing: 0.04em; margin-left: -2px;
+    }
+    .s-stmt-body {
+      font-family: var(--font-ja-m); font-size: 1.4cqw;
+      line-height: 1.95; color: var(--c-sub);
+      max-width: 52cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 05: テキスト＋リスト（TEXT + LIST）
+       左見出し / 右リスト
+    ============================================================ */
+    .s-list {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-list-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-list-main {
+      flex: 1; display: flex; align-items: center; gap: 6cqw;
+    }
+    .s-list-left { flex: 0 0 26cqw; }
+    .s-list-heading {
+      font-family: var(--font-ja-m); font-size: 3.4cqw;
+      line-height: 1.45; letter-spacing: 0.04em;
+    }
+    .s-list-right { flex: 1; }
+    .s-list-items { list-style: none; }
+    .s-list-item {
+      display: grid; grid-template-columns: 3.5cqw 14cqw 1fr;
+      align-items: baseline; gap: 1.2cqw;
+      padding: 1.2cqw 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .s-list-item:first-child { border-top: 1px solid var(--c-border); }
+    .s-list-num {
+      font-family: var(--font-en); font-size: 1.2cqw;
+      color: var(--c-sub); letter-spacing: 0.06em;
+      transform: translateY(-0.15cqw);
+    }
+    .s-list-name {
+      font-family: var(--font-ja-m); font-size: 1.2cqw;
+      letter-spacing: 0.03em;
+    }
+    .s-list-desc {
+      font-family: var(--font-ja); font-size: 1.05cqw;
+      color: var(--c-sub); line-height: 1.7;
+    }
+
+
+    /* ============================================================
+       TYPE 06: 特徴グリッド（FEATURE GRID）
+       見出し上 / アイコン円＋テキスト 4列
+    ============================================================ */
+    .s-feature {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-feature-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-feature-main {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 2.4cqw;
+    }
+    .s-feature-headline {
+      font-family: var(--font-ja-m); font-size: 2.2cqw;
+      letter-spacing: 0.04em; text-align: center;
+    }
+    .s-feature-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2cqw; align-items: start;
+    }
+    .s-feature-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.8cqw; text-align: center; position: relative;
+    }
+    .s-feature-card:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 60%; background: var(--c-border);
+    }
+    .s-feature-icon {
+      width: 5cqw; height: 5cqw;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-bottom: 0.4cqw;
+    }
+    .s-feature-icon svg {
+      width: 4cqw; height: 4cqw;
+      fill: none; stroke: var(--c-text); stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .s-feature-en {
+      font-family: var(--font-en); font-size: 2.6cqw;
+      font-weight: 500; letter-spacing: 0.06em; line-height: 1;
+    }
+    .s-feature-name {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 1.0cqw;
+      letter-spacing: 0.08em; color: var(--c-sub);
+    }
+    .s-feature-desc {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.0cqw;
+      color: var(--c-sub); line-height: 1.8; max-width: 16cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 07: NUMBER（黒背景・大数字）
+    ============================================================ */
+    .s-number {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column;
+      background: var(--c-base); position: relative;
+    }
+    .s-number-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-number-grid {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+    }
+    .s-number-inner {
+      display: flex; align-items: flex-start; width: 100%;
+    }
+    .s-number-item {
+      flex: 1; display: flex; flex-direction: column;
+      gap: 0.2cqw;
+      padding: 0 2.5cqw;
+      position: relative;
+    }
+    .s-number-item:first-child { padding-left: 0; }
+    .s-number-item:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 1px; height: 8cqw; background: var(--c-border);
+    }
+    .s-number-upper {
+      display: flex; flex-direction: column; gap: 0.4cqw;
+      min-height: 11cqw; justify-content: flex-end;
+    }
+    .s-number-label {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.18em; color: var(--c-sub);
+    }
+    .s-number-num-row { display: flex; align-items: baseline; gap: 0.4cqw; }
+    .s-number-num {
+      font-family: var(--font-en); font-size: 7.5cqw;
+      font-weight: 500; line-height: 1; letter-spacing: -0.04em; color: var(--c-text);
+    }
+    .s-number-unit {
+      font-family: var(--font-ja-m); font-size: 2.4cqw;
+      color: var(--c-sub); transform: translateY(-6px);
+    }
+    .s-number-desc {
+      font-family: var(--font-ja); font-size: 1.1cqw;
+      line-height: 1.8; color: var(--c-sub); min-height: 5cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 07b: コピードン（COPY）
+    ============================================================ */
+    .s-copy-slide {
+      height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 5cqw; position: relative;
+    }
+    .s-copy-slide-main {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.6cqw; text-align: center;
+    }
+    .s-copy-slide-heading {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 4.4cqw;
+      line-height: 1.3; letter-spacing: 0.05em; color: var(--c-text);
+    }
+    .s-copy-slide-sub {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.6cqw;
+      letter-spacing: 0.04em; color: var(--c-text); transform: translateY(-14px);
+    }
+
+
+    /* ============================================================
+       TYPE 08: 会社概要テーブル（OVERVIEW）
+    ============================================================ */
+    .s-overview {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-overview-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-overview-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2cqw; align-items: flex-start;
+      margin-top: 40px;
+    }
+    .s-overview-logo { height: 1.8cqw; width: auto; display: block; }
+    .s-overview-logo-text {
+      font-family: var(--font-en); font-size: 2.4cqw;
+      font-weight: 500; letter-spacing: 0.1em;
+    }
+    .s-overview-table { width: 100%; border-collapse: collapse; }
+    .s-overview-table tr { border-bottom: 1px solid var(--c-border); }
+    .s-overview-table tr:last-child { border-bottom: none; }
+    .s-overview-table th {
+      text-align: left; width: 12cqw; padding: 0.9cqw 0;
+      font-family: var(--font-en), var(--font-ja-m); font-size: 0.95cqw;
+      color: var(--c-sub); vertical-align: middle;
+    }
+    .s-overview-table td {
+      padding: 0.9cqw 0 0.9cqw 2cqw;
+      font-family: var(--font-en), var(--font-ja-m); font-size: 1.15cqw;
+      line-height: 1.6;
+    }
+
+
+    /* ============================================================
+       TYPE 10: 箇条書き（BULLET LIST）
+       大見出し上 / 丸チェックアイコン＋テキスト縦並び
+    ============================================================ */
+    .s-bullet {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-bullet-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
+    .s-bullet-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2.4cqw;
+    }
+    .s-bullet-heading {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 4.2cqw;
+      line-height: 1.2; letter-spacing: 0.04em;
+    }
+    .s-bullet-list {
+      list-style: none; display: flex; flex-direction: column; gap: 0;
+    }
+    .s-bullet-item {
+      display: flex; align-items: baseline; gap: 1.2cqw;
+      padding: 0.12cqw 0;
+    }
+    .s-bullet-icon {
+      flex-shrink: 0; width: 1.4cqw; height: 1.4cqw;
+      position: relative; top: 0.12cqw;
+    }
+    .s-bullet-icon svg {
+      width: 100%; height: 100%;
+      fill: var(--c-text);
+    }
+    .s-bullet-text {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.3cqw;
+      line-height: 1.75; color: var(--c-text); max-width: 72cqw;
+    }
+
+
+    /* ============================================================
+       TYPE 11: テキスト＋写真 2分割（SPLIT）
+       左60%テキスト / 右40%写真フルブリード
+       左60%テキスト / 右40%写真フルブリード
+    ============================================================ */
+    .s-split-text {
+      position: absolute; top: 0; left: 0; width: 60%; height: 1080px;
+      display: flex; flex-direction: column; padding: 4cqw 5cqw 4cqw 7cqw;
+    }
+    .s-split-top { flex-shrink: 0; }
+    .s-split-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 1.8cqw;
+    }
+    .s-split-label {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.18em; color: var(--c-sub);
+    }
+    .s-split-heading {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 3.2cqw;
+      line-height: 1.3; letter-spacing: 0.04em;
+    }
+    .s-split-body {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.15cqw;
+      line-height: 1.95; color: var(--c-sub); max-width: 40cqw;
+    }
+    .s-split-photo {
+      position: absolute; top: 0; right: 0; width: 40%; height: 1080px;
+      overflow: hidden;
+    }
+    .s-split-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .s-split-photo-placeholder {
+      width: 100%; height: 100%; background: #B8B8B8;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .s-split-photo-placeholder span {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.2em; color: rgba(0,0,0,0.2);
+    }
+
+
+    /* ============================================================
+       TYPE 11: 引用（QUOTE）
+       大きな引用符 / 引用テキスト中央 / 出典
+    ============================================================ */
+    .s-quote {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-quote-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-quote-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2.4cqw;
+    }
+    .s-quote-mark {
+      font-family: var(--font-en); font-size: 8cqw;
+      line-height: 0.6; color: var(--c-border);
+      letter-spacing: -0.04em; user-select: none;
+    }
+    .s-quote-text {
+      font-family: 'MFW-PA1GothicStdN-Medium', sans-serif; font-size: 3.0cqw;
+      line-height: 1.5; letter-spacing: 0.04em; max-width: 72cqw;
+    }
+    .s-quote-source {
+      font-family: var(--font-en); font-size: 0.9cqw;
+      letter-spacing: 0.14em; color: var(--c-sub);
+    }
+
+
+    /* ============================================================
+       TYPE 12: 締め / CTA（CLOSING）
+       ロゴ中央 / メッセージ / 連絡先
+    ============================================================ */
+    .s-closing {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-closing-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; }
+    .s-closing-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start; gap: 3.2cqw;
+    }
+.s-closing-message {
+      font-family: 'MFW-PA1GothicStdN-Regular', sans-serif; font-size: 1.2cqw;
+      line-height: 1.9; color: var(--c-sub); max-width: 44cqw;
+    }
+    .s-closing-divider {
+      width: 3cqw; height: 1px; background: var(--c-border);
+    }
+    .s-closing-contact {
+      display: flex; flex-direction: column; gap: 0.6cqw;
+    }
+    .s-closing-url {
+      font-family: var(--font-en); font-size: 1.1cqw;
+      letter-spacing: 0.08em; color: var(--c-text);
+    }
+    .s-closing-tel {
+      font-family: var(--font-en); font-size: 1.0cqw;
+      letter-spacing: 0.06em; color: var(--c-sub);
+    }
+
+
+    /* ============================================================
+       TYPE 09: デザインイメージ（白背景・グレー背景 2パターン）
+       white variant = スライド全体が白
+       gray  variant = グレー背景のまま（標準）
+    ============================================================ */
+    .s-image {
+      height: 100%; position: relative;
+    }
+    .s-image-top {
+      position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2;
+    }
+    .s-image-main {
+      position: absolute; top: 1.2cqw; left: 1.2cqw; right: 1.2cqw; bottom: 1.2cqw;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .s-image-main--white { background: #ffffff; }
+    .s-image-placeholder {
+      font-family: var(--font-en); font-size: 0.85cqw;
+      letter-spacing: 0.2em; color: rgba(0,0,0,0.12);
+    }
+
+    /* ============================================================
+       CUSTOM: 石川→台湾プロジェクト用 図解スタイル
+    ============================================================ */
+    .s-diagram {
+      height: 100%; padding: 4cqw 7cqw 5cqw 7cqw;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .s-diagram-top { position: absolute; top: calc(2.4cqw - 1px); left: 2.4cqw; z-index: 2; }
+    .s-diagram-main {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; gap: 2.4cqw;
+    }
+    .s-diagram-title {
+      font-family: var(--font-ja-m); font-size: 2.4cqw;
+      letter-spacing: 0.04em; line-height: 1.3;
+    }
+    .s-diagram-title small {
+      display: block; font-family: var(--font-en); font-size: 0.95cqw;
+      letter-spacing: 0.18em; color: var(--c-sub); margin-bottom: 0.6cqw;
+    }
+
+    /* 座組フロー（4ノード） */
+    .scheme-row { display: flex; align-items: stretch; justify-content: center; }
+    .scheme-node {
+      flex: 1; background: #fff; border: 1px solid var(--c-border);
+      padding: 1.6cqw 1.2cqw; display: flex; flex-direction: column;
+      align-items: center; text-align: center; gap: 0.4cqw;
+    }
+    .scheme-node.is-core { background: var(--c-black); border-color: var(--c-black); }
+    .scheme-node.is-core .scheme-node-en,
+    .scheme-node.is-core .scheme-node-name { color: #fff; }
+    .scheme-node.is-core .scheme-node-sub { color: rgba(255,255,255,0.65); }
+    .scheme-node-en {
+      font-family: var(--font-en); font-size: 0.8cqw;
+      letter-spacing: 0.16em; color: var(--c-sub);
+    }
+    .scheme-node-name {
+      font-family: var(--font-ja-m); font-size: 1.5cqw; letter-spacing: 0.02em;
+    }
+    .scheme-node-sub {
+      font-family: var(--font-ja); font-size: 0.9cqw;
+      color: var(--c-sub); line-height: 1.6;
+    }
+    .scheme-conn {
+      flex: 0 0 4cqw; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.5cqw;
+    }
+    .scheme-conn-mono, .scheme-conn-money {
+      font-family: var(--font-en); font-size: 0.72cqw; letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+    .scheme-conn-mono { color: var(--c-text); }
+    .scheme-conn-money { color: var(--c-sub); }
+    .scheme-conn-line { width: 100%; height: 1px; background: var(--c-border); }
+    .scheme-note {
+      font-family: var(--font-ja-m); font-size: 1.15cqw;
+      color: var(--c-sub); line-height: 1.8; text-align: center;
+    }
+
+    /* 収益モデル 3カード */
+    .rev-grid { display: flex; gap: 2cqw; align-items: stretch; }
+    .rev-card {
+      flex: 1; background: #fff; border: 1px solid var(--c-border);
+      padding: 2cqw 1.8cqw; display: flex; flex-direction: column; gap: 0.8cqw;
+    }
+    .rev-card.is-main { background: var(--c-black); }
+    .rev-card.is-main .rev-num,
+    .rev-card.is-main .rev-name { color: #fff; }
+    .rev-card.is-main .rev-desc { color: rgba(255,255,255,0.7); }
+    .rev-card.is-future { opacity: 0.72; }
+    .rev-num {
+      font-family: var(--font-en); font-size: 3cqw; font-weight: 500;
+      line-height: 1; letter-spacing: -0.02em;
+    }
+    .rev-tag {
+      font-family: var(--font-ja-m); font-size: 0.9cqw; letter-spacing: 0.08em;
+      color: var(--c-sub); display: inline-block;
+    }
+    .rev-card.is-main .rev-tag { color: rgba(255,255,255,0.6); }
+    .rev-name {
+      font-family: var(--font-ja-m); font-size: 1.5cqw; letter-spacing: 0.02em; line-height: 1.4;
+    }
+    .rev-desc {
+      font-family: var(--font-ja); font-size: 1.0cqw;
+      color: var(--c-sub); line-height: 1.75; margin-top: auto;
+    }
+
+    /* フロー（着金ベース・横3ステップ） */
+    .flow-row { display: flex; align-items: stretch; }
+    .flow-step {
+      flex: 1; background: #fff; border: 1px solid var(--c-border);
+      padding: 1.8cqw 1.4cqw; display: flex; flex-direction: column; gap: 0.5cqw;
+    }
+    .flow-step-num {
+      font-family: var(--font-en); font-size: 0.85cqw; letter-spacing: 0.16em; color: var(--c-sub);
+    }
+    .flow-step-name {
+      font-family: var(--font-ja-m); font-size: 1.5cqw; line-height: 1.4; letter-spacing: 0.02em;
+    }
+    .flow-arrow {
+      flex: 0 0 3cqw; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-en); font-size: 1.6cqw; color: var(--c-light);
+    }
+
+    /* ステップ（横6ステップ） */
+    .step-row { display: flex; align-items: stretch; gap: 0; }
+    .step-cell {
+      flex: 1; display: flex; flex-direction: column; gap: 0.6cqw;
+      padding: 0 1cqw; position: relative;
+    }
+    .step-cell:not(:last-child)::after {
+      content: ''; position: absolute; right: 0; top: 1.1cqw;
+      width: 1px; height: calc(100% - 1.1cqw); background: var(--c-border);
+    }
+    .step-cell-num {
+      font-family: var(--font-en); font-size: 2.4cqw; font-weight: 500;
+      line-height: 1; letter-spacing: -0.02em; color: var(--c-text);
+    }
+    .step-cell-text {
+      font-family: var(--font-ja-m); font-size: 1.05cqw; line-height: 1.6; letter-spacing: 0.02em;
+    }
+    .step-cell-note {
+      font-family: var(--font-ja); font-size: 0.85cqw; color: var(--c-sub);
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="slide-stage" id="slide-stage"></div>
+<div class="nav-prev" id="nav-prev"></div>
+<div class="nav-next" id="nav-next"></div>
+<div class="status-bar" id="status-bar"></div>
+<button class="menu-btn" id="menu-btn"><span></span><span></span><span></span></button>
+<div class="progress-bar" id="progress-bar" style="width:0"></div>
+
+<div class="sidebar-overlay" id="sidebar-overlay">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img class="sidebar-logo" src="assets/logo.svg" alt="CRATER">
+      <button class="sidebar-close" id="sidebar-close">✕</button>
+    </div>
+    <div class="sidebar-list" id="sidebar-list"></div>
+  </nav>
+</div>
+
+<nav class="pagination" id="pagination"></nav>
+<div class="script-trigger" id="script-trigger"></div>
+<div class="script-panel" id="script-panel"></div>
+
+<script>
+// ============================================================
+// 石川 → 台湾 伝統工芸 海外展開プロジェクト（社内構想・全部出し版）
+// ============================================================
+
+window.bulletIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12,1.5A10.5,10.5,0,1,0,22.5,12,10.51,10.51,0,0,0,12,1.5ZM12,3A9,9,0,1,1,3,12,9,9,0,0,1,12,3Z"/><polygon points="10.5,16.5 6,12 8.25,10.5 10.5,12.75 15.75,6.75 18,9"/></svg>`;
+
+// 01 表紙
+function slideCover() {
+  return `<section class="slide" data-section="cover" data-notes="石川の伝統工芸を台湾へ展開するプロジェクトの社内構想です。">
+  <div class="s-cover">
+    <div class="s-cover-top"><span class="badge">INTERNAL / 社内構想</span></div>
+    <div class="s-cover-main">
+      <p class="s-cover-client">石川 × 台湾　伝統工芸 海外展開プロジェクト</p>
+      <h1 class="s-cover-title">石川の手仕事を、<br>台湾へ届ける。</h1>
+      <p class="s-cover-sub">A Bridge from Ishikawa to Taiwan</p>
+    </div>
+    <div class="s-cover-footer">
+      <img src="assets/logo.svg" alt="CRATER" style="height:1.4cqw;width:auto;">
+      <span class="logo-footer-copy">©CRATER Inc.</span>
+    </div>
+  </div>
+</section>`;
+}
+
+// 02 これは何か（1枚要約）
+function slideSummary() {
+  return `<section class="slide" data-section="summary" data-notes="一言でいうと、石川の伝統工芸をクレーターが取りまとめて台湾へ売る座組です。">
+  <div class="s-stmt">
+    <div class="s-stmt-top"><span class="badge">WHAT IS THIS</span></div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading">石川の伝統工芸を、<br>クレーターが取りまとめ、<br><span class="em-line">台湾へ売る。</span></h2>
+      <p class="s-stmt-body">
+        日本側の「元締め」をクレーターが担い、台湾側の運営会社が現地で販売する。<br>
+        キーワードは3つ ——「石川の元締め」「着金ベース」「台湾で売る」。
+      </p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 03 背景・なぜやるか
+function slideBackground() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="background" data-notes="石川の職人ネットワーク、台湾の親日市場、そして八田與一という石川と台湾を結ぶ歴史的な縁があります。">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">BACKGROUND</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading" style="font-size:3.4cqw;">なぜ、いま石川 × 台湾なのか。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">石川には輪島塗・山中漆器・金沢箔など、世界に通用する伝統工芸がある。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">クレーターは、その職人ネットワークに広く・確実につながれる。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">台湾は親日で、日本の工芸への需要が高い。百貨店POPUPの実績もある。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">石川出身の<span class="em-black">八田與一</span>は、台湾の灌漑を築いた英雄として今も敬愛されている。石川と台湾は、もともと縁で結ばれている。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">国・自治体も地方の海外進出を後押し。補助金という追い風がある。</span></li>
+      </ul>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 04 座組図（心臓部）
+function slideScheme() {
+  return `<section class="slide" data-section="scheme" data-notes="この事業の心臓部です。職人からクレーター、台湾の運営会社、顧客へとモノが流れ、お金は逆に流れます。">
+  <div class="s-diagram">
+    <div class="s-diagram-top"><span class="badge">SCHEME</span></div>
+    <div class="s-diagram-main">
+      <p class="s-diagram-title"><small>THE STRUCTURE</small>座組の全体像</p>
+      <div class="scheme-row">
+        <div class="scheme-node">
+          <span class="scheme-node-en">MAKER</span>
+          <span class="scheme-node-name">石川の職人</span>
+          <span class="scheme-node-sub">輪島塗・漆器・金箔<br>「作る」</span>
+        </div>
+        <div class="scheme-conn">
+          <span class="scheme-conn-mono">モノ →</span>
+          <span class="scheme-conn-line"></span>
+          <span class="scheme-conn-money">← お金</span>
+        </div>
+        <div class="scheme-node is-core">
+          <span class="scheme-node-en">HUB — CRATER</span>
+          <span class="scheme-node-name">クレーター</span>
+          <span class="scheme-node-sub">石川の元締め<br>発注を集約・仕入れ+マージン</span>
+        </div>
+        <div class="scheme-conn">
+          <span class="scheme-conn-mono">モノ →</span>
+          <span class="scheme-conn-line"></span>
+          <span class="scheme-conn-money">← お金</span>
+        </div>
+        <div class="scheme-node">
+          <span class="scheme-node-en">OPERATOR</span>
+          <span class="scheme-node-name">台湾の運営会社</span>
+          <span class="scheme-node-sub">店舗・EC・百貨店POPUP<br>現地で販売</span>
+        </div>
+        <div class="scheme-conn">
+          <span class="scheme-conn-mono">モノ →</span>
+          <span class="scheme-conn-line"></span>
+          <span class="scheme-conn-money">← お金</span>
+        </div>
+        <div class="scheme-node">
+          <span class="scheme-node-en">CUSTOMER</span>
+          <span class="scheme-node-name">台湾の顧客</span>
+          <span class="scheme-node-sub">石川の工芸を<br>「買う」</span>
+        </div>
+      </div>
+      <p class="scheme-note">モノの流れ：職人 → クレーター → 台湾 → 顧客　／　お金の流れ：顧客 → 台湾 → クレーター →（着金したら）→ 職人</p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 05 クレーターの役割
+function slideRole() {
+  return `<section class="slide" data-section="role" data-notes="クレーターは単なる卸売ではなく、石川の事業者に海外進出の入口を提供する存在です。">
+  <div class="s-stmt">
+    <div class="s-stmt-top"><span class="badge">OUR ROLE</span></div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading" style="font-size:4.0cqw;">石川の事業者に、<br><span class="em-line">海外進出の入口</span>をつくる。</h2>
+      <p class="s-stmt-body">
+        クレーターは、台湾からの発注を一手に受けて職人へ振り分ける「石川側の元締め（取りまとめ役）」。<br>
+        卸売で利益を得るだけでなく、一社では海外に出られない石川の作り手に、
+        <span class="em-black">「台湾で売れる」入口</span>そのものを提供する。品質・納期・支払いの責任を持つ、日本側の窓口になる。
+      </p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 06 収益モデル
+function slideRevenue() {
+  return `<section class="slide" data-section="revenue" data-notes="収益の主軸は仕入れ+マージン。補助金で立ち上げ、月額フィーは将来の一案です。">
+  <div class="s-diagram">
+    <div class="s-diagram-top"><span class="badge">REVENUE</span></div>
+    <div class="s-diagram-main">
+      <p class="s-diagram-title"><small>HOW WE EARN</small>収益モデル</p>
+      <div class="rev-grid">
+        <div class="rev-card is-main">
+          <span class="rev-num">01</span>
+          <span class="rev-tag">主軸</span>
+          <span class="rev-name">仕入れ+マージン</span>
+          <span class="rev-desc">職人から仕入れ、金額を乗せて台湾へ卸す。差額がクレーターの粗利。これが事業の柱。</span>
+        </div>
+        <div class="rev-card">
+          <span class="rev-num">02</span>
+          <span class="rev-tag">立ち上げの足掛かり</span>
+          <span class="rev-name">補助金</span>
+          <span class="rev-desc">石川・金沢の海外進出補助金を取り、初期の基盤づくり（営業・サイト・認知）の費用にあてる。</span>
+        </div>
+        <div class="rev-card is-future">
+          <span class="rev-num">03</span>
+          <span class="rev-tag">将来の一案（なくても可）</span>
+          <span class="rev-name">月額・システムフィー</span>
+          <span class="rev-desc">発注システムの利用料など。仕組みが育ったら乗せる、あくまで一案の収益源。</span>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 07 着金ベースの原則
+function slidePayment() {
+  return `<section class="slide" data-section="payment" data-notes="職人を先払いで待たせない。台湾から着金してから支払い、集めるという着金ベースの設計です。">
+  <div class="s-diagram">
+    <div class="s-diagram-top"><span class="badge">PRINCIPLE</span></div>
+    <div class="s-diagram-main">
+      <p class="s-diagram-title"><small>CASH-IN BASED</small>着金ベースの原則</p>
+      <div class="flow-row">
+        <div class="flow-step">
+          <span class="flow-step-num">STEP 01</span>
+          <span class="flow-step-name">台湾から着金</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <span class="flow-step-num">STEP 02</span>
+          <span class="flow-step-name">職人へすぐ支払い</span>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <span class="flow-step-num">STEP 03</span>
+          <span class="flow-step-name">モノを集める</span>
+        </div>
+      </div>
+      <p class="scheme-note" style="text-align:left;">職人を「先払いで待たせない」。資金リスクをクレーターが抱え込まず、職人との信頼を最優先にした設計。</p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 08 台湾側の役割
+function slideTaiwan() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="taiwan" data-notes="店舗・EC・百貨店POPUPの運営と現地プロモは台湾側が主導。クレーターは紹介と発信力を当てます。">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">TAIWAN SIDE</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading" style="font-size:3.4cqw;">現地は、台湾側にコントロールしてもらう。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">店舗運営 / EC運営 / 百貨店POPUP は台湾側がコントロールする。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">現地でのプロモーションも、台湾側が主導する。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">クレーターが当てるもの ——<span class="em-black">ECサイト運営会社の紹介</span>、そして<span class="em-black">酒井法子などの発信力</span>。</span></li>
+      </ul>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 09 補助金の使い道
+function slideSubsidy() {
+  const icon = window.bulletIcon;
+  return `<section class="slide" data-section="subsidy" data-notes="補助金は海外認知、集めるサイト、国内営業、業者開拓に使います。サイトは石川の補助金前提で金沢を主語にします。">
+  <div class="s-bullet">
+    <div class="s-bullet-top"><span class="badge">SUBSIDY</span></div>
+    <div class="s-bullet-main">
+      <h2 class="s-bullet-heading" style="font-size:3.4cqw;">補助金の使い道。</h2>
+      <ul class="s-bullet-list">
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">海外での認知向上（プロモーション）。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">国内の「金沢・石川のものを集めるサイト」制作。<span style="color:var(--c-sub);">※石川の補助金前提。工芸に特化せず「金沢だから／金沢でしか出せないもの」まで広げる可能性も残す。</span></span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">職人を取りまとめる国内営業の費用。</span></li>
+        <li class="s-bullet-item"><span class="s-bullet-icon">${icon}</span><span class="s-bullet-text">現地業者（運営会社・EC）の開拓。</span></li>
+      </ul>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 10 アンバサダー構想（酒井法子）
+function slideAmbassador() {
+  return `<section class="slide" data-section="ambassador" data-notes="酒井法子さんは台湾で絶大な人気があり、今は金沢でラジオをしている。金沢×台湾を一人で象徴できる存在です。">
+  <div style="position:relative;width:100%;height:1080px;">
+    <div class="s-split-text">
+      <div class="s-split-top"><span class="badge">AMBASSADOR</span></div>
+      <div class="s-split-main">
+        <span class="s-split-label">FACE OF THE PROJECT</span>
+        <h2 class="s-split-heading">金沢 × 台湾を、<br>一人で象徴できる顔。</h2>
+        <p class="s-split-body">
+          アンバサダー候補：<span class="em-black">酒井法子</span>。<br><br>
+          台湾で絶大な人気を持つ日本人でありながら、今は金沢でラジオを持ち、石川と縁がある。
+          「金沢 × 台湾」という、このプロジェクトそのものを一人で体現できる稀有な存在。
+          過去の経緯はあるが、台湾市場・地方発信という文脈ではむしろ兼ね合いが良い。まずはマネージャーへの接触から。
+        </p>
+      </div>
+    </div>
+    <div class="s-split-photo">
+      <div class="s-split-photo-placeholder"><span>PORTRAIT / 差し替え</span></div>
+    </div>
+  </div>
+</section>`;
+}
+
+// 11 金沢支店構想
+function slideBranch() {
+  return `<section class="slide" data-section="branch" data-notes="石川に支店を出すことで、現地の信頼と職人との距離を縮めます。">
+  <div class="s-stmt">
+    <div class="s-stmt-top"><span class="badge">KANAZAWA BRANCH</span></div>
+    <div class="s-stmt-main">
+      <h2 class="s-stmt-heading" style="font-size:4.2cqw;">金沢に、<br>支店を出す。</h2>
+      <p class="s-stmt-body">
+        石川に拠点を持つことで、現地での信頼を得て、職人との物理的な距離を縮める。<br>
+        「石川の元締め」を、名実ともに担うための足場になる。
+      </p>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 12 今後のステップ
+function slideSteps() {
+  return `<section class="slide" data-section="steps" data-notes="酒井法子のマネージャー接触から始め、台湾運営会社探し、補助金申請、職人ネット構築、仕組みづくり、そして台湾で販売開始です。">
+  <div class="s-diagram">
+    <div class="s-diagram-top"><span class="badge">NEXT STEPS</span></div>
+    <div class="s-diagram-main">
+      <p class="s-diagram-title"><small>ROADMAP</small>今後のステップ</p>
+      <div class="step-row">
+        <div class="step-cell">
+          <span class="step-cell-num">01</span>
+          <span class="step-cell-text">酒井法子の<br>マネージャーと接触</span>
+        </div>
+        <div class="step-cell">
+          <span class="step-cell-num">02</span>
+          <span class="step-cell-text">台湾側の<br>運営会社を探す</span>
+        </div>
+        <div class="step-cell">
+          <span class="step-cell-num">03</span>
+          <span class="step-cell-text">補助金の<br>申請・獲得</span>
+          <span class="step-cell-note">※先でも可</span>
+        </div>
+        <div class="step-cell">
+          <span class="step-cell-num">04</span>
+          <span class="step-cell-text">石川の職人<br>ネットワーク構築</span>
+        </div>
+        <div class="step-cell">
+          <span class="step-cell-num">05</span>
+          <span class="step-cell-text">集めるサイト・<br>発注の仕組み</span>
+        </div>
+        <div class="step-cell">
+          <span class="step-cell-num">06</span>
+          <span class="step-cell-text">台湾で<br>販売スタート</span>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+// 13 締め
+function slideClosing() {
+  return `<section class="slide" data-section="closing" data-notes="以上が石川→台湾プロジェクトの構想です。">
+  <div class="s-closing">
+    <div class="s-closing-main">
+      <div style="display:flex; flex-direction:column; gap:3.2cqw; align-items:flex-start; margin-top:30px;">
+        <img src="assets/logo.svg" alt="CRATER" style="height:2.4cqw; width:auto; display:block;">
+        <p class="s-closing-message">石川の手仕事を、台湾へ。<br>クレーターが石川の元締めとなり、着金ベースで職人を守りながら、海外の販路をつくる。</p>
+        <div class="s-closing-divider"></div>
+        <div class="s-closing-contact">
+          <p class="s-closing-url">crater.co.jp</p>
+          <p class="s-closing-tel">03-6665-0846</p>
+        </div>
+      </div>
+    </div>
+    <p class="slide-copy">©CRATER Inc.</p>
+  </div>
+</section>`;
+}
+
+window.slideFactories = [
+  slideCover, slideSummary, slideBackground, slideScheme, slideRole,
+  slideRevenue, slidePayment, slideTaiwan, slideSubsidy, slideAmbassador,
+  slideBranch, slideSteps, slideClosing,
+];
+window.agendaItems = [
+  { id: 'cover',      label: '表紙' },
+  { id: 'summary',    label: 'これは何か' },
+  { id: 'background', label: '背景・なぜやるか' },
+  { id: 'scheme',     label: '座組図' },
+  { id: 'role',       label: 'クレーターの役割' },
+  { id: 'revenue',    label: '収益モデル' },
+  { id: 'payment',    label: '着金ベースの原則' },
+  { id: 'taiwan',     label: '台湾側の役割' },
+  { id: 'subsidy',    label: '補助金の使い道' },
+  { id: 'ambassador', label: 'アンバサダー構想' },
+  { id: 'branch',     label: '金沢支店構想' },
+  { id: 'steps',      label: '今後のステップ' },
+  { id: 'closing',    label: '締め' },
+];
+
+// ===== 以下、未使用の旧テンプレ関数（参照用・呼び出しなし） =====
+</script>
+
+<script>
+(function () {
+  var stage       = document.getElementById('slide-stage');
+  var statusBar   = document.getElementById('status-bar');
+  var menuBtn     = document.getElementById('menu-btn');
+  var overlay     = document.getElementById('sidebar-overlay');
+  var sideClose   = document.getElementById('sidebar-close');
+  var sideList    = document.getElementById('sidebar-list');
+  var progress    = document.getElementById('progress-bar');
+  var navPrev     = document.getElementById('nav-prev');
+  var navNext     = document.getElementById('nav-next');
+  var scriptTrig  = document.getElementById('script-trigger');
+  var scriptPanel = document.getElementById('script-panel');
+  var pagination  = document.getElementById('pagination');
+  var current = 0;
+  var total   = slideFactories.length;
+  var rendered = {};
+  var currentScale = 1;
+
+  function scaleSlides() {
+    currentScale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.querySelectorAll('.slide').forEach(function (s) {
+      s.style.transform = 'translate(-50%, -50%) scale(' + currentScale + ')';
+    });
+    // ハンバーガーメニューをアートボード右上 2.4cqw に追従
+    var artW = 1920 * currentScale;
+    var artH = 1080 * currentScale;
+    var ox = (window.innerWidth  - artW) / 2;
+    var oy = (window.innerHeight - artH) / 2;
+    var margin = 46.08 * currentScale; // 2.4cqw = 46.08px
+    menuBtn.style.top   = (oy + margin) + 'px';
+    menuBtn.style.right = (ox + margin) + 'px';
+  }
+  window.addEventListener('resize', scaleSlides);
+
+  function ensureRendered(i) {
+    if (rendered[i] || i < 0 || i >= total) return;
+    var frag = document.createRange().createContextualFragment(slideFactories[i]());
+    // data-index を付けてインデックスで検索できるようにする
+    var el = frag.querySelector('.slide');
+    if (el) el.setAttribute('data-index', i);
+    stage.appendChild(frag);
+    rendered[i] = true;
+    scaleSlides();
+  }
+
+  function getSlide(i) {
+    return stage.querySelector('.slide[data-index="' + i + '"]');
+  }
+
+  function goTo(i, skipHash) {
+    if (i < 0 || i >= total) return;
+    [i - 1, i, i + 1].forEach(function (j) { ensureRendered(j); });
+    stage.querySelectorAll('.slide').forEach(function (s) { s.classList.remove('active'); });
+    var target = getSlide(i);
+    if (target) target.classList.add('active');
+    current = i;
+    if (!skipHash) history.replaceState(null, '', '#' + (i + 1));
+    var item = agendaItems[i] || { label: '' };
+    statusBar.textContent = item.label + '  ' + (i + 1) + ' / ' + total;
+    progress.style.width = ((i + 1) / total * 100) + '%';
+    document.querySelectorAll('.sidebar-item').forEach(function (el, idx) {
+      el.classList.toggle('active', idx === i);
+    });
+    document.querySelectorAll('.pagination-item').forEach(function (el, idx) {
+      el.classList.toggle('active', idx === i);
+    });
+  }
+
+  var initPage = 0;
+  var hash = window.location.hash.replace('#', '');
+  if (hash && !isNaN(hash)) {
+    var p = parseInt(hash, 10) - 1;
+    if (p >= 0 && p < total) initPage = p;
+  }
+  scaleSlides();
+  [0, 1, 2].forEach(function (i) { ensureRendered(i); });
+  goTo(initPage, true);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight' || e.key === ' ')         { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'Backspace') { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'Home')  { e.preventDefault(); goTo(0); }
+    if (e.key === 'End')   { e.preventDefault(); goTo(total - 1); }
+    if (e.key === 'Escape') { overlay.classList.remove('open'); }
+  });
+  navPrev.addEventListener('click', function () { goTo(current - 1); });
+  navNext.addEventListener('click', function () { goTo(current + 1); });
+  menuBtn.addEventListener('click', function () { overlay.classList.toggle('open'); });
+  sideClose.addEventListener('click', function () { overlay.classList.remove('open'); });
+  overlay.addEventListener('click', function (e) {
+    if (!e.target.closest('.sidebar')) overlay.classList.remove('open');
+  });
+
+  agendaItems.forEach(function (item, i) {
+    var btn = document.createElement('button');
+    btn.className = 'sidebar-item';
+    btn.innerHTML = '<span class="sidebar-num">' + String(i + 1).padStart(2, '0') + '</span><span>' + item.label + '</span>';
+    btn.addEventListener('click', function (e) { e.stopPropagation(); goTo(i); overlay.classList.remove('open'); });
+    sideList.appendChild(btn);
+
+    var pBtn = document.createElement('button');
+    pBtn.className = 'pagination-item';
+    pBtn.innerHTML = '<span class="pagination-num">' + String(i + 1).padStart(2, '0') + '</span><span>' + item.label + '</span>';
+    pBtn.addEventListener('click', function (e) { e.stopPropagation(); goTo(i); });
+    pagination.appendChild(pBtn);
+  });
+
+})();
+</script>
+
+</body>
+</html>
