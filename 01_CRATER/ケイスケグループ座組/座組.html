@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ケイスケグループ座組 — AI PRODUCTION SYSTEM</title>
+<style>
+  /* ===== ベース ===== */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-size:16px; line-height:1.8; color:#1a1a1a; background:#fafafa;
+    overflow-x:hidden;
+  }
+  .wrap { max-width:1200px; margin:0 auto; padding:56px 48px 96px; }
+
+  /* ===== ヘッダー＋メニュー ===== */
+  .meta-label { font-size:10px; letter-spacing:.28em; color:#888; text-transform:uppercase; }
+  h1 { font-size:clamp(24px, 4vw, 34px); font-weight:700; letter-spacing:.06em; margin:8px 0 4px; }
+  .lead { font-size:14px; color:#555; }
+  header { margin-bottom:28px; }
+  .menu {
+    display:flex; gap:0; border:1px solid #1a1a1a; margin-bottom:48px;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  .menu button {
+    flex:1 0 auto; appearance:none; border:none; background:#fff; cursor:pointer;
+    font-family:inherit; font-size:13px; font-weight:600; letter-spacing:.06em; color:#555;
+    padding:13px 18px; border-right:1px solid #ddd; transition:background .15s, color .15s;
+  }
+  .menu button:last-child { border-right:none; }
+  .menu button:hover { background:#f0f0f0; }
+  .menu button.active { background:#1a1a1a; color:#fff; }
+
+  /* ===== ページ切替 ===== */
+  .page { display:none; }
+  .page.active { display:block; animation:fade .25s ease; }
+  @keyframes fade { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+  .page-title { font-size:20px; font-weight:700; letter-spacing:.08em; margin-bottom:6px; display:flex; align-items:center; gap:12px; }
+  .page-title::before { content:""; width:22px; height:2px; background:#C93A2B; }
+  .page-lead { font-size:14px; color:#555; margin-bottom:32px; }
+  .stamp { font-size:11px; color:#888; letter-spacing:.08em; margin:-22px 0 24px; }
+  .sub-head { font-size:15px; font-weight:700; letter-spacing:.06em; margin:36px 0 12px; }
+  .sub-head:first-of-type { margin-top:0; }
+  .list-note { font-size:14px; color:#555; margin-top:10px; }
+
+  /* ===== フロー図 ===== */
+  .flow { display:flex; flex-direction:column; align-items:center; }
+  .node {
+    width:100%; max-width:760px; background:#fff; border:1px solid #1a1a1a;
+    padding:18px 24px; text-align:center;
+  }
+  .node .tag { font-size:10px; letter-spacing:.24em; color:#888; display:block; margin-bottom:2px; }
+  .node .name { font-size:17px; font-weight:700; }
+  .node .desc { font-size:13px; color:#555; margin-top:4px; }
+  .node.human { background:#1a1a1a; color:#fff; }
+  .node.human .desc { color:rgba(255,255,255,.75); }
+  .node.human .tag { color:rgba(255,255,255,.65); }
+  .node.gate { border:1px dashed #C93A2B; }
+  .node.gate .name { color:#C93A2B; }
+  .arrow { display:flex; flex-direction:column; align-items:center; padding:6px 0; }
+  .arrow .line { width:1px; height:22px; background:#1a1a1a; }
+  .arrow .lbl { font-size:12px; color:#555; padding:2px 0; }
+  .arrow .head { width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:7px solid #1a1a1a; }
+  .exec { display:flex; gap:14px; width:100%; max-width:920px; }
+  .exec .cell { flex:1; background:#fff; border:1px solid #ccc; padding:16px 18px; }
+  .exec .cell b { display:block; font-size:15px; margin-bottom:4px; }
+  .exec .cell p { font-size:13px; color:#555; line-height:1.7; }
+
+  /* ===== テーブル ===== */
+  .tbl-scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; background:#fff; font-size:14px; }
+  th, td { border:1px solid #ddd; padding:12px 16px; text-align:left; vertical-align:top; }
+  th { background:#1a1a1a; color:#fff; font-weight:600; font-size:13px; letter-spacing:.06em; }
+  td b { font-size:14px; }
+  td .sub { color:#555; font-size:13px; }
+  /* リストの日付列は一行死守（nowrapは使わずmin-widthで確保） */
+  #list td:last-child, #list th:last-child { min-width:80px; }
+
+  /* ===== スキルナー ===== */
+  .honmaru { background:#fff; border-left:4px solid #C93A2B; padding:20px 24px; margin-bottom:20px; }
+  .honmaru .t { font-weight:700; font-size:15px; color:#C93A2B; letter-spacing:.04em; }
+  .honmaru p { font-size:14px; color:#333; margin-top:6px; }
+  .layers { display:flex; gap:14px; }
+  .layers .cell { flex:1; background:#fff; border:1px solid #ccc; padding:16px 18px; }
+  .layers .no { font-size:10px; letter-spacing:.24em; color:#888; }
+  .layers b { display:block; font-size:15px; margin:2px 0 4px; }
+  .layers p { font-size:13px; color:#555; line-height:1.7; }
+  .layers .cost { display:inline-block; margin-top:8px; font-size:11px; color:#C93A2B; border:1px solid #C93A2B; padding:1px 8px; letter-spacing:.08em; }
+
+  /* ===== ルール ===== */
+  .rules { background:#fff; border:1px solid #1a1a1a; padding:26px 30px; }
+  .rules li { list-style:none; font-size:14px; color:#333; padding:9px 0; border-bottom:1px solid #eee; }
+  .rules li:last-child { border-bottom:none; }
+  .rules li::before { content:"—"; color:#C93A2B; margin-right:12px; }
+
+  /* ===== 組織図（ツリー） ===== */
+  .orgtree { background:#fff; border:1px solid #1a1a1a; padding:30px 34px; overflow-x:auto; }
+  .orgtree .root { display:inline-block; background:#1a1a1a; color:#fff; padding:10px 24px; font-weight:700; font-size:16px; letter-spacing:.06em; }
+  .orgtree .root small { display:block; font-size:10px; letter-spacing:.22em; color:rgba(255,255,255,.65); font-weight:400; }
+  .orgtree ul { list-style:none; padding-left:16px; }
+  .orgtree > ul { padding-left:22px; margin-top:2px; }
+  .orgtree li { position:relative; padding:5px 0 5px 22px; }
+  .orgtree li::before { content:""; position:absolute; left:0; top:-6px; bottom:0; border-left:1px solid #c4c4c4; }
+  .orgtree li::after { content:""; position:absolute; left:0; top:1.1em; width:16px; border-top:1px solid #c4c4c4; }
+  .orgtree li:last-child::before { height:calc(1.1em + 6px); bottom:auto; }
+  .node-kuroko { display:inline-block; border:1px solid #1a1a1a; padding:6px 18px; font-weight:700; font-size:15px; }
+  .node-kuroko em { font-style:normal; font-size:10px; letter-spacing:.2em; color:#888; margin-left:10px; }
+  .dept-node > .dn { font-size:14px; font-weight:700; letter-spacing:.04em; }
+  .dept-node > .dn em { font-style:normal; font-size:10px; letter-spacing:.18em; color:#888; margin-left:8px; }
+  .member { font-size:14px; }
+  .member span { color:#555; font-size:13px; margin-left:10px; }
+  .new-tag { display:inline-block; font-size:10px; color:#C93A2B; border:1px solid #C93A2B; padding:0 6px; margin-left:8px; letter-spacing:.1em; vertical-align:1px; }
+  .dept-node.vacant > .dn { color:#777; }
+  .dept-node.vacant .member b { color:#777; }
+
+  footer { margin-top:72px; border-top:1px solid #1a1a1a; padding-top:16px; display:flex; justify-content:space-between; }
+  footer span { font-size:10px; letter-spacing:.22em; color:#888; }
+
+  /* ===== SP ===== */
+  @media (max-width:768px){
+    .wrap { padding:40px 32px 64px; width:100%; box-sizing:border-box; }
+    .exec, .layers { flex-direction:column; }
+    .orgtree { padding:22px 16px; }
+    .member span { display:block; margin-left:0; }
+    table { display:block; overflow-x:auto; }
+    footer { flex-direction:column; gap:4px; }
+    .menu button { padding:12px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="meta-label">KEISUKE GROUP — AI PRODUCTION SYSTEM</span>
+    <h1>ケイスケグループ座組</h1>
+    <p class="lead">ケイスケが話す相手はクロコだけ。道具と手足はクロコが差配する。｜2026.07 制定</p>
+  </header>
+
+  <nav class="menu">
+    <button data-page="list" class="active">リスト</button>
+    <button data-page="flow">全体フロー</button>
+    <button data-page="org">組織図</button>
+    <button data-page="rules">運用ルール</button>
+  </nav>
+
+  <!-- ページ：リスト -->
+  <section class="page active" id="list">
+    <div class="page-title">リスト — 秘書課の現在形</div>
+    <p class="page-lead">中断リスト・質問リストの「今」。元データはメモリ側が正。リストを書き換えるたびにこのページも同時更新する。</p>
+    <p class="stamp">最終同期：2026-07-23</p>
+
+    <div class="sub-head">📋 中断リスト（タスク進行管理）</div>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th>案件</th><th>進捗（今どこ）</th><th>次のアクション</th><th>更新</th></tr>
+        <tr><td><b>制作ツール運転自動化</b></td><td class="sub">Kive初運転成功（A CURRYで1ループ）。座組・/ツール運転スキル確立。Riverflow/Runwayは公式API判明</td><td class="sub">RunwareでAPIキー→Riverflow/Runway接続／Sunoログイン</td><td class="sub">2026<br>07-23</td></tr>
+        <tr><td><b>GILT CROW</b></td><td class="sub">コンセプト確定・メンバー5人確定・1曲目歌詞確定・Suno初回生成成功</td><td class="sub">①AIけいすけでコンセプト検証 ②音楽性の言語化 ③Persona化 ④曲量産 ⑤顔生成→LoRA</td><td class="sub">2026<br>07-17</td></tr>
+        <tr><td><b>5サイト統合viewダッシュボード</b></td><td class="sub">構想段階。5サイトを一画面で見比べ・週1SP通知</td><td class="sub">①指標特定 ②UI設計 ③データ取得・通知設計</td><td class="sub">2026<br>07-14</td></tr>
+        <tr><td><b>新Spark移行＋CLI連携</b></td><td class="sub">ConoHa=IMAP/SMTP手入力が必要で認証失敗中</td><td class="sub">IMAP/SMTP確認→手入力ログイン→CLI連携</td><td class="sub">2026<br>07-13</td></tr>
+        <tr><td><b>A CURRY Shopify実装</b></td><td class="sub">トップ〜下層まで実装済み（Pencil書き出し反映）</td><td class="sub">GA4/GTM・ファビコン・OGP・BowNowフォーム</td><td class="sub">2026<br>07-06</td></tr>
+        <tr><td><b>A CURRY 在庫管理</b></td><td class="sub">台帳運用開始。「在庫出して」で即表示</td><td class="sub">入出庫を随時追記（1ケース=30食）</td><td class="sub">2026<br>07-06</td></tr>
+        <tr><td><b>LINEスタンプ（あっくん）</b></td><td class="sub">⑧案（坊主・でか目）が最有力</td><td class="sub">キャラ確定→制作→LINE審査</td><td class="sub">2026<br>06-08</td></tr>
+        <tr><td><b>3DCG→3Dプリンター</b></td><td class="sub">アイデア段階</td><td class="sub">Blender→スライサー連携を調査</td><td class="sub">2026<br>06-08</td></tr>
+        <tr><td><b>CRATERスライドテンプレ</b></td><td class="sub">表紙ほぼ完成。ステータスバーがハンバーガーと被り中</td><td class="sub">ステータスバーを左上 or 中央上へ</td><td class="sub">2026<br>05-24</td></tr>
+        <tr><td><b>/スライド スキル改修</b></td><td class="sub">ヒアリング分岐が未実装</td><td class="sub">分岐追加＋A1/DINで本品質に作り直し</td><td class="sub">2026<br>05-22</td></tr>
+        <tr><td><b>LINEタスクBot</b></td><td class="sub">動作確認済み。フォーマット崩れ問題</td><td class="sub">Notionバックエンド化で作り直し</td><td class="sub">2026<br>05-18</td></tr>
+        <tr><td><b>パッケージモックアップスキル</b></td><td class="sub">未着手</td><td class="sub">スキル新規作成</td><td class="sub">2026<br>05-15</td></tr>
+        <tr><td><b>APOLLOS AIインフルエンサー</b></td><td class="sub">Yuna・APOS設計完了。パイプライン未構築</td><td class="sub">ビジュアル生成→投稿パイプライン→開設</td><td class="sub">2026<br>05-14</td></tr>
+        <tr><td><b>BowNow+GA 週次レポート</b></td><td class="sub">スプシ作成済み。API情報待ち</td><td class="sub">API揃い次第、設定再開</td><td class="sub">2026<br>05-14</td></tr>
+        <tr><td><b>APOLLOS Meta Graph API</b></td><td class="sub">IGビジネスアカウント・FBページ紐づけ完了</td><td class="sub">アプリ作成→Graph API有効化</td><td class="sub">2026<br>05-13</td></tr>
+        <tr><td><b>REQST ブランド立ち上げ</b></td><td class="sub">ネームコンセプト確定「ものには、続きがある。」</td><td class="sub">VI設計・ブランドボード制作</td><td class="sub">2026<br>05-13</td></tr>
+      </table>
+    </div>
+    <p class="list-note">✅ 完了（8件）：尾山神社翻訳／APOLLOSサイト／人と空間／LP社内デザイナー顧問／Amazon A CURRY／尾山神社保守契約／シャチハタ提案書／JHL金の時</p>
+
+    <div class="sub-head">❓ 質問リスト（預かり・回付）</div>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th>質問先</th><th>誰</th><th>質問</th><th>状態</th><th>更新</th></tr>
+        <tr><td><b>ライジング</b></td><td>🧑</td><td class="sub">CHICS LPのアナリティクスを引っ張れるか確認</td><td class="sub">🔵 未解決</td><td class="sub">2026<br>07-14</td></tr>
+      </table>
+    </div>
+
+  </section>
+
+
+  <!-- ページ1：全体フロー -->
+  <section class="page" id="flow">
+    <div class="page-title">全体フロー</div>
+    <p class="page-lead">誰が受けて、誰が作り、何を通って、ケイスケに届くか。座組の背骨。</p>
+    <div class="flow">
+      <div class="node human">
+        <span class="tag">HUMAN</span>
+        <span class="name">ケイスケ</span>
+        <div class="desc">実在する唯一の入力者。意図だけ話す</div>
+      </div>
+      <div class="arrow"><div class="line"></div><div class="lbl">意図</div><div class="head"></div></div>
+      <div class="node">
+        <span class="tag">RECEPTION / CD</span>
+        <span class="name">クロコ（窓口 兼 クリエイティブディレクター）</span>
+        <div class="desc">全セッション共通の人格。「どの職能で・どこで・並列いくつ」を判断して差配</div>
+      </div>
+      <div class="arrow"><div class="line"></div><div class="lbl">差配</div><div class="head"></div></div>
+      <div class="exec">
+        <div class="cell">
+          <b>スキル＝職能</b>
+          <p>やり方の本棚。ツール運転／KV制作／Pencil／コピー／見積書／視座者…。人格AI社員の実体もこれ</p>
+        </div>
+        <div class="cell">
+          <b>サブエージェント＝手足</b>
+          <p>一時雇いのクロコ分身。必要なスキルを読んで並列・裏で実行し、結果だけ返して消える</p>
+        </div>
+        <div class="cell">
+          <b>セッション＝並列ライン</b>
+          <p>長く走る独立ライン。1案件 or 1ツール＝1セッション（日本語名）。裏で同時に走る</p>
+        </div>
+      </div>
+      <div class="arrow"><div class="line"></div><div class="lbl">制作物</div><div class="head"></div></div>
+      <div class="node gate">
+        <span class="tag">QC — OPTIONAL</span>
+        <span class="name">検品ゲート：AIけいすけ</span>
+        <div class="desc">標準OFF。「AIけいすけ入れて」と言った時だけ、対象1件にサブエージェント1体で起動</div>
+      </div>
+      <div class="arrow"><div class="line"></div><div class="lbl">合格品だけ</div><div class="head"></div></div>
+      <div class="node human">
+        <span class="tag">FINAL REVIEW</span>
+        <span class="name">ケイスケ 最終レビュー</span>
+        <div class="desc">人間が触る唯一のチェックポイント。ここの「返し」が教師データになる</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ページ5：組織図 -->
+  <section class="page" id="org">
+    <div class="page-title">組織図 — ケイスケグループ（40職）</div>
+    <p class="page-lead">全AI社員の所属ツリー。新設は赤タグ、欠員は点線。</p>
+    <div class="orgtree">
+      <div class="root">ケイスケ<small>GROUP OWNER</small></div>
+      <ul>
+        <li>
+          <span class="node-kuroko">クロコ<em>統括・窓口 / CD</em></span>
+          <ul>
+            <li class="dept-node"><span class="dn">社長室｜秘書課</span>
+              <ul>
+                <li class="member"><b>中断リスト</b><span>タスク進行管理</span></li>
+                <li class="member"><b>質問リスト</b><span>質問の預かり・回付</span></li>
+                <li class="member"><b>スケジュール</b><span>日程調整の整形</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">経営企画室<em>参謀・戦略</em></span>
+              <ul>
+                <li class="member"><b>視座者</b><span>視座を強制転換する企画参謀</span></li>
+                <li class="member"><b>提案者</b><span>「今日やる1本」を出す攻め担当</span></li>
+                <li class="member"><b>APOLLOS司令塔AI</b><span>APOLLOS案件統括</span></li>
+                <li class="member"><b>APOLLOS参謀AI</b><span>APOLLOS事業参謀</span></li>
+                <li class="member"><b>APOLLOS認知戦略AI</b><span>認知チャネル戦略</span></li>
+                <li class="member"><b>デザイン経営BM</b><span>「もう一本の柱」構想</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">品質管理室<em>検品</em></span>
+              <ul>
+                <li class="member"><b>AIけいすけ</b><span>美意識検品。標準OFF・「入れて」で出勤</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">制作部｜ブランド課</span>
+              <ul>
+                <li class="member"><b>ブランドマネージャー</b><span>課長（司令塔）</span></li>
+                <li class="member"><b>ブランドボード／診断／ボイス</b><span>ボード・分析・トーン</span></li>
+                <li class="member"><b>ブランドネーム／コアコード</b><span>命名・記号設計</span></li>
+                <li class="member"><b>VI設計者／デザインシステム／ビジュアルシート</b><span>VI・設計書類</span></li>
+                <li class="member"><b>スタイル抽出／印象読み取り</b><span>感覚の言語化</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">制作部｜ビジュアル課</span>
+              <ul>
+                <li class="member"><b>KV制作</b><span>キービジュアル統括</span></li>
+                <li class="member"><b>kive-KV</b><span>Kive専任</span></li>
+                <li class="member"><b>画像生成</b><span>画像生成全般</span></li>
+                <li class="member"><b>ワークス</b><span>実績画像・モックアップ</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">制作部｜Web課</span>
+              <ul>
+                <li class="member"><b>Pencil骨子クロコ仕上げ</b><span>Web制作の標準フロー</span></li>
+                <li class="member"><b>コンテンツマップ／ワイヤー／レイアウトフレーム</b><span>設計3点</span></li>
+                <li class="member"><b>コメント機能</b><span>レビュー用ピン実装</span></li>
+                <li class="member"><b>既存サイト調査</b><span>リニューアル前調査</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">制作部｜スライド課</span>
+              <ul>
+                <li class="member"><b>スライド／スライド_案件／スライド知見</b><span>提案書・企画書</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">オペレーション部<em>道具係</em></span>
+              <ul>
+                <li class="member"><b>ツール運転</b><span>Pencil/Kive/Riverflow/Runway/Sunoの運転手</span><span class="new-tag">新設</span></li>
+                <li class="member"><b>翻訳</b><span>翻訳全般</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">営業部</span>
+              <ul>
+                <li class="member"><b>APOLLOS受注提案AI</b><span>ヒアリング〜提案書</span></li>
+                <li class="member"><b>見積書</b><span>見積作成（単価リファレンス連携）</span></li>
+                <li class="member"><b>営業リスト担当</b><span>周年ロゴ営業先の収集→スプシ化</span><span class="new-tag">新設</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">マーケ運用部</span>
+              <ul>
+                <li class="member"><b>Amazon担当／Instagram担当</b><span>EC・SNS運用</span></li>
+                <li class="member"><b>GA分析</b><span>アクセス解析</span></li>
+                <li class="member"><b>リテラ</b><span>記事・SEO/LLMO</span></li>
+                <li class="member"><b>ギフティング</b><span>インフルエンサー施策</span></li>
+                <li class="member"><b>補助金／アワード／公募・応募担当</b><span>助成金・賞レース・公募</span></li>
+              </ul>
+            </li>
+            <li class="dept-node"><span class="dn">人事部<em>採用・育成</em></span>
+              <ul>
+                <li class="member"><b>AI社員採用</b><span>新規AI社員の採用設計</span></li>
+                <li class="member"><b>AIけいすけ移植</b><span>AIけいすけの育成インタビュー</span></li>
+                <li class="member"><b>スキルナー</b><span>知見管理。本丸＝ケイスケの返し採取</span><span class="new-tag">新設</span></li>
+              </ul>
+            </li>
+            <li class="dept-node vacant"><span class="dn">欠員<em>募集中</em></span>
+              <ul>
+                <li class="member"><b>音楽クリエイター</b><span>未採用。GILT CROWは現状メモリ運用。Suno運転が繋がったら採用</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ページ4：運用ルール -->
+  <section class="page" id="rules">
+    <div class="page-title">運用ルール</div>
+    <p class="page-lead">座組のルール・考え方・ツールのつなぎ方をこの1ページに集約。</p>
+
+    <div class="sub-head">📏 運用ルール</div>
+    <ul class="rules">
+      <li><b>AIけいすけは標準OFF</b>。「入れて」の時だけ・対象1件に限定（常時ONはクレジット即死の前科）</li>
+      <li><b>常駐の監視・検品エージェントは置かない</b>。書くのはクロコ自身、専任は呼ばれた時だけ</li>
+      <li><b>時間がかかりそうな依頼（2〜3分超）は、着手前にクロコが「別セッションで回す？」と1行提案</b></li>
+      <li><b>ブラウザ運転(Kive・Suno)は同時1本</b>。API運転（Runway・Riverflow）は無制限に並列</li>
+      <li><b>大きな独立ラインはセッション分け</b>、ライン内の並列はサブエージェント</li>
+      <li>クロコは実況しない。<b>判断が要る所（結果が出た時）だけ提示</b></li>
+      <li>合言葉は2つだけ：<b>「棚卸しして」</b>（知見整理）／<b>「AIけいすけ入れて」</b>（検品）</li>
+    </ul>
+  
+
+    <div class="sub-head">🧭 4つの区別（迷ったらここ）</div>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th style="width:22%">概念</th><th style="width:38%">正体</th><th>使いどころ</th></tr>
+        <tr>
+          <td><b>スキル</b></td>
+          <td>「やり方」のマニュアル。人格AI社員も実体はこれ</td>
+          <td class="sub">職能を貯める場所。どのセッションからでも呼べる</td>
+        </tr>
+        <tr>
+          <td><b>サブエージェント</b></td>
+          <td>セッション内の並列ワーカー（使い捨て）</td>
+          <td class="sub">3方向KVの同時生成／AIけいすけ検品／調査の並列</td>
+        </tr>
+        <tr>
+          <td><b>セッション</b></td>
+          <td>長く走る独立ライン</td>
+          <td class="sub">「Kive運転」「ESION」「GILT CROW」など。日本語名で分ける</td>
+        </tr>
+        <tr>
+          <td><b>フォルダ</b></td>
+          <td>CRATER／APOLLOS／クライアント＝<b>ただの保存先</b></td>
+          <td class="sub">ルールは各フォルダのCLAUDE.mdに置くだけ。座組とは無関係</td>
+        </tr>
+      </table>
+    </div>
+  
+
+    <div class="sub-head">📚 知見の貯め方 — スキルナー3層</div>
+    <div class="honmaru">
+      <div class="t">★ 本丸：ケイスケの「返し」を採取して、AIけいすけを日常の中で育てる</div>
+      <p>「AIっぽい」「コントラスト強い」「もっと自然に」——日常の一言一言が美意識の教師データ。出た瞬間に1〜3行でメモリへ。手順の知見より、これが最優先。</p>
+    </div>
+    <div class="layers">
+      <div class="cell">
+        <span class="no">LAYER 01</span>
+        <b>インライン即記</b>
+        <p>返し・手順・回避策が出た瞬間に、該当スキル／メモリへ1〜3行追記。クロコ自身がその場でやる</p>
+        <span class="cost">コストほぼゼロ・常時</span>
+      </div>
+      <div class="cell">
+        <span class="no">LAYER 02</span>
+        <b>区切りメモ</b>
+        <p>タスク完了・セッション終わりに30秒だけ「再利用できる学びは？」。なければ書かない</p>
+        <span class="cost">1ターン弱・区切りのみ</span>
+      </div>
+      <div class="cell">
+        <span class="no">LAYER 03</span>
+        <b>棚卸し</b>
+        <p>「棚卸しして」と言った時だけ専任が1体。重複統合・知見の移し替え・死んだ記述の削除</p>
+        <span class="cost">呼ばれた時だけ</span>
+      </div>
+    </div>
+  
+
+    <div class="sub-head">🔌 ツール運転 — 外部ツールのつなぎ方</div>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th>ツール</th><th>用途</th><th>つなぎ方</th><th>並列</th></tr>
+        <tr><td><b>Pencil</b></td><td class="sub">Web・静止画デザイン（.pen）</td><td class="sub">専用MCP（アプリ連携）</td><td class="sub">全セッションから呼べる</td></tr>
+        <tr><td><b>Kive</b></td><td class="sub">商品KV・ブランド画像</td><td class="sub">ブラウザ運転（ログイン済）</td><td class="sub">ツール内で複数生成は並列可</td></tr>
+        <tr><td><b>Suno</b></td><td class="sub">音楽（GILT CROW）</td><td class="sub">ブラウザ運転（本アカ・BAN回避）</td><td class="sub">同上</td></tr>
+        <tr><td><b>Runway</b></td><td class="sub">映像</td><td class="sub">公式API（キー未設定）</td><td class="sub">無制限</td></tr>
+        <tr><td><b>Riverflow</b></td><td class="sub">ブランド画像</td><td class="sub">公式API＝Runware経由（キー未設定）</td><td class="sub">無制限</td></tr>
+      </table>
+    </div>
+  
+  </section>
+
+  <footer>
+    <span>KEISUKE GROUP — INTERNAL</span>
+    <span>KEISUKE GROUP ZAGUMI v1.1 / 2026.07</span>
+  </footer>
+
+</div>
+
+<script>
+  // タブ切り替え（ハッシュ対応：#org で組織図を直接開ける）
+  const buttons = document.querySelectorAll('.menu button');
+  const pages = document.querySelectorAll('.page');
+  function show(id) {
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.page === id));
+    history.replaceState(null, '', '#' + id);
+    window.scrollTo(0, 0);
+  }
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
+  const h = location.hash.slice(1);
+  if (h && document.getElementById(h)) show(h);
+</script>
+</body>
+</html>
