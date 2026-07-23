@@ -74,20 +74,37 @@ js='''
   root.style.height=y+'px';
  }
 
- // ---- アコーディオン（FLEX ORDERについて / 30日間返金保証）デフォルト閉・タップ開閉 ----
+ // ---- アコーディオン（FLEX ORDERについて / 30日間返金保証）デフォルト閉・キュイーンと開閉 ----
+ var EASE='height .6s cubic-bezier(.16,1,.3,1), margin-top .6s cubic-bezier(.16,1,.3,1)';
+ function follow(ms){ var t0=performance.now(); (function f(){ layoutLower(); if(performance.now()-t0<ms) requestAnimationFrame(f); })(); }
  [['flex-acc','achead','acbody'],['rg-acc','rghead','rgbody']].forEach(function(cfg){
   var acc=document.querySelector('[data-pencil-name="'+cfg[0]+'"]'); if(!acc)return;
   var head=acc.querySelector('[data-pencil-name="'+cfg[1]+'"]');
   var body=acc.querySelector('[data-pencil-name="'+cfg[2]+'"]');
   if(!head||!body)return;
   var pm=head.querySelector('[data-pencil-name="pm"]');
-  body.style.display='none';
+  var open=false;
+  body.style.overflow='hidden';
+  body.style.height='0px';
+  body.style.marginTop='-12px';
+  body.style.transition=EASE;
   head.style.cursor='pointer';
   head.addEventListener('click',function(){
-   var open=body.style.display!=='none';
-   body.style.display=open?'none':'flex';
-   if(pm)pm.textContent=open?'＋':'−';
-   layoutLower(); setTimeout(layoutLower,60);
+   open=!open;
+   if(pm)pm.textContent=open?'−':'＋';
+   if(open){
+    var h=body.scrollHeight;
+    body.offsetHeight;
+    body.style.marginTop='0px';
+    body.style.height=h+'px';
+    setTimeout(function(){ if(open){ body.style.height='auto'; } layoutLower(); },620);
+   }else{
+    body.style.height=body.offsetHeight+'px';
+    body.offsetHeight;
+    body.style.marginTop='-12px';
+    body.style.height='0px';
+   }
+   follow(700);
   });
  });
 
