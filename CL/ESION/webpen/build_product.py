@@ -58,7 +58,70 @@ js='''
  var S=1;
  var mask=document.querySelector('[data-pencil-name="photo-mask"]');
  function z(){ S=window.innerWidth/1199; root.style.zoom=S; if(mask){ mask.style.width='600px'; mask.style.height=(window.innerHeight/S)+'px'; } }
- window.addEventListener('resize',z); z();
+ window.addEventListener('resize',function(){ z(); layoutLower(); }); z();
+
+ // ---- 下段セクション追従（右カラムの高さに合わせてお客様の声/バナー/フッターを配置） ----
+ var rs=document.querySelector('[data-pencil-name="right-scroll"]');
+ var lf=document.querySelector('[data-pencil-name="left-fixed"]');
+ var vo=document.querySelector('[data-pencil-name="Voices"]');
+ var ba=document.querySelector('[data-pencil-name="こだわりバナー"]');
+ var ft=document.querySelector('[data-pencil-name="Footer"]');
+ function layoutLower(){
+  if(!rs)return;
+  var y=rs.offsetTop+rs.offsetHeight;
+  if(lf)lf.style.height=y+'px';
+  [vo,ba,ft].forEach(function(sec){ if(!sec)return; sec.style.top=y+'px'; y+=sec.offsetHeight; });
+  root.style.height=y+'px';
+ }
+
+ // ---- アコーディオン（FLEX ORDERについて / 30日間返金保証）デフォルト閉・タップ開閉 ----
+ [['flex-acc','achead','acbody'],['rg-acc','rghead','rgbody']].forEach(function(cfg){
+  var acc=document.querySelector('[data-pencil-name="'+cfg[0]+'"]'); if(!acc)return;
+  var head=acc.querySelector('[data-pencil-name="'+cfg[1]+'"]');
+  var body=acc.querySelector('[data-pencil-name="'+cfg[2]+'"]');
+  if(!head||!body)return;
+  var pm=head.querySelector('[data-pencil-name="pm"]');
+  body.style.display='none';
+  head.style.cursor='pointer';
+  head.addEventListener('click',function(){
+   var open=body.style.display!=='none';
+   body.style.display=open?'none':'flex';
+   if(pm)pm.textContent=open?'＋':'−';
+   layoutLower(); setTimeout(layoutLower,60);
+  });
+ });
+
+ // ---- 購入タイプ切替（デフォルト＝FLEX） ----
+ var oF=document.querySelector('[data-pencil-name="o-flex"]'), oN=document.querySelector('[data-pencil-name="o-normal"]');
+ function selStyle(el,on){
+  if(!el)return;
+  el.style.border=on?'2px solid #0D41A8':'1px solid #D8E0EA';
+  el.style.background=on?'#F5F8FC':'#FFFFFF';
+  var a=el.querySelector('[data-pencil-name="a"]'), b=el.querySelector('[data-pencil-name="b"]');
+  if(a)a.style.color=on?'#002677':'#4A5578';
+  if(b)b.style.color=on?'#0D41A8':'#8A93A6';
+ }
+ if(oF&&oN){
+  oF.style.cursor='pointer'; oN.style.cursor='pointer';
+  oF.addEventListener('click',function(){ selStyle(oF,true); selStyle(oN,false); });
+  oN.addEventListener('click',function(){ selStyle(oF,false); selStyle(oN,true); });
+ }
+
+ // ---- リンク（黒字＝リンク指示） ----
+ [].slice.call(document.querySelectorAll('[data-pencil-name="linkbtn"]')).forEach(function(lb){
+  var url=lb.closest('[data-pencil-name="rgbody"]')?'https://esion.jp/shop/pages/30days':'https://esion.jp/shop/pages/flexorder';
+  lb.style.cursor='pointer';
+  lb.addEventListener('click',function(){ window.open(url,'_blank'); });
+ });
+
+ // ---- SNS Xロゴを正式SVGに差し替え ----
+ var xc=document.querySelector('[data-pencil-name="social"] [data-pencil-name="X"]');
+ if(xc){ xc.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>'; }
+
+ layoutLower();
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layoutLower);
+ window.addEventListener('load',layoutLower);
+ setTimeout(layoutLower,400); setTimeout(layoutLower,1200);
 
  // ---- 左メイン画像 ふわっとクロスフェード ＋ サムネ切替 ----
  var thumbs=[].slice.call(document.querySelectorAll('[data-pencil-name="thumbs"] > div'));
