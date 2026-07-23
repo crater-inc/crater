@@ -108,20 +108,32 @@ js='''
   });
  });
 
- // ---- 購入タイプ切替（デフォルト＝FLEX） ----
- var oF=document.querySelector('[data-pencil-name="o-flex"]'), oN=document.querySelector('[data-pencil-name="o-normal"]');
- function selStyle(el,on){
-  if(!el)return;
-  el.style.border=on?'2px solid #0D41A8':'1px solid #D8E0EA';
-  el.style.background=on?'#F5F8FC':'#FFFFFF';
-  var a=el.querySelector('[data-pencil-name="a"]'), b=el.querySelector('[data-pencil-name="b"]');
-  if(a)a.style.color=on?'#002677':'#4A5578';
-  if(b)b.style.color=on?'#0D41A8':'#8A93A6';
- }
- if(oF&&oN){
-  oF.style.cursor='pointer'; oN.style.cursor='pointer';
-  oF.addEventListener('click',function(){ selStyle(oF,true); selStyle(oN,false); });
-  oN.addEventListener('click',function(){ selStyle(oF,false); selStyle(oN,true); });
+ // ---- 単品購入：1本/3本/5本セット選択（ヘッダー価格も連動） ----
+ var PR={'opt-1':'¥4,500','opt-3':'¥12,150','opt-5':'¥18,000'};
+ var tp=document.querySelector('[data-pencil-name="tp-price"]');
+ var opts=[].slice.call(document.querySelectorAll('[data-pencil-name="opt-1"],[data-pencil-name="opt-3"],[data-pencil-name="opt-5"]'));
+ opts.forEach(function(o){
+  o.style.cursor='pointer';
+  o.addEventListener('click',function(){
+   opts.forEach(function(x){
+    var on=x===o;
+    x.style.border=on?'2px solid #0D41A8':'1px solid #D8E0EA';
+    x.style.background=on?'#F5F8FC':'#FFFFFF';
+    var a=x.querySelector('[data-pencil-name="a"]'), p=x.querySelector('[data-pencil-name="p"]');
+    if(a)a.style.color=on?'#002677':'#4A5578';
+    if(p)p.style.color=on?'#0D41A8':'#8A93A6';
+   });
+   if(tp)tp.textContent=PR[o.getAttribute('data-pencil-name')]||tp.textContent;
+  });
+ });
+
+ // ---- 数量 −/＋（FLEXブロック内・最小1） ----
+ var qn=document.querySelector('[data-pencil-name="num"]');
+ var qm=document.querySelector('[data-pencil-name="minus"]'), qp=document.querySelector('[data-pencil-name="plus"]');
+ if(qn&&qm&&qp){
+  qm.style.cursor='pointer'; qp.style.cursor='pointer';
+  qm.addEventListener('click',function(){ qn.textContent=String(Math.max(1,(parseInt(qn.textContent,10)||1)-1)); });
+  qp.addEventListener('click',function(){ qn.textContent=String((parseInt(qn.textContent,10)||1)+1); });
  }
 
  // ---- リンク（黒字＝リンク指示） ----
