@@ -31,10 +31,16 @@ SITES = {
         "ng": ["pixel", "iphone", "スマホ", "安く買う", "格安", "#", "楽天", "amazon"],
     },
     "CHICS KW": {
-        "seeds": ["ロゴ制作", "会社 ロゴ", "起業 準備", "法人設立", "屋号 決め方", "ロゴ 商標登録"],
+        "per_run": 30,  # CHICSだけ1回30件（ケイスケ指定 2026-07-17）
+        # 切り口を広く分散（法人設立に偏らないよう18種。法人系は1本のみ・キャップで独占防止）
+        "seeds": ["ロゴ制作", "会社 ロゴ", "起業 準備", "法人設立", "屋号 決め方",
+                   "ロゴ 商標登録", "名刺 デザイン", "会社名 決め方", "ブランディング とは", "開業届",
+                   "ロゴ 意味", "フリーランス 名刺", "独立 開業", "起業 女性",
+                   "会社設立 お祝い", "ショップカード", "看板 デザイン", "肩書き 一覧"],
         # 他社ロゴ画像が必要になる「一覧・事例・有名企業ロゴ」系は画像集めが大変なので除外（テキストの◯選はOK）
         "ng": ["フリー素材", "無料 ダウンロード", "作り方 illustrator",
-                "ロゴ一覧", "有名企業 ロゴ", "企業ロゴ 一覧", "ロゴ 事例", "ロゴ集", "有名 ロゴ", "かっこいいロゴ"],
+                "ロゴ一覧", "有名企業 ロゴ", "企業ロゴ 一覧", "ロゴ 事例", "ロゴ集", "有名 ロゴ", "かっこいいロゴ",
+                "toha", "スタバ", "スターバックス", "ナイキ", "アディダス", "アップル", "マクドナルド", "結婚"],
     },
     "YEARS KW": {
         "seeds": ["周年ロゴ", "周年記念 ロゴ", "会社 周年", "周年 デザイン", "社史", "記念品 会社"],
@@ -127,20 +133,25 @@ def score(it):
 
 
 def pick(by_seed, n=PER_SITE):
-    """切り口の幅を保ちつつ、スコア順に各種から拾う（ラウンドロビン）"""
+    """切り口の幅を保ちつつ、スコア順に各種から拾う（ラウンドロビン）。
+    偏り防止：1つの切り口からは均等割＋α までしか採らない（深い井戸の独占を防ぐ）"""
+    import math
+    cap = max(2, math.ceil(n / max(1, len(by_seed))))  # 例: 8個/10種→2, 30個/10種→3
     for lst in by_seed:
         lst.sort(key=score, reverse=True)
     chosen, used = [], set()
     idx = [0] * len(by_seed)
+    taken = [0] * len(by_seed)
     while len(chosen) < n:
         progressed = False
         for i, lst in enumerate(by_seed):
             if len(chosen) >= n: break
+            if taken[i] >= cap: continue
             while idx[i] < len(lst) and lst[idx[i]]["norm"] in used:
                 idx[i] += 1
             if idx[i] < len(lst):
                 it = lst[idx[i]]; idx[i] += 1
-                used.add(it["norm"]); chosen.append(it); progressed = True
+                used.add(it["norm"]); chosen.append(it); taken[i] += 1; progressed = True
         if not progressed: break
     return chosen
 
@@ -160,7 +171,7 @@ def main(sites=None, dry=False):
         max_no = max([int(r[0]) for r in existing_vals if r and r[0].isdigit()] or [0])
 
         cands = collect_candidates(cfg["seeds"], cfg["ng"], seen)
-        chosen = pick(cands)
+        chosen = pick(cands, n=cfg.get("per_run", PER_SITE))
         if not chosen:
             print(f"[{tab}] 新規KWなし（井戸が枯れ気味／要・切り口追加）"); continue
 
