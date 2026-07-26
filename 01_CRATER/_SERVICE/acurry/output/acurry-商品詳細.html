@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>肉じゃがカレー｜A CURRY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Serif+JP:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --sub:#444;          /* 本文補足 */
+    --meta:#888;         /* ラベル・メタ */
+    --line:#00000014;
+    --bg:#ffffff;
+    --soft:#f7f4ef;
+    --panel:#f2f2f2;
+    --panel2:#ececec;
+    --accent:#c94f6d;
+    --gold:#c9a24f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  .en{font-family:'Playfair Display',serif;}
+  .mincho{font-family:'Noto Serif JP',serif;}
+
+  /* ===== ヘッダー ===== */
+  .site-header{
+    position:sticky;top:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 64px;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-header .logo{height:32px;width:auto;}
+  .gnav{display:flex;align-items:center;gap:34px;}
+  .gnav a{font-size:13px;color:var(--ink);letter-spacing:.5px;}
+  .gnav a:hover{opacity:.6;}
+  .header-cart{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:1px;}
+  .header-cart svg{width:20px;height:20px;}
+
+  /* ===== パンくず ===== */
+  .breadcrumb{
+    max-width:1440px;margin:0 auto;
+    padding:26px 64px 0;
+    font-family:'Playfair Display',serif;
+    font-size:12px;letter-spacing:2px;color:#33333399;
+  }
+
+  /* ===== 商品ボディ 2カラム ===== */
+  .product{
+    max-width:1440px;margin:0 auto;
+    padding:36px 64px 0;
+    display:grid;
+    grid-template-columns:minmax(0,560px) 1fr;
+    gap:80px;
+    align-items:start;
+  }
+  /* 左：sticky画像（メイン＋右サムネ縦列） */
+  .gallery{position:sticky;top:96px;display:flex;gap:12px;align-items:flex-start;}
+  .gallery .main{
+    flex:1;min-width:0;aspect-ratio:46/76;
+    border-radius:8px;overflow:hidden;background:#E99980;
+  }
+  .gallery .main img{width:100%;height:100%;object-fit:cover;}
+
+  /* 右：コンテンツ */
+  .col-right{display:flex;flex-direction:column;gap:100px;}
+  .block{display:flex;flex-direction:column;}
+
+  /* サムネ縦列（メイン画像の右・常に見える・比率はメインに合わせる） */
+  .thumbs{display:flex;flex-direction:column;gap:12px;width:88px;flex-shrink:0;}
+  .thumbs button{
+    width:100%;aspect-ratio:88/145;border-radius:8px;overflow:hidden;
+    border:2px solid transparent;padding:0;background:#E99980;
+    transition:border-color .2s;
+  }
+  .thumbs button.active{border-color:var(--ink);}
+  .thumbs img{width:100%;height:100%;object-fit:cover;}
+
+  /* 商品情報 */
+  .info{display:flex;flex-direction:column;gap:22px;}
+  .info .cat{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;letter-spacing:3px;color:#00000099;}
+  .info .name{font-family:'Noto Serif JP',serif;font-size:38px;font-weight:600;letter-spacing:1px;line-height:1.3;}
+  .info .price{font-size:22px;font-weight:600;}
+  .info .desc{font-size:15px;line-height:1.9;color:var(--sub);}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{padding:7px 14px;border-radius:999px;border:1px solid #00000026;font-size:12px;font-weight:600;letter-spacing:1px;color:#333;}
+  .buy{display:flex;align-items:center;gap:14px;}
+  .qty{display:flex;align-items:center;gap:20px;height:56px;padding:0 18px;border-radius:8px;background:var(--panel);border:1px solid #00000022;}
+  .qty button{background:none;border:none;font-size:18px;line-height:1;color:var(--ink);width:16px;}
+  .qty span{font-size:18px;font-weight:600;min-width:14px;text-align:center;}
+  .cart-btn{flex:1;height:56px;border:none;border-radius:8px;background:#111;color:#f7f4ef;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:1px;}
+  .cart-btn svg{width:18px;height:18px;}
+  .cart-btn:hover{background:#000;}
+  .spec{border-radius:8px;background:var(--panel);padding:6px 22px;}
+  .spec .row{display:flex;justify-content:space-between;padding:14px 0;font-size:13px;}
+  .spec .row+.row{border-top:1px solid #00000010;}
+  .spec .k{font-weight:600;color:#666;}
+
+  /* First Bite */
+  .fb-en{font-family:'Playfair Display',serif;font-size:clamp(56px,8vw,96px);font-weight:600;line-height:.93;color:#1f1f1f;}
+  .fb-copy{font-family:'Noto Serif JP',serif;font-size:clamp(24px,3.4vw,32px);font-weight:600;letter-spacing:1px;line-height:1.4;margin-top:10px;}
+  .fb-sub{font-size:14px;letter-spacing:1px;line-height:1.8;color:var(--sub);margin-top:10px;}
+  .fb-img{width:100%;aspect-ratio:672/360;border-radius:8px;overflow:hidden;background:#cfb9ad;margin-top:24px;}
+  .fb-img img{width:100%;height:100%;object-fit:cover;}
+
+  /* THE RECIPE */
+  .recipe .ey{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;letter-spacing:3px;color:#555;}
+  .recipe .h{font-family:'Noto Serif JP',serif;font-size:clamp(26px,3.6vw,32px);font-weight:600;line-height:1.4;margin-top:20px;}
+  .recipe .b{font-size:15px;line-height:1.95;color:#333;margin-top:20px;}
+
+  /* The Craft */
+  .craft-head .en{font-family:'Playfair Display',serif;font-size:44px;font-weight:600;color:#111;}
+  .craft-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:var(--meta);margin-top:5px;}
+  .points{margin-top:28px;}
+  .point{display:flex;gap:28px;padding:24px 0;align-items:flex-start;}
+  .point+.point{border-top:1px solid var(--line);}
+  .point .kick{font-family:'Noto Serif JP',serif;font-size:30px;font-weight:600;letter-spacing:1px;min-width:96px;}
+  .point .pt{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:600;}
+  .point .pd{font-size:14px;line-height:1.9;color:var(--sub);margin-top:6px;}
+
+  /* 原材料表 */
+  .zairyo-h{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:600;margin-bottom:20px;}
+  .table{border-radius:8px;overflow:hidden;}
+  .trow{display:flex;align-items:flex-start;}
+  .trow:nth-child(odd){background:var(--panel);}
+  .trow:nth-child(even){background:var(--panel2);}
+  .trow .tk{width:140px;flex-shrink:0;padding:16px 18px;font-size:12px;font-weight:600;color:#666;}
+  .trow .tv{padding:16px 18px;font-size:12.5px;line-height:1.7;}
+
+  /* How to Eat */
+  .eat-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;}
+  .eat-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#333;margin-top:6px;}
+  .steps{display:flex;flex-direction:column;gap:14px;margin-top:24px;}
+  .step{display:flex;gap:20px;align-items:flex-start;background:#eee;border-radius:8px;padding:28px;}
+  .step .num{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;color:var(--accent);}
+  .step .st{font-family:'Noto Serif JP',serif;font-size:19px;font-weight:600;}
+  .step .sd{font-size:14px;line-height:1.85;color:var(--sub);margin-top:8px;}
+
+  /* ===== レビュー ===== */
+  .voice{background:var(--soft);padding:88px 64px;margin-top:96px;}
+  .voice-inner{max-width:1312px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:44px;}
+  .voice-head{text-align:center;}
+  .voice-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;}
+  .voice-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#333;margin-top:8px;}
+  .summary{display:flex;align-items:center;gap:14px;}
+  .stars{display:flex;gap:3px;}
+  .stars svg{width:22px;height:22px;fill:var(--gold);}
+  .summary .score{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;}
+  .summary .cnt{font-size:13px;color:#555;}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;}
+  .card{background:#fff;border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:16px;}
+  .card .cstars{display:flex;gap:2px;}
+  .card .cstars svg{width:15px;height:15px;fill:var(--gold);}
+  .card .ct{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:600;line-height:1.4;}
+  .card .cb{font-size:14px;line-height:1.9;color:var(--sub);}
+  .card .cn{font-size:12px;letter-spacing:1px;color:var(--meta);}
+
+  /* ===== Other Curry ===== */
+  .other{max-width:1440px;margin:0 auto;padding:80px 64px;}
+  .other-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#1a1a1a;}
+  .other-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#555;margin-top:6px;}
+  .other-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px;}
+  .other-card .oimg{width:100%;height:420px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:12px;letter-spacing:3px;}
+  .other-card .onm{font-size:18px;font-weight:600;margin-top:14px;}
+  .other-card .opr{font-size:15px;color:#555;margin-top:4px;}
+  .other-card:nth-child(1) .oimg{background:#A3CC44;}
+  .other-card:nth-child(2) .oimg{background:#F2C645;}
+
+  /* ===== フッター ===== */
+  .footer{background:#171717;color:#f7f4ef;padding:76px 64px 44px;}
+  .footer-inner{max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:64px;}
+  .footer-top{display:flex;justify-content:space-between;gap:64px;flex-wrap:wrap;}
+  .newsletter{width:380px;max-width:100%;}
+  .newsletter .nh{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:3px;color:#f7f4ef99;}
+  .newsletter .nd{font-size:14px;line-height:1.7;color:#f7f4efcc;margin-top:16px;}
+  .nform{display:flex;justify-content:space-between;align-items:center;background:#f2f2f2;height:50px;padding:0 20px;margin-top:16px;border-radius:2px;}
+  .nform input{border:none;background:none;font-size:16px;color:#1a1a1a;width:70%;outline:none;}
+  .nform button{background:none;border:none;font-family:'Playfair Display',serif;font-size:12px;letter-spacing:2px;color:#1a1a1a;}
+  .fcols{display:flex;gap:64px;flex-wrap:wrap;}
+  .fcol h4{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:2px;color:#f7f4ef99;font-weight:500;margin-bottom:14px;}
+  .fcol a{display:block;font-size:13px;color:#f7f4efcc;margin-bottom:14px;}
+  .fcol a:hover{color:#f7f4ef;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .footer-brand .flogo{height:44px;width:auto;margin-bottom:16px;}
+  .footer-brand .ftg{font-size:13px;color:#f7f4ef99;}
+  .fsns svg{width:20px;height:20px;stroke:#f7f4ef;}
+
+  /* ===== レスポンシブ ===== */
+  @media (max-width:768px){
+    .site-header{padding:14px 20px;}
+    .gnav{display:none;}
+    .breadcrumb{padding:22px 32px 0;}
+    .product{grid-template-columns:1fr;gap:48px;padding:24px 32px 0;}
+    .gallery{position:static;}
+    .thumbs{width:64px;}
+    .col-right{gap:72px;}
+    .info .name{font-size:30px;}
+    .voice{padding:64px 32px;margin-top:72px;}
+    .cards{grid-template-columns:1fr;}
+    .other{padding:64px 32px;}
+    .other-grid{grid-template-columns:1fr;}
+    .other-card .oimg{height:300px;}
+    .footer{padding:56px 32px 40px;}
+    .footer-top{flex-direction:column;gap:40px;}
+    .fcols{gap:40px;}
+    .point{gap:18px;}
+    .point .kick{min-width:64px;font-size:26px;}
+    .trow .tk{width:110px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="site-header">
+  <a href="#"><img class="logo" src="logo_ink.png" alt="A CURRY"></a>
+  <nav class="gnav">
+    <a href="#">SHOP</a>
+    <a href="#">こだわり</a>
+    <a href="#">ブランドについて</a>
+    <a href="#">ジャーナル</a>
+    <a href="#" class="header-cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      CART
+    </a>
+  </nav>
+</header>
+
+<!-- パンくず -->
+<div class="breadcrumb">HOME / SHOP / 肉じゃがカレー</div>
+
+<!-- 商品ボディ -->
+<section class="product">
+  <!-- 左：sticky画像 -->
+  <div class="gallery">
+    <div class="main"><img id="mainImg" src="nikujaga-2.jpg" alt="肉じゃがカレー"></div>
+    <div class="thumbs">
+      <button class="active" data-img="nikujaga-2.jpg"><img src="nikujaga-2.jpg" alt=""></button>
+      <button data-img="nikujaga-1.jpg"><img src="nikujaga-1.jpg" alt=""></button>
+      <button data-img="pdp-olive.webp"><img src="pdp-olive.webp" alt=""></button>
+      <button data-img="pdp-quiet.jpg"><img src="pdp-quiet.jpg" alt=""></button>
+    </div>
+  </div>
+
+  <!-- 右：コンテンツ -->
+  <div class="col-right">
+
+    <!-- 商品情報 -->
+    <div class="info block">
+      <div class="cat">NIKUJAGA CURRY</div>
+      <h1 class="name">肉じゃがカレー</h1>
+      <div class="price">¥1,180（税込）</div>
+      <p class="desc">国産素材と32種のスパイス。直火焙煎ルウでコクを出した、あ！となる中辛の一皿。ほくほくのじゃがいもと柔らかな豚肉を、カレーで再解釈しました。</p>
+      <div class="chips">
+        <span class="chip">国産素材</span>
+        <span class="chip">32種スパイス</span>
+        <span class="chip">直火焙煎ルウ</span>
+        <span class="chip">中辛</span>
+      </div>
+      <div class="buy">
+        <div class="qty">
+          <button id="minus">−</button><span id="qtyval">1</span><button id="plus">＋</button>
+        </div>
+        <button class="cart-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          カートに入れる
+        </button>
+      </div>
+      <div class="spec">
+        <div class="row"><span class="k">内容量</span><span class="v">200g（1人前）</span></div>
+        <div class="row"><span class="k">辛さ</span><span class="v">中辛</span></div>
+        <div class="row"><span class="k">賞味期限</span><span class="v">2027年6月13日</span></div>
+        <div class="row"><span class="k">製造</span><span class="v">キャニオンスパイス</span></div>
+      </div>
+    </div>
+
+    <!-- First Bite -->
+    <div class="fb block">
+      <div class="fb-en en">First Bite</div>
+      <div class="fb-copy mincho">ひと口目に、小さな「あ！」。</div>
+      <div class="fb-sub">旨み溢れる肉じゃがのじゃがいもと国産豚肉に、32種のスパイスが重なる。</div>
+      <div class="fb-img"><img src="pdp-olive.webp" alt="素材カット"></div>
+    </div>
+
+    <!-- THE RECIPE -->
+    <div class="recipe block">
+      <div class="ey">THE RECIPE</div>
+      <h2 class="h">肉じゃがを、<br>カレーで再解釈する。</h2>
+      <p class="b">国産のじゃがいも・玉ねぎ・にんじん、そして柔らかく煮含めた国産豚肉。日本の食卓に馴染んだ肉じゃがの旨みを、32種のスパイスと直火焙煎のルウで包み込みました。懐かしさではなく、まだ出会ったことのない一皿として。ひと口ごとに、小さな「あ！」が生まれます。</p>
+    </div>
+
+    <!-- The Craft -->
+    <div class="craft block">
+      <div class="craft-head">
+        <div class="en">The Craft</div>
+        <div class="jp">おいしさの理由</div>
+      </div>
+      <div class="points">
+        <div class="point">
+          <div class="kick mincho">32種</div>
+          <div>
+            <div class="pt">厳選スパイスを、一から配合</div>
+            <div class="pd">コリアンダー、ウコン、クミンをはじめ32種類をブレンド。市販のルウは使いません。</div>
+          </div>
+        </div>
+        <div class="point">
+          <div class="kick mincho">直火</div>
+          <div>
+            <div class="pt">焙煎で引き出す、香りとコク</div>
+            <div class="pd">ブレンドしたスパイスを直火で丁寧に焙煎。香り高く、奥深いコクのルウに仕上げます。</div>
+          </div>
+        </div>
+        <div class="point">
+          <div class="kick mincho">国産</div>
+          <div>
+            <div class="pt">素材は、すべて国産</div>
+            <div class="pd">豚肉・じゃがいも・玉ねぎ・人参は国産。素材の旨みを活かした、やさしい味わいです。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 原材料・アレルゲン -->
+    <div class="zairyo block">
+      <h2 class="zairyo-h">原材料・アレルゲン</h2>
+      <div class="table">
+        <div class="trow"><div class="tk">原材料名</div><div class="tv">野菜（じゃがいも、玉ねぎ、人参）（国産）、豚肉、ぶどう糖果糖液糖、発酵調味料、でん粉、醤油、調味だし、なたね油、カレー粉、小麦粉、砂糖、食用油脂（牛脂）、ポークエキス、こんぶエキス、食用油脂（豚脂）、食塩、たん白加水分解物、酵母エキス、チキンエキス、バター、各種スパイス／調味料（アミノ酸）、カラメル色素、（一部に小麦・乳成分・牛肉・豚肉・鶏肉・大豆・さばを含む）</div></div>
+        <div class="trow"><div class="tk">含む（一部）</div><div class="tv">小麦・乳成分・牛肉・豚肉・鶏肉・大豆・さば</div></div>
+        <div class="trow"><div class="tk">同工場で製造</div><div class="tv">卵・えび・かに・落花生・くるみ</div></div>
+        <div class="trow"><div class="tk">栄養成分（200g）</div><div class="tv">エネルギー 208kcal／たんぱく質 5.5g／脂質 8.7g／炭水化物 26.8g／食塩相当量 2.8g</div></div>
+        <div class="trow"><div class="tk">保存・殺菌</div><div class="tv">直射日光を避け常温で保存。気密性容器に密封し、加圧加熱殺菌。</div></div>
+        <div class="trow"><div class="tk">製造・販売</div><div class="tv">製造：キャニオンスパイス（大阪府泉南市）／販売：株式会社クレーター</div></div>
+      </div>
+    </div>
+
+    <!-- How to Eat -->
+    <div class="eat block">
+      <div class="eat-head">
+        <div class="en">How to Eat</div>
+        <div class="jp">3ステップで、あ！</div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num en">01</div>
+          <div><div class="st">温める</div><div class="sd">袋のまま熱湯で5〜7分。電子レンジは中身を耐熱容器に移しラップをかけ、500Wで約2分温めます。</div></div>
+        </div>
+        <div class="step">
+          <div class="num en">02</div>
+          <div><div class="st">かける</div><div class="sd">炊きたてのごはんにたっぷりと。お好みでルウとごはんは別皿にしても。</div></div>
+        </div>
+        <div class="step">
+          <div class="num en">03</div>
+          <div><div class="st">味わう</div><div class="sd">一口目の「あ！」を、ぜひ。仕上げに刻みねぎや温泉卵もおすすめです。</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- レビュー -->
+<section class="voice">
+  <div class="voice-inner">
+    <div class="voice-head">
+      <div class="en">Voice</div>
+      <div class="jp">お客様の声</div>
+    </div>
+    <div class="summary">
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+      </div>
+      <div class="score en">5.0</div>
+      <div class="cnt">20件のレビュー</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="cstars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg></div>
+        <div class="ct">また、絶対に買う。</div>
+        <div class="cb">スパイスの香りが本格的で、レトルトの概念が変わりました。ひと口目で本当に「あ！」と声が出た。</div>
+        <div class="cn">40代・女性</div>
+      </div>
+      <div class="card">
+        <div class="cstars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg></div>
+        <div class="ct">家族全員がおかわり。</div>
+        <div class="cb">子どもにも食べやすい中辛で、じゃがいもがほくほく。肉じゃがの優しさとカレーの奥行きが同居してる。</div>
+        <div class="cn">30代・男性</div>
+      </div>
+      <div class="card">
+        <div class="cstars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg></div>
+        <div class="ct">これをギフトにしました。</div>
+        <div class="cb">パッケージがおしゃれで、渡した相手にすごく喜ばれた。味も間違いなくて、また贈りたい一皿です。</div>
+        <div class="cn">50代・女性</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Other Curry -->
+<section class="other">
+  <div class="other-head">
+    <div class="en">Other Curry</div>
+    <div class="jp">ほかの「あ！」</div>
+  </div>
+  <div class="other-grid">
+    <a class="other-card" href="#">
+      <div class="oimg">商品写真</div>
+      <div class="onm">柚子胡椒プリプリ豚カレー</div>
+      <div class="opr">¥1,180（税込）</div>
+    </a>
+    <a class="other-card" href="#">
+      <div class="oimg">商品写真</div>
+      <div class="onm">牡蠣とココナッツのスープカレー</div>
+      <div class="opr">¥1,180（税込）</div>
+    </a>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="newsletter">
+        <div class="nh">NEWSLETTER</div>
+        <div class="nd">初めての方へ。ご登録で10%OFFクーポンをお届けします。</div>
+        <form class="nform" onsubmit="return false;">
+          <input type="email" placeholder="メールアドレス">
+          <button type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
+      <div class="fcols">
+        <div class="fcol">
+          <h4>SHOP</h4>
+          <a href="#">肉じゃがカレー</a>
+          <a href="#">牡蠣ココナッツ</a>
+          <a href="#">柚子胡椒豚</a>
+          <a href="#">セット商品</a>
+        </div>
+        <div class="fcol">
+          <h4>MENU</h4>
+          <a href="#">ホーム</a>
+          <a href="#">ジャーナル</a>
+          <a href="#">ブランドについて</a>
+          <a href="#">こだわり</a>
+          <a href="#">お客様の声</a>
+        </div>
+        <div class="fcol">
+          <h4>SUPPORT</h4>
+          <a href="#">よくある質問</a>
+          <a href="#">お問い合わせ</a>
+          <a href="#">特定商取引法</a>
+          <a href="#">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-brand">
+        <img class="flogo" src="assets/logo_white.png" alt="A CURRY" onerror="this.style.display='none'">
+        <div class="ftg">あ！となる一皿。</div>
+      </div>
+      <div class="fsns">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // サムネ切替
+  const mainImg = document.getElementById('mainImg');
+  document.querySelectorAll('.thumbs button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.thumbs button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      mainImg.src = btn.dataset.img;
+    });
+  });
+  // 数量
+  let qty = 1;
+  const qtyval = document.getElementById('qtyval');
+  document.getElementById('plus').onclick = ()=>{ qty++; qtyval.textContent = qty; };
+  document.getElementById('minus').onclick = ()=>{ if(qty>1){ qty--; qtyval.textContent = qty; } };
+</script>
+
+</body>
+</html>
