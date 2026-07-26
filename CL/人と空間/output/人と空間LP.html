@@ -131,6 +131,10 @@
   /* ============ Concept ============ */
   .concept .h2{font-size:clamp(30px,4.5vw,54px);line-height:1.5}
   .concept__sub{margin:28px 0 0;font-size:16px;line-height:2;color:var(--sub);max-width:720px}
+  .concept__inner{display:flex;gap:clamp(40px,5vw,96px);align-items:center}
+  .concept__text{flex:1 1 0;min-width:0}
+  .concept__media{flex:0 0 42%;max-width:600px}
+  .concept__media img{width:100%;aspect-ratio:583/422;object-fit:cover;display:block}
 
   /* ============ Services ============ */
   #services{position:relative;overflow:visible}
@@ -340,6 +344,7 @@
     .h2{font-size:26px;line-height:1.4}
     .concept .h2{font-size:27px}
     .concept__sub{font-size:15px}
+    .concept__media{display:none}
     .contact .h2{font-size:23px}
     .pr-steps{grid-template-columns:1fr}
     .pr-step{border-left:none;border-top:1px solid var(--line);padding:24px 0}
@@ -400,10 +405,15 @@
 
 <!-- ============ Concept ============ -->
 <section class="section concept" id="concept">
-  <div class="wrap">
-    <h2 class="h2 reveal hang">「人」と「空間」から、<br>お客様の体験を変える。</h2>
-    <p class="shoulder">( CONCEPT )</p>
-    <p class="concept__sub fade">AI時代の店舗CX・UX改善のパイオニア。顧客体験価値と空間品質の改善を、<br>調査・分析・伴走支援で実現します。</p>
+  <div class="wrap concept__inner">
+    <div class="concept__text">
+      <h2 class="h2 reveal hang">「人」と「空間」から、<br>お客様の体験を変える。</h2>
+      <p class="shoulder">( CONCEPT )</p>
+      <p class="concept__sub fade">AI時代の店舗CX・UX改善のパイオニア。顧客体験価値と空間品質の改善を、<br>調査・分析・伴走支援で実現します。</p>
+    </div>
+    <div class="concept__media fade">
+      <img src="assets/concept.jpg" alt="白い店内空間を歩く人物">
+    </div>
   </div>
 </section>
 
