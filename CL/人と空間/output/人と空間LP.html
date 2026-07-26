@@ -233,7 +233,8 @@
     justify-content:space-between;gap:clamp(40px,6vw,120px);align-items:start;
   }
   .contact__left{position:relative;width:100%;max-width:701px;aspect-ratio:701/1035}
-  .contact__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:#eee;z-index:0}
+  .contact__img{position:absolute;inset:0;z-index:0;background:#eee;overflow:hidden}
+  .contact__img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
   .contact__head{position:relative;z-index:1;padding:18% 13% 0 13%}
   .contact .h2{font-size:clamp(26px,2.6vw,38px)}
   .contact__note{font-size:14px;line-height:2;color:var(--sub);margin:20px 0 0;max-width:400px}
@@ -550,7 +551,10 @@
 <section class="section contact" id="contact">
   <div class="contact__inner">
     <div class="contact__left">
-      <img class="contact__img" src="assets/contact.jpg" alt="白い空間を歩く人物">
+      <picture class="contact__img">
+        <source media="(max-width:768px)" srcset="assets/contact-sp.jpg">
+        <img src="assets/contact.jpg" alt="白い空間を歩く人物">
+      </picture>
       <div class="contact__head">
         <h2 class="h2 reveal">どのサービスが合うか<br>分からなくても、<br>まず相談を。</h2>
         <p class="shoulder">( CONTACT )</p>
@@ -679,7 +683,9 @@
   var pxItems=document.querySelectorAll('[data-parallax]');
   function onParallax(){
     var vh=window.innerHeight;
+    var isSP=window.innerWidth<=768;                 // SPはパララックスOFF
     pxItems.forEach(function(el){
+      if(isSP){el.style.transform='';return;}
       var r=el.getBoundingClientRect();
       var p=(r.top+r.height/2-vh/2)/vh;               // -1〜1
       var sp=parseFloat(el.dataset.parallax);
