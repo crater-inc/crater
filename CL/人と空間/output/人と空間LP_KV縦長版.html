@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人と空間 — KV縦長版（KV〜Concept）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#111214;--sub:#4F5257;--meta:#7E8187;--line:#E4E4E6;--soft:#F3F3F3;--paper:#FFFFFF;
+    --font-en:'Inter',sans-serif;--font-jp:'Noto Sans JP','Hiragino Sans',sans-serif;
+    --pad-x:clamp(32px,5.5vw,96px);--maxw:1680px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-jp);font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .shoulder{font-family:var(--font-en);font-size:11px;letter-spacing:.28em;font-weight:600;color:var(--ink);margin-top:16px}
+  .h2{font-family:var(--font-jp);font-weight:700;line-height:1.5;margin:0}
+
+  .reveal .ch{display:inline-block;opacity:0;transform:translateY(.55em);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1)}
+  .reveal.is-in .ch{opacity:1;transform:translateY(0)}
+  .fade{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .fade.is-in{opacity:1;transform:none}
+
+  /* ヘッダー（透明・ブラウザ幅） */
+  .header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:76px;transition:height .4s ease}
+  .header.scrolled{height:64px}
+  .header__logo img{height:26px;width:auto}
+  .header__right{display:flex;align-items:center;gap:40px}
+  .nav{display:flex;align-items:center;gap:36px}
+  .nav a{font-family:var(--font-en);font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--ink);transition:opacity .2s}
+  .nav a:hover{opacity:.5}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-jp);font-size:12px;font-weight:700;padding:11px 22px;border:1.4px solid var(--ink);border-radius:100px;transition:background .25s,color .25s}
+  .btn:hover{background:var(--ink);color:#fff}
+  .btn .arw{width:14px;height:14px}
+  .nav-toggle{display:none}
+
+  /* ============ KV縦長（Hero＋Concept） ============ */
+  .kvtall{position:relative;padding-bottom:clamp(90px,14vh,180px)}
+  /* 右側の縦長KVパネル（HUMANのMあたりまで左に伸び、Conceptを超えてセクション下端まで） */
+  .kvtall__panel{position:absolute;top:0;right:0;width:78%;height:100%;overflow:hidden;z-index:0}
+  /* KVは動画差し替え予定：<video autoplay muted loop playsinline><source src="assets/kv-tall.mp4"></video> */
+  .kvtall__panel img,.kvtall__panel video{width:100%;height:100%;object-fit:cover;object-position:center}
+
+  .kvtall__inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad-x)}
+
+  /* Heroテキスト（左・縦中央） */
+  .kv-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+  .kv-hero__kicker{font-family:var(--font-en);font-size:clamp(13px,1.4vw,17px);font-weight:600;letter-spacing:.14em;color:var(--ink);margin:0 0 20px}
+  .kv-hero__h1{font-family:var(--font-en);font-weight:700;font-size:clamp(52px,8.5vw,150px);line-height:.98;letter-spacing:-.03em;margin:0;white-space:nowrap}
+  .kv-hero__cta{margin-top:clamp(18px,2.4vh,26px)}
+  .kv-hero__copyright{margin-top:clamp(28px,4vh,44px);font-family:var(--font-en);font-size:13px;font-weight:500;color:var(--ink);letter-spacing:.02em}
+
+  /* Conceptテキスト（左下） */
+  .kv-concept{padding-top:clamp(40px,6vh,72px);max-width:760px}
+  .kv-concept .h2{font-size:clamp(30px,4.5vw,54px)}
+  .kv-concept__sub{margin:28px 0 0;font-size:16px;line-height:2;color:var(--sub)}
+
+  @media (max-width:900px){
+    .kvtall__panel{position:relative;width:100%;height:64vh}
+    .kvtall__panel::before{background:none}
+    .kv-hero{min-height:0;padding:110px 0 60px}
+    .kvtall{padding-bottom:80px}
+  }
+  @media (max-width:768px){
+    .nav,.header__right .btn{display:none}
+    .nav-toggle{display:flex;flex-direction:column;gap:5px;background:none;border:none;padding:8px;cursor:pointer}
+    .nav-toggle span{width:24px;height:1.6px;background:var(--ink);transition:.3s}
+    .header__right{gap:0}
+    .drawer{position:fixed;inset:0;z-index:99;background:#fff;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:0 32px;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+    .drawer.open{transform:translateX(0)}
+    .drawer a{font-family:var(--font-en);font-size:20px;font-weight:600;letter-spacing:.04em;padding:14px 0;border-bottom:1px solid var(--line)}
+    .drawer .btn{display:inline-flex;margin-top:24px;align-self:flex-start}
+    .nav-toggle.active span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+    .nav-toggle.active span:nth-child(2){opacity:0}
+    .nav-toggle.active span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+  }
+  @media (min-width:769px){.drawer{display:none}}
+</style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <a class="header__logo" href="#top" aria-label="人と空間"><img src="assets/logo.svg" alt="人と空間 HUMAN AND SPACE"></a>
+  <div class="header__right">
+    <nav class="nav">
+      <a href="#concept">CONCEPT</a><a href="#">SERVICES</a><a href="#">ABOUT</a><a href="#">PROCESS</a><a href="#">CASES</a><a href="#">COMPANY</a>
+    </nav>
+    <a href="#" class="btn">まずは相談する<svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="drawer" id="drawer">
+  <a href="#concept">CONCEPT</a><a href="#">SERVICES</a><a href="#">ABOUT</a><a href="#">PROCESS</a><a href="#">CASES</a><a href="#">COMPANY</a>
+  <a href="#" class="btn">まずは相談する<svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</nav>
+
+<!-- KV縦長（Hero＋Concept） -->
+<section class="kvtall" id="top">
+  <div class="kvtall__panel">
+    <video autoplay muted loop playsinline poster="assets/kv-tall.jpg">
+      <source src="assets/kv-tall.mp4" type="video/mp4">
+      <img src="assets/kv-tall.jpg" alt="白い空間を歩く人々">
+    </video>
+  </div>
+  <div class="kvtall__inner">
+    <div class="kv-hero">
+      <p class="kv-hero__kicker">AI ERA CX / UX PARTNER</p>
+      <h1 class="kv-hero__h1">HUMAN &amp;<br>SPACE</h1>
+      <a href="#" class="btn kv-hero__cta">CONTACT<svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="kv-hero__copyright">© 2026 HUMAN &amp; SPACE Inc.</p>
+    </div>
+    <div class="kv-concept" id="concept">
+      <h2 class="h2 reveal hang">「人」と「空間」から、<br>お客様の体験を変える。</h2>
+      <p class="shoulder">( CONCEPT )</p>
+      <p class="kv-concept__sub fade">AI時代の店舗CX・UX改善のパイオニア。顧客体験価値と空間品質の改善を、<br>調査・分析・伴走支援で実現します。</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  var header=document.getElementById('header');
+  function onHeaderScroll(){header.classList.toggle('scrolled',window.scrollY>40)}
+  window.addEventListener('scroll',onHeaderScroll,{passive:true});onHeaderScroll();
+
+  var toggle=document.getElementById('navToggle'),drawer=document.getElementById('drawer');
+  toggle.addEventListener('click',function(){toggle.classList.toggle('active');drawer.classList.toggle('open')});
+  drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){toggle.classList.remove('active');drawer.classList.remove('open')})});
+
+  document.querySelectorAll('.reveal').forEach(function(el){
+    var nodes=Array.prototype.slice.call(el.childNodes),i=0;el.innerHTML='';
+    nodes.forEach(function(n){
+      if(n.nodeType===3){n.textContent.split('').forEach(function(c){var s=document.createElement('span');s.className='ch';s.textContent=c;s.style.transitionDelay=(i*0.028)+'s';i++;el.appendChild(s);});}
+      else if(n.nodeName==='BR'){el.appendChild(document.createElement('br'));}
+      else{el.appendChild(n);}
+    });
+    if(el.classList.contains('hang')){var f=el.querySelector('.ch');if(f)f.style.marginLeft='-.55em';}
+  });
+  var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});},{threshold:0.2});
+  document.querySelectorAll('.reveal,.fade').forEach(function(el){io.observe(el);});
+</script>
+</body>
+</html>

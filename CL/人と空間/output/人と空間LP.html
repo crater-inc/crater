@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人と空間 — AI時代の店舗CX・UX改善のパイオニア</title>
+<meta name="description" content="株式会社人と空間（HUMAN AND SPACE）。AI時代の店舗CX・UX改善のパイオニア。顧客体験価値と空間品質の改善を、調査・分析・伴走支援で実現します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ ベース ============ */
+  :root{
+    --ink:#111214;
+    --sub:#4F5257;      /* 本文・説明 */
+    --meta:#7E8187;     /* ラベル・キャプション */
+    --line:#E4E4E6;
+    --hair:rgba(0,0,0,.10);
+    --soft:#F3F3F3;
+    --paper:#FFFFFF;
+    --font-en:'Inter',sans-serif;
+    --font-jp:'Noto Sans JP','Hiragino Sans',sans-serif;
+    --pad-x:clamp(32px,5.5vw,96px);
+    --pad-y:clamp(76px,10vw,140px);
+    --maxw:1680px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-jp);
+    font-size:16px;
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;width:100%}
+  .section{padding:var(--pad-y) var(--pad-x)}
+
+  /* ショルダー小見出し（見出しの下・黒・( NAME )） */
+  .shoulder{
+    font-family:var(--font-en);
+    font-size:11px;letter-spacing:.28em;font-weight:600;
+    color:var(--ink);margin-top:16px;
+  }
+  .h2{
+    font-family:var(--font-jp);
+    font-size:clamp(28px,4vw,40px);
+    font-weight:700;line-height:1.32;letter-spacing:.01em;
+    margin:0;
+  }
+  .lead{
+    font-size:14px;line-height:2;color:var(--sub);margin:0;
+  }
+
+  /* リビール（noiz風・1文字ずつ） */
+  .reveal .ch{
+    display:inline-block;opacity:0;
+    transform:translateY(.55em);
+    transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1);
+  }
+  .reveal.is-in .ch{opacity:1;transform:translateY(0)}
+  /* フェードイン */
+  .fade{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .fade.is-in{opacity:1;transform:none}
+
+  /* ============ ヘッダー（ブラウザ幅・最前面） ============ */
+  .header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;height:76px;
+    background:rgba(255,255,255,0);
+    transition:background .4s ease,box-shadow .4s ease,height .4s ease;
+  }
+  .header.scrolled{height:64px}
+  .header__logo img{height:26px;width:auto}
+  .header__right{display:flex;align-items:center;gap:40px}
+  .nav{display:flex;align-items:center;gap:36px}
+  .nav a{
+    font-family:var(--font-en);font-size:13px;font-weight:500;
+    letter-spacing:.04em;color:var(--ink);transition:opacity .2s;
+  }
+  .nav a:hover{opacity:.5}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-jp);font-size:12px;font-weight:700;
+    padding:11px 22px;border:1.4px solid var(--ink);border-radius:100px;
+    transition:background .25s,color .25s;
+  }
+  .btn:hover{background:var(--ink);color:#fff}
+  .btn .arw{width:14px;height:14px}
+  .nav-toggle{display:none}
+
+  /* ============ Hero（写真全面・コピーをオーバーレイ） ============ */
+  .hero{
+    position:relative;display:flex;align-items:center;
+    min-height:100vh;overflow:hidden;
+  }
+  .hero__media{position:absolute;inset:0;z-index:0}
+  .hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,.15) 42%,rgba(255,255,255,0) 68%)}
+  .hero__media img,.hero__media video{
+    width:100%;height:100%;object-fit:cover;object-position:62% center;
+  }
+  .hero__media video{position:absolute;inset:0}
+  .hero__copy{
+    position:relative;z-index:2;
+    width:100%;max-width:var(--maxw);margin:0 auto;
+    padding:0 var(--pad-x);
+    display:flex;flex-direction:column;align-items:flex-start;
+  }
+  .hero__kicker{
+    font-family:var(--font-en);font-size:clamp(13px,1.4vw,17px);
+    font-weight:600;letter-spacing:.14em;color:var(--ink);margin:0 0 20px;
+  }
+  .hero__h1{
+    font-family:var(--font-en);font-weight:700;
+    font-size:clamp(52px,8.5vw,150px);line-height:.98;letter-spacing:-.03em;
+    margin:0;white-space:nowrap;
+  }
+  .hero__cta{margin-top:clamp(18px,2.4vh,26px);align-self:flex-start}
+  .hero__copyright{
+    margin-top:clamp(28px,4vh,44px);font-family:var(--font-en);font-size:13px;
+    font-weight:500;color:var(--ink);letter-spacing:.02em;
+  }
+
+  /* ============ Concept ============ */
+  .concept .h2{font-size:clamp(30px,4.5vw,54px);line-height:1.5}
+  .concept__sub{margin:28px 0 0;font-size:16px;line-height:2;color:var(--sub);max-width:720px}
+
+  /* ============ Services ============ */
+  #services{position:relative;overflow:visible}
+  .sv-head{max-width:var(--maxw);margin:0 auto}
+  .sv-head .lead{max-width:760px;margin-top:16px}
+  .sv-list{max-width:var(--maxw);margin:40px auto 0;border-top:1px solid var(--line)}
+  .sv-row{
+    display:grid;grid-template-columns:26px minmax(200px,300px) 1fr;
+    column-gap:24px;align-items:start;
+    padding:40px 0;border-bottom:1px solid var(--line);
+  }
+  .sv-row__icon{width:26px;height:26px;color:var(--ink);margin-top:3px}
+  .sv-row__title{font-size:clamp(19px,2vw,23px);font-weight:700;line-height:1.4;margin:0}
+  .sv-row__desc{font-size:14px;line-height:1.95;color:var(--sub);margin:0}
+
+  /* ============ About ============ */
+  .about{background:var(--soft);position:relative;overflow:visible}
+  .about__head{max-width:var(--maxw);margin:0 auto}
+  .about__body{
+    max-width:var(--maxw);margin:56px auto 0;
+    display:grid;grid-template-columns:340px 1fr 440px;gap:70px;align-items:start;
+  }
+  .about__img{width:100%;aspect-ratio:340/470;object-fit:cover;background:#e9e9eb;will-change:transform}
+  .about__sub{font-size:clamp(18px,2vw,22px);font-weight:700;line-height:1.5;margin:0 0 20px}
+  .about__text{font-size:14px;line-height:2.05;color:var(--sub);margin:0}
+  .strengths{border-top:1px solid var(--hair)}
+  .strengths li{
+    display:flex;align-items:center;gap:24px;
+    padding:22px 0;border-bottom:1px solid var(--hair);list-style:none;
+  }
+  .strengths{margin:0;padding:0}
+  .strengths .num{font-family:var(--font-en);font-size:13px;font-weight:600;color:var(--meta)}
+  .strengths .txt{font-size:15px;font-weight:500;line-height:1.6;color:#2A2E33}
+  /* パララックス浮遊画像（Pencil座標準拠・要素ごとスクロール移動） */
+  .parallax-img{position:absolute;z-index:5;pointer-events:none;will-change:transform}
+  .parallax-img img{width:100%;height:100%;object-fit:cover;display:block}
+  /* パララックス1：Services右下（次セクションに少しかかる） */
+  .pi-1{width:clamp(130px,15vw,245px);aspect-ratio:245/338;right:9%;bottom:-70px}
+  /* パララックス2：About下部・中央やや左（1.5倍大きく） */
+  .pi-2{width:clamp(156px,18vw,282px);aspect-ratio:188/259;left:42%;bottom:-80px}
+
+  /* ============ Process ============ */
+  .pr-head{max-width:var(--maxw);margin:0 auto}
+  .pr-head .lead{max-width:560px;margin-top:20px}
+  .pr-steps{
+    max-width:var(--maxw);margin:56px auto 0;
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .pr-step{padding:8px 32px;border-left:1px solid var(--line)}
+  .pr-step:first-child{border-left:none;padding-left:0}
+  .pr-step .num{font-family:var(--font-en);font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .pr-step .title{font-size:17px;font-weight:700;line-height:1.5;margin:16px 0 12px}
+  .pr-step .desc{font-size:13px;line-height:1.9;color:var(--sub);margin:0}
+
+  /* ============ Results & Cases ============ */
+  .rc{background:var(--soft)}
+  .rc__head{max-width:var(--maxw);margin:0 auto}
+  .kpis{
+    max-width:var(--maxw);margin:40px auto 0;
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .kpi{padding:4px 32px}
+  .kpi+.kpi{border-left:1px solid var(--hair)}
+  .kpi:first-child{padding-left:0}
+  .kpi .num{font-family:var(--font-en);font-size:clamp(44px,5vw,70px);font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .kpi .label{font-size:12px;line-height:1.6;color:var(--sub);margin-top:12px}
+  .cases{max-width:var(--maxw);margin:56px auto 0;border-top:1px solid var(--hair)}
+  .case{
+    display:grid;grid-template-columns:1fr 220px;gap:48px;
+    padding:44px 0;border-bottom:1px solid var(--hair);align-items:start;
+  }
+  .case__tag{
+    display:inline-block;font-size:11px;letter-spacing:.08em;color:var(--sub);
+    border:1px solid var(--meta);border-radius:2px;padding:6px 12px;margin-bottom:14px;
+  }
+  .case__title{font-size:clamp(18px,2vw,21px);font-weight:700;line-height:1.45;margin:0 0 14px}
+  .case__desc{font-size:13px;line-height:1.9;color:var(--sub);margin:0;max-width:560px}
+  .case__num{font-family:var(--font-en);font-size:40px;font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink)}
+  .case__mlabel{font-size:12px;color:var(--sub);margin-top:8px}
+
+  /* ============ Company ============ */
+  .cp-list{max-width:var(--maxw);margin:40px auto 0}
+  .cp-row{
+    display:grid;grid-template-columns:200px 1fr;gap:48px;
+    padding:26px 0;border-top:1px solid var(--line);
+  }
+  .cp-row:last-child{border-bottom:1px solid var(--line)}
+  .cp-row dt{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--sub);margin:0}
+  .cp-row dd{font-size:15px;line-height:1.85;color:var(--ink);margin:0}
+
+  /* ============ Contact ============ */
+  .contact{background:var(--soft)}
+  .contact__inner{
+    max-width:var(--maxw);margin:0 auto;
+    display:grid;grid-template-columns:minmax(0,701px) minmax(0,520px);
+    justify-content:space-between;gap:clamp(40px,6vw,120px);align-items:start;
+  }
+  .contact__left{position:relative;width:100%;max-width:701px;aspect-ratio:701/1035}
+  .contact__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:#eee;z-index:0}
+  .contact__head{position:relative;z-index:1;padding:18% 13% 0 13%}
+  .contact .h2{font-size:clamp(26px,2.6vw,38px)}
+  .contact__note{font-size:14px;line-height:2;color:var(--sub);margin:20px 0 0;max-width:400px}
+  .form{display:flex;flex-direction:column;gap:26px}
+  .field{display:flex;flex-direction:column;gap:10px}
+  .field label{font-size:12px;font-weight:700;color:#3A4048}
+  .field input,.field textarea{
+    font-family:var(--font-jp);font-size:16px;color:var(--ink);
+    border:none;border-bottom:1px solid var(--meta);background:transparent;
+    padding:10px 0;width:100%;
+  }
+  .field textarea{resize:vertical;min-height:96px}
+  .field input:focus,.field textarea:focus{outline:none;border-bottom-color:var(--ink)}
+  .privacy__box{
+    height:170px;overflow-y:auto;background:#fafafa;
+    padding:18px 20px;font-size:11.5px;line-height:1.85;color:var(--sub);
+  }
+  .privacy__box h4{font-size:12.5px;font-weight:700;color:var(--ink);margin:14px 0 4px;line-height:1.5}
+  .privacy__box h4:first-child{margin-top:0}
+  .privacy__box p{margin:0}
+  .privacy__box p.intro{color:#333}
+  .consent{display:flex;align-items:center;gap:10px}
+  .consent input{width:17px;height:17px;accent-color:var(--ink);flex:none}
+  .consent label{font-size:13px;font-weight:500;color:#2F363F}
+  .submit{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-family:var(--font-jp);font-size:14px;font-weight:700;
+    padding:16px 30px;border:1.5px solid var(--ink);border-radius:100px;
+    background:transparent;color:var(--ink);cursor:pointer;width:100%;
+    transition:background .25s,color .25s,opacity .25s;
+  }
+  .submit:hover:not(:disabled){background:var(--ink);color:#fff}
+  .submit:disabled{opacity:.35;cursor:not-allowed}
+  .submit .arw{width:16px;height:16px}
+
+  /* ============ Footer ============ */
+  .footer{background:var(--paper);border-top:1px solid var(--line);position:relative;overflow:hidden}
+  .footer__top{
+    max-width:var(--maxw);margin:0 auto;padding:64px var(--pad-x) 0;
+    display:flex;gap:60px;flex-wrap:wrap;justify-content:space-between;
+  }
+  .footer__brand{max-width:420px}
+  .footer__brand img{height:52px;width:auto;margin-bottom:16px}
+  .footer__note{font-size:13px;line-height:1.85;color:var(--sub);margin:0}
+  .footer__cols{display:flex;gap:60px}
+  .footer__col{display:flex;flex-direction:column;gap:14px}
+  .footer__col a{font-family:var(--font-en);font-size:13px;font-weight:500;letter-spacing:.03em;color:#3F434A;transition:opacity .2s}
+  .footer__col a:hover{opacity:.5}
+  .footer__copyright{
+    max-width:var(--maxw);margin:0 auto;padding:32px var(--pad-x) 0;
+    font-family:var(--font-en);font-size:13px;font-weight:500;color:var(--sub);
+  }
+  /* 巨大シンボルマーク：シンボルを画面幅いっぱい・左端から少しはみ出し・上約5割見せて下端クロップ */
+  .footer__mark{width:100vw;overflow:hidden;line-height:0;height:23vw;margin-top:24px}
+  .footer__mark svg{display:block;width:102vw;height:auto;margin-left:-1vw}
+
+  /* ============ レスポンシブ ============ */
+  @media (max-width:960px){
+    .about__body{grid-template-columns:1fr;gap:36px}
+    .about__img{max-width:340px}
+    .pr-steps{grid-template-columns:repeat(2,1fr);gap:8px 0}
+    .pr-step{padding:24px 24px 24px 24px;border-left:1px solid var(--line)}
+    .pr-step:nth-child(odd){padding-left:0;border-left:none}
+    .kpis{grid-template-columns:repeat(2,1fr);gap:32px 0}
+    .kpi{padding:0 20px}
+    .kpi:nth-child(odd){padding-left:0;border-left:none}
+    .contact__inner{grid-template-columns:1fr;gap:48px}
+    /* SP pen準拠：見出し→画像→フォームの縦順 */
+    .contact__left{max-width:none;aspect-ratio:auto;display:flex;flex-direction:column}
+    .contact__head{padding:0;order:1}
+    .contact__img{position:relative;height:auto;aspect-ratio:326/230;margin-top:24px;order:2}
+  }
+  @media (max-width:768px){
+    .nav,.header__right .btn{display:none}
+    .nav-toggle{
+      display:flex;flex-direction:column;gap:5px;background:none;border:none;
+      padding:8px;cursor:pointer;
+    }
+    .nav-toggle span{width:24px;height:1.6px;background:var(--ink);transition:.3s}
+    .header__right{gap:0}
+    /* SPドロワー */
+    .drawer{
+      position:fixed;inset:0;z-index:99;background:#fff;
+      display:flex;flex-direction:column;justify-content:center;gap:8px;
+      padding:0 32px;transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);
+    }
+    .drawer.open{transform:translateX(0)}
+    .drawer a{font-family:var(--font-en);font-size:20px;font-weight:600;letter-spacing:.04em;padding:14px 0;border-bottom:1px solid var(--line)}
+    .drawer .btn{display:inline-flex;margin-top:24px;align-self:flex-start}
+    .nav-toggle.active span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+    .nav-toggle.active span:nth-child(2){opacity:0}
+    .nav-toggle.active span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+
+    /* Services：アイコン＋見出しを1行、説明を下（SP pen準拠） */
+    .sv-row{grid-template-columns:auto 1fr;column-gap:12px;row-gap:12px;align-items:center;padding:26px 0}
+    .sv-row__icon{width:24px;height:24px;margin-top:0}
+    .sv-row__title{font-size:20px}
+    .sv-row__desc{grid-column:1 / -1;font-size:14px;line-height:1.9}
+    .pr-head{flex-direction:column;align-items:flex-start;gap:20px}
+    .cp-row{grid-template-columns:1fr;gap:8px}
+    .case{grid-template-columns:1fr;gap:20px}
+    .footer__top{flex-direction:column;gap:40px}
+    .footer__cols{gap:48px}
+    .parallax-img{display:none}
+    /* SP pen準拠：余白・見出しサイズ・Processは縦1列＋上罫線 */
+    .section{padding:64px 32px}
+    .hero__h1{font-size:56px}
+    .h2{font-size:26px;line-height:1.4}
+    .concept .h2{font-size:27px}
+    .concept__sub{font-size:15px}
+    .contact .h2{font-size:23px}
+    .pr-steps{grid-template-columns:1fr}
+    .pr-step{border-left:none;border-top:1px solid var(--line);padding:24px 0}
+    .pr-step:first-child{border-top:none;padding-top:0}
+    .pr-step .num{font-size:32px}
+    .pr-step .title{font-size:17px;margin:10px 0 8px}
+    .pr-step .desc{font-size:13px}
+  }
+  @media (min-width:769px){.drawer{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ Header ============ -->
+<header class="header" id="header">
+  <a class="header__logo" href="#top" aria-label="人と空間"><img src="assets/logo.svg" alt="人と空間 HUMAN AND SPACE"></a>
+  <div class="header__right">
+    <nav class="nav">
+      <a href="#concept">CONCEPT</a>
+      <a href="#services">SERVICES</a>
+      <a href="#about">ABOUT</a>
+      <a href="#process">PROCESS</a>
+      <a href="#cases">CASES</a>
+      <a href="#company">COMPANY</a>
+    </nav>
+    <a href="#contact" class="btn">まずは相談する
+      <svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="メニュー"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="drawer" id="drawer">
+  <a href="#concept">CONCEPT</a>
+  <a href="#services">SERVICES</a>
+  <a href="#about">ABOUT</a>
+  <a href="#process">PROCESS</a>
+  <a href="#cases">CASES</a>
+  <a href="#company">COMPANY</a>
+  <a href="#contact" class="btn">まずは相談する
+    <svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</nav>
+
+<!-- ============ Hero ============ -->
+<section class="hero" id="top">
+  <div class="hero__copy">
+    <p class="hero__kicker">AI ERA CX / UX PARTNER</p>
+    <h1 class="hero__h1">HUMAN &amp;<br>SPACE</h1>
+    <a href="#contact" class="btn hero__cta">CONTACT
+      <svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <p class="hero__copyright">© 2026 HUMAN &amp; SPACE Inc.</p>
+  </div>
+  <div class="hero__media">
+    <img src="assets/kv.jpg" alt="白い空間を歩く人々">
+  </div>
+</section>
+
+<!-- ============ Concept ============ -->
+<section class="section concept" id="concept">
+  <div class="wrap">
+    <h2 class="h2 reveal hang">「人」と「空間」から、<br>お客様の体験を変える。</h2>
+    <p class="shoulder">( CONCEPT )</p>
+    <p class="concept__sub fade">AI時代の店舗CX・UX改善のパイオニア。顧客体験価値と空間品質の改善を、<br>調査・分析・伴走支援で実現します。</p>
+  </div>
+</section>
+
+<!-- ============ Services ============ -->
+<section class="section" id="services">
+  <div class="sv-head">
+    <h2 class="h2 reveal">調査から改善まで、<br>5つの領域で伴走する。</h2>
+    <p class="shoulder">( SERVICES )</p>
+    <p class="lead fade">生活者目線と専門知を合わせた調査から、空間品質のスコア化、人流データの活用、現場の行動変化までを一貫して支援します。</p>
+  </div>
+  <div class="sv-list">
+    <div class="sv-row fade">
+      <svg class="sv-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <h3 class="sv-row__title">CX調査</h3>
+      <p class="sv-row__desc">生活者目線とプロの洞察を組み合わせ、現場の接客品質を可視化します。</p>
+    </div>
+    <div class="sv-row fade">
+      <svg class="sv-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <h3 class="sv-row__title">空間品質調査</h3>
+      <p class="sv-row__desc">空間の価値を9つの視点からスコア化し、改善の起点をつくります。</p>
+    </div>
+    <div class="sv-row fade">
+      <svg class="sv-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <h3 class="sv-row__title">AIカメラと店舗運営DX</h3>
+      <p class="sv-row__desc">人流データとCXナレッジを掛け合わせ、KPI改善を戦略的に設計します。</p>
+    </div>
+    <div class="sv-row fade">
+      <svg class="sv-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polygon points="16.2 7.8 14.1 14.1 7.8 16.2 9.9 9.9 16.2 7.8"/></svg>
+      <h3 class="sv-row__title">コンサルティング支援</h3>
+      <p class="sv-row__desc">調査で終わらず、ロードマップづくりから改善実行まで伴走します。</p>
+    </div>
+    <div class="sv-row fade">
+      <svg class="sv-row__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="7"/><polyline points="8.2 13.9 7 23 12 20 17 23 15.8 13.9"/></svg>
+      <h3 class="sv-row__title">役員・リーダー研修</h3>
+      <p class="sv-row__desc">経営層・リーダークラスに、CXと空間品質を経営判断へ活かす視点を養います。</p>
+    </div>
+  </div>
+  <div class="parallax-img pi-1" data-parallax="0.70"><img src="assets/parallax-1.jpg" alt=""></div>
+</section>
+
+<!-- ============ About ============ -->
+<section class="section about" id="about">
+  <div class="parallax-img pi-2" data-parallax="-0.44"><img src="assets/parallax-2.jpg" alt=""></div>
+  <div class="about__head">
+    <h2 class="h2 reveal">AI時代だからこそ、<br>リアル店舗のCXが問われる。</h2>
+    <p class="shoulder">( ABOUT )</p>
+  </div>
+  <div class="about__body">
+    <img class="about__img" src="assets/about-main.jpg" alt="白い空間に立つ人物" data-parallax="0.34">
+    <div class="fade">
+      <h3 class="about__sub">「人」と「空間」、<br>2つの軸で価値を測る。</h3>
+      <p class="about__text">人の接点で生まれる体験と、空間が生む行動や印象。私たちは商空間運営におけるCXとUXのエキスパートとして、その両方を測り、比較し、改善することで、ブランドの価値を店頭から高めます。</p>
+    </div>
+    <ul class="strengths fade">
+      <li><span class="num">01</span><span class="txt">商空間運営・接客に特化したCX・UX改善ノウハウ</span></li>
+      <li><span class="num">02</span><span class="txt">生活者感覚と専門分析を融合した独自調査</span></li>
+      <li><span class="num">03</span><span class="txt">全国比較・ベンチマーク分析による立ち位置の把握</span></li>
+      <li><span class="num">04</span><span class="txt">調査後の研修・セッションを含む継続的な伴走</span></li>
+      <li><span class="num">05</span><span class="txt">店舗運営DXとCX・UXを橋渡しする専門性</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ Process ============ -->
+<section class="section" id="process">
+  <div class="pr-head">
+    <h2 class="h2 reveal">調査して終わり、にしない。</h2>
+    <p class="shoulder">( PROCESS )</p>
+    <p class="lead fade">課題の発見から現場が自ら動き出すまで。一連のプロセスを伴走型で支援し、改善が続く状態をつくります。</p>
+  </div>
+  <div class="pr-steps">
+    <div class="pr-step fade"><div class="num">01</div><h3 class="title">現状把握・調査</h3><p class="desc">ハイブリッドCX調査・空間品質調査・人流計測で現場を可視化。</p></div>
+    <div class="pr-step fade"><div class="num">02</div><h3 class="title">分析・比較</h3><p class="desc">全国／ベンチマーク比較とGAP分析で優先課題を特定。</p></div>
+    <div class="pr-step fade"><div class="num">03</div><h3 class="title">改善設計・実行</h3><p class="desc">KPIに紐づく打ち手を設計し、現場の行動へ落とし込む。</p></div>
+    <div class="pr-step fade"><div class="num">04</div><h3 class="title">定着・自走支援</h3><p class="desc">継続的な伴走で、自律して改善を回す状態をつくる。</p></div>
+  </div>
+</section>
+
+<!-- ============ Results & Cases ============ -->
+<section class="section rc" id="cases">
+  <div class="rc__head">
+    <h2 class="h2 reveal">数字と事例で見る、改善の成果。</h2>
+    <p class="shoulder">( RESULTS &amp; CASES )</p>
+  </div>
+  <div class="kpis">
+    <div class="kpi fade"><div class="num" data-count="26" data-prefix="+" data-suffix="%">+0%</div><div class="label">売上前年比 / ライフスタイル</div></div>
+    <div class="kpi fade"><div class="num" data-count="117" data-suffix="%">0%</div><div class="label">重点店舗売上 / アパレル</div></div>
+    <div class="kpi fade"><div class="num" data-count="7" data-prefix="+" data-suffix="%">+0%</div><div class="label">コンバージョン改善</div></div>
+    <div class="kpi fade"><div class="num" data-count="5" data-suffix="年+">0年+</div><div class="label">大手百貨店 継続支援</div></div>
+  </div>
+  <div class="cases">
+    <div class="case fade">
+      <div>
+        <span class="case__tag">百貨店</span>
+        <h3 class="case__title">大手百貨店 — CX・空間品質改善の伴走支援</h3>
+        <p class="case__desc">全施設へのCX調査・空間品質調査、三者MTG、ワークショップを継続実施。自律自走する状態を支援。</p>
+      </div>
+      <div><div class="case__num">5年+</div><div class="case__mlabel">継続支援</div></div>
+    </div>
+    <div class="case fade">
+      <div>
+        <span class="case__tag">ライフスタイルショップ</span>
+        <h3 class="case__title">旗艦店KPI改善 — 売上 +26% / CV +7%</h3>
+        <p class="case__desc">人流計測と半年間のCX改善セッションで、店舗が自ら動く改善サイクルを設計。</p>
+      </div>
+      <div><div class="case__num">+26%</div><div class="case__mlabel">売上前年比</div></div>
+    </div>
+    <div class="case fade">
+      <div>
+        <span class="case__tag">アパレルブランド</span>
+        <h3 class="case__title">CX調査・伴走コンサル — 3年連続最高売上</h3>
+        <p class="case__desc">全国店舗のCX調査、重点店舗の人流計測、AM向けKPI活用セッションを実施。</p>
+      </div>
+      <div><div class="case__num">117%</div><div class="case__mlabel">重点店舗売上</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Company ============ -->
+<section class="section" id="company">
+  <div class="wrap">
+    <h2 class="h2 reveal">会社概要</h2>
+    <p class="shoulder">( COMPANY )</p>
+  </div>
+  <dl class="cp-list">
+    <div class="cp-row fade"><dt>社名</dt><dd>株式会社人と空間（HUMAN AND SPACE）</dd></div>
+    <div class="cp-row fade"><dt>事業内容</dt><dd>店舗CX・UX調査／空間品質調査／AIカメラ・店舗運営DX／コンサルティング・伴走支援／役員・リーダー研修</dd></div>
+    <div class="cp-row fade"><dt>ミッション</dt><dd>AIを活用した店舗CXとUXの改善で、スピードと精度を両立し、お客様に高い価値を届ける</dd></div>
+    <div class="cp-row fade"><dt>対象</dt><dd>商業施設・百貨店／アパレル・コスメ・ライフスタイル系ブランド／多店舗展開チェーン</dd></div>
+  </dl>
+</section>
+
+<!-- ============ Contact ============ -->
+<section class="section contact" id="contact">
+  <div class="contact__inner">
+    <div class="contact__left">
+      <img class="contact__img" src="assets/contact.jpg" alt="白い空間を歩く人物">
+      <div class="contact__head">
+        <h2 class="h2 reveal">どのサービスが合うか<br>分からなくても、まず相談を。</h2>
+        <p class="shoulder">( CONTACT )</p>
+        <p class="contact__note">課題の整理から一緒に考えます。強引な営業は一切行いません。お気軽にご連絡ください。</p>
+      </div>
+    </div>
+    <form class="form" id="contactForm">
+      <div class="field"><label for="f-company">会社名</label><input id="f-company" name="company" type="text"></div>
+      <div class="field"><label for="f-name">お名前</label><input id="f-name" name="name" type="text"></div>
+      <div class="field"><label for="f-email">メールアドレス</label><input id="f-email" name="email" type="email"></div>
+      <div class="field"><label for="f-message">お問い合わせ内容</label><textarea id="f-message" name="message"></textarea></div>
+      <div class="field">
+        <label>プライバシーポリシー</label>
+        <div class="privacy__box">
+          <p class="intro">株式会社人と空間（以下「当社」）は、個人情報の重要性を認識し、「個人情報の保護に関する法律」にもとづき、お客様や関係者様からお預かりしているさまざまな情報（氏名、会社名、住所、電話番号、メールアドレスなどの個人情報）を保護し、適切に取り扱うように努めて参ります。</p>
+          <h4>1. 個人情報の取得について</h4>
+          <p>当社は、個人情報の取得にあたり、適法かつ公正な手段によってのみこれを行います。書面によって取得する場合、その利用目的や問合せ先を明示し、事前のご同意をいただきます。本ポリシーに同意いただけない場合、一部のサービスをご利用いただけない場合があります。</p>
+          <h4>2. 個人情報の利用目的について</h4>
+          <p>当社は、サービスのご紹介・ご提供に必要な個人情報を取得する場合があり、以下の目的に限って利用します。1.販売・設置・保守 2.各種情報の提供・案内 3.契約関係の管理 4.イベントの案内・実施 5.資料・サンプルの提供 6.アンケート調査。上記以外の目的で利用する場合は都度事前に同意をいただきます。</p>
+          <h4>3. お預かりした個人情報の管理について</h4>
+          <p>当社は、漏洩・破損・亡失・改竄の防止と不正アクセス防止のため、適切なセキュリティ対策を実行し、必要な安全措置を講じます。従業員への教育、委託先の選定・契約など必要な措置を充分に講じます。</p>
+          <h4>4. 個人情報の第三者への提供について</h4>
+          <p>以下の場合、または個人情報保護法の例外に該当する場合のみ第三者へ提供します。1.事前同意がある場合 2.業務を外部委託する場合 3.関係会社・特約店等と共同で業務を行う場合 4.合併・事業承継等で移管が必要な場合 5.法令に基づくとき。</p>
+          <h4>5. 個人情報の開示等について</h4>
+          <p>ユーザ様ご自身の個人情報について、開示請求・訂正を求めることができます。当社は法の求めに従い適切に対応いたします。</p>
+          <h4>6. 個人情報に関するお問い合わせ先</h4>
+          <p>苦情・相談・開示等のお問い合わせは下記までご連絡ください。株式会社人と空間　個人情報保護管理者　hitotokukan.survey@gmail.com</p>
+        </div>
+      </div>
+      <div class="consent">
+        <input type="checkbox" id="agree">
+        <label for="agree">上記プライバシーポリシーに同意する（必須）</label>
+      </div>
+      <button type="submit" class="submit" id="submitBtn" disabled>送信する
+        <svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="footer">
+  <div class="footer__top">
+    <div class="footer__brand">
+      <img src="assets/logo.svg" alt="人と空間 HUMAN AND SPACE">
+      <p class="footer__note">AI時代の店舗CX・UX改善のパイオニア。商空間運営におけるCXとUXのエキスパート。</p>
+    </div>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <a href="#concept">CONCEPT</a>
+        <a href="#services">SERVICES</a>
+        <a href="#about">ABOUT</a>
+        <a href="#process">PROCESS</a>
+      </div>
+      <div class="footer__col">
+        <a href="#cases">CASES</a>
+        <a href="#company">COMPANY</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+    </div>
+  </div>
+  <p class="footer__copyright">© 2026 HUMAN &amp; SPACE Inc.</p>
+  <div class="footer__mark" aria-hidden="true">
+    <svg viewBox="0 0 193.51 88.14" preserveAspectRatio="xMinYMin meet">
+      <path fill="#000000" d="M193.51 18.45h-49.4c-0.32 0-0.6 0.11-0.84 0.29h0s-30.36 23.85-30.36 23.85l-41.9-33.4-0.02 0.02c-7.45-5.76-16.79-9.21-26.92-9.21-24.3 0-44.07 19.77-44.07 44.07s19.77 44.07 44.07 44.07c9.51 0 18.32-3.04 25.52-8.18l0.07 0.09 43.23-33.97 30.36 24.21h0c0.23 0.18 0.53 0.3 0.85 0.3h49.4c0.75 0 1.37-0.61 1.37-1.37v-49.41c0-0.75-0.61-1.37-1.37-1.37z m-108.91 46.39c-0.66 0.52-1.55-0.22-1.17-0.97 3.01-5.96 4.71-12.68 4.71-19.8s-1.63-13.57-4.53-19.44c-0.37-0.75 0.53-1.47 1.19-0.95l25.9 20.65-26.1 20.51z m56.72 0.41l-26.22-20.91 26.23-20.61c0.57-0.45 1.41-0.04 1.41 0.69v40.15c0 0.73-0.85 1.14-1.42 0.68z"/>
+    </svg>
+  </div>
+</footer>
+
+<script>
+  // ヘッダー：スクロールで白背景
+  var header=document.getElementById('header');
+  function onHeaderScroll(){header.classList.toggle('scrolled',window.scrollY>40)}
+  window.addEventListener('scroll',onHeaderScroll,{passive:true});onHeaderScroll();
+
+  // SPドロワー
+  var toggle=document.getElementById('navToggle'),drawer=document.getElementById('drawer');
+  toggle.addEventListener('click',function(){
+    toggle.classList.toggle('active');drawer.classList.toggle('open');
+  });
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){toggle.classList.remove('active');drawer.classList.remove('open')});
+  });
+
+  // 見出しリビール（1文字ずつ分割）
+  document.querySelectorAll('.reveal').forEach(function(el){
+    var nodes=Array.prototype.slice.call(el.childNodes),i=0;
+    el.innerHTML='';
+    nodes.forEach(function(n){
+      if(n.nodeType===3){
+        n.textContent.split('').forEach(function(c){
+          var s=document.createElement('span');s.className='ch';
+          s.textContent=c;s.style.transitionDelay=(i*0.028)+'s';i++;
+          el.appendChild(s);
+        });
+      }else if(n.nodeName==='BR'){el.appendChild(document.createElement('br'));}
+      else{el.appendChild(n);}
+    });
+    if(el.classList.contains('hang')){var f=el.querySelector('.ch');if(f)f.style.marginLeft='-.55em';}
+  });
+
+  // IntersectionObserverでリビール＆フェード発火
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}});
+  },{threshold:0.2});
+  document.querySelectorAll('.reveal,.fade').forEach(function(el){io.observe(el);});
+
+  // KPIカウントアップ
+  var cio=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      var el=e.target,target=parseFloat(el.dataset.count),pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+      var start=null,dur=1300;
+      function tick(now){
+        if(!start)start=now;
+        var t=Math.min((now-start)/dur,1),eased=1-Math.pow(1-t,3);
+        el.textContent=pre+Math.round(target*eased)+suf;
+        if(t<1)requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);cio.unobserve(el);
+    });
+  },{threshold:0.6});
+  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});
+
+  // パララックス（要素ごとスクロール移動：画像自体が動く）
+  var pxItems=document.querySelectorAll('[data-parallax]');
+  function onParallax(){
+    var vh=window.innerHeight;
+    pxItems.forEach(function(el){
+      var r=el.getBoundingClientRect();
+      var p=(r.top+r.height/2-vh/2)/vh;               // -1〜1
+      var sp=parseFloat(el.dataset.parallax);
+      el.style.transform='translateY('+(p*sp*-300).toFixed(1)+'px)';
+    });
+  }
+  window.addEventListener('scroll',onParallax,{passive:true});
+  window.addEventListener('resize',onParallax,{passive:true});onParallax();
+
+  // プライバシー同意で送信有効化
+  var agree=document.getElementById('agree'),submitBtn=document.getElementById('submitBtn');
+  agree.addEventListener('change',function(){submitBtn.disabled=!agree.checked;});
+  document.getElementById('contactForm').addEventListener('submit',function(ev){
+    ev.preventDefault();alert('お問い合わせありがとうございます。（デモ：送信処理は未接続です）');
+  });
+
+  // KVループ動画：ブラウザ標準のautoplay/loop属性のみで再生（継ぎ目で僅かな一瞬はあるが確実に再生し続ける）
+</script>
+</body>
+</html>
