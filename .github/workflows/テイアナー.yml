@@ -1,8 +1,13 @@
 name: テイアナー
 
-# まずは手動実行（テスト）だけ。LINE配信が確認できたら2日に1回の自動配信をここに追加する。
+# 毎日 朝9:00(JST) に自動配信（UTCでは0:00）。手動実行も可能。
 on:
-  workflow_dispatch: {}   # 手動実行（gh workflow run または GitHub画面のRun workflow）
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # 送信ログを追記してコミットするため
 
 jobs:
   deliver:
@@ -14,12 +19,20 @@ jobs:
       - name: Claude Codeインストール
         run: npm install -g @anthropic-ai/claude-code
 
-      - name: テイアナーを生成（Sonnet・検索5回まで・クレジット最小）
+      - name: テイアナーを生成（過去ログで重複回避・Sonnet・検索5回まで）
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
           TODAY=$(TZ=Asia/Tokyo date '+%Y-%m-%d (%a)')
-          PROMPT="今日は ${TODAY} です。$(cat "01_CRATER/_SERVICE/テイアナー配信/テイアナープロンプト.md")"
+          LOG="01_CRATER/_SERVICE/テイアナー配信/送信ログ.md"
+          RECENT=$(tail -n 60 "$LOG" 2>/dev/null || echo "なし")
+          BASE=$(cat "01_CRATER/_SERVICE/テイアナー配信/テイアナープロンプト.md")
+          PROMPT="今日は ${TODAY} です。
+
+          【過去に送った提案（重複禁止）】これらと同じツール・同じ企業・同じ切り口は絶対に出さない。必ず別の角度で新しい1本を出す：
+          ${RECENT}
+          ────────────
+          ${BASE}"
           claude -p "$PROMPT" --model sonnet --allowedTools "WebSearch" --max-turns 15 > テイアナー.txt
           echo "---- 生成結果 ----"
           cat テイアナー.txt
@@ -35,3 +48,17 @@ jobs:
               -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
               -H "Content-Type: application/json" \
               -d @-
+
+      - name: 送信ログに追記してコミット（重複防止の記録）
+        run: |
+          LOG="01_CRATER/_SERVICE/テイアナー配信/送信ログ.md"
+          {
+            echo ""
+            echo "## $(TZ=Asia/Tokyo date '+%Y-%m-%d')"
+            grep -E '^(🤖|🚀|📈|💡)' テイアナー.txt || echo "(見出し抽出なし)"
+          } >> "$LOG"
+          git config user.name "テイアナー"
+          git config user.email "actions@users.noreply.github.com"
+          git add "$LOG"
+          git commit -m "テイアナー送信ログ $(TZ=Asia/Tokyo date '+%Y-%m-%d')" || echo "変更なし"
+          git push || echo "push skip"
