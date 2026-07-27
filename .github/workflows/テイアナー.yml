@@ -1,10 +1,8 @@
-name: 朝刊プロポーザー
+name: テイアナー
 
-# 2日に1回（奇数日）朝9:00(JST) に自動配信（UTCでは0:00）
+# まずは手動実行（テスト）だけ。LINE配信が確認できたら2日に1回の自動配信をここに追加する。
 on:
-  schedule:
-    - cron: "0 0 1-31/2 * *"
-  workflow_dispatch: {}   # 手動実行も可能（テスト用）
+  workflow_dispatch: {}   # 手動実行（gh workflow run または GitHub画面のRun workflow）
 
 jobs:
   deliver:
@@ -16,22 +14,22 @@ jobs:
       - name: Claude Codeインストール
         run: npm install -g @anthropic-ai/claude-code
 
-      - name: 朝刊を生成（Sonnet・検索5回まで・クレジット最小）
+      - name: テイアナーを生成（Sonnet・検索5回まで・クレジット最小）
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
           TODAY=$(TZ=Asia/Tokyo date '+%Y-%m-%d (%a)')
-          PROMPT="今日は ${TODAY} です。$(cat "01_CRATER/_SERVICE/朝刊プロポーザー/朝刊プロンプト.md")"
-          claude -p "$PROMPT" --model sonnet --allowedTools "WebSearch" --max-turns 15 > 朝刊.txt
+          PROMPT="今日は ${TODAY} です。$(cat "01_CRATER/_SERVICE/テイアナー配信/テイアナープロンプト.md")"
+          claude -p "$PROMPT" --model sonnet --allowedTools "WebSearch" --max-turns 15 > テイアナー.txt
           echo "---- 生成結果 ----"
-          cat 朝刊.txt
+          cat テイアナー.txt
 
-      - name: LINEに送信
+      - name: クロタ（LINE）に送信
         env:
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
           LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
         run: |
-          jq -n --arg to "$LINE_USER_ID" --rawfile text 朝刊.txt \
+          jq -n --arg to "$LINE_USER_ID" --rawfile text テイアナー.txt \
             '{to:$to, messages:[{type:"text", text:($text | .[0:4900])}]}' \
           | curl -sS -X POST https://api.line.me/v2/bot/message/push \
               -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
