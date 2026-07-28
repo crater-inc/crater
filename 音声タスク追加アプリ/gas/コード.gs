@@ -1,10 +1,11 @@
 // 音声タスク追加アプリ：受け取ったテキストを対象シートの2行目に新規タスクとして挿入する
 // 「アクセスできるユーザー：自分のみ」は他オリジンからのfetchがCORSでブロックされるため、
-// 「全員」に緩めた上で、Googleログイン済みidトークンをGoogle側に問い合わせて
-// 本人（OWNER_EMAIL）であることを確認してから書き込む。
+// 「全員」に緩めた上で、Firebase(Googleログイン)発行のidトークンをIdentity Toolkit REST APIで
+// 検証し、本人（OWNER_EMAIL）であることを確認してから書き込む。
 const SPREADSHEET_ID = '1nZ5A991aTfNPNZdSDq2XWcUj55lMT7qhGkQCfD7P0s4';
 const TARGET_SHEET_GID = 0;
 const OWNER_EMAIL = 'kskakari@gmail.com';
+const FIREBASE_API_KEY = 'AIzaSyCzc6L5KaG-NqH3mpnE0j3y8O4Dkkd-zZI';
 
 function doPost(e) {
   try {
@@ -29,12 +30,18 @@ function isOwner_(idToken) {
   if (!idToken) return false;
   try {
     const res = UrlFetchApp.fetch(
-      'https://oauth2.googleapis.com/tokeninfo?id_token=' + encodeURIComponent(idToken),
-      { muteHttpExceptions: true }
+      'https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=' + FIREBASE_API_KEY,
+      {
+        method: 'post',
+        contentType: 'application/json',
+        payload: JSON.stringify({ idToken: idToken }),
+        muteHttpExceptions: true
+      }
     );
     if (res.getResponseCode() !== 200) return false;
-    const info = JSON.parse(res.getContentText());
-    return info.email === OWNER_EMAIL && info.email_verified === 'true';
+    const data = JSON.parse(res.getContentText());
+    const user = data.users && data.users[0];
+    return !!user && user.email === OWNER_EMAIL && user.emailVerified === true;
   } catch (err) {
     return false;
   }
