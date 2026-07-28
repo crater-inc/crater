@@ -9,7 +9,7 @@
       "name": "ESION Top v1",
       "clip": true,
       "width": 1199,
-      "height": 7627,
+      "height": 7661,
       "fill": "#FFFFFF",
       "layout": "none",
       "children": [
@@ -303,7 +303,7 @@
               "type": "text",
               "id": "L9ZM8",
               "x": 652,
-              "y": 142,
+              "y": 133,
               "name": "h",
               "fill": "#071c52ff",
               "textGrowth": "fixed-width",
@@ -318,7 +318,7 @@
               "type": "text",
               "id": "eVO3e",
               "x": 652,
-              "y": 282,
+              "y": 273,
               "name": "d",
               "fill": "#071c52ff",
               "textGrowth": "fixed-width",
@@ -333,7 +333,7 @@
               "type": "text",
               "id": "LxgKB",
               "x": 652,
-              "y": 121,
+              "y": 112,
               "name": "t",
               "fill": "#071c52ff",
               "content": "STORY",
@@ -346,7 +346,7 @@
               "type": "frame",
               "id": "s97ZY",
               "x": 652,
-              "y": 387,
+              "y": 378,
               "name": "btn",
               "fill": "#FFFFFF00",
               "cornerRadius": 40,
@@ -755,6 +755,18 @@
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 17,
                   "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "YOhzm",
+                  "x": 0,
+                  "y": 28,
+                  "name": "vol",
+                  "fill": "#323c4dff",
+                  "content": "450mL",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -846,6 +858,19 @@
                       "fill": "$c-navy-deep"
                     }
                   ]
+                },
+                {
+                  "type": "text",
+                  "id": "aKlAR",
+                  "layoutPosition": "absolute",
+                  "x": 0,
+                  "y": 28,
+                  "name": "vol",
+                  "fill": "#323c4dff",
+                  "content": "450mL",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -855,11 +880,11 @@
           "type": "frame",
           "id": "b22qF",
           "x": 0,
-          "y": 2706,
+          "y": 2741,
           "name": "Reasons",
           "clip": true,
           "width": 1199,
-          "height": 701,
+          "height": 735,
           "fill": "#f5f7faff",
           "layout": "none",
           "children": [
@@ -1246,12 +1271,12 @@
               "type": "text",
               "id": "OKGUj",
               "layoutPosition": "absolute",
-              "x": 48,
+              "x": 423,
               "y": 672,
               "name": "footnote",
               "fill": "#6E86A8",
               "textGrowth": "fixed-width",
-              "width": 1100,
+              "width": 352,
               "content": "※1 洗浄成分 ラウロイルメチルアラニンNa、ラウロイルアスパラギン酸Na",
               "fontFamily": "Zen Kaku Gothic New",
               "fontSize": 10.5,
@@ -1264,7 +1289,7 @@
           "type": "frame",
           "id": "gFFM5",
           "x": 0,
-          "y": 2176,
+          "y": 2211,
           "name": "Story",
           "clip": true,
           "width": 1199,
@@ -1402,7 +1427,7 @@
           "type": "frame",
           "id": "RCGFy",
           "x": 0,
-          "y": 3948,
+          "y": 4017,
           "name": "13Free",
           "clip": true,
           "width": 1199,
@@ -2019,7 +2044,7 @@
           "type": "frame",
           "id": "GAX9O",
           "x": 0,
-          "y": 3410,
+          "y": 3479,
           "name": "Foam",
           "clip": true,
           "width": 1199,
@@ -2145,7 +2170,7 @@
           "type": "frame",
           "id": "Geh7O",
           "x": 0,
-          "y": 4419,
+          "y": 4488,
           "name": "ForWhom",
           "clip": true,
           "width": 1199,
@@ -2435,7 +2460,7 @@
           "type": "frame",
           "id": "gPGdM",
           "x": 0,
-          "y": 4791,
+          "y": 4860,
           "name": "Voices",
           "clip": true,
           "width": 1199,
@@ -2923,7 +2948,7 @@
           "type": "frame",
           "id": "GsxnO",
           "x": 0,
-          "y": 5261,
+          "y": 5330,
           "name": "Subscription",
           "clip": true,
           "width": 1199,
@@ -3203,7 +3228,7 @@
           "type": "frame",
           "id": "V9rFA",
           "x": 0,
-          "y": 5948,
+          "y": 6017,
           "name": "FAQ",
           "clip": true,
           "width": 1199,
@@ -3574,7 +3599,7 @@
           "type": "frame",
           "id": "dqLUN",
           "x": 0,
-          "y": 6432,
+          "y": 6501,
           "name": "News",
           "clip": true,
           "width": 1199,
@@ -3797,7 +3822,7 @@
           "type": "frame",
           "id": "e0lor0",
           "x": 0,
-          "y": 6791,
+          "y": 6860,
           "name": "Contact",
           "clip": true,
           "width": 1199,
@@ -4090,7 +4115,7 @@
           "type": "frame",
           "id": "B6HptD",
           "x": 0,
-          "y": 7354,
+          "y": 7423,
           "name": "Footer",
           "clip": true,
           "width": 1199,
@@ -5043,6 +5068,7 @@
       "name": "ESION Top SP",
       "clip": true,
       "width": 390,
+      "height": 11919,
       "fill": "#FFFFFF",
       "layout": "vertical",
       "children": [
@@ -5329,7 +5355,7 @@
                   "y": 71,
                   "name": "nt",
                   "fill": "$c-gray",
-                  "content": "まずは1包から試せます",
+                  "content": "税込・まずは1包から試せます",
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 11,
                   "fontWeight": "normal"
@@ -5428,7 +5454,7 @@
                   "y": 68,
                   "name": "nt",
                   "fill": "$c-gray",
-                  "content": "税込",
+                  "content": "税込・送料無料",
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 11,
                   "fontWeight": "normal"
@@ -5447,18 +5473,6 @@
                 },
                 {
                   "type": "text",
-                  "id": "Psxyh",
-                  "x": 0,
-                  "y": 11,
-                  "name": "vol",
-                  "fill": "#323c4dff",
-                  "content": "450mL / 約1〜2ヶ月分",
-                  "fontFamily": "Zen Kaku Gothic New",
-                  "fontSize": 12,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
                   "id": "V72yu",
                   "x": 0,
                   "y": -13,
@@ -5471,6 +5485,18 @@
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 17,
                   "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Psxyh",
+                  "x": 0,
+                  "y": 11,
+                  "name": "vol",
+                  "fill": "#323c4dff",
+                  "content": "450mL",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -5490,23 +5516,11 @@
                   "fill": "$c-navy-deep",
                   "textGrowth": "fixed-width",
                   "width": 352,
-                  "content": "フレックスオーダー（定期）",
+                  "content": "フレックスオーダー／自由な定期便",
                   "lineHeight": 1.4,
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 17,
                   "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "qEzHu",
-                  "x": 0,
-                  "y": 7,
-                  "name": "vol",
-                  "fill": "#323c4dff",
-                  "content": "450mL / 約1〜2ヶ月分",
-                  "fontFamily": "Zen Kaku Gothic New",
-                  "fontSize": 12,
-                  "fontWeight": "normal"
                 },
                 {
                   "type": "text",
@@ -5527,7 +5541,7 @@
                   "y": 64,
                   "name": "nt",
                   "fill": "$c-gray",
-                  "content": "税込・送料無料・いつでも解約OK",
+                  "content": "30日間返金保証",
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 11,
                   "fontWeight": "normal"
@@ -5570,6 +5584,18 @@
                       "fill": "$c-navy-deep"
                     }
                   ]
+                },
+                {
+                  "type": "text",
+                  "id": "qEzHu",
+                  "x": 0,
+                  "y": 7,
+                  "name": "vol",
+                  "fill": "#323c4dff",
+                  "content": "450mL",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -5736,7 +5762,7 @@
               "fill": "#071c52ff",
               "textGrowth": "fixed-width",
               "width": 326,
-              "content": "シャンプー本来の目的は、不要なものを洗い流し、地肌の潤いを保つこと。香料（油分）を配合しないことで、洗浄成分本来の力を引き出しました。性別・年齢を問わず、家族全員で使えます。",
+              "content": "シャンプーの本質である「うるおいを守り、汚れを落とすこと」を追求したESION誕生の物語。無香料という選択が、毎日のシャンプーをよりシンプルで心地よい時間に変えていきます。",
               "lineHeight": 1.9,
               "fontFamily": "Zen Kaku Gothic New",
               "fontSize": 13,
@@ -5749,7 +5775,7 @@
               "y": 293,
               "name": "t",
               "fill": "#071c52ff",
-              "content": "STATEMENT",
+              "content": "STORY",
               "fontFamily": "$font-en",
               "fontSize": 14,
               "fontWeight": "normal",
@@ -5777,7 +5803,7 @@
                   "id": "jDMU3",
                   "name": "l",
                   "fill": "$c-navy-deep",
-                  "content": "こだわりを見る",
+                  "content": "STORYを見る",
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 13,
                   "fontWeight": "600"
@@ -5864,7 +5890,7 @@
                   "fill": "$c-gray-dark",
                   "textGrowth": "fixed-width",
                   "width": 326,
-                  "content": "毎日使うものだからこそ、妥協なく。香りでごまかさず、シャンプーの「本質」だけを追求しました。10年以上の構想を経て生まれた、無香料オールインワンシャンプーです。",
+                  "content": "毎日使うものだから品質にこだわる。低刺激・無香料・アミノ酸系オールインワンシャンプーです。",
                   "lineHeight": 1.9,
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 13,
@@ -5890,7 +5916,7 @@
                       "y": 13,
                       "name": "l",
                       "fill": "$c-navy-deep",
-                      "content": "誕生秘話を読む",
+                      "content": "こだわりを見る",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 13,
                       "fontWeight": "600"
@@ -5918,7 +5944,7 @@
                   "fill": "$c-gray-dark",
                   "textGrowth": "fixed-width",
                   "width": 90,
-                  "content": "STORY",
+                  "content": "about",
                   "fontFamily": "$font-en",
                   "fontSize": 14,
                   "fontWeight": "normal",
@@ -5934,7 +5960,7 @@
           "name": "Reasons",
           "clip": true,
           "width": 390,
-          "height": 1650,
+          "height": 1700,
           "fill": "#f5f7faff",
           "layout": "none",
           "children": [
@@ -6122,7 +6148,7 @@
                       "fill": "$c-gray-dark",
                       "textGrowth": "fixed-width",
                       "width": "fill_container(326)",
-                      "content": "香料（油分）を配合しない設計。においの元を残さず、洗浄成分本来の力を引き出します。",
+                      "content": "香料を配合しない設計。洗浄成分本来の力を引き出し、においの元となる汚れを洗い流します。",
                       "lineHeight": 1.8,
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 12.5,
@@ -6222,7 +6248,7 @@
                       "y": 385,
                       "name": "jp",
                       "fill": "$c-navy-deep",
-                      "content": "アミノ酸系",
+                      "content": "低刺激",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 20,
                       "fontWeight": "700"
@@ -6246,13 +6272,26 @@
                       "fill": "$c-gray-dark",
                       "textGrowth": "fixed-width",
                       "width": "fill_container(326)",
-                      "content": "肌と同じ弱酸性・アミノ酸系洗浄成分。低刺激で、家族みんなの地肌にやさしい。",
+                      "content": "アミノ酸系(※1)を中心とした洗浄設計。髪と地肌をやさしく洗い、必要なうるおいを守ります。",
                       "lineHeight": 1.8,
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 12.5,
                       "fontWeight": "normal"
                     }
                   ]
+                },
+                {
+                  "type": "text",
+                  "id": "ek1JG",
+                  "name": "footnote",
+                  "fill": "#6E86A8",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※1 洗浄成分 ラウロイルメチルアラニンNa、ラウロイルアスパラギン酸Na",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -6474,7 +6513,7 @@
           "name": "13Free",
           "clip": true,
           "width": 390,
-          "height": 634,
+          "height": 690,
           "fill": {
             "type": "gradient",
             "gradientType": "linear",
@@ -7072,6 +7111,22 @@
               "fontSize": 56,
               "fontWeight": "600",
               "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "GkxUn",
+              "layoutPosition": "absolute",
+              "x": 32,
+              "y": 598,
+              "name": "note",
+              "fill": "#9FB6E4",
+              "textGrowth": "fixed-width",
+              "width": 326,
+              "content": "第三者監修パッチテスト実施済／化粧品の安全性評価に関する指針2015に則り実施。すべての方に刺激が出ないということではありません。",
+              "lineHeight": 1.7,
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 11,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -7315,7 +7370,7 @@
                           "id": "h73D2",
                           "name": "t",
                           "fill": "$c-navy-deep",
-                          "content": "頭皮のニオイが気になる",
+                          "content": "ふけ、かゆみ、においが気になる",
                           "fontFamily": "Zen Kaku Gothic New",
                           "fontSize": 13.5,
                           "fontWeight": "normal"
@@ -7351,7 +7406,7 @@
                           "id": "Cafpe",
                           "name": "t",
                           "fill": "$c-navy-deep",
-                          "content": "メンズのスカルプケアに",
+                          "content": "ハリ・コシやボリューム感を求める",
                           "fontFamily": "Zen Kaku Gothic New",
                           "fontSize": 13.5,
                           "fontWeight": "normal"
@@ -7853,172 +7908,6 @@
         },
         {
           "type": "frame",
-          "id": "Ex5k0",
-          "name": "Stores",
-          "clip": true,
-          "width": 390,
-          "height": 385,
-          "fill": "#ffffffff",
-          "layout": "none",
-          "children": [
-            {
-              "type": "text",
-              "id": "CRrln",
-              "layoutPosition": "absolute",
-              "x": 32,
-              "y": 50,
-              "name": "lab",
-              "fill": "$c-gray-dark",
-              "content": "全国の取扱店舗",
-              "fontFamily": "Zen Kaku Gothic New",
-              "fontSize": 14,
-              "fontWeight": "normal",
-              "letterSpacing": 1
-            },
-            {
-              "type": "text",
-              "id": "T3fZy",
-              "layoutPosition": "absolute",
-              "x": 32,
-              "y": 66,
-              "name": "h",
-              "fill": "$c-navy-deep",
-              "content": "STORES",
-              "fontFamily": "$font-en",
-              "fontSize": 56,
-              "fontWeight": "600",
-              "letterSpacing": 1
-            },
-            {
-              "type": "text",
-              "id": "hAuY7",
-              "x": 32,
-              "y": 150,
-              "name": "sub",
-              "fill": "$c-gray-dark",
-              "textGrowth": "fixed-width",
-              "width": 326,
-              "content": "公式オンラインストアのほか、全国のロフトほかバラエティショップでお取り扱いいただいています。",
-              "lineHeight": 1.8,
-              "fontFamily": "Zen Kaku Gothic New",
-              "fontSize": 12.5,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "rectangle",
-              "id": "Qgsyz",
-              "layoutPosition": "absolute",
-              "x": 32,
-              "y": 214,
-              "name": "div",
-              "fill": "$c-line",
-              "width": 326,
-              "height": 1
-            },
-            {
-              "type": "frame",
-              "id": "gVcO7",
-              "x": 32,
-              "y": 233,
-              "name": "logos",
-              "width": 326,
-              "height": "fit_content(124)",
-              "layout": "none",
-              "children": [
-                {
-                  "type": "frame",
-                  "id": "Bmf4W",
-                  "x": 0,
-                  "y": 0,
-                  "name": "logo-row1",
-                  "width": "fill_container(326)",
-                  "gap": 16,
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "OlZsZ",
-                      "name": "LOFT",
-                      "fill": "#E8B23A",
-                      "content": "LOFT",
-                      "fontFamily": "Jost",
-                      "fontSize": 42,
-                      "fontWeight": "800",
-                      "letterSpacing": 2
-                    },
-                    {
-                      "type": "text",
-                      "id": "vanv0",
-                      "name": "d1",
-                      "fill": "#B4BECB",
-                      "content": "PLAZA",
-                      "fontFamily": "Jost",
-                      "fontSize": 32,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "B3E3MS",
-                      "name": "d2",
-                      "fill": "#B4BECB",
-                      "content": "Hands",
-                      "fontFamily": "Playfair Display",
-                      "fontSize": 32,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "a04Rp",
-                  "x": 0,
-                  "y": 66,
-                  "name": "logo-row2",
-                  "width": "fill_container(326)",
-                  "gap": 16,
-                  "justifyContent": "space_between",
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "g8l4Qp",
-                      "name": "d3",
-                      "fill": "#B4BECB",
-                      "content": "@cosme",
-                      "fontFamily": "Jost",
-                      "fontSize": 30,
-                      "fontWeight": "300",
-                      "letterSpacing": 1
-                    },
-                    {
-                      "type": "text",
-                      "id": "L2ymse",
-                      "name": "d4",
-                      "fill": "#B4BECB",
-                      "content": "AINZ",
-                      "fontFamily": "Jost",
-                      "fontSize": 30,
-                      "fontWeight": "600"
-                    },
-                    {
-                      "type": "text",
-                      "id": "MZSf6",
-                      "name": "d5",
-                      "fill": "#B4BECB",
-                      "content": "Bloom",
-                      "fontFamily": "Playfair Display",
-                      "fontSize": 30,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "frame",
           "id": "O01WQ",
           "name": "Subscription",
           "clip": true,
@@ -8124,7 +8013,7 @@
                   "fill": "#C4D3E0",
                   "textGrowth": "fixed-width",
                   "width": "fill_container(326)",
-                  "content": "買い忘れの心配なく、毎日のケアを続けられる「フレックスオーダー」。お届け周期は自由に選べて、いつでも解約OK。",
+                  "content": "フレックスオーダーは、回数の縛りがない“自由な定期便”です。変更・スキップ・停止・解約までマイページや公式LINEから自由に。使うペースに合わせて、無理なく続けられます。",
                   "lineHeight": 1.9,
                   "fontFamily": "Zen Kaku Gothic New",
                   "fontSize": 13,
@@ -8144,12 +8033,10 @@
                   "type": "frame",
                   "id": "swSlk",
                   "x": 0,
-                  "y": 205,
+                  "y": 236,
                   "name": "通常より約12%OFFの ¥3,960（税込）",
                   "width": "fill_container(326)",
-                  "height": 44,
                   "gap": 10,
-                  "alignItems": "center",
                   "children": [
                     {
                       "type": "icon",
@@ -8166,7 +8053,9 @@
                       "id": "A72Zfg",
                       "name": "t",
                       "fill": "#E4ECF3",
-                      "content": "通常より約12%OFFの ¥3,960（税込）",
+                      "textGrowth": "fixed-width",
+                      "width": 280,
+                      "content": "最大約30%OFF、初回からお得な価格で始められます。（沖縄・一部の離島を除く）",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 13.5,
                       "fontWeight": "normal"
@@ -8177,7 +8066,7 @@
                   "type": "frame",
                   "id": "AtWNK",
                   "x": 0,
-                  "y": 242,
+                  "y": 296,
                   "name": "送料無料でお届け",
                   "width": "fill_container(326)",
                   "height": 44,
@@ -8210,7 +8099,7 @@
                   "type": "frame",
                   "id": "ONpdW",
                   "x": 0,
-                  "y": 279,
+                  "y": 344,
                   "name": "お届け周期を自由に設定",
                   "width": "fill_container(326)",
                   "height": 44,
@@ -8232,40 +8121,7 @@
                       "id": "kcu24",
                       "name": "t",
                       "fill": "#E4ECF3",
-                      "content": "お届け周期を自由に設定",
-                      "fontFamily": "Zen Kaku Gothic New",
-                      "fontSize": 13.5,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "OKnos",
-                  "x": 0,
-                  "y": 316,
-                  "name": "1回のお届けから、いつでも解約OK",
-                  "width": "fill_container(326)",
-                  "height": 44,
-                  "gap": 10,
-                  "alignItems": "center",
-                  "children": [
-                    {
-                      "type": "icon",
-                      "id": "euK7U",
-                      "name": "c",
-                      "width": 18,
-                      "height": 18,
-                      "icon": "circle-check",
-                      "library": "lucide",
-                      "fill": "#7FA8CC"
-                    },
-                    {
-                      "type": "text",
-                      "id": "rPOL7",
-                      "name": "t",
-                      "fill": "#E4ECF3",
-                      "content": "1回のお届けから、いつでも解約OK",
+                      "content": "お届け周期・ストップ・スキップを自由に設定",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 13.5,
                       "fontWeight": "normal"
@@ -8286,7 +8142,7 @@
                   "type": "frame",
                   "id": "uP13i",
                   "x": 0,
-                  "y": 377,
+                  "y": 398,
                   "name": "cta",
                   "width": 325,
                   "height": 52,
@@ -9240,7 +9096,7 @@
           "name": "Footer",
           "clip": true,
           "width": 390,
-          "height": 444,
+          "height": 530,
           "fill": "$c-navy-deep",
           "layout": "none",
           "children": [
@@ -9449,7 +9305,7 @@
               "type": "frame",
               "id": "R499s",
               "x": 32,
-              "y": 404,
+              "y": 490,
               "name": "bottom",
               "width": 326,
               "justifyContent": "space_between",
@@ -9475,6 +9331,44 @@
                   "fontSize": 10,
                   "fontWeight": "normal",
                   "letterSpacing": 1
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Lh1zm",
+              "layoutPosition": "absolute",
+              "x": 32,
+              "y": 388,
+              "name": "取扱店舗",
+              "width": 326,
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "n52eYU",
+                  "name": "hd",
+                  "fill": "#FFFFFF",
+                  "textGrowth": "fixed-width",
+                  "width": 120,
+                  "content": "取扱店舗",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 14,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "qHyoO",
+                  "name": "list",
+                  "fill": "#9FB6CC",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "LOFT ｜ PLAZA ｜ Hands ｜ @cosme ｜ AINZ ｜ Bloom",
+                  "lineHeight": 1.8,
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 11,
+                  "fontWeight": "normal"
                 }
               ]
             }
@@ -13417,29 +13311,6 @@
           "fontWeight": "normal"
         },
         {
-          "type": "text",
-          "id": "aKlAR",
-          "layoutPosition": "absolute",
-          "x": 0,
-          "y": 28,
-          "name": "vol",
-          "fill": "#323c4dff",
-          "content": "450mL / 約1〜2ヶ月分",
-          "fontFamily": "Zen Kaku Gothic New",
-          "fontSize": 12,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "YOhzm",
-          "name": "vol",
-          "fill": "#323c4dff",
-          "content": "450mL / 約1〜2ヶ月分",
-          "fontFamily": "Zen Kaku Gothic New",
-          "fontSize": 12,
-          "fontWeight": "normal"
-        },
-        {
           "type": "frame",
           "id": "rIOy1",
           "name": "1回のお届けから、いつでも解約OK",
@@ -13607,6 +13478,203 @@
                   "fontFamily": "Playfair Display",
                   "fontSize": 30,
                   "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OKnos",
+          "name": "1回のお届けから、いつでも解約OK",
+          "width": "fill_container",
+          "height": 44,
+          "gap": 10,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "euK7U",
+              "name": "c",
+              "width": 18,
+              "height": 18,
+              "icon": "circle-check",
+              "library": "lucide",
+              "fill": "#7FA8CC"
+            },
+            {
+              "type": "text",
+              "id": "rPOL7",
+              "name": "t",
+              "fill": "#E4ECF3",
+              "content": "1回のお届けから、いつでも解約OK",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 13.5,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Ex5k0",
+          "name": "Stores",
+          "clip": true,
+          "width": 390,
+          "height": 385,
+          "fill": "#ffffffff",
+          "layout": "none",
+          "children": [
+            {
+              "type": "text",
+              "id": "CRrln",
+              "layoutPosition": "absolute",
+              "x": 32,
+              "y": 50,
+              "name": "lab",
+              "fill": "$c-gray-dark",
+              "content": "全国の取扱店舗",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "T3fZy",
+              "layoutPosition": "absolute",
+              "x": 32,
+              "y": 66,
+              "name": "h",
+              "fill": "$c-navy-deep",
+              "content": "STORES",
+              "fontFamily": "$font-en",
+              "fontSize": 56,
+              "fontWeight": "600",
+              "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "hAuY7",
+              "x": 32,
+              "y": 150,
+              "name": "sub",
+              "fill": "$c-gray-dark",
+              "textGrowth": "fixed-width",
+              "width": 326,
+              "content": "公式オンラインストアのほか、全国のロフトほかバラエティショップでお取り扱いいただいています。",
+              "lineHeight": 1.8,
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "rectangle",
+              "id": "Qgsyz",
+              "layoutPosition": "absolute",
+              "x": 32,
+              "y": 214,
+              "name": "div",
+              "fill": "$c-line",
+              "width": 326,
+              "height": 1
+            },
+            {
+              "type": "frame",
+              "id": "gVcO7",
+              "x": 32,
+              "y": 233,
+              "name": "logos",
+              "width": 326,
+              "height": "fit_content(124)",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Bmf4W",
+                  "x": 0,
+                  "y": 0,
+                  "name": "logo-row1",
+                  "width": "fill_container(326)",
+                  "gap": 16,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "OlZsZ",
+                      "name": "LOFT",
+                      "fill": "#E8B23A",
+                      "content": "LOFT",
+                      "fontFamily": "Jost",
+                      "fontSize": 42,
+                      "fontWeight": "800",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "vanv0",
+                      "name": "d1",
+                      "fill": "#B4BECB",
+                      "content": "PLAZA",
+                      "fontFamily": "Jost",
+                      "fontSize": 32,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "B3E3MS",
+                      "name": "d2",
+                      "fill": "#B4BECB",
+                      "content": "Hands",
+                      "fontFamily": "Playfair Display",
+                      "fontSize": 32,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a04Rp",
+                  "x": 0,
+                  "y": 66,
+                  "name": "logo-row2",
+                  "width": "fill_container(326)",
+                  "gap": 16,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "g8l4Qp",
+                      "name": "d3",
+                      "fill": "#B4BECB",
+                      "content": "@cosme",
+                      "fontFamily": "Jost",
+                      "fontSize": 30,
+                      "fontWeight": "300",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "text",
+                      "id": "L2ymse",
+                      "name": "d4",
+                      "fill": "#B4BECB",
+                      "content": "AINZ",
+                      "fontFamily": "Jost",
+                      "fontSize": 30,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MZSf6",
+                      "name": "d5",
+                      "fill": "#B4BECB",
+                      "content": "Bloom",
+                      "fontFamily": "Playfair Display",
+                      "fontSize": 30,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             }
