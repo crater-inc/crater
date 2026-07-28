@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>タスク管理 — KEISUKE GROUP</title>
+<style>
+  /* ===== ベース ===== */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-size:16px; line-height:1.8; color:#1a1a1a; background:#fafafa;
+    overflow-x:hidden;
+  }
+  .wrap { max-width:1200px; margin:0 auto; padding:56px 48px 96px; }
+
+  /* ===== ヘッダー ===== */
+  .meta-label { font-size:10px; letter-spacing:.28em; color:#888; text-transform:uppercase; }
+  h1 { font-size:clamp(24px, 4vw, 34px); font-weight:700; letter-spacing:.06em; margin:8px 0 4px; }
+  .lead { font-size:14px; color:#555; }
+  header { margin-bottom:28px; }
+  .back-link { display:inline-block; margin-top:14px; font-size:12px; letter-spacing:.06em; color:#555; text-decoration:none; border-bottom:1px solid #ccc; padding-bottom:1px; }
+  .back-link:hover { color:#1a1a1a; border-color:#1a1a1a; }
+
+  .stamp { font-size:11px; color:#888; letter-spacing:.08em; margin:0 0 24px; }
+  .sub-head { font-size:15px; font-weight:700; letter-spacing:.06em; margin:44px 0 12px; }
+  .sub-head:first-of-type { margin-top:0; }
+  .list-note { font-size:14px; color:#555; margin-top:10px; }
+
+  /* ===== テーブル ===== */
+  .tbl-scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; background:#fff; font-size:14px; }
+  th, td { border:1px solid #ddd; padding:12px 16px; text-align:left; vertical-align:top; }
+  th { background:#1a1a1a; color:#fff; font-weight:600; font-size:13px; letter-spacing:.06em; }
+  td b { font-size:14px; }
+  td .sub { color:#555; font-size:13px; }
+  /* 日付列は一行死守（nowrapは使わずmin-widthで確保） */
+  #list td:last-child, #list th:last-child { min-width:80px; }
+
+  footer { margin-top:72px; border-top:1px solid #1a1a1a; padding-top:16px; display:flex; justify-content:space-between; }
+  footer span { font-size:10px; letter-spacing:.22em; color:#888; }
+
+  /* ===== SP ===== */
+  @media (max-width:768px){
+    .wrap { padding:40px 32px 64px; width:100%; box-sizing:border-box; }
+    table { display:block; overflow-x:auto; }
+    footer { flex-direction:column; gap:4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="meta-label">KEISUKE GROUP — TASK MANAGEMENT</span>
+    <h1>タスク管理</h1>
+    <p class="lead">中断リスト・質問リスト・サブスクリストの「今」。元データはメモリ側が正。リストを書き換えるたびにこのページも同時更新する。</p>
+    <a class="back-link" href="座組.html">← ケイスケグループ座組へ戻る</a>
+  </header>
+
+  <section id="list">
+    <p class="stamp">最終同期：2026-07-23</p>
+
+    <div class="sub-head">📋 中断リスト（タスク進行管理）</div>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th>案件</th><th>進捗（今どこ）</th><th>次のアクション</th><th>更新</th></tr>
+        <tr><td><b>朝刊プロポーザー</b></td><td class="sub">設計確定：2日に1回・朝9時・LINE配信・クレジット最小。🚀新規ビジネス毎回厚め（スキーム創出型／企業ターゲット型）＋3コーナーローテ。ビジネスプランナー新設</td><td class="sub">構築セッション：setup-token（本人）→LINEログイン（本人）→残りクロコ→テスト配信で消費実測</td><td class="sub">2026<br>07-23</td></tr>
+        <tr><td><b>GILT CROW</b></td><td class="sub">GILT SKYサビ歌詞改稿中（→「例え剥がれ落ちてゆくとしても」）。Suno正規ルート判明＝Edit（Song Editor）でドラッグ選択→差し替え→Select合成</td><td class="sub">①Editorで差し替え実行（生成前確認必須）②Select→キー-1 ③設定書と実歌唱のすり合わせ</td><td class="sub">2026<br>07-23</td></tr>
+        <tr><td><b>制作ツール運転自動化</b></td><td class="sub">Kive初運転成功・Sunoログイン済・Editor/Studio調査済。Riverflow/Runwayは公式API（Runware推奨）</td><td class="sub">RunwareでAPIキー→Riverflow/Runway接続／Kiveループ続行</td><td class="sub">2026<br>07-23</td></tr>
+        <tr><td><b>5サイト統合viewダッシュボード</b></td><td class="sub">構想段階。5サイトを一画面で見比べ・週1SP通知</td><td class="sub">①指標特定 ②UI設計 ③データ取得・通知設計</td><td class="sub">2026<br>07-14</td></tr>
+        <tr><td><b>新Spark移行＋CLI連携</b></td><td class="sub">ConoHa=IMAP/SMTP手入力が必要で認証失敗中</td><td class="sub">IMAP/SMTP確認→手入力ログイン→CLI連携</td><td class="sub">2026<br>07-13</td></tr>
+        <tr><td><b>A CURRY Shopify実装</b></td><td class="sub">トップ〜下層まで実装済み（Pencil書き出し反映）</td><td class="sub">GA4/GTM・ファビコン・OGP・BowNowフォーム</td><td class="sub">2026<br>07-06</td></tr>
+        <tr><td><b>A CURRY 在庫管理</b></td><td class="sub">台帳運用開始。「在庫出して」で即表示</td><td class="sub">入出庫を随時追記（1ケース=30食）</td><td class="sub">2026<br>07-06</td></tr>
+        <tr><td><b>LINEスタンプ（あっくん）</b></td><td class="sub">⑧案（坊主・でか目）が最有力</td><td class="sub">キャラ確定→制作→LINE審査</td><td class="sub">2026<br>06-08</td></tr>
+        <tr><td><b>3DCG→3Dプリンター</b></td><td class="sub">アイデア段階</td><td class="sub">Blender→スライサー連携を調査</td><td class="sub">2026<br>06-08</td></tr>
+        <tr><td><b>CRATERスライドテンプレ</b></td><td class="sub">表紙ほぼ完成。ステータスバーがハンバーガーと被り中</td><td class="sub">ステータスバーを左上 or 中央上へ</td><td class="sub">2026<br>05-24</td></tr>
+        <tr><td><b>/スライド スキル改修</b></td><td class="sub">ヒアリング分岐が未実装</td><td class="sub">分岐追加＋A1/DINで本品質に作り直し</td><td class="sub">2026<br>05-22</td></tr>
+        <tr><td><b>LINEタスクBot</b></td><td class="sub">動作確認済み。フォーマット崩れ問題</td><td class="sub">Notionバックエンド化で作り直し</td><td class="sub">2026<br>05-18</td></tr>
+        <tr><td><b>パッケージモックアップスキル</b></td><td class="sub">未着手</td><td class="sub">スキル新規作成</td><td class="sub">2026<br>05-15</td></tr>
+        <tr><td><b>APOLLOS AIインフルエンサー</b></td><td class="sub">Yuna・APOS設計完了。パイプライン未構築</td><td class="sub">ビジュアル生成→投稿パイプライン→開設</td><td class="sub">2026<br>05-14</td></tr>
+        <tr><td><b>BowNow+GA 週次レポート</b></td><td class="sub">スプシ作成済み。API情報待ち</td><td class="sub">API揃い次第、設定再開</td><td class="sub">2026<br>05-14</td></tr>
+        <tr><td><b>APOLLOS Meta Graph API</b></td><td class="sub">IGビジネスアカウント・FBページ紐づけ完了</td><td class="sub">アプリ作成→Graph API有効化</td><td class="sub">2026<br>05-13</td></tr>
+        <tr><td><b>REQST ブランド立ち上げ</b></td><td class="sub">ネームコンセプト確定「ものには、続きがある。」</td><td class="sub">VI設計・ブランドボード制作</td><td class="sub">2026<br>05-13</td></tr>
+      </table>
+    </div>
+    <p class="list-note">✅ 完了（8件）：尾山神社翻訳／APOLLOSサイト／人と空間／LP社内デザイナー顧問／Amazon A CURRY／尾山神社保守契約／シャチハタ提案書／JHL金の時</p>
+
+    <div class="sub-head">❓ 質問リスト（預かり・回付）</div>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th>質問先</th><th>誰</th><th>質問</th><th>状態</th><th>更新</th></tr>
+        <tr><td><b>ライジング</b></td><td>🧑</td><td class="sub">CHICS LPのアナリティクスを引っ張れるか確認</td><td class="sub">🔵 未解決</td><td class="sub">2026<br>07-14</td></tr>
+        <tr><td><b>ライジング</b></td><td>🧑</td><td class="sub">クレジットが追加される日（毎月何日に追加されるか）</td><td class="sub">🔵 未解決</td><td class="sub">2026<br>07-23</td></tr>
+        <tr><td><b>ESION</b></td><td>🤖</td><td class="sub">単品購入 3本・5本セットの正式価格（商品詳細に仮価格で掲載中）</td><td class="sub">🔵 未解決</td><td class="sub">2026<br>07-23</td></tr>
+      </table>
+    </div>
+
+    <div class="sub-head">💳 サブスクリスト（契約中・AI系を上に）</div>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th>サービス</th><th>プラン</th><th>料金（月割）</th><th>次回更新</th></tr>
+        <tr><td><b>Claude（クロコ）</b></td><td class="sub">Max（Proの5倍）</td><td class="sub">$110／月（約¥17,270）</td><td class="sub">毎月<br>20日</td></tr>
+        <tr><td><b>Riverflow</b></td><td class="sub">GROWTH（月払い）</td><td class="sub">$99／月（約¥16,010）</td><td class="sub">毎月<br>29日頃</td></tr>
+        <tr><td><b>kive.ai</b></td><td class="sub">Basic（2,000cr/月・年払い）</td><td class="sub">$30／月（約¥4,857）</td><td class="sub">2026<br>11-21</td></tr>
+        <tr><td><b>Suno</b></td><td class="sub">Premier（月払い）</td><td class="sub">¥4,500／月</td><td class="sub">2026<br>08-19頃</td></tr>
+        <tr><td><b>ChatGPT</b></td><td class="sub">Plus</td><td class="sub">$22／月（約¥3,454）</td><td class="sub">毎月<br>13日</td></tr>
+        <tr><td><b>Lovart</b></td><td class="sub">BASIC（年払い）</td><td class="sub">¥30,380／年（月割約¥2,532）</td><td class="sub">2027<br>02-27頃</td></tr>
+        <tr><td><b>Google One</b></td><td class="sub">AI Pro（5TB・年払い）</td><td class="sub">¥29,000／年（月割約¥2,417）</td><td class="sub">2026<br>09-13</td></tr>
+        <tr><td><b>Runway</b></td><td class="sub">Standard（年払い）</td><td class="sub">$158.40／年（月割約¥2,075）</td><td class="sub">2027<br>06-28頃</td></tr>
+        <tr><td><b>Aqua Voice</b></td><td class="sub">月払い</td><td class="sub">$10／月（約¥1,570）</td><td class="sub">毎月</td></tr>
+        <tr><td><b>ラッコキーワード</b></td><td class="sub">スタンダード（年払い・API/MCP）</td><td class="sub">月割約¥1,240</td><td class="sub">2027<br>07-13</td></tr>
+        <tr><td><b>Spark（メール）</b></td><td class="sub">Premium（年払い）</td><td class="sub">¥5,800／年（月割約¥483）</td><td class="sub">2026<br>12-03</td></tr>
+      </table>
+    </div>
+    <p class="list-note">合計：約¥57,100／月（年換算 約¥68.5万・$1≈¥162概算）。🚫解約手続き済み：Genspark（2026-08-23まで利用可）。元データ＝MEMORY_サブスクリスト（円換算は都度レートで再計算）</p>
+  </section>
+
+  <footer>
+    <span>KEISUKE GROUP — INTERNAL</span>
+    <span>TASK MANAGEMENT v1.0 / 2026.07</span>
+  </footer>
+
+</div>
+</body>
+</html>

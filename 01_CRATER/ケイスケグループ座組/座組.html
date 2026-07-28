@@ -114,6 +114,30 @@
   .dept-node.vacant > .dn { color:#777; }
   .dept-node.vacant .member b { color:#777; }
 
+  /* ===== 事業スキーム ===== */
+  .gov-bar { background:#1a1a1a; color:#fff; padding:16px 24px; text-align:center; }
+  .gov-bar b { font-size:16px; letter-spacing:.08em; }
+  .gov-bar span { display:block; font-size:12px; color:rgba(255,255,255,.72); margin-top:2px; }
+  .gov-tie { display:grid; grid-template-columns:1fr 1fr 1fr; height:24px; }
+  .gov-tie i { border-left:1px solid #1a1a1a; justify-self:center; }
+  .phases { display:grid; grid-template-columns:1fr 34px 1fr 34px 1fr; align-items:stretch; }
+  .phase { background:#fff; border:1px solid #1a1a1a; padding:20px 22px; display:flex; flex-direction:column; }
+  .phase .pno { font-size:10px; letter-spacing:.28em; color:#C93A2B; }
+  .phase h3 { font-size:17px; letter-spacing:.04em; margin:2px 0 0; }
+  .phase .pen { font-size:10px; letter-spacing:.2em; color:#888; text-transform:uppercase; margin-bottom:10px; }
+  .phase .pdesc { font-size:13px; color:#555; line-height:1.7; }
+  .phase .player { border:1px solid #1a1a1a; padding:10px 14px; text-align:center; font-weight:700; font-size:16px; margin-bottom:14px; }
+  .phase .player small { display:block; font-size:11px; color:#555; font-weight:400; }
+  .chips { display:flex; gap:6px; justify-content:center; margin-top:14px; padding-top:12px; border-top:1px dashed #ccc; flex-wrap:wrap; }
+  .chips .lbl { width:100%; text-align:center; font-size:10px; letter-spacing:.16em; color:#888; }
+  .chip { font-size:12px; border:1px solid #ccc; background:#fff; padding:2px 12px; color:#333; }
+  .p-arrow { display:flex; align-items:center; justify-content:center; color:#C93A2B; font-size:18px; font-weight:700; }
+  .span-bar { background:#fff; border:1px solid #1a1a1a; border-left:4px solid #C93A2B; padding:14px 18px; margin-top:12px; }
+  .span-bar .head-line { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .span-bar b { font-size:15px; }
+  .span-bar .range { font-size:11px; color:#C93A2B; letter-spacing:.1em; }
+  .span-bar p { font-size:13px; color:#555; margin-top:4px; line-height:1.7; }
+
   footer { margin-top:72px; border-top:1px solid #1a1a1a; padding-top:16px; display:flex; justify-content:space-between; }
   footer span { font-size:10px; letter-spacing:.22em; color:#888; }
 
@@ -126,6 +150,10 @@
     table { display:block; overflow-x:auto; }
     footer { flex-direction:column; gap:4px; }
     .menu button { padding:12px 14px; }
+    .phases { grid-template-columns:1fr; }
+    .p-arrow { transform:rotate(90deg); height:36px; }
+    .gov-tie { grid-template-columns:1fr; }
+    .gov-tie i:nth-child(n+2) { display:none; }
   }
 </style>
 </head>
@@ -139,69 +167,66 @@
   </header>
 
   <nav class="menu">
-    <button data-page="list" class="active">リスト</button>
+    <button data-page="scheme" class="active">事業スキーム</button>
     <button data-page="flow">全体フロー</button>
     <button data-page="org">組織図</button>
     <button data-page="rules">運用ルール</button>
   </nav>
 
-  <!-- ページ：リスト -->
-  <section class="page active" id="list">
-    <div class="page-title">リスト — 秘書課の現在形</div>
-    <p class="page-lead">中断リスト・質問リストの「今」。元データはメモリ側が正。リストを書き換えるたびにこのページも同時更新する。</p>
-    <p class="stamp">最終同期：2026-07-23</p>
+  <p class="list-note" style="margin:-8px 0 40px;">📋 タスク管理（中断リスト・質問リスト・サブスクリスト）は<a href="タスク.html" style="color:#C93A2B;">タスク.html</a>に分離しました。</p>
 
-    <div class="sub-head">📋 中断リスト（タスク進行管理）</div>
-    <div class="tbl-scroll">
-      <table>
-        <tr><th>案件</th><th>進捗（今どこ）</th><th>次のアクション</th><th>更新</th></tr>
-        <tr><td><b>GILT CROW</b></td><td class="sub">GILT SKYサビ歌詞改稿中（→「例え剥がれ落ちてゆくとしても」）。Suno正規ルート判明＝Edit（Song Editor）でドラッグ選択→差し替え→Select合成</td><td class="sub">①Editorで差し替え実行（生成前確認必須）②Select→キー-1 ③設定書と実歌唱のすり合わせ</td><td class="sub">2026<br>07-23</td></tr>
-        <tr><td><b>制作ツール運転自動化</b></td><td class="sub">Kive初運転成功・Sunoログイン済・Editor/Studio調査済。Riverflow/Runwayは公式API（Runware推奨）</td><td class="sub">RunwareでAPIキー→Riverflow/Runway接続／Kiveループ続行</td><td class="sub">2026<br>07-23</td></tr>
-        <tr><td><b>5サイト統合viewダッシュボード</b></td><td class="sub">構想段階。5サイトを一画面で見比べ・週1SP通知</td><td class="sub">①指標特定 ②UI設計 ③データ取得・通知設計</td><td class="sub">2026<br>07-14</td></tr>
-        <tr><td><b>新Spark移行＋CLI連携</b></td><td class="sub">ConoHa=IMAP/SMTP手入力が必要で認証失敗中</td><td class="sub">IMAP/SMTP確認→手入力ログイン→CLI連携</td><td class="sub">2026<br>07-13</td></tr>
-        <tr><td><b>A CURRY Shopify実装</b></td><td class="sub">トップ〜下層まで実装済み（Pencil書き出し反映）</td><td class="sub">GA4/GTM・ファビコン・OGP・BowNowフォーム</td><td class="sub">2026<br>07-06</td></tr>
-        <tr><td><b>A CURRY 在庫管理</b></td><td class="sub">台帳運用開始。「在庫出して」で即表示</td><td class="sub">入出庫を随時追記（1ケース=30食）</td><td class="sub">2026<br>07-06</td></tr>
-        <tr><td><b>LINEスタンプ（あっくん）</b></td><td class="sub">⑧案（坊主・でか目）が最有力</td><td class="sub">キャラ確定→制作→LINE審査</td><td class="sub">2026<br>06-08</td></tr>
-        <tr><td><b>3DCG→3Dプリンター</b></td><td class="sub">アイデア段階</td><td class="sub">Blender→スライサー連携を調査</td><td class="sub">2026<br>06-08</td></tr>
-        <tr><td><b>CRATERスライドテンプレ</b></td><td class="sub">表紙ほぼ完成。ステータスバーがハンバーガーと被り中</td><td class="sub">ステータスバーを左上 or 中央上へ</td><td class="sub">2026<br>05-24</td></tr>
-        <tr><td><b>/スライド スキル改修</b></td><td class="sub">ヒアリング分岐が未実装</td><td class="sub">分岐追加＋A1/DINで本品質に作り直し</td><td class="sub">2026<br>05-22</td></tr>
-        <tr><td><b>LINEタスクBot</b></td><td class="sub">動作確認済み。フォーマット崩れ問題</td><td class="sub">Notionバックエンド化で作り直し</td><td class="sub">2026<br>05-18</td></tr>
-        <tr><td><b>パッケージモックアップスキル</b></td><td class="sub">未着手</td><td class="sub">スキル新規作成</td><td class="sub">2026<br>05-15</td></tr>
-        <tr><td><b>APOLLOS AIインフルエンサー</b></td><td class="sub">Yuna・APOS設計完了。パイプライン未構築</td><td class="sub">ビジュアル生成→投稿パイプライン→開設</td><td class="sub">2026<br>05-14</td></tr>
-        <tr><td><b>BowNow+GA 週次レポート</b></td><td class="sub">スプシ作成済み。API情報待ち</td><td class="sub">API揃い次第、設定再開</td><td class="sub">2026<br>05-14</td></tr>
-        <tr><td><b>APOLLOS Meta Graph API</b></td><td class="sub">IGビジネスアカウント・FBページ紐づけ完了</td><td class="sub">アプリ作成→Graph API有効化</td><td class="sub">2026<br>05-13</td></tr>
-        <tr><td><b>REQST ブランド立ち上げ</b></td><td class="sub">ネームコンセプト確定「ものには、続きがある。」</td><td class="sub">VI設計・ブランドボード制作</td><td class="sub">2026<br>05-13</td></tr>
-      </table>
-    </div>
-    <p class="list-note">✅ 完了（8件）：尾山神社翻訳／APOLLOSサイト／人と空間／LP社内デザイナー顧問／Amazon A CURRY／尾山神社保守契約／シャチハタ提案書／JHL金の時</p>
+  <!-- ページ：事業スキーム -->
+  <section class="page active" id="scheme">
+    <div class="page-title">事業スキーム — ビジネスの大きな流れ</div>
+    <p class="page-lead">事業が生まれ、かたちになり、届いて選ばれる。ケイスケグループの全事業はこの3フェーズで動き、クレーターが全体を統括する。</p>
 
-    <div class="sub-head">❓ 質問リスト（預かり・回付）</div>
-    <div class="tbl-scroll">
-      <table>
-        <tr><th>質問先</th><th>誰</th><th>質問</th><th>状態</th><th>更新</th></tr>
-        <tr><td><b>ライジング</b></td><td>🧑</td><td class="sub">CHICS LPのアナリティクスを引っ張れるか確認</td><td class="sub">🔵 未解決</td><td class="sub">2026<br>07-14</td></tr>
-        <tr><td><b>ESION</b></td><td>🤖</td><td class="sub">単品購入 3本・5本セットの正式価格（商品詳細に仮価格で掲載中）</td><td class="sub">🔵 未解決</td><td class="sub">2026<br>07-23</td></tr>
-      </table>
+    <div class="gov-bar">
+      <b>CRATER（株式会社クレーター）</b>
+      <span>全体統括 — 全フェーズのクリエイティブディレクションと経営判断</span>
+    </div>
+    <div class="gov-tie"><i></i><i></i><i></i></div>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="player">BIRTH<small>事業をつくるサービス</small></div>
+        <span class="pno">PHASE 01</span>
+        <h3>事業が発生するフェーズ</h3>
+        <span class="pen">BUSINESS BIRTH</span>
+        <p class="pdesc">新しいビジネスの種を見つけ、事業として立ち上げる入口。何をやるか・なぜやるかが決まる場所。</p>
+      </div>
+      <div class="p-arrow">→</div>
+      <div class="phase">
+        <div class="player">CRATER<small>（株式会社クレーター）</small></div>
+        <span class="pno">PHASE 02</span>
+        <h3>クリエイティブが発生するフェーズ</h3>
+        <span class="pen">CREATIVE</span>
+        <p class="pdesc">ブランド・デザイン・ものづくりの実務。事業に顔と質を与える、グループの心臓部。</p>
+        <div class="chips">
+          <span class="lbl">自社施策（このフェーズに紐づく）</span>
+          <span class="chip">CHICS（ロゴ制作）</span>
+          <span class="chip">YEARS</span>
+        </div>
+      </div>
+      <div class="p-arrow">→</div>
+      <div class="phase">
+        <div class="player">APOLLOS<small>（株式会社アポロス）</small></div>
+        <span class="pno">PHASE 03</span>
+        <h3>認知の施策が発生するフェーズ</h3>
+        <span class="pen">AWARENESS</span>
+        <p class="pdesc">つくった価値が届き・理解され・選ばれる状態をつくる。世の中との接点をつくる出口。</p>
+      </div>
     </div>
 
-    <div class="sub-head">💳 サブスクリスト（契約中・AI系を上に）</div>
-    <div class="tbl-scroll">
-      <table>
-        <tr><th>サービス</th><th>プラン</th><th>料金（月割）</th><th>次回更新</th></tr>
-        <tr><td><b>Claude（クロコ）</b></td><td class="sub">Max（Proの5倍）</td><td class="sub">$110／月（約¥17,270）</td><td class="sub">毎月<br>20日</td></tr>
-        <tr><td><b>Riverflow</b></td><td class="sub">GROWTH（月払い）</td><td class="sub">$99／月（約¥16,010）</td><td class="sub">毎月<br>29日頃</td></tr>
-        <tr><td><b>kive.ai</b></td><td class="sub">Basic（2,000cr/月・年払い）</td><td class="sub">$30／月（約¥4,857）</td><td class="sub">2026<br>11-21</td></tr>
-        <tr><td><b>Suno</b></td><td class="sub">Premier（月払い）</td><td class="sub">¥4,500／月</td><td class="sub">2026<br>08-19頃</td></tr>
-        <tr><td><b>ChatGPT</b></td><td class="sub">Plus</td><td class="sub">$22／月（約¥3,454）</td><td class="sub">毎月<br>13日</td></tr>
-        <tr><td><b>Lovart</b></td><td class="sub">BASIC（年払い）</td><td class="sub">¥30,380／年（月割約¥2,532）</td><td class="sub">2027<br>02-27頃</td></tr>
-        <tr><td><b>Google One</b></td><td class="sub">AI Pro（5TB・年払い）</td><td class="sub">¥29,000／年（月割約¥2,417）</td><td class="sub">2026<br>09-13</td></tr>
-        <tr><td><b>Runway</b></td><td class="sub">Standard（年払い）</td><td class="sub">$158.40／年（月割約¥2,075）</td><td class="sub">2027<br>06-28頃</td></tr>
-        <tr><td><b>Aqua Voice</b></td><td class="sub">月払い</td><td class="sub">$10／月（約¥1,570）</td><td class="sub">毎月</td></tr>
-        <tr><td><b>ラッコキーワード</b></td><td class="sub">スタンダード（年払い・API/MCP）</td><td class="sub">月割約¥1,240</td><td class="sub">2027<br>07-13</td></tr>
-        <tr><td><b>Spark（メール）</b></td><td class="sub">Premium（年払い）</td><td class="sub">¥5,800／年（月割約¥483）</td><td class="sub">2026<br>12-03</td></tr>
-      </table>
+    <div class="sub-head">🔁 3フェーズを一気通貫するプロジェクト</div>
+    <div class="span-bar">
+      <div class="head-line"><b>GILT CROW</b><span class="range">PHASE 01 →→→ 03 一気通貫</span></div>
+      <p>AIダークV系バンド。事業の立ち上げから楽曲・ビジュアルのクリエイティブ、認知展開まで、全フェーズをグループ内だけで通す実証プロジェクト。</p>
     </div>
-    <p class="list-note">合計：約¥57,100／月（年換算 約¥68.5万・$1≈¥162概算）。🚫解約手続き済み：Genspark（2026-08-23まで利用可）。元データ＝MEMORY_サブスクリスト（円換算は都度レートで再計算）</p>
+    <div class="span-bar">
+      <div class="head-line"><b>A CURRY</b><span class="range">PHASE 01 →→→ 03 一気通貫</span></div>
+      <p>自社D2Cカレーブランド。事業開発 → ブランド・パッケージデザイン → EC展開・認知施策まで一気通貫で運営。</p>
+    </div>
+    <p class="list-note">フェーズは分かれていても、実行はすべてクレーター（＋クロコ体制）。分業ではなく「3フェーズを1社で通せる」ことがケイスケグループの強み。</p>
 
   </section>
 
@@ -274,7 +299,8 @@
             <li class="dept-node"><span class="dn">経営企画室<em>参謀・戦略</em></span>
               <ul>
                 <li class="member"><b>視座者</b><span>視座を強制転換する企画参謀</span></li>
-                <li class="member"><b>提案者</b><span>「今日やる1本」を出す攻め担当</span></li>
+                <li class="member"><b>提案者</b><span>「今日やる1本」を出す攻め担当・朝刊編集長</span></li>
+                <li class="member"><b>ビジネスプランナー</b><span>世の中の流れ×自社アセットで新規ビジネス設計</span><span class="new-tag">NEW</span></li>
                 <li class="member"><b>APOLLOS司令塔AI</b><span>APOLLOS案件統括</span></li>
                 <li class="member"><b>APOLLOS参謀AI</b><span>APOLLOS事業参謀</span></li>
                 <li class="member"><b>APOLLOS認知戦略AI</b><span>認知チャネル戦略</span></li>
@@ -445,7 +471,7 @@
 
   <footer>
     <span>KEISUKE GROUP — INTERNAL</span>
-    <span>KEISUKE GROUP ZAGUMI v1.1 / 2026.07</span>
+    <span>KEISUKE GROUP ZAGUMI v1.3 / 2026.07</span>
   </footer>
 
 </div>
