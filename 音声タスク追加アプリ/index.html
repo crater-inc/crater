@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>タスク追加</title>
+<link rel="stylesheet" href="https://use.typekit.net/qwe2tdt.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { overflow: hidden; height: 100%; }
+  :root {
+    --bg: #0e1116;
+    --panel: #171b22;
+    --panel2: #1f242d;
+    --line: #2a303b;
+    --text: #f2f4f7;
+    --sub: #b8c0cc;
+    --meta: #7f8895;
+    --rec: #0f9d58;
+    --err: #ff4d4f;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { max-width: 720px; margin: 0 auto; height: 100vh; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; }
+  .screen { display: none; flex-direction: column; flex: 1; min-height: 0; padding: 24px; overflow: hidden; }
+  .screen.active { display: flex; }
+
+  .brand {
+    font-family: 'urw-din', -apple-system, sans-serif;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 0.98;
+    letter-spacing: .01em;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  #home { justify-content: center; align-items: center; gap: 20px; text-align: center; }
+  .big-rec {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: var(--rec); border: none; cursor: pointer;
+    box-shadow: 0 12px 40px rgba(15,157,88,.35);
+    transition: transform .12s ease;
+  }
+  .big-rec:active { transform: scale(.96); }
+  .hint { font-size: 13px; color: var(--meta); margin-top: 10px; }
+
+  .rec-status { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: var(--sub); font-size: 15px; }
+  .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--rec); animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+  .transcript {
+    flex: 1; min-height: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px; font-size: 18px; line-height: 1.8; overflow-y: auto;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .transcript .interim { color: var(--meta); }
+  .transcript .placeholder { color: var(--meta); font-size: 16px; }
+  .rec-actions { display: flex; gap: 12px; margin-top: 18px; }
+  .rec-actions button { flex: 1; border-radius: 14px; padding: 16px; font-size: 16px; font-weight: 700; cursor: pointer; border: none; }
+  .btn-stop { background: var(--rec); color: #fff; }
+  .btn-stop:disabled { opacity: .5; cursor: default; }
+  .btn-cancel { background: var(--panel2); color: var(--sub); border: 1px solid var(--line); }
+  .btn-retry { background: var(--rec); color: #fff; width: auto; padding: 10px 20px; border-radius: 12px; border: none; font-size: 15px; font-weight: 700; cursor: pointer; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 32px; transform: translateX(-50%) translateY(20px);
+    background: var(--rec); color: #fff; padding: 12px 22px; border-radius: 30px; font-size: 14px; font-weight: 600;
+    opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 50;
+    max-width: 80vw; text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.error { background: var(--err); }
+
+  @media (max-width: 768px) {
+    .screen { padding: 20px 24px; }
+    .big-rec { width: 170px; height: 170px; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <section id="home" class="screen active">
+    <div class="brand">Task<br>Add</div>
+    <button class="big-rec" onclick="goRecord()" aria-label="録音"></button>
+    <div class="hint">押して話すと、シートの一番上に追加されます</div>
+  </section>
+
+  <section id="record" class="screen">
+    <div class="rec-status" id="recStatus"><span class="pulse"></span>録音中… 話してください</div>
+    <div class="transcript" id="transcript"><span class="placeholder">ここに話した内容がテキストで出ます</span></div>
+    <div class="rec-actions" id="recActions">
+      <button class="btn-cancel" onclick="cancelRecord()">破棄</button>
+      <button class="btn-stop" id="stopBtn" onclick="stopAndSend()">停止して追加</button>
+    </div>
+  </section>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxldsB3gMIyWqHPcdRRr3HGqIZoMi7jnEaEczNU6vuMA7eF6yYsG-oxv0zC0qs5X-mXxw/exec';
+
+let recognition = null;
+let finalText = '';
+let interimText = '';
+let recording = false;
+let sending = false;
+let lastFailedText = '';
+
+function speechSupported() {
+  return 'webkitSpeechRecognition' in window || 'SpeechRecognition' in window;
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goRecord() {
+  if (!speechSupported()) {
+    alert('このブラウザは音声認識に対応していません。Google Chrome で開いてください。');
+    return;
+  }
+  showScreen('record');
+  startRecording();
+}
+
+function startRecording() {
+  finalText = '';
+  interimText = '';
+  document.getElementById('transcript').innerHTML = '<span class="placeholder">ここに話した内容がテキストで出ます</span>';
+  document.getElementById('recStatus').innerHTML = '<span class="pulse"></span>録音中… 話してください';
+  document.getElementById('recActions').style.display = 'flex';
+  document.getElementById('stopBtn').disabled = false;
+
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = 'ja-JP';
+  recognition.continuous = true;
+  recognition.interimResults = true;
+
+  recognition.onresult = (e) => {
+    let interim = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const t = e.results[i][0].transcript;
+      if (e.results[i].isFinal) finalText += t;
+      else interim += t;
+    }
+    interimText = interim;
+    renderTranscript(interim);
+  };
+  recognition.onerror = (e) => {
+    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+      document.getElementById('recStatus').innerHTML = '⚠️ マイクの使用が許可されていません';
+    }
+  };
+  recognition.onend = () => { if (recording) { try { recognition.start(); } catch(e){} } };
+
+  recording = true;
+  try { recognition.start(); } catch(e){}
+}
+
+function renderTranscript(interim) {
+  const el = document.getElementById('transcript');
+  if (!finalText && !interim) {
+    el.innerHTML = '<span class="placeholder">ここに話した内容がテキストで出ます</span>';
+    return;
+  }
+  el.innerHTML = escapeHtml(finalText) + '<span class="interim">' + escapeHtml(interim) + '</span>';
+  el.scrollTop = el.scrollHeight;
+}
+
+function stopRecognition() {
+  recording = false;
+  if (recognition) { try { recognition.stop(); } catch(e){} recognition = null; }
+}
+
+async function stopAndSend() {
+  stopRecognition();
+  const el = document.getElementById('transcript');
+  let domText = '';
+  if (el && !el.querySelector('.placeholder')) domText = (el.innerText || el.textContent || '').trim();
+  const text = (domText || (finalText + interimText)).trim();
+  if (!text) { toast('内容が空でした', true); showScreen('home'); return; }
+  await send(text);
+}
+
+async function send(text) {
+  if (sending) return;
+  sending = true;
+  document.getElementById('stopBtn').disabled = true;
+  toast('追加中…');
+  try {
+    const res = await fetch(GAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ text })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      toast('追加しました');
+      setTimeout(() => showScreen('home'), 1200);
+    } else {
+      toast('追加に失敗しました: ' + (data.error || '不明なエラー'), true);
+      showRetry(text);
+    }
+  } catch (err) {
+    toast('通信に失敗しました', true);
+    showRetry(text);
+  }
+  sending = false;
+}
+
+function showRetry(text) {
+  lastFailedText = text;
+  document.getElementById('recActions').style.display = 'none';
+  document.getElementById('recStatus').innerHTML = '⚠️ 送信できませんでした';
+  document.getElementById('transcript').innerHTML =
+    escapeHtml(text) +
+    '<div style="margin-top:16px; display:flex; gap:12px;">' +
+    '<button class="btn-retry" onclick="retrySend()">再送する</button>' +
+    '<button class="btn-cancel" style="width:auto; padding:10px 20px; border-radius:12px;" onclick="cancelRecord()">ホームに戻る</button>' +
+    '</div>';
+}
+
+function retrySend() { send(lastFailedText); }
+
+function cancelRecord() {
+  stopRecognition();
+  showScreen('home');
+}
+
+function escapeHtml(s){ return (s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+function toast(msg, isError){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.toggle('error', !!isError);
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+</script>
+</body>
+</html>
