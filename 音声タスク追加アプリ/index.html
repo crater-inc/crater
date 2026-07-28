@@ -43,6 +43,16 @@
     margin-bottom: 32px;
   }
 
+  /* ログイン */
+  #login { justify-content: center; align-items: center; gap: 18px; text-align: center; }
+  .g-btn {
+    background: #fff; color: #1f1f1f; border: none; border-radius: 14px;
+    padding: 15px 26px; font-size: 16px; font-weight: 600; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .g-btn img { width: 20px; height: 20px; }
+  .login-note { font-size: 13px; color: var(--meta); max-width: 300px; line-height: 1.7; }
+
   #home { justify-content: center; align-items: center; gap: 20px; text-align: center; }
   .big-rec {
     width: 140px; height: 140px; border-radius: 50%;
@@ -88,7 +98,16 @@
 <body>
 <div class="app">
 
-  <section id="home" class="screen active">
+  <section id="login" class="screen active">
+    <div class="brand">Task<br>Add</div>
+    <button class="g-btn" onclick="doLogin()">
+      <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="">
+      Googleでログイン
+    </button>
+    <div class="login-note">最初の1回だけログインすれば、以降は自動で開きます。</div>
+  </section>
+
+  <section id="home" class="screen">
     <div class="brand">Task<br>Add</div>
     <button class="big-rec" onclick="goRecord()" aria-label="録音"></button>
     <div class="hint">押して話すと、シートの一番上に追加されます</div>
@@ -107,8 +126,39 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- Firebase SDK（Googleログインのみ利用。データ保存には使わない） -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
 <script>
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbxldsB3gMIyWqHPcdRRr3HGqIZoMi7jnEaEczNU6vuMA7eF6yYsG-oxv0zC0qs5X-mXxw/exec';
+
+/* ============ Firebase初期化（音声メモアプリと同じプロジェクト。Googleログイン確認のみに使用） ============ */
+const firebaseConfig = {
+  apiKey: "AIzaSyCzc6L5KaG-NqH3mpnE0j3y8O4Dkkd-zZI",
+  authDomain: "voice-memo-crater.firebaseapp.com",
+  projectId: "voice-memo-crater",
+  storageBucket: "voice-memo-crater.firebasestorage.app",
+  messagingSenderId: "170999474276",
+  appId: "1:170999474276:web:ae69d6e63c73ed6af91771"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+function doLogin() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth.signInWithPopup(provider).catch(err => {
+    if (err && (err.code === 'auth/popup-blocked' || err.code === 'auth/operation-not-supported-in-this-environment' || err.code === 'auth/cancelled-popup-request')) {
+      auth.signInWithRedirect(provider);
+    } else {
+      alert('ログインに失敗しました：' + (err && err.message));
+    }
+  });
+}
+
+auth.onAuthStateChanged((user) => {
+  showScreen(user ? 'home' : 'login');
+});
 
 let recognition = null;
 let finalText = '';
@@ -201,10 +251,12 @@ async function send(text) {
   document.getElementById('stopBtn').disabled = true;
   toast('追加中…');
   try {
+    if (!auth.currentUser) { throw new Error('not logged in'); }
+    const idToken = await auth.currentUser.getIdToken();
     const res = await fetch(GAS_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ text })
+      body: JSON.stringify({ text, idToken })
     });
     const data = await res.json();
     if (data.ok) {
