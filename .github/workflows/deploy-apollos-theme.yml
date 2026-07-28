@@ -35,3 +35,10 @@ jobs:
             "ftp://${{ secrets.FTP_HOST }}/public_html/apollos.jp/.htaccess" \
             --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
           echo "htaccess uploaded"
+
+      - name: llms.txt を配置（AI検索対策・ルート単体アップ）
+        run: |
+          curl -sS --ftp-create-dirs -T 02_APOLLOS/wp-root/llms.txt \
+            "ftp://${{ secrets.FTP_HOST }}/public_html/apollos.jp/llms.txt" \
+            --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          echo "llms.txt uploaded"

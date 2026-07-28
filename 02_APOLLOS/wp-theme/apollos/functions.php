@@ -71,3 +71,84 @@ function apollos_excerpt_length($length) { return 60; }
 add_filter('excerpt_length', 'apollos_excerpt_length');
 function apollos_excerpt_more($more) { return '…'; }
 add_filter('excerpt_more', 'apollos_excerpt_more');
+
+/* =====================================================================
+ * AI検索対策（GEO / AIO / LLMO）
+ * meta description・OGP・構造化データ(JSON-LD)を <head> 内に出力する。
+ * すべて画面に表示されない裏方の要素。レイアウト・動作には一切影響しない。
+ * ===================================================================== */
+function apollos_ai_seo_head() {
+    $site_name = '株式会社アポロス';
+    $base_desc = 'APOLLOS（アポロス）は「認知」に特化し、価値が届き・理解され・選ばれる状態をつくる会社です。';
+    $tagline   = '埋もれている価値を、次の世界へ。';
+    $home      = home_url('/');
+    $ogimg     = get_template_directory_uri() . '/images/hero.jpg';
+
+    // ページ別 description / URL
+    if (is_front_page()) {
+        $desc = $tagline . $base_desc;
+        $url  = $home;
+        $type = 'website';
+    } elseif (is_singular('post')) {
+        $desc = wp_strip_all_tags(get_the_excerpt());
+        $url  = get_permalink();
+        $type = 'article';
+    } elseif (is_page()) {
+        $ex   = wp_strip_all_tags(get_the_excerpt());
+        $desc = $ex ? $ex : (get_the_title() . '｜' . $base_desc);
+        $url  = get_permalink();
+        $type = 'website';
+    } else {
+        $desc = $base_desc;
+        $url  = $home;
+        $type = 'website';
+    }
+    $desc  = trim(preg_replace('/\s+/u', ' ', $desc));
+    if (mb_strlen($desc) > 120) { $desc = mb_substr($desc, 0, 118) . '…'; }
+    $title = wp_get_document_title();
+
+    // --- meta description ---
+    echo "\n" . '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
+
+    // --- OGP / Twitter Card ---
+    echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '">' . "\n";
+    echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
+    echo '<meta property="og:description" content="' . esc_attr($desc) . '">' . "\n";
+    echo '<meta property="og:type" content="' . esc_attr($type) . '">' . "\n";
+    echo '<meta property="og:url" content="' . esc_url($url) . '">' . "\n";
+    echo '<meta property="og:image" content="' . esc_url($ogimg) . '">' . "\n";
+    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+
+    // --- Organization 構造化データ（全ページ共通）---
+    $org = array(
+        '@context'      => 'https://schema.org',
+        '@type'         => 'Organization',
+        'name'          => '株式会社アポロス',
+        'alternateName' => 'APOLLOS',
+        'url'           => $home,
+        'logo'          => $ogimg,
+        'description'   => $base_desc,
+        'foundingDate'  => '2026-07-02',
+        'address'       => array(
+            '@type'           => 'PostalAddress',
+            'postalCode'      => '155-0031',
+            'addressRegion'   => '東京都',
+            'addressLocality' => '世田谷区',
+            'streetAddress'   => '北沢3-20-18 北沢宝ビル3F',
+            'addressCountry'  => 'JP',
+        ),
+        'sameAs'        => array('https://x.com/apollos_jp'),
+    );
+    echo '<script type="application/ld+json">' . wp_json_encode($org, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
+
+    // --- WebSite 構造化データ（サイト実体の認識用）---
+    $ws = array(
+        '@context' => 'https://schema.org',
+        '@type'    => 'WebSite',
+        'name'     => 'APOLLOS',
+        'url'      => $home,
+        'inLanguage' => 'ja',
+    );
+    echo '<script type="application/ld+json">' . wp_json_encode($ws, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</script>' . "\n";
+}
+add_action('wp_head', 'apollos_ai_seo_head', 5);
