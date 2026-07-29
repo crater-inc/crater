@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>甲田さんタスクリスト ｜ CRATER</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{ --ink:#141414; --sub:#4a4a4a; --meta:#8a8a8a; --line:#e4e4e4;
+    --accent:#b5342a; --soft:#f6f5f3; --hi:#b5342a; --mid:#c98a12; --lo:#6a8a4a;
+    --done:#1f8a54; --donebg:#eef7f1; }
+  body{ font-family:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    color:var(--ink); background:#fafafa; line-height:1.8; font-size:16px; overflow-x:hidden; }
+  .wrap{ max-width:1100px; margin:0 auto; padding:56px 40px 96px; }
+  .en{ font-size:10px; letter-spacing:.3em; color:var(--meta); text-transform:uppercase; }
+  header{ margin-bottom:16px; }
+  h1{ font-size:clamp(22px,4vw,32px); font-weight:700; letter-spacing:.04em; margin:8px 0 6px; }
+  .lead{ font-size:14px; color:var(--sub); max-width:780px; }
+  .stamp{ font-size:11px; color:var(--meta); letter-spacing:.06em; margin:14px 0 30px; }
+
+  .legend{ display:flex; gap:16px; flex-wrap:wrap; font-size:12.5px; color:#333; margin-bottom:14px; align-items:center; }
+  .pri{ display:inline-block; font-size:11px; font-weight:700; padding:2px 10px; border-radius:2px; color:#fff; }
+  .pri.h{ background:var(--hi); } .pri.m{ background:var(--mid); } .pri.l{ background:var(--lo); }
+
+  .sec-title{ font-size:15px; font-weight:700; letter-spacing:.04em; margin:34px 0 12px; display:flex; align-items:center; gap:10px; }
+  .sec-title::before{ content:""; width:20px; height:2px; background:var(--accent); }
+
+  .tbl-scroll{ overflow-x:auto; border:1px solid var(--line); }
+  table{ width:100%; border-collapse:collapse; background:#fff; font-size:13.5px; min-width:720px; }
+  th,td{ border-bottom:1px solid var(--line); padding:13px 15px; text-align:left; vertical-align:top; }
+  thead th{ background:#141414; color:#fff; font-weight:600; font-size:12px; letter-spacing:.04em; }
+  th.c-no{ width:34px; text-align:center; } th.c-task{ width:24%; } th.c-do{ width:56%; }
+  th.c-pri{ width:60px; text-align:center; } th.c-stat{ width:84px; text-align:center; }
+  td.no{ text-align:center; color:var(--meta); font-weight:700; }
+  td.task b{ font-size:13.5px; }
+  td.task .site{ display:block; font-size:11px; color:var(--accent); margin-top:2px; letter-spacing:.04em; }
+  td.do{ font-size:12.5px; color:var(--sub); }
+  td.do a{ color:var(--accent); word-break:break-all; }
+  td.pri, td.stat{ text-align:center; white-space:nowrap; }
+  .chip{ display:inline-block; font-size:11px; font-weight:700; padding:2px 9px; border-radius:2px; background:#f2f2f2; color:var(--meta); border:1px solid #e2e2e2; }
+  tbody tr:nth-child(even) td{ background:#fafafa; }
+
+  .cont{ background:#fff; border:1px solid var(--line); padding:20px 24px; margin-top:14px; }
+  .cont b{ font-size:14px; } .cont ul{ margin:8px 0 0 18px; } .cont li{ font-size:13px; color:var(--sub); padding:2px 0; }
+
+  .rules{ background:#fff; border:1px solid var(--ink); padding:22px 26px; margin-top:30px; }
+  .rules li{ list-style:none; font-size:13.5px; color:#333; padding:7px 0; border-bottom:1px solid #eee; }
+  .rules li:last-child{ border-bottom:none; }
+  .rules li::before{ content:"—"; color:var(--accent); margin-right:10px; }
+
+  footer{ margin-top:52px; border-top:1px solid var(--ink); padding-top:14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  footer span{ font-size:10px; letter-spacing:.2em; color:var(--meta); }
+
+  @media (max-width:768px){ .wrap{ padding:40px 20px 64px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="en">CRATER ｜ Task List</span>
+    <h1>甲田さんタスクリスト</h1>
+    <p class="lead">お願いしたいタスクの一覧です。上から優先度順に対応をお願いします。</p>
+  </header>
+  <p class="stamp">最終更新：2026-07-28</p>
+
+  <div class="legend">
+    <span>優先度：</span>
+    <span class="pri h">高</span> 今すぐ
+    <span class="pri m">中</span> 近いうち
+    <span class="pri l">低</span> 手が空いたら
+    <span style="margin-left:12px;">状態：未着手／対応中／完了</span>
+  </div>
+
+  <div class="sec-title">📋 タスク（AI検索対策 第1弾）</div>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th class="c-no">#</th>
+          <th class="c-task">タスク</th>
+          <th class="c-do">やること（具体）</th>
+          <th class="c-pri">優先</th>
+          <th class="c-stat">状態</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="no">1</td>
+          <td class="task"><b>APOLLOSのschema検証＆Search Console確認</b><span class="site">apollos.jp</span></td>
+          <td class="do">① Googleリッチリザルトテスト（<a href="https://search.google.com/test/rich-results">search.google.com/test/rich-results</a>）に <a href="https://apollos.jp">https://apollos.jp</a> を入れ、Organization / WebSite の構造化データがエラーなく認識されるか確認。<br>② Google Search Console で apollos.jp のプロパティを確認し、sitemap（<a href="https://apollos.jp/wp-sitemap.xml">wp-sitemap.xml</a>）が送信済み・インデックスされているかチェック。未送信なら送信。</td>
+          <td class="pri"><span class="pri h">高</span></td>
+          <td class="stat"><span class="chip">未着手</span></td>
+        </tr>
+        <tr>
+          <td class="no">2</td>
+          <td class="task"><b>YEARSのSSL証明書チェック・修正</b><span class="site">years.design</span></td>
+          <td class="do">SSL Labs（<a href="https://www.ssllabs.com/ssltest/">ssllabs.com/ssltest</a>）で years.design を診断。<b>中間証明書（intermediate certificate）の設定漏れ</b>が出ていないか確認（一部ツールで「issuer証明書が取得できない」状態＝中間証明書欠落の疑い）。欠落があればサーバー/証明書設定に中間証明書を追加して修正。</td>
+          <td class="pri"><span class="pri m">中</span></td>
+          <td class="stat"><span class="chip">未着手</span></td>
+        </tr>
+        <tr>
+          <td class="no">3</td>
+          <td class="task"><b>APOLLOS 認知層の登録</b><span class="site">apollos.jp</span></td>
+          <td class="do">① Google Business Profile が未登録なら作成・整備（社名・所在地・カテゴリ）。<br>② Wikipedia / Wikidata への掲載可能性を検討（掲載基準＝第三者言及を満たすか）。満たさなければ「後日」でOK。<br>※他のタスクが落ち着いてからで良い。</td>
+          <td class="pri"><span class="pri m">中</span></td>
+          <td class="stat"><span class="chip">未着手</span></td>
+        </tr>
+        <tr>
+          <td class="no">4</td>
+          <td class="task"><b>crater / CHICS 本番反映のサポート</b><span class="site">crater.co.jp / chics.top</span></td>
+          <td class="do">crater・CHICSにAI検索対策（schema / llms.txt / meta）を反映する際、<b>①事前にテーマ/DBのバックアップを取得 ②反映後に管理画面で表示崩れ・エラーがないか目視確認</b>。実装の準備が整ったタイミングで声をかけます。</td>
+          <td class="pri"><span class="pri m">中</span></td>
+          <td class="stat"><span class="chip">待機中</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-title">🔄 継続業務（既存担当）</div>
+  <div class="cont">
+    <b>リテラの運用管理</b>
+    <ul>
+      <li>各サイトのLLMO計測・記事連携の管理（従来どおり）</li>
+      <li>AI検索対策と連動：実装したサイト（まずAPOLLOS）で、各AIの引用状況をリテラで追えるように設定</li>
+    </ul>
+  </div>
+
+  <div class="sec-title">⚙️ このリストの運用ルール</div>
+  <ul class="rules">
+    <li>新しいお願いが出たら、ここに追記していく</li>
+    <li>着手したら状態を「対応中」、終わったら「完了」に更新</li>
+    <li>不明点・詰まった点があれば、その旨を書いて共有してください</li>
+  </ul>
+
+  <footer>
+    <span>CRATER — INTERNAL</span>
+    <span>KOUDA TASK LIST v1.1 / 2026.07</span>
+  </footer>
+
+</div>
+</body>
+</html>
