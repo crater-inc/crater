@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI検索対応チェックリスト — 自社5サイト</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    font-size:16px; line-height:1.8; color:#1a1a1a; background:#fafafa; overflow-x:hidden;
+  }
+  .wrap { max-width:1100px; margin:0 auto; padding:56px 40px 96px; }
+
+  .meta-label { font-size:10px; letter-spacing:.28em; color:#888; text-transform:uppercase; }
+  h1 { font-size:clamp(22px,4vw,32px); font-weight:700; letter-spacing:.05em; margin:8px 0 6px; }
+  .lead { font-size:14px; color:#555; max-width:760px; }
+  header { margin-bottom:20px; }
+  .stamp { font-size:11px; color:#888; letter-spacing:.06em; margin-bottom:36px; }
+
+  .legend { display:flex; gap:18px; flex-wrap:wrap; background:#fff; border:1px solid #ddd; padding:12px 18px; margin-bottom:12px; font-size:13px; color:#333; }
+  .legend b { color:#C93A2B; }
+
+  .sec-title { font-size:16px; font-weight:700; letter-spacing:.04em; margin:36px 0 10px; display:flex; align-items:center; gap:10px; }
+  .sec-title::before { content:""; width:20px; height:2px; background:#C93A2B; }
+  .sec-note { font-size:13px; color:#555; margin-bottom:12px; }
+
+  .tbl-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid #ddd; }
+  table { width:100%; border-collapse:collapse; background:#fff; font-size:13px; min-width:720px; }
+  th, td { border:1px solid #e2e2e2; padding:10px 12px; text-align:left; vertical-align:top; }
+  thead th { background:#1a1a1a; color:#fff; font-weight:600; font-size:12px; letter-spacing:.04em; position:sticky; top:0; }
+  th.item { width:34%; }
+  td.item b { font-size:13px; }
+  td.item span { display:block; font-size:11px; color:#777; margin-top:2px; }
+  td.mark { text-align:center; font-weight:700; font-size:15px; color:#bbb; }
+  .site-col { text-align:center; min-width:88px; }
+  tbody tr:nth-child(even) td { background:#fafafa; }
+
+  .howto { background:#fff; border-left:4px solid #C93A2B; padding:18px 22px; margin-top:40px; }
+  .howto b { font-size:14px; }
+  .howto p { font-size:13px; color:#444; margin-top:6px; }
+  .howto ol { margin:8px 0 0 18px; font-size:13px; color:#444; }
+  .howto li { padding:2px 0; }
+
+  footer { margin-top:56px; border-top:1px solid #1a1a1a; padding-top:14px; display:flex; justify-content:space-between; }
+  footer span { font-size:10px; letter-spacing:.2em; color:#888; }
+
+  @media (max-width:768px){
+    .wrap { padding:40px 20px 64px; width:100%; }
+    footer { flex-direction:column; gap:4px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <span class="meta-label">CRATER — AI SEARCH READINESS</span>
+    <h1>AI検索対応チェックリスト</h1>
+    <p class="lead">自社5サイト（YEARS / CHICS / BIRTH / A CURRY / APOLLOS）が、AI検索（Google AI Overviews・ChatGPT・Perplexity・Gemini）に引用される作りになっているかの点検表。①コーディング ②コンテンツ ③サイト外 の3層で見る。</p>
+  </header>
+  <p class="stamp">最終更新：2026-07-28 ／ 現状セルは実査して順次更新（推測では埋めない）</p>
+
+  <div class="legend">
+    <span><b>◎</b> 実装済み・良好</span>
+    <span><b>○</b> あり（改善余地）</span>
+    <span><b>△</b> 部分的</span>
+    <span><b>×</b> 未対応</span>
+    <span><b>—</b> 未確認（実査待ち）</span>
+    <span><b>N/A</b> 対象外</span>
+  </div>
+
+  <!-- ① コーディング -->
+  <div class="sec-title">① コーディング（技術・クロコが実装）</div>
+  <p class="sec-note">AIがサイトを読み取り「信頼できる引用元」として扱うための土台。可視コンテンツと構造化データは必ず一致させる。</p>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th class="item">点検項目</th>
+          <th class="site-col">YEARS</th>
+          <th class="site-col">CHICS</th>
+          <th class="site-col">BIRTH</th>
+          <th class="site-col">A CURRY</th>
+          <th class="site-col">APOLLOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="item"><b>HTTPS</b><span>常時SSL</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>robots.txt でAIクローラー許可</b><span>GPTBot / ClaudeBot / PerplexityBot をブロックしない</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>XML sitemap</b><span>送信済み</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>llms.txt 設置</b><span>AI版sitemap・サイト要点をMarkdownで提供</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>Organization schema</b><span>name/url/logo＋sameAs（SNS・Wikidata）</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>FAQPage schema</b><span>★AIが逐語で引用。可視Q&Aと対で</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>Product / Offer / AggregateRating</b><span>EC・商品ページ</span></td><td class="mark">N/A</td><td class="mark">N/A</td><td class="mark">—</td><td class="mark">—</td><td class="mark">N/A</td></tr>
+        <tr><td class="item"><b>Article / BlogPosting schema</b><span>記事：author・datePublished・dateModified</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>BreadcrumbList</b><span>パンくず構造化</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>セマンティックHTML</b><span>h1〜h3階層・article/section・ol/table</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>meta（title / description / OGP）</b><span>各ページ最適化</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ② コンテンツ -->
+  <div class="sec-title">② コンテンツ・デザイン設計（作る時点で意識）</div>
+  <p class="sec-note">AIは「信頼できる情報源の、明確な答え」を逐語で引用する。書き方と構造で引用率が変わる。</p>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th class="item">点検項目</th>
+          <th class="site-col">YEARS</th>
+          <th class="site-col">CHICS</th>
+          <th class="site-col">BIRTH</th>
+          <th class="site-col">A CURRY</th>
+          <th class="site-col">APOLLOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="item"><b>結論ファースト</b><span>各セクション冒頭に「答え」</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>見出しが質問文</b><span>「〇〇とは？」形式</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>FAQを実際に設置</b><span>可視のQ&A（スキーマと対）</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>定義文</b><span>「〇〇とは、〜である」を1行</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>独自データ・一次情報・方法論</b><span>AIは信頼できる元しか引用しない</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>著者名・運営者情報・About</b><span>E-E-A-T（権威性）</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>表・箇条書きで整理</b><span>AIが抽出しやすい形</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ③ サイト外 -->
+  <div class="sec-title">③ サイト外シグナル（APOLLOSの「認知」と直結）</div>
+  <p class="sec-note">AIは「あちこちで言及されているブランド」を拾う。サイト内対策だけでは勝てない。ここは認知施策そのもの。</p>
+  <div class="tbl-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th class="item">点検項目</th>
+          <th class="site-col">YEARS</th>
+          <th class="site-col">CHICS</th>
+          <th class="site-col">BIRTH</th>
+          <th class="site-col">A CURRY</th>
+          <th class="site-col">APOLLOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="item"><b>第三者メディア言及</b><span>プレスリリース・掲載・寄稿</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>Wikipedia / Wikidata 掲載</b><span>実体（エンティティ）認識</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>レビュー・口コミ</b><span>Google Business・レビューサイト</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+        <tr><td class="item"><b>SNS整合（sameAs）</b><span>公式SNSとschemaの紐付け一致</span></td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td><td class="mark">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="howto">
+    <b>この表の使い方</b>
+    <p>現状セルは全て「—（未確認）」。ここから実査して埋めていく。</p>
+    <ol>
+      <li>1サイトずつ実サイトを点検（robots.txt / schema / llms.txt の有無をクロコが確認）→ セルを ◎○△× に更新</li>
+      <li>×・△が多い層から着手。最優先は <b>llms.txt・Organization schema・FAQPage</b>（費用対効果が高い）</li>
+      <li>コンテンツ層はリライト時に結論ファースト＋FAQを差し込む</li>
+      <li>③サイト外は APOLLOS の認知施策とセットで進める</li>
+      <li>効果測定は Ritera（LLMO計測）で「各AIに引用されているか」を追う</li>
+    </ol>
+  </div>
+
+  <footer>
+    <span>CRATER — INTERNAL</span>
+    <span>AI SEARCH READINESS v1.0 / 2026.07</span>
+  </footer>
+
+</div>
+</body>
+</html>

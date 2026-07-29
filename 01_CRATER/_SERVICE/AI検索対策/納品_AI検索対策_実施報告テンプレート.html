@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI検索対応 実施報告書 ｜ CRATER</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --ink:#141414; --sub:#4a4a4a; --meta:#8a8a8a;
+    --line:#e4e4e4; --bg:#ffffff; --soft:#f6f5f3;
+    --accent:#b5342a; --done:#1f8a54; --donebg:#eef7f1;
+  }
+  body{
+    font-family:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.85; font-size:16px;
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 40px; }
+  .en{ font-size:10px; letter-spacing:.32em; color:var(--meta); text-transform:uppercase; }
+
+  header{ padding:72px 0 40px; border-bottom:2px solid var(--ink); }
+  header .en{ margin-bottom:18px; }
+  header h1{ font-size:clamp(24px,4vw,36px); font-weight:700; letter-spacing:.02em; line-height:1.4; }
+  header .to{ margin-top:26px; font-size:15px; color:var(--sub); }
+  header .to b{ color:var(--ink); font-weight:700; }
+  header .meta-row{ margin-top:6px; font-size:12px; color:var(--meta); }
+
+  .intro{ padding:40px 0 8px; }
+  .intro p{ font-size:15px; color:var(--sub); max-width:760px; }
+  .intro .highlight{ color:var(--ink); font-weight:600; }
+
+  .summary{ display:flex; gap:14px; margin:32px 0 8px; flex-wrap:wrap; }
+  .sm{ flex:1; min-width:150px; border:1px solid var(--line); padding:20px 22px; }
+  .sm .n{ font-size:30px; font-weight:700; color:var(--accent); }
+  .sm .l{ font-size:12.5px; color:var(--sub); margin-top:2px; }
+
+  section{ padding:48px 0 8px; }
+  .sec-title{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+  .sec-title .no{ font-size:11px; letter-spacing:.2em; color:var(--accent); }
+  .sec-title h2{ font-size:20px; font-weight:700; letter-spacing:.02em; }
+  .sec-lead{ font-size:13.5px; color:var(--sub); margin-bottom:18px; }
+
+  .tbl-scroll{ overflow-x:auto; border:1px solid var(--line); }
+  table{ width:100%; border-collapse:collapse; font-size:14px; min-width:600px; background:#fff; }
+  th,td{ text-align:left; padding:14px 18px; border-bottom:1px solid var(--line); vertical-align:top; }
+  thead th{ background:#141414; color:#fff; font-weight:600; font-size:12px; letter-spacing:.05em; }
+  th.c-item{ width:32%; } th.c-why{ width:46%; } th.c-stat{ width:22%; text-align:center; }
+  td.item b{ font-size:14px; }
+  td.why{ font-size:13px; color:var(--sub); }
+  td.stat{ text-align:center; white-space:nowrap; }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:nth-child(even) td{ background:#fafafa; }
+  .chip{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--done); background:var(--donebg); border:1px solid #cfe8da; padding:3px 12px; border-radius:2px; }
+  .chip.next{ color:var(--meta); background:#f2f2f2; border-color:#e2e2e2; }
+
+  .closing{ margin-top:52px; background:var(--soft); padding:34px 32px; border-left:3px solid var(--accent); }
+  .closing h3{ font-size:17px; margin-bottom:8px; }
+  .closing p{ font-size:14px; color:var(--sub); }
+  .closing p + p{ margin-top:10px; }
+
+  footer{ margin-top:40px; padding:28px 0; border-top:1px solid var(--line); }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; }
+  footer .co b{ font-size:14px; letter-spacing:.06em; }
+  footer .co{ font-size:12px; color:var(--meta); line-height:1.8; }
+  footer .tag{ font-size:10px; letter-spacing:.2em; color:var(--meta); }
+
+  @media (max-width:768px){
+    .wrap{ padding:0 22px; }
+    header{ padding:52px 0 32px; }
+    .summary{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="en">CRATER ｜ AI Search Optimization — Report</div>
+    <h1>AI検索対応 実施報告書</h1>
+    <p class="to"><b>【 クライアント名 】 御中</b></p>
+    <p class="meta-row">対象サイト：【 https://example.com 】　／　報告日：【 2026.00.00 】　／　担当：株式会社クレーター</p>
+  </div>
+</header>
+
+<div class="intro">
+  <div class="wrap">
+    <p>検索は「リンクを探す」から「<span class="highlight">AIが答えを提示する</span>」時代へと変化しています（Google AI Overviews・ChatGPT・Perplexity 等）。このたび御社サイトに、<span class="highlight">AIに“信頼できる引用元”として選ばれるための対応</span>を実施いたしましたので、実施内容をご報告します。</p>
+    <div class="summary">
+      <div class="sm"><div class="n">3層</div><div class="l">技術・コンテンツ・認知の全方位で対応</div></div>
+      <div class="sm"><div class="n">JSON-LD</div><div class="l">AIが読み取る構造化データを実装</div></div>
+      <div class="sm"><div class="n">llms.txt</div><div class="l">AI専用の案内ファイルを設置</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ① 技術 -->
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="no">LAYER 01</span><h2>技術対応</h2></div>
+    <p class="sec-lead">AIが御社サイトの情報を正確に読み取れるよう、裏側の設計を整えました。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th class="c-item">実施項目</th><th class="c-why">何のための対応か（分かりやすく）</th><th class="c-stat">状態</th></tr></thead>
+        <tbody>
+          <tr><td class="item"><b>構造化データの実装</b></td><td class="why">商品・会社・記事などの情報を、AIが正確に読み取れる「決まった形式」で記述しました。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>FAQ（質問と答え）の構造化</b></td><td class="why">よくある質問を、AIがそのまま引用できる形で整えました。AIの回答に採用されやすくなります。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>会社・ブランド情報の構造化</b></td><td class="why">御社を「ひとつのブランド」としてAIが認識できるよう、公式情報とSNSを紐付けました。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>商品情報の構造化</b></td><td class="why">価格・在庫・評価などを整理し、AIが「おすすめ候補」として扱いやすくしました。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>llms.txt の設置</b></td><td class="why">AI専用の案内ファイルを設置し、サイトの重要な内容をAIに直接伝えられるようにしました。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>AIクローラーの許可設定</b></td><td class="why">ChatGPT等のAIが御社サイトを読み込める設定に整えました（読み取り拒否になっていないか確認）。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>意味の伝わるHTML設計</b></td><td class="why">見出し・段落・リストを正しく構造化し、AIが内容の要点を理解しやすい作りにしました。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ② コンテンツ -->
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="no">LAYER 02</span><h2>コンテンツ対応</h2></div>
+    <p class="sec-lead">AIは「明確な答え」を引用します。引用されやすい書き方・構成に整えました。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th class="c-item">実施項目</th><th class="c-why">何のための対応か（分かりやすく）</th><th class="c-stat">状態</th></tr></thead>
+        <tbody>
+          <tr><td class="item"><b>結論から書く構成</b></td><td class="why">各セクションの冒頭に「答え」を配置。AIが要点を抜き出しやすくなります。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>質問形式の見出し・FAQ設置</b></td><td class="why">ユーザーの疑問に直接答える形に。AIの回答にそのまま採用されやすくなります。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>明確な定義文</b></td><td class="why">「〇〇とは」を1行で言い切る文を配置し、AIが引用しやすくしました。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>運営者情報の明示</b></td><td class="why">運営者・実績を明示し、AIが「信頼できる情報源」と判断できる材料を整えました。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 認知（今後） -->
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="no">LAYER 03</span><h2>認知・継続対応</h2></div>
+    <p class="sec-lead">AIは「多くの場所で語られているブランド」を引用します。サイトの外側は、継続的にご提案します。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th class="c-item">項目</th><th class="c-why">内容</th><th class="c-stat">状態</th></tr></thead>
+        <tbody>
+          <tr><td class="item"><b>AI引用状況の計測</b></td><td class="why">各AI（ChatGPT・Perplexity等）で御社が引用されているかを継続的に計測します。</td><td class="stat"><span class="chip next">継続</span></td></tr>
+          <tr><td class="item"><b>サイト外の言及づくり</b></td><td class="why">第三者メディア・レビュー・エンティティ登録など、外部の露出を認知会社APOLLOSと連携して設計します。</td><td class="stat"><span class="chip next">ご提案</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="closing">
+  <div class="wrap" style="padding:0;">
+    <h3>この対応により</h3>
+    <p>御社サイトは、Google AI Overviews・ChatGPT・Perplexity 等のAI検索において、<b>「信頼できる引用元」として選ばれやすい状態</b>になりました。</p>
+    <p>効果は一般に実装後4〜8週間で現れ始めます。引用状況は継続して計測し、さらなる改善をご提案してまいります。<br><span style="font-size:12px;color:var(--meta);">※効果はサイト・業種・競合状況により変動し、成果を保証するものではありません。</span></p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="co">
+      <b>株式会社クレーター</b><br>
+      crater.co.jp　／　〒155-0031 東京都世田谷区北沢3-20-18 北沢宝ビル3F　／　TEL 03-6665-0846
+    </div>
+    <div class="tag">AI SEARCH OPTIMIZATION — REPORT / 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>

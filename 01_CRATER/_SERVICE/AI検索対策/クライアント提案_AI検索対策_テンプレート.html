@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI検索時代のブランド可視化 ｜ CRATER 提案書</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --ink:#141414; --sub:#4a4a4a; --meta:#8a8a8a;
+    --line:#e4e4e4; --bg:#ffffff; --soft:#f6f5f3; --accent:#b5342a;
+  }
+  body{
+    font-family:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.9; font-size:16px;
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:960px; margin:0 auto; padding:0 40px; }
+  .en{ font-size:10px; letter-spacing:.34em; color:var(--meta); text-transform:uppercase; }
+
+  /* ヒーロー */
+  .hero{ padding:100px 0 72px; border-bottom:1px solid var(--line); }
+  .hero .en{ margin-bottom:22px; }
+  .hero h1{ font-size:clamp(30px,5.4vw,52px); font-weight:700; letter-spacing:.02em; line-height:1.35; }
+  .hero h1 b{ color:var(--accent); font-weight:700; }
+  .hero .sub{ font-size:clamp(15px,2vw,18px); color:var(--sub); margin-top:26px; max-width:680px; }
+  .hero .for{ margin-top:40px; font-size:13px; color:var(--meta); }
+  .hero .for b{ color:var(--ink); font-weight:600; }
+
+  section{ padding:72px 0; border-bottom:1px solid var(--line); }
+  .sec-en{ font-size:10px; letter-spacing:.3em; color:var(--accent); text-transform:uppercase; }
+  h2{ font-size:clamp(22px,3.4vw,30px); font-weight:700; letter-spacing:.02em; margin:10px 0 8px; line-height:1.45; }
+  .lead{ font-size:15px; color:var(--sub); max-width:720px; margin-top:14px; }
+
+  /* 問題提起 */
+  .shift{ display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:stretch; margin-top:40px; border:1px solid var(--line); }
+  .shift .col{ padding:28px 26px; }
+  .shift .col.mid{ display:flex; align-items:center; justify-content:center; background:var(--soft); padding:0 20px; color:var(--accent); font-size:22px; }
+  .shift .tag{ font-size:11px; letter-spacing:.16em; color:var(--meta); }
+  .shift .big{ font-size:19px; font-weight:700; margin:6px 0 8px; }
+  .shift p{ font-size:13.5px; color:var(--sub); }
+  .shift .col.now{ background:#141414; color:#fff; }
+  .shift .col.now .tag{ color:rgba(255,255,255,.55); }
+  .shift .col.now p{ color:rgba(255,255,255,.72); }
+
+  /* 用語 */
+  .terms{ margin-top:36px; border-top:1px solid var(--line); }
+  .term{ display:grid; grid-template-columns:130px 1fr; gap:20px; padding:16px 0; border-bottom:1px solid var(--line); }
+  .term .k{ font-weight:700; font-size:15px; letter-spacing:.02em; }
+  .term .k small{ display:block; font-size:10px; color:var(--meta); letter-spacing:.1em; font-weight:400; margin-top:2px; }
+  .term .d{ font-size:14px; color:var(--sub); }
+  .terms .note{ font-size:13px; color:var(--meta); padding-top:16px; }
+
+  /* 3層 */
+  .layers{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px; }
+  .layer{ border:1px solid var(--line); padding:26px 22px; }
+  .layer .no{ font-size:10px; letter-spacing:.24em; color:var(--accent); }
+  .layer h3{ font-size:17px; margin:6px 0 12px; letter-spacing:.02em; }
+  .layer ul{ list-style:none; }
+  .layer li{ font-size:13px; color:var(--sub); padding:5px 0 5px 16px; position:relative; }
+  .layer li::before{ content:""; position:absolute; left:0; top:12px; width:5px; height:5px; background:var(--accent); border-radius:50%; }
+
+  /* メニュー表 */
+  .tbl-scroll{ overflow-x:auto; margin-top:36px; border:1px solid var(--line); }
+  table{ width:100%; border-collapse:collapse; font-size:13.5px; min-width:560px; background:#fff; }
+  th,td{ text-align:left; padding:14px 18px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th{ background:#141414; color:#fff; font-weight:600; font-size:12px; letter-spacing:.06em; }
+  td b{ font-size:14px; }
+  td .s{ display:block; font-size:12px; color:var(--meta); margin-top:2px; }
+  tr:last-child td{ border-bottom:none; }
+
+  /* 効果 */
+  .stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px; }
+  .stat{ border:1px solid var(--line); padding:26px 22px; text-align:center; }
+  .stat .n{ font-size:34px; font-weight:700; color:var(--accent); letter-spacing:.01em; }
+  .stat .l{ font-size:12.5px; color:var(--sub); margin-top:6px; }
+  .stats + .disclaimer{ font-size:11px; color:var(--meta); margin-top:14px; }
+
+  /* 強み */
+  .why{ background:var(--soft); border:none; }
+  .why .duo{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:36px; }
+  .why .card{ background:#fff; border:1px solid var(--line); padding:28px 26px; }
+  .why .card .en{ color:var(--accent); }
+  .why .card h3{ font-size:19px; margin:8px 0 10px; }
+  .why .card p{ font-size:14px; color:var(--sub); }
+
+  /* 進め方 */
+  .steps{ margin-top:36px; }
+  .step{ display:grid; grid-template-columns:56px 1fr; gap:22px; padding:20px 0; border-bottom:1px solid var(--line); align-items:start; }
+  .step:last-child{ border-bottom:none; }
+  .step .num{ font-size:30px; font-weight:700; color:var(--line); line-height:1; }
+  .step h4{ font-size:16px; margin-bottom:4px; }
+  .step p{ font-size:13.5px; color:var(--sub); }
+
+  /* 差し替え診断ブロック */
+  .diag{ border:1px dashed var(--accent); padding:28px 26px; margin-top:36px; background:#fff; }
+  .diag .badge{ display:inline-block; font-size:10px; letter-spacing:.14em; color:var(--accent); border:1px solid var(--accent); padding:2px 10px; margin-bottom:12px; }
+  .diag p{ font-size:14px; color:var(--sub); }
+  .ph{ color:var(--accent); font-weight:700; }
+
+  /* CTA */
+  .cta{ text-align:center; padding:88px 0; border-bottom:none; }
+  .cta h2{ margin-bottom:18px; }
+  .cta .company{ margin-top:40px; font-size:13px; color:var(--meta); line-height:1.9; }
+  .cta .company b{ color:var(--ink); font-size:15px; letter-spacing:.08em; }
+
+  footer{ padding:24px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; }
+  footer span{ font-size:10px; letter-spacing:.2em; color:var(--meta); }
+
+  @media (max-width:768px){
+    .wrap{ padding:0 24px; }
+    .hero{ padding:64px 0 48px; }
+    section{ padding:52px 0; }
+    .shift{ grid-template-columns:1fr; }
+    .shift .col.mid{ padding:14px; transform:rotate(90deg); }
+    .layers,.stats,.why .duo{ grid-template-columns:1fr; }
+    .term{ grid-template-columns:1fr; gap:4px; }
+    .step{ grid-template-columns:40px 1fr; gap:14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ヒーロー -->
+<header class="hero">
+  <div class="wrap">
+    <div class="en">CRATER ｜ AI Search Optimization</div>
+    <h1>検索は「探す」から<br><b>「AIが答える」</b>へ変わった。</h1>
+    <p class="sub">これからの顧客は、Google・ChatGPT・Perplexity に質問し、AIが選んだ“ひとつの答え”を受け取ります。そのとき、御社のブランドはAIに引用されているでしょうか。CRATERは、デザインと認知の両輪で「AIに選ばれるブランド」をつくります。</p>
+    <p class="for">提案先：<b>【 クライアント名 】 御中</b>　／　ご提案日：【 2026.00.00 】</p>
+  </div>
+</header>
+
+<!-- 変化 -->
+<section>
+  <div class="wrap">
+    <div class="sec-en">The Shift</div>
+    <h2>「10本の青いリンク」の時代は終わりつつある</h2>
+    <p class="lead">上位表示されても、AIが要約で答えてしまえばクリックされません。これからは“検索結果に出る”ことより、“AIの答えの中に引用される”ことが重要になります。</p>
+    <div class="shift">
+      <div class="col">
+        <div class="tag">従来（SEO）</div>
+        <div class="big">リンクの一覧で上位に出す</div>
+        <p>ユーザーが自分で複数サイトを見比べ、選んでクリックする。露出＝リンク順位。</p>
+      </div>
+      <div class="col mid">→</div>
+      <div class="col now">
+        <div class="tag">これから（AIO / GEO）</div>
+        <div class="big">AIの答えに引用される</div>
+        <p>AIが1つの答えを提示。引用元に選ばれなければ、存在しないのと同じになる。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 用語 -->
+<section>
+  <div class="wrap">
+    <div class="sec-en">Keywords</div>
+    <h2>まず、新しい言葉を整理します</h2>
+    <p class="lead">呼び方は複数ありますが、本質は「AIの回答に入る」ひとつです。</p>
+    <div class="terms">
+      <div class="term"><div class="k">AIO<small>AI OVERVIEWS</small></div><div class="d">Google検索の最上部に出る「AIによる要約」に載ること。</div></div>
+      <div class="term"><div class="k">GEO<small>GENERATIVE ENGINE OPT.</small></div><div class="d">ChatGPTやPerplexityなど、生成AIの回答に引用されるための最適化。</div></div>
+      <div class="term"><div class="k">LLMO<small>LLM OPTIMIZATION</small></div><div class="d">GEOの別称。大規模言語モデルに引用されやすくすること。</div></div>
+      <div class="term"><div class="k">AEO<small>ANSWER ENGINE OPT.</small></div><div class="d">AIの「答え」として選ばれるための最適化。</div></div>
+      <p class="note">→ GEO ≒ LLMO ≒ AEO ≒ AIO。すべて「AIの回答に引用される」ことを指します。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3層 -->
+<section>
+  <div class="wrap">
+    <div class="sec-en">Approach</div>
+    <h2>3つの層で、AIに“信頼できる引用元”と認識させる</h2>
+    <p class="lead">技術・コンテンツ・サイト外。どれか一つでは足りません。CRATERは3層すべてを設計します。</p>
+    <div class="layers">
+      <div class="layer">
+        <div class="no">LAYER 01</div>
+        <h3>コーディング（技術）</h3>
+        <ul>
+          <li>構造化データ（JSON-LD）</li>
+          <li>FAQ・商品・組織スキーマ</li>
+          <li>llms.txt の設置</li>
+          <li>AIクローラーの許可設定</li>
+          <li>セマンティックなHTML設計</li>
+        </ul>
+      </div>
+      <div class="layer">
+        <div class="no">LAYER 02</div>
+        <h3>コンテンツ・デザイン</h3>
+        <ul>
+          <li>結論から書く構成</li>
+          <li>質問形式の見出し・FAQ</li>
+          <li>明確な定義文</li>
+          <li>独自データ・一次情報</li>
+          <li>運営者情報（E-E-A-T）</li>
+        </ul>
+      </div>
+      <div class="layer">
+        <div class="no">LAYER 03</div>
+        <h3>サイト外（認知）</h3>
+        <ul>
+          <li>第三者メディアでの言及</li>
+          <li>Wikipedia / Wikidata 登録</li>
+          <li>レビュー・口コミの整備</li>
+          <li>SNSとの情報整合</li>
+          <li>ブランドの露出設計</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- メニュー -->
+<section>
+  <div class="wrap">
+    <div class="sec-en">Menu</div>
+    <h2>ご提供メニュー</h2>
+    <p class="lead">現状に応じて、必要な施策を組み合わせてご提案します。</p>
+    <div class="tbl-scroll">
+      <table>
+        <tr><th style="width:34%">施策</th><th>内容</th></tr>
+        <tr><td><b>AI検索 現状診断</b><span class="s">まず現在地を可視化</span></td><td>3層チェックリストで御社サイトを点検。何ができていて、何が足りないかを1枚に可視化します。</td></tr>
+        <tr><td><b>技術実装（LAYER 01）</b><span class="s">構造化データ・llms.txt</span></td><td>JSON-LD・FAQ/商品/組織スキーマ・llms.txt・クローラー設定を実装。AIが読み取れる土台を整えます。</td></tr>
+        <tr><td><b>コンテンツ設計（LAYER 02）</b><span class="s">引用される書き方へ</span></td><td>結論ファースト・FAQ・定義文・独自情報の設計。既存ページのリライトも対応。</td></tr>
+        <tr><td><b>認知・露出設計（LAYER 03）</b><span class="s">APOLLOS連携</span></td><td>第三者言及・メディア露出・エンティティ登録を、認知専門会社APOLLOSと連携して設計。</td></tr>
+        <tr><td><b>効果測定・改善</b><span class="s">引用され続ける状態へ</span></td><td>各AIでの引用状況を継続計測し、改善を回します。</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 効果 -->
+<section>
+  <div class="wrap">
+    <div class="sec-en">Impact</div>
+    <h2>期待できる効果</h2>
+    <p class="lead">構造化と質の高いコンテンツは、AIに引用される確率を高めます。</p>
+    <div class="stats">
+      <div class="stat"><div class="n">4–8週</div><div class="l">実装後、AIの引用数が向上し始める目安</div></div>
+      <div class="stat"><div class="n">3.2×</div><div class="l">詳細なレビュー構造化を備えた場合の引用率（業界調査）</div></div>
+      <div class="stat"><div class="n">AI経由</div><div class="l">新しい流入経路の獲得。検索層と異なる高関与の顧客</div></div>
+    </div>
+    <p class="disclaimer">※数値は一般的な業界調査に基づく目安であり、成果を保証するものではありません。実際の効果はサイト・業種・競合状況により変動します。</p>
+  </div>
+</section>
+
+<!-- 強み -->
+<section class="why">
+  <div class="wrap">
+    <div class="sec-en">Why CRATER</div>
+    <h2>「技術」だけでは、AIに選ばれない</h2>
+    <p class="lead">AIは“あちこちで語られているブランド”を引用します。だから、サイトの中だけを直しても足りません。CRATERは、つくる力と広げる力の両方を持っています。</p>
+    <div class="duo">
+      <div class="card">
+        <div class="en">CRATER — CREATIVE</div>
+        <h3>設計から実装まで一貫</h3>
+        <p>ブランド設計・デザイン・コーディングを社内で一貫。構造化データも“見た目を保ったまま”正しく実装できます。デザイン会社だからこその品質でAI対応します。</p>
+      </div>
+      <div class="card">
+        <div class="en">APOLLOS — AWARENESS</div>
+        <h3>認知の専門会社と連携</h3>
+        <p>サイト外の言及・露出づくりは、認知に特化したグループ会社APOLLOSが担当。“AIが拾うブランド”の状態を、内と外の両面からつくります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 進め方 -->
+<section>
+  <div class="wrap">
+    <div class="sec-en">Flow</div>
+    <h2>進め方</h2>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><div><h4>現状診断</h4><p>3層チェックリストで御社サイトを点検し、現在地を1枚に可視化します。</p></div></div>
+      <div class="step"><div class="num">02</div><div><h4>優先順位づけ</h4><p>費用対効果の高い施策（llms.txt・スキーマ・FAQ）から着手範囲をご提案します。</p></div></div>
+      <div class="step"><div class="num">03</div><div><h4>実装・設計</h4><p>技術実装とコンテンツ設計を並行。デザイン品質を保ったままAI対応を組み込みます。</p></div></div>
+      <div class="step"><div class="num">04</div><div><h4>認知施策</h4><p>APOLLOSと連携し、サイト外の言及・露出を設計します。</p></div></div>
+      <div class="step"><div class="num">05</div><div><h4>計測・改善</h4><p>各AIでの引用状況を継続計測し、引用され続ける状態を維持します。</p></div></div>
+    </div>
+
+    <div class="diag">
+      <span class="badge">御社の現状（提案時に記入）</span>
+      <p><span class="ph">【 クライアント名 】</span>様のサイトを診断した結果、現状は <span class="ph">【 ◎○△× のサマリー 】</span> でした。特に <span class="ph">【 最優先で着手すべき項目 】</span> から着手することで、早期にAI引用の獲得が見込めます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <div class="sec-en">Next Step</div>
+    <h2>まずは、御社サイトの<br>「AI検索 現状診断」から。</h2>
+    <p class="lead" style="margin:0 auto;">現在地を可視化するところから始めましょう。診断は短期間でご提供できます。</p>
+    <div class="company">
+      <b>CRATER Inc.</b><br>
+      株式会社クレーター　／　crater.co.jp<br>
+      〒155-0031 東京都世田谷区北沢3-20-18 北沢宝ビル3F<br>
+      TEL 03-6665-0846
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>CRATER — PROPOSAL</span>
+    <span>AI SEARCH OPTIMIZATION / 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI検索対応 実装事例 ｜ APOLLOS × CRATER</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root{
+    --ink:#141414; --sub:#4a4a4a; --meta:#8a8a8a;
+    --line:#e4e4e4; --bg:#ffffff; --soft:#f6f5f3;
+    --accent:#b5342a; --done:#1f8a54; --donebg:#eef7f1;
+  }
+  body{
+    font-family:"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.85; font-size:16px;
+    overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:920px; margin:0 auto; padding:0 40px; }
+  .en{ font-size:10px; letter-spacing:.32em; color:var(--meta); text-transform:uppercase; }
+
+  header{ padding:72px 0 40px; border-bottom:2px solid var(--ink); }
+  header .en{ margin-bottom:18px; }
+  header h1{ font-size:clamp(24px,4vw,36px); font-weight:700; letter-spacing:.02em; line-height:1.4; }
+  header .to{ margin-top:26px; font-size:15px; color:var(--sub); }
+  header .to b{ color:var(--ink); font-weight:700; }
+  header .meta-row{ margin-top:6px; font-size:12px; color:var(--meta); }
+  .badge-live{ display:inline-block; font-size:11px; letter-spacing:.1em; color:var(--done); background:var(--donebg); border:1px solid #cfe8da; padding:3px 12px; border-radius:2px; margin-top:14px; }
+
+  .intro{ padding:40px 0 8px; }
+  .intro p{ font-size:15px; color:var(--sub); max-width:760px; }
+  .intro .highlight{ color:var(--ink); font-weight:600; }
+
+  .summary{ display:flex; gap:14px; margin:32px 0 8px; flex-wrap:wrap; }
+  .sm{ flex:1; min-width:150px; border:1px solid var(--line); padding:20px 22px; }
+  .sm .n{ font-size:26px; font-weight:700; color:var(--accent); }
+  .sm .l{ font-size:12.5px; color:var(--sub); margin-top:2px; }
+
+  section{ padding:48px 0 8px; }
+  .sec-title{ display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+  .sec-title .no{ font-size:11px; letter-spacing:.2em; color:var(--accent); }
+  .sec-title h2{ font-size:20px; font-weight:700; letter-spacing:.02em; }
+  .sec-lead{ font-size:13.5px; color:var(--sub); margin-bottom:18px; }
+
+  .tbl-scroll{ overflow-x:auto; border:1px solid var(--line); }
+  table{ width:100%; border-collapse:collapse; font-size:14px; min-width:600px; background:#fff; }
+  th,td{ text-align:left; padding:14px 18px; border-bottom:1px solid var(--line); vertical-align:top; }
+  thead th{ background:#141414; color:#fff; font-weight:600; font-size:12px; letter-spacing:.05em; }
+  th.c-item{ width:32%; } th.c-why{ width:46%; } th.c-stat{ width:22%; text-align:center; }
+  td.item b{ font-size:14px; }
+  td.why{ font-size:13px; color:var(--sub); }
+  td.stat{ text-align:center; white-space:nowrap; }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:nth-child(even) td{ background:#fafafa; }
+  .chip{ display:inline-block; font-size:11px; font-weight:700; letter-spacing:.04em; color:var(--done); background:var(--donebg); border:1px solid #cfe8da; padding:3px 12px; border-radius:2px; }
+  .chip.next{ color:var(--meta); background:#f2f2f2; border-color:#e2e2e2; }
+
+  .closing{ margin-top:52px; background:var(--soft); padding:34px 32px; border-left:3px solid var(--accent); }
+  .closing h3{ font-size:17px; margin-bottom:8px; }
+  .closing p{ font-size:14px; color:var(--sub); }
+  .closing p + p{ margin-top:10px; }
+  .closing code{ font-family:"SF Mono",monospace; font-size:12px; background:#fff; border:1px solid var(--line); padding:1px 7px; border-radius:2px; color:var(--ink); }
+
+  footer{ margin-top:40px; padding:28px 0; border-top:1px solid var(--line); }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px; }
+  footer .co b{ font-size:14px; letter-spacing:.06em; }
+  footer .co{ font-size:12px; color:var(--meta); line-height:1.8; }
+  footer .tag{ font-size:10px; letter-spacing:.2em; color:var(--meta); }
+
+  @media (max-width:768px){
+    .wrap{ padding:0 22px; }
+    header{ padding:52px 0 32px; }
+    .summary{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="en">CRATER ｜ AI Search Optimization — Case Study</div>
+    <h1>AI検索対応 実装事例<br>APOLLOS（自社サイト）</h1>
+    <p class="to">対象：<b>株式会社アポロス</b>（apollos.jp）</p>
+    <p class="meta-row">実施日：2026.07.28　／　実装：株式会社クレーター　／　CMS：WordPress（自作テーマ）</p>
+    <span class="badge-live">● 本番反映済み・稼働中</span>
+  </div>
+</header>
+
+<div class="intro">
+  <div class="wrap">
+    <p>検索は「リンクを探す」から「<span class="highlight">AIが答えを提示する</span>」時代へ移行しています（Google AI Overviews・ChatGPT・Perplexity 等）。当社は自社サイト apollos.jp に、<span class="highlight">AIに“信頼できる引用元”として選ばれるための技術対応</span>を実施しました。本事例はその実施内容です。<span class="highlight">サイトの見た目・動作は一切変えずに</span>、AIが読み取る裏側の情報だけを整備しています。</p>
+    <div class="summary">
+      <div class="sm"><div class="n">全ページ</div><div class="l">構造化データを全ページに自動出力</div></div>
+      <div class="sm"><div class="n">JSON-LD</div><div class="l">Organization / WebSite を実装</div></div>
+      <div class="sm"><div class="n">llms.txt</div><div class="l">AI専用の案内ファイルを設置</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ① 技術 -->
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="no">LAYER 01</span><h2>技術対応（実施済み）</h2></div>
+    <p class="sec-lead">AIがサイト情報を正確に読み取れるよう、裏側の設計を整えました。すべて画面に表示されない要素で、レイアウト・動作は不変です。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th class="c-item">実施項目</th><th class="c-why">何のための対応か</th><th class="c-stat">状態</th></tr></thead>
+        <tbody>
+          <tr><td class="item"><b>会社情報の構造化<br>（Organization）</b></td><td class="why">社名・所在地・設立日・公式SNSを、AIが「ひとつのブランド」として認識できる形式で記述。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>サイト実体の構造化<br>（WebSite）</b></td><td class="why">サイト全体をAIが一つの実体として把握できるよう明示。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>meta description</b></td><td class="why">各ページの要約をページごとに自動生成。AI・検索エンジンが内容を正確に把握。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>OGP（SNSシェア情報）</b></td><td class="why">SNSやAIに共有された時のタイトル・説明・画像を最適化。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>llms.txt の設置</b></td><td class="why">AI専用の案内ファイルをルートに設置し、会社概要・思想・主要ページをAIへ直接提供。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+          <tr><td class="item"><b>AIクローラーの許可</b></td><td class="why">ChatGPT等のAIがサイトを読み込める状態であることを確認（ブロックなし）。</td><td class="stat"><span class="chip">確認済</span></td></tr>
+          <tr><td class="item"><b>全ページ自動適用の設計</b></td><td class="why">テーマ側に組み込み、今後ページが増えても同じ対応が自動で適用される設計に。</td><td class="stat"><span class="chip">実装済</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ② 次フェーズ -->
+<section>
+  <div class="wrap">
+    <div class="sec-title"><span class="no">LAYER 02–03</span><h2>次フェーズ（順次対応）</h2></div>
+    <p class="sec-lead">技術的な土台が整ったため、次はコンテンツと認知の面を段階的に強化していきます。</p>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr><th class="c-item">項目</th><th class="c-why">内容</th><th class="c-stat">状態</th></tr></thead>
+        <tbody>
+          <tr><td class="item"><b>FAQの構造化<br>（FAQPage）</b></td><td class="why">よくある質問を設置し、AIが回答にそのまま引用できる形に。※FAQコンテンツ整備後に実装。</td><td class="stat"><span class="chip next">次フェーズ</span></td></tr>
+          <tr><td class="item"><b>コンテンツ設計</b></td><td class="why">結論ファースト・定義文など、AIに引用されやすい書き方への最適化。</td><td class="stat"><span class="chip next">順次</span></td></tr>
+          <tr><td class="item"><b>AI引用状況の計測</b></td><td class="why">各AI（ChatGPT・Perplexity等）での引用状況を継続計測。</td><td class="stat"><span class="chip next">継続</span></td></tr>
+          <tr><td class="item"><b>サイト外の認知づくり</b></td><td class="why">第三者メディア・レビュー・エンティティ登録など、外部の露出を設計。</td><td class="stat"><span class="chip next">継続</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="closing">
+  <div class="wrap" style="padding:0;">
+    <h3>この対応により</h3>
+    <p>apollos.jp は、Google AI Overviews・ChatGPT・Perplexity 等のAI検索において、<b>「信頼できる引用元」として選ばれやすい状態</b>になりました。実装は <code>&lt;head&gt;</code> 内の非表示要素と新規ファイルの追加のみで、<b>サイトの見た目・動作は一切変わっていません</b>。</p>
+    <p>効果は一般に実装後4〜8週間で現れ始めます。引用状況は継続して計測し、次フェーズを順次進めます。<br><span style="font-size:12px;color:var(--meta);">※効果はサイト・業種・競合状況により変動し、成果を保証するものではありません。</span></p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="co">
+      <b>株式会社クレーター</b><br>
+      crater.co.jp　／　〒155-0031 東京都世田谷区北沢3-20-18 北沢宝ビル3F　／　TEL 03-6665-0846
+    </div>
+    <div class="tag">AI SEARCH OPTIMIZATION — CASE STUDY / 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
