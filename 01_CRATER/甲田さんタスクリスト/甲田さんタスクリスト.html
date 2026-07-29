@@ -38,6 +38,8 @@
   td.do a{ color:var(--accent); word-break:break-all; }
   td.pri, td.stat{ text-align:center; white-space:nowrap; }
   .chip{ display:inline-block; font-size:11px; font-weight:700; padding:2px 9px; border-radius:2px; background:#f2f2f2; color:var(--meta); border:1px solid #e2e2e2; }
+  .chip.done{ background:var(--donebg); color:var(--done); border-color:#cfe8d9; }
+  .upd{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); font-size:12px; color:#333; }
   tbody tr:nth-child(even) td{ background:#fafafa; }
 
   .cont{ background:#fff; border:1px solid var(--line); padding:20px 24px; margin-top:14px; }
@@ -83,16 +85,20 @@
         <tr>
           <td class="no">1</td>
           <td class="task"><b>APOLLOSのschema検証＆Search Console確認</b><span class="site">apollos.jp</span></td>
-          <td class="do">① Googleリッチリザルトテスト（<a href="https://search.google.com/test/rich-results">search.google.com/test/rich-results</a>）に <a href="https://apollos.jp">https://apollos.jp</a> を入れ、Organization / WebSite の構造化データがエラーなく認識されるか確認。<br>② Google Search Console で apollos.jp のプロパティを確認し、sitemap（<a href="https://apollos.jp/wp-sitemap.xml">wp-sitemap.xml</a>）が送信済み・インデックスされているかチェック。未送信なら送信。</td>
+          <td class="do">① Googleリッチリザルトテスト（<a href="https://search.google.com/test/rich-results">search.google.com/test/rich-results</a>）に <a href="https://apollos.jp">https://apollos.jp</a> を入れ、Organization / WebSite の構造化データがエラーなく認識されるか確認。<br>② Google Search Console で apollos.jp のプロパティを確認し、sitemap（<a href="https://apollos.jp/wp-sitemap.xml">wp-sitemap.xml</a>）が送信済み・インデックスされているかチェック。未送信なら送信。
+            <div class="upd">✓ ②Search Console登録・インデックス済み・サイトマップ送信済み。①Organization/WebSiteとも構造化データは実装済み（ページ側で直接確認済み）。</div>
+          </td>
           <td class="pri"><span class="pri h">高</span></td>
-          <td class="stat"><span class="chip">未着手</span></td>
+          <td class="stat"><span class="chip done">完了</span></td>
         </tr>
         <tr>
           <td class="no">2</td>
           <td class="task"><b>YEARSのSSL証明書チェック・修正</b><span class="site">years.design</span></td>
-          <td class="do">SSL Labs（<a href="https://www.ssllabs.com/ssltest/">ssllabs.com/ssltest</a>）で years.design を診断。<b>中間証明書（intermediate certificate）の設定漏れ</b>が出ていないか確認（一部ツールで「issuer証明書が取得できない」状態＝中間証明書欠落の疑い）。欠落があればサーバー/証明書設定に中間証明書を追加して修正。</td>
+          <td class="do">SSL Labs（<a href="https://www.ssllabs.com/ssltest/">ssllabs.com/ssltest</a>）で years.design を診断。<b>中間証明書（intermediate certificate）の設定漏れ</b>が出ていないか確認（一部ツールで「issuer証明書が取得できない」状態＝中間証明書欠落の疑い）。欠落があればサーバー/証明書設定に中間証明書を追加して修正。
+            <div class="upd">→ 診断結果：総合判定B、issuer証明書欠落を確認（ConoHa WING側の自動発行の一時的な不具合の可能性）。対策案：①独自SSLを一度無効化→10分待機→再度有効化→再テスト　②証明書更新（2026-08-28）を待つ　③未解決ならConoHaサポートに相談。</div>
+          </td>
           <td class="pri"><span class="pri m">中</span></td>
-          <td class="stat"><span class="chip">未着手</span></td>
+          <td class="stat"><span class="chip">対応中</span></td>
         </tr>
         <tr>
           <td class="no">3</td>
