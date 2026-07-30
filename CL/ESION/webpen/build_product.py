@@ -239,11 +239,15 @@ head='''<!doctype html>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Hina+Mincho&family=Jost:wght@100..900&family=Playfair+Display:wght@400..900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
     <style>*,::before,::after{box-sizing:border-box;}body{margin:0;}</style>'''
 
+# フッターの各リンク項目を<a href="#">で包む（全部#仮リンク・ホバー付き）
+flinks='''<style>.esion-flink{cursor:pointer;text-decoration:none;color:inherit;display:block;transition:opacity .2s;}.esion-flink:hover{opacity:.6;}</style>
+<script>(function(){['PRODUCTS','MEMBER','SERVICE','ABOUT'].forEach(function(cn){document.querySelectorAll('[data-pencil-name="'+cn+'"]').forEach(function(col){Array.prototype.slice.call(col.children).slice(1).forEach(function(item){if(item.closest('a'))return;var a=document.createElement('a');a.className='esion-flink';a.href='#';item.parentNode.insertBefore(a,item);a.appendChild(item);});});});})();</script>'''
+
 out=head+css+'''
   </head>
   <body>
 '''+pw+'''
-'''+body+js+'''
+'''+body+js+flinks+'''
   </body>
 </html>'''
 open(OUT,'w').write(out)

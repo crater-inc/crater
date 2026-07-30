@@ -1722,6 +1722,12 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             >
               営業日カレンダー
             </div>
+            <div
+              data-pencil-name="取扱店舗"
+              style='box-sizing: border-box; color: #9FB6CC; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+            >
+              取扱店舗
+            </div>
           </div>
           <div
             data-pencil-name="ABOUT"
@@ -1925,6 +1931,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
    row.addEventListener('wheel',function(e){ if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){ e.preventDefault(); setT(tx-e.deltaX); } },{passive:false});
  }
 })();
-</script>
+</script><style>.esion-flink{cursor:pointer;text-decoration:none;color:inherit;display:block;transition:opacity .2s;}.esion-flink:hover{opacity:.6;}</style>
+<script>(function(){['PRODUCTS','MEMBER','SERVICE','ABOUT'].forEach(function(cn){document.querySelectorAll('[data-pencil-name="'+cn+'"]').forEach(function(col){Array.prototype.slice.call(col.children).slice(1).forEach(function(item){if(item.closest('a'))return;var a=document.createElement('a');a.className='esion-flink';a.href='#';item.parentNode.insertBefore(a,item);a.appendChild(item);});});});})();</script>
   </body>
 </html>
