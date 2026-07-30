@@ -68,7 +68,14 @@
   - **【本公開完了 2026-07-08】** `https://birth.business/` 正式公開。Let's Encrypt証明書発行済（〜2026/10/27自動更新）・**常時SSL化ON（http→https 301）**・LP/画像すべて200。
   - **デプロイ経路（クロコFTP自動アップ）**：ConoHa WING／FTPサーバー `www1156.conoha.ne.jp`／ユーザー `entry@birth.business`／**docroot=`/public_html/birth.business/`**／ローカル公開用フォルダ=`web/birth_公開用/`（`index.html`＝birth.htmlのコピー＋`lp-img/`）。※パスワードはgit非保存（都度セッションで受領）。呼び出し「**バースアップして**」でFTPS(explicit)再アップ。
   - ドメイン取得は商標と別枠（早い者勝ち）で問題なし。
-- **ブログ方針【確定 2026-07-08】**：トップLPは静的のまま。ブログは `birth.business/journal/` を**WordPress化**し**リテラ連携**（記事自動生成→WP自動投稿）。**甲田さんが管理画面で公開前チェック・更新**（人もAIも同じ入口）。LPの「JOURNAL」リンクは将来 `/journal/` に向ける（現状は仮アンカー）。着手はLP本公開＋SSL完了後、SEO投入は8/26以降。段取り＝①ConoHa WP簡単インストールで /journal/ にWP設置 ②リテラ接続（アプリパスワード）③甲田さんに公開前チェック委譲。関連=[[MEMORY_リテラ]] [[MEMORY_人的リソース]]。
+- **ブログ＝BIRTH JOURNAL（WordPress）【立ち上げ済 2026-07-08】** `https://birth.business/journal/`
+  - ConoHa WING /journal に WP設置（DB自動）。**自作テーマ `birth`**（LPと同世界観・ベージュ/黒・Noto Sans JP）＋ **mu-plugin `birth-bootstrap.php`**（テーマ自動有効化＋初回setup）。APOLLOS方式。
+  - **リポ内**：テーマ=`wp-theme/birth/`（style.css/functions.php/header・footer・index・single・page/template-parts/card.php/inc/setup.php/assets/theme.js）、mu-plugin=`wp-mu/birth-bootstrap.php`、シード=`wp-seed/birth-seed.php`（一度きり投入用・実行後サーバーから削除する）。
+  - **自動設定済**：サイト名 BIRTH JOURNAL／キャッチ「新しい事業の、考え方。」／パーマリンク `/%postname%/`（.htaccess設置済）／カテゴリ **視点・設計・事例**／サンプル削除／記事テンプレ下書き「kiji-template」。AI SEO（OGP・Article/WebSite構造化データ）標準。
+  - **実記事3本 公開済**：tech-to-business／keep-new-business／factory-second-pillar（LPのJOURNAL 3本を実記事化・アイキャッチ=LP画像取り込み）。
+  - **デプロイ方法（クロコFTP）**：`entry@birth.business`＠`www1156.conoha.ne.jp`。テーマ→`/public_html/birth.business/journal/wp-content/themes/birth/`、mu→`.../mu-plugins/`。テーマ編集時は style.css の Version を上げてFTP再アップ。REST API 有効（`/journal/wp-json/`）＝リテラ自動投稿を受けられる。
+  - **テンプレ運用（記事更新）**：①リテラでREST自動投稿（要アプリパスワード＝後日発行）②WP管理画面で下書き「kiji-template」を複製して書く。カテゴリは視点/設計/事例に固定。甲田さんは公開前チェック担当。
+  - **残**：①リテラ接続（アプリパスワード発行→接続）②LP側「JOURNAL」リンクを `/journal/` に差し替え（現状は仮アンカー）。SEO本格投入は8/26以降。関連=[[MEMORY_リテラ]] [[MEMORY_人的リソース]]。
 - **★リマインダー**：2026/8/27にJ-PlatPatで登録5829691の消滅確認→消えてればBIRTH商標を35・42類で出願・birth.business取得・本公開＆SEO開始。更新されてたら不使用取消審判。
 
 - 2026-07-07：ビジネスモデル・サイト構成・ヒーローコピー確定。②③セクションのコピーは世界観確定後に清書。次候補：サービス名 or 受注の流れセクション。
