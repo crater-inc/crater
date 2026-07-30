@@ -4,7 +4,7 @@ Theme URI: https://birth.business/
 Author: CRATER
 Author URI: https://crater.co.jp/
 Description: BIRTH ジャーナル用テーマ。トップLPの世界観（ベージュ／黒・Noto Sans JP・Inter）に統一。
-Version: 1.0.5
+Version: 1.0.6
 */
 
 :root{
@@ -81,6 +81,7 @@ a{color:inherit;text-decoration:none;}
 .article-body .wp-block-table table,.article-body table{width:100%;border:0;border-collapse:collapse;font-family:var(--jp);font-size:15px;background:transparent;table-layout:auto;}
 .article-body table th,.article-body table td{border:0;border-bottom:1px solid var(--line);padding:18px 20px;text-align:left;line-height:1.7;vertical-align:top;}
 .article-body table thead th{background:var(--beige-d);font-weight:600;color:var(--ink);}
+.article-body table thead,.article-body table tfoot{border:0;border-bottom:1px solid var(--line);} /* WPブロック既定のthead 3px罫線を1pxに揃える */
 .article-body table tbody th{background:transparent;font-weight:600;color:var(--ink);}
 .article-body table td{color:var(--sub);font-weight:400;}
 .article-body table td a{color:var(--ink);}
