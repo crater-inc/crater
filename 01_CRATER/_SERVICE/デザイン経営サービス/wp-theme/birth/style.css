@@ -1,0 +1,101 @@
+/*
+Theme Name: BIRTH
+Theme URI: https://birth.business/
+Author: CRATER
+Author URI: https://crater.co.jp/
+Description: BIRTH ジャーナル用テーマ。トップLPの世界観（ベージュ／黒・Noto Sans JP・Inter）に統一。
+Version: 1.0.0
+*/
+
+:root{
+  --bg:#F6F4F0; --beige-d:#E7DECF; --dark:#181512; --ink:#1A1613;
+  --line:#DED6C8; --sub:#3d3833; --meta:#8C8578;
+  --en:'Inter',sans-serif; --jp:'Noto Sans JP',sans-serif; --logo:'Poppins',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--jp);color:var(--ink);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+img{display:block;max-width:100%;height:auto;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 56px;}
+.eyebrow{font-family:var(--en);font-size:12px;letter-spacing:.25em;color:var(--ink);text-transform:uppercase;}
+
+/* ===== Header ===== */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(246,244,240,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);}
+.site-header .bar{display:flex;align-items:center;justify-content:space-between;padding:16px 56px;}
+.site-header .logo{font-family:var(--en);font-weight:700;font-size:24px;letter-spacing:.04em;color:var(--ink);}
+.hnav{display:flex;align-items:center;gap:30px;}
+.hnav a{font-family:var(--en);font-size:13px;letter-spacing:.12em;color:var(--ink);opacity:.82;transition:opacity .2s;}
+.hnav a:hover,.hnav a.current{opacity:1;}
+.hnav a.current{border-bottom:1px solid var(--ink);padding-bottom:2px;}
+.pill{font-family:var(--jp);font-size:12.5px;letter-spacing:.08em;color:#fff;background:var(--dark);padding:11px 22px;border-radius:100px;white-space:nowrap;transition:transform .25s,opacity .25s;}
+.pill:hover{transform:translateY(-2px);opacity:.9;}
+
+/* ===== Journal head ===== */
+.jhead{padding:96px 0 56px;}
+.jhead .eyebrow{display:block;margin-bottom:18px;}
+.jhead h1{font-family:var(--jp);font-weight:300;font-size:clamp(30px,4vw,46px);line-height:1.32;letter-spacing:.01em;}
+.jhead .lead{margin-top:20px;font-size:16px;font-weight:400;color:var(--sub);max-width:640px;line-height:1.95;}
+
+/* ===== List grid ===== */
+.articles{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px;padding-bottom:100px;}
+.card .thumb{width:100%;aspect-ratio:3/2;border-radius:2px;margin-bottom:16px;overflow:hidden;background:var(--beige-d);}
+.card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1);}
+.card:hover .thumb img{transform:scale(1.04);}
+.card .meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:11px;letter-spacing:.06em;color:var(--sub);}
+.card .meta .date{font-family:var(--en);}
+.card h2{font-size:18px;font-weight:600;line-height:1.5;}
+
+/* ===== Pagination ===== */
+.pager{display:flex;justify-content:center;gap:14px;padding:0 0 100px;}
+.pager a,.pager span{font-family:var(--en);font-size:13px;letter-spacing:.08em;color:var(--ink);padding:10px 16px;border:1px solid var(--line);border-radius:2px;}
+.pager .current{background:var(--dark);color:#fff;border-color:var(--dark);}
+
+/* ===== Single ===== */
+.single-wrap{max-width:760px;margin:0 auto;padding:0 32px;}
+.single-head{padding:80px 0 8px;}
+.single-head .meta{display:flex;align-items:center;gap:14px;margin-bottom:18px;font-size:12px;letter-spacing:.06em;color:var(--sub);}
+.single-head .meta .date{font-family:var(--en);}
+.single-head h1{font-family:var(--jp);font-weight:400;font-size:clamp(26px,3.4vw,34px);line-height:1.5;letter-spacing:.01em;}
+.single-thumb{margin:36px 0 44px;border-radius:2px;overflow:hidden;background:var(--beige-d);}
+.article-body{font-size:16px;line-height:2;color:var(--ink);}
+.article-body p{margin:0 0 1.7em;}
+.article-body h2{font-size:24px;font-weight:600;line-height:1.5;margin:2.2em 0 .8em;}
+.article-body h3{font-size:19px;font-weight:600;line-height:1.5;margin:2em 0 .6em;}
+.article-body a{border-bottom:1px solid var(--ink);}
+.article-body ul,.article-body ol{margin:0 0 1.7em 1.4em;}
+.article-body li{margin:.4em 0;}
+.article-body img{border-radius:2px;margin:1.6em 0;}
+.article-body blockquote{border-left:2px solid var(--ink);padding-left:20px;margin:1.6em 0;color:var(--sub);}
+.back{display:inline-block;margin:56px 0 110px;font-size:14px;letter-spacing:.04em;color:var(--ink);border-bottom:1px solid var(--ink);}
+
+/* ===== Footer ===== */
+.site-footer{background:var(--dark);color:#fff;padding:56px 0 48px;margin-top:40px;}
+.site-footer .ft-top{display:flex;justify-content:space-between;align-items:center;gap:24px;}
+.site-footer .logo{font-family:var(--en);font-weight:700;font-size:18px;letter-spacing:.04em;}
+.fnav{display:flex;gap:26px;flex-wrap:wrap;}
+.fnav a{font-size:12px;letter-spacing:.08em;color:#9A9BA0;transition:color .2s;}
+.fnav a:hover{color:#fff;}
+.ft-div{height:1px;background:rgba(255,255,255,.1);margin:28px 0;}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.ft-copy{font-size:11px;letter-spacing:.08em;color:#6E6F74;}
+.ft-links{display:flex;gap:20px;}
+.ft-links a{font-family:var(--en);font-size:12px;letter-spacing:.08em;color:#9A9BA0;}
+
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ===== Responsive ===== */
+@media (max-width:1024px){.articles{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:768px){
+  .wrap{padding:0 32px;}
+  .site-header .bar{padding:14px 32px;}
+  .hnav{display:none;}
+  .site-header .logo{font-size:22px;}
+  .jhead{padding:64px 0 40px;}
+  .articles{grid-template-columns:1fr;gap:32px;}
+  .site-footer .ft-top{flex-direction:column;align-items:flex-start;gap:18px;}
+  .ft-bottom{flex-direction:column;align-items:flex-start;gap:12px;}
+}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;}html{scroll-behavior:auto;}}
