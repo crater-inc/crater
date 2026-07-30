@@ -357,9 +357,9 @@
         <span class="eyebrow">Journal</span>
         <h2 class="title h-lead" style="font-size:clamp(28px,3.4vw,40px);">新しい事業の、考え方。</h2>
       </div>
-      <a href="#journal" class="more">記事一覧へ →</a>
+      <a href="https://birth.business/journal/" class="more">記事一覧へ →</a>
     </div>
-    <div class="articles">
+    <div class="articles" id="journal-articles">
       <a class="art reveal" href="#journal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427208967.jpg" alt=""></div><div class="meta"><span class="cat">視点</span><span class="date">2026.06.30</span></div><h3>会社の技術を「事業」に変える、最初の一歩。</h3></a>
       <a class="art reveal" href="#journal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427208968.jpg" alt=""></div><div class="meta"><span class="cat">設計</span><span class="date">2026.06.18</span></div><h3>新規事業が続かない理由と、続ける仕組み。</h3></a>
       <a class="art reveal" href="#journal"><div class="thumb px"><img data-speed="0.12" src="lp-img/1783427210948.jpg" alt=""></div><div class="meta"><span class="cat">事例</span><span class="date">2026.06.05</span></div><h3>町工場から生まれた、もう一本の柱。</h3></a>
@@ -455,6 +455,30 @@
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
   },{threshold:0.14,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  // ===== JOURNAL：WordPressから最新記事を読み込む（更新は全部WP側でOK） =====
+  (function(){
+    var box=document.getElementById('journal-articles');
+    if(!box) return;
+    var API='https://birth.business/journal/wp-json/wp/v2/posts?per_page=6&_embed';
+    fetch(API).then(function(r){return r.ok?r.json():Promise.reject();}).then(function(posts){
+      if(!posts||!posts.length) return;
+      posts=posts.filter(function(p){return p.slug!=='article-template'&&p.slug!=='kiji-template';}).slice(0,3);
+      if(!posts.length) return;
+      var html=posts.map(function(p){
+        var link=p.link||'#';
+        var title=(p.title&&p.title.rendered)||'';
+        var d=new Date(p.date);
+        var pad=function(n){return('0'+n).slice(-2);};
+        var date=d.getFullYear()+'.'+pad(d.getMonth()+1)+'.'+pad(d.getDate());
+        var cat='';try{cat=p._embedded['wp:term'][0][0].name;}catch(e){}
+        var img='';try{var m=p._embedded['wp:featuredmedia'][0];var s=m.media_details&&m.media_details.sizes;img=(s&&(s.large||s.medium_large||s.medium)||{}).source_url||m.source_url;}catch(e){}
+        var thumb=img?'<div class="thumb" style="overflow:hidden;"><img src="'+img+'" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover;"></div>':'<div class="thumb"></div>';
+        return '<a class="art in" href="'+link+'">'+thumb+'<div class="meta"><span class="cat">'+cat+'</span><span class="date">'+date+'</span></div><h3>'+title+'</h3></a>';
+      }).join('');
+      box.innerHTML=html;
+    }).catch(function(){/* 失敗時は静的の3枚をそのまま表示 */});
+  })();
 
   // ===== フォーム準備中 =====
   document.querySelectorAll('.js-sheet').forEach(function(b){
