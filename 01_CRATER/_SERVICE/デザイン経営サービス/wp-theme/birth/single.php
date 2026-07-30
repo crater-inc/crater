@@ -19,6 +19,8 @@
         <?php the_content(); ?>
       </div>
 
+      <?php get_template_part('template-parts/author-card'); ?>
+
       <a class="back" href="<?php echo esc_url(home_url('/')); ?>">← ジャーナル一覧へ</a>
     <?php endwhile; ?>
   </article>
