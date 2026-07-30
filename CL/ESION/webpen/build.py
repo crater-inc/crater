@@ -219,7 +219,6 @@ spmenu='''
     <a data-t="Reasons"><em>WHY ESION</em><i>選ばれる3つの理由</i></a>
     <a data-t="13Free"><em>THE 13 FREE</em><i>13の無添加処方</i></a>
     <a data-t="Voices"><em>VOICE</em><i>お客様の声</i></a>
-    <a data-t="Stores"><em>STORES</em><i>取扱店舗</i></a>
     <a data-t="FAQ"><em>FAQ</em><i>よくある質問</i></a>
     <a data-t="Contact"><em>CONTACT</em><i>お問い合わせ</i></a>
   </nav>
