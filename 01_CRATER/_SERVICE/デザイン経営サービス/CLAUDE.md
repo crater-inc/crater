@@ -73,7 +73,8 @@
   - **リポ内**：テーマ=`wp-theme/birth/`（style.css/functions.php/header・footer・index・single・page/template-parts/card.php/inc/setup.php/assets/theme.js）、mu-plugin=`wp-mu/birth-bootstrap.php`、シード=`wp-seed/birth-seed.php`（一度きり投入用・実行後サーバーから削除する）。
   - **自動設定済**：サイト名 BIRTH JOURNAL／キャッチ「新しい事業の、考え方。」／パーマリンク `/%postname%/`（.htaccess設置済）／カテゴリ **視点・設計・事例**／サンプル削除／記事テンプレ下書き「kiji-template」。AI SEO（OGP・Article/WebSite構造化データ）標準。
   - **実記事3本 公開済**：tech-to-business／keep-new-business／factory-second-pillar（LPのJOURNAL 3本を実記事化・アイキャッチ=LP画像取り込み）。
-  - **デプロイ方法（クロコFTP）**：`entry@birth.business`＠`www1156.conoha.ne.jp`。テーマ→`/public_html/birth.business/journal/wp-content/themes/birth/`、mu→`.../mu-plugins/`。テーマ編集時は style.css の Version を上げてFTP再アップ。REST API 有効（`/journal/wp-json/`）＝リテラ自動投稿を受けられる。
+  - **デプロイ方法（クロコFTP）**：`entry@birth.business`＠`www1156.conoha.ne.jp`。テーマ→`/public_html/birth.business/journal/wp-content/themes/birth/`、mu→`.../mu-plugins/`。テーマ編集時は style.css の Version を上げてFTP再アップ。REST API 有効（`/journal/wp-json/`）＝リテラ自動投稿を受けられる。**ConoHaはページキャッシュ有(x-nginx-cache)＝反映確認は`?v=`付与かプライベートタブ or ConoHaキャッシュクリア。**
+  - **記事CSS現況＝style.css v1.0.6**：記事見出し+4px／表＝横罫線のみ・ヘッダー行ベージュ・余白18/20・列内容幅（`.article-body table th/td`で詳細度を上げWPブロック既定を上書き、theadの3px罫線も1pxに）／`mark`=beige-d／ヘッダーCTA白文字。リテラ記事の表もこのCSSで自動適用（共通）。表バグは詳細度同点負け＆thead既定が原因だった。
   - **テンプレ運用（記事更新）**：①リテラでREST自動投稿（要アプリパスワード＝後日発行）②WP管理画面で下書き「kiji-template」を複製して書く。カテゴリは視点/設計/事例に固定。甲田さんは公開前チェック担当。
   - **LP⇄ジャーナル連動【完了】**：LPのJOURNAL欄はWP REST API（`/journal/wp-json/wp/v2/posts?per_page=6&_embed`）から最新記事を自動読込→サムネ/カテゴリ/日付/タイトル/リンク自動更新（WP更新だけでトップも更新。LP触らず）。見本記事(slug=article-template/kiji-template)は除外。一覧リンクは `/journal/`。失敗時は静的3枚フォールバック。LPは `birth.html`→`web/birth_公開用/index.html`にコピーしてFTPで `/public_html/birth.business/index.html` へ。
   - **リテラ接続＝ケイスケ本人が設置**（2026-07-08）。接続情報：サイト`https://birth.business/journal/`／REST有効／アプリケーションパスワードで認証／カテゴリ視点・設計・事例／アイキャッチ必須（LPサムネに反映）。SEO本格投入は8/26以降。関連=[[MEMORY_リテラ]] [[MEMORY_人的リソース]]。
