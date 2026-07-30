@@ -75,7 +75,8 @@
   - **実記事3本 公開済**：tech-to-business／keep-new-business／factory-second-pillar（LPのJOURNAL 3本を実記事化・アイキャッチ=LP画像取り込み）。
   - **デプロイ方法（クロコFTP）**：`entry@birth.business`＠`www1156.conoha.ne.jp`。テーマ→`/public_html/birth.business/journal/wp-content/themes/birth/`、mu→`.../mu-plugins/`。テーマ編集時は style.css の Version を上げてFTP再アップ。REST API 有効（`/journal/wp-json/`）＝リテラ自動投稿を受けられる。
   - **テンプレ運用（記事更新）**：①リテラでREST自動投稿（要アプリパスワード＝後日発行）②WP管理画面で下書き「kiji-template」を複製して書く。カテゴリは視点/設計/事例に固定。甲田さんは公開前チェック担当。
-  - **残**：①リテラ接続（アプリパスワード発行→接続）②LP側「JOURNAL」リンクを `/journal/` に差し替え（現状は仮アンカー）。SEO本格投入は8/26以降。関連=[[MEMORY_リテラ]] [[MEMORY_人的リソース]]。
+  - **LP⇄ジャーナル連動【完了】**：LPのJOURNAL欄はWP REST API（`/journal/wp-json/wp/v2/posts?per_page=6&_embed`）から最新記事を自動読込→サムネ/カテゴリ/日付/タイトル/リンク自動更新（WP更新だけでトップも更新。LP触らず）。見本記事(slug=article-template/kiji-template)は除外。一覧リンクは `/journal/`。失敗時は静的3枚フォールバック。LPは `birth.html`→`web/birth_公開用/index.html`にコピーしてFTPで `/public_html/birth.business/index.html` へ。
+  - **リテラ接続＝ケイスケ本人が設置**（2026-07-08）。接続情報：サイト`https://birth.business/journal/`／REST有効／アプリケーションパスワードで認証／カテゴリ視点・設計・事例／アイキャッチ必須（LPサムネに反映）。SEO本格投入は8/26以降。関連=[[MEMORY_リテラ]] [[MEMORY_人的リソース]]。
 - **★リマインダー**：2026/8/27にJ-PlatPatで登録5829691の消滅確認→消えてればBIRTH商標を35・42類で出願・birth.business取得・本公開＆SEO開始。更新されてたら不使用取消審判。
 
 - 2026-07-07：ビジネスモデル・サイト構成・ヒーローコピー確定。②③セクションのコピーは世界観確定後に清書。次候補：サービス名 or 受注の流れセクション。
