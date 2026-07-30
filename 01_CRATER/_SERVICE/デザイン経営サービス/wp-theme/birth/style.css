@@ -4,7 +4,7 @@ Theme URI: https://birth.business/
 Author: CRATER
 Author URI: https://crater.co.jp/
 Description: BIRTH ジャーナル用テーマ。トップLPの世界観（ベージュ／黒・Noto Sans JP・Inter）に統一。
-Version: 1.0.0
+Version: 1.0.1
 */
 
 :root{
@@ -56,17 +56,32 @@ a{color:inherit;text-decoration:none;}
 .single-head{padding:80px 0 8px;}
 .single-head .meta{display:flex;align-items:center;gap:14px;margin-bottom:18px;font-size:12px;letter-spacing:.06em;color:var(--sub);}
 .single-head .meta .date{font-family:var(--en);}
-.single-head h1{font-family:var(--jp);font-weight:400;font-size:clamp(26px,3.4vw,34px);line-height:1.5;letter-spacing:.01em;}
+.single-head h1{font-family:var(--jp);font-weight:400;font-size:clamp(30px,3.7vw,38px);line-height:1.5;letter-spacing:.01em;}
 .single-thumb{margin:36px 0 44px;border-radius:2px;overflow:hidden;background:var(--beige-d);}
 .article-body{font-size:16px;line-height:2;color:var(--ink);}
 .article-body p{margin:0 0 1.7em;}
-.article-body h2{font-size:24px;font-weight:600;line-height:1.5;margin:2.2em 0 .8em;}
-.article-body h3{font-size:19px;font-weight:600;line-height:1.5;margin:2em 0 .6em;}
+.article-body h2{font-size:28px;font-weight:600;line-height:1.45;margin:2.3em 0 .8em;}
+.article-body h3{font-size:23px;font-weight:600;line-height:1.5;margin:2em 0 .6em;}
+.article-body h4{font-size:18px;font-weight:600;line-height:1.5;margin:1.8em 0 .5em;}
 .article-body a{border-bottom:1px solid var(--ink);}
+.article-body strong{font-weight:600;}
 .article-body ul,.article-body ol{margin:0 0 1.7em 1.4em;}
 .article-body li{margin:.4em 0;}
 .article-body img{border-radius:2px;margin:1.6em 0;}
-.article-body blockquote{border-left:2px solid var(--ink);padding-left:20px;margin:1.6em 0;color:var(--sub);}
+.article-body figure{margin:1.8em 0;}
+.article-body figure img{margin:0;}
+.article-body figcaption{font-size:12px;letter-spacing:.02em;color:var(--meta);margin-top:8px;text-align:center;}
+.article-body blockquote{border-left:2px solid var(--ink);padding-left:20px;margin:1.8em 0;color:var(--sub);font-style:normal;}
+.article-body blockquote p:last-child{margin-bottom:0;}
+.article-body hr{border:0;border-top:1px solid var(--line);margin:2.6em 0;}
+.article-body code{font-family:'SFMono-Regular',Consolas,monospace;background:var(--beige-d);padding:2px 7px;border-radius:3px;font-size:.9em;}
+/* 表：BIRTH仕様。SPは横スクロールで守る（nowrapは使わない） */
+.article-body .table-scroll,.article-body figure.wp-block-table{overflow-x:auto;margin:1.8em 0;}
+.article-body table{width:100%;border-collapse:collapse;font-size:15px;background:#fff;}
+.article-body th,.article-body td{border:1px solid var(--line);padding:13px 16px;text-align:left;line-height:1.7;vertical-align:top;}
+.article-body thead th,.article-body tr:first-child th{background:var(--beige-d);font-weight:600;color:var(--ink);}
+.article-body td{color:var(--sub);}
+.article-body figure.wp-block-table figcaption{margin-top:10px;}
 .back{display:inline-block;margin:56px 0 110px;font-size:14px;letter-spacing:.04em;color:var(--ink);border-bottom:1px solid var(--ink);}
 
 /* ===== Footer ===== */
