@@ -347,7 +347,13 @@
     <section class="combined-section">
       <div class="combined-head">
         <div class="combined-title">全サイト比較</div>
-        <div class="legend-row" id="legendRow"></div>
+        <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+          <div class="legend-row" id="legendRow"></div>
+          <div class="filter-row" id="scaleRow">
+            <button class="f-pill active" data-scale="linear">通常表示</button>
+            <button class="f-pill" data-scale="log" title="極端な数値の1件が全体を潰さないよう、目盛りを対数にします">対数表示</button>
+          </div>
+        </div>
       </div>
       <div class="combined-chart-wrap" id="combinedChart"></div>
     </section>
@@ -410,6 +416,7 @@ let currentRange = { type:'30' };
 let currentMetric = 'sessions';
 let currentChartType = 'line';
 let currentView = 'overview';
+let currentScale = 'linear';
 
 const BREAKDOWN_DIMS = {
   pages:   { field:'pages',   key:'path',    valueField:'pageviews', valueUnit:'PV' },
@@ -452,6 +459,7 @@ async function init(){
 
   wirePillGroup('metricRow', (val)=>{ currentMetric = val; render(); });
   wirePillGroup('chartTypeRow', (val)=>{ currentChartType = val; render(); });
+  wirePillGroup('scaleRow', (val)=>{ currentScale = val; render(); });
 
   document.getElementById('metricInfoBtn').addEventListener('click', (e) => {
     e.stopPropagation();
@@ -491,7 +499,7 @@ function wirePillGroup(rowId, onChange){
     btn.addEventListener('click', ()=>{
       row.querySelectorAll('.f-pill').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      onChange(btn.dataset.metric || btn.dataset.chart);
+      onChange(btn.dataset.metric || btn.dataset.chart || btn.dataset.scale);
     });
   });
 }
@@ -615,7 +623,7 @@ function render(){
     grid.appendChild(card);
   });
 
-  buildCombinedChart(perSite, currentChartType, currentMetric);
+  buildCombinedChart(perSite, currentChartType, currentMetric, currentScale);
   renderHistory();
 }
 
@@ -760,7 +768,7 @@ function niceMax(v){
   return niceN * base;
 }
 
-function buildCombinedChart(perSite, type, metricKey){
+function buildCombinedChart(perSite, type, metricKey, scale){
   const container = document.getElementById('combinedChart');
   const legendRow = document.getElementById('legendRow');
   container.innerHTML = '';
@@ -784,8 +792,19 @@ function buildCombinedChart(perSite, type, metricKey){
     legendRow.appendChild(item);
   });
 
-  const dates = perSite[0].data.map(d => d.date);
+  // サイトごとにGA4計測開始日が違い、日数が揃っていないため、日付の和集合を軸にして
+  // サイトごとの値は日付引き当て(Map)で取得する。単純な配列インデックス対応にしない。
+  const dateSet = new Set();
+  perSite.forEach(s => s.data.forEach(d => dateSet.add(d.date)));
+  const dates = Array.from(dateSet).sort();
   const n = dates.length;
+  const valueMaps = perSite.map(s => {
+    const m = new Map();
+    s.data.forEach(d => m.set(d.date, d[metricKey]));
+    return m;
+  });
+  const valueAt = (si, i) => valueMaps[si].get(dates[i]) || 0;
+
   const w = 1000, h = 280, padL = 46, padR = 12, padT = 16, padB = 30;
   const innerW = w - padL - padR, innerH = h - padT - padB;
   const xPos = (i) => padL + (i/(n-1||1)) * innerW;
@@ -799,10 +818,26 @@ function buildCombinedChart(perSite, type, metricKey){
   perSite.forEach(s => s.data.forEach(d => { if (d[metricKey] > maxV) maxV = d[metricKey]; }));
   const yMax = niceMax(maxV);
 
-  const ySteps = 4;
-  for (let i=0;i<=ySteps;i++){
-    const v = yMax * i / ySteps;
-    const y = padT + innerH - (v / yMax) * innerH;
+  // 対数表示は極端な1件（スパム等の突発スパイク）が全体の目盛りを潰さないための切替
+  const yToPixel = (v) => {
+    if (scale === 'log') {
+      const t = Math.log10(v + 1) / Math.log10(yMax + 1 || 1);
+      return padT + innerH - t * innerH;
+    }
+    return padT + innerH - (v / yMax) * innerH;
+  };
+
+  let gridValues;
+  if (scale === 'log') {
+    gridValues = [0];
+    let p = 1;
+    while (p < yMax) { gridValues.push(p); p *= 10; }
+    gridValues.push(yMax);
+  } else {
+    gridValues = [0,1,2,3,4].map(i => yMax * i / 4);
+  }
+  gridValues.forEach(v => {
+    const y = yToPixel(v);
     const gridLine = document.createElementNS(svgns,'line');
     gridLine.setAttribute('x1', padL); gridLine.setAttribute('x2', w - padR);
     gridLine.setAttribute('y1', y.toFixed(1)); gridLine.setAttribute('y2', y.toFixed(1));
@@ -813,7 +848,7 @@ function buildCombinedChart(perSite, type, metricKey){
     label.setAttribute('text-anchor','end'); label.setAttribute('class','axis-text');
     label.textContent = fmt(Math.round(v));
     svg.appendChild(label);
-  }
+  });
 
   const tickCount = Math.min(6, n);
   for (let t=0; t<tickCount; t++){
@@ -836,10 +871,10 @@ function buildCombinedChart(perSite, type, metricKey){
     for (let i=0;i<n;i++){
       const groupX = padL + i*groupSlot + groupGap/2;
       perSite.forEach((s, si) => {
-        const v = s.data[i][metricKey];
-        const barH = (v / yMax) * innerH;
+        const v = valueAt(si, i);
+        const y = yToPixel(v);
+        const barH = (padT + innerH) - y;
         const x = groupX + si * (barW + barGap);
-        const y = padT + innerH - barH;
         const rect = document.createElementNS(svgns,'rect');
         rect.setAttribute('x', x.toFixed(1));
         rect.setAttribute('y', y.toFixed(1));
@@ -852,8 +887,8 @@ function buildCombinedChart(perSite, type, metricKey){
       });
     }
   } else {
-    perSite.forEach(s => {
-      const pts = s.data.map((d,i) => [xPos(i), padT + innerH - (d[metricKey]/yMax)*innerH]);
+    perSite.forEach((s, si) => {
+      const pts = dates.map((dt,i) => [xPos(i), yToPixel(valueAt(si,i))]);
       const path = pts.map((p,i)=> (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
       const line = document.createElementNS(svgns,'path');
       line.setAttribute('d', path);
@@ -895,12 +930,12 @@ function buildCombinedChart(perSite, type, metricKey){
     tooltip.querySelector('.tt-date').textContent = fmtShortDate(new Date(dates[idx]));
     const rowsWrap = tooltip.querySelector('.tt-rows');
     rowsWrap.innerHTML = '';
-    perSite.forEach(s => {
+    perSite.forEach((s, si) => {
       const row = document.createElement('div');
       row.className = 'tt-row';
       const dash = document.createElement('span'); dash.className='tt-dash'; dash.style.background = s.color;
       const name = document.createElement('span'); name.className='tt-name'; name.textContent = s.name;
-      const num = document.createElement('span'); num.className='tt-num'; num.textContent = fmt(s.data[idx][metricKey]);
+      const num = document.createElement('span'); num.className='tt-num'; num.textContent = fmt(valueAt(si, idx));
       row.appendChild(dash); row.appendChild(name); row.appendChild(num);
       rowsWrap.appendChild(row);
     });
