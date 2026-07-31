@@ -1,0 +1,94 @@
+name: アクセス解析ダッシュボード
+
+# 毎朝 7:00(JST) に自動実行（UTCでは前日22:00）。手動実行も可能。
+on:
+  schedule:
+    - cron: "0 22 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: "01_CRATER/_SERVICE/アクセス解析ダッシュボード"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 依存インストール
+        run: pip install google-analytics-data google-auth
+
+      - name: GA4からデータ取得してJSON更新
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GA4_DASHBOARD_SA_JSON }}
+        run: python engine.py
+
+      - name: Claude Codeインストール
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Claudeで気づき・提案・サイト別コメントを生成
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          PROMPT="以下はクレーターグループ6サイトの直近7日間のGA4アクセスデータです。
+
+          $(cat summary.txt)
+
+          この数字を見て、以下のフォーマットで**厳密に**出力してください（他の文章は一切書かない）。
+          日本語・簡潔に（各行1〜2文）。憶測で理由を断定せず、数字から読み取れることだけを書く。
+          極端な増減（前週比が異常に大きい等）があれば、ボット・スパムトラフィックの可能性にも触れる。
+
+          INSIGHT: (6サイト横断で今日一番注目すべき動き)
+          SUGGESTION: (INSIGHTを踏まえた次のアクション提案)
+          CRATER: (このサイトの一言)
+          ACURRY: (このサイトの一言)
+          CHICS: (このサイトの一言)
+          YEARS: (このサイトの一言)
+          APOLLOS: (このサイトの一言)
+          BIRTH: (このサイトの一言)"
+
+          claude -p "$PROMPT" --model sonnet --max-turns 5 > commentary.txt
+          echo "---- 生成結果 ----"
+          cat commentary.txt
+
+      - name: JSONに反映
+        run: python inject_commentary.py commentary.txt
+
+      - name: 更新をコミット
+        run: |
+          git config user.name "アクセス解析ダッシュボード"
+          git config user.email "actions@users.noreply.github.com"
+          git add output/data/日次データ.json
+          git commit -m "アクセス解析データ自動更新 $(TZ=Asia/Tokyo date '+%Y-%m-%d')" || echo "変更なし"
+          git push || echo "push skip"
+
+      - name: クロタ（LINE）に通知
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: |
+          INSIGHT=$(grep '^INSIGHT:' commentary.txt | sed 's/^INSIGHT:\s*//')
+          SUGGESTION=$(grep '^SUGGESTION:' commentary.txt | sed 's/^SUGGESTION:\s*//')
+          MSG="【アクセス解析レポート】
+
+          気づき：${INSIGHT}
+
+          提案：${SUGGESTION}
+
+          詳細はこちら
+          https://view.crater.co.jp/01_CRATER/_SERVICE/アクセス解析ダッシュボード/output/dashboard.html"
+
+          jq -n --arg to "$LINE_USER_ID" --arg text "$MSG" \
+            '{to:$to, messages:[{type:"text", text:($text | .[0:4900])}]}' \
+          | curl -sS -X POST https://api.line.me/v2/bot/message/push \
+              -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d @-

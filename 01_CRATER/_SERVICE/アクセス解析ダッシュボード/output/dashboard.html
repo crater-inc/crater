@@ -172,6 +172,8 @@
     color:rgba(255,255,255,0.04); font-family:"Zen Kaku Gothic New",serif; line-height:1;
   }
   .insight-label{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; margin-bottom:10px; position:relative; }
+  .suggestion-banner{ margin-top:14px; border-left:3px solid var(--c-crater); }
+  .suggestion-banner::before{ content:"→"; }
   .insight-text{ font-size:clamp(16px,2vw,19px); font-weight:700; line-height:1.7; position:relative; max-width:800px; }
   .sample-tag{
     display:inline-block; margin-left:10px; font-family:"IBM Plex Mono",monospace; font-size:10px;
@@ -243,7 +245,8 @@
     .page-wrap{ padding:0 20px 60px; }
     .grid{ grid-template-columns:1fr; }
     header.top{ padding:16px 0 14px; }
-    .header-right{ align-items:flex-end; }
+    .header-row-1{ flex-direction:column; align-items:flex-start; gap:10px; }
+    .header-right{ align-items:flex-start; width:100%; }
     .filter-row{ width:100%; }
     .combined-chart-wrap{ height:220px; }
     .filter-toggle{ display:inline-flex; }
@@ -343,6 +346,11 @@
     <section class="insight-banner">
       <div class="insight-label">本日の気づき<span id="sampleTag" class="sample-tag" style="display:none;">SAMPLE</span></div>
       <div class="insight-text" id="insightText">読み込み中…</div>
+    </section>
+
+    <section class="insight-banner suggestion-banner">
+      <div class="insight-label">本日の提案</div>
+      <div class="insight-text" id="suggestionText">読み込み中…</div>
     </section>
 
     <section class="combined-section">
@@ -556,6 +564,7 @@ function render(){
   const prev = prevEqualRange(start, end);
 
   document.getElementById('insightText').textContent = DATA.insight;
+  document.getElementById('suggestionText').textContent = DATA.suggestion || '（提案データがありません）';
 
   const grid = document.getElementById('cardGrid');
   grid.innerHTML = '';
