@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ACCESS INTELLIGENCE — クレーターグループ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --page:#0d0d0d;
+    --surface:#1a1a19;
+    --surface-2:#212120;
+    --ink:#ffffff;
+    --ink-2:#c3c2b7;
+    --muted:#898781;
+    --grid:#2c2c2a;
+    --baseline:#383835;
+    --border:rgba(255,255,255,0.10);
+    --good:#0ca30c;
+    --critical:#d03b3b;
+
+    --c-crater:#3987e5;
+    --c-acurry:#d95926;
+    --c-chics:#199e70;
+    --c-years:#c98500;
+    --c-apollos:#d55181;
+    --c-birth:#008300;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{color-scheme:dark;}
+  body{
+    background:var(--page);
+    color:var(--ink);
+    font-family:"Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .mono{ font-family:"IBM Plex Mono", monospace; }
+  .num{ font-family:"IBM Plex Mono", monospace; font-variant-numeric:tabular-nums; }
+
+  /* ===== ロック画面 ===== */
+  #lockScreen{
+    position:fixed; inset:0; z-index:999;
+    background:var(--page);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:20px;
+  }
+  #lockScreen .lk-kicker{ font-family:"IBM Plex Mono",monospace; letter-spacing:0.2em; font-size:11px; color:var(--muted); text-transform:uppercase; }
+  #lockScreen .lk-title{ font-size:22px; font-weight:900; letter-spacing:0.02em; }
+  #lockScreen .lk-form{ display:flex; gap:8px; margin-top:8px; }
+  #lockScreen input{
+    background:var(--surface); border:1px solid var(--border); color:var(--ink);
+    padding:12px 14px; border-radius:8px; font-size:16px; width:200px;
+    font-family:"IBM Plex Mono",monospace; letter-spacing:0.1em;
+  }
+  #lockScreen input:focus{ outline:none; border-color:var(--c-crater); }
+  #lockScreen button{
+    background:var(--c-crater); color:#fff; border:none; padding:12px 20px;
+    border-radius:8px; font-size:14px; font-weight:700; cursor:pointer;
+    font-family:"Zen Kaku Gothic New",sans-serif;
+  }
+  #lockScreen button:hover{ opacity:0.85; }
+  #lockErr{ font-size:12px; color:var(--critical); height:16px; }
+  #mainWrap{ display:none; }
+  #mainWrap.show{ display:block; }
+
+  /* ===== ページ全体 ===== */
+  .page-wrap{ overflow-x:clip; max-width:1280px; margin:0 auto; padding:0 40px 80px; }
+
+  /* ===== ヘッダー ===== */
+  header.top{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,13,13,0.88); backdrop-filter:blur(10px);
+    padding:20px 0 16px;
+    border-bottom:1px solid var(--border);
+  }
+  .header-row-1{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+  }
+  .brand-kicker{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:0.25em; color:var(--muted); text-transform:uppercase; margin-bottom:6px; }
+  .brand-title{ font-size:clamp(22px,3vw,30px); font-weight:900; letter-spacing:0.01em; }
+  .header-right{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+  .updated-row{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); }
+  .pulse-dot{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex-shrink:0; }
+  .pulse-dot::after{
+    content:""; position:absolute; inset:-4px; border-radius:50%;
+    border:1px solid var(--good); animation:pulse 2.4s ease-out infinite;
+  }
+  @keyframes pulse{ 0%{ transform:scale(0.6); opacity:0.9; } 100%{ transform:scale(2.2); opacity:0; } }
+  .filter-toggle{
+    display:none; background:var(--surface); border:1px solid var(--border); color:var(--ink-2);
+    padding:5px 12px; border-radius:16px; font-size:11.5px; cursor:pointer;
+    font-family:"Zen Kaku Gothic New",sans-serif; align-items:center; gap:4px;
+  }
+
+  .filter-row{ display:flex; gap:6px; flex-wrap:wrap; }
+  .f-pill{
+    background:var(--surface); border:1px solid var(--border); color:var(--ink-2);
+    padding:6px 13px; border-radius:20px; font-size:12.5px; cursor:pointer;
+    font-family:"Zen Kaku Gothic New",sans-serif; transition:all .15s ease;
+  }
+  .f-pill:hover{ background:var(--surface-2); }
+  .f-pill.active{ background:var(--ink); color:var(--page); border-color:var(--ink); font-weight:700; }
+  .custom-range{ display:none; align-items:center; gap:8px; padding:8px 12px; }
+  .custom-range.show{ display:flex; }
+  .custom-range input[type="date"]{
+    background:var(--surface); border:1px solid var(--border); color:var(--ink);
+    padding:7px 10px; border-radius:8px; font-size:16px; font-family:"IBM Plex Mono",monospace;
+  }
+  .custom-range button{
+    background:var(--c-crater); color:#fff; border:none; padding:8px 14px; border-radius:8px;
+    font-size:13px; font-weight:700; cursor:pointer;
+  }
+
+  /* ===== コントロールバー（期間・指標・表示切替。ヘッダー内に常駐） ===== */
+  .control-bar{
+    margin-top:14px; display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;
+  }
+  .control-group{ display:flex; flex-direction:column; gap:6px; }
+  .control-group-label{ font-family:"IBM Plex Mono",monospace; font-size:9px; letter-spacing:0.15em; color:var(--muted); text-transform:uppercase; }
+  .control-group-label-row{ display:flex; align-items:center; gap:5px; }
+  .info-icon{
+    width:14px; height:14px; border-radius:50%; border:1px solid var(--muted); background:none;
+    color:var(--muted); font-size:9px; line-height:1; padding:0; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-family:"IBM Plex Mono",monospace;
+  }
+  .info-icon:hover{ border-color:var(--ink-2); color:var(--ink-2); }
+  .info-popover{
+    display:none; position:absolute; top:calc(100% + 8px); left:0; z-index:60; width:240px;
+    background:var(--page); border:1px solid var(--border); border-radius:10px; padding:12px 14px;
+    font-size:11.5px; color:var(--ink-2); line-height:1.7; box-shadow:0 12px 30px rgba(0,0,0,0.5);
+  }
+  .info-popover.open{ display:block; }
+  .info-popover strong{ color:var(--ink); }
+
+  /* ===== ページ切替ナビ ===== */
+  .view-tabs{
+    margin-top:28px; display:flex; gap:28px; border-bottom:1px solid var(--border);
+  }
+  .view-tab{
+    background:none; border:none; color:var(--muted); font-size:14px; font-weight:700;
+    padding:0 0 14px; cursor:pointer; font-family:"Zen Kaku Gothic New",sans-serif;
+    border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .15s ease;
+  }
+  .view-tab:hover{ color:var(--ink-2); }
+  .view-tab.active{ color:var(--ink); border-bottom-color:var(--c-crater); }
+  .breakdown-note{ margin-top:22px; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--muted); letter-spacing:0.03em; }
+  .breakdown-list{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+  .bd-row{ display:flex; align-items:center; gap:10px; }
+  .bd-rank{ font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--muted); width:14px; flex-shrink:0; }
+  .bd-body{ flex:1; min-width:0; }
+  .bd-label-row{ display:flex; justify-content:space-between; gap:8px; font-size:12px; margin-bottom:4px; }
+  .bd-label{ color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bd-value{ font-family:"IBM Plex Mono",monospace; font-weight:700; flex-shrink:0; }
+  .bd-meter{ height:5px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
+  .bd-meter-fill{ height:100%; border-radius:3px; }
+
+  /* ===== 気づきバナー ===== */
+  .insight-banner{
+    margin-top:28px; background:linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+    border:1px solid var(--border); border-radius:16px; padding:28px 32px;
+    position:relative; overflow:hidden;
+  }
+  .insight-banner::before{
+    content:"“"; position:absolute; top:-10px; left:16px; font-size:120px; font-weight:900;
+    color:rgba(255,255,255,0.04); font-family:"Zen Kaku Gothic New",serif; line-height:1;
+  }
+  .insight-label{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; margin-bottom:10px; position:relative; }
+  .insight-text{ font-size:clamp(16px,2vw,19px); font-weight:700; line-height:1.7; position:relative; max-width:800px; }
+  .sample-tag{
+    display:inline-block; margin-left:10px; font-family:"IBM Plex Mono",monospace; font-size:10px;
+    letter-spacing:0.1em; color:var(--muted); border:1px solid var(--border); border-radius:4px;
+    padding:2px 6px; vertical-align:middle; text-transform:uppercase;
+  }
+
+  /* ===== 全サイト比較チャート ===== */
+  .combined-section{
+    margin-top:24px; background:var(--surface); border:1px solid var(--border); border-radius:16px;
+    padding:26px 28px;
+  }
+  .combined-head{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:18px; }
+  .combined-title{ font-size:15px; font-weight:700; }
+  .legend-row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .legend-item{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--ink-2); }
+  .legend-swatch-line{ width:14px; height:2px; border-radius:2px; flex-shrink:0; }
+  .legend-swatch-rect{ width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+  .combined-chart-wrap{ position:relative; height:280px; }
+  .combined-chart-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .axis-text{ font-family:"IBM Plex Mono",monospace; font-size:10px; fill:var(--muted); }
+  .tooltip.multi{ padding:10px 12px; }
+  .tooltip.multi .tt-date{ margin-bottom:6px; font-size:11px; }
+  .tt-row{ display:flex; align-items:center; gap:8px; font-size:11.5px; padding:2px 0; }
+  .tt-row .tt-dash{ width:10px; height:2px; border-radius:2px; flex-shrink:0; }
+  .tt-row .tt-name{ color:var(--ink-2); flex-shrink:0; }
+  .tt-row .tt-num{ font-family:"IBM Plex Mono",monospace; font-weight:700; margin-left:auto; padding-left:14px; }
+
+  /* ===== サイトカードグリッド ===== */
+  .grid{ margin-top:24px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .card{
+    background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px;
+    display:flex; flex-direction:column; gap:14px;
+    opacity:0; transform:translateY(10px); animation:reveal .5s ease forwards;
+  }
+  @keyframes reveal{ to{ opacity:1; transform:translateY(0); } }
+  .card-head{ display:flex; align-items:center; justify-content:space-between; }
+  .card-site{ display:flex; align-items:center; gap:8px; }
+  .chip{ width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+  .site-name{ font-size:14px; font-weight:700; letter-spacing:0.02em; }
+  .card-metric-label{ font-size:11px; color:var(--muted); font-family:"IBM Plex Mono",monospace; letter-spacing:0.08em; text-transform:uppercase; }
+  .card-value-row{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .card-value{ font-size:32px; font-weight:700; }
+  .delta{ font-size:12px; font-weight:600; display:inline-flex; align-items:center; gap:3px; padding:3px 8px; border-radius:20px; }
+  .delta.up{ color:var(--good); background:rgba(12,163,12,0.12); }
+  .delta.down{ color:var(--critical); background:rgba(208,59,59,0.12); }
+  .chart-wrap{ position:relative; height:70px; }
+  .chart-wrap svg{ width:100%; height:100%; overflow:visible; }
+  .tooltip{
+    position:absolute; pointer-events:none; background:var(--page); border:1px solid var(--border);
+    border-radius:8px; padding:6px 10px; font-size:11px; white-space:nowrap; opacity:0;
+    transition:opacity .1s ease; transform:translate(-50%,-120%); z-index:10;
+  }
+  .tooltip .tt-val{ font-family:"IBM Plex Mono",monospace; font-weight:700; font-size:12px; }
+  .tooltip .tt-date{ color:var(--muted); font-size:10px; }
+  .card-comment{ font-size:12.5px; color:var(--ink-2); line-height:1.6; border-top:1px solid var(--border); padding-top:12px; }
+
+  /* ===== レポート履歴 ===== */
+  .history-section{ margin-top:40px; }
+  .section-label{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase; margin-bottom:14px; }
+  .history-list{ display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:12px; overflow:hidden; }
+  .history-row{ background:var(--surface); padding:16px 20px; display:flex; gap:16px; align-items:baseline; }
+  .history-date{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); flex-shrink:0; width:70px; }
+  .history-text{ font-size:13.5px; color:var(--ink-2); }
+
+  .footer-note{ margin-top:30px; font-size:11px; color:var(--muted); text-align:center; font-family:"IBM Plex Mono",monospace; letter-spacing:0.03em; }
+
+  @media (max-width:860px){
+    .page-wrap{ padding:0 20px 60px; }
+    .grid{ grid-template-columns:1fr; }
+    header.top{ padding:16px 0 14px; }
+    .header-right{ align-items:flex-end; }
+    .filter-row{ width:100%; }
+    .combined-chart-wrap{ height:220px; }
+    .filter-toggle{ display:inline-flex; }
+    .control-bar{ display:none; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+    .control-bar.open{ display:flex; }
+  }
+  @media (max-width:480px){
+    .page-wrap{ padding:0 20px 60px; }
+    .insight-banner{ padding:22px 20px; }
+    .card{ padding:18px; }
+    .combined-section{ padding:20px 16px; }
+    .control-bar{ gap:20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── ロック画面 ── -->
+<div id="lockScreen">
+  <div class="lk-kicker">CRATER GROUP — INTERNAL</div>
+  <div class="lk-title">ACCESS INTELLIGENCE</div>
+  <div class="lk-form">
+    <input type="password" id="pwInput" placeholder="PASSWORD" autocomplete="off">
+    <button onclick="checkPw()">ENTER</button>
+  </div>
+  <div id="lockErr"></div>
+</div>
+
+<div id="mainWrap">
+<div class="page-wrap">
+
+  <header class="top">
+    <div class="header-row-1">
+      <div>
+        <div class="brand-kicker">Access Intelligence</div>
+        <div class="brand-title">アクセス解析ダッシュボード</div>
+      </div>
+      <div class="header-right">
+        <div class="updated-row">
+          <span class="pulse-dot"></span>
+          <span id="updatedAt" class="mono">—</span>
+        </div>
+        <button class="filter-toggle" id="filterToggle" type="button">絞り込み <span id="filterToggleIcon">▾</span></button>
+      </div>
+    </div>
+
+    <div class="control-bar" id="controlBar">
+      <div class="control-group">
+        <div class="control-group-label">期間</div>
+        <div class="filter-row" id="rangeRow">
+          <button class="f-pill" data-range="7">7日</button>
+          <button class="f-pill active" data-range="30">30日</button>
+          <button class="f-pill" data-range="90">90日</button>
+          <button class="f-pill" data-range="custom">カスタム</button>
+        </div>
+      </div>
+      <div class="control-group" style="position:relative;">
+        <div class="control-group-label-row">
+          <span class="control-group-label">指標</span>
+          <button class="info-icon" id="metricInfoBtn" type="button" aria-label="指標の説明">?</button>
+        </div>
+        <div class="filter-row" id="metricRow">
+          <button class="f-pill active" data-metric="sessions">セッション</button>
+          <button class="f-pill" data-metric="users">UU数</button>
+          <button class="f-pill" data-metric="pageviews">PV数</button>
+        </div>
+        <div class="info-popover" id="metricInfoPopover">
+          <div><strong>セッション</strong>：サイトへの訪問回数。同じ人が何度来ても、来るたびに1回とカウントします</div>
+          <div><strong>UU数</strong>：訪れた人の数（ユニークユーザー）。同じ人が何度来ても1人としてカウントします</div>
+          <div><strong>PV数</strong>：ページが表示された回数。1人が複数ページ見れば、その分カウントします</div>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="control-group-label">表示</div>
+        <div class="filter-row" id="chartTypeRow">
+          <button class="f-pill active" data-chart="line">折れ線</button>
+          <button class="f-pill" data-chart="bar">棒グラフ</button>
+        </div>
+      </div>
+      <div class="custom-range" id="customRange">
+        <input type="date" id="dateFrom">
+        <span class="mono" style="color:var(--muted);font-size:12px;">〜</span>
+        <input type="date" id="dateTo">
+        <button onclick="applyCustomRange()">適用</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="view-tabs" id="viewTabs">
+    <button class="view-tab active" data-view="overview">概要</button>
+    <button class="view-tab" data-view="pages">人気ページ</button>
+    <button class="view-tab" data-view="sources">流入元</button>
+    <button class="view-tab" data-view="devices">デバイス</button>
+  </nav>
+
+  <div id="viewOverview">
+    <section class="insight-banner">
+      <div class="insight-label">本日の気づき<span id="sampleTag" class="sample-tag" style="display:none;">SAMPLE</span></div>
+      <div class="insight-text" id="insightText">読み込み中…</div>
+    </section>
+
+    <section class="combined-section">
+      <div class="combined-head">
+        <div class="combined-title">全サイト比較</div>
+        <div class="legend-row" id="legendRow"></div>
+      </div>
+      <div class="combined-chart-wrap" id="combinedChart"></div>
+    </section>
+
+    <section class="grid" id="cardGrid"></section>
+
+    <section class="history-section">
+      <div class="section-label">レポート履歴</div>
+      <div class="history-list" id="historyList"></div>
+    </section>
+  </div>
+
+  <div id="viewBreakdown" style="display:none;">
+    <div class="breakdown-note" id="breakdownNote"></div>
+    <section class="grid" id="breakdownGrid"></section>
+  </div>
+
+  <div class="footer-note" id="footerNote"></div>
+
+</div>
+</div>
+
+<script>
+// ============ パスワードゲート ============
+function unlock(){
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('mainWrap').classList.add('show');
+  init();
+}
+function checkPw(){
+  if (document.getElementById('pwInput').value === 'view') {
+    sessionStorage.setItem('aid_unlocked', '1');
+    unlock();
+  } else {
+    document.getElementById('lockErr').textContent = 'INCORRECT';
+    setTimeout(() => document.getElementById('lockErr').textContent = '', 1800);
+  }
+}
+document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
+if (sessionStorage.getItem('aid_unlocked') === '1') unlock();
+
+// ============ サイト表示順・色（固定。フィルターで変わっても並び替えない） ============
+const SITE_META = [
+  { id:'crater',  color:'var(--c-crater)'  },
+  { id:'acurry',  color:'var(--c-acurry)'  },
+  { id:'chics',   color:'var(--c-chics)'   },
+  { id:'years',   color:'var(--c-years)'   },
+  { id:'apollos', color:'var(--c-apollos)' },
+  { id:'birth',   color:'var(--c-birth)'   },
+];
+
+const METRICS = {
+  sessions:  { label:'セッション', unit:'セッション', desc:'サイトへの訪問回数。同じ人が何度来ても、来るたびに1回とカウントします' },
+  users:     { label:'UU数',       unit:'ユーザー',    desc:'サイトに来た人の数（ユニークユーザー）。同じ人が何度来ても1人としてカウントします' },
+  pageviews: { label:'PV数',       unit:'PV',         desc:'ページが表示された回数（ページビュー）。1人が複数ページ見れば、その分カウントします' },
+};
+
+let DATA = null;
+let currentRange = { type:'30' };
+let currentMetric = 'sessions';
+let currentChartType = 'line';
+let currentView = 'overview';
+
+const BREAKDOWN_DIMS = {
+  pages:   { field:'pages',   key:'path',    valueField:'pageviews', valueUnit:'PV' },
+  sources: { field:'sources', key:'channel', valueField:'sessions',  valueUnit:'セッション' },
+  devices: { field:'devices', key:'category',valueField:'sessions',  valueUnit:'セッション' },
+};
+
+async function init(){
+  try{
+    const res = await fetch('./data/日次データ.json', { cache:'no-store' });
+    DATA = await res.json();
+  }catch(e){
+    document.getElementById('insightText').textContent = 'データの読み込みに失敗しました。';
+    return;
+  }
+
+  if (DATA.is_sample) {
+    document.getElementById('sampleTag').style.display = 'inline-block';
+  }
+
+  const updated = new Date(DATA.updated_at);
+  document.getElementById('updatedAt').textContent =
+    '最終更新 ' + updated.toLocaleDateString('ja-JP',{month:'2-digit',day:'2-digit'}) + ' ' +
+    updated.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+
+  document.getElementById('footerNote').textContent =
+    (DATA.is_sample ? '※ 現在表示中の数値はUI検証用のサンプルです。実データ接続後に自動で切り替わります。' : '');
+
+  document.querySelectorAll('#rangeRow .f-pill').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const r = btn.dataset.range;
+      document.getElementById('customRange').classList.toggle('show', r === 'custom');
+      if (r === 'custom') return;
+      document.querySelectorAll('#rangeRow .f-pill').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentRange = { type:r };
+      render();
+    });
+  });
+
+  wirePillGroup('metricRow', (val)=>{ currentMetric = val; render(); });
+  wirePillGroup('chartTypeRow', (val)=>{ currentChartType = val; render(); });
+
+  document.getElementById('metricInfoBtn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('metricInfoPopover').classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    const popover = document.getElementById('metricInfoPopover');
+    const btn = document.getElementById('metricInfoBtn');
+    if (popover.classList.contains('open') && !popover.contains(e.target) && e.target !== btn) {
+      popover.classList.remove('open');
+    }
+  });
+
+  document.getElementById('filterToggle').addEventListener('click', () => {
+    const bar = document.getElementById('controlBar');
+    const open = bar.classList.toggle('open');
+    document.getElementById('filterToggleIcon').textContent = open ? '▴' : '▾';
+  });
+
+  document.querySelectorAll('.view-tab').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.view-tab').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentView = btn.dataset.view;
+      document.getElementById('viewOverview').style.display = currentView === 'overview' ? '' : 'none';
+      document.getElementById('viewBreakdown').style.display = currentView === 'overview' ? 'none' : '';
+      if (currentView !== 'overview') renderBreakdown(currentView);
+    });
+  });
+
+  render();
+}
+
+function wirePillGroup(rowId, onChange){
+  const row = document.getElementById(rowId);
+  row.querySelectorAll('.f-pill').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      row.querySelectorAll('.f-pill').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      onChange(btn.dataset.metric || btn.dataset.chart);
+    });
+  });
+}
+
+function applyCustomRange(){
+  const from = document.getElementById('dateFrom').value;
+  const to = document.getElementById('dateTo').value;
+  if (!from || !to) return;
+  document.querySelectorAll('#rangeRow .f-pill').forEach(b=>b.classList.remove('active'));
+  document.querySelector('#rangeRow [data-range="custom"]').classList.add('active');
+  currentRange = { type:'custom', from, to };
+  render();
+}
+
+// アンカーは「データ内の最終日」（閲覧時の実時刻ではなく、データの最終更新日を基準にする）
+function getAnchorDate(){
+  const allDates = DATA.sites[0].daily.map(d => d.date);
+  return allDates[allDates.length - 1];
+}
+
+function computeRange(){
+  const anchor = new Date(getAnchorDate());
+  if (currentRange.type === 'custom') {
+    return { start:new Date(currentRange.from), end:new Date(currentRange.to) };
+  }
+  const days = parseInt(currentRange.type, 10);
+  const start = new Date(anchor);
+  start.setDate(start.getDate() - (days - 1));
+  return { start, end:anchor };
+}
+
+function sliceDaily(daily, start, end){
+  return daily.filter(d => {
+    const t = new Date(d.date);
+    return t >= start && t <= end;
+  });
+}
+
+function prevEqualRange(start, end){
+  const len = Math.round((end - start) / 86400000) + 1;
+  const prevEnd = new Date(start); prevEnd.setDate(prevEnd.getDate() - 1);
+  const prevStart = new Date(prevEnd); prevStart.setDate(prevStart.getDate() - (len - 1));
+  return { start:prevStart, end:prevEnd };
+}
+
+function sum(arr, field){ return arr.reduce((a,d)=>a + d[field], 0); }
+function fmt(n){ return n.toLocaleString('ja-JP'); }
+function fmtShortDate(d){ return (d.getMonth()+1) + '/' + d.getDate(); }
+
+function render(){
+  if (!DATA) return;
+  const { start, end } = computeRange();
+  const prev = prevEqualRange(start, end);
+
+  document.getElementById('insightText').textContent = DATA.insight;
+
+  const grid = document.getElementById('cardGrid');
+  grid.innerHTML = '';
+
+  const perSite = [];
+
+  SITE_META.forEach((meta, idx) => {
+    const site = DATA.sites.find(s => s.id === meta.id);
+    if (!site) return;
+    const cur = sliceDaily(site.daily, start, end);
+    const prv = sliceDaily(site.daily, prev.start, prev.end);
+    const curTotal = sum(cur, currentMetric);
+    const prvTotal = sum(prv, currentMetric);
+    const deltaPct = prvTotal > 0 ? Math.round(((curTotal - prvTotal) / prvTotal) * 100) : null;
+    perSite.push({ id:meta.id, name:site.name, color:meta.color, data:cur });
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = (idx * 0.05) + 's';
+
+    const head = document.createElement('div');
+    head.className = 'card-head';
+    const siteEl = document.createElement('div');
+    siteEl.className = 'card-site';
+    const chip = document.createElement('span');
+    chip.className = 'chip';
+    chip.style.background = meta.color;
+    const nameEl = document.createElement('span');
+    nameEl.className = 'site-name';
+    nameEl.textContent = site.name;
+    siteEl.appendChild(chip); siteEl.appendChild(nameEl);
+    head.appendChild(siteEl);
+    card.appendChild(head);
+
+    const label = document.createElement('div');
+    label.className = 'card-metric-label';
+    label.textContent = METRICS[currentMetric].label;
+    label.title = METRICS[currentMetric].desc;
+    label.style.cursor = 'help';
+    card.appendChild(label);
+
+    const valueRow = document.createElement('div');
+    valueRow.className = 'card-value-row';
+    const val = document.createElement('span');
+    val.className = 'card-value num';
+    val.textContent = fmt(curTotal);
+    valueRow.appendChild(val);
+    if (deltaPct !== null) {
+      const d = document.createElement('span');
+      d.className = 'delta ' + (deltaPct >= 0 ? 'up' : 'down');
+      d.textContent = (deltaPct >= 0 ? '▲ +' : '▼ ') + deltaPct + '% 前期間比';
+      valueRow.appendChild(d);
+    }
+    card.appendChild(valueRow);
+
+    const chartWrap = document.createElement('div');
+    chartWrap.className = 'chart-wrap';
+    card.appendChild(chartWrap);
+    buildChart(chartWrap, cur, meta.color, currentChartType, currentMetric);
+
+    const comment = document.createElement('div');
+    comment.className = 'card-comment';
+    comment.textContent = site.comment;
+    card.appendChild(comment);
+
+    grid.appendChild(card);
+  });
+
+  buildCombinedChart(perSite, currentChartType, currentMetric);
+  renderHistory();
+}
+
+function buildChart(container, series, colorVar, type, metricKey){
+  container.innerHTML = '';
+  const w = 300, h = 70, pad = 6;
+  if (series.length < 2) {
+    container.innerHTML = '<div style="color:var(--muted);font-size:11px;">データ不足</div>';
+    return;
+  }
+  const values = series.map(d => d[metricKey]);
+  const svgns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgns, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  svg.setAttribute('preserveAspectRatio', 'none');
+
+  const baseline = document.createElementNS(svgns, 'line');
+  baseline.setAttribute('x1', pad); baseline.setAttribute('x2', w - pad);
+  baseline.setAttribute('y1', h - pad); baseline.setAttribute('y2', h - pad);
+  baseline.setAttribute('stroke', 'var(--baseline)'); baseline.setAttribute('stroke-width', '1');
+  svg.appendChild(baseline);
+
+  let points, barRects = [];
+
+  if (type === 'bar') {
+    // 棒グラフはゼロ基点（実際の高さ関係を歪めないため、折れ線のような自動スケールにしない）
+    const max = Math.max(...values) || 1;
+    const slot = (w - pad*2) / values.length;
+    const barW = Math.max(1, slot - 2);
+    points = values.map((v,i) => {
+      const x = pad + i*slot + slot/2;
+      const barH = (v / max) * (h - pad*2);
+      const y = h - pad - barH;
+      const rect = document.createElementNS(svgns, 'rect');
+      rect.setAttribute('x', (pad + i*slot + 1).toFixed(1));
+      rect.setAttribute('y', y.toFixed(1));
+      rect.setAttribute('width', barW.toFixed(1));
+      rect.setAttribute('height', Math.max(1, barH).toFixed(1));
+      rect.setAttribute('rx', '2');
+      rect.setAttribute('fill', colorVar);
+      rect.setAttribute('fill-opacity', '0.85');
+      svg.appendChild(rect);
+      barRects.push(rect);
+      return [x, y];
+    });
+  } else {
+    const max = Math.max(...values), min = Math.min(...values);
+    const range = (max - min) || 1;
+    points = values.map((v,i) => {
+      const x = pad + (i / (values.length - 1)) * (w - pad*2);
+      const y = h - pad - ((v - min) / range) * (h - pad*2);
+      return [x, y];
+    });
+
+    const linePath = points.map((p,i) => (i===0?'M':'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ');
+    const areaPath = linePath + ` L${points[points.length-1][0].toFixed(1)},${h-pad} L${points[0][0].toFixed(1)},${h-pad} Z`;
+
+    const area = document.createElementNS(svgns, 'path');
+    area.setAttribute('d', areaPath);
+    area.setAttribute('fill', colorVar);
+    area.setAttribute('opacity', '0.10');
+    svg.appendChild(area);
+
+    const line = document.createElementNS(svgns, 'path');
+    line.setAttribute('d', linePath);
+    line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', colorVar);
+    line.setAttribute('stroke-width', '2');
+    line.setAttribute('stroke-linejoin', 'round');
+    line.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(line);
+
+    const lastP = points[points.length - 1];
+    const marker = document.createElementNS(svgns, 'circle');
+    marker.setAttribute('cx', lastP[0]); marker.setAttribute('cy', lastP[1]);
+    marker.setAttribute('r', '4');
+    marker.setAttribute('fill', colorVar);
+    marker.setAttribute('stroke', 'var(--surface)');
+    marker.setAttribute('stroke-width', '2');
+    svg.appendChild(marker);
+  }
+
+  // クロスヘア（折れ線モードのみ。棒モードはバー自体がヒットターゲット）
+  let crosshair = null;
+  if (type !== 'bar') {
+    crosshair = document.createElementNS(svgns, 'line');
+    crosshair.setAttribute('y1', '0'); crosshair.setAttribute('y2', h);
+    crosshair.setAttribute('stroke', 'var(--border)'); crosshair.setAttribute('stroke-width', '1');
+    crosshair.setAttribute('opacity', '0');
+    svg.appendChild(crosshair);
+  }
+
+  container.appendChild(svg);
+
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip';
+  tooltip.innerHTML = '<div class="tt-date"></div><div class="tt-val"></div>';
+  container.appendChild(tooltip);
+
+  const hit = document.createElement('div');
+  hit.style.position = 'absolute'; hit.style.inset = '0'; hit.style.cursor = 'crosshair';
+  container.appendChild(hit);
+
+  let hoveredBar = null;
+  hit.addEventListener('pointermove', (e) => {
+    const rect = hit.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width;
+    let idx = Math.round(relX * (points.length - 1));
+    idx = Math.max(0, Math.min(points.length - 1, idx));
+    const px = points[idx][0] / w * 100;
+
+    if (crosshair) {
+      crosshair.setAttribute('x1', points[idx][0]);
+      crosshair.setAttribute('x2', points[idx][0]);
+      crosshair.setAttribute('opacity', '1');
+    }
+    if (barRects.length) {
+      if (hoveredBar) hoveredBar.setAttribute('fill-opacity', '0.85');
+      hoveredBar = barRects[idx];
+      hoveredBar.setAttribute('fill-opacity', '1');
+    }
+    tooltip.style.opacity = '1';
+    tooltip.style.left = px + '%';
+    tooltip.style.top = (points[idx][1] / h * 100) + '%';
+    const d = new Date(series[idx].date);
+    tooltip.querySelector('.tt-date').textContent = fmtShortDate(d);
+    tooltip.querySelector('.tt-val').textContent = fmt(series[idx][metricKey]) + ' ' + METRICS[metricKey].unit;
+  });
+  hit.addEventListener('pointerleave', () => {
+    if (crosshair) crosshair.setAttribute('opacity', '0');
+    if (hoveredBar) { hoveredBar.setAttribute('fill-opacity', '0.85'); hoveredBar = null; }
+    tooltip.style.opacity = '0';
+  });
+}
+
+function niceMax(v){
+  if (v <= 0) return 1;
+  const exp = Math.floor(Math.log10(v));
+  const base = Math.pow(10, exp);
+  const n = v / base;
+  const niceN = n <= 1 ? 1 : (n <= 2 ? 2 : (n <= 5 ? 5 : 10));
+  return niceN * base;
+}
+
+function buildCombinedChart(perSite, type, metricKey){
+  const container = document.getElementById('combinedChart');
+  const legendRow = document.getElementById('legendRow');
+  container.innerHTML = '';
+  legendRow.innerHTML = '';
+
+  if (!perSite.length || perSite[0].data.length < 2) {
+    container.innerHTML = '<div style="color:var(--muted);font-size:12px;">データ不足</div>';
+    return;
+  }
+
+  // 凡例：実際に描いているマークの形に合わせる（線モード＝線キー／棒モード＝四角スウォッチ）
+  perSite.forEach(s => {
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    const swatch = document.createElement('span');
+    swatch.className = type === 'bar' ? 'legend-swatch-rect' : 'legend-swatch-line';
+    swatch.style.background = s.color;
+    const name = document.createElement('span');
+    name.textContent = s.name;
+    item.appendChild(swatch); item.appendChild(name);
+    legendRow.appendChild(item);
+  });
+
+  const dates = perSite[0].data.map(d => d.date);
+  const n = dates.length;
+  const w = 1000, h = 280, padL = 46, padR = 12, padT = 16, padB = 30;
+  const innerW = w - padL - padR, innerH = h - padT - padB;
+  const xPos = (i) => padL + (i/(n-1||1)) * innerW;
+
+  const svgns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(svgns, 'svg');
+  svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+  svg.setAttribute('preserveAspectRatio', 'none');
+
+  let maxV = 0;
+  perSite.forEach(s => s.data.forEach(d => { if (d[metricKey] > maxV) maxV = d[metricKey]; }));
+  const yMax = niceMax(maxV);
+
+  const ySteps = 4;
+  for (let i=0;i<=ySteps;i++){
+    const v = yMax * i / ySteps;
+    const y = padT + innerH - (v / yMax) * innerH;
+    const gridLine = document.createElementNS(svgns,'line');
+    gridLine.setAttribute('x1', padL); gridLine.setAttribute('x2', w - padR);
+    gridLine.setAttribute('y1', y.toFixed(1)); gridLine.setAttribute('y2', y.toFixed(1));
+    gridLine.setAttribute('stroke','var(--grid)'); gridLine.setAttribute('stroke-width','1');
+    svg.appendChild(gridLine);
+    const label = document.createElementNS(svgns,'text');
+    label.setAttribute('x', padL - 8); label.setAttribute('y', (y+3).toFixed(1));
+    label.setAttribute('text-anchor','end'); label.setAttribute('class','axis-text');
+    label.textContent = fmt(Math.round(v));
+    svg.appendChild(label);
+  }
+
+  const tickCount = Math.min(6, n);
+  for (let t=0; t<tickCount; t++){
+    const idx = Math.round(t * (n-1) / (tickCount-1 || 1));
+    const x = xPos(idx);
+    const label = document.createElementNS(svgns,'text');
+    label.setAttribute('x', x.toFixed(1)); label.setAttribute('y', h - 8);
+    label.setAttribute('text-anchor','middle'); label.setAttribute('class','axis-text');
+    label.textContent = fmtShortDate(new Date(dates[idx]));
+    svg.appendChild(label);
+  }
+
+  if (type === 'bar') {
+    // グループ棒：期間ごとに6サイトを横並び（積み上げにしない）
+    const groupSlot = innerW / n;
+    const groupGap = Math.min(6, groupSlot * 0.15);
+    const usableGroup = groupSlot - groupGap;
+    const barGap = 1;
+    const barW = Math.max(1, (usableGroup - barGap * (perSite.length - 1)) / perSite.length);
+    for (let i=0;i<n;i++){
+      const groupX = padL + i*groupSlot + groupGap/2;
+      perSite.forEach((s, si) => {
+        const v = s.data[i][metricKey];
+        const barH = (v / yMax) * innerH;
+        const x = groupX + si * (barW + barGap);
+        const y = padT + innerH - barH;
+        const rect = document.createElementNS(svgns,'rect');
+        rect.setAttribute('x', x.toFixed(1));
+        rect.setAttribute('y', y.toFixed(1));
+        rect.setAttribute('width', barW.toFixed(1));
+        rect.setAttribute('height', Math.max(0, barH).toFixed(1));
+        rect.setAttribute('rx', '1');
+        rect.setAttribute('fill', s.color);
+        rect.setAttribute('fill-opacity','0.9');
+        svg.appendChild(rect);
+      });
+    }
+  } else {
+    perSite.forEach(s => {
+      const pts = s.data.map((d,i) => [xPos(i), padT + innerH - (d[metricKey]/yMax)*innerH]);
+      const path = pts.map((p,i)=> (i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+      const line = document.createElementNS(svgns,'path');
+      line.setAttribute('d', path);
+      line.setAttribute('fill','none');
+      line.setAttribute('stroke', s.color);
+      line.setAttribute('stroke-width','2');
+      line.setAttribute('stroke-linejoin','round');
+      line.setAttribute('stroke-linecap','round');
+      svg.appendChild(line);
+    });
+  }
+
+  const crosshair = document.createElementNS(svgns,'line');
+  crosshair.setAttribute('y1', padT); crosshair.setAttribute('y2', padT+innerH);
+  crosshair.setAttribute('stroke','var(--border)'); crosshair.setAttribute('stroke-width','1');
+  crosshair.setAttribute('opacity','0');
+  svg.appendChild(crosshair);
+
+  container.appendChild(svg);
+
+  const tooltip = document.createElement('div');
+  tooltip.className = 'tooltip multi';
+  tooltip.innerHTML = '<div class="tt-date mono"></div><div class="tt-rows"></div>';
+  container.appendChild(tooltip);
+
+  const hit = document.createElement('div');
+  hit.style.position='absolute'; hit.style.inset='0'; hit.style.cursor='crosshair';
+  container.appendChild(hit);
+
+  hit.addEventListener('pointermove', (e) => {
+    const rect = hit.getBoundingClientRect();
+    const relX = (e.clientX - rect.left) / rect.width;
+    let idx = Math.round(relX * (n-1));
+    idx = Math.max(0, Math.min(n-1, idx));
+    const xFrac = xPos(idx) / w * 100;
+    crosshair.setAttribute('x1', xPos(idx)); crosshair.setAttribute('x2', xPos(idx));
+    crosshair.setAttribute('opacity','1');
+
+    tooltip.querySelector('.tt-date').textContent = fmtShortDate(new Date(dates[idx]));
+    const rowsWrap = tooltip.querySelector('.tt-rows');
+    rowsWrap.innerHTML = '';
+    perSite.forEach(s => {
+      const row = document.createElement('div');
+      row.className = 'tt-row';
+      const dash = document.createElement('span'); dash.className='tt-dash'; dash.style.background = s.color;
+      const name = document.createElement('span'); name.className='tt-name'; name.textContent = s.name;
+      const num = document.createElement('span'); num.className='tt-num'; num.textContent = fmt(s.data[idx][metricKey]);
+      row.appendChild(dash); row.appendChild(name); row.appendChild(num);
+      rowsWrap.appendChild(row);
+    });
+
+    tooltip.style.opacity = '1';
+    tooltip.style.top = '6px';
+    tooltip.style.left = xFrac + '%';
+    tooltip.style.transform = xFrac > 75 ? 'translateX(-100%)' : (xFrac < 10 ? 'translateX(0%)' : 'translateX(-50%)');
+  });
+  hit.addEventListener('pointerleave', () => {
+    crosshair.setAttribute('opacity','0');
+    tooltip.style.opacity = '0';
+  });
+}
+
+const DEVICE_LABELS = { desktop:'デスクトップ', mobile:'モバイル', tablet:'タブレット' };
+
+function renderBreakdown(view){
+  const dim = BREAKDOWN_DIMS[view];
+  const note = document.getElementById('breakdownNote');
+  const grid = document.getElementById('breakdownGrid');
+  grid.innerHTML = '';
+
+  const sampleSite = DATA.sites.find(s => s.breakdown);
+  const windowLabel = sampleSite ? sampleSite.breakdown.window_label : '';
+  note.textContent = windowLabel + '（期間フィルターとは連動しません。直近の一定期間を毎日集計し直す想定です）';
+
+  SITE_META.forEach((meta, idx) => {
+    const site = DATA.sites.find(s => s.id === meta.id);
+    if (!site || !site.breakdown) return;
+    const rows = site.breakdown[dim.field] || [];
+    const total = rows.reduce((a,r)=>a + r[dim.valueField], 0) || 1;
+
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = (idx * 0.05) + 's';
+
+    const head = document.createElement('div');
+    head.className = 'card-head';
+    const siteEl = document.createElement('div');
+    siteEl.className = 'card-site';
+    const chip = document.createElement('span'); chip.className = 'chip'; chip.style.background = meta.color;
+    const nameEl = document.createElement('span'); nameEl.className = 'site-name'; nameEl.textContent = site.name;
+    siteEl.appendChild(chip); siteEl.appendChild(nameEl);
+    head.appendChild(siteEl);
+    card.appendChild(head);
+
+    const label2 = document.createElement('div');
+    label2.className = 'card-metric-label';
+    label2.textContent = dim.valueUnit + ' 上位';
+    card.appendChild(label2);
+
+    const list = document.createElement('div');
+    list.className = 'breakdown-list';
+    rows.slice(0, 6).forEach((r, i) => {
+      const raw = r[dim.key];
+      const displayLabel = view === 'devices' ? (DEVICE_LABELS[raw] || raw) : raw;
+
+      const row = document.createElement('div'); row.className = 'bd-row';
+      const rank = document.createElement('div'); rank.className = 'bd-rank'; rank.textContent = (i+1) + '.';
+      const body = document.createElement('div'); body.className = 'bd-body';
+      const labelRow = document.createElement('div'); labelRow.className = 'bd-label-row';
+      const labelEl = document.createElement('span'); labelEl.className = 'bd-label'; labelEl.textContent = displayLabel; labelEl.title = displayLabel;
+      const valueEl = document.createElement('span'); valueEl.className = 'bd-value num'; valueEl.textContent = fmt(r[dim.valueField]);
+      labelRow.appendChild(labelEl); labelRow.appendChild(valueEl);
+
+      const meter = document.createElement('div'); meter.className = 'bd-meter';
+      const fill = document.createElement('div'); fill.className = 'bd-meter-fill';
+      fill.style.width = Math.round((r[dim.valueField] / total) * 100) + '%';
+      fill.style.background = meta.color;
+      meter.appendChild(fill);
+
+      body.appendChild(labelRow); body.appendChild(meter);
+      row.appendChild(rank); row.appendChild(body);
+      list.appendChild(row);
+    });
+    card.appendChild(list);
+    grid.appendChild(card);
+  });
+}
+
+function renderHistory(){
+  const list = document.getElementById('historyList');
+  list.innerHTML = '';
+  const rows = (DATA.history && DATA.history.length)
+    ? DATA.history
+    : [{date:DATA.updated_at.slice(0,10), text:DATA.insight}];
+
+  rows.slice().reverse().forEach(r => {
+    const row = document.createElement('div');
+    row.className = 'history-row';
+    const d = document.createElement('div');
+    d.className = 'history-date mono';
+    d.textContent = r.date;
+    const t = document.createElement('div');
+    t.className = 'history-text';
+    t.textContent = r.text;
+    row.appendChild(d); row.appendChild(t);
+    list.appendChild(row);
+  });
+}
+</script>
+
+</body>
+</html>
