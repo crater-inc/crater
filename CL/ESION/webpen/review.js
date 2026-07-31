@@ -69,10 +69,17 @@
     '<div id="rv-act"><button id="rv-add">💬 コメントを追加</button></div>' +
     '<div id="rv-list"><div id="rv-empty">コメントなし</div></div>' +
     '<div id="rv-cw"><button id="rv-copy">COMMENT ALLCOPY</button></div>';
-  var layer = el("div", { id: "rv-layer" });
   document.body.appendChild(openBtn);
   document.body.appendChild(panel);
-  document.body.appendChild(layer);
+  // 拡大コンテナ（zoom基準）を掴む＝この中に%でピンを置くと正確
+  function getRoot() {
+    var ids = ["pageRoot", "pdpRoot", "spRoot"];
+    for (var i = 0; i < ids.length; i++) { var n = document.getElementById(ids[i]); if (n && n.offsetParent !== null && n.getBoundingClientRect().width > 0) return n; }
+    var z = document.querySelectorAll('[style*="zoom"]');
+    for (var j = 0; j < z.length; j++) { if (z[j].offsetParent !== null && z[j].getBoundingClientRect().width > 0) return z[j]; }
+    return document.body;
+  }
+  function rootZoom(r) { var z = parseFloat((r.style && r.style.zoom) || "1"); return z > 0 ? z : 1; }
 
   function el(tag, attrs, txt) {
     var n = document.createElement(tag);
@@ -124,10 +131,9 @@
     e.preventDefault(); e.stopPropagation();
     closePop();
     var ctx = contextOf(e.target);
-    var docW = document.documentElement.scrollWidth;
-    var docH = document.documentElement.scrollHeight;
-    var xp = ((e.pageX / docW) * 100).toFixed(2);
-    var yp = ((e.pageY / docH) * 100).toFixed(2);
+    var root = getRoot(), rr = root.getBoundingClientRect();
+    var xp = (((e.clientX - rr.left) / rr.width) * 100).toFixed(2);
+    var yp = (((e.clientY - rr.top) / rr.height) * 100).toFixed(2);
     popup = el("div", { class: "rv-pop" });
     popup.style.left = Math.min(e.clientX + 12, window.innerWidth - 296) + "px";
     popup.style.top = Math.min(e.clientY + 12, window.innerHeight - 170) + "px";
@@ -172,14 +178,13 @@
 
   /* ---- 描画 ---- */
   function render() {
-    layer.style.height = document.documentElement.scrollHeight + "px";
-    // pins
-    layer.innerHTML = "";
+    var root = getRoot();
+    Array.prototype.slice.call(document.querySelectorAll(".rv-pin")).forEach(function (p) { p.remove(); });
     comments.forEach(function (c, i) {
       var pin = el("div", { class: "rv-pin" }, i + 1);
       pin.style.left = c.x + "%"; pin.style.top = c.y + "%";
       drag(pin, c.id);
-      layer.appendChild(pin);
+      root.appendChild(pin);
     });
     // panel
     $("rv-count").textContent = comments.length + "件";
@@ -197,7 +202,7 @@
     pin.addEventListener("mousedown", function (e) {
       e.stopPropagation(); e.preventDefault();
       var moved = false, sx = e.clientX, sy = e.clientY;
-      var docW = document.documentElement.scrollWidth, docH = document.documentElement.scrollHeight;
+      var rr = getRoot().getBoundingClientRect(), docW = rr.width, docH = rr.height;
       var sl = parseFloat(pin.style.left), st = parseFloat(pin.style.top);
       function mv(ev) {
         var dx = ev.clientX - sx, dy = ev.clientY - sy;
