@@ -625,6 +625,7 @@ function render(){
 
   buildCombinedChart(perSite, currentChartType, currentMetric, currentScale);
   renderHistory();
+  if (currentView !== 'overview') renderBreakdown(currentView);
 }
 
 function buildChart(container, series, colorVar, type, metricKey){
@@ -959,14 +960,25 @@ function renderBreakdown(view){
   const grid = document.getElementById('breakdownGrid');
   grid.innerHTML = '';
 
-  const sampleSite = DATA.sites.find(s => s.breakdown);
-  const windowLabel = sampleSite ? sampleSite.breakdown.window_label : '';
-  note.textContent = windowLabel + '（期間フィルターとは連動しません。直近の一定期間を毎日集計し直す想定です）';
+  const { start, end } = computeRange();
+  note.textContent = fmtShortDate(start) + ' 〜 ' + fmtShortDate(end) + ' の集計（上の期間フィルターに連動します）';
 
   SITE_META.forEach((meta, idx) => {
     const site = DATA.sites.find(s => s.id === meta.id);
     if (!site || !site.breakdown) return;
-    const rows = site.breakdown[dim.field] || [];
+    const rawRows = site.breakdown[dim.field] || [];
+    const filtered = rawRows.filter(r => {
+      const t = new Date(r.date);
+      return t >= start && t <= end;
+    });
+    const agg = new Map();
+    filtered.forEach(r => {
+      const key = r[dim.key];
+      agg.set(key, (agg.get(key) || 0) + r[dim.valueField]);
+    });
+    const rows = Array.from(agg.entries())
+      .map(([key, value]) => ({ [dim.key]: key, [dim.valueField]: value }))
+      .sort((a,b) => b[dim.valueField] - a[dim.valueField]);
     const total = rows.reduce((a,r)=>a + r[dim.valueField], 0) || 1;
 
     const card = document.createElement('div');
