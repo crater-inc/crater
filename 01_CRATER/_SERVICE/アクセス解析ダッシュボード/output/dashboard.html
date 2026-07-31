@@ -155,7 +155,8 @@
   .bd-rank{ font-family:"IBM Plex Mono",monospace; font-size:10px; color:var(--muted); width:14px; flex-shrink:0; }
   .bd-body{ flex:1; min-width:0; }
   .bd-label-row{ display:flex; justify-content:space-between; gap:8px; font-size:12px; margin-bottom:4px; }
-  .bd-label{ color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .bd-label{ color:var(--ink-2); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-decoration:none; }
+  a.bd-label:hover{ color:var(--ink); text-decoration:underline; }
   .bd-value{ font-family:"IBM Plex Mono",monospace; font-weight:700; flex-shrink:0; }
   .bd-meter{ height:5px; border-radius:3px; background:var(--surface-2); overflow:hidden; }
   .bd-meter-fill{ height:100%; border-radius:3px; }
@@ -953,6 +954,14 @@ function buildCombinedChart(perSite, type, metricKey, scale){
 }
 
 const DEVICE_LABELS = { desktop:'デスクトップ', mobile:'モバイル', tablet:'タブレット' };
+const SITE_DOMAINS = {
+  crater:  'crater.co.jp',
+  acurry:  'www.acurry.jp',
+  chics:   'chics.top',
+  years:   'years.design',
+  apollos: 'apollos.jp',
+  birth:   'birth.business',
+};
 
 function renderBreakdown(view){
   const dim = BREAKDOWN_DIMS[view];
@@ -1010,7 +1019,16 @@ function renderBreakdown(view){
       const rank = document.createElement('div'); rank.className = 'bd-rank'; rank.textContent = (i+1) + '.';
       const body = document.createElement('div'); body.className = 'bd-body';
       const labelRow = document.createElement('div'); labelRow.className = 'bd-label-row';
-      const labelEl = document.createElement('span'); labelEl.className = 'bd-label'; labelEl.textContent = displayLabel; labelEl.title = displayLabel;
+      const labelEl = document.createElement(view === 'pages' ? 'a' : 'span');
+      labelEl.className = 'bd-label';
+      labelEl.textContent = displayLabel;
+      labelEl.title = displayLabel;
+      if (view === 'pages') {
+        const domain = SITE_DOMAINS[site.id];
+        labelEl.href = 'https://' + domain + raw;
+        labelEl.target = '_blank';
+        labelEl.rel = 'noopener';
+      }
       const valueEl = document.createElement('span'); valueEl.className = 'bd-value num'; valueEl.textContent = fmt(r[dim.valueField]);
       labelRow.appendChild(labelEl); labelRow.appendChild(valueEl);
 
