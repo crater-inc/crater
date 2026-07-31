@@ -269,6 +269,7 @@ out=head+css+'''
     <div class="lyt-pc">'''+pcb+'''</div>
     <div class="lyt-sp">'''+spb+'''</div>
 '''+spmenu+jspc+jssp+flinks+'''
+<script src="review.js"></script>
   </body>
 </html>'''
 

@@ -248,6 +248,7 @@ out=head+css+'''
   <body>
 '''+pw+'''
 '''+body+js+flinks+'''
+<script src="review.js"></script>
   </body>
 </html>'''
 open(OUT,'w').write(out)
