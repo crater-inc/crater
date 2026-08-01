@@ -1104,8 +1104,8 @@ function renderBowNow(){
   }
 
   let noteText = bownow.note || 'BowNowのデータがまだありません。';
-  if (bownow.scanned_leads) {
-    noteText += ' 直近' + fmt(bownow.scanned_leads) + '件の訪問をスキャンし、企業と特定できたのは' + companies.length + '社。';
+  if (bownow.companies_total) {
+    noteText += ' これまでに識別できた企業は累計' + fmt(bownow.companies_total) + '社。';
   }
   if (bownow.updated_at) {
     const u = new Date(bownow.updated_at);

@@ -9,8 +9,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT_PATH = os.path.join(HERE, "output", "data", "日次データ.json")
 
 API_BASE = "https://api.bownow.jp/v1"
-PAGES_TO_SCAN = 5
 PER_PAGE = 200
+DAILY_SCAN_PAGES = 5     # 通常運用：直近1000件(約11日分)。1日の増分を拾えれば十分
+BACKFILL_SCAN_PAGES = 45  # 初回のみ：直近9000件(約100日分)まで遡って発掘
 
 SITES_COVERED = ["crater", "chics", "years", "apollos"]
 
@@ -43,9 +44,9 @@ def get_token(tracking_id, api_key):
     return res["access_token"], res["client_token"]
 
 
-def fetch_recent_leads(tracking_id, headers):
+def fetch_recent_leads(tracking_id, headers, pages):
     leads = []
-    for page in range(1, PAGES_TO_SCAN + 1):
+    for page in range(1, pages + 1):
         res = call(
             "POST", "/leads/search", tracking_id,
             headers_extra=headers,
@@ -69,9 +70,17 @@ def main():
     access_token, client_token = get_token(tracking_id, api_key)
     headers = {"Client-Token": client_token, "Authorization": f"Bearer {access_token}"}
 
-    leads = fetch_recent_leads(tracking_id, headers)
+    # 既存の蓄積データを読み込む(cidをキーに保持。無ければ初回=深掘りバックフィル)
+    with open(OUT_PATH, encoding="utf-8") as f:
+        data = json.load(f)
+    prev_companies = {
+        c["cid"]: c for c in data.get("bownow", {}).get("companies", []) if c.get("cid")
+    }
 
-    # 企業(cid)ごとに最新の訪問日時だけ残す
+    pages = DAILY_SCAN_PAGES if prev_companies else BACKFILL_SCAN_PAGES
+    leads = fetch_recent_leads(tracking_id, headers, pages)
+
+    # 企業(cid)ごとに、今回のスキャン内で一番新しい訪問日時だけ残す
     latest_by_cid = {}
     for l in leads:
         cid = l.get("cid")
@@ -81,7 +90,7 @@ def main():
         if cid not in latest_by_cid or created > latest_by_cid[cid]:
             latest_by_cid[cid] = created
 
-    companies = []
+    # 今回新たに見つかった/再訪問があった企業だけ詳細を取り直す(既知で今回動きが無い企業はそのまま保持)
     for cid, last_visit in latest_by_cid.items():
         try:
             corp = fetch_corporate(tracking_id, headers, cid)
@@ -90,36 +99,35 @@ def main():
         if not corp or not corp.get("name"):
             continue
         info = corp.get("leads_info", {})
-        companies.append({
+        prev_companies[cid] = {
+            "cid": cid,
             "name": corp.get("name"),
             "pref_name": corp.get("pref_name"),
             "city_name": corp.get("city_name"),
             "session_count": info.get("session_count", 0),
             "uu_count": info.get("uu_count", 0),
             "last_visit_at": last_visit,
-        })
+        }
         time.sleep(0.2)
 
-    companies.sort(key=lambda c: c["last_visit_at"], reverse=True)
+    companies = sorted(prev_companies.values(), key=lambda c: c["last_visit_at"], reverse=True)
 
     now = datetime.now(timezone(timedelta(hours=9))).strftime("%Y-%m-%dT%H:%M:%S+09:00")
-
-    with open(OUT_PATH, encoding="utf-8") as f:
-        data = json.load(f)
 
     data["bownow"] = {
         "updated_at": now,
         "sites_covered": SITES_COVERED,
-        "note": "BowNowは4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。IPアドレスから識別できた企業のみ一覧表示（識別できるのは全訪問のうち一部）。",
-        "scanned_leads": len(leads),
+        "note": "BowNowは4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。IPアドレスから識別できた企業を日々蓄積して一覧表示しています（識別できるのは全訪問のうち一部）。",
+        "scanned_leads_this_run": len(leads),
+        "companies_total": len(companies),
         "companies": companies,
     }
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"スキャンしたリード数: {len(leads)}")
-    print(f"企業識別数: {len(companies)}")
+    print(f"今回スキャンしたリード数: {len(leads)}（{pages}ページ）")
+    print(f"累計の企業識別数: {len(companies)}")
     print("書き出し完了:", OUT_PATH)
 
 
