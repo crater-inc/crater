@@ -29,15 +29,35 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+  .header-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
   header h1 {
     font-size: clamp(20px, 4vw, 28px);
-    margin: 0 0 8px;
+    margin: 0;
   }
   header p {
     color: var(--sub);
     font-size: 14px;
     margin: 0;
   }
+  .alibaba-link {
+    flex-shrink: 0;
+    font-size: 13px;
+    color: var(--accent);
+    background: #eef1f8;
+    border: 1px solid #d7deed;
+    border-radius: 20px;
+    padding: 6px 16px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .alibaba-link:hover { background: #e2e7f5; }
   main {
     max-width: 1200px;
     margin: 0 auto;
@@ -144,7 +164,10 @@
 </head>
 <body>
 <header>
-  <h1>ハイエンドEC 商品リサーチ ダッシュボード</h1>
+  <div class="header-top">
+    <h1>ハイエンドEC 商品リサーチ ダッシュボード</h1>
+    <a class="alibaba-link" href="https://www.alibaba.com/" target="_blank" rel="noopener">Alibabaを開く ↗</a>
+  </div>
   <p>Makuakeで潜在ニーズのある商品を毎日調査し、Alibabaで中級OEM（ロゴ＋1点カスタム）候補を照合。3件/日で蓄積していきます。</p>
 </header>
 <main>
