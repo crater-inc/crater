@@ -394,6 +394,10 @@
 
   <div id="viewBowNow" style="display:none;">
     <div class="breakdown-note" id="bownowNote"></div>
+    <div class="filter-row" id="bownowSortRow" style="margin-top:14px;">
+      <button class="f-pill active" data-sort="recent">最終訪問順</button>
+      <button class="f-pill" data-sort="sessions">セッション数順</button>
+    </div>
     <div class="bownow-list" id="bownowList"></div>
   </div>
 
@@ -443,6 +447,7 @@ let currentMetric = 'sessions';
 let currentChartType = 'line';
 let currentView = 'overview';
 let currentScale = 'linear';
+let currentBownowSort = 'recent';
 
 const BREAKDOWN_DIMS = {
   pages:   { field:'pages',   key:'path',    valueField:'pageviews', valueUnit:'PV' },
@@ -486,6 +491,7 @@ async function init(){
   wirePillGroup('metricRow', (val)=>{ currentMetric = val; render(); });
   wirePillGroup('chartTypeRow', (val)=>{ currentChartType = val; render(); });
   wirePillGroup('scaleRow', (val)=>{ currentScale = val; render(); });
+  wirePillGroup('bownowSortRow', (val)=>{ currentBownowSort = val; renderBowNow(); });
 
   document.getElementById('metricInfoBtn').addEventListener('click', (e) => {
     e.stopPropagation();
@@ -529,7 +535,7 @@ function wirePillGroup(rowId, onChange){
     btn.addEventListener('click', ()=>{
       row.querySelectorAll('.f-pill').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      onChange(btn.dataset.metric || btn.dataset.chart || btn.dataset.scale);
+      onChange(btn.dataset.metric || btn.dataset.chart || btn.dataset.scale || btn.dataset.sort);
     });
   });
 }
@@ -1090,8 +1096,17 @@ function renderBowNow(){
   const list = document.getElementById('bownowList');
   list.innerHTML = '';
 
-  const companies = bownow.companies || [];
+  const companies = (bownow.companies || []).slice();
+  if (currentBownowSort === 'sessions') {
+    companies.sort((a,b) => b.session_count - a.session_count);
+  } else {
+    companies.sort((a,b) => (b.last_visit_at || '').localeCompare(a.last_visit_at || ''));
+  }
+
   let noteText = bownow.note || 'BowNowのデータがまだありません。';
+  if (bownow.scanned_leads) {
+    noteText += ' 直近' + fmt(bownow.scanned_leads) + '件の訪問をスキャンし、企業と特定できたのは' + companies.length + '社。';
+  }
   if (bownow.updated_at) {
     const u = new Date(bownow.updated_at);
     noteText += '（最終更新 ' + u.toLocaleDateString('ja-JP',{month:'2-digit',day:'2-digit'}) + ' ' + u.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}) + '）';

@@ -112,7 +112,7 @@ def main():
         "sites_covered": SITES_COVERED,
         "note": "BowNowは4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。IPアドレスから識別できた企業のみ一覧表示（識別できるのは全訪問のうち一部）。",
         "scanned_leads": len(leads),
-        "companies": companies[:30],
+        "companies": companies,
     }
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
