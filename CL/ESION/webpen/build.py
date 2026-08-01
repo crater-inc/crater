@@ -262,13 +262,23 @@ head='''<!doctype html>
 flinks='''<style>.esion-flink{cursor:pointer;text-decoration:none;color:inherit;display:block;transition:opacity .2s;}.esion-flink:hover{opacity:.6;}</style>
 <script>(function(){['PRODUCTS','MEMBER','SERVICE','ABOUT'].forEach(function(cn){document.querySelectorAll('[data-pencil-name="'+cn+'"]').forEach(function(col){Array.prototype.slice.call(col.children).slice(1).forEach(function(item){if(item.closest('a'))return;var a=document.createElement('a');a.className='esion-flink';a.href='#';item.parentNode.insertBefore(a,item);a.appendChild(item);});});});})();</script>'''
 
+navlinks='''<script>(function(){
+ var MAP={"PRODUCTS":"product.html","STORY":"story.html"};
+ document.querySelectorAll('[data-pencil-name="Nav"] > [data-pencil-name]').forEach(function(el){
+   var t=(el.textContent||"").trim(); var href=MAP[t]; if(!href) return;
+   if(el.closest("a")) return;
+   var a=document.createElement("a"); a.href=href; a.style.cssText="text-decoration:none;color:inherit;cursor:pointer;";
+   el.parentNode.insertBefore(a,el); a.appendChild(el);
+ });
+})();</script>'''
+
 out=head+css+'''
   </head>
   <body>
 '''+pw+'''
     <div class="lyt-pc">'''+pcb+'''</div>
     <div class="lyt-sp">'''+spb+'''</div>
-'''+spmenu+jspc+jssp+flinks+'''
+'''+spmenu+jspc+jssp+flinks+navlinks+'''
 <script src="review.js"></script>
   </body>
 </html>'''
