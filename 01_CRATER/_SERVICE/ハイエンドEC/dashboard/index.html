@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ハイエンドEC 商品リサーチ ダッシュボード</title>
+<style>
+  :root {
+    --ink: #1a1613;
+    --sub: #444444;
+    --meta: #777777;
+    --line: #e4e0d8;
+    --bg: #faf9f6;
+    --card-bg: #ffffff;
+    --accent: #0d41a8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  header {
+    padding: 40px 32px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  header h1 {
+    font-size: clamp(20px, 4vw, 28px);
+    margin: 0 0 8px;
+  }
+  header p {
+    color: var(--sub);
+    font-size: 14px;
+    margin: 0;
+  }
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+  section.day {
+    margin-bottom: 48px;
+  }
+  section.day h2 {
+    font-size: 18px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  .daily-note {
+    color: var(--sub);
+    font-size: 14px;
+    margin: 0 0 20px;
+    padding: 12px 16px;
+    background: #f1efe9;
+    border-radius: 8px;
+  }
+  .products {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  /* 商品1件＝横長の行。画像は左固定幅、情報は右側。案件が積み上がっても縦スクロールだけで追える */
+  .product-row {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .product-row img.thumb {
+    flex: 0 0 240px;
+    width: 240px;
+    height: 160px;
+    object-fit: contain;
+    display: block;
+    background: #f1efe9;
+  }
+  .product-body {
+    padding: 16px 20px;
+    flex: 1;
+    min-width: 0;
+  }
+  .product-body h3 {
+    font-size: 15px;
+    margin: 0 0 6px;
+    line-height: 1.5;
+  }
+  .product-body h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .product-body h3 a:hover { text-decoration: underline; }
+  .stat-line {
+    font-size: 12px;
+    color: var(--meta);
+    margin: 0 0 10px;
+  }
+  .stat-line strong { color: var(--accent); }
+  .block-label {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--meta);
+    text-transform: uppercase;
+    margin: 10px 0 4px;
+  }
+  .product-body p {
+    font-size: 14px;
+    color: var(--sub);
+    margin: 4px 0;
+  }
+  .alibaba-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .alibaba-item {
+    background: #f7f5f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .alibaba-item a {
+    color: var(--accent);
+    font-size: 13px;
+    text-decoration: none;
+  }
+  .alibaba-item a:hover { text-decoration: underline; }
+  .alibaba-meta {
+    font-size: 12px;
+    color: var(--meta);
+    margin: 2px 0;
+  }
+  .oem-suggestion {
+    font-size: 13px;
+    color: var(--sub);
+    margin: 4px 0 0;
+  }
+  .blocked-note {
+    font-size: 13px;
+    color: #a15c00;
+    background: #fff6e8;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    header, main { padding-left: 20px; padding-right: 20px; }
+    .product-row { flex-direction: column; }
+    .product-row img.thumb { width: 100%; flex-basis: auto; height: 160px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>ハイエンドEC 商品リサーチ ダッシュボード</h1>
+  <p>Makuakeで潜在ニーズのある商品を毎日調査し、Alibabaで中級OEM（ロゴ＋1点カスタム）候補を照合。3件/日で蓄積していきます。</p>
+</header>
+<main>
+<!-- NEW_ENTRY_MARKER -->
+</main>
+</body>
+</html>

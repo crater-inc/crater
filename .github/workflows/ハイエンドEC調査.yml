@@ -1,0 +1,156 @@
+name: ハイエンドEC調査
+
+# 毎朝 8:00(JST) に自動実行（UTCでは前日23:00）。手動実行も可能。
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # ダッシュボード・提案ログを追記してコミットするため
+
+env:
+  DIR: "01_CRATER/_SERVICE/ハイエンドEC"
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Claude Codeインストール
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: 依存パッケージ・ブラウザをインストール
+        working-directory: ${{ env.DIR }}/scripts
+        run: |
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: 日付を決定
+        id: date
+        run: echo "today=$(TZ=Asia/Tokyo date '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
+
+      - name: Makuakeランキングをスクレイピング
+        working-directory: ${{ env.DIR }}/scripts
+        run: node scrape-makuake.mjs "../data/makuake-${{ steps.date.outputs.today }}.json"
+
+      - name: Claudeで候補3件を選定（Alibaba検索キーワードも生成）
+        working-directory: ${{ env.DIR }}
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          RECENT=$(tail -n 80 "提案ログ.md" 2>/dev/null || echo "なし")
+          BASE=$(cat "scripts/prompts/select-candidates.md")
+          CANDIDATES=$(cat "data/makuake-${{ steps.date.outputs.today }}.json")
+          PROMPT="今日は ${{ steps.date.outputs.today }} です。
+
+          【過去の提案履歴（重複禁止）】
+          ${RECENT}
+          ────────────
+          【本日のMakuake候補一覧】
+          ${CANDIDATES}
+          ────────────
+          ${BASE}"
+          claude -p "$PROMPT" --model sonnet --max-turns 3 > selection.json
+          python3 scripts/clean_json.py selection.json || (echo "::error::selection.jsonが不正なJSONです" && cat selection.json && exit 1)
+
+      - name: Alibaba検索キーワードを抽出
+        working-directory: ${{ env.DIR }}
+        run: |
+          python3 -c "
+          import json
+          sel = json.load(open('selection.json'))
+          kws = []
+          for s in sel['selections']:
+              kws.extend(s.get('alibabaKeywords', []))
+          json.dump({'keywords': kws}, open('keywords.json', 'w'), ensure_ascii=False)
+          print(f'{len(kws)}件のキーワードを抽出')
+          "
+
+      - name: Alibabaで中級OEM候補をスクレイピング
+        working-directory: ${{ env.DIR }}
+        run: node "scripts/scrape-alibaba.mjs" keywords.json "data/alibaba-${{ steps.date.outputs.today }}.json"
+
+      - name: Claudeでレポート文章を生成
+        working-directory: ${{ env.DIR }}
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          BASE=$(cat "scripts/prompts/write-report.md")
+          SELECTION=$(cat "selection.json")
+          ALIBABA=$(cat "data/alibaba-${{ steps.date.outputs.today }}.json")
+          PROMPT="今日は ${{ steps.date.outputs.today }} です。
+
+          【選定した3件】
+          ${SELECTION}
+          ────────────
+          【Alibaba検索結果】
+          ${ALIBABA}
+          ────────────
+          ${BASE}"
+          claude -p "$PROMPT" --model sonnet --max-turns 3 > report-text.json
+          python3 scripts/clean_json.py report-text.json || (echo "::error::report-text.jsonが不正なJSONです" && cat report-text.json && exit 1)
+
+      - name: ダッシュボードに追記
+        working-directory: ${{ env.DIR }}
+        run: |
+          node scripts/build-report.mjs \
+            "data/makuake-${{ steps.date.outputs.today }}.json" \
+            selection.json \
+            "data/alibaba-${{ steps.date.outputs.today }}.json" \
+            report-text.json \
+            dashboard/index.html \
+            提案ログ.md \
+            "${{ steps.date.outputs.today }}"
+
+      - name: コミット・プッシュ
+        working-directory: ${{ env.DIR }}
+        run: |
+          git config user.name "ハイエンドEC調査"
+          git config user.email "actions@users.noreply.github.com"
+          git add dashboard/index.html 提案ログ.md data/
+          git commit -m "ハイエンドEC調査 ${{ steps.date.outputs.today }}" || echo "変更なし"
+          git push || echo "push skip"
+
+      - name: クロタ（LINE）に通知
+        if: success()
+        working-directory: ${{ env.DIR }}
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: |
+          TITLES=$(python3 -c "
+          import json
+          sel = json.load(open('selection.json'))
+          for i, s in enumerate(sel['selections'], 1):
+              print(f'{i}. ' + s['title'][:40])
+          ")
+          TEXT="【ハイエンドEC 今日の3件】
+          ${TITLES}
+
+          詳細：https://view.crater.co.jp/01_CRATER/_SERVICE/ハイエンドEC/dashboard/index.html"
+          jq -n --arg to "$LINE_USER_ID" --arg text "$TEXT" \
+            '{to:$to, messages:[{type:"text", text:($text[0:4900])}]}' \
+          | curl -sS -X POST https://api.line.me/v2/bot/message/push \
+              -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d @-
+
+      - name: 失敗時にクロタ（LINE）へ通知
+        if: failure()
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: |
+          jq -n --arg to "$LINE_USER_ID" \
+            '{to:$to, messages:[{type:"text", text:"【ハイエンドEC調査】今日は自動生成に失敗しました。GitHub Actionsのログを確認してください。"}]}' \
+          | curl -sS -X POST https://api.line.me/v2/bot/message/push \
+              -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d @-
