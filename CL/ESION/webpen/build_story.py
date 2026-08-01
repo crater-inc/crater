@@ -109,7 +109,7 @@ out = head + css + '''
   <body>
 ''' + pw + '''
 ''' + body + zoomjs + flinks + navlinks + '''
-<script src="review.js"></script>
+<script src="/comment.js"></script>
   </body>
 </html>'''
 

@@ -258,7 +258,7 @@ out=head+css+'''
   <body>
 '''+pw+'''
 '''+body+js+flinks+navlinks+'''
-<script src="review.js"></script>
+<script src="/comment.js"></script>
   </body>
 </html>'''
 open(OUT,'w').write(out)
