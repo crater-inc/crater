@@ -165,7 +165,7 @@ jspc='''
  var faqTop=faq?faq.offsetTop:0, faqList=faq?faq.querySelector('[data-pencil-name="list"]'):null;
  if(faq)faq.style.overflow='visible';
  function relayout(){if(!faq)return;var h=56+(faqList?faqList.offsetHeight:0)+56;faq.style.height=h+'px';var y=faqTop+h;news.style.top=y+'px';y+=news.offsetHeight;contact.style.top=y+'px';y+=contact.offsetHeight;footer.style.top=y+'px';y+=footer.offsetHeight;pageH=y;}
- function apply(){sc=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/DW;root.style.zoom=sc;root.style.height=pageH+'px';}
+ function apply(){sc=window.innerWidth/DW;root.style.zoom=sc;root.style.height=pageH+'px';}
  var TSEC={Statement:{k:0.065,s:1.0,lim:22},Story:{k:0.045,s:1.0,lim:15},Foam:{k:0.1,s:1.15,lim:45},Voices:{k:0.045,s:1.0,lim:16},Subscription:{k:0.12,s:1.18,lim:50}};
  var layers=[],ks=[],ss=[],lims=[];
  Object.keys(TSEC).forEach(function(name){var se=q('[data-pencil-name="'+name+'"]');if(!se)return;var cfg=TSEC[name];

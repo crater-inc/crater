@@ -67,7 +67,7 @@ zoomjs = '''
 <script>
 (function(){
  var root=document.getElementById('storyRoot');if(!root)return;
- function z(){root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;}
+ function z(){root.style.zoom=window.innerWidth/1199;}
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
 })();
 </script>'''
