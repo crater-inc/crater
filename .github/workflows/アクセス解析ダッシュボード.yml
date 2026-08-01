@@ -31,6 +31,12 @@ jobs:
           GOOGLE_SA_JSON: ${{ secrets.GA4_DASHBOARD_SA_JSON }}
         run: python engine.py
 
+      - name: BowNowから来訪企業データ取得してJSON更新
+        env:
+          BOWNOW_TRACKING_ID: ${{ secrets.BOWNOW_TRACKING_ID }}
+          BOWNOW_API_KEY: ${{ secrets.BOWNOW_API_KEY }}
+        run: python bownow.py
+
       - name: Claude Codeインストール
         run: npm install -g @anthropic-ai/claude-code
 

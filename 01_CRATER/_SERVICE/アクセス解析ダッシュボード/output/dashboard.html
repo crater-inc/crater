@@ -239,6 +239,15 @@
   .history-date{ font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--muted); flex-shrink:0; width:70px; }
   .history-text{ font-size:13.5px; color:var(--ink-2); }
 
+  /* ===== BowNow来訪企業 ===== */
+  .bownow-list{ display:flex; flex-direction:column; gap:1px; background:var(--border); border-radius:12px; overflow:hidden; margin-top:18px; }
+  .bn-row{ background:var(--surface); padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+  .bn-name{ font-size:13.5px; font-weight:700; }
+  .bn-loc{ font-size:11.5px; color:var(--muted); margin-top:2px; }
+  .bn-right{ text-align:right; flex-shrink:0; }
+  .bn-sessions{ font-size:13px; font-weight:700; }
+  .bn-last{ font-size:10.5px; color:var(--muted); margin-top:2px; }
+
   .footer-note{ margin-top:30px; font-size:11px; color:var(--muted); text-align:center; font-family:"IBM Plex Mono",monospace; letter-spacing:0.03em; }
 
   @media (max-width:860px){
@@ -259,6 +268,8 @@
     .card{ padding:18px; }
     .combined-section{ padding:20px 16px; }
     .control-bar{ gap:20px; }
+    .bn-row{ flex-direction:column; align-items:flex-start; }
+    .bn-right{ text-align:left; }
   }
 </style>
 </head>
@@ -340,6 +351,7 @@
     <button class="view-tab" data-view="pages">人気ページ</button>
     <button class="view-tab" data-view="sources">流入元</button>
     <button class="view-tab" data-view="devices">デバイス</button>
+    <button class="view-tab" data-view="bownow">来訪企業</button>
   </nav>
 
   <div id="viewOverview">
@@ -378,6 +390,11 @@
   <div id="viewBreakdown" style="display:none;">
     <div class="breakdown-note" id="breakdownNote"></div>
     <section class="grid" id="breakdownGrid"></section>
+  </div>
+
+  <div id="viewBowNow" style="display:none;">
+    <div class="breakdown-note" id="bownowNote"></div>
+    <div class="bownow-list" id="bownowList"></div>
   </div>
 
   <div class="footer-note" id="footerNote"></div>
@@ -493,9 +510,13 @@ async function init(){
       document.querySelectorAll('.view-tab').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
       currentView = btn.dataset.view;
-      document.getElementById('viewOverview').style.display = currentView === 'overview' ? '' : 'none';
-      document.getElementById('viewBreakdown').style.display = currentView === 'overview' ? 'none' : '';
-      if (currentView !== 'overview') renderBreakdown(currentView);
+      const isOverview = currentView === 'overview';
+      const isBownow = currentView === 'bownow';
+      document.getElementById('viewOverview').style.display = isOverview ? '' : 'none';
+      document.getElementById('viewBowNow').style.display = isBownow ? '' : 'none';
+      document.getElementById('viewBreakdown').style.display = (!isOverview && !isBownow) ? '' : 'none';
+      if (isBownow) renderBowNow();
+      else if (!isOverview) renderBreakdown(currentView);
     });
   });
 
@@ -635,7 +656,8 @@ function render(){
 
   buildCombinedChart(perSite, currentChartType, currentMetric, currentScale);
   renderHistory();
-  if (currentView !== 'overview') renderBreakdown(currentView);
+  if (currentView === 'bownow') renderBowNow();
+  else if (currentView !== 'overview') renderBreakdown(currentView);
 }
 
 function buildChart(container, series, colorVar, type, metricKey){
@@ -1053,6 +1075,53 @@ function renderBreakdown(view){
     });
     card.appendChild(list);
     grid.appendChild(card);
+  });
+}
+
+function fmtLastVisit(s){
+  if (!s) return '';
+  const d = new Date(s.replace(' ', 'T').replace(' UTC', 'Z'));
+  return d.toLocaleDateString('ja-JP',{month:'2-digit',day:'2-digit'}) + ' ' + d.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+}
+
+function renderBowNow(){
+  const bownow = DATA.bownow || {};
+  const note = document.getElementById('bownowNote');
+  const list = document.getElementById('bownowList');
+  list.innerHTML = '';
+
+  const companies = bownow.companies || [];
+  let noteText = bownow.note || 'BowNowのデータがまだありません。';
+  if (bownow.updated_at) {
+    const u = new Date(bownow.updated_at);
+    noteText += '（最終更新 ' + u.toLocaleDateString('ja-JP',{month:'2-digit',day:'2-digit'}) + ' ' + u.toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'}) + '）';
+  }
+  note.textContent = noteText;
+
+  if (!companies.length) {
+    list.innerHTML = '<div style="background:var(--surface);color:var(--muted);font-size:12px;padding:20px 18px;border-radius:12px;">表示できるデータがありません</div>';
+    return;
+  }
+
+  companies.forEach(c => {
+    const row = document.createElement('div');
+    row.className = 'bn-row';
+
+    const left = document.createElement('div');
+    const name = document.createElement('div'); name.className = 'bn-name'; name.textContent = c.name;
+    const loc = document.createElement('div'); loc.className = 'bn-loc';
+    loc.textContent = [c.pref_name, c.city_name].filter(Boolean).join(' ') || '所在地不明';
+    left.appendChild(name); left.appendChild(loc);
+
+    const right = document.createElement('div'); right.className = 'bn-right';
+    const sessions = document.createElement('div'); sessions.className = 'bn-sessions num';
+    sessions.textContent = fmt(c.session_count) + ' セッション';
+    const last = document.createElement('div'); last.className = 'bn-last mono';
+    last.textContent = '最終訪問 ' + fmtLastVisit(c.last_visit_at);
+    right.appendChild(sessions); right.appendChild(last);
+
+    row.appendChild(left); row.appendChild(right);
+    list.appendChild(row);
   });
 }
 

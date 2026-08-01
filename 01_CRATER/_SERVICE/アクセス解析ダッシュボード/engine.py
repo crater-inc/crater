@@ -175,6 +175,8 @@ def main():
         "suggestion": prev.get("suggestion", ""),
         "sites": sites_out,
         "history": prev_history,
+        "bownow": prev.get("bownow", {}),
+        "amazon": prev.get("amazon", {}),
     }
 
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
