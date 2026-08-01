@@ -113,8 +113,8 @@
     document.body.appendChild(openBtn);
     document.body.appendChild(panel);
 
-    // パネル開閉（開いた時だけ右にオーバーレイ。コンテンツは全幅のまま＝KV全幅サイトでも崩れない）
-    function toggle() { panel.classList.toggle("open"); openBtn.classList.toggle("shift"); }
+    // パネル開閉：開くとページ側zoomが window.rvPanelOpen を見てコンテンツを縮小→パネルと重ならず全部見える（PCのみ・SPはボトムシート）
+    function toggle() { var o = panel.classList.toggle("open"); openBtn.classList.toggle("shift"); window.rvPanelOpen = o; window.dispatchEvent(new Event("resize")); }
     openBtn.addEventListener("click", toggle);
     $("cr-x").addEventListener("click", toggle);
 

@@ -35,10 +35,8 @@ s = open(SRC).read()
 body = re.search(r'<body>(.*)</body>', s, re.S).group(1)
 body = compress(body)
 
-# ルートフレームに id="storyRoot" を付与（zoom追従の対象）
-body = body.replace(
-    'data-pencil-name="%s"' % ROOT_NAME,
-    'id="storyRoot" data-pencil-name="%s"' % ROOT_NAME, 1)
+# ルート（bodyの最初のdiv＝ページ全体）に id="storyRoot"（フレーム名に依存しない＝Pencilで改名されても壊れない）
+body = re.sub(r'<div\b', '<div id="storyRoot"', body, 1)
 
 # コンテンツ幅ガイド（📏 guide-L / guide-R）は本番に不要なので除去
 body = re.sub(
@@ -67,7 +65,7 @@ zoomjs = '''
 <script>
 (function(){
  var root=document.getElementById('storyRoot');if(!root)return;
- function z(){root.style.zoom=window.innerWidth/1199;}
+ function z(){root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;}
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
 })();
 </script>'''

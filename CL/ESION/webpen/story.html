@@ -31,7 +31,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 function pwCheck(){if(document.getElementById('pw-input').value==='view'){document.getElementById('pw-lock').style.display='none';sessionStorage.setItem('cv_auth','1');}else{document.getElementById('pw-error').style.display='block';}}
 </script>
 
-    <div
+    <div id="storyRoot"
       data-pencil-name="x"
       style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; gap: 0px; height: fit-content; justify-content: flex-start; overflow: hidden; position: relative; width: 1199px"
     >
@@ -1118,7 +1118,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
 <script>
 (function(){
  var root=document.getElementById('storyRoot');if(!root)return;
- function z(){root.style.zoom=window.innerWidth/1199;}
+ function z(){root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;}
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
 })();
 </script><style>.esion-flink{cursor:pointer;text-decoration:none;color:inherit;display:block;transition:opacity .2s;}.esion-flink:hover{opacity:.6;}</style>
