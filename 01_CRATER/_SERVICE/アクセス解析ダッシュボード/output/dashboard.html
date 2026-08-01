@@ -72,19 +72,18 @@
   .page-wrap{ overflow-x:clip; max-width:1280px; margin:0 auto; padding:0 40px 80px; }
 
   /* ===== ヘッダー ===== */
-  header.top{
-    position:sticky; top:0; z-index:50;
-    background:rgba(13,13,13,0.88); backdrop-filter:blur(10px);
-    padding:20px 0 16px;
-    border-bottom:1px solid var(--border);
-  }
-  .header-row-1{
-    display:flex; align-items:flex-end; justify-content:space-between;
-    flex-wrap:wrap; gap:16px;
-  }
+  /* ブランド見出しは通常フローに戻す＝スクロールすると上に消える(固定しない) */
+  .brand-block{ padding:20px 0 16px; }
   .brand-kicker{ font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:0.25em; color:var(--muted); text-transform:uppercase; margin-bottom:6px; }
   .brand-title{ font-size:clamp(22px,3vw,30px); font-weight:900; letter-spacing:0.01em; }
-  .header-right{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+
+  /* 最終更新とタブ切替は常に画面上部に追従(固定) */
+  .sticky-region{
+    position:sticky; top:0; z-index:50;
+    background:rgba(13,13,13,0.88); backdrop-filter:blur(10px);
+    padding:10px 0 0;
+    border-bottom:1px solid var(--border);
+  }
   .updated-row{ display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); }
   .pulse-dot{ width:7px; height:7px; border-radius:50%; background:var(--good); position:relative; flex-shrink:0; }
   .pulse-dot::after{
@@ -143,7 +142,7 @@
 
   /* ===== ページ切替ナビ ===== */
   .view-tabs{
-    margin-top:28px; display:flex; gap:28px; border-bottom:1px solid var(--border);
+    margin-top:10px; display:flex; gap:28px; border-bottom:none;
   }
   .view-tab{
     background:none; border:none; color:var(--muted); font-size:14px; font-weight:700;
@@ -256,13 +255,14 @@
   @media (max-width:860px){
     .page-wrap{ padding:0 20px 60px; }
     .grid{ grid-template-columns:1fr; }
-    header.top{ padding:16px 0 14px; }
-    .header-row-1{ flex-direction:column; align-items:flex-start; gap:10px; }
-    .header-right{ align-items:flex-start; width:100%; }
+    .brand-block{ padding:16px 0 14px; }
     .filter-row{ width:100%; }
     .combined-chart-wrap{ height:220px; }
+
+    /* 絞り込みボタンは帯(背景)を敷かず、アイコン自体だけをコンテンツに浮かせる形で固定する */
+    .page-filter-bar{ position:sticky; top:var(--sticky-h, 96px); z-index:45; }
     .filter-toggle{ display:inline-flex; }
-    .control-bar{ display:none; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); }
+    .control-bar{ display:none; margin-top:0; padding-top:14px; border-top:1px solid var(--border); background:var(--page); border-radius:0 0 12px 12px; }
     .control-bar.open{ display:flex; }
   }
   @media (max-width:480px){
@@ -292,28 +292,25 @@
 <div id="mainWrap">
 <div class="page-wrap">
 
-  <header class="top">
-    <div class="header-row-1">
-      <div>
-        <div class="brand-kicker">Access Intelligence</div>
-        <div class="brand-title">アクセス解析ダッシュボード</div>
-      </div>
-      <div class="header-right">
-        <div class="updated-row">
-          <span class="pulse-dot"></span>
-          <span id="updatedAt" class="mono">—</span>
-        </div>
-      </div>
-    </div>
-  </header>
+  <div class="brand-block">
+    <div class="brand-kicker">Access Intelligence</div>
+    <div class="brand-title">アクセス解析ダッシュボード</div>
+  </div>
 
-  <nav class="view-tabs" id="viewTabs">
-    <button class="view-tab active" data-view="overview">概要</button>
-    <button class="view-tab" data-view="pages">人気ページ</button>
-    <button class="view-tab" data-view="sources">流入元</button>
-    <button class="view-tab" data-view="devices">デバイス</button>
-    <button class="view-tab" data-view="bownow">来訪企業</button>
-  </nav>
+  <div class="sticky-region" id="stickyRegion">
+    <div class="updated-row">
+      <span class="pulse-dot"></span>
+      <span id="updatedAt" class="mono">—</span>
+    </div>
+
+    <nav class="view-tabs" id="viewTabs">
+      <button class="view-tab active" data-view="overview">概要</button>
+      <button class="view-tab" data-view="pages">人気ページ</button>
+      <button class="view-tab" data-view="sources">流入元</button>
+      <button class="view-tab" data-view="devices">デバイス</button>
+      <button class="view-tab" data-view="bownow">来訪企業</button>
+    </nav>
+  </div>
 
   <div id="viewOverview">
     <div class="page-filter-bar">
@@ -437,7 +434,17 @@ function unlock(){
   document.getElementById('lockScreen').style.display = 'none';
   document.getElementById('mainWrap').classList.add('show');
   init();
+  updateStickyOffset();
+  requestAnimationFrame(updateStickyOffset);
 }
+
+// 絞り込みボタン(sticky)がタブ+最終更新のすぐ下にくるよう、実際の高さから逆算する
+function updateStickyOffset(){
+  const region = document.getElementById('stickyRegion');
+  if (!region) return;
+  document.documentElement.style.setProperty('--sticky-h', region.offsetHeight + 'px');
+}
+window.addEventListener('resize', updateStickyOffset);
 function checkPw(){
   if (document.getElementById('pwInput').value === 'view') {
     sessionStorage.setItem('aid_unlocked', '1');
