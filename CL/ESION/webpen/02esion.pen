@@ -1004,7 +1004,7 @@
                       "id": "r4vdl",
                       "name": "en",
                       "fill": "$c-gray",
-                      "content": "01 — SCENTLESS",
+                      "content": "01 — GENTLE FORMULA",
                       "fontFamily": "$font-en",
                       "fontSize": 16,
                       "fontWeight": "normal",
@@ -1023,7 +1023,7 @@
                       "id": "fU9Kj",
                       "name": "jp",
                       "fill": "$c-navy-deep",
-                      "content": "無香料",
+                      "content": "低刺激",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 20,
                       "fontWeight": "700"
@@ -1043,7 +1043,7 @@
                       "fill": "$c-gray-dark",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "香料を配合しない設計。洗浄成分本来の力を引き出し、においの元となる汚れを洗い流します。",
+                      "content": "地肌へのやさしさを考えた低刺激設計。第三者監修によるパッチテスト実施済※",
                       "lineHeight": 1.8,
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 12.5,
@@ -1113,7 +1113,7 @@
                       "id": "dNs3r",
                       "name": "en",
                       "fill": "$c-gray",
-                      "content": "02 — AMINO ACID",
+                      "content": "02 — FRAGRANCE-FREE",
                       "fontFamily": "$font-en",
                       "fontSize": 16,
                       "fontWeight": "normal",
@@ -1132,7 +1132,7 @@
                       "id": "LvFBq",
                       "name": "jp",
                       "fill": "$c-navy-deep",
-                      "content": "低刺激",
+                      "content": "無香料",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 20,
                       "fontWeight": "700"
@@ -1152,7 +1152,7 @@
                       "fill": "$c-gray-dark",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "アミノ酸系(※1)を中心とした洗浄設計。髪と地肌をやさしく洗い、必要なうるおいを守ります。",
+                      "content": "香料を配合せず、無香性を目指した設計です。香りでごまかさず、すっきり清潔に洗い上げます。",
                       "lineHeight": 1.8,
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 12.5,
@@ -1259,14 +1259,13 @@
             {
               "type": "text",
               "id": "OKGUj",
-              "layoutPosition": "absolute",
-              "x": 423,
-              "y": 672,
+              "x": 48,
+              "y": 671,
               "name": "footnote",
-              "fill": "#6E86A8",
+              "fill": "#888888",
               "textGrowth": "fixed-width",
               "width": 352,
-              "content": "※1 洗浄成分 ラウロイルメチルアラニンNa、ラウロイルアスパラギン酸Na",
+              "content": "※すべての方に皮膚刺激が起こらないということではありません。",
               "fontFamily": "Zen Kaku Gothic New",
               "fontSize": 10.5,
               "fontWeight": "normal",
@@ -6274,7 +6273,7 @@
                       "y": 362,
                       "name": "en",
                       "fill": "$c-gray",
-                      "content": "01 — SCENTLESS",
+                      "content": "01 — GENTLE FORMULA",
                       "fontFamily": "$font-en",
                       "fontSize": 16,
                       "fontWeight": "normal",
@@ -6298,7 +6297,7 @@
                       "y": 385,
                       "name": "jp",
                       "fill": "$c-navy-deep",
-                      "content": "無香料",
+                      "content": "低刺激",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 20,
                       "fontWeight": "700"
@@ -6323,13 +6322,26 @@
                       "fill": "$c-gray-dark",
                       "textGrowth": "fixed-width",
                       "width": "fill_container(326)",
-                      "content": "香料を配合しない設計。洗浄成分本来の力を引き出し、においの元となる汚れを洗い流します。",
+                      "content": "地肌へのやさしさを考えた低刺激設計。第三者監修によるパッチテスト実施済※",
                       "lineHeight": 1.8,
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 12.5,
                       "fontWeight": "normal"
                     }
                   ]
+                },
+                {
+                  "type": "text",
+                  "id": "ek1JG",
+                  "name": "footnote",
+                  "fill": "#888888",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※すべての方に皮膚刺激が起こらないということではありません。",
+                  "lineHeight": 1.7,
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -6400,7 +6412,7 @@
                       "y": 362,
                       "name": "en",
                       "fill": "$c-gray",
-                      "content": "02 — AMINO ACID",
+                      "content": "02 — FRAGRANCE-FREE",
                       "fontFamily": "$font-en",
                       "fontSize": 16,
                       "fontWeight": "normal",
@@ -6423,7 +6435,7 @@
                       "y": 385,
                       "name": "jp",
                       "fill": "$c-navy-deep",
-                      "content": "低刺激",
+                      "content": "無香料",
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 20,
                       "fontWeight": "700"
@@ -6447,26 +6459,13 @@
                       "fill": "$c-gray-dark",
                       "textGrowth": "fixed-width",
                       "width": "fill_container(326)",
-                      "content": "アミノ酸系(※1)を中心とした洗浄設計。髪と地肌をやさしく洗い、必要なうるおいを守ります。",
+                      "content": "香料を配合せず、無香性を目指した設計です。香りでごまかさず、すっきり清潔に洗い上げます。",
                       "lineHeight": 1.8,
                       "fontFamily": "Zen Kaku Gothic New",
                       "fontSize": 12.5,
                       "fontWeight": "normal"
                     }
                   ]
-                },
-                {
-                  "type": "text",
-                  "id": "ek1JG",
-                  "name": "footnote",
-                  "fill": "#6E86A8",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※1 洗浄成分 ラウロイルメチルアラニンNa、ラウロイルアスパラギン酸Na",
-                  "lineHeight": 1.7,
-                  "fontFamily": "Zen Kaku Gothic New",
-                  "fontSize": 10.5,
-                  "fontWeight": "normal"
                 },
                 {
                   "type": "frame",
@@ -11429,7 +11428,7 @@
                                   "fill": "#002677",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "香料（油分）を配合しない設計。",
+                                  "content": "低刺激",
                                   "fontFamily": "$font-jp",
                                   "fontSize": 15,
                                   "fontWeight": "700"
@@ -11441,7 +11440,7 @@
                                   "fill": "#4A5578",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "においの元となる汚れを洗い流し、洗浄成分本来の力を引き出します。",
+                                  "content": "地肌へのやさしさを考えた低刺激設計。第三者監修によるパッチテストも実施済みです。※",
                                   "lineHeight": 1.9,
                                   "fontFamily": "$font-jp",
                                   "fontSize": 13.5,
@@ -11485,7 +11484,7 @@
                                   "fill": "#002677",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "アミノ酸系を中心とした洗浄設計。",
+                                  "content": "無香料",
                                   "fontFamily": "$font-jp",
                                   "fontSize": 15,
                                   "fontWeight": "700"
@@ -11497,7 +11496,7 @@
                                   "fill": "#4A5578",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "髪と地肌をやさしく洗い、必要なうるおいを守ります。",
+                                  "content": "香料を配合せず、無香性を目指した設計です。香りでごまかさず、すっきり清潔に洗い上げます。",
                                   "lineHeight": 1.9,
                                   "fontFamily": "$font-jp",
                                   "fontSize": 13.5,
@@ -11541,7 +11540,7 @@
                                   "fill": "#002677",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "1本で洗う・補う・整える。",
+                                  "content": "オールインワン",
                                   "fontFamily": "$font-jp",
                                   "fontSize": 15,
                                   "fontWeight": "700"
@@ -11553,7 +11552,7 @@
                                   "fill": "#4A5578",
                                   "textGrowth": "fixed-width",
                                   "width": "fill_container",
-                                  "content": "コンディショナー不要で、バスタイムをシンプルにします。",
+                                  "content": "シャンプー1本で、洗浄から補修・保湿まで。トリートメント不要で、毎日のヘアケアをシンプルに。",
                                   "lineHeight": 1.9,
                                   "fontFamily": "$font-jp",
                                   "fontSize": 13.5,
@@ -11567,12 +11566,12 @@
                     },
                     {
                       "type": "text",
-                      "id": "uNrOk",
+                      "id": "PQ3NX",
                       "name": "chuu",
                       "fill": "#9AA3B2",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "第三者監修パッチテスト実施済／化粧品の安全性評価に関する指針2015に則り実施。すべての方に刺激が出ないということではありません。（※1）香料, 着色料, メントール, 硫酸系洗浄成分, スルホン酸系洗浄成分, 石けん系洗浄成分, 鉱物油, パラベン, 紫外線吸収剤, シリコーン, パール剤, タルク, マイクロビーズ",
+                      "content": "※すべての方に皮膚刺激が起こらないということではありません。",
                       "lineHeight": 1.7,
                       "fontFamily": "$font-jp",
                       "fontSize": 10.5,
@@ -11711,94 +11710,11 @@
                       "fill": "#4A5578",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "きめ細かい泡。髪と指の間に泡の層をつくり、摩擦をおさえながら洗えます。",
+                      "content": "素早く泡立つ、きめ細かく弾力のある豊かな泡。髪と指の間にクッションとなる泡の層をつくり、摩擦を抑えながらなめらかに洗えます。泡切れがよく、すすぎもスムーズです。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
                       "fontSize": 14,
                       "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "Iv2qC",
-                      "name": "bullets",
-                      "gap": 8,
-                      "padding": [
-                        4,
-                        0,
-                        0,
-                        0
-                      ],
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "guHWq",
-                          "name": "すぐ泡立つ",
-                          "fill": "#F5F8FC",
-                          "cornerRadius": 30,
-                          "padding": [
-                            8,
-                            14
-                          ],
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "IvGRn",
-                              "name": "t",
-                              "fill": "#0D41A8",
-                              "content": "すぐ泡立つ",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "X9Ooe",
-                          "name": "きめ細かい",
-                          "fill": "#F5F8FC",
-                          "cornerRadius": 30,
-                          "padding": [
-                            8,
-                            14
-                          ],
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "CyTnL",
-                              "name": "t",
-                              "fill": "#0D41A8",
-                              "content": "きめ細かい",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "Fnrz3",
-                          "name": "すすぎやすい",
-                          "fill": "#F5F8FC",
-                          "cornerRadius": 30,
-                          "padding": [
-                            8,
-                            14
-                          ],
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "PQRwA",
-                              "name": "t",
-                              "fill": "#0D41A8",
-                              "content": "すすぎやすい",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 12,
-                              "fontWeight": "700"
-                            }
-                          ]
-                        }
-                      ]
                     }
                   ]
                 }
@@ -11813,7 +11729,7 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "./images/generated-1785387945740.png",
+                "url": "images/generated-1785387945740.png",
                 "mode": "fill"
               },
               "layout": "vertical",
@@ -11901,7 +11817,7 @@
                       "fill": "#4A5578",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "髪と地肌を十分に濡らし、適量（2〜3プッシュ）を手に取ります。地肌を中心に指の腹でやさしくマッサージするように泡立て、そのまま髪全体へ。すすぎ残しのないよう、ぬるま湯で丁寧に洗い流してください。コンディショナー不要でそのまま仕上がります。",
+                      "content": "髪と地肌を十分に濡らし、適量を手に取ります。地肌を中心に指の腹でやさしくマッサージするように泡立て、そのまま髪全体へ。すすぎ残しのないよう、ぬるま湯で丁寧に洗い流してください。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
                       "fontSize": 14,
@@ -11920,7 +11836,7 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "./images/generated-1785387944979.png",
+                "url": "./images/generated-1785606026051.png",
                 "mode": "fill"
               },
               "layout": "vertical",
@@ -17361,8 +17277,9 @@
                   "id": "mI0cd",
                   "name": "emph",
                   "fill": "#081B52",
-                  "textGrowth": "fixed-width",
+                  "textGrowth": "fixed-width-height",
                   "width": 840,
+                  "height": 110,
                   "content": "無香料という選択から始まった、\nESION誕生のストーリーです。",
                   "lineHeight": 1.5,
                   "textAlign": "center",
@@ -17396,7 +17313,7 @@
               "lineHeight": 2,
               "textAlign": "center",
               "fontFamily": "$font-jp",
-              "fontSize": 16.5,
+              "fontSize": 13,
               "fontWeight": "normal"
             },
             {
@@ -17410,7 +17327,7 @@
               "lineHeight": 2,
               "textAlign": "center",
               "fontFamily": "$font-jp",
-              "fontSize": 16.5,
+              "fontSize": 13,
               "fontWeight": "normal"
             },
             {
@@ -17424,7 +17341,7 @@
               "lineHeight": 2,
               "textAlign": "center",
               "fontFamily": "$font-jp",
-              "fontSize": 16.5,
+              "fontSize": 13,
               "fontWeight": "normal"
             },
             {
@@ -17526,7 +17443,7 @@
                   "content": "私は以前から、香りの強いシャンプーや洗顔料を使うと、くしゃみや鼻水が出ることがありました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17541,7 +17458,7 @@
                   "content": "香りは製品を選ぶ楽しみの一つですが、毎日使うものの香りが負担になる人もいます。私自身が、その一人でした。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17556,7 +17473,7 @@
                   "content": "無香料の製品を探すようになりましたが、すでにある無香料シャンプーは、泡立ちが物足りなかったり、洗髪中や洗い流した後に髪のきしみを感じたりすることがありました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17571,7 +17488,7 @@
                   "content": "「無香料だから、ある程度は仕方がない」。そう思いながら選ぶことに、違和感が残っていました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 }
               ]
@@ -17684,7 +17601,7 @@
                   "content": "家庭では、家族それぞれが別のシャンプーを使っていました。香りの好みも、求める洗い心地も違う。気がつけば、浴室には何本ものボトルが並んでいました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17697,7 +17614,7 @@
                   "content": "一人ひとりが好きなものを選ぶことは大切です。それでも、香りの好みに左右されず、家族みんなが同じ一本を使えたら、毎日の入浴はもっとシンプルになるのではないか。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17710,7 +17627,7 @@
                   "content": "そこで掲げた開発テーマは、無香料でありながら、洗い心地や髪の仕上がりにも妥協せず、家族みんなで使える一本をつくること。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17723,7 +17640,7 @@
                   "content": "豊かな泡立ちとなめらかな洗い心地、洗い流した後の指通りやまとまりまで。幼児から大人までが無理なく使い続けられ、浴室の何本ものボトルを一本にできる。そんなシャンプーを目指しました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 }
               ]
@@ -17906,7 +17823,7 @@
                   "lineHeight": 1.95,
                   "textAlign": "center",
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17922,7 +17839,7 @@
                   "lineHeight": 1.95,
                   "textAlign": "center",
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -17938,7 +17855,7 @@
                   "lineHeight": 1.95,
                   "textAlign": "center",
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 }
               ]
@@ -18031,7 +17948,7 @@
                   "content": "無香料とは、香料を配合していないこと。無香性とは、においがしないこと。ESIONが目指したのは、香料を配合しない「無香料」にとどまらず、においがしない「無香性」でした。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18046,7 +17963,7 @@
                   "content": "しかし、香料を配合しない処方にすると、これまで香料に隠れていた原料そのもののにおいが気になるようになりました。原料由来のにおいを香料で覆い隠さず、においを感じにくい原料で処方を組み立てることは、想像以上に困難でした。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18061,7 +17978,7 @@
                   "content": "条件を満たす原料は限られています。一つひとつの原料のにおいを確かめながら、原料の選定、組み合わせ、配合バランスを見直していきました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18076,7 +17993,7 @@
                   "content": "ようやくにおいを抑えられても、原料を変更することで、泡立ちや洗い上がりまで変わってしまうことがあります。泡立ちだけを良くしても、理想の洗い上がりにはならない。指通りだけを重視しても、求める洗い心地には届かない。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18091,7 +18008,7 @@
                   "content": "無香性を目指しながら、泡立ち、洗浄力、指通り、まとまりを両立させるために、何度も何度も試作と改良を繰り返しました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18106,7 +18023,7 @@
                   "content": "エシオンの価格には、香料で原料由来のにおいを覆い隠すのではなく、原料そのものからにおいに向き合うために必要となったコストも含まれています。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 }
               ]
@@ -18234,7 +18151,7 @@
                       "content": "ESIONが考えるシャンプーの本質は、必要なうるおいを守りながら、においの原因となる皮脂や汚れを洗い流すこと。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
-                      "fontSize": 15,
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
@@ -18247,7 +18164,7 @@
                       "content": "その本質を追求するために、アミノ酸系の洗浄成分を中心に、複数の成分の組み合わせを調整しました。こうして完成したのが「エシオン スカルプケア アミノシャンプー」です。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
-                      "fontSize": 15,
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
@@ -18260,7 +18177,7 @@
                       "content": "きめ細かく弾力のある泡で、髪と地肌を包み込むように洗う。髪と指の間に薄い泡の層ができ、その上を指が滑るような、なめらかな洗い心地を目指しました。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
-                      "fontSize": 15,
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
@@ -18273,7 +18190,7 @@
                       "content": "コンディショニング成分やトリートメント成分を配合し、洗い流した後の指通りやまとまりにも配慮。一本で「洗う、補う、整える」オールインワン設計です。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
-                      "fontSize": 15,
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
@@ -18286,7 +18203,7 @@
                       "content": "香りを残さず、洗い心地や仕上がりにも妥協しない。自分が使いたい、家族にも手渡せる一本が、ようやく形になりました。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
-                      "fontSize": 15,
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     }
                   ]
@@ -18390,7 +18307,7 @@
                   "content": "エシオンは、無香料シャンプーを一つの選択肢として考えている方の中でも、特に次のような方にとっての選択肢でありたいと考えています。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18429,7 +18346,7 @@
                           "fill": "#3D4655",
                           "content": "シャンプーの強い香りや、洗髪後に残る香りが苦手な方",
                           "fontFamily": "$font-jp",
-                          "fontSize": 15,
+                          "fontSize": 13,
                           "fontWeight": "normal"
                         }
                       ]
@@ -18460,7 +18377,7 @@
                           "fill": "#3D4655",
                           "content": "毎日使うものを、低刺激設計で選びたい方",
                           "fontFamily": "$font-jp",
-                          "fontSize": 15,
+                          "fontSize": 13,
                           "fontWeight": "normal"
                         }
                       ]
@@ -18491,7 +18408,7 @@
                           "fill": "#3D4655",
                           "content": "頭皮のにおいの原因となる皮脂や汚れを、すっきり洗い流したい方",
                           "fontFamily": "$font-jp",
-                          "fontSize": 15,
+                          "fontSize": 13,
                           "fontWeight": "normal"
                         }
                       ]
@@ -18522,7 +18439,7 @@
                           "fill": "#3D4655",
                           "content": "髪のハリ・コシや、自然なボリューム感のある仕上がりを求める方",
                           "fontFamily": "$font-jp",
-                          "fontSize": 15,
+                          "fontSize": 13,
                           "fontWeight": "normal"
                         }
                       ]
@@ -18553,7 +18470,7 @@
                           "fill": "#3D4655",
                           "content": "家族で使えるシャンプーを探している方",
                           "fontFamily": "$font-jp",
-                          "fontSize": 15,
+                          "fontSize": 13,
                           "fontWeight": "normal"
                         }
                       ]
@@ -18572,7 +18489,7 @@
                   "content": "無香料であることだけを理由に、泡立ちや洗い上がりを我慢してほしくない。香りを残さず、毎日気持ちよく使えるシャンプーを探している方に、エシオンを届けたいと考えています。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 }
               ]
@@ -18675,7 +18592,7 @@
                   "content": "ESIONは、香りそのものを否定するわけではありません。好きな香りを選ぶ自由があるように、香りを残さないものを選ぶ自由もある。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18688,7 +18605,7 @@
                   "content": "けれど、現在のシャンプー市場では、香りで選ぶことが当たり前になり、無香料はまだ限られた選択肢の一つです。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18701,7 +18618,7 @@
                   "content": "私たちは、無香料シャンプーを特別なものではなく、誰もが自然に選べる一つのカテゴリーとして定着させたいと考えています。そして、無香料シャンプーを探したとき、最初に思い出してもらえる存在になる。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 },
                 {
@@ -18714,7 +18631,7 @@
                   "content": "無香料シャンプーという市場をつくり、ESIONを、その代名詞にする。その未来を目指して、これからも無香料であることと、シャンプーとしての使用感の両方を追求していきます。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
-                  "fontSize": 15.5,
+                  "fontSize": 13,
                   "fontWeight": "normal"
                 }
               ]
@@ -18794,7 +18711,7 @@
                   "content": "香りを残さず、清潔感を。低刺激・無香料・アミノ酸系オールインワンシャンプー。",
                   "textAlign": "center",
                   "fontFamily": "$font-jp",
-                  "fontSize": 15,
+                  "fontSize": 13,
                   "fontWeight": "normal",
                   "letterSpacing": 1
                 },

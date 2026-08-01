@@ -263,7 +263,7 @@ flinks='''<style>.esion-flink{cursor:pointer;text-decoration:none;color:inherit;
 <script>(function(){['PRODUCTS','MEMBER','SERVICE','ABOUT'].forEach(function(cn){document.querySelectorAll('[data-pencil-name="'+cn+'"]').forEach(function(col){Array.prototype.slice.call(col.children).slice(1).forEach(function(item){if(item.closest('a'))return;var a=document.createElement('a');a.className='esion-flink';a.href='#';item.parentNode.insertBefore(a,item);a.appendChild(item);});});});})();</script>'''
 
 navlinks='''<script>(function(){
- var MAP={"PRODUCTS":"product.html","STORY":"story.html"};
+ var MAP={"PRODUCTS":"product.html","COMMITMENT":"kodawari.html","STORY":"story.html"};
  document.querySelectorAll('[data-pencil-name="Nav"] > [data-pencil-name]').forEach(function(el){
    var t=(el.textContent||"").trim(); var href=MAP[t]; if(!href) return;
    if(el.closest("a")) return;
