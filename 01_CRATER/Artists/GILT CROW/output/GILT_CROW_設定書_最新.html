@@ -16,9 +16,9 @@
     --line:#2a2a34;
     --gilt:#c9a24b;      /* 金メッキ */
     --gilt-soft:#e3c987;
-    --kon:#5b4b8a;       /* 紫紺 */
+    --kon:#d6b25a;       /* 金（最終ビジュアルに合わせ） */
     --sui:#4a6aa0;       /* 鋼青 */
-    --kii:#3a3a42;       /* 墨 */
+    --kii:#3c8262;       /* 緑（最終ビジュアルに合わせ） */
     --luna:#c9ccd4;      /* 白銀 */
     --karasu:#a8323a;    /* 赤 */
   }
@@ -34,6 +34,12 @@
     -webkit-font-smoothing:antialiased;
   }
   .container{max-width:920px;margin:0 auto;padding:0 32px 120px}
+
+  /* ---- band key visual（ぶち抜き集合写真） ---- */
+  .band-kv{position:relative;width:100%;max-height:92vh;overflow:hidden;background:#08080b;line-height:0}
+  .band-kv img{width:100%;height:auto;display:block}
+  .band-kv::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,rgba(8,8,11,0),#08080b);pointer-events:none}
+  @media(max-width:768px){.band-kv{max-height:none}}
 
   /* ---- hero ---- */
   .hero{
@@ -114,6 +120,11 @@
   .m-day{font-family:"Times New Roman",serif;font-size:30px;font-weight:700;color:var(--mc);line-height:1}
   .m-color{margin-top:8px;font-size:10px;letter-spacing:.15em;color:var(--meta)}
   .m-swatch{width:100%;height:5px;border-radius:3px;background:var(--mc);margin-top:8px}
+  /* メンバー全開ポートレート */
+  .m-photo{grid-column:1/-1;margin:-22px -24px 22px;overflow:hidden;background:#0a0a0d;line-height:0;position:relative;border-bottom:2px solid var(--mc)}
+  .m-photo img{width:100%;height:auto;display:block}
+  .m-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,rgba(10,10,13,0),var(--panel));pointer-events:none}
+  @media(max-width:768px){.m-photo{margin:-18px -18px 18px}}
   .m-body h3{font-size:20px;font-weight:700;letter-spacing:.04em;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
   .m-role{font-size:11px;letter-spacing:.2em;color:var(--mc);border:1px solid var(--mc);padding:3px 9px;border-radius:20px;font-weight:400}
   .m-kana{font-size:12px;color:var(--meta);letter-spacing:.1em}
@@ -150,6 +161,7 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="band-kv"><img src="GILT_CROW_集合写真.jpg" alt="GILT CROW ／ メンバー集合写真"></div>
   <div class="hero">
     <div class="hero-kicker">CRATER ARTISTS ／ SECRET PRODUCTION</div>
     <h1>GILT CROW</h1>
@@ -222,7 +234,8 @@
 
       <div class="members">
         <div class="m" style="--mc:var(--kon)">
-          <div class="m-badge"><div class="m-day">金</div><div class="m-color">紫紺</div><div class="m-swatch"></div></div>
+          <div class="m-photo"><img src="mem_KON.jpg" alt="KON ／ Vocal"></div>
+          <div class="m-badge"><div class="m-day">金</div><div class="m-color">金</div><div class="m-swatch"></div></div>
           <div class="m-body">
             <h3>KON <span class="m-kana">コン／金曜</span> <span class="m-role">Vocal</span></h3>
             <p>両性の耽美フロント。歌うフロントマン。GACKT系"歌う耽美"、Manaではない。低〜高音レンジ広い。名がGiltを体現＝バンドの華。</p>
@@ -230,6 +243,7 @@
         </div>
 
         <div class="m" style="--mc:var(--sui)">
+          <div class="m-photo"><img src="mem_Sui.jpg" alt="Sui ／ Guitar Lead"></div>
           <div class="m-badge"><div class="m-day">水</div><div class="m-color">鋼青</div><div class="m-swatch"></div></div>
           <div class="m-body">
             <h3>Sui <span class="m-kana">スイ／水曜</span> <span class="m-role">Guitar Lead</span></h3>
@@ -238,7 +252,8 @@
         </div>
 
         <div class="m" style="--mc:var(--kii)">
-          <div class="m-badge"><div class="m-day">木</div><div class="m-color">墨</div><div class="m-swatch"></div></div>
+          <div class="m-photo"><img src="mem_KII.jpg" alt="KII ／ Bass"></div>
+          <div class="m-badge"><div class="m-day">木</div><div class="m-color">緑</div><div class="m-swatch"></div></div>
           <div class="m-body">
             <h3>KII <span class="m-kana">キイ／木曜</span> <span class="m-role">Bass</span></h3>
             <p>硬派ではなく、木＝幹＝土台。しなる低音、繊細で寡黙、最年少格。バンドの根。</p>
@@ -246,6 +261,7 @@
         </div>
 
         <div class="m" style="--mc:var(--luna)">
+          <div class="m-photo"><img src="mem_Luna.jpg" alt="Luna ／ Guitar Side"></div>
           <div class="m-badge"><div class="m-day" style="color:#8a8d95">月</div><div class="m-color">白銀</div><div class="m-swatch"></div></div>
           <div class="m-body">
             <h3>Luna <span class="m-kana">ルナ／月曜</span> <span class="m-role" style="color:#8a8d95;border-color:#8a8d95">Guitar Side</span></h3>
@@ -254,6 +270,7 @@
         </div>
 
         <div class="m" style="--mc:var(--karasu)">
+          <div class="m-photo"><img src="mem_Karasu.jpg" alt="鴉 ／ Drums"></div>
           <div class="m-badge"><div class="m-day">火</div><div class="m-color">赤</div><div class="m-swatch"></div></div>
           <div class="m-body">
             <h3>鴉 <span class="m-kana">からす／火曜</span> <span class="m-role">Drums</span></h3>

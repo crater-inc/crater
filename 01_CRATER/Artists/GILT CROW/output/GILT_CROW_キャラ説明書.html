@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GILT CROW ／ キャラクター設定資料</title>
+<style>
+  :root{
+    --bg:#0a0a0d;
+    --bg2:#111117;
+    --panel:#15151d;
+    --panel2:#1b1b24;
+    --ink:#e8e6e0;
+    --sub:#b8b4aa;
+    --meta:#7c7870;
+    --line:#2a2a34;
+    --gilt:#c9a24b;
+    --gilt-soft:#e3c987;
+    --kon:#6a58a0;       /* 紫紺 */
+    --sui:#4a6aa0;       /* 鋼青 */
+    --kii:#5a5560;       /* 墨 */
+    --luna:#c9ccd4;      /* 白銀 */
+    --karasu:#a8323a;    /* 赤 */
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{overflow-x:hidden}
+  .wrap{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,"Segoe UI",sans-serif;
+    line-height:1.85;
+    font-size:16px;
+    letter-spacing:.02em;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:960px;margin:0 auto;padding:0 32px 120px}
+
+  /* ---- band key visual（ぶち抜き集合写真） ---- */
+  .band-kv{position:relative;width:100%;max-height:92vh;overflow:hidden;background:#08080b;line-height:0}
+  .band-kv img{width:100%;height:auto;display:block}
+  .band-kv::after{content:"";position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,rgba(8,8,11,0),#08080b);pointer-events:none}
+  @media(max-width:768px){.band-kv{max-height:none}}
+
+  /* ---- hero ---- */
+  .hero{
+    position:relative;
+    padding:100px 32px 60px;
+    text-align:center;
+    background:
+      radial-gradient(120% 90% at 50% -10%, rgba(201,162,75,.14), transparent 60%),
+      linear-gradient(180deg,#08080b,#0a0a0d);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"CHARACTER";
+    position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Times New Roman",serif;
+    font-size:20vw;font-weight:700;
+    color:rgba(201,162,75,.035);
+    letter-spacing:-.03em;white-space:nowrap;pointer-events:none;
+  }
+  .hero-kicker{position:relative;font-size:11px;letter-spacing:.5em;color:var(--gilt);margin-bottom:24px;text-indent:.5em}
+  .hero h1{
+    position:relative;
+    font-family:"Helvetica Neue","Segoe UI","Hiragino Kaku Gothic ProN",sans-serif;
+    font-size:clamp(38px,8vw,72px);
+    font-weight:200;line-height:1;letter-spacing:.2em;text-indent:.2em;
+    background:linear-gradient(180deg,#f4e7c4 0%,var(--gilt) 55%,#8a6a28 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .kana{position:relative;margin-top:18px;font-size:13px;letter-spacing:.45em;color:var(--sub);text-indent:.45em}
+  .hero .tag{position:relative;margin-top:8px;font-size:11px;letter-spacing:.3em;color:var(--meta)}
+
+  /* ---- art direction banner ---- */
+  .ad{
+    max-width:960px;margin:26px auto 0;padding:18px 22px;
+    border:1px solid rgba(201,162,75,.28);border-left:3px solid var(--gilt);
+    background:rgba(201,162,75,.05);border-radius:4px;
+  }
+  .ad h4{font-size:11px;letter-spacing:.25em;color:var(--gilt);margin-bottom:8px}
+  .ad p{font-size:13.5px;color:var(--gilt-soft);line-height:1.75}
+  .ad b{color:#fff}
+
+  .lead{color:var(--sub);font-size:14.5px;margin:48px 0 8px}
+
+  /* ---- member card ---- */
+  .member{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-top:28px;
+    overflow:hidden;
+    position:relative;
+  }
+  .member::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mc)}
+
+  .m-head{
+    display:flex;align-items:center;gap:20px;
+    padding:24px 28px 20px;
+    border-bottom:1px solid var(--line);
+    background:linear-gradient(90deg,color-mix(in srgb,var(--mc) 12%,transparent),transparent 55%);
+  }
+  .m-day{
+    flex:none;width:64px;height:64px;border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    border:1px solid var(--mc);
+  }
+  .m-day .d{font-family:"Times New Roman",serif;font-size:26px;font-weight:700;color:var(--mc);line-height:1}
+  .m-day .w{font-size:9px;letter-spacing:.1em;color:var(--meta);margin-top:4px}
+  .m-title{flex:1}
+  .m-title h2{font-size:26px;font-weight:700;letter-spacing:.06em;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .m-kana{font-size:12px;color:var(--meta);letter-spacing:.12em;font-weight:400}
+  .m-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+  .chip{font-size:11px;letter-spacing:.12em;padding:4px 11px;border-radius:20px;border:1px solid var(--mc);color:var(--mc)}
+  .chip.role{background:var(--mc);color:#0a0a0d;font-weight:700;border-color:var(--mc)}
+  .m-catch{margin-left:auto;font-size:12px;letter-spacing:.3em;color:var(--meta);align-self:center}
+
+  .m-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .m-spec{padding:22px 28px;border-right:1px solid var(--line)}
+  .m-spec dl{display:grid;grid-template-columns:78px 1fr;gap:6px 14px}
+  .m-spec dt{font-size:11px;letter-spacing:.1em;color:var(--mc);padding-top:3px}
+  .m-spec dd{font-size:13.5px;color:var(--sub);line-height:1.7}
+  .m-spec dd b{color:var(--ink);font-weight:700}
+
+  .m-visual{padding:22px 28px;display:flex;flex-direction:column;gap:14px}
+  .m-sig{font-size:13px;color:var(--gilt-soft);line-height:1.7;padding:12px 14px;background:rgba(201,162,75,.05);border:1px solid rgba(201,162,75,.18);border-radius:6px}
+  .m-sig span{display:block;font-size:10px;letter-spacing:.2em;color:var(--gilt);margin-bottom:5px}
+  .frames{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .frame{
+    aspect-ratio:3/4;border:1px dashed var(--line);border-radius:6px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:repeating-linear-gradient(45deg,#0d0d12,#0d0d12 8px,#101017 8px,#101017 16px);
+    color:var(--meta);gap:6px;
+  }
+  .frame .ic{font-size:20px;opacity:.5}
+  .frame .lb{font-size:10px;letter-spacing:.15em}
+  .frame .st{font-size:9px;letter-spacing:.1em;color:#565049}
+
+  footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);text-align:center;color:var(--meta);font-size:11px;letter-spacing:.2em}
+
+  @media (max-width:768px){
+    .container{padding:0 24px 90px}
+    .hero{padding:76px 24px 50px}
+    .m-head{flex-wrap:wrap;gap:14px;padding:20px}
+    .m-catch{display:none}
+    .m-body{grid-template-columns:1fr}
+    .m-spec{border-right:none;border-bottom:1px solid var(--line);padding:20px}
+    .m-visual{padding:20px}
+    .m-spec dl{grid-template-columns:70px 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="band-kv"><img src="GILT_CROW_集合写真.jpg" alt="GILT CROW ／ メンバー集合写真"></div>
+  <div class="hero">
+    <div class="hero-kicker">CRATER ARTISTS ／ CHARACTER SHEET</div>
+    <h1>GILT CROW</h1>
+    <div class="kana">キャラクター設定資料</div>
+    <div class="tag">5 MEMBERS ／ VISUAL DESIGN</div>
+  </div>
+
+  <div class="container">
+    <div class="ad">
+      <h4>VISUAL DIRECTION</h4>
+      <p><b>超実写 ── AIだと気づかせない。</b> AIっぽさ（ツルツル肌・左右対称すぎ・過剰な整い）を殺し、毛穴・肌の質感・微妙な非対称・フィルムの空気を入れる。実在するV系バンドとして通用する肌感を最優先。集合絵で一気に作らず、1人ずつ顔を確定 → 三面図（正面・横顔・斜め）→ LoRA固定へ。</p>
+    </div>
+
+    <p class="lead">役どころは全員被りなし。<b style="color:var(--ink)">華 / 芯 / 根 / 毒 / 謎</b> ── 全員が主役級。以下は設計の叩き台（画像は今後ここに流し込む）。</p>
+
+    <!-- KON -->
+    <div class="member" style="--mc:var(--kon)">
+      <div class="m-head">
+        <div class="m-day"><span class="d">金</span><span class="w">FRI</span></div>
+        <div class="m-title">
+          <h2>KON <span class="m-kana">コン</span></h2>
+          <div class="m-meta"><span class="chip role">Vocal</span><span class="chip">紫紺 / 華</span></div>
+        </div>
+        <div class="m-catch">華 ── FRONT</div>
+      </div>
+      <div class="m-body">
+        <div class="m-spec">
+          <dl>
+            <dt>年齢感</dt><dd>20代後半に見える中性</dd>
+            <dt>顔立ち</dt><dd>骨格は男だが線が細い。<b>目元だけ強い</b>（切れ長・濃いアイライン）</dd>
+            <dt>髪</dt><dd>黒髪ロング〜ミディの艶。<b>毛先だけ深い紫紺</b></dd>
+            <dt>体型</dt><dd>細身・しなやか。喉元を見せる立ち姿</dd>
+            <dt>衣装</dt><dd>黒基調＋紫紺の差し。装飾は品よく</dd>
+            <dt>メイク</dt><dd>目元強調。肌は白いが生気を残す</dd>
+          </dl>
+        </div>
+        <div class="m-visual">
+          <div class="m-sig"><span>SIGNATURE ／ 引っかかり</span>歌う耽美（GACKT系）で、Manaにはしない。<b style="color:#fff">男の色気を残した中性</b>がKONの核。バンドの華。</div>
+          <div class="frames">
+            <div class="frame"><span class="ic">◇</span><span class="lb">正面</span><span class="st">FRONT ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">横顔</span><span class="st">SIDE ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">斜め</span><span class="st">3/4 ／ 予定</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sui -->
+    <div class="member" style="--mc:var(--sui)">
+      <div class="m-head">
+        <div class="m-day"><span class="d">水</span><span class="w">WED</span></div>
+        <div class="m-title">
+          <h2>Sui <span class="m-kana">スイ</span></h2>
+          <div class="m-meta"><span class="chip role">Guitar Lead</span><span class="chip">鋼青 / 芯</span></div>
+        </div>
+        <div class="m-catch">芯 ── HARD</div>
+      </div>
+      <div class="m-body">
+        <div class="m-spec">
+          <dl>
+            <dt>年齢感</dt><dd>30前後。明確な男性感</dd>
+            <dt>顔立ち</dt><dd>目つきが鋭く無表情。バンドの背骨</dd>
+            <dt>髪</dt><dd>短髪〜ラフなパーマ。うっすらストリート</dd>
+            <dt>体型</dt><dd>骨太・逞しい。硬派なシルエット</dd>
+            <dt>衣装</dt><dd>黒レザー＋鋼青のワンポイント</dd>
+            <dt>メイク</dt><dd>最小（目の下の陰影程度）</dd>
+          </dl>
+        </div>
+        <div class="m-visual">
+          <div class="m-sig"><span>SIGNATURE ／ 引っかかり</span>KONの妖艶と<b style="color:#fff">真逆の「男」</b>で対を作る。硬派で骨太、寡黙。バンドの芯。</div>
+          <div class="frames">
+            <div class="frame"><span class="ic">◇</span><span class="lb">正面</span><span class="st">FRONT ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">横顔</span><span class="st">SIDE ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">斜め</span><span class="st">3/4 ／ 予定</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KII -->
+    <div class="member" style="--mc:var(--kii)">
+      <div class="m-head">
+        <div class="m-day"><span class="d">木</span><span class="w">THU</span></div>
+        <div class="m-title">
+          <h2>KII <span class="m-kana">キイ</span></h2>
+          <div class="m-meta"><span class="chip role">Bass</span><span class="chip">墨 / 根</span></div>
+        </div>
+        <div class="m-catch">根 ── QUIET</div>
+      </div>
+      <div class="m-body">
+        <div class="m-spec">
+          <dl>
+            <dt>年齢感</dt><dd>最年少格。儚い雰囲気</dd>
+            <dt>顔立ち</dt><dd>線が細く伏し目がち。目が離せない静けさ</dd>
+            <dt>髪</dt><dd>黒髪。前髪長めで<b>片目が隠れる</b></dd>
+            <dt>体型</dt><dd>華奢。存在感を消す立ち方</dd>
+            <dt>衣装</dt><dd>黒一色に近い。装飾少なめ＝土台</dd>
+            <dt>メイク</dt><dd>繊細な金属アクセ（ピアス等）</dd>
+          </dl>
+        </div>
+        <div class="m-visual">
+          <div class="m-sig"><span>SIGNATURE ／ 引っかかり</span>木＝幹＝土台。しなる低音。<b style="color:#fff">目立たないのに目が離せない</b>を狙う。バンドの根。</div>
+          <div class="frames">
+            <div class="frame"><span class="ic">◇</span><span class="lb">正面</span><span class="st">FRONT ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">横顔</span><span class="st">SIDE ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">斜め</span><span class="st">3/4 ／ 予定</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luna -->
+    <div class="member" style="--mc:var(--luna)">
+      <div class="m-head">
+        <div class="m-day"><span class="d">月</span><span class="w">MON</span></div>
+        <div class="m-title">
+          <h2>Luna <span class="m-kana">ルナ</span></h2>
+          <div class="m-meta"><span class="chip role">Guitar Side</span><span class="chip">白銀 / 毒</span></div>
+        </div>
+        <div class="m-catch">毒 ── ETHEREAL</div>
+      </div>
+      <div class="m-body">
+        <div class="m-spec">
+          <dl>
+            <dt>年齢感</dt><dd>年齢・性別ともに曖昧</dd>
+            <dt>顔立ち</dt><dd>病的耽美。肌は最も白く、唇に色</dd>
+            <dt>髪</dt><dd><b>腰までの白銀ロング</b>。女性装的</dd>
+            <dt>体型</dt><dd>中性を超えた曖昧なライン</dd>
+            <dt>衣装</dt><dd>白銀×黒のゴシック。レース・装飾多め</dd>
+            <dt>メイク</dt><dd>作り物めいた美。実写でリアルに落とす</dd>
+          </dl>
+        </div>
+        <div class="m-visual">
+          <div class="m-sig"><span>SIGNATURE ／ 引っかかり</span>バンドで一番<b style="color:#fff">「作り物めいた美」</b>。でも超実写で人間に着地させる。Mana的妖艶はここが担う。バンドの毒。</div>
+          <div class="frames">
+            <div class="frame"><span class="ic">◇</span><span class="lb">正面</span><span class="st">FRONT ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">横顔</span><span class="st">SIDE ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">斜め</span><span class="st">3/4 ／ 予定</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 鴉 -->
+    <div class="member" style="--mc:var(--karasu)">
+      <div class="m-head">
+        <div class="m-day"><span class="d">火</span><span class="w">TUE</span></div>
+        <div class="m-title">
+          <h2>鴉 <span class="m-kana">からす／カー</span></h2>
+          <div class="m-meta"><span class="chip role">Drums</span><span class="chip">赤 / 謎</span></div>
+        </div>
+        <div class="m-catch">謎 ── FACELESS</div>
+      </div>
+      <div class="m-body">
+        <div class="m-spec">
+          <dl>
+            <dt>年齢感</dt><dd>不明（顔を見せない）</dd>
+            <dt>顔立ち</dt><dd><b>漆黒のくちばしマスク</b>（ペスト医師モチーフ）</dd>
+            <dt>髪</dt><dd>マスクと同化する漆黒</dd>
+            <dt>体型</dt><dd>露出する肌・手・首は逞しい</dd>
+            <dt>衣装</dt><dd>基本漆黒。<b>燻し色を一箇所だけ</b>効かせる</dd>
+            <dt>差し色</dt><dd>赤。嘴の色は曲ごと可変（一旦漆黒）</dd>
+          </dl>
+        </div>
+        <div class="m-visual">
+          <div class="m-sig"><span>SIGNATURE ／ 引っかかり</span>唯一の顔なし＝Crowの化身。<b style="color:#fff">素顔は伏せる（人気後にリビール）</b>。三面図はマスク状態で作る。バンドの謎。</div>
+          <div class="frames">
+            <div class="frame"><span class="ic">◇</span><span class="lb">正面</span><span class="st">MASK ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">横顔</span><span class="st">MASK ／ 予定</span></div>
+            <div class="frame"><span class="ic">◇</span><span class="lb">斜め</span><span class="st">MASK ／ 予定</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>GILT CROW ／ CRATER SECRET PRODUCTION ／ CHARACTER SHEET ／ 2026-07-27</footer>
+  </div>
+</div>
+</body>
+</html>
