@@ -2,13 +2,38 @@
 # ESION 誕生秘話（グレー版）ビルド：story-export.html → story.html
 # 静的1カラム・zoom追従（innerWidth/1199）・パスワードゲート・フッターリンク・コメント機能(review.js)
 # 使い方: python3 build_story.py
-import re
+import re, urllib.parse, os, subprocess
 
 SRC = 'story-export.html'
 ROOT_NAME = 'ESION 誕生秘話 (画像グレー版)'
+ALPHA = ['esionLOGO']  # 透過ロゴはpng維持
+
+# 画像を a/ の圧縮版へパス差し替え（build.pyと同方式）。
+# 日本語ファイル名はexportがNFD(分解形)でURLエンコードするが、GitHub上の登録名はNFC＝
+# バイト不一致で404になる。ASCII名(a/)に逃がして正規化ズレを根絶する。
+def compress(s):
+    for u in set(re.findall(r"url\('([^']+)'\)", s)):
+        if u.startswith('data:'):
+            continue
+        fn = urllib.parse.unquote(u)
+        stem = re.sub(r'[^A-Za-z0-9._-]', '_', os.path.basename(fn))
+        if any(k in fn for k in ALPHA):
+            out = 'a/' + stem
+        else:
+            out = 'a/' + re.sub(r'\.(png|jpg|jpeg|PNG|JPG)$', '', stem) + '.jpg'
+        if not os.path.exists(out) and os.path.exists(fn):
+            if any(k in fn for k in ALPHA):
+                subprocess.run(['sips', '-Z', '1000', fn, '--out', out],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            else:
+                subprocess.run(['sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', '80', '-Z', '2000', fn, '--out', out],
+                               stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        s = s.replace("url('%s')" % u, "url('%s')" % out.replace(' ', '%20'))
+    return s
 
 s = open(SRC).read()
 body = re.search(r'<body>(.*)</body>', s, re.S).group(1)
+body = compress(body)
 
 # ルートフレームに id="storyRoot" を付与（zoom追従の対象）
 body = body.replace(
