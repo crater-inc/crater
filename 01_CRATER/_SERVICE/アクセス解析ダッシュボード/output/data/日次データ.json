@@ -1,14 +1,14 @@
 {
   "is_sample": false,
-  "updated_at": "2026-08-01T07:47:32+09:00",
-  "insight": "6サイト横断で最も注目すべきはYEARSの前週比-98%という急落。他サイトはいずれも二桁%以内の変動にとどまる。",
-  "suggestion": "YEARSについて、GA4の計測タグ設定や除外フィルタを確認するとともに、前週の数値がボット・スパムトラフィックで異常に高くなっていた可能性がないか確認する。",
+  "updated_at": "2026-08-01T14:22:00+09:00",
+  "insight": "YEARSが前週比-99%と極端な減少で、6サイト中最も注目すべき変動。前週に異常な数値（ボット・スパムトラフィックの混入等）があった可能性、または計測タグの不具合が考えられる。",
+  "suggestion": "YEARSの前週データの流入元・デバイス内訳を確認し、ボットトラフィックの混入か計測不具合かを切り分ける。",
   "sites": [
     {
       "id": "crater",
       "name": "CRATER",
       "ga4_property_id": "353705241",
-      "comment": "175セッションで前週比-14%とやや減少。",
+      "comment": "sessions163、前週比-22%とやや減少傾向。",
       "daily": [
         {
           "date": "2026-05-03",
@@ -549,6 +549,12 @@
           "sessions": 24,
           "users": 21,
           "pageviews": 36
+        },
+        {
+          "date": "2026-08-01",
+          "sessions": 4,
+          "users": 4,
+          "pageviews": 4
         }
       ],
       "breakdown": {
@@ -4211,6 +4217,11 @@
             "sessions": 4
           },
           {
+            "date": "2026-08-01",
+            "channel": "Direct",
+            "sessions": 4
+          },
+          {
             "date": "2026-05-05",
             "channel": "Direct",
             "sessions": 3
@@ -5488,6 +5499,11 @@
             "sessions": 4
           },
           {
+            "date": "2026-08-01",
+            "category": "desktop",
+            "sessions": 4
+          },
+          {
             "date": "2026-05-04",
             "category": "desktop",
             "sessions": 3
@@ -5664,7 +5680,7 @@
       "id": "acurry",
       "name": "A CURRY",
       "ga4_property_id": "506973253",
-      "comment": "19セッションで前週比+46%だが、母数が小さく通常の変動範囲内とみられる。",
+      "comment": "sessions19と少数ながら前週比+46%の伸び。",
       "daily": [
         {
           "date": "2026-05-07",
@@ -6920,7 +6936,7 @@
       "id": "chics",
       "name": "CHICS",
       "ga4_property_id": "259441420",
-      "comment": "296セッションで前週比-6%とほぼ横ばい。",
+      "comment": "sessions297で6サイト中最多、前週比-6%はほぼ横ばい。",
       "daily": [
         {
           "date": "2026-05-03",
@@ -7464,9 +7480,9 @@
         },
         {
           "date": "2026-08-01",
-          "sessions": 2,
-          "users": 2,
-          "pageviews": 4
+          "sessions": 3,
+          "users": 3,
+          "pageviews": 8
         }
       ],
       "breakdown": {
@@ -9642,6 +9658,11 @@
             "pageviews": 6
           },
           {
+            "date": "2026-08-01",
+            "path": "/news/825/",
+            "pageviews": 6
+          },
+          {
             "date": "2026-05-16",
             "path": "/news/2768/",
             "pageviews": 5
@@ -10094,11 +10115,6 @@
           {
             "date": "2026-07-31",
             "path": "/news/1372/",
-            "pageviews": 4
-          },
-          {
-            "date": "2026-08-01",
-            "path": "/news/825/",
             "pageviews": 4
           },
           {
@@ -10564,6 +10580,11 @@
           {
             "date": "2026-07-30",
             "path": "/news/1372/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-01",
+            "path": "/news/1074/",
             "pageviews": 2
           },
           {
@@ -11659,6 +11680,11 @@
             "sessions": 3
           },
           {
+            "date": "2026-08-01",
+            "channel": "Organic Search",
+            "sessions": 3
+          },
+          {
             "date": "2026-05-07",
             "channel": "Referral",
             "sessions": 2
@@ -11741,11 +11767,6 @@
           {
             "date": "2026-07-31",
             "channel": "Referral",
-            "sessions": 2
-          },
-          {
-            "date": "2026-08-01",
-            "channel": "Organic Search",
             "sessions": 2
           },
           {
@@ -13334,6 +13355,11 @@
             "date": "2026-07-29",
             "category": "tablet",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-01",
+            "category": "desktop",
+            "sessions": 1
           }
         ]
       }
@@ -13342,7 +13368,7 @@
       "id": "years",
       "name": "YEARS",
       "ga4_property_id": "431033867",
-      "comment": "163セッションながら前週比-98%と急落しており、計測不具合か前週のボット・スパムトラフィックの可能性がある。",
+      "comment": "sessions138、前週比-99%と急減しており要確認。",
       "daily": [
         {
           "date": "2026-05-03",
@@ -13883,6 +13909,12 @@
           "sessions": 47,
           "users": 48,
           "pageviews": 49
+        },
+        {
+          "date": "2026-08-01",
+          "sessions": 3,
+          "users": 3,
+          "pageviews": 3
         }
       ],
       "breakdown": {
@@ -16830,6 +16862,11 @@
             "sessions": 3
           },
           {
+            "date": "2026-08-01",
+            "channel": "Direct",
+            "sessions": 3
+          },
+          {
             "date": "2026-05-03",
             "channel": "Organic Social",
             "sessions": 2
@@ -18202,6 +18239,11 @@
             "sessions": 2
           },
           {
+            "date": "2026-08-01",
+            "category": "mobile",
+            "sessions": 2
+          },
+          {
             "date": "2026-05-08",
             "category": "tablet",
             "sessions": 1
@@ -18270,6 +18312,11 @@
             "date": "2026-07-07",
             "category": "tablet",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-01",
+            "category": "desktop",
+            "sessions": 1
           }
         ]
       }
@@ -18278,7 +18325,7 @@
       "id": "apollos",
       "name": "APOLLOS",
       "ga4_property_id": "545852964",
-      "comment": "19セッションで前週比-14%とやや減少。",
+      "comment": "sessions20、前週比-9%で小幅減少。",
       "daily": [
         {
           "date": "2026-07-16",
@@ -18378,9 +18425,9 @@
         },
         {
           "date": "2026-08-01",
-          "sessions": 1,
-          "users": 1,
-          "pageviews": 1
+          "sessions": 2,
+          "users": 2,
+          "pageviews": 2
         }
       ],
       "breakdown": {
@@ -18436,6 +18483,11 @@
             "pageviews": 2
           },
           {
+            "date": "2026-08-01",
+            "path": "/",
+            "pageviews": 2
+          },
+          {
             "date": "2026-07-17",
             "path": "/",
             "pageviews": 1
@@ -18477,11 +18529,6 @@
           },
           {
             "date": "2026-07-31",
-            "path": "/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-08-01",
             "path": "/",
             "pageviews": 1
           }
@@ -18538,6 +18585,11 @@
             "sessions": 2
           },
           {
+            "date": "2026-08-01",
+            "channel": "Direct",
+            "sessions": 2
+          },
+          {
             "date": "2026-07-16",
             "channel": "Organic Search",
             "sessions": 1
@@ -18599,11 +18651,6 @@
           },
           {
             "date": "2026-07-31",
-            "channel": "Direct",
-            "sessions": 1
-          },
-          {
-            "date": "2026-08-01",
             "channel": "Direct",
             "sessions": 1
           }
@@ -18655,6 +18702,11 @@
             "sessions": 2
           },
           {
+            "date": "2026-08-01",
+            "category": "desktop",
+            "sessions": 2
+          },
+          {
             "date": "2026-07-18",
             "category": "mobile",
             "sessions": 1
@@ -18718,11 +18770,6 @@
             "date": "2026-07-31",
             "category": "mobile",
             "sessions": 1
-          },
-          {
-            "date": "2026-08-01",
-            "category": "desktop",
-            "sessions": 1
           }
         ]
       }
@@ -18731,7 +18778,7 @@
       "id": "birth",
       "name": "BIRTH",
       "ga4_property_id": "547744931",
-      "comment": "13セッションで、計測開始間もないため比較データなし。",
+      "comment": "sessions15、計測開始間もなく比較データなし。",
       "daily": [
         {
           "date": "2026-07-30",
@@ -18741,9 +18788,15 @@
         },
         {
           "date": "2026-07-31",
-          "sessions": 5,
-          "users": 5,
-          "pageviews": 5
+          "sessions": 6,
+          "users": 6,
+          "pageviews": 6
+        },
+        {
+          "date": "2026-08-01",
+          "sessions": 1,
+          "users": 1,
+          "pageviews": 1
         }
       ],
       "breakdown": {
@@ -18775,12 +18828,22 @@
           },
           {
             "date": "2026-07-31",
+            "path": "/journal/factory-second-pillar/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-07-31",
             "path": "/journal/keep-new-business/",
             "pageviews": 1
           },
           {
             "date": "2026-07-31",
             "path": "/journal/tech-to-business/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-01",
+            "path": "/journal/【2026年最新】新規事業で使える補助金・助成金一/",
             "pageviews": 1
           }
         ],
@@ -18793,7 +18856,7 @@
           {
             "date": "2026-07-31",
             "channel": "Direct",
-            "sessions": 4
+            "sessions": 5
           },
           {
             "date": "2026-07-31",
@@ -18801,8 +18864,8 @@
             "sessions": 1
           },
           {
-            "date": "2026-07-31",
-            "channel": "Unassigned",
+            "date": "2026-08-01",
+            "channel": "Referral",
             "sessions": 1
           }
         ],
@@ -18815,12 +18878,17 @@
           {
             "date": "2026-07-31",
             "category": "desktop",
-            "sessions": 5
+            "sessions": 6
           },
           {
             "date": "2026-07-30",
             "category": "mobile",
             "sessions": 2
+          },
+          {
+            "date": "2026-08-01",
+            "category": "desktop",
+            "sessions": 1
           }
         ]
       }
@@ -18833,11 +18901,11 @@
     },
     {
       "date": "2026-08-01",
-      "text": "6サイト横断で最も注目すべきはYEARSの前週比-98%という急落。他サイトはいずれも二桁%以内の変動にとどまる。"
+      "text": "YEARSが前週比-99%と極端な減少で、6サイト中最も注目すべき変動。前週に異常な数値（ボット・スパムトラフィックの混入等）があった可能性、または計測タグの不具合が考えられる。"
     }
   ],
   "bownow": {
-    "updated_at": "2026-08-01T14:17:39+09:00",
+    "updated_at": "2026-08-01T14:23:33+09:00",
     "sites_covered": [
       "crater",
       "chics",
@@ -19088,5 +19156,6 @@
         "last_visit_at": "2026-07-28 05:08:03 UTC"
       }
     ]
-  }
+  },
+  "amazon": {}
 }
