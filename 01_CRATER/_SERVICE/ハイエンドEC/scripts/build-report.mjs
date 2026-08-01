@@ -43,30 +43,8 @@ function main() {
       const text = reportByTitle.get(sel.title);
       if (!mk || !text) return null;
 
-      const alibabaItems = (sel.alibabaKeywords || [])
-        .flatMap((kw) => {
-          const r = alibabaData.results?.[kw];
-          if (!r) return [];
-          if (r.blocked) return [{ blocked: true, keyword: kw }];
-          return r.items || [];
-        })
-        .slice(0, 3);
-
-      const oemByTitle = new Map((text.alibabaSuggestions || []).map((s) => [s.title, s.oemSuggestion]));
-
-      const alibabaHtml = alibabaItems
-        .map((item) => {
-          if (item.blocked) {
-            return `<div class="alibaba-item"><p class="blocked-note">Alibaba: 本日はBot対策でブロックされたため未取得。手動で「${esc(item.keyword)}」を検索してください</p></div>`;
-          }
-          const oem = oemByTitle.get(item.title);
-          return `<div class="alibaba-item">
-            <a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a>
-            <p class="alibaba-meta">${esc(item.priceRaw || '価格不明')}${item.moq ? ' / ' + esc(item.moq) : ''}${item.supplierRating ? ' / 評価 ' + esc(item.supplierRating) : ''}${item.supplierYears ? ' / 実績' + esc(item.supplierYears) : ''}</p>
-            ${oem ? `<p class="oem-suggestion">${esc(oem)}</p>` : ''}
-          </div>`;
-        })
-        .join('\n');
+      // Alibaba照合は日次の発掘段階では表示しない（本命が決まってから個別に確認する運用のため）。
+      // データ自体はdata/alibaba-*.jsonに残しておき、後で参照できるようにする。
 
       return `<div class="product-row">
         <img class="thumb" src="${esc(mk.thumbnailUrl)}" alt="${esc(mk.title)}" loading="lazy">
@@ -76,10 +54,6 @@ function main() {
           <p>${esc(text.psychologicalNeed)}</p>
           <p class="block-label">競合状況</p>
           <p>${esc(text.competitiveNote)}</p>
-          <p class="block-label">Alibaba 中級OEM候補</p>
-          <div class="alibaba-list">
-            ${alibabaHtml || '<p class="blocked-note">候補なし</p>'}
-          </div>
         </div>
       </div>`;
     })
