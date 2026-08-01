@@ -56,7 +56,9 @@
     // ---- CSS ----
     var css = document.createElement("style");
     css.textContent = [
-      "#cr-open{position:fixed;right:16px;bottom:16px;width:48px;height:48px;border:none;border-radius:50%;background:#2563eb;color:#fff;font-size:20px;cursor:pointer;z-index:2147483000;box-shadow:0 4px 14px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;transition:right .3s;}",
+      "#cr-open{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border:none;border-radius:50%;background:#111;color:#fff;cursor:pointer;z-index:2147483000;display:flex;align-items:center;justify-content:center;transition:right .25s,background .2s;}",
+      "#cr-open:hover{background:#333;}",
+      "#cr-open svg{width:19px;height:19px;display:block;}",
       "#cr-open.shift{right:316px;}",
       "#cr-panel{position:fixed;top:0;right:0;width:300px;height:100vh;background:#1a1a1a;border-left:1px solid #333;display:flex;flex-direction:column;z-index:2147483001;font-family:'Zen Kaku Gothic New',sans-serif;transform:translateX(300px);transition:transform .3s ease;}",
       "#cr-panel.open{transform:none;}",
@@ -106,7 +108,8 @@
     document.head.appendChild(css);
 
     // ---- UI ----
-    var openBtn = elm("button", { id: "cr-open", title: "修正コメント" }, "💬");
+    var openBtn = elm("button", { id: "cr-open", title: "修正コメント" });
+    openBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4.5H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3v3l3.8-3H20a1 1 0 0 0 1-1v-10a1 1 0 0 0-1-1z"/></svg>';
     var panel = elm("div", { id: "cr-panel" });
     panel.innerHTML =
       '<div id="cr-ph"><span class="t">修正コメント</span><div class="r"><span id="cr-count">0</span><button id="cr-x">×</button></div></div>' +
