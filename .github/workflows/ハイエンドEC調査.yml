@@ -15,7 +15,7 @@ env:
 jobs:
   research:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -40,35 +40,60 @@ jobs:
         working-directory: ${{ env.DIR }}/scripts
         run: node scrape-makuake.mjs "../data/makuake-${{ steps.date.outputs.today }}.json"
 
-      - name: Claudeで候補3件を選定（Alibaba検索キーワードも生成）
+      - name: GREENFUNDINGをスクレイピング
+        working-directory: ${{ env.DIR }}/scripts
+        run: node scrape-greenfunding.mjs "../data/greenfunding-${{ steps.date.outputs.today }}.json"
+
+      - name: Claudeで候補3件を選定（Makuake）
         working-directory: ${{ env.DIR }}
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
-          RECENT=$(tail -n 80 "提案ログ.md" 2>/dev/null || echo "なし")
+          RECENT=$(tail -n 30 "提案ログ.md" 2>/dev/null || echo "なし")
           BASE=$(cat "scripts/prompts/select-candidates.md")
           CANDIDATES=$(cat "data/makuake-${{ steps.date.outputs.today }}.json")
-          PROMPT="今日は ${{ steps.date.outputs.today }} です。
+          PROMPT="今日は ${{ steps.date.outputs.today }} です。ソース：Makuake
 
-          【過去の提案履歴（重複禁止）】
+          【直近の提案履歴】
           ${RECENT}
           ────────────
-          【本日のMakuake候補一覧】
+          【本日の候補一覧】
           ${CANDIDATES}
           ────────────
           ${BASE}"
-          claude -p "$PROMPT" --model sonnet --max-turns 3 > selection.json
-          python3 scripts/clean_json.py selection.json || (echo "::error::selection.jsonが不正なJSONです" && cat selection.json && exit 1)
+          claude -p "$PROMPT" --model sonnet --max-turns 3 > selection-makuake.json
+          python3 scripts/clean_json.py selection-makuake.json || (echo "::error::selection-makuake.jsonが不正なJSONです" && cat selection-makuake.json && exit 1)
 
-      - name: Alibaba検索キーワードを抽出
+      - name: Claudeで候補3件を選定（GREENFUNDING）
+        working-directory: ${{ env.DIR }}
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          RECENT=$(tail -n 30 "提案ログ.md" 2>/dev/null || echo "なし")
+          BASE=$(cat "scripts/prompts/select-candidates.md")
+          CANDIDATES=$(cat "data/greenfunding-${{ steps.date.outputs.today }}.json")
+          PROMPT="今日は ${{ steps.date.outputs.today }} です。ソース：GREENFUNDING
+
+          【直近の提案履歴】
+          ${RECENT}
+          ────────────
+          【本日の候補一覧】
+          ${CANDIDATES}
+          ────────────
+          ${BASE}"
+          claude -p "$PROMPT" --model sonnet --max-turns 3 > selection-greenfunding.json
+          python3 scripts/clean_json.py selection-greenfunding.json || (echo "::error::selection-greenfunding.jsonが不正なJSONです" && cat selection-greenfunding.json && exit 1)
+
+      - name: Alibaba検索キーワードを抽出（両ソース分）
         working-directory: ${{ env.DIR }}
         run: |
           python3 -c "
           import json
-          sel = json.load(open('selection.json'))
           kws = []
-          for s in sel['selections']:
-              kws.extend(s.get('alibabaKeywords', []))
+          for f in ['selection-makuake.json', 'selection-greenfunding.json']:
+              sel = json.load(open(f))
+              for s in sel['selections']:
+                  kws.extend(s.get('alibabaKeywords', []))
           json.dump({'keywords': kws}, open('keywords.json', 'w'), ensure_ascii=False)
           print(f'{len(kws)}件のキーワードを抽出')
           "
@@ -77,37 +102,47 @@ jobs:
         working-directory: ${{ env.DIR }}
         run: node "scripts/scrape-alibaba.mjs" keywords.json "data/alibaba-${{ steps.date.outputs.today }}.json"
 
-      - name: Claudeでレポート文章を生成
+      - name: Claudeでレポート文章を生成（Makuake）
         working-directory: ${{ env.DIR }}
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
           BASE=$(cat "scripts/prompts/write-report.md")
-          SELECTION=$(cat "selection.json")
-          ALIBABA=$(cat "data/alibaba-${{ steps.date.outputs.today }}.json")
-          PROMPT="今日は ${{ steps.date.outputs.today }} です。
+          SELECTION=$(cat "selection-makuake.json")
+          PROMPT="今日は ${{ steps.date.outputs.today }} です。ソース：Makuake
 
           【選定した3件】
           ${SELECTION}
           ────────────
-          【Alibaba検索結果】
-          ${ALIBABA}
+          ${BASE}"
+          claude -p "$PROMPT" --model sonnet --max-turns 3 > report-text-makuake.json
+          python3 scripts/clean_json.py report-text-makuake.json || (echo "::error::report-text-makuake.jsonが不正なJSONです" && cat report-text-makuake.json && exit 1)
+
+      - name: Claudeでレポート文章を生成（GREENFUNDING）
+        working-directory: ${{ env.DIR }}
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          BASE=$(cat "scripts/prompts/write-report.md")
+          SELECTION=$(cat "selection-greenfunding.json")
+          PROMPT="今日は ${{ steps.date.outputs.today }} です。ソース：GREENFUNDING
+
+          【選定した3件】
+          ${SELECTION}
           ────────────
           ${BASE}"
-          claude -p "$PROMPT" --model sonnet --max-turns 3 > report-text.json
-          python3 scripts/clean_json.py report-text.json || (echo "::error::report-text.jsonが不正なJSONです" && cat report-text.json && exit 1)
+          claude -p "$PROMPT" --model sonnet --max-turns 3 > report-text-greenfunding.json
+          python3 scripts/clean_json.py report-text-greenfunding.json || (echo "::error::report-text-greenfunding.jsonが不正なJSONです" && cat report-text-greenfunding.json && exit 1)
 
       - name: ダッシュボードに追記
         working-directory: ${{ env.DIR }}
         run: |
           node scripts/build-report.mjs \
-            "data/makuake-${{ steps.date.outputs.today }}.json" \
-            selection.json \
-            "data/alibaba-${{ steps.date.outputs.today }}.json" \
-            report-text.json \
             dashboard/index.html \
             提案ログ.md \
-            "${{ steps.date.outputs.today }}"
+            "${{ steps.date.outputs.today }}" \
+            Makuake "data/makuake-${{ steps.date.outputs.today }}.json" selection-makuake.json report-text-makuake.json \
+            GREENFUNDING "data/greenfunding-${{ steps.date.outputs.today }}.json" selection-greenfunding.json report-text-greenfunding.json
 
       - name: コミット・プッシュ
         working-directory: ${{ env.DIR }}
@@ -127,11 +162,13 @@ jobs:
         run: |
           TITLES=$(python3 -c "
           import json
-          sel = json.load(open('selection.json'))
-          for i, s in enumerate(sel['selections'], 1):
-              print(f'{i}. ' + s['title'][:40])
+          for label, f in [('Makuake', 'selection-makuake.json'), ('GREENFUNDING', 'selection-greenfunding.json')]:
+              sel = json.load(open(f))
+              print(f'◆{label}')
+              for i, s in enumerate(sel['selections'], 1):
+                  print(f'{i}. ' + s['title'][:40])
           ")
-          TEXT="【ハイエンドEC 今日の3件】
+          TEXT="【ハイエンドEC 今日の6件】
           ${TITLES}
 
           詳細：https://view.crater.co.jp/01_CRATER/_SERVICE/ハイエンドEC/dashboard/index.html"

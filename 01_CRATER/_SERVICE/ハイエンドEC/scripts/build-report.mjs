@@ -1,4 +1,5 @@
-// 各ステージのJSON成果物を1つのHTMLブロックにまとめ、ダッシュボードに追記する
+// 複数ソース（Makuake・GREENFUNDING等）のJSON成果物を1つのHTMLブロックにまとめ、ダッシュボードに追記する
+// 使い方: node build-report.mjs <dashboardPath> <logPath> <dateStr> <sourceName> <candidatesPath> <selectionPath> <reportTextPath> [<sourceName> <candidatesPath> <selectionPath> <reportTextPath> ...]
 import fs from 'node:fs';
 
 function esc(s) {
@@ -16,44 +17,30 @@ function loadJson(path) {
   return JSON.parse(stripped);
 }
 
-function main() {
-  const [
-    ,
-    ,
-    makuakeCandidatesPath, // scrape-makuake.mjsの出力
-    selectionPath, // select-candidates.md の出力(JSON)
-    alibabaResultsPath, // scrape-alibaba.mjsの出力
-    reportTextPath, // write-report.md の出力(JSON)
-    dashboardPath, // 追記先のダッシュボードHTML
-    logPath, // 提案ログ.md
-    dateStr, // YYYY-MM-DD (JST)
-  ] = process.argv;
-
-  const makuakeData = loadJson(makuakeCandidatesPath);
+function buildCardsForBatch(sourceName, candidatesPath, selectionPath, reportTextPath) {
+  const candidatesData = loadJson(candidatesPath);
   const selection = loadJson(selectionPath);
-  const alibabaData = loadJson(alibabaResultsPath);
   const reportText = loadJson(reportTextPath);
 
-  const makuakeByUrl = new Map(makuakeData.candidates.map((c) => [c.url, c]));
+  const byUrl = new Map(candidatesData.candidates.map((c) => [c.url, c]));
   const reportByTitle = new Map(reportText.selections.map((s) => [s.title, s]));
 
   const cards = selection.selections
     .map((sel) => {
-      const mk = makuakeByUrl.get(sel.url);
+      const item = byUrl.get(sel.url);
       const text = reportByTitle.get(sel.title);
-      if (!mk || !text) return null;
+      if (!item || !text) return null;
 
-      // Alibabaの照合結果(価格・MOQ等)は日次の発掘段階では表示しない。
-      // 検索キーワード案だけは、手動でAlibabaを検索する時のために軽く残す。
       const keywordChips = (sel.alibabaKeywords || [])
         .map((kw) => `<span class="keyword-chip">${esc(kw)}</span>`)
         .join('');
 
       return `<div class="product-row">
-        <img class="thumb" src="${esc(mk.thumbnailUrl)}" alt="${esc(mk.title)}" loading="lazy">
+        <img class="thumb" src="${esc(item.thumbnailUrl)}" alt="${esc(item.title)}" loading="lazy">
         <div class="product-body">
-          <h3><a href="${esc(mk.url)}" target="_blank" rel="noopener">${esc(mk.title)}</a></h3>
-          <p class="stat-line">支援額 <strong>${yen(mk.collectedMoney)}</strong>（達成率${mk.achievementPercent ?? '?'}%）／ 単価帯 ${yen(mk.priceMin)}〜${yen(mk.priceMax)}</p>
+          <p class="source-tag">${esc(sourceName)}</p>
+          <h3><a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)}</a></h3>
+          <p class="stat-line">支援額 <strong>${yen(item.collectedMoney)}</strong>（達成率${item.achievementPercent ?? '?'}%）／ 単価帯 ${yen(item.priceMin)}〜${yen(item.priceMax)}</p>
           <p>${esc(text.psychologicalNeed)}</p>
           <p class="block-label">競合状況</p>
           <p>${esc(text.competitiveNote)}</p>
@@ -63,11 +50,32 @@ function main() {
     })
     .filter(Boolean);
 
+  return { cards, dailyNote: reportText.dailyNote, logLines: selection.selections.map((s) => `- [${sourceName}] ${s.title} (${s.url})`) };
+}
+
+function main() {
+  const [, , dashboardPath, logPath, dateStr, ...rest] = process.argv;
+  if (rest.length % 4 !== 0 || rest.length === 0) {
+    throw new Error('ソースごとに sourceName candidatesPath selectionPath reportTextPath の4引数セットで渡してください');
+  }
+
+  const allCards = [];
+  const allNotes = [];
+  const allLogLines = [];
+
+  for (let i = 0; i < rest.length; i += 4) {
+    const [sourceName, candidatesPath, selectionPath, reportTextPath] = rest.slice(i, i + 4);
+    const { cards, dailyNote, logLines } = buildCardsForBatch(sourceName, candidatesPath, selectionPath, reportTextPath);
+    allCards.push(...cards);
+    if (dailyNote) allNotes.push(`【${sourceName}】${dailyNote}`);
+    allLogLines.push(...logLines);
+  }
+
   const dayHtml = `<section class="day">
   <h2>${esc(dateStr)}</h2>
-  <p class="daily-note">${esc(reportText.dailyNote)}</p>
+  ${allNotes.map((n) => `<p class="daily-note">${esc(n)}</p>`).join('\n  ')}
   <div class="products">
-    ${cards.join('\n')}
+    ${allCards.join('\n')}
   </div>
 </section>
 `;
@@ -78,10 +86,9 @@ function main() {
   const updated = dashboard.replace(marker, `${marker}\n${dayHtml}`);
   fs.writeFileSync(dashboardPath, updated);
 
-  const logLines = selection.selections.map((s) => `- ${s.title} (${s.url})`).join('\n');
-  fs.appendFileSync(logPath, `\n## ${dateStr}\n${logLines}\n`);
+  fs.appendFileSync(logPath, `\n## ${dateStr}\n${allLogLines.join('\n')}\n`);
 
-  console.log(`${cards.length}件のカードをダッシュボードに追記しました`);
+  console.log(`${allCards.length}件のカードをダッシュボードに追記しました`);
 }
 
 main();
