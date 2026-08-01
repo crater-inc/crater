@@ -259,10 +259,15 @@
     .filter-row{ width:100%; }
     .combined-chart-wrap{ height:220px; }
 
-    /* 絞り込みボタンは帯(背景)を敷かず、アイコン自体だけをコンテンツに浮かせる形で固定する */
-    .page-filter-bar{ position:sticky; top:var(--sticky-h, 96px); z-index:45; }
+    /* 絞り込みは細い帯として固定。閉じてる時は薄い帯、開いたら同じ帯がそのまま黒く伸びる */
+    .page-filter-bar{
+      position:sticky; top:var(--sticky-h, 96px); z-index:45;
+      background:rgba(13,13,13,0.94); backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--border);
+      padding:8px 0;
+    }
     .filter-toggle{ display:inline-flex; }
-    .control-bar{ display:none; margin-top:0; padding-top:14px; border-top:1px solid var(--border); background:var(--page); border-radius:0 0 12px 12px; }
+    .control-bar{ display:none; margin-top:0; padding:14px 0 2px; border-top:1px solid var(--border); }
     .control-bar.open{ display:flex; }
   }
   @media (max-width:480px){
