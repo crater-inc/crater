@@ -57,7 +57,7 @@ js='''
  var root=document.getElementById('pdpRoot');
  var S=1;
  var mask=document.querySelector('[data-pencil-name="photo-mask"]');
- function z(){ S=window.innerWidth/1199; root.style.zoom=S; if(mask){ mask.style.width='600px'; mask.style.height=(window.innerHeight/S)+'px'; } }
+ function z(){ S=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199; root.style.zoom=S; if(mask){ mask.style.width='600px'; mask.style.height=(window.innerHeight/S)+'px'; } }
  window.addEventListener('resize',function(){ z(); layoutLower(); }); z();
 
  // ---- 下段セクション追従（右カラムの高さに合わせてお客様の声/バナー/フッターを配置） ----

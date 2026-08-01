@@ -9,9 +9,7 @@
 =================================================================== */
 (function () {
   "use strict";
-  var KEY = "crater_review_" + location.pathname;
-  var comments = [];
-  try { comments = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) {}
+  var comments = [], curKey = "";
   var mode = false, popup = null;
 
   /* ---- スタイル注入 ---- */
@@ -48,7 +46,7 @@
     "#rv-copy:hover{background:#111;}",
     "#rv-cw{padding:12px 16px;border-top:1px solid #2a2a2a;flex-shrink:0;}",
     "#rv-layer{position:absolute;top:0;left:0;width:100%;pointer-events:none;z-index:2147482000;}",
-    ".rv-pin{position:absolute;width:28px;height:28px;border-radius:50% 50% 50% 2px;transform:translate(-50%,-100%);background:#2563eb;box-shadow:0 3px 10px rgba(0,0,0,.45);cursor:grab;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;pointer-events:all;transition:transform .15s;}",
+    ".rv-pin{position:absolute;z-index:2147483000;width:28px;height:28px;border-radius:50% 50% 50% 2px;transform:translate(-50%,-100%);background:#2563eb;box-shadow:0 3px 10px rgba(0,0,0,.45);cursor:grab;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;pointer-events:all;transition:transform .15s;}",
     ".rv-pin:hover{transform:translate(-50%,-100%) scale(1.15);}",
     ".rv-pop{position:fixed;background:#1f2937;border:1px solid #374151;border-radius:10px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.55);width:280px;z-index:2147483002;}",
     ".rv-pop .ctx{font-size:10.5px;color:#9fb0d0;margin-bottom:8px;line-height:1.4;}",
@@ -88,12 +86,23 @@
     return n;
   }
   function $(id) { return document.getElementById(id); }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(comments)); } catch (e) {} }
+  function save() { try { localStorage.setItem(curKey, JSON.stringify(comments)); } catch (e) {} }
+  // 表示中のビュー(PC=pageRoot / SP=spRoot / 商品=pdpRoot / 誕生秘話=storyRoot)ごとにコメントを分離
+  function syncComments() {
+    var r = getRoot();
+    var k = "crater_review_" + location.pathname + (r && r.id ? "_" + r.id : "");
+    if (k !== curKey) {
+      curKey = k;
+      try { comments = JSON.parse(localStorage.getItem(k) || "[]"); } catch (e) { comments = []; }
+    }
+  }
 
   /* ---- パネル開閉 ---- */
   function toggle() {
-    panel.classList.toggle("open");
+    var open = panel.classList.toggle("open");
     openBtn.classList.toggle("shifted");
+    window.rvPanelOpen = open;              // build側zoomがこれを見てコンテンツを縮小し重なりを回避
+    window.dispatchEvent(new Event("resize"));
   }
   openBtn.addEventListener("click", toggle);
   $("rv-x").addEventListener("click", toggle);
@@ -178,6 +187,7 @@
 
   /* ---- 描画 ---- */
   function render() {
+    syncComments();
     var root = getRoot();
     Array.prototype.slice.call(document.querySelectorAll(".rv-pin")).forEach(function (p) { p.remove(); });
     comments.forEach(function (c, i) {
