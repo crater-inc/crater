@@ -105,50 +105,35 @@
   }
   .stat-line strong { color: var(--accent); }
   .block-label {
+    display: inline-block;
     font-size: 10px;
     letter-spacing: 0.05em;
-    color: var(--meta);
+    color: var(--accent);
     text-transform: uppercase;
-    margin: 10px 0 4px;
+    margin: 12px 0 6px;
+    padding: 3px 9px;
+    background: #eef1f8;
+    border: 1px solid #d7deed;
+    border-radius: 5px;
+  }
+  .keyword-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 4px;
+  }
+  .keyword-chip {
+    font-size: 12px;
+    color: var(--sub);
+    background: #f7f5f0;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 4px 12px;
   }
   .product-body p {
     font-size: 14px;
     color: var(--sub);
     margin: 4px 0;
-  }
-  .alibaba-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 10px;
-  }
-  .alibaba-item {
-    background: #f7f5f0;
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-  .alibaba-item a {
-    color: var(--accent);
-    font-size: 13px;
-    text-decoration: none;
-  }
-  .alibaba-item a:hover { text-decoration: underline; }
-  .alibaba-meta {
-    font-size: 12px;
-    color: var(--meta);
-    margin: 2px 0;
-  }
-  .oem-suggestion {
-    font-size: 13px;
-    color: var(--sub);
-    margin: 4px 0 0;
-  }
-  .blocked-note {
-    font-size: 13px;
-    color: #a15c00;
-    background: #fff6e8;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin: 0;
   }
   @media (max-width: 768px) {
     header, main { padding-left: 20px; padding-right: 20px; }
@@ -174,8 +159,10 @@
           <h3><a href="https://www.makuake.com/project/pawswing/" target="_blank" rel="noopener">【付着毛90%削減】毎日の抜け毛掃除から解放？！猫専用自動グルーミングハウス</a></h3>
           <p class="stat-line">支援額 <strong>¥22,230,720</strong>（達成率22230%）／ 単価帯 ¥32,160〜¥61,440</p>
           <p>猫の抜け毛掃除は「毎日やらなければならないのに終わりがない」タイプの家事で、そこから解放されたいという欲求は生活の質に直結する深いストレス回避欲求ではないか。加えて猫は家族同然の存在であるため、単なる掃除の手間削減だけでなく「大切な猫を綺麗な状態で快適に過ごさせてあげられている」という所有的な満足感・自己肯定感も同時に満たしている可能性がある。この2つが重なることで、単なる時短家電以上の情緒的な購買動機が働いていると考えられる。</p>
-          <p class="block-label">競合状況</p>
+          <p class="block-label">競合状況（クロコの見立て）</p>
           <p>自動ペットガジェット自体は伸びているカテゴリだが、猫の抜け毛特化かつグルーミングハウスという切り口は今回のリスト内で類似案件が見当たらず、ニッチとしての空白地帯になっている。</p>
+          <p class="block-label">Alibaba検索キーワード案</p>
+          <div class="keyword-list"><span class="keyword-chip">automatic cat grooming house</span><span class="keyword-chip">self cleaning pet grooming enclosure</span><span class="keyword-chip">cat hair removal brush house</span></div>
         </div>
       </div>
 <div class="product-row">
@@ -184,8 +171,10 @@
           <h3><a href="https://www.makuake.com/project/brezi/" target="_blank" rel="noopener">低温抽出を最短5分で。自分史上最高の一杯へ｜Brezi自動コールドブリューマシン</a></h3>
           <p class="stat-line">支援額 <strong>¥5,139,400</strong>（達成率1027%）／ 単価帯 ¥59,800〜¥197,500</p>
           <p>コーヒーは多くの人にとって毎日繰り返す習慣であり、「自分史上最高の一杯」という表現は日々のルーティンを少しでも上質にしたいという自己投資・こだわりの欲求を刺激しているのではないか。また、キッチンに置く家電としての見た目の良さが、機能性以上に「良いものを持っている」という所有欲を満たしている側面もありそうで、これが高単価でも継続的に選ばれる土台になっていると考えられる。</p>
-          <p class="block-label">競合状況</p>
+          <p class="block-label">競合状況（クロコの見立て）</p>
           <p>コーヒーガジェット系のクラファンは常に一定数立ち上がるレッドオーシャン寄りのジャンルだが、その中でも「コールドブリュー特化」かつ「5分抽出」という時短軸はまだ差別化の余地が残っているようだ。</p>
+          <p class="block-label">Alibaba検索キーワード案</p>
+          <div class="keyword-list"><span class="keyword-chip">automatic cold brew coffee machine</span><span class="keyword-chip">rapid cold brew maker</span><span class="keyword-chip">electric cold extraction coffee machine</span></div>
         </div>
       </div>
 <div class="product-row">
@@ -194,8 +183,10 @@
           <h3><a href="https://www.makuake.com/project/coody10pro/" target="_blank" rel="noopener">ソロ・デュオキャンプに贅沢な開放感を。coody エアテント10.0 PRO進化</a></h3>
           <p class="stat-line">支援額 <strong>¥19,949,580</strong>（達成率19949%）／ 単価帯 ¥16,500〜¥370,000</p>
           <p>キャンプ愛好者にとって「快適さ・開放感」は一度体験すると繰り返し求めたくなる深い欲求であり、支援額の水準（中央値約23万円）からも、単なる機能性ではなく所有すること自体のステータス・満足感が購買動機の中心にあるのではないか。設営の手軽さや見た目の美しさといった体験価値が、価格の高さを正当化する軸になっていると考えられる。</p>
-          <p class="block-label">競合状況</p>
+          <p class="block-label">競合状況（クロコの見立て）</p>
           <p>同時期のクラファンにも焚き火台などアウトドア系プロジェクトが並んでおりジャンル全体は活発だが、エアテントというサブジャンルに絞ると突き抜ける余地はまだ残っているようだ。</p>
+          <p class="block-label">Alibaba検索キーワード案</p>
+          <div class="keyword-list"><span class="keyword-chip">inflatable air tent camping</span><span class="keyword-chip">air pole camping tent</span><span class="keyword-chip">large inflatable tent outdoor</span></div>
         </div>
       </div>
   </div>

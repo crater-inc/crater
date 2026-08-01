@@ -43,8 +43,11 @@ function main() {
       const text = reportByTitle.get(sel.title);
       if (!mk || !text) return null;
 
-      // Alibaba照合は日次の発掘段階では表示しない（本命が決まってから個別に確認する運用のため）。
-      // データ自体はdata/alibaba-*.jsonに残しておき、後で参照できるようにする。
+      // Alibabaの照合結果(価格・MOQ等)は日次の発掘段階では表示しない。
+      // 検索キーワード案だけは、手動でAlibabaを検索する時のために軽く残す。
+      const keywordChips = (sel.alibabaKeywords || [])
+        .map((kw) => `<span class="keyword-chip">${esc(kw)}</span>`)
+        .join('');
 
       return `<div class="product-row">
         <img class="thumb" src="${esc(mk.thumbnailUrl)}" alt="${esc(mk.title)}" loading="lazy">
@@ -52,8 +55,9 @@ function main() {
           <h3><a href="${esc(mk.url)}" target="_blank" rel="noopener">${esc(mk.title)}</a></h3>
           <p class="stat-line">支援額 <strong>${yen(mk.collectedMoney)}</strong>（達成率${mk.achievementPercent ?? '?'}%）／ 単価帯 ${yen(mk.priceMin)}〜${yen(mk.priceMax)}</p>
           <p>${esc(text.psychologicalNeed)}</p>
-          <p class="block-label">競合状況</p>
+          <p class="block-label">競合状況（クロコの見立て）</p>
           <p>${esc(text.competitiveNote)}</p>
+          ${keywordChips ? `<p class="block-label">Alibaba検索キーワード案</p><div class="keyword-list">${keywordChips}</div>` : ''}
         </div>
       </div>`;
     })
