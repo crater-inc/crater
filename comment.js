@@ -32,7 +32,7 @@
   });
 
   function init(db) {
-    var comments = [], mode = false, showResolved = true;
+    var comments = [], mode = false, showResolved = true, filter = "ALL";
     var input = null, view = null, activeId = null, curPid = "", unsub = null, curRoot = "";
 
     function $(id) { return document.getElementById(id); }
@@ -71,6 +71,9 @@
       "#cr-add{flex:1;background:#2563eb;border:none;color:#fff;padding:8px;font-size:11px;cursor:pointer;letter-spacing:.08em;border-radius:999px;font-family:inherit;}",
       "#cr-add.on{background:#ef4444;}",
       "#cr-toggle{background:none;border:1px solid #374151;color:#99aabb;padding:8px 10px;font-size:10px;cursor:pointer;border-radius:999px;font-family:inherit;white-space:nowrap;}",
+      "#cr-filter{display:flex;gap:6px;padding:2px 14px 10px;}",
+      "#cr-filter button{flex:1;background:none;border:1px solid #374151;color:#8896a8;padding:6px;font-size:10px;letter-spacing:.08em;cursor:pointer;border-radius:999px;font-family:inherit;}",
+      "#cr-filter button.on{background:#2a3346;color:#dfe7f2;border-color:#3b4a63;}",
       "#cr-list{flex:1;overflow-y:auto;padding:10px 14px;}",
       "#cr-empty{font-size:12px;color:#555;text-align:center;padding:40px 0;}",
       ".cr-item{background:#242424;padding:10px 12px;margin-bottom:8px;border:1px solid #2a2a2a;border-radius:6px;cursor:pointer;}",
@@ -103,7 +106,7 @@
       ".cr-badge{display:inline-block;margin-top:6px;font-size:10px;color:#4ade80;}",
       ".cr-meta{font-size:10px;color:#6b7280;margin-top:6px;}",
       "body.cr-mode{cursor:crosshair;}",
-      "@media(max-width:768px){#cr-panel{width:100%;height:62vh;top:auto;bottom:0;transform:translateY(100%);border-left:none;border-top:1px solid #333;}#cr-panel.open{transform:none;}#cr-open.shift{right:16px;bottom:calc(62vh + 12px);}}"
+      "@media(max-width:768px){#cr-panel{width:100%;height:auto;max-height:62vh;top:auto;bottom:0;transform:translateY(110%);border-left:none;border-top:1px solid #333;}#cr-panel.open{transform:none;}#cr-list{max-height:calc(62vh - 148px);transition:max-height .3s ease,opacity .25s,padding .3s;}#cr-panel.adding #cr-list{max-height:0;opacity:0;padding-top:0;padding-bottom:0;overflow:hidden;}body.cr-open-on #cr-open{display:none;}}"
     ].join("");
     document.head.appendChild(css);
 
@@ -114,12 +117,13 @@
     panel.innerHTML =
       '<div id="cr-ph"><span class="t">修正コメント</span><div class="r"><span id="cr-count">0</span><button id="cr-x">×</button></div></div>' +
       '<div id="cr-act"><button id="cr-add">💬 コメント追加</button><button id="cr-toggle">修正済みを隠す</button></div>' +
+      '<div id="cr-filter"><button data-f="ALL" class="on">ALL</button><button data-f="PC">PC</button><button data-f="SP">SP</button></div>' +
       '<div id="cr-list"><div id="cr-empty">コメントなし</div></div>';
     document.body.appendChild(openBtn);
     document.body.appendChild(panel);
 
     // パネル開閉：開くとページ側zoomが window.rvPanelOpen を見てコンテンツを縮小→パネルと重ならず全部見える（PCのみ・SPはボトムシート）
-    function toggle() { var o = panel.classList.toggle("open"); openBtn.classList.toggle("shift"); window.rvPanelOpen = o; window.dispatchEvent(new Event("resize")); }
+    function toggle() { var o = panel.classList.toggle("open"); openBtn.classList.toggle("shift"); document.body.classList.toggle("cr-open-on", o); window.rvPanelOpen = o; window.dispatchEvent(new Event("resize")); }
     openBtn.addEventListener("click", toggle);
     $("cr-x").addEventListener("click", toggle);
 
@@ -127,10 +131,19 @@
       mode = !mode; document.body.classList.toggle("cr-mode", mode);
       this.classList.toggle("on", mode);
       this.textContent = mode ? "✕ 追加をやめる" : "💬 コメント追加";
+      panel.classList.toggle("adding", mode); // SP：追加中はリストを畳んで下のデザインを触れるようにする
       if (!mode) closeInput();
     });
     $("cr-toggle").addEventListener("click", function () {
       showResolved = !showResolved; this.textContent = showResolved ? "修正済みを隠す" : "修正済みを表示"; renderPins();
+    });
+    // PC/SP絞り込み（ALL＝両方）。PCビューで見てもSPのコメントが混ざる→クリックで飛べない問題の対策
+    Array.prototype.slice.call(panel.querySelectorAll("#cr-filter button")).forEach(function (b) {
+      b.addEventListener("click", function () {
+        filter = b.getAttribute("data-f");
+        Array.prototype.slice.call(panel.querySelectorAll("#cr-filter button")).forEach(function (x) { x.classList.toggle("on", x === b); });
+        renderPanel();
+      });
     });
 
     // クリックした要素の文脈（どのセクション・近傍テキスト）を拾う
@@ -233,8 +246,12 @@
       var list = $("cr-list");
       Array.prototype.slice.call(list.querySelectorAll(".cr-item")).forEach(function (el) { el.remove(); });
       var empty = $("cr-empty");
-      // リストはPC/SP両方まとめて表示
-      var vis = comments.filter(function (c) { return showResolved || !c.resolved; });
+      // リストはフィルタ(ALL/PC/SP)で絞り込み
+      var vis = comments.filter(function (c) {
+        if (!showResolved && c.resolved) return false;
+        if (filter !== "ALL" && c._view !== filter) return false;
+        return true;
+      });
       if (!vis.length) { empty.style.display = "block"; return; }
       empty.style.display = "none";
       vis.forEach(function (c) {
