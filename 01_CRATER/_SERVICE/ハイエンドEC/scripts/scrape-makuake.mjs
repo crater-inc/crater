@@ -1,5 +1,6 @@
 // Makuakeの公開ランキングAPIを直接叩いて候補を抽出する（ブラウザ不要）
 import fs from 'node:fs';
+import path from 'node:path';
 
 const RANKING_URL =
   'https://api.makuake.com/v2/rankings?limit=50&before_expire=false&return_not_sold_out=false&with_returns=true&with_user=false';
@@ -49,6 +50,7 @@ async function main() {
     });
   }
 
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(
     outPath,
     JSON.stringify({ scrapedAt: new Date().toISOString(), candidates }, null, 2)

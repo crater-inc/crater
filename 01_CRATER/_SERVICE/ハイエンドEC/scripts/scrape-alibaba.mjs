@@ -3,6 +3,7 @@
 // ブロックを検知したらエラーにせず「取得失敗（要手動確認）」として記録する。
 import { chromium } from 'playwright';
 import fs from 'node:fs';
+import path from 'node:path';
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -97,6 +98,7 @@ async function main() {
   }
 
   await browser.close();
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
   fs.writeFileSync(outPath, JSON.stringify({ scrapedAt: new Date().toISOString(), results }, null, 2));
   console.log(`Alibaba検索結果を ${outPath} に保存しました`);
 }
