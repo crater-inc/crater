@@ -55,7 +55,7 @@ function main() {
           <h3><a href="${esc(mk.url)}" target="_blank" rel="noopener">${esc(mk.title)}</a></h3>
           <p class="stat-line">支援額 <strong>${yen(mk.collectedMoney)}</strong>（達成率${mk.achievementPercent ?? '?'}%）／ 単価帯 ${yen(mk.priceMin)}〜${yen(mk.priceMax)}</p>
           <p>${esc(text.psychologicalNeed)}</p>
-          <p class="block-label">競合状況（クロコの見立て）</p>
+          <p class="block-label">競合状況</p>
           <p>${esc(text.competitiveNote)}</p>
           ${keywordChips ? `<p class="block-label">Alibaba検索キーワード案</p><div class="keyword-list">${keywordChips}</div>` : ''}
         </div>
