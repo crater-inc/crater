@@ -117,7 +117,10 @@
     font-size:13px; font-weight:700; cursor:pointer;
   }
 
-  /* ===== コントロールバー（期間・指標・表示切替。ヘッダー内に常駐） ===== */
+  /* ===== ページ内フィルターバー（そのページで実際に使う絞り込みだけをページ内に置く） ===== */
+  .page-filter-bar{ margin-top:24px; margin-bottom:4px; }
+
+  /* ===== コントロールバー（期間・指標・表示切替） ===== */
   .control-bar{
     margin-top:14px; display:flex; align-items:flex-start; gap:24px; flex-wrap:wrap;
   }
@@ -300,48 +303,6 @@
           <span class="pulse-dot"></span>
           <span id="updatedAt" class="mono">—</span>
         </div>
-        <button class="filter-toggle" id="filterToggle" type="button">絞り込み <span id="filterToggleIcon">▾</span></button>
-      </div>
-    </div>
-
-    <div class="control-bar" id="controlBar">
-      <div class="control-group">
-        <div class="control-group-label">期間</div>
-        <div class="filter-row" id="rangeRow">
-          <button class="f-pill" data-range="7">7日</button>
-          <button class="f-pill active" data-range="30">30日</button>
-          <button class="f-pill" data-range="90">90日</button>
-          <button class="f-pill" data-range="custom">カスタム</button>
-        </div>
-      </div>
-      <div class="control-group" style="position:relative;">
-        <div class="control-group-label-row">
-          <span class="control-group-label">指標</span>
-          <button class="info-icon" id="metricInfoBtn" type="button" aria-label="指標の説明">?</button>
-        </div>
-        <div class="filter-row" id="metricRow">
-          <button class="f-pill active" data-metric="sessions">セッション</button>
-          <button class="f-pill" data-metric="users">UU数</button>
-          <button class="f-pill" data-metric="pageviews">PV数</button>
-        </div>
-        <div class="info-popover" id="metricInfoPopover">
-          <div><strong>セッション</strong>：サイトへの訪問回数。同じ人が何度来ても、来るたびに1回とカウントします</div>
-          <div><strong>UU数</strong>：訪れた人の数（ユニークユーザー）。同じ人が何度来ても1人としてカウントします</div>
-          <div><strong>PV数</strong>：ページが表示された回数。1人が複数ページ見れば、その分カウントします</div>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="control-group-label">表示</div>
-        <div class="filter-row" id="chartTypeRow">
-          <button class="f-pill active" data-chart="line">折れ線</button>
-          <button class="f-pill" data-chart="bar">棒グラフ</button>
-        </div>
-      </div>
-      <div class="custom-range" id="customRange">
-        <input type="date" id="dateFrom">
-        <span class="mono" style="color:var(--muted);font-size:12px;">〜</span>
-        <input type="date" id="dateTo">
-        <button onclick="applyCustomRange()">適用</button>
       </div>
     </div>
   </header>
@@ -355,6 +316,50 @@
   </nav>
 
   <div id="viewOverview">
+    <div class="page-filter-bar">
+      <button class="filter-toggle" id="filterToggleOverview" type="button">絞り込み <span id="filterToggleIconOverview">▾</span></button>
+      <div class="control-bar" id="controlBarOverview">
+        <div class="control-group">
+          <div class="control-group-label">期間</div>
+          <div class="filter-row range-row" id="rangeRowOverview">
+            <button class="f-pill" data-range="7">7日</button>
+            <button class="f-pill active" data-range="30">30日</button>
+            <button class="f-pill" data-range="90">90日</button>
+            <button class="f-pill" data-range="custom">カスタム</button>
+          </div>
+        </div>
+        <div class="control-group" style="position:relative;">
+          <div class="control-group-label-row">
+            <span class="control-group-label">指標</span>
+            <button class="info-icon" id="metricInfoBtn" type="button" aria-label="指標の説明">?</button>
+          </div>
+          <div class="filter-row" id="metricRow">
+            <button class="f-pill active" data-metric="sessions">セッション</button>
+            <button class="f-pill" data-metric="users">UU数</button>
+            <button class="f-pill" data-metric="pageviews">PV数</button>
+          </div>
+          <div class="info-popover" id="metricInfoPopover">
+            <div><strong>セッション</strong>：サイトへの訪問回数。同じ人が何度来ても、来るたびに1回とカウントします</div>
+            <div><strong>UU数</strong>：訪れた人の数（ユニークユーザー）。同じ人が何度来ても1人としてカウントします</div>
+            <div><strong>PV数</strong>：ページが表示された回数。1人が複数ページ見れば、その分カウントします</div>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="control-group-label">表示</div>
+          <div class="filter-row" id="chartTypeRow">
+            <button class="f-pill active" data-chart="line">折れ線</button>
+            <button class="f-pill" data-chart="bar">棒グラフ</button>
+          </div>
+        </div>
+        <div class="custom-range" id="customRangeOverview">
+          <input type="date" id="dateFromOverview">
+          <span class="mono" style="color:var(--muted);font-size:12px;">〜</span>
+          <input type="date" id="dateToOverview">
+          <button onclick="applyCustomRange('Overview')">適用</button>
+        </div>
+      </div>
+    </div>
+
     <section class="insight-banner">
       <div class="insight-label">本日の気づき<span id="sampleTag" class="sample-tag" style="display:none;">SAMPLE</span></div>
       <div class="insight-text" id="insightText">読み込み中…</div>
@@ -388,6 +393,26 @@
   </div>
 
   <div id="viewBreakdown" style="display:none;">
+    <div class="page-filter-bar">
+      <button class="filter-toggle" id="filterToggleBreakdown" type="button">絞り込み <span id="filterToggleIconBreakdown">▾</span></button>
+      <div class="control-bar" id="controlBarBreakdown">
+        <div class="control-group">
+          <div class="control-group-label">期間</div>
+          <div class="filter-row range-row" id="rangeRowBreakdown">
+            <button class="f-pill" data-range="7">7日</button>
+            <button class="f-pill active" data-range="30">30日</button>
+            <button class="f-pill" data-range="90">90日</button>
+            <button class="f-pill" data-range="custom">カスタム</button>
+          </div>
+        </div>
+        <div class="custom-range" id="customRangeBreakdown">
+          <input type="date" id="dateFromBreakdown">
+          <span class="mono" style="color:var(--muted);font-size:12px;">〜</span>
+          <input type="date" id="dateToBreakdown">
+          <button onclick="applyCustomRange('Breakdown')">適用</button>
+        </div>
+      </div>
+    </div>
     <div class="breakdown-note" id="breakdownNote"></div>
     <section class="grid" id="breakdownGrid"></section>
   </div>
@@ -476,17 +501,7 @@ async function init(){
   document.getElementById('footerNote').textContent =
     (DATA.is_sample ? '※ 現在表示中の数値はUI検証用のサンプルです。実データ接続後に自動で切り替わります。' : '');
 
-  document.querySelectorAll('#rangeRow .f-pill').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const r = btn.dataset.range;
-      document.getElementById('customRange').classList.toggle('show', r === 'custom');
-      if (r === 'custom') return;
-      document.querySelectorAll('#rangeRow .f-pill').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      currentRange = { type:r };
-      render();
-    });
-  });
+  wireRangeButtons();
 
   wirePillGroup('metricRow', (val)=>{ currentMetric = val; render(); });
   wirePillGroup('chartTypeRow', (val)=>{ currentChartType = val; render(); });
@@ -505,11 +520,8 @@ async function init(){
     }
   });
 
-  document.getElementById('filterToggle').addEventListener('click', () => {
-    const bar = document.getElementById('controlBar');
-    const open = bar.classList.toggle('open');
-    document.getElementById('filterToggleIcon').textContent = open ? '▴' : '▾';
-  });
+  wireFilterToggle('filterToggleOverview', 'filterToggleIconOverview', 'controlBarOverview');
+  wireFilterToggle('filterToggleBreakdown', 'filterToggleIconBreakdown', 'controlBarBreakdown');
 
   document.querySelectorAll('.view-tab').forEach(btn=>{
     btn.addEventListener('click', ()=>{
@@ -540,12 +552,42 @@ function wirePillGroup(rowId, onChange){
   });
 }
 
-function applyCustomRange(){
-  const from = document.getElementById('dateFrom').value;
-  const to = document.getElementById('dateTo').value;
+// 期間フィルターは概要/内訳ページの両方に置いてあるため、
+// どちらで操作しても両方の表示状態を揃える(単一のcurrentRangeを共有)
+function wireRangeButtons(){
+  document.querySelectorAll('.range-row .f-pill').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const r = btn.dataset.range;
+      document.querySelectorAll('.custom-range').forEach(el=>el.classList.toggle('show', r === 'custom'));
+      if (r === 'custom') {
+        document.querySelectorAll('.range-row .f-pill').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.range-row [data-range="custom"]').forEach(b=>b.classList.add('active'));
+        return;
+      }
+      document.querySelectorAll('.range-row .f-pill').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.range-row [data-range="' + r + '"]').forEach(b=>b.classList.add('active'));
+      currentRange = { type:r };
+      render();
+    });
+  });
+}
+
+function wireFilterToggle(toggleId, iconId, barId){
+  const btn = document.getElementById(toggleId);
+  if (!btn) return;
+  btn.addEventListener('click', () => {
+    const bar = document.getElementById(barId);
+    const open = bar.classList.toggle('open');
+    document.getElementById(iconId).textContent = open ? '▴' : '▾';
+  });
+}
+
+function applyCustomRange(scope){
+  const from = document.getElementById('dateFrom' + scope).value;
+  const to = document.getElementById('dateTo' + scope).value;
   if (!from || !to) return;
-  document.querySelectorAll('#rangeRow .f-pill').forEach(b=>b.classList.remove('active'));
-  document.querySelector('#rangeRow [data-range="custom"]').classList.add('active');
+  document.querySelectorAll('.range-row .f-pill').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.range-row [data-range="custom"]').forEach(b=>b.classList.add('active'));
   currentRange = { type:'custom', from, to };
   render();
 }

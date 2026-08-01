@@ -117,7 +117,7 @@ def main():
     data["bownow"] = {
         "updated_at": now,
         "sites_covered": SITES_COVERED,
-        "note": "BowNowは4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。IPアドレスから識別できた企業を日々蓄積して一覧表示しています（識別できるのは全訪問のうち一部）。",
+        "note": "【表示基準】BowNowが訪問元IPアドレスから企業を自動識別できた場合のみ、その企業名をここに表示しています(個人利用の回線など識別できない訪問は対象外)。識別できた企業は日々蓄積して表示。4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。",
         "scanned_leads_this_run": len(leads),
         "companies_total": len(companies),
         "companies": companies,
