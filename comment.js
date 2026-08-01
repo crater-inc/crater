@@ -1,10 +1,11 @@
 // ============================================================
 // CRATER 修正コメントツール（汎用・クラウド版）
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
-//   - Firestore(view-crater)にリアルタイム保存 → 複数端末・クライアントと即共有
-//   - ページ×ビュー(PC/SP)ごとに自動でコメントを分離（zoomコンテナを自動判定）
-//   - 解決(完了)フラグ → 「解決済みを隠す」で非表示
-//   - ?client=1 でクライアント公開モード（「クロコに渡す」ボタンを隠す）
+//   - Firestore(view-crater)にリアルタイム保存 → URLを渡すだけでクロコ／他端末と即共有（コピペ不要）
+//   - 1ページ＝1ドキュメント。PC/SPのコメントは同じ所に貯まり、ヘッダーで件数を分けて表示
+//   - ピンは「今見ているビュー(PC/SP)」の分だけ表示。リストは両方まとめて表示
+//   - 修正済フラグ → 「修正済みを隠す」で非表示。戻すで差し戻し
+//   - ?client=1 でクライアント公開モード
 //   - firebase SDK もこのファイルが動的に読み込む＝HTML側は<script>1行だけでOK
 // ============================================================
 (function () {
@@ -32,7 +33,7 @@
 
   function init(db) {
     var comments = [], mode = false, showResolved = true;
-    var input = null, view = null, activeId = null, curPid = "", unsub = null;
+    var input = null, view = null, activeId = null, curPid = "", unsub = null, curRoot = "";
 
     function $(id) { return document.getElementById(id); }
     function elm(t, a, x) { var n = document.createElement(t); if (a) for (var k in a) n.setAttribute(k, a[k]); if (x != null) n.textContent = x; return n; }
@@ -46,8 +47,10 @@
       for (var j = 0; j < z.length; j++) { if (z[j].offsetParent !== null && z[j].getBoundingClientRect().width > 0) return z[j]; }
       return document.body;
     }
-    // ページ×ビューごとに一意のFirestoreドキュメントID（doc IDにできる文字だけ）
-    function pageId() { var r = getRoot(); return ("v" + location.pathname + "_" + (r.id || "body")).replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 180); }
+    // ルートのidからビュー名（PC/SP）を判定。SP用コンテナ(spRoot等)は "sp" を含む前提
+    function viewOf(id) { return /sp/i.test(id || "") ? "SP" : "PC"; }
+    // 1ページ＝1ドキュメント（PC/SPを同じ所に貯める）。doc IDにできる文字だけ
+    function pageId() { return ("v" + location.pathname).replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 180); }
     function col() { return db.collection("comments").doc(curPid).collection("items"); }
 
     // ---- CSS ----
@@ -60,7 +63,7 @@
       "#cr-ph{padding:14px 16px;border-bottom:1px solid #2a2a2a;display:flex;align-items:center;justify-content:space-between;background:#111;}",
       "#cr-ph .t{font-size:12px;color:#aaa;letter-spacing:.1em;}",
       "#cr-ph .r{display:flex;align-items:center;gap:8px;}",
-      "#cr-count{font-size:11px;color:#ccc;background:#333;padding:2px 8px;border-radius:8px;}",
+      "#cr-count{font-size:11px;color:#ccc;background:#333;padding:2px 8px;border-radius:8px;white-space:nowrap;}",
       "#cr-x{background:none;border:none;color:#666;font-size:18px;cursor:pointer;}",
       "#cr-act{padding:10px 14px;border-bottom:1px solid #2a2a2a;display:flex;gap:8px;}",
       "#cr-add{flex:1;background:#2563eb;border:none;color:#fff;padding:8px;font-size:11px;cursor:pointer;letter-spacing:.08em;border-radius:999px;font-family:inherit;}",
@@ -73,14 +76,14 @@
       ".cr-ih{display:flex;align-items:center;gap:8px;margin-bottom:5px;}",
       ".cr-n{width:20px;height:20px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}",
       ".cr-n.res{background:#6b7280;}",
+      ".cr-bdg{font-size:9px;color:#9fb4d6;border:1px solid #33465e;border-radius:4px;padding:1px 6px;letter-spacing:.06em;flex-shrink:0;}",
       ".cr-nm{font-size:11px;color:#888;}",
       ".cr-sec{font-size:10px;color:#5b6b8c;margin-bottom:2px;}",
       ".cr-tx{font-size:12px;color:#e0e0e0;line-height:1.6;}",
       ".cr-hint{font-size:10px;color:#6b7280;margin:2px 0 6px;}",
       ".cr-ba{display:flex;gap:6px;margin-top:8px;}",
       ".cr-ba button{background:none;border:1px solid #374151;color:#aaa;padding:3px 8px;font-size:10px;cursor:pointer;border-radius:4px;font-family:inherit;}",
-      "#cr-cw{padding:12px 14px;border-top:1px solid #2a2a2a;}",
-      "#cr-copy{width:100%;background:#1a3a2a;border:1px solid #2a6a4a;color:#4ade80;padding:10px;border-radius:6px;font-size:11px;letter-spacing:.1em;cursor:pointer;font-family:inherit;}",
+      ".cr-ein{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:8px;box-sizing:border-box;font-family:inherit;line-height:1.5;outline:none;resize:vertical;margin-top:6px;}",
       ".cr-pin{position:absolute;z-index:2147482000;width:28px;height:28px;border-radius:50% 50% 50% 2px;transform:translate(-50%,-100%);background:#2563eb;box-shadow:0 3px 10px rgba(0,0,0,.45);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;}",
       ".cr-pin.res{background:#6b7280;}",
       ".cr-input,.cr-view{position:fixed;background:#1f2937;border:1px solid #374151;border-radius:10px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.55);width:280px;z-index:2147483002;font-family:'Zen Kaku Gothic New',sans-serif;box-sizing:border-box;}",
@@ -106,10 +109,9 @@
     var openBtn = elm("button", { id: "cr-open", title: "修正コメント" }, "💬");
     var panel = elm("div", { id: "cr-panel" });
     panel.innerHTML =
-      '<div id="cr-ph"><span class="t">修正コメント</span><div class="r"><span id="cr-count">0件</span><button id="cr-x">×</button></div></div>' +
-      '<div id="cr-act"><button id="cr-add">💬 コメント追加</button><button id="cr-toggle">解決済みを隠す</button></div>' +
-      '<div id="cr-list"><div id="cr-empty">コメントなし</div></div>' +
-      (CLIENT ? "" : '<div id="cr-cw"><button id="cr-copy">クロコに渡す（コピー）</button></div>');
+      '<div id="cr-ph"><span class="t">修正コメント</span><div class="r"><span id="cr-count">0</span><button id="cr-x">×</button></div></div>' +
+      '<div id="cr-act"><button id="cr-add">💬 コメント追加</button><button id="cr-toggle">修正済みを隠す</button></div>' +
+      '<div id="cr-list"><div id="cr-empty">コメントなし</div></div>';
     document.body.appendChild(openBtn);
     document.body.appendChild(panel);
 
@@ -125,7 +127,7 @@
       if (!mode) closeInput();
     });
     $("cr-toggle").addEventListener("click", function () {
-      showResolved = !showResolved; this.textContent = showResolved ? "解決済みを隠す" : "解決済みを表示"; renderPins();
+      showResolved = !showResolved; this.textContent = showResolved ? "修正済みを隠す" : "修正済みを表示"; renderPins();
     });
 
     // クリックした要素の文脈（どのセクション・近傍テキスト）を拾う
@@ -160,7 +162,7 @@
       input.querySelector(".cr-send").addEventListener("click", function () {
         var text = ta.value.trim(); if (!text) return;
         var name = input.querySelector("input").value.trim() || "匿名";
-        col().add({ x: parseFloat(xp), y: parseFloat(yp), text: text, name: name, section: ctx.section, hint: ctx.hint, resolved: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+        col().add({ x: parseFloat(xp), y: parseFloat(yp), text: text, name: name, section: ctx.section, hint: ctx.hint, root: r.id || "body", view: viewOf(r.id), resolved: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
         closeInput();
       });
       var ime = false;
@@ -169,18 +171,36 @@
       ta.addEventListener("keydown", function (ev) { if (ev.key === "Enter" && !ev.shiftKey && !ime) { ev.preventDefault(); input.querySelector(".cr-send").click(); } });
     }, true);
 
+    // ビューごと（PC/SP）に 1..n の連番を振る（修正済も含めて番号は固定）
+    function assignNums() {
+      var cnt = {};
+      comments.forEach(function (c) { var v = viewOf(c.root); cnt[v] = (cnt[v] || 0) + 1; c._num = cnt[v]; c._view = v; });
+    }
+
     function renderPins() {
+      curRoot = getRoot().id;
       var r = getRoot();
       Array.prototype.slice.call(document.querySelectorAll(".cr-pin")).forEach(function (p) { p.remove(); });
-      var vis = comments.filter(function (c) { return showResolved || !c.resolved; });
-      vis.forEach(function (c, i) {
-        var pin = elm("div", { class: "cr-pin" + (c.resolved ? " res" : "") }, String(i + 1));
+      // ピンは「今見ているビュー」の分だけ
+      var visPins = comments.filter(function (c) { return c.root === curRoot && (showResolved || !c.resolved); });
+      visPins.forEach(function (c) {
+        var pin = elm("div", { class: "cr-pin" + (c.resolved ? " res" : "") }, String(c._num));
         pin.style.left = c.x + "%"; pin.style.top = c.y + "%"; pin.dataset.id = c.id;
-        pin.addEventListener("click", function (e) { e.stopPropagation(); if (activeId === c.id) { closeView(); return; } closeView(); showView(c, pin, i + 1); });
+        pin.addEventListener("click", function (e) { e.stopPropagation(); if (activeId === c.id) { closeView(); return; } closeView(); showView(c, pin, c._num); });
         r.appendChild(pin);
       });
-      renderPanel(vis);
-      $("cr-count").textContent = comments.length + "件";
+      renderPanel();
+      updateCount();
+    }
+
+    // ヘッダー件数：PC ○・SP ○（数字は未対応の残数）
+    function updateCount() {
+      var order = ["PC", "SP"], g = {};
+      comments.forEach(function (c) { var v = c._view || viewOf(c.root); if (!g[v]) g[v] = { open: 0, total: 0 }; g[v].total++; if (!c.resolved) g[v].open++; });
+      var parts = [];
+      order.forEach(function (v) { if (g[v] && g[v].total) parts.push(v + " " + g[v].open); });
+      Object.keys(g).forEach(function (v) { if (order.indexOf(v) < 0 && g[v].total) parts.push(v + " " + g[v].open); });
+      $("cr-count").textContent = parts.length ? parts.join("・") : "0";
     }
 
     function showView(c, pin, num) {
@@ -189,10 +209,10 @@
       view.style.left = Math.min(pr.right + 8, window.innerWidth - 296) + "px";
       view.style.top = Math.max(pr.top - 10, 60) + "px";
       var date = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString("ja-JP") : "";
-      view.innerHTML = '<div class="cr-vh"><span class="cr-vnum">#' + num + ' ' + esc(c.name || "匿名") + '</span><div class="cr-va"><button class="e">編集</button><button class="r">' + (c.resolved ? "再開" : "解決") + '</button><button class="d">削除</button></div></div>' +
+      view.innerHTML = '<div class="cr-vh"><span class="cr-vnum">#' + num + ' ' + esc(c.name || "匿名") + '</span><div class="cr-va"><button class="e">編集</button><button class="r">' + (c.resolved ? "戻す" : "修正済") + '</button><button class="d">削除</button></div></div>' +
         (c.section ? '<div class="cr-hint">📍 ' + esc(c.section) + (c.hint ? " ／ 「" + esc(c.hint) + "」" : "") + '</div>' : "") +
         '<div class="cr-vtx" id="crv-' + c.id + '">' + esc(c.text) + '</div>' +
-        (c.resolved ? '<span class="cr-badge">✓ 解決済み</span>' : "") + (date ? '<div class="cr-meta">' + date + '</div>' : "");
+        (c.resolved ? '<span class="cr-badge">✓ 修正済み</span>' : "") + (date ? '<div class="cr-meta">' + date + '</div>' : "");
       document.body.appendChild(view);
       view.querySelector(".e").addEventListener("click", function () { editView(c); });
       view.querySelector(".r").addEventListener("click", function () { col().doc(c.id).update({ resolved: !c.resolved }); closeView(); });
@@ -206,44 +226,55 @@
       view.querySelector(".cr-send").addEventListener("click", function () { var t = box.value.trim(); if (!t) return; col().doc(c.id).update({ text: t }); closeView(); });
     }
 
-    function renderPanel(vis) {
+    function renderPanel() {
       var list = $("cr-list");
       Array.prototype.slice.call(list.querySelectorAll(".cr-item")).forEach(function (el) { el.remove(); });
       var empty = $("cr-empty");
+      // リストはPC/SP両方まとめて表示
+      var vis = comments.filter(function (c) { return showResolved || !c.resolved; });
       if (!vis.length) { empty.style.display = "block"; return; }
       empty.style.display = "none";
-      vis.forEach(function (c, i) {
+      vis.forEach(function (c) {
         var it = elm("div", { class: "cr-item" + (c.resolved ? " res" : "") });
-        it.innerHTML = '<div class="cr-ih"><div class="cr-n' + (c.resolved ? " res" : "") + '">' + (i + 1) + '</div><span class="cr-nm">' + esc(c.name || "匿名") + '</span></div>' +
+        it.innerHTML = '<div class="cr-ih"><div class="cr-n' + (c.resolved ? " res" : "") + '">' + c._num + '</div><span class="cr-bdg">' + c._view + '</span><span class="cr-nm">' + esc(c.name || "匿名") + '</span></div>' +
           (c.section ? '<div class="cr-sec">' + esc(c.section) + '</div>' : "") +
           '<div class="cr-tx">' + esc(c.text) + '</div>' +
-          '<div class="cr-ba"><button class="r">' + (c.resolved ? "再開" : "解決") + '</button><button class="d">削除</button></div>';
+          '<div class="cr-ba"><button class="e">編集</button><button class="r">' + (c.resolved ? "戻す" : "修正済") + '</button><button class="d">削除</button></div>';
+        var txEl = it.querySelector(".cr-tx");
+        it.querySelector(".e").addEventListener("click", function (e) { e.stopPropagation(); inlineEdit(it, txEl, c); });
         it.querySelector(".r").addEventListener("click", function (e) { e.stopPropagation(); col().doc(c.id).update({ resolved: !c.resolved }); });
         it.querySelector(".d").addEventListener("click", function (e) { e.stopPropagation(); if (!confirm("削除？")) return; col().doc(c.id).delete(); });
-        it.addEventListener("click", function (e) { if (e.target.closest("button")) return; var pin = getRoot().querySelector('.cr-pin[data-id="' + c.id + '"]'); if (pin) { pin.scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(function () { pin.click(); },400); } });
+        it.addEventListener("click", function (e) {
+          if (e.target.closest("button") || e.target.closest("textarea")) return;
+          if (c.root !== curRoot) return; // 別ビューのコメントはこのビューにピンが無い
+          var pin = getRoot().querySelector('.cr-pin[data-id="' + c.id + '"]'); if (pin) { pin.scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(function () { pin.click(); }, 400); }
+        });
         list.appendChild(it);
       });
     }
 
-    // クロコに渡す（未解決/解決済みを整形コピー）
-    if (!CLIENT) $("cr-copy").addEventListener("click", function () {
-      var open = comments.filter(function (c) { return !c.resolved; });
-      var res = comments.filter(function (c) { return c.resolved; });
-      var L = ["=== 修正コメント（" + location.pathname + "）===",
-        new Date().toLocaleString("ja-JP") + " / 計" + comments.length + "件（未解決" + open.length + "・解決済" + res.length + "）", ""];
-      open.forEach(function (c, i) { L.push("[未" + (i + 1) + "] 【" + (c.section || "") + "】" + (c.hint ? "「" + c.hint + "」付近" : "") + " ／ " + (c.name || "匿名")); L.push("　修正：" + c.text); L.push(""); });
-      if (res.length) { L.push("── 解決済み ──"); res.forEach(function (c, i) { L.push("[済" + (i + 1) + "] " + c.text); }); }
-      var txt = L.join("\n");
-      navigator.clipboard.writeText(txt).then(function () { var b = $("cr-copy"); b.textContent = "✓ コピーしました！"; setTimeout(function () { b.textContent = "クロコに渡す（コピー）"; }, 2000); }, function () { prompt("コピーしてクロコに貼ってください：", txt); });
-    });
+    // リスト行のインライン編集
+    function inlineEdit(item, txEl, c) {
+      if (item.querySelector(".cr-ein")) return;
+      var ba = item.querySelector(".cr-ba");
+      txEl.style.display = "none"; ba.style.display = "none";
+      var box = elm("textarea", { class: "cr-ein", rows: "3" }); box.value = c.text;
+      var row = elm("div", { class: "cr-row" });
+      row.innerHTML = '<button class="cr-cancel">やめる</button><button class="cr-send">保存</button>';
+      item.appendChild(box); item.appendChild(row); box.focus();
+      row.querySelector(".cr-cancel").addEventListener("click", function (e) { e.stopPropagation(); box.remove(); row.remove(); txEl.style.display = ""; ba.style.display = ""; });
+      row.querySelector(".cr-send").addEventListener("click", function (e) { e.stopPropagation(); var t = box.value.trim(); if (!t) return; col().doc(c.id).update({ text: t }); /* onSnapshotで再描画される */ });
+    }
 
-    // Firestore購読（ビュー切替でPAGE_ID張り替え＝PC/SP自動分離）
+    // Firestore購読（1ページ＝1ドキュメント。PC/SPは中で分けて扱う）
     function subscribe() {
       var pid = pageId(); if (pid === curPid) return;
       curPid = pid; if (unsub) unsub();
       unsub = col().onSnapshot(function (snap) {
         comments = snap.docs.map(function (d) { var o = d.data(); o.id = d.id; return o; });
         comments.sort(function (a, b) { return (a.createdAt ? a.createdAt.seconds : 0) - (b.createdAt ? b.createdAt.seconds : 0); });
+        assignNums();
+        window.__crComments = comments; // クロコがURLで見に来た時に一括取得できるように（非表示）
         renderPins();
       }, function (err) { console.error("[comment]", err); });
     }
