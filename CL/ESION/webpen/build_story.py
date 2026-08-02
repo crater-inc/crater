@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-# ESION 誕生秘話（グレー版）ビルド：story-export.html → story.html
-# 静的1カラム・zoom追従（innerWidth/1199）・パスワードゲート・フッターリンク・コメント機能(review.js)
+# ESION 誕生秘話（グレー版）ビルド：story-export.html + story-export-sp.html → story.html
+# レスポンシブ1ファイル版（build.pyと同方式）：PC=zoom追従(1199基準) / SP=縦1カラムzoom追従(390基準)
+# パスワードゲート・フッターリンク・コメント機能(review.js)は共通
 # 使い方: python3 build_story.py
 import re, urllib.parse, os, subprocess
 
-SRC = 'story-export.html'
-ROOT_NAME = 'ESION 誕生秘話 (画像グレー版)'
+PC = 'story-export.html'
+SP = 'story-export-sp.html'
 ALPHA = ['esionLOGO']  # 透過ロゴはpng維持
 
 # 画像を a/ の圧縮版へパス差し替え（build.pyと同方式）。
@@ -31,17 +32,25 @@ def compress(s):
         s = s.replace("url('%s')" % u, "url('%s')" % out.replace(' ', '%20'))
     return s
 
-s = open(SRC).read()
-body = re.search(r'<body>(.*)</body>', s, re.S).group(1)
-body = compress(body)
-
-# ルート（bodyの最初のdiv＝ページ全体）に id="storyRoot"（フレーム名に依存しない＝Pencilで改名されても壊れない）
-body = re.sub(r'<div\b', '<div id="storyRoot"', body, 1)
+def body_inner(s):
+    return re.search(r'<body>(.*)</body>', s, re.S).group(1)
 
 # コンテンツ幅ガイド（📏 guide-L / guide-R）は本番に不要なので除去
-body = re.sub(
-    r'<div\s+data-pencil-name="📏 guide[^"]*"\s+style="[^"]*"\s*></div>\s*',
-    '', body)
+def strip_guides(s):
+    return re.sub(
+        r'<div\s+data-pencil-name="📏 guide[^"]*"\s+style="[^"]*"\s*></div>\s*',
+        '', s)
+
+pc = compress(open(PC).read())
+sp = compress(open(SP).read())
+
+# PC body（ルート＝bodyの最初のdivに id="storyRoot"。フレーム名非依存＝Pencilで改名されても壊れない）
+pcb = strip_guides(body_inner(pc))
+pcb = re.sub(r'<div\b', '<div id="storyRoot"', pcb, 1)
+
+# SP body（同様にルートへ id="spStoryRoot"）
+spb = strip_guides(body_inner(sp))
+spb = re.sub(r'<div\b', '<div id="spStoryRoot"', spb, 1)
 
 head = '''<!doctype html>
 <html lang="ja">
@@ -57,17 +66,66 @@ head = '''<!doctype html>
 css = '''
 <style>
 html,body{margin:0;background:#fff;overflow-x:hidden;}
-#storyRoot{position:relative;transform-origin:top left;}
+#storyRoot,#spStoryRoot{position:relative;transform-origin:top left;}
+.lyt-sp{display:none;}
+@media (max-width:768px){ .lyt-pc{display:none;} .lyt-sp{display:block;} }
+/* SP ハンバーガーメニュー（トップと同じ全面ネイビー・フェード） */
+#sp-menu{display:none;}
+@media (max-width:768px){
+ #sp-menu{display:flex;position:fixed;inset:0;z-index:4900;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,#071b52 0%,#0d41a8 100%);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;padding:0 44px;}
+ #sp-menu.open{opacity:1;visibility:visible;}
+ #sp-close{position:absolute;top:16px;right:18px;width:44px;height:44px;background:none;border:none;cursor:pointer;}
+ #sp-close span{position:absolute;top:50%;left:50%;width:26px;height:2px;background:#fff;border-radius:2px;}
+ #sp-close span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg);}
+ #sp-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
+ #sp-menu nav{display:flex;flex-direction:column;gap:24px;width:100%;}
+ #sp-menu nav a{display:flex;flex-direction:column;gap:3px;text-decoration:none;cursor:pointer;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+ #sp-menu.open nav a{opacity:1;transform:none;}
+ #sp-menu nav a em{font-family:'Barlow Condensed',sans-serif;font-style:normal;font-weight:600;font-size:29px;letter-spacing:.05em;color:#fff;line-height:1;}
+ #sp-menu nav a i{font-family:'Zen Kaku Gothic New',sans-serif;font-style:normal;font-size:11.5px;letter-spacing:.08em;color:#9FB6CC;}
+ #sp-menu.open nav a:nth-child(1){transition-delay:.10s}
+ #sp-menu.open nav a:nth-child(2){transition-delay:.15s}
+ #sp-menu.open nav a:nth-child(3){transition-delay:.20s}
+ #sp-menu.open nav a:nth-child(4){transition-delay:.25s}
+ #sp-menu.open nav a:nth-child(5){transition-delay:.30s}
+}
 </style>'''
 
-# zoom追従（PC/SP共通：画面幅に合わせて1199基準を拡縮）
-zoomjs = '''
+# PC用JS（storyRoot=zoom拡大。1199基準／パネル開でrvPanelOpen分300px引く＝コメント機能と連動）
+jspc = '''
 <script>
 (function(){
  var root=document.getElementById('storyRoot');if(!root)return;
  function z(){root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;}
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
 })();
+</script>'''
+
+# SP用JS（spStoryRoot=zoom拡大。390基準）
+jssp = '''
+<script>
+(function(){
+ var root=document.getElementById('spStoryRoot');if(!root)return;
+ function z(){root.style.zoom=window.innerWidth/390;}
+ window.addEventListener('resize',z);window.addEventListener('load',z);z();
+})();
+</script>'''
+
+# SP ハンバーガーメニュー（誕生秘話ページ用：主要ページへのリンク）
+spmenu = '''
+<div id="sp-menu">
+  <button id="sp-close" aria-label="閉じる" onclick="spMenu(0)"><span></span><span></span></button>
+  <nav>
+    <a href="index.html"><em>LINEUP</em><i>商品ラインナップ</i></a>
+    <a href="kodawari.html"><em>COMMITMENT</em><i>こだわり</i></a>
+    <a href="story.html"><em>STORY</em><i>誕生秘話</i></a>
+    <a href="index.html#FAQ"><em>FAQ</em><i>よくある質問</i></a>
+    <a href="index.html#Contact"><em>CONTACT</em><i>お問い合わせ</i></a>
+  </nav>
+</div>
+<script>
+function spMenu(o){var m=document.getElementById('sp-menu');if(o){m.classList.add('open');document.body.style.overflow='hidden';}else{m.classList.remove('open');document.body.style.overflow='';}}
+document.querySelectorAll('.lyt-sp [data-icon-name="menu"]').forEach(function(b){b.style.cursor='pointer';b.addEventListener('click',function(){spMenu(1);});});
 </script>'''
 
 # パスワード保護（クライアント共有用: view / sessionStorage）※トップ・商品詳細と共通
@@ -88,7 +146,7 @@ pw = '''
 function pwCheck(){if(document.getElementById('pw-input').value==='view'){document.getElementById('pw-lock').style.display='none';sessionStorage.setItem('cv_auth','1');}else{document.getElementById('pw-error').style.display='block';}}
 </script>'''
 
-# フッターの各リンク項目を<a href="#">で包む（全部#仮リンク・ホバー付き）※トップと共通
+# フッターの各リンク項目を<a href="#">で包む（全部#仮リンク・ホバー付き）※トップと共通・PC/SP両方に効く
 flinks = '''<style>.esion-flink{cursor:pointer;text-decoration:none;color:inherit;display:block;transition:opacity .2s;}.esion-flink:hover{opacity:.6;}</style>
 <script>(function(){['PRODUCTS','MEMBER','SERVICE','ABOUT'].forEach(function(cn){document.querySelectorAll('[data-pencil-name="'+cn+'"]').forEach(function(col){Array.prototype.slice.call(col.children).slice(1).forEach(function(item){if(item.closest('a'))return;var a=document.createElement('a');a.className='esion-flink';a.href='#';item.parentNode.insertBefore(a,item);a.appendChild(item);});});});})();</script>'''
 
@@ -106,7 +164,9 @@ out = head + css + '''
   </head>
   <body>
 ''' + pw + '''
-''' + body + zoomjs + flinks + navlinks + '''
+    <div class="lyt-pc">''' + pcb + '''</div>
+    <div class="lyt-sp">''' + spb + '''</div>
+''' + spmenu + jspc + jssp + flinks + navlinks + '''
 <script src="/comment.js"></script>
   </body>
 </html>'''
