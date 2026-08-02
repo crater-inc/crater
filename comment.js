@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.1.0 (2026-08-02)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.2.0 (2026-08-02)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -162,13 +162,20 @@
 
     // クリックした要素の文脈（どのセクション・近傍テキスト）を拾う
     // selText があれば「ドラッグ選択／長押しで選んだ文字そのもの」を優先＝段落全体でなくピンポイントで対象を記録できる
+    // section は直近の名前1個だけでなく祖先の名前を最大4階層パンくずで拾う。
+    // "nt"や"btn"のように同じ名前が複数箇所（価格カードごと等）にあるレイアウトでも
+    // 「card1-text ▸ nt」のように一意に特定できるようにするため（単独名だとクロコが後で場所を探せない）。
     function contextOf(t, selText) {
-      var sec = "", el = t;
-      while (el && el !== document.body) { var nm = el.getAttribute && el.getAttribute("data-pencil-name"); if (nm) { sec = nm; break; } el = el.parentElement; }
+      var chain = [], el = t, hops = 0;
+      while (el && el !== document.body && hops < 4) {
+        var nm = el.getAttribute && el.getAttribute("data-pencil-name");
+        if (nm) { chain.unshift(nm); hops++; }
+        el = el.parentElement;
+      }
       var exact = !!selText;
       var hint = exact ? selText : (t.innerText || t.textContent || "").replace(/\s+/g, " ").trim();
       if (!hint && t.tagName === "IMG") hint = "[画像]";
-      return { section: sec || "(不明)", hint: hint.slice(0, 40), exact: exact };
+      return { section: chain.length ? chain.join(" ▸ ") : "(不明)", hint: hint.slice(0, 40), exact: exact };
     }
     // 現在の選択範囲（ドラッグ選択・モバイル長押し＋ハンドル）を文字列で取得。選択が無ければ空文字
     function selectedText() {
