@@ -49,14 +49,145 @@ css = '''
 html,body{margin:0;background:#fff;overflow-x:hidden;}
 #kodawariRoot{position:relative;transform-origin:top left;}
 [data-pencil-name="btn-product"],[data-pencil-name="btn-story"]{cursor:pointer;}
+
+/* ---- SP（〜768px）：zoom縮小をやめて実レイアウトを1カラムに再フロー ---- */
+#sp-hamburger{display:none;}
+@media (max-width:768px){
+  #kodawariRoot{width:100% !important;}
+
+  /* バンド共通の左右余白をSP用に詰める */
+  [data-pencil-name="Hero"],[data-pencil-name="Intro"],[data-pencil-name="ProductDesign"],
+  [data-pencil-name^="Commitment"],[data-pencil-name="DailyLife"],[data-pencil-name="CTA"]
+  { padding:56px 24px !important; }
+
+  /* 固定px幅のテキスト・コンテナを親幅いっぱいに解放 */
+  [data-pencil-name="Hero"] [data-pencil-name="eyebrow"],
+  [data-pencil-name="Hero"] [data-pencil-name="title"],
+  [data-pencil-name="Hero"] [data-pencil-name="lead"],
+  [data-pencil-name="Hero"] [data-pencil-name="body"],
+  [data-pencil-name="Intro"] [data-pencil-name="p"],
+  [data-pencil-name="Intro"] [data-pencil-name="emph"],
+  [data-pencil-name="ProductDesign"] [data-pencil-name="body"],
+  [data-pencil-name^="Commitment"] [data-pencil-name="ttl"],
+  [data-pencil-name^="Commitment"] [data-pencil-name="intro"],
+  [data-pencil-name^="Commitment"] [data-pencil-name="body"] [data-pencil-name="p"],
+  [data-pencil-name^="Commitment"] [data-pencil-name="closing"],
+  [data-pencil-name="DailyLife"] [data-pencil-name="ttl"],
+  [data-pencil-name="DailyLife"] [data-pencil-name="intro"],
+  [data-pencil-name="DailyLife"] [data-pencil-name="list"] [data-pencil-name="t"],
+  [data-pencil-name="CTA"] [data-pencil-name="ttl"],
+  [data-pencil-name="CTA"] [data-pencil-name="body"]
+  { width:100% !important; height:auto !important; white-space:normal !important; }
+
+  /* Heroはlayout:noneの絶対配置なのでcontentのleftオフセットも詰める（後勝ちさせるため一番下に置く） */
+  [data-pencil-name="Hero"] [data-pencil-name="content"]
+  { left:24px !important; width:calc(100% - 48px) !important; height:auto !important; }
+
+  [data-pencil-name="Hero"] [data-pencil-name="title"]{ font-size:38px !important; letter-spacing:1px !important; }
+  [data-pencil-name="Intro"] [data-pencil-name="emph"]{ font-size:19px !important; }
+  [data-pencil-name^="Commitment"] [data-pencil-name="ttl"]{ font-size:22px !important; }
+  [data-pencil-name="DailyLife"] [data-pencil-name="ttl"]{ font-size:24px !important; }
+  [data-pencil-name="CTA"] [data-pencil-name="ttl"]{ font-size:24px !important; }
+
+  /* 3カラムのカード・アイテムグリッドは縦積みに */
+  [data-pencil-name="grid"]{ flex-direction:column !important; gap:28px !important; }
+
+  /* CTAボタンは縦積み・全幅 */
+  [data-pencil-name="btns"]{ flex-direction:column !important; width:100% !important; }
+  [data-pencil-name="btn-product"],[data-pencil-name="btn-story"]
+  { width:100% !important; justify-content:center !important; }
+  [data-pencil-name="CTA"] [data-pencil-name="note"]{ width:100% !important; }
+
+  /* 13の無添加タグ：はみ出さずに折り返す */
+  [data-pencil-name="tagrow"]{ flex-wrap:wrap !important; row-gap:10px !important; }
+
+  /* 全成分テーブル：横スクロールにせず、行ごとに縦積みカード化（役割列が消えないように） */
+  [data-pencil-name="Commitment05"] [data-pencil-name="headrow"]{ display:none !important; }
+  [data-pencil-name="Commitment05"] [data-pencil-name="cells"]{
+    flex-direction:column !important; align-items:flex-start !important; gap:4px !important;
+  }
+  [data-pencil-name="Commitment05"] [data-pencil-name="cat"],
+  [data-pencil-name="Commitment05"] [data-pencil-name="num"],
+  [data-pencil-name="Commitment05"] [data-pencil-name="role"]
+  { width:100% !important; }
+  [data-pencil-name="Commitment05"] [data-pencil-name="num"]{ color:#0D41A8 !important; font-weight:700 !important; font-size:12px !important; }
+
+  /* フッター：絶対配置(1199px前提)を解いて縦積み・2×2カラムに再構成 */
+  [data-pencil-name="Footer"]{
+    display:flex !important; flex-direction:column !important;
+    width:100% !important; height:auto !important; overflow:visible !important;
+    padding:48px 24px 32px !important; position:relative !important;
+  }
+  [data-pencil-name="Footer"] > div{ position:static !important; left:auto !important; top:auto !important; }
+  [data-pencil-name="Footer"] [data-pencil-name="logo"]{ order:1; margin-bottom:14px; }
+  [data-pencil-name="Footer"] [data-pencil-name="catch"]{ order:2; width:100% !important; margin-bottom:28px; }
+  [data-pencil-name="Footer"] [data-pencil-name="cols"]{ order:3; flex-wrap:wrap !important; gap:28px 24px !important; width:100% !important; margin-bottom:32px; }
+  [data-pencil-name="Footer"] [data-pencil-name="cols"] > div{ width:calc(50% - 12px) !important; }
+  [data-pencil-name="Footer"] [data-pencil-name="social"]{ order:4; margin-bottom:28px; }
+  [data-pencil-name="Footer"] [data-pencil-name="line"]{ order:5; width:100% !important; margin-bottom:16px; }
+  [data-pencil-name="Footer"] [data-pencil-name="copy"]{ order:6; }
+
+  /* ヘッダー：ナビ文字列と検索/ユーザーアイコンは畳み、ハンバーガーのみ表示 */
+  [data-pencil-name="Header"]{ padding:0 24px !important; }
+  [data-pencil-name="Nav"],
+  [data-pencil-name="H-Right"] [data-icon-name="search"],
+  [data-pencil-name="H-Right"] [data-icon-name="user"]
+  { display:none !important; }
+  #sp-hamburger{
+    display:flex !important;align-items:center;justify-content:center;
+    width:24px;height:24px;cursor:pointer;
+  }
+  #sp-hamburger span{position:relative;width:20px;height:2px;background:#fff;}
+  #sp-hamburger span::before,#sp-hamburger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:#fff;}
+  #sp-hamburger span::before{top:-6px;}
+  #sp-hamburger span::after{top:6px;}
+
+  #sp-nav-drawer{
+    position:fixed;inset:0;z-index:5000;
+    background:linear-gradient(135deg,#071b52 0%,#0d41a8 100%);
+    display:flex;flex-direction:column;justify-content:center;padding:0 40px;
+    opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;
+  }
+  #sp-nav-drawer.open{opacity:1;visibility:visible;}
+  #sp-nav-close{position:absolute;top:20px;right:24px;width:40px;height:40px;background:none;border:none;cursor:pointer;}
+  #sp-nav-close span{position:absolute;top:50%;left:50%;width:22px;height:2px;background:#fff;}
+  #sp-nav-close span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg);}
+  #sp-nav-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
+  #sp-nav-drawer a{
+    display:block;padding:14px 0;font-family:'Barlow Condensed',sans-serif;
+    font-size:26px;letter-spacing:.05em;color:#fff;text-decoration:none;font-weight:600;
+    border-bottom:1px solid rgba(255,255,255,.15);
+  }
+}
 </style>'''
 
 zoomjs = '''
 <script>
 (function(){
  var root=document.getElementById('kodawariRoot');if(!root)return;
- function z(){root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;}
+ function z(){
+   if(window.innerWidth<=768){ root.style.zoom=1; return; }
+   root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;
+ }
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
+})();
+</script>'''
+
+spnavjs = '''
+<script>
+(function(){
+ var hr=document.querySelector('[data-pencil-name="H-Right"]');
+ if(!hr)return;
+ var btn=document.createElement('div'); btn.id='sp-hamburger'; btn.innerHTML='<span></span>';
+ hr.appendChild(btn);
+ var drawer=document.createElement('div'); drawer.id='sp-nav-drawer';
+ drawer.innerHTML='<button id="sp-nav-close" aria-label="閉じる"><span></span><span></span></button>'+
+   '<a href="product.html">PRODUCTS</a>'+
+   '<a href="kodawari.html">COMMITMENT</a>'+
+   '<a href="story.html">STORY</a>';
+ document.body.appendChild(drawer);
+ btn.addEventListener('click',function(){drawer.classList.add('open');document.body.style.overflow='hidden';});
+ drawer.querySelector('#sp-nav-close').addEventListener('click',function(){drawer.classList.remove('open');document.body.style.overflow='';});
 })();
 </script>'''
 
@@ -106,7 +237,7 @@ out = head + css + '''
   </head>
   <body>
 ''' + pw + '''
-''' + body + zoomjs + flinks + navlinks + ctalinks + '''
+''' + body + zoomjs + spnavjs + flinks + navlinks + ctalinks + '''
 <script src="/comment.js"></script>
   </body>
 </html>'''
