@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.0.0 (2026-08-01)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.1.0 (2026-08-02)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -69,10 +69,11 @@
       "#cr-ph .r{display:flex;align-items:center;gap:8px;}",
       "#cr-count{font-size:11px;color:#ccc;background:#333;padding:2px 8px;border-radius:8px;white-space:nowrap;}",
       "#cr-x{background:none;border:none;color:#666;font-size:18px;cursor:pointer;}",
-      "#cr-act{padding:10px 14px;border-bottom:1px solid #2a2a2a;display:flex;gap:8px;}",
+      "#cr-act{padding:10px 14px;border-bottom:1px solid #2a2a2a;display:flex;gap:8px;flex-wrap:wrap;}",
       "#cr-add{flex:1;background:#2563eb;border:none;color:#fff;padding:8px;font-size:11px;cursor:pointer;letter-spacing:.08em;border-radius:999px;font-family:inherit;}",
       "#cr-add.on{background:#ef4444;}",
-      "#cr-toggle{background:none;border:1px solid #374151;color:#99aabb;padding:8px 10px;font-size:10px;cursor:pointer;border-radius:999px;font-family:inherit;white-space:nowrap;}",
+      "#cr-toggle,#cr-hide{background:none;border:1px solid #374151;color:#99aabb;padding:8px 10px;font-size:10px;cursor:pointer;border-radius:999px;font-family:inherit;white-space:nowrap;}",
+      "#cr-hide.on{background:#2a3346;color:#dfe7f2;border-color:#3b4a63;}",
       "#cr-filter{display:flex;gap:6px;padding:2px 14px 10px;}",
       "#cr-filter button{flex:1;background:none;border:1px solid #374151;color:#8896a8;padding:6px;font-size:10px;letter-spacing:.08em;cursor:pointer;border-radius:999px;font-family:inherit;}",
       "#cr-filter button.on{background:#2a3346;color:#dfe7f2;border-color:#3b4a63;}",
@@ -91,8 +92,11 @@
       ".cr-ba{display:flex;gap:6px;margin-top:8px;}",
       ".cr-ba button{background:none;border:1px solid #374151;color:#aaa;padding:3px 8px;font-size:10px;cursor:pointer;border-radius:4px;font-family:inherit;}",
       ".cr-ein{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:8px;box-sizing:border-box;font-family:inherit;line-height:1.5;outline:none;resize:vertical;margin-top:6px;}",
-      ".cr-pin{position:absolute;z-index:2147482000;width:28px;height:28px;border-radius:50% 50% 50% 2px;transform:translate(-50%,-100%);background:#2563eb;box-shadow:0 3px 10px rgba(0,0,0,.45);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;}",
-      ".cr-pin.res{background:#6b7280;}",
+      ".cr-pin{position:absolute;z-index:2147482000;width:28px;height:28px;border-radius:50% 50% 50% 2px;transform:translate(-50%,-100%);background:rgba(37,99,235,.72);box-shadow:0 3px 10px rgba(0,0,0,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;transition:opacity .15s;}",
+      ".cr-pin:hover{opacity:1;background:#2563eb;}",
+      ".cr-pin.res{background:rgba(107,114,128,.72);}",
+      ".cr-pin.res:hover{background:#6b7280;}",
+      "body.cr-pins-hidden .cr-pin{display:none;}",
       ".cr-input,.cr-view{position:fixed;background:#1f2937;border:1px solid #374151;border-radius:10px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.55);width:280px;z-index:2147483002;font-family:'Zen Kaku Gothic New',sans-serif;box-sizing:border-box;}",
       ".cr-input textarea,.cr-view textarea{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:9px;box-sizing:border-box;font-family:inherit;line-height:1.5;outline:none;resize:vertical;}",
       ".cr-input input{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:7px 9px;box-sizing:border-box;margin-top:6px;font-family:inherit;outline:none;}",
@@ -118,7 +122,7 @@
     var panel = elm("div", { id: "cr-panel" });
     panel.innerHTML =
       '<div id="cr-ph"><span class="t">修正コメント</span><div class="r"><span id="cr-count">0</span><button id="cr-x">×</button></div></div>' +
-      '<div id="cr-act"><button id="cr-add">💬 コメント追加</button><button id="cr-toggle">修正済みを隠す</button></div>' +
+      '<div id="cr-act"><button id="cr-add">💬 コメント追加</button><button id="cr-toggle">修正済みを隠す</button><button id="cr-hide">ピンを隠す</button></div>' +
       '<div id="cr-filter"><button data-f="ALL" class="on">ALL</button><button data-f="PC">PC</button><button data-f="SP">SP</button></div>' +
       '<div id="cr-list"><div id="cr-empty">コメントなし</div></div>';
     document.body.appendChild(openBtn);
@@ -139,6 +143,14 @@
     $("cr-toggle").addEventListener("click", function () {
       showResolved = !showResolved; this.textContent = showResolved ? "修正済みを隠す" : "修正済みを表示"; renderPins();
     });
+    // ピンが指してる場所の下のデザインを直接見たい時に、ピンだけ一時的に消す（半透明化はCSS側で常時対応済み）
+    var pinsHidden = false;
+    $("cr-hide").addEventListener("click", function () {
+      pinsHidden = !pinsHidden;
+      document.body.classList.toggle("cr-pins-hidden", pinsHidden);
+      this.classList.toggle("on", pinsHidden);
+      this.textContent = pinsHidden ? "ピンを表示" : "ピンを隠す";
+    });
     // PC/SP絞り込み（ALL＝両方）。PCビューで見てもSPのコメントが混ざる→クリックで飛べない問題の対策
     Array.prototype.slice.call(panel.querySelectorAll("#cr-filter button")).forEach(function (b) {
       b.addEventListener("click", function () {
@@ -149,12 +161,20 @@
     });
 
     // クリックした要素の文脈（どのセクション・近傍テキスト）を拾う
-    function contextOf(t) {
+    // selText があれば「ドラッグ選択／長押しで選んだ文字そのもの」を優先＝段落全体でなくピンポイントで対象を記録できる
+    function contextOf(t, selText) {
       var sec = "", el = t;
       while (el && el !== document.body) { var nm = el.getAttribute && el.getAttribute("data-pencil-name"); if (nm) { sec = nm; break; } el = el.parentElement; }
-      var hint = (t.innerText || t.textContent || "").replace(/\s+/g, " ").trim().slice(0, 40);
+      var exact = !!selText;
+      var hint = exact ? selText : (t.innerText || t.textContent || "").replace(/\s+/g, " ").trim();
       if (!hint && t.tagName === "IMG") hint = "[画像]";
-      return { section: sec || "(不明)", hint: hint };
+      return { section: sec || "(不明)", hint: hint.slice(0, 40), exact: exact };
+    }
+    // 現在の選択範囲（ドラッグ選択・モバイル長押し＋ハンドル）を文字列で取得。選択が無ければ空文字
+    function selectedText() {
+      var s = window.getSelection ? window.getSelection() : null;
+      if (!s || s.isCollapsed || s.rangeCount === 0) return "";
+      return s.toString().replace(/\s+/g, " ").trim();
     }
 
     // クリックでピン
@@ -162,15 +182,16 @@
       if (!mode) return;
       if (e.target.closest("#cr-panel,#cr-open,.cr-pin,.cr-input,.cr-view")) return;
       e.preventDefault(); e.stopPropagation();
+      var selText = selectedText(); // 段落クリックより先に読む（popup操作でクリアされる前に確定）
       closeInput(); closeView();
-      var ctx = contextOf(e.target);
+      var ctx = contextOf(e.target, selText);
       var r = getRoot(), rr = r.getBoundingClientRect();
       var xp = (((e.clientX - rr.left) / rr.width) * 100).toFixed(2);
       var yp = (((e.clientY - rr.top) / rr.height) * 100).toFixed(2);
       input = elm("div", { class: "cr-input" });
       input.style.left = Math.min(e.clientX + 12, window.innerWidth - 296) + "px";
       input.style.top = Math.min(e.clientY + 12, window.innerHeight - 190) + "px";
-      input.innerHTML = '<div class="cr-meta">📍 ' + esc(ctx.section) + (ctx.hint ? " ／ 「" + esc(ctx.hint) + "」" : "") + '</div>' +
+      input.innerHTML = '<div class="cr-meta">📍 ' + esc(ctx.section) + (ctx.hint ? " ／ " + (ctx.exact ? "選択：" : "") + "「" + esc(ctx.hint) + "」" : "") + '</div>' +
         '<textarea rows="3" placeholder="修正内容を入力…"></textarea>' +
         '<input type="text" placeholder="名前（任意）">' +
         '<div class="cr-row"><button class="cr-cancel">キャンセル</button><button class="cr-send">送信</button></div>';
@@ -180,7 +201,7 @@
       input.querySelector(".cr-send").addEventListener("click", function () {
         var text = ta.value.trim(); if (!text) return;
         var name = input.querySelector("input").value.trim() || "匿名";
-        col().add({ x: parseFloat(xp), y: parseFloat(yp), text: text, name: name, section: ctx.section, hint: ctx.hint, root: r.id || "body", view: viewOf(r.id), resolved: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+        col().add({ x: parseFloat(xp), y: parseFloat(yp), text: text, name: name, section: ctx.section, hint: ctx.hint, hintExact: ctx.exact, root: r.id || "body", view: viewOf(r.id), resolved: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
         closeInput();
       });
       var ime = false;
@@ -228,7 +249,7 @@
       view.style.top = Math.max(pr.top - 10, 60) + "px";
       var date = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString("ja-JP") : "";
       view.innerHTML = '<div class="cr-vh"><span class="cr-vnum">#' + num + ' ' + esc(c.name || "匿名") + '</span><div class="cr-va"><button class="e">編集</button><button class="r">' + (c.resolved ? "戻す" : "修正済") + '</button><button class="d">削除</button></div></div>' +
-        (c.section ? '<div class="cr-hint">📍 ' + esc(c.section) + (c.hint ? " ／ 「" + esc(c.hint) + "」" : "") + '</div>' : "") +
+        (c.section ? '<div class="cr-hint">📍 ' + esc(c.section) + (c.hint ? " ／ " + (c.hintExact ? "選択：" : "") + "「" + esc(c.hint) + "」" : "") + '</div>' : "") +
         '<div class="cr-vtx" id="crv-' + c.id + '">' + esc(c.text) + '</div>' +
         (c.resolved ? '<span class="cr-badge">✓ 修正済み</span>' : "") + (date ? '<div class="cr-meta">' + date + '</div>' : "");
       document.body.appendChild(view);
