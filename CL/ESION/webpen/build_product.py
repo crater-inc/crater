@@ -109,7 +109,7 @@ js='''
  });
 
  // ---- 単品購入：1本/3本/5本セット選択（ヘッダー価格も連動） ----
- var PR={'opt-1':'¥4,500','opt-3':'¥12,150','opt-5':'¥18,000'};
+ var PR={'opt-1':'4,500円','opt-3':'12,150円','opt-5':'18,000円'};
  var tp=document.querySelector('[data-pencil-name="tp-price"]');
  var opts=[].slice.call(document.querySelectorAll('[data-pencil-name="opt-1"],[data-pencil-name="opt-3"],[data-pencil-name="opt-5"]'));
  opts.forEach(function(o){
