@@ -1,12 +1,13 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.2.0 (2026-08-02)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.3.0 (2026-08-03)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
 //   - Firestore(view-crater)にリアルタイム保存 → URLを渡すだけでクロコ／他端末と即共有（コピペ不要）
 //   - 1ページ＝1ドキュメント。PC/SPのコメントは同じ所に貯まり、ヘッダーで件数を分けて表示
 //   - ピンは「今見ているビュー(PC/SP)」の分だけ表示。リストは両方まとめて表示
-//   - 修正済フラグ → 「修正済みを隠す」で非表示。戻すで差し戻し
+//   - ステータスで絞り込み：全部 / 未対応 / 修正済のみ。戻すで差し戻し
+//   - 「修正済」にした瞬間、ピン位置の今の文言を自動スナップショットしBefore/Afterで比較できる
 //   - ?client=1 でクライアント公開モード
 //   - firebase SDK もこのファイルが動的に読み込む＝HTML側は<script>1行だけでOK
 // ============================================================
@@ -34,7 +35,7 @@
   });
 
   function init(db) {
-    var comments = [], mode = false, showResolved = true, filter = "ALL";
+    var comments = [], mode = false, statusFilter = "ALL", filter = "ALL";
     var input = null, view = null, activeId = null, curPid = "", unsub = null, curRoot = "";
 
     function $(id) { return document.getElementById(id); }
@@ -72,9 +73,12 @@
       "#cr-act{padding:10px 14px;border-bottom:1px solid #2a2a2a;display:flex;gap:8px;flex-wrap:wrap;}",
       "#cr-add{flex:1;background:#2563eb;border:none;color:#fff;padding:8px;font-size:11px;cursor:pointer;letter-spacing:.08em;border-radius:999px;font-family:inherit;}",
       "#cr-add.on{background:#ef4444;}",
-      "#cr-toggle,#cr-hide{background:none;border:1px solid #374151;color:#99aabb;padding:8px 10px;font-size:10px;cursor:pointer;border-radius:999px;font-family:inherit;white-space:nowrap;}",
+      "#cr-hide{background:none;border:1px solid #374151;color:#99aabb;padding:8px 10px;font-size:10px;cursor:pointer;border-radius:999px;font-family:inherit;white-space:nowrap;}",
       "#cr-hide.on{background:#2a3346;color:#dfe7f2;border-color:#3b4a63;}",
-      "#cr-filter{display:flex;gap:6px;padding:2px 14px 10px;}",
+      "#cr-status{display:flex;gap:6px;padding:2px 14px 8px;}",
+      "#cr-status button{flex:1;background:none;border:1px solid #374151;color:#8896a8;padding:6px;font-size:10px;letter-spacing:.08em;cursor:pointer;border-radius:999px;font-family:inherit;}",
+      "#cr-status button.on{background:#2a3346;color:#dfe7f2;border-color:#3b4a63;}",
+      "#cr-filter{display:flex;gap:6px;padding:0 14px 10px;}",
       "#cr-filter button{flex:1;background:none;border:1px solid #374151;color:#8896a8;padding:6px;font-size:10px;letter-spacing:.08em;cursor:pointer;border-radius:999px;font-family:inherit;}",
       "#cr-filter button.on{background:#2a3346;color:#dfe7f2;border-color:#3b4a63;}",
       "#cr-list{flex:1;overflow-y:auto;padding:10px 14px;}",
@@ -89,6 +93,7 @@
       ".cr-sec{font-size:10px;color:#5b6b8c;margin-bottom:2px;}",
       ".cr-tx{font-size:12px;color:#e0e0e0;line-height:1.6;}",
       ".cr-hint{font-size:10px;color:#6b7280;margin:2px 0 6px;}",
+      ".cr-after{font-size:10px;color:#4ade80;margin:0 0 6px;}",
       ".cr-ba{display:flex;gap:6px;margin-top:8px;}",
       ".cr-ba button{background:none;border:1px solid #374151;color:#aaa;padding:3px 8px;font-size:10px;cursor:pointer;border-radius:4px;font-family:inherit;}",
       ".cr-ein{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:8px;box-sizing:border-box;font-family:inherit;line-height:1.5;outline:none;resize:vertical;margin-top:6px;}",
@@ -122,7 +127,8 @@
     var panel = elm("div", { id: "cr-panel" });
     panel.innerHTML =
       '<div id="cr-ph"><span class="t">修正コメント</span><div class="r"><span id="cr-count">0</span><button id="cr-x">×</button></div></div>' +
-      '<div id="cr-act"><button id="cr-add">💬 コメント追加</button><button id="cr-toggle">修正済みを隠す</button><button id="cr-hide">ピンを隠す</button></div>' +
+      '<div id="cr-act"><button id="cr-add">💬 コメント追加</button><button id="cr-hide">ピンを隠す</button></div>' +
+      '<div id="cr-status"><button data-s="ALL" class="on">全部</button><button data-s="OPEN">未対応</button><button data-s="DONE">修正済</button></div>' +
       '<div id="cr-filter"><button data-f="ALL" class="on">ALL</button><button data-f="PC">PC</button><button data-f="SP">SP</button></div>' +
       '<div id="cr-list"><div id="cr-empty">コメントなし</div></div>';
     document.body.appendChild(openBtn);
@@ -140,8 +146,14 @@
       panel.classList.toggle("adding", mode); // SP：追加中はリストを畳んで下のデザインを触れるようにする
       if (!mode) closeInput();
     });
-    $("cr-toggle").addEventListener("click", function () {
-      showResolved = !showResolved; this.textContent = showResolved ? "修正済みを隠す" : "修正済みを表示"; renderPins();
+    // ステータス絞り込み：全部 / 未対応 / 修正済のみ
+    function matchStatus(c) { return statusFilter === "OPEN" ? !c.resolved : statusFilter === "DONE" ? !!c.resolved : true; }
+    Array.prototype.slice.call(panel.querySelectorAll("#cr-status button")).forEach(function (b) {
+      b.addEventListener("click", function () {
+        statusFilter = b.getAttribute("data-s");
+        Array.prototype.slice.call(panel.querySelectorAll("#cr-status button")).forEach(function (x) { x.classList.toggle("on", x === b); });
+        renderPins();
+      });
     });
     // ピンが指してる場所の下のデザインを直接見たい時に、ピンだけ一時的に消す（半透明化はCSS側で常時対応済み）
     var pinsHidden = false;
@@ -217,6 +229,29 @@
       ta.addEventListener("keydown", function (ev) { if (ev.key === "Enter" && !ev.shiftKey && !ime) { ev.preventDefault(); input.querySelector(".cr-send").click(); } });
     }, true);
 
+    // 「修正済」にする瞬間、ピン座標に今ある文言を自動スナップショット＝Before(hint)/Afterの比較に使う
+    // elementFromPointはビューポート外だとnullを返すため、対象位置へ一瞬スクロールして取得し元へ戻す
+    function captureAfter(c) {
+      var r = $(c.root);
+      if (!r) return "";
+      var origX = window.pageXOffset, origY = window.pageYOffset;
+      var rr = r.getBoundingClientRect();
+      var targetY = origY + rr.top + rr.height * c.y / 100 - window.innerHeight / 2;
+      window.scrollTo(0, Math.max(0, targetY));
+      rr = r.getBoundingClientRect();
+      var px = rr.left + rr.width * c.x / 100;
+      var py = rr.top + rr.height * c.y / 100;
+      var el = document.elementFromPoint(px, py);
+      window.scrollTo(origX, origY);
+      if (!el) return "";
+      return (el.innerText || el.textContent || "").replace(/\s+/g, " ").trim().slice(0, 60);
+    }
+    function toggleResolved(c) {
+      var next = !c.resolved, patch = { resolved: next };
+      if (next) { var a = captureAfter(c); if (a) patch.afterHint = a; }
+      col().doc(c.id).update(patch);
+    }
+
     // ビューごと（PC/SP）に 1..n の連番を振る（修正済も含めて番号は固定）
     function assignNums() {
       var cnt = {};
@@ -228,7 +263,7 @@
       var r = getRoot();
       Array.prototype.slice.call(document.querySelectorAll(".cr-pin")).forEach(function (p) { p.remove(); });
       // ピンは「今見ているビュー」の分だけ
-      var visPins = comments.filter(function (c) { return c.root === curRoot && (showResolved || !c.resolved); });
+      var visPins = comments.filter(function (c) { return c.root === curRoot && matchStatus(c); });
       visPins.forEach(function (c) {
         var pin = elm("div", { class: "cr-pin" + (c.resolved ? " res" : "") }, String(c._num));
         pin.style.left = c.x + "%"; pin.style.top = c.y + "%"; pin.dataset.id = c.id;
@@ -256,12 +291,13 @@
       view.style.top = Math.max(pr.top - 10, 60) + "px";
       var date = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString("ja-JP") : "";
       view.innerHTML = '<div class="cr-vh"><span class="cr-vnum">#' + num + ' ' + esc(c.name || "匿名") + '</span><div class="cr-va"><button class="e">編集</button><button class="r">' + (c.resolved ? "戻す" : "修正済") + '</button><button class="d">削除</button></div></div>' +
-        (c.section ? '<div class="cr-hint">📍 ' + esc(c.section) + (c.hint ? " ／ " + (c.hintExact ? "選択：" : "") + "「" + esc(c.hint) + "」" : "") + '</div>' : "") +
+        (c.section ? '<div class="cr-hint">📍 ' + esc(c.section) + (c.hint ? " ／ 修正前：" + (c.hintExact ? "選択：" : "") + "「" + esc(c.hint) + "」" : "") + '</div>' : "") +
+        (c.afterHint ? '<div class="cr-after">✓ 修正後：「' + esc(c.afterHint) + '」</div>' : "") +
         '<div class="cr-vtx" id="crv-' + c.id + '">' + esc(c.text) + '</div>' +
         (c.resolved ? '<span class="cr-badge">✓ 修正済み</span>' : "") + (date ? '<div class="cr-meta">' + date + '</div>' : "");
       document.body.appendChild(view);
       view.querySelector(".e").addEventListener("click", function () { editView(c); });
-      view.querySelector(".r").addEventListener("click", function () { col().doc(c.id).update({ resolved: !c.resolved }); closeView(); });
+      view.querySelector(".r").addEventListener("click", function () { toggleResolved(c); closeView(); });
       view.querySelector(".d").addEventListener("click", function () { if (!confirm("削除しますか？")) return; col().doc(c.id).delete(); closeView(); });
     }
     function editView(c) {
@@ -276,9 +312,9 @@
       var list = $("cr-list");
       Array.prototype.slice.call(list.querySelectorAll(".cr-item")).forEach(function (el) { el.remove(); });
       var empty = $("cr-empty");
-      // リストはフィルタ(ALL/PC/SP)で絞り込み
+      // リストはステータス(全部/未対応/修正済)とビュー(ALL/PC/SP)で絞り込み
       var vis = comments.filter(function (c) {
-        if (!showResolved && c.resolved) return false;
+        if (!matchStatus(c)) return false;
         if (filter !== "ALL" && c._view !== filter) return false;
         return true;
       });
@@ -288,11 +324,13 @@
         var it = elm("div", { class: "cr-item" + (c.resolved ? " res" : "") });
         it.innerHTML = '<div class="cr-ih"><div class="cr-n' + (c.resolved ? " res" : "") + '">' + c._num + '</div><span class="cr-bdg">' + c._view + '</span><span class="cr-nm">' + esc(c.name || "匿名") + '</span></div>' +
           (c.section ? '<div class="cr-sec">' + esc(c.section) + '</div>' : "") +
+          (c.hint ? '<div class="cr-hint">修正前：「' + esc(c.hint) + '」</div>' : "") +
+          (c.afterHint ? '<div class="cr-after">✓ 修正後：「' + esc(c.afterHint) + '」</div>' : "") +
           '<div class="cr-tx">' + esc(c.text) + '</div>' +
           '<div class="cr-ba"><button class="e">編集</button><button class="r">' + (c.resolved ? "戻す" : "修正済") + '</button><button class="d">削除</button></div>';
         var txEl = it.querySelector(".cr-tx");
         it.querySelector(".e").addEventListener("click", function (e) { e.stopPropagation(); inlineEdit(it, txEl, c); });
-        it.querySelector(".r").addEventListener("click", function (e) { e.stopPropagation(); col().doc(c.id).update({ resolved: !c.resolved }); });
+        it.querySelector(".r").addEventListener("click", function (e) { e.stopPropagation(); toggleResolved(c); });
         it.querySelector(".d").addEventListener("click", function (e) { e.stopPropagation(); if (!confirm("削除？")) return; col().doc(c.id).delete(); });
         it.addEventListener("click", function (e) {
           if (e.target.closest("button") || e.target.closest("textarea")) return;
