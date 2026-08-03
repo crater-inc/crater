@@ -601,7 +601,7 @@
                   "y": 51,
                   "name": "pr",
                   "fill": "$c-navy-deep",
-                  "content": "¥200〜",
+                  "content": "200円〜",
                   "fontFamily": "$font-en",
                   "fontSize": 26,
                   "fontWeight": "600"
@@ -725,7 +725,7 @@
                   "y": 51,
                   "name": "pr",
                   "fill": "$c-navy-deep",
-                  "content": "¥4,500",
+                  "content": "4,500円",
                   "fontFamily": "$font-en",
                   "fontSize": 26,
                   "fontWeight": "600"
@@ -790,7 +790,7 @@
                   "y": 51,
                   "name": "pr",
                   "fill": "$c-navy-deep",
-                  "content": "¥3,960〜",
+                  "content": "3,960円〜",
                   "fontFamily": "$font-en",
                   "fontSize": 26,
                   "fontWeight": "600"
@@ -5516,7 +5516,7 @@
                   "y": 37,
                   "name": "pr",
                   "fill": "$c-navy-deep",
-                  "content": "¥200〜",
+                  "content": "200円〜",
                   "fontFamily": "$font-en",
                   "fontSize": 26,
                   "fontWeight": "600"
@@ -5640,7 +5640,7 @@
                   "y": 37,
                   "name": "pr",
                   "fill": "$c-navy-deep",
-                  "content": "¥4,500",
+                  "content": "4,500円",
                   "fontFamily": "$font-en",
                   "fontSize": 26,
                   "fontWeight": "600"
@@ -5703,7 +5703,7 @@
                   "y": 33,
                   "name": "pr",
                   "fill": "$c-navy-deep",
-                  "content": "¥3,960",
+                  "content": "3,960円",
                   "fontFamily": "$font-en",
                   "fontSize": 26,
                   "fontWeight": "600"
@@ -10117,7 +10117,7 @@
                                   "id": "ililM",
                                   "name": "v",
                                   "fill": "#002677",
-                                  "content": "¥3,960",
+                                  "content": "3,960円",
                                   "fontFamily": "$font-en",
                                   "fontSize": 26,
                                   "fontWeight": "600"
@@ -10542,7 +10542,7 @@
                                   "id": "U0Vve",
                                   "name": "tp-price",
                                   "fill": "#002677",
-                                  "content": "¥4,500",
+                                  "content": "4,500円",
                                   "fontFamily": "$font-en",
                                   "fontSize": 26,
                                   "fontWeight": "600"
@@ -10623,7 +10623,7 @@
                                       "id": "sSp7G",
                                       "name": "p",
                                       "fill": "#0D41A8",
-                                      "content": "¥4,500",
+                                      "content": "4,500円",
                                       "fontFamily": "$font-jp",
                                       "fontSize": 11,
                                       "fontWeight": "normal"
@@ -10686,7 +10686,7 @@
                                       "id": "q5oCyf",
                                       "name": "p",
                                       "fill": "#8A93A6",
-                                      "content": "¥12,150・約10%OFF",
+                                      "content": "12,150円・約10%OFF",
                                       "fontFamily": "$font-jp",
                                       "fontSize": 11,
                                       "fontWeight": "normal"
@@ -10749,7 +10749,7 @@
                                       "id": "d6v7qX",
                                       "name": "p",
                                       "fill": "#8A93A6",
-                                      "content": "¥18,000・約20%OFF",
+                                      "content": "18,000円・約20%OFF",
                                       "fontFamily": "$font-jp",
                                       "fontSize": 11,
                                       "fontWeight": "normal"
@@ -19397,20 +19397,6 @@
           "children": [
             {
               "type": "text",
-              "id": "Jjz82",
-              "name": "p",
-              "fill": "$c-gray-dark",
-              "textGrowth": "fixed-width",
-              "width": 760,
-              "content": "必要なうるおいを守りながら、においの原因となる皮脂や汚れを洗い流す。髪と指の間に薄い泡の層ができ、その上を指が滑るような、なめらかな洗い心地。",
-              "lineHeight": 2,
-              "textAlign": "center",
-              "fontFamily": "$font-jp",
-              "fontSize": 14,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
               "id": "fff9y",
               "name": "emph",
               "fill": "$c-navy-deep",
@@ -19424,6 +19410,20 @@
               "fontSize": 30,
               "fontWeight": "normal",
               "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "Jjz82",
+              "name": "p",
+              "fill": "$c-gray-dark",
+              "textGrowth": "fixed-width",
+              "width": 760,
+              "content": "必要なうるおいを守りながら、においの原因となる皮脂や汚れを洗い流す。髪と指の間に薄い泡の層ができ、その上を指が滑るような、なめらかな洗い心地。",
+              "lineHeight": 2,
+              "textAlign": "center",
+              "fontFamily": "$font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -19875,17 +19875,15 @@
           "id": "OJPNS",
           "name": "Commitment01",
           "width": "fill_container",
+          "height": 574,
           "fill": "$c-white",
-          "layout": "vertical",
-          "gap": 20,
-          "padding": [
-            80,
-            120
-          ],
+          "layout": "none",
           "children": [
             {
               "type": "text",
               "id": "KWBef",
+              "x": 120,
+              "y": 80,
               "name": "lab",
               "fill": "$c-navy-light",
               "content": "COMMITMENT 01",
@@ -19897,6 +19895,8 @@
             {
               "type": "text",
               "id": "GREAY",
+              "x": 120,
+              "y": 114,
               "name": "ttl",
               "fill": "#002677",
               "textGrowth": "fixed-width",
@@ -19909,8 +19909,10 @@
             {
               "type": "frame",
               "id": "fkHan",
+              "x": 120,
+              "y": 175,
               "name": "body",
-              "width": "fill_container",
+              "width": "fill_container(675)",
               "layout": "vertical",
               "gap": 16,
               "padding": [
@@ -19926,7 +19928,7 @@
                   "name": "p",
                   "fill": "#4A5578",
                   "textGrowth": "fixed-width",
-                  "width": 760,
+                  "width": 571,
                   "content": "無香料とは、香料を配合していないこと。無香性とは、本品そのもののにおいを感じにくいことです。※1",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
@@ -19939,7 +19941,7 @@
                   "name": "p",
                   "fill": "#4A5578",
                   "textGrowth": "fixed-width",
-                  "width": 760,
+                  "width": 571,
                   "content": "エシオンは香料を配合しないだけでなく、原料由来のにおいも感じにくい状態を目指し、使用する原料の選定と配合を調整しました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
@@ -19952,8 +19954,8 @@
                   "name": "p",
                   "fill": "#4A5578",
                   "textGrowth": "fixed-width",
-                  "width": 760,
-                  "content": "においを別の香りで覆うのではなく、においの元となる頭皮や毛髪の汚れを、洗浄によって洗い流す。洗った後に香りを残さず、髪と地肌を清潔に保つための設計です。",
+                  "width": 571,
+                  "content": "においを別の香りで覆うのではなく、においの元となる頭皮や毛髪の汚れを、洗浄によって洗い流す。洗った後に香りを残さず、髪と地肌を清潔に保つための設計です。瞬感、におわない。※2 ※3",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
                   "fontSize": 14,
@@ -19962,21 +19964,12 @@
               ]
             },
             {
-              "type": "text",
-              "id": "zhjbD",
-              "name": "tagline",
-              "fill": "$c-navy-deep",
-              "content": "瞬感、におわない。※2※3",
-              "fontFamily": "$font-jp-head",
-              "fontSize": 26,
-              "fontWeight": "normal",
-              "letterSpacing": 1
-            },
-            {
               "type": "frame",
               "id": "ci6j6",
+              "x": 120,
+              "y": 404,
               "name": "chuu",
-              "width": "fill_container",
+              "width": "fill_container(959)",
               "layout": "vertical",
               "gap": 4,
               "padding": [
@@ -19992,7 +19985,7 @@
                   "name": "note",
                   "fill": "#9AA3B2",
                   "textGrowth": "fixed-width",
-                  "width": "fill_container",
+                  "width": 555,
                   "content": "※1 本品そのもののにおいに関する表現であり、使用者、頭皮、毛髪のにおいがなくなることを意味するものではありません。",
                   "lineHeight": 1.7,
                   "fontFamily": "$font-jp",
@@ -20005,7 +19998,7 @@
                   "name": "note",
                   "fill": "#9AA3B2",
                   "textGrowth": "fixed-width",
-                  "width": "fill_container",
+                  "width": 557,
                   "content": "※2 香料を配合していないこと。",
                   "lineHeight": 1.7,
                   "fontFamily": "$font-jp",
@@ -20018,7 +20011,7 @@
                   "name": "note",
                   "fill": "#9AA3B2",
                   "textGrowth": "fixed-width",
-                  "width": "fill_container",
+                  "width": 557,
                   "content": "※3 においの元となる頭皮・毛髪の汚れを、洗浄により洗い流すこと。",
                   "lineHeight": 1.7,
                   "fontFamily": "$font-jp",
@@ -20026,6 +20019,16 @@
                   "fontWeight": "normal"
                 }
               ]
+            },
+            {
+              "type": "rectangle",
+              "id": "T7Pne0",
+              "x": 749,
+              "y": 0,
+              "name": "img",
+              "fill": "#DDE2E9",
+              "width": "fill_container(450)",
+              "height": 574
             }
           ]
         },
@@ -20100,12 +20103,11 @@
                   "width": "fill_container",
                   "fill": "$c-white",
                   "stroke": "$c-line",
-                  "strokeWidth": 1,
                   "layout": "vertical",
                   "gap": 14,
                   "padding": [
-                    32,
-                    28
+                    22,
+                    20
                   ],
                   "children": [
                     {
@@ -20114,7 +20116,7 @@
                       "name": "img",
                       "fill": "#DDE2E9",
                       "width": "fill_container",
-                      "height": 140
+                      "height": 200
                     },
                     {
                       "type": "text",
@@ -20133,8 +20135,9 @@
                       "id": "RFAZo",
                       "name": "desc",
                       "fill": "#4A5578",
-                      "textGrowth": "fixed-width",
+                      "textGrowth": "fixed-width-height",
                       "width": "fill_container",
+                      "height": 48,
                       "content": "うるおいを守りながら、やさしく洗い上げる洗浄成分。",
                       "lineHeight": 1.8,
                       "fontFamily": "$font-jp",
@@ -20183,12 +20186,11 @@
                   "width": "fill_container",
                   "fill": "$c-white",
                   "stroke": "$c-line",
-                  "strokeWidth": 1,
                   "layout": "vertical",
                   "gap": 14,
                   "padding": [
-                    32,
-                    28
+                    22,
+                    20
                   ],
                   "children": [
                     {
@@ -20197,7 +20199,7 @@
                       "name": "img",
                       "fill": "#DDE2E9",
                       "width": "fill_container",
-                      "height": 140
+                      "height": 200
                     },
                     {
                       "type": "text",
@@ -20216,8 +20218,9 @@
                       "id": "JdyQU",
                       "name": "desc",
                       "fill": "#4A5578",
-                      "textGrowth": "fixed-width",
+                      "textGrowth": "fixed-width-height",
                       "width": "fill_container",
+                      "height": 48,
                       "content": "洗いながら、なめらかな洗い上がりを支えるタンパク質由来の洗浄成分。",
                       "lineHeight": 1.8,
                       "fontFamily": "$font-jp",
@@ -20266,12 +20269,11 @@
                   "width": "fill_container",
                   "fill": "$c-white",
                   "stroke": "$c-line",
-                  "strokeWidth": 1,
                   "layout": "vertical",
                   "gap": 14,
                   "padding": [
-                    32,
-                    28
+                    22,
+                    20
                   ],
                   "children": [
                     {
@@ -20280,7 +20282,7 @@
                       "name": "img",
                       "fill": "#DDE2E9",
                       "width": "fill_container",
-                      "height": 140
+                      "height": 200
                     },
                     {
                       "type": "text",
@@ -20299,8 +20301,9 @@
                       "id": "L3eM9s",
                       "name": "desc",
                       "fill": "#4A5578",
-                      "textGrowth": "fixed-width",
+                      "textGrowth": "fixed-width-height",
                       "width": "fill_container",
+                      "height": 48,
                       "content": "やさしい洗い心地と、きめ細かな泡立ちを支える洗浄成分。",
                       "lineHeight": 1.8,
                       "fontFamily": "$font-jp",
@@ -20350,7 +20353,7 @@
               "name": "closing",
               "fill": "#4A5578",
               "textGrowth": "fixed-width",
-              "width": 840,
+              "width": 955,
               "content": "どれか一つの成分に頼るのではなく、それぞれの特徴を組み合わせることで、洗浄力、やさしさ、泡質、仕上がりのバランスを整えました。",
               "lineHeight": 1.95,
               "fontFamily": "$font-jp",
@@ -20411,6 +20414,19 @@
               "fontWeight": "normal"
             },
             {
+              "type": "rectangle",
+              "id": "A2zShx",
+              "name": "thumb",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "./images/generated-1785760618322.png",
+                "mode": "fill"
+              },
+              "width": "fill_container",
+              "height": 420
+            },
+            {
               "type": "frame",
               "id": "b6mwzQ",
               "name": "grid",
@@ -20431,6 +20447,19 @@
                   "layout": "vertical",
                   "gap": 10,
                   "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "Q1co1a",
+                      "name": "img",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1785760619172.png",
+                        "mode": "fill"
+                      },
+                      "width": "fill_container",
+                      "height": 140
+                    },
                     {
                       "type": "rectangle",
                       "id": "NsDCw",
@@ -20476,6 +20505,19 @@
                   "children": [
                     {
                       "type": "rectangle",
+                      "id": "CjGbs",
+                      "name": "img",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1785760616774.png",
+                        "mode": "fill"
+                      },
+                      "width": "fill_container",
+                      "height": 140
+                    },
+                    {
+                      "type": "rectangle",
                       "id": "K8oPM",
                       "name": "dot",
                       "fill": "$c-navy-light",
@@ -20517,6 +20559,19 @@
                   "layout": "vertical",
                   "gap": 10,
                   "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "vLT3H",
+                      "name": "img",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1785760617954.png",
+                        "mode": "fill"
+                      },
+                      "width": "fill_container",
+                      "height": 140
+                    },
                     {
                       "type": "rectangle",
                       "id": "x318OW",
@@ -20635,12 +20690,11 @@
                   "width": "fill_container",
                   "fill": "$c-white",
                   "stroke": "$c-line",
-                  "strokeWidth": 1,
                   "layout": "vertical",
                   "gap": 12,
                   "padding": [
-                    32,
-                    28
+                    22,
+                    20
                   ],
                   "children": [
                     {
@@ -20649,7 +20703,7 @@
                       "name": "img",
                       "fill": "#DDE2E9",
                       "width": "fill_container",
-                      "height": 140
+                      "height": 200
                     },
                     {
                       "type": "text",
@@ -20679,8 +20733,9 @@
                       "id": "VkrAM",
                       "name": "desc",
                       "fill": "#4A5578",
-                      "textGrowth": "fixed-width",
+                      "textGrowth": "fixed-width-height",
                       "width": "fill_container",
+                      "height": 72,
                       "content": "肌の天然保湿因子であるNMFを構成するアミノ酸に着目。地肌にうるおいを与え、すこやかに保ちます。",
                       "lineHeight": 1.8,
                       "fontFamily": "$font-jp",
@@ -20729,12 +20784,11 @@
                   "width": "fill_container",
                   "fill": "$c-white",
                   "stroke": "$c-line",
-                  "strokeWidth": 1,
                   "layout": "vertical",
                   "gap": 12,
                   "padding": [
-                    32,
-                    28
+                    22,
+                    20
                   ],
                   "children": [
                     {
@@ -20743,7 +20797,7 @@
                       "name": "img",
                       "fill": "#DDE2E9",
                       "width": "fill_container",
-                      "height": 140
+                      "height": 200
                     },
                     {
                       "type": "text",
@@ -20773,8 +20827,9 @@
                       "id": "lLKMV",
                       "name": "desc",
                       "fill": "#4A5578",
-                      "textGrowth": "fixed-width",
+                      "textGrowth": "fixed-width-height",
                       "width": "fill_container",
+                      "height": 72,
                       "content": "毛髪の主成分であるケラチンを構成するアミノ酸に着目。髪を補修し、ハリ・コシを与えます。",
                       "lineHeight": 1.8,
                       "fontFamily": "$font-jp",
@@ -20820,15 +20875,15 @@
                   "type": "frame",
                   "id": "vONpz",
                   "name": "card",
-                  "width": "fill_container",
+                  "width": 304,
+                  "height": 483,
                   "fill": "$c-white",
                   "stroke": "$c-line",
-                  "strokeWidth": 1,
                   "layout": "vertical",
                   "gap": 12,
                   "padding": [
-                    32,
-                    28
+                    22,
+                    20
                   ],
                   "children": [
                     {
@@ -20837,7 +20892,7 @@
                       "name": "img",
                       "fill": "#DDE2E9",
                       "width": "fill_container",
-                      "height": 140
+                      "height": 200
                     },
                     {
                       "type": "text",
@@ -20867,8 +20922,9 @@
                       "id": "q4ptE3",
                       "name": "desc",
                       "fill": "#4A5578",
-                      "textGrowth": "fixed-width",
+                      "textGrowth": "fixed-width-height",
                       "width": "fill_container",
+                      "height": 72,
                       "content": "配合成分が地肌の角質層や毛髪内部へ浸透することを支えます。",
                       "lineHeight": 1.8,
                       "fontFamily": "$font-jp",
@@ -20919,17 +20975,15 @@
           "id": "uM2Jr",
           "name": "Commitment05",
           "width": "fill_container",
+          "height": 972,
           "fill": "$c-white",
-          "layout": "vertical",
-          "gap": 24,
-          "padding": [
-            80,
-            120
-          ],
+          "layout": "none",
           "children": [
             {
               "type": "text",
               "id": "Hm9ig",
+              "x": 120,
+              "y": 80,
               "name": "lab",
               "fill": "$c-navy-light",
               "content": "COMMITMENT 05",
@@ -20941,6 +20995,8 @@
             {
               "type": "text",
               "id": "OzBQQ",
+              "x": 120,
+              "y": 118,
               "name": "ttl",
               "fill": "#002677",
               "textGrowth": "fixed-width-height",
@@ -20955,6 +21011,8 @@
             {
               "type": "text",
               "id": "heTZo",
+              "x": 113,
+              "y": 699,
               "name": "intro",
               "fill": "#4A5578",
               "textGrowth": "fixed-width",
@@ -20967,815 +21025,308 @@
             },
             {
               "type": "frame",
-              "id": "jqd1u",
-              "name": "table",
-              "width": "fill_container",
-              "layout": "vertical",
-              "padding": [
-                16,
-                0,
-                0,
-                0
-              ],
+              "id": "ynlGv",
+              "x": 113,
+              "y": 777,
+              "name": "tags",
+              "width": "fill_container(959)",
+              "height": "fit_content(106)",
+              "layout": "none",
               "children": [
                 {
                   "type": "frame",
-                  "id": "rJS6i",
-                  "name": "headrow",
-                  "width": "fill_container",
-                  "padding": [
-                    0,
-                    0,
-                    14,
-                    0
-                  ],
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "qwlZw",
-                      "name": "h1",
-                      "fill": "#8A93A6",
-                      "textGrowth": "fixed-width",
-                      "width": 280,
-                      "content": "分類",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 11,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "JGINx",
-                      "name": "h2",
-                      "fill": "#8A93A6",
-                      "textGrowth": "fixed-width",
-                      "width": 140,
-                      "content": "成分数",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 11,
-                      "fontWeight": "700"
-                    },
-                    {
-                      "type": "text",
-                      "id": "nWsrM",
-                      "name": "h3",
-                      "fill": "#8A93A6",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "役割",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 11,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
-                {
-                  "type": "rectangle",
-                  "id": "ccZTp",
-                  "name": "ln",
-                  "fill": "$c-line",
-                  "width": "fill_container",
-                  "height": 1
-                },
-                {
-                  "type": "frame",
-                  "id": "KrADJ",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
+                  "id": "U90kc3",
+                  "x": 0,
+                  "y": 16,
+                  "name": "tagrow",
+                  "gap": 12,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "jPLtR",
-                      "name": "cells",
-                      "width": "fill_container",
+                      "id": "xQ2ve",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
                       "padding": [
-                        14,
-                        0
+                        10,
+                        20
                       ],
-                      "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "ZPyaV",
-                          "name": "cat",
+                          "id": "x3WaqG",
+                          "name": "label",
                           "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "洗浄※4",
+                          "content": "洗浄※4 5種類",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Zn9YA",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "5種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "yRMsx",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "頭皮と毛髪の汚れを洗い流す",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
                         }
                       ]
                     },
                     {
-                      "type": "rectangle",
-                      "id": "QiKDH",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "M8L6TL",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
                       "type": "frame",
-                      "id": "zGmAC",
-                      "name": "cells",
-                      "width": "fill_container",
+                      "id": "Ck4hx",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
                       "padding": [
-                        14,
-                        0
+                        10,
+                        20
                       ],
-                      "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "sGIQX",
-                          "name": "cat",
+                          "id": "QB52a",
+                          "name": "label",
                           "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "保湿※5",
+                          "content": "保湿※5 30種類",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "o5szS",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "30種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "GGxCz",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "髪と地肌にうるおいを与える",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
                         }
                       ]
                     },
                     {
-                      "type": "rectangle",
-                      "id": "FRRFA",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
+                      "type": "frame",
+                      "id": "iiphS",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
+                      "padding": [
+                        10,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "O5q2l9",
+                          "name": "label",
+                          "fill": "#002677",
+                          "content": "NMFケア※6 10種類",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IIZLI",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
+                      "padding": [
+                        10,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S9s38d",
+                          "name": "label",
+                          "fill": "#002677",
+                          "content": "ケラチンケア※7 10種類",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "K2qjsh",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
+                      "padding": [
+                        10,
+                        20
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Kjz54",
+                          "name": "label",
+                          "fill": "#002677",
+                          "content": "ハリ・コシ※8 13種類",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 13,
+                          "fontWeight": "700"
+                        }
+                      ]
                     }
                   ]
                 },
                 {
                   "type": "frame",
-                  "id": "D9IlU",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
+                  "id": "q7U3BH",
+                  "x": 0,
+                  "y": 67,
+                  "name": "tagrow",
+                  "gap": 12,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "tts7y",
-                      "name": "cells",
-                      "width": "fill_container",
+                      "id": "ly15N",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
                       "padding": [
-                        14,
-                        0
+                        10,
+                        20
                       ],
-                      "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "o53vX",
-                          "name": "cat",
+                          "id": "hKobB",
+                          "name": "label",
                           "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "NMFケア※6",
+                          "content": "切れ毛ケア※9 13種類",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "MxbaX",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "10種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "w6xQq1",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "地肌のうるおいを保つ",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
                         }
                       ]
                     },
                     {
-                      "type": "rectangle",
-                      "id": "ssCDX",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "r4nDAW",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
                       "type": "frame",
-                      "id": "zQIkE",
-                      "name": "cells",
-                      "width": "fill_container",
+                      "id": "O6EEwK",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
                       "padding": [
-                        14,
-                        0
+                        10,
+                        20
                       ],
-                      "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "MOBnX",
-                          "name": "cat",
+                          "id": "fgMlQ",
+                          "name": "label",
                           "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "ケラチンケア※7",
+                          "content": "トリートメント※10 19種類",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "CBoNQ",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "10種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "hy1TC",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "毛髪を補修する",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
                         }
                       ]
                     },
                     {
-                      "type": "rectangle",
-                      "id": "V176F3",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "iIk3k",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
                       "type": "frame",
-                      "id": "WNSyu",
-                      "name": "cells",
-                      "width": "fill_container",
+                      "id": "Ym5Kh",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
                       "padding": [
-                        14,
-                        0
+                        10,
+                        20
                       ],
-                      "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "xR2qy",
-                          "name": "cat",
+                          "id": "tPKaQ",
+                          "name": "label",
                           "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "ハリ・コシ※8",
+                          "content": "清潔保持※11 13種類",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "fKSmr",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "13種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "bgJ74",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "髪にハリ・コシを与える",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
                         }
                       ]
                     },
                     {
-                      "type": "rectangle",
-                      "id": "bYIWR",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "ID7Sk",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
                       "type": "frame",
-                      "id": "qvpvP",
-                      "name": "cells",
-                      "width": "fill_container",
+                      "id": "p02Nyt",
+                      "name": "pill",
+                      "fill": "$c-bg-soft",
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "gap": 6,
                       "padding": [
-                        14,
-                        0
+                        10,
+                        20
                       ],
-                      "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "OgGNa",
-                          "name": "cat",
+                          "id": "TDd86",
+                          "name": "label",
                           "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "切れ毛ケア※9",
+                          "content": "フケ・かゆみケア※12 8種類",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "X446o6",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "13種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "KG4rf",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "裂毛・切毛・枝毛を防ぐ",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
                         }
                       ]
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "rCIA1",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "WL9Lv",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "JfoFw",
-                      "name": "cells",
-                      "width": "fill_container",
-                      "padding": [
-                        14,
-                        0
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "IedEe",
-                          "name": "cat",
-                          "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "トリートメント※10",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "M4D9j",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "19種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "ToJjq",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "指通りやまとまりを整える",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "XTH3p",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "hSLst",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "d6jdAq",
-                      "name": "cells",
-                      "width": "fill_container",
-                      "padding": [
-                        14,
-                        0
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "yB43g",
-                          "name": "cat",
-                          "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "頭皮・毛髪の清潔保持※11",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "ZlL7L",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "13種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "jBvux",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "頭皮と毛髪を清潔に保つ",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "r92Il",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "mhVXV",
-                  "name": "row",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "hmixW",
-                      "name": "cells",
-                      "width": "fill_container",
-                      "padding": [
-                        14,
-                        0
-                      ],
-                      "alignItems": "center",
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "I1HTo",
-                          "name": "cat",
-                          "fill": "#002677",
-                          "textGrowth": "fixed-width",
-                          "width": 280,
-                          "content": "フケ・かゆみケア※12",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "WRpBh",
-                          "name": "num",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": 140,
-                          "content": "8種類",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "EjfZM",
-                          "name": "role",
-                          "fill": "#3D4655",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "フケ・かゆみを抑える",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "wq6lN",
-                      "name": "ln",
-                      "fill": "$c-line",
-                      "width": "fill_container",
-                      "height": 1
                     }
                   ]
                 }
               ]
             },
             {
-              "type": "frame",
-              "id": "B06YMw",
-              "name": "footnotes",
-              "width": "fill_container",
-              "fill": "$c-bg-soft",
-              "layout": "vertical",
-              "gap": 8,
-              "padding": [
-                24,
-                28
-              ],
-              "children": [
-                {
-                  "type": "text",
-                  "id": "QZLdt",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※4 ラウロイルメチルアラニンNa、コカミドプロピルベタイン、ラウロイルアスパラギン酸Na、ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "mTiUe",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※5 グリセリン、ココイル加水分解コラーゲンK、セラミドAP、セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "VqlSS",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※6 グリセリン、PCA、PCA-Na、アルギニン、グリシン、アラニン、セリン、トレオニン、ヒスチジン、乳酸Na",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "iR5Iu",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※7 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、クオタニウム-33、コレステロール",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "L3gHR",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※8 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、アルギニン、アスパラギン酸、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "WhLvW",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※9 ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、PCA、PCA-Na、加水分解シルク、セバシン酸ジエチル、ポリクオタニウム-10、クオタニウム-33、コレステロール",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "q3uf9H",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※10 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アスパラギン酸、ポリクオタニウム-10、クオタニウム-33、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、ジステアリルジモニウムクロリド、コレステロール",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "HPK3L",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※11 サリチル酸、o-シメン-5-オール、フェノールスルホン酸亜鉛、銀、ドクダミエキス、チャ葉エキス、センブリエキス、レモングラス葉/茎エキス、カキタンニン、チョウジエキス、エタノール、カプリル酸グリセリル、炭酸水素Na",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "o4ULVB",
-                  "name": "note",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "※12 グリチルリチン酸2K、ピロクトンオラミン、サリチル酸、o-シメン-5-オール、ドクダミエキス、チャ葉エキス、チョウジエキス、トコフェロール",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "Q8kR2V",
-                  "name": "closing",
-                  "fill": "#9AA3B2",
-                  "textGrowth": "fixed-width",
-                  "width": "fill_container",
-                  "content": "（一つの成分が複数の役割を持つため、各分類の合計は66種類にはなりません。）",
-                  "lineHeight": 1.7,
-                  "fontFamily": "$font-jp",
-                  "fontSize": 10,
-                  "fontWeight": "700"
-                }
-              ]
+              "type": "text",
+              "id": "D4nobF",
+              "x": -797,
+              "y": 207,
+              "name": "marqueeText",
+              "fill": "#002677",
+              "content": "セラミドAP・ヒアルロン酸ヒドロキシプロピルトリモニウム  ／  アルギニン  ／  ラウロイルメチルアラニンNa  ／  コカミドプロピルベタイン  ／  加水分解シルク  ／  メドウフォーム種子油  ／  PCA-Na  ／  ホホバ種子油  ／  グリセリン  ／  トコフェロール  ／  ドクダミエキス  ／  チャ葉エキス  ／  センブリエキス  ／  ポリクオタニウム-64  ／  コレステロール  ／  ",
+              "fontFamily": "$font-jp-head",
+              "fontSize": 80,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "uBnMk",
+              "x": -1583,
+              "y": 333,
+              "name": "marqueeText",
+              "fill": "#002677",
+              "content": "セラミドAP・ヒアルロン酸ヒドロキシプロピルトリモニウム・アルギニン・ラウロイルメチルアラニンNa  ／  コカミドプロピルベタイン  ／  加水分解シルク  ／  メドウフォーム種子油  ／  PCA-Na  ／  ホホバ種子油  ／  グリセリン  ／  トコフェロール  ／  ドクダミエキス  ／  チャ葉エキス  ／  センブリエキス  ／  ポリクオタニウム-64  ／  コレステロール  ／  ",
+              "fontFamily": "$font-jp-head",
+              "fontSize": 80,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "IRcoR",
+              "x": -2031,
+              "y": 449,
+              "name": "marqueeText",
+              "fill": "#002677",
+              "content": "※5 グリセリン、ココイル加水分解コラーゲンK・セラミドAP・セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
+              "fontFamily": "$font-jp-head",
+              "fontSize": 80,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "PE1eQ",
+              "x": -2902,
+              "y": 565,
+              "name": "marqueeText",
+              "fill": "#002677",
+              "content": "※5 グリセリン、ココイル加水分解コラーゲンK・セラミドAP・セラミドNG、セラミドNP・PCA・PCA-Na・ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
+              "fontFamily": "$font-jp-head",
+              "fontSize": 80,
+              "fontWeight": "normal"
             }
           ]
         },
@@ -21979,57 +21530,84 @@
           "id": "Guik7",
           "name": "Commitment07",
           "width": "fill_container",
+          "height": 650,
           "fill": "$c-white",
-          "layout": "vertical",
-          "gap": 24,
-          "padding": [
-            80,
-            120
-          ],
+          "layout": "none",
           "children": [
             {
-              "type": "text",
-              "id": "v9D1gg",
-              "name": "lab",
-              "fill": "$c-navy-light",
-              "content": "COMMITMENT 07",
-              "fontFamily": "$font-en",
-              "fontSize": 12,
-              "fontWeight": "600",
-              "letterSpacing": 2
-            },
-            {
-              "type": "text",
-              "id": "akm7q",
-              "name": "ttl",
-              "fill": "#002677",
-              "textGrowth": "fixed-width-height",
-              "width": 820,
-              "height": 80,
-              "content": "毎日使うものだから、\n配合しない成分も明確に。",
-              "lineHeight": 1.4,
-              "fontFamily": "$font-jp-head",
-              "fontSize": 28,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "Bndzb",
-              "name": "intro",
-              "fill": "#4A5578",
-              "textGrowth": "fixed-width",
-              "width": 840,
-              "content": "エシオンは、豊かな泡立ちや仕上がりと、毎日使いやすい低刺激設計とのバランスを考えました。配合する成分を選ぶだけでなく、配合しない成分にも基準を設けた「13の無添加処方」です。",
-              "lineHeight": 1.95,
-              "fontFamily": "$font-jp",
-              "fontSize": 14,
-              "fontWeight": "normal"
+              "type": "frame",
+              "id": "p3Hnpi",
+              "x": 120,
+              "y": 80,
+              "name": "top",
+              "width": "fill_container(959)",
+              "gap": 40,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "lapsM",
+                  "name": "left",
+                  "width": 539,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "v9D1gg",
+                      "name": "lab",
+                      "fill": "$c-navy-light",
+                      "content": "COMMITMENT 07",
+                      "fontFamily": "$font-en",
+                      "fontSize": 12,
+                      "fontWeight": "600",
+                      "letterSpacing": 2
+                    },
+                    {
+                      "type": "text",
+                      "id": "akm7q",
+                      "name": "ttl",
+                      "fill": "#002677",
+                      "textGrowth": "fixed-width-height",
+                      "width": 539,
+                      "height": 80,
+                      "content": "毎日使うものだから、\n配合しない成分も明確に。",
+                      "lineHeight": 1.4,
+                      "fontFamily": "$font-jp-head",
+                      "fontSize": 28,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Bndzb",
+                      "name": "intro",
+                      "fill": "#4A5578",
+                      "textGrowth": "fixed-width",
+                      "width": 539,
+                      "content": "エシオンは、豊かな泡立ちや仕上がりと、毎日使いやすい低刺激設計とのバランスを考えました。配合する成分を選ぶだけでなく、配合しない成分にも基準を設けた「13の無添加処方」です。",
+                      "lineHeight": 1.95,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "id": "iwmtU",
+                  "name": "img",
+                  "fill": "#d9d9d9ff",
+                  "width": 380,
+                  "height": 501
+                }
+              ]
             },
             {
               "type": "frame",
               "id": "RlOcK",
+              "x": 120,
+              "y": 318,
               "name": "tagwrap",
-              "width": "fill_container",
+              "width": 536,
               "layout": "vertical",
               "gap": 10,
               "padding": [
@@ -22215,7 +21793,16 @@
                           "fontWeight": "700"
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uPSi8",
+                  "name": "tagrow",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
                     {
                       "type": "frame",
                       "id": "m7AMct",
@@ -22238,16 +21825,7 @@
                           "fontWeight": "700"
                         }
                       ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "uPSi8",
-                  "name": "tagrow",
-                  "width": "fill_container",
-                  "gap": 10,
-                  "children": [
+                    },
                     {
                       "type": "frame",
                       "id": "X35yN5",
@@ -22316,7 +21894,16 @@
                           "fontWeight": "700"
                         }
                       ]
-                    },
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OME7N",
+                  "name": "tagrow",
+                  "width": "fill_container",
+                  "gap": 10,
+                  "children": [
                     {
                       "type": "frame",
                       "id": "r9EtWR",
@@ -22339,16 +21926,7 @@
                           "fontWeight": "700"
                         }
                       ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "OME7N",
-                  "name": "tagrow",
-                  "width": "fill_container",
-                  "gap": 10,
-                  "children": [
+                    },
                     {
                       "type": "frame",
                       "id": "v2fAq",
@@ -22379,10 +21957,12 @@
             {
               "type": "text",
               "id": "upn28",
+              "x": 120,
+              "y": 541,
               "name": "pat",
               "fill": "$c-navy-deep",
               "textGrowth": "fixed-width",
-              "width": "fill_container",
+              "width": "fill_container(959)",
               "content": "第三者監修パッチテスト実施済み。※13",
               "fontFamily": "$font-jp",
               "fontSize": 15,
@@ -22391,10 +21971,12 @@
             {
               "type": "text",
               "id": "bZFXd",
+              "x": 120,
+              "y": 573,
               "name": "note",
               "fill": "#9AA3B2",
               "textGrowth": "fixed-width",
-              "width": "fill_container",
+              "width": "fill_container(959)",
               "content": "※13 すべての方に皮膚刺激が起こらないということではありません。",
               "lineHeight": 1.7,
               "fontFamily": "$font-jp",
@@ -22402,14 +21984,6 @@
               "fontWeight": "normal"
             }
           ]
-        },
-        {
-          "type": "frame",
-          "id": "nsPze",
-          "name": "img-家族",
-          "width": "fill_container",
-          "height": 340,
-          "fill": "#DDE2E9"
         },
         {
           "type": "frame",
@@ -22455,7 +22029,7 @@
               "name": "intro",
               "fill": "#C7D2E6",
               "textGrowth": "fixed-width",
-              "width": 800,
+              "width": 497,
               "content": "無香料であること。髪と地肌をやさしく洗えること。豊かに泡立ち、気持ちよく洗えること。トリートメントを重ねなくても、指通りよくまとまること。\n毎日使うシャンプーとして必要なものを、一つのボトルにまとめました。",
               "lineHeight": 1.95,
               "fontFamily": "$font-jp",
@@ -22502,14 +22076,15 @@
                       "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "IzT51",
-                          "name": "mark",
-                          "fill": "#6E86BE",
-                          "content": "—",
-                          "fontFamily": "$font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "icon",
+                          "id": "SOrmn",
+                          "name": "check",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "weight": 700,
+                          "fill": "#8FA6D6"
                         },
                         {
                           "type": "text",
@@ -22534,14 +22109,15 @@
                       "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "mcW0u",
-                          "name": "mark",
-                          "fill": "#6E86BE",
-                          "content": "—",
-                          "fontFamily": "$font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "icon",
+                          "id": "D56VcZ",
+                          "name": "check",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "weight": 700,
+                          "fill": "#8FA6D6"
                         },
                         {
                           "type": "text",
@@ -22566,14 +22142,15 @@
                       "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "FTVKY",
-                          "name": "mark",
-                          "fill": "#6E86BE",
-                          "content": "—",
-                          "fontFamily": "$font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "icon",
+                          "id": "nhLWV",
+                          "name": "check",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "weight": 700,
+                          "fill": "#8FA6D6"
                         },
                         {
                           "type": "text",
@@ -22598,14 +22175,15 @@
                       "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "j2ult",
-                          "name": "mark",
-                          "fill": "#6E86BE",
-                          "content": "—",
-                          "fontFamily": "$font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "icon",
+                          "id": "pxpJg",
+                          "name": "check",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "weight": 700,
+                          "fill": "#8FA6D6"
                         },
                         {
                           "type": "text",
@@ -22630,14 +22208,15 @@
                       "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "M22MN",
-                          "name": "mark",
-                          "fill": "#6E86BE",
-                          "content": "—",
-                          "fontFamily": "$font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "icon",
+                          "id": "bJPl2",
+                          "name": "check",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "weight": 700,
+                          "fill": "#8FA6D6"
                         },
                         {
                           "type": "text",
@@ -22662,14 +22241,15 @@
                       "gap": 12,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "GIein",
-                          "name": "mark",
-                          "fill": "#6E86BE",
-                          "content": "—",
-                          "fontFamily": "$font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "icon",
+                          "id": "UxceW",
+                          "name": "check",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "check",
+                          "library": "lucide",
+                          "weight": 700,
+                          "fill": "#8FA6D6"
                         },
                         {
                           "type": "text",
@@ -25162,6 +24742,153 @@
               "letterSpacing": 1
             }
           ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "B06YMw",
+      "x": 11017,
+      "y": 5472,
+      "name": "footnotes",
+      "width": "fill_container(959)",
+      "fill": "$c-bg-soft",
+      "layout": "vertical",
+      "gap": 8,
+      "padding": [
+        24,
+        28
+      ],
+      "children": [
+        {
+          "type": "text",
+          "id": "QZLdt",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※4 ラウロイルメチルアラニンNa、コカミドプロピルベタイン、ラウロイルアスパラギン酸Na、ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "mTiUe",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※5 グリセリン、ココイル加水分解コラーゲンK、セラミドAP、セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "VqlSS",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※6 グリセリン、PCA、PCA-Na、アルギニン、グリシン、アラニン、セリン、トレオニン、ヒスチジン、乳酸Na",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "iR5Iu",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※7 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、クオタニウム-33、コレステロール",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "L3gHR",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※8 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、アルギニン、アスパラギン酸、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "WhLvW",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※9 ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、PCA、PCA-Na、加水分解シルク、セバシン酸ジエチル、ポリクオタニウム-10、クオタニウム-33、コレステロール",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "q3uf9H",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※10 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アスパラギン酸、ポリクオタニウム-10、クオタニウム-33、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、ジステアリルジモニウムクロリド、コレステロール",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "HPK3L",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※11 サリチル酸、o-シメン-5-オール、フェノールスルホン酸亜鉛、銀、ドクダミエキス、チャ葉エキス、センブリエキス、レモングラス葉/茎エキス、カキタンニン、チョウジエキス、エタノール、カプリル酸グリセリル、炭酸水素Na",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "o4ULVB",
+          "name": "note",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "※12 グリチルリチン酸2K、ピロクトンオラミン、サリチル酸、o-シメン-5-オール、ドクダミエキス、チャ葉エキス、チョウジエキス、トコフェロール",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "Q8kR2V",
+          "name": "closing",
+          "fill": "#9AA3B2",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "（一つの成分が複数の役割を持つため、各分類の合計は66種類にはなりません。）",
+          "lineHeight": 1.7,
+          "fontFamily": "$font-jp",
+          "fontSize": 10,
+          "fontWeight": "700"
         }
       ]
     }
