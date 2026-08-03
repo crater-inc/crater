@@ -64,16 +64,16 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
   /* 13の無添加タグ：はみ出さずに折り返す */
   [data-pencil-name="tagrow"]{ flex-wrap:wrap !important; row-gap:10px !important; }
 
-  /* 全成分テーブル：横スクロールにせず、行ごとに縦積みカード化（役割列が消えないように） */
-  [data-pencil-name="Commitment05"] [data-pencil-name="headrow"]{ display:none !important; }
-  [data-pencil-name="Commitment05"] [data-pencil-name="cells"]{
-    flex-direction:column !important; align-items:flex-start !important; gap:4px !important;
-  }
-  [data-pencil-name="Commitment05"] [data-pencil-name="cat"],
-  [data-pencil-name="Commitment05"] [data-pencil-name="num"],
-  [data-pencil-name="Commitment05"] [data-pencil-name="role"]
-  { width:100% !important; }
-  [data-pencil-name="Commitment05"] [data-pencil-name="num"]{ color:#0D41A8 !important; font-weight:700 !important; font-size:12px !important; }
+  /* 成分タグ：はみ出さずに折り返す（Commitment05も同じtagrow構造を使う） */
+  [data-pencil-name="Commitment05"] [data-pencil-name="tagrow"]{ flex-wrap:wrap !important; row-gap:10px !important; }
+
+  /* Commitment07：右の大きな画像は上に回して縦積みに */
+  [data-pencil-name="Commitment07"] [data-pencil-name="top"]{ flex-direction:column !important; }
+  [data-pencil-name="Commitment07"] [data-pencil-name="left"]{ width:100% !important; }
+  [data-pencil-name="Commitment07"] [data-pencil-name="top"] [data-pencil-name="img"]{ width:100% !important; height:220px !important; }
+
+  /* 成分マーキー：フォントサイズを詰める */
+  [data-pencil-name="IngredientMarquee"] [data-pencil-name="marqueeText"]{ font-size:36px !important; }
 
   /* フッター：絶対配置(1199px前提)を解いて縦積み・2×2カラムに再構成 */
   [data-pencil-name="Footer"]{
@@ -280,18 +280,18 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         style="align-items: center; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 28px; height: fit-content; justify-content: flex-start; padding: 96px 120px 100px 120px; width: 100%"
       >
         <div
-          data-pencil-name="p"
-          style='box-sizing: border-box; color: #3D4655; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 28px; text-align: center; width: 760px'
-        >
-          必要なうるおいを守りながら、においの原因となる皮脂や汚れを洗い流す。髪と指の間に薄い泡の層ができ、その上を指が滑るような、なめらかな洗い心地。
-        </div>
-        <div
           data-pencil-name="emph"
           style='box-sizing: border-box; color: #081B52; flex-shrink: 0; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 30px; font-style: normal; font-weight: 400; height: 110px; letter-spacing: 1px; line-height: 48px; text-align: center; width: 700px'
         >
           シャンプーの本質と使い心地を、
           <br />
           一本で追求しました。
+        </div>
+        <div
+          data-pencil-name="p"
+          style='box-sizing: border-box; color: #3D4655; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 28px; text-align: center; width: 760px'
+        >
+          必要なうるおいを守りながら、においの原因となる皮脂や汚れを洗い流す。髪と指の間に薄い泡の層ができ、その上を指が滑るような、なめらかな洗い心地。
         </div>
       </div>
       <div
@@ -512,73 +512,72 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       ></div>
       <div
         data-pencil-name="Commitment01"
-        style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; padding: 80px 120px; width: 100%"
+        style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 574px; position: relative; width: 100%"
       >
         <div
           data-pencil-name="lab"
-          style='box-sizing: border-box; color: #0D41A8; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; letter-spacing: 2px; line-height: normal; text-align: left; white-space: nowrap'
+          style='box-sizing: border-box; color: #0D41A8; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; left: 120px; letter-spacing: 2px; line-height: normal; position: absolute; text-align: left; top: 80px; white-space: nowrap; z-index: 0'
         >
           COMMITMENT 01
         </div>
         <div
           data-pencil-name="ttl"
-          style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 820px'
+          style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; left: 120px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 114px; width: 820px; z-index: 1'
         >
           無香料。さらに、無香性を目指して。
         </div>
         <div
           data-pencil-name="body"
-          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; padding: 8px 0px 0px 0px; width: 100%"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; height: fit-content; justify-content: flex-start; left: 120px; padding: 8px 0px 0px 0px; position: absolute; top: 175px; width: 675px; z-index: 2"
         >
           <div
             data-pencil-name="p"
-            style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 760px'
+            style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 571px'
           >
             無香料とは、香料を配合していないこと。無香性とは、本品そのもののにおいを感じにくいことです。※1
           </div>
           <div
             data-pencil-name="p"
-            style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 760px'
+            style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 571px'
           >
             エシオンは香料を配合しないだけでなく、原料由来のにおいも感じにくい状態を目指し、使用する原料の選定と配合を調整しました。
           </div>
           <div
             data-pencil-name="p"
-            style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 760px'
+            style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 571px'
           >
-            においを別の香りで覆うのではなく、においの元となる頭皮や毛髪の汚れを、洗浄によって洗い流す。洗った後に香りを残さず、髪と地肌を清潔に保つための設計です。
+            においを別の香りで覆うのではなく、においの元となる頭皮や毛髪の汚れを、洗浄によって洗い流す。洗った後に香りを残さず、髪と地肌を清潔に保つための設計です。瞬感、におわない。※2
+            ※3
           </div>
         </div>
         <div
-          data-pencil-name="tagline"
-          style='box-sizing: border-box; color: #081B52; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 26px; font-style: normal; font-weight: 400; letter-spacing: 1px; line-height: normal; text-align: left; white-space: nowrap'
-        >
-          瞬感、におわない。※2※3
-        </div>
-        <div
           data-pencil-name="chuu"
-          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 4px; height: fit-content; justify-content: flex-start; padding: 16px 0px 0px 0px; width: 100%"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; gap: 4px; height: fit-content; justify-content: flex-start; left: 120px; padding: 16px 0px 0px 0px; position: absolute; top: 404px; width: 959px; z-index: 3"
         >
           <div
             data-pencil-name="note"
-            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%'
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 555px'
           >
             ※1
             本品そのもののにおいに関する表現であり、使用者、頭皮、毛髪のにおいがなくなることを意味するものではありません。
           </div>
           <div
             data-pencil-name="note"
-            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%'
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 557px'
           >
             ※2 香料を配合していないこと。
           </div>
           <div
             data-pencil-name="note"
-            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 100%'
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10.5px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 18px; text-align: left; width: 557px'
           >
             ※3 においの元となる頭皮・毛髪の汚れを、洗浄により洗い流すこと。
           </div>
         </div>
+        <div
+          data-pencil-name="img"
+          style="background-color: #DDE2E9; box-sizing: border-box; height: 574px; left: 749px; position: absolute; top: 0px; width: 450px; z-index: 4"
+        ></div>
       </div>
       <div
         data-pencil-name="Commitment02"
@@ -624,7 +623,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             </div>
             <div
               data-pencil-name="desc"
-              style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #4A5578; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; height: 48px; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
             >
               うるおいを守りながら、やさしく洗い上げる洗浄成分。
             </div>
@@ -661,7 +660,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             </div>
             <div
               data-pencil-name="desc"
-              style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #4A5578; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; height: 48px; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
             >
               洗いながら、なめらかな洗い上がりを支えるタンパク質由来の洗浄成分。
             </div>
@@ -698,7 +697,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             </div>
             <div
               data-pencil-name="desc"
-              style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #4A5578; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; height: 48px; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
             >
               やさしい洗い心地と、きめ細かな泡立ちを支える洗浄成分。
             </div>
@@ -722,7 +721,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           data-pencil-name="closing"
-          style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 840px'
+          style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 955px'
         >
           どれか一つの成分に頼るのではなく、それぞれの特徴を組み合わせることで、洗浄力、やさしさ、泡質、仕上がりのバランスを整えました。
         </div>
@@ -754,6 +753,10 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           泡立ちの速さ、泡のきめ細かさ、弾力、洗っている間の持続性、すすぎやすさまで。毎日気持ちよく使える泡を目指しました。
         </div>
         <div
+          data-pencil-name="thumb"
+          style="background-image: url('a/generated-1785760618322.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; flex-shrink: 0; height: 420px; width: 100%"
+        ></div>
+        <div
           data-pencil-name="grid"
           style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 32px; height: fit-content; justify-content: flex-start; padding: 16px 0px 0px 0px; width: 100%"
         >
@@ -761,6 +764,10 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             data-pencil-name="col"
             style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
           >
+            <div
+              data-pencil-name="img"
+              style="background-image: url('a/generated-1785760619172.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; flex-shrink: 0; height: 140px; width: 100%"
+            ></div>
             <div
               data-pencil-name="dot"
               style="background-color: #0D41A8; box-sizing: border-box; flex-shrink: 0; height: 2px; width: 28px"
@@ -783,6 +790,10 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
           >
             <div
+              data-pencil-name="img"
+              style="background-image: url('a/generated-1785760616774.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; flex-shrink: 0; height: 140px; width: 100%"
+            ></div>
+            <div
               data-pencil-name="dot"
               style="background-color: #0D41A8; box-sizing: border-box; flex-shrink: 0; height: 2px; width: 28px"
             ></div>
@@ -803,6 +814,10 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             data-pencil-name="col"
             style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 10px; height: fit-content; justify-content: flex-start"
           >
+            <div
+              data-pencil-name="img"
+              style="background-image: url('a/generated-1785760617954.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; flex-shrink: 0; height: 140px; width: 100%"
+            ></div>
             <div
               data-pencil-name="dot"
               style="background-color: #0D41A8; box-sizing: border-box; flex-shrink: 0; height: 2px; width: 28px"
@@ -856,11 +871,11 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         >
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 32px 28px"
+            style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 22px 20px"
           >
             <div
               data-pencil-name="img"
-              style="background-color: #DDE2E9; box-sizing: border-box; flex-shrink: 0; height: 140px; width: 100%"
+              style="background-color: #DDE2E9; box-sizing: border-box; flex-shrink: 0; height: 200px; width: 100%"
             ></div>
             <div
               data-pencil-name="tag"
@@ -876,7 +891,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             </div>
             <div
               data-pencil-name="desc"
-              style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #4A5578; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; height: 72px; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
             >
               肌の天然保湿因子であるNMFを構成するアミノ酸に着目。地肌にうるおいを与え、すこやかに保ちます。
             </div>
@@ -899,11 +914,11 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 32px 28px"
+            style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 22px 20px"
           >
             <div
               data-pencil-name="img"
-              style="background-color: #DDE2E9; box-sizing: border-box; flex-shrink: 0; height: 140px; width: 100%"
+              style="background-color: #DDE2E9; box-sizing: border-box; flex-shrink: 0; height: 200px; width: 100%"
             ></div>
             <div
               data-pencil-name="tag"
@@ -919,7 +934,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             </div>
             <div
               data-pencil-name="desc"
-              style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #4A5578; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; height: 72px; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
             >
               毛髪の主成分であるケラチンを構成するアミノ酸に着目。髪を補修し、ハリ・コシを与えます。
             </div>
@@ -942,11 +957,11 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="card"
-            style="align-items: flex-start; background-color: #FFFFFF; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 32px 28px"
+            style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 22px 20px"
           >
             <div
               data-pencil-name="img"
-              style="background-color: #DDE2E9; box-sizing: border-box; flex-shrink: 0; height: 140px; width: 100%"
+              style="background-color: #DDE2E9; box-sizing: border-box; flex-shrink: 0; height: 200px; width: 100%"
             ></div>
             <div
               data-pencil-name="tag"
@@ -962,7 +977,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             </div>
             <div
               data-pencil-name="desc"
-              style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
+              style='box-sizing: border-box; color: #4A5578; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; height: 72px; letter-spacing: 0px; line-height: 23px; text-align: left; width: 100%'
             >
               配合成分が地肌の角質層や毛髪内部へ浸透することを支えます。
             </div>
@@ -1010,323 +1025,132 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           エシオンの全成分は66種類で構成されています。大切にしたのは、成分数の多さではありません。洗う、うるおいを与える、髪を補修する、指通りを整える、髪と地肌を清潔に保つ。毎日のシャンプーに必要な役割を考え、一つずつ組み合わせた結果です。
         </div>
         <div
-          data-pencil-name="table"
-          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 16px 0px 0px 0px; width: 100%"
+          data-pencil-name="tags"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 16px 0px 0px 0px; width: 100%"
         >
           <div
-            data-pencil-name="headrow"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 0px 0px 14px 0px; width: 100%"
+            data-pencil-name="tagrow"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: fit-content"
           >
             <div
-              data-pencil-name="h1"
-              style='box-sizing: border-box; color: #8A93A6; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
             >
-              分類
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                洗浄※4 5種類
+              </div>
             </div>
             <div
-              data-pencil-name="h2"
-              style='box-sizing: border-box; color: #8A93A6; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
             >
-              成分数
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                保湿※5 30種類
+              </div>
             </div>
             <div
-              data-pencil-name="h3"
-              style='box-sizing: border-box; color: #8A93A6; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left'
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
             >
-              役割
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                NMFケア※6 10種類
+              </div>
+            </div>
+            <div
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
+            >
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                ケラチンケア※7 10種類
+              </div>
+            </div>
+            <div
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
+            >
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                ハリ・コシ※8 13種類
+              </div>
             </div>
           </div>
           <div
-            data-pencil-name="ln"
-            style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-          ></div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
+            data-pencil-name="tagrow"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: fit-content"
           >
             <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
             >
               <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
-                洗浄※4
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                5種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                頭皮と毛髪の汚れを洗い流す
+                切れ毛ケア※9 13種類
               </div>
             </div>
             <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
+            >
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                トリートメント※10 19種類
+              </div>
+            </div>
+            <div
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
+            >
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                清潔保持※11 13種類
+              </div>
+            </div>
+            <div
+              data-pencil-name="pill"
+              style="align-items: flex-start; background-color: #F5F7FA; border: 1px solid #E3E8EF; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
+            >
+              <div
+                data-pencil-name="label"
+                style='box-sizing: border-box; color: #002677; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              >
+                フケ・かゆみケア※12 8種類
+              </div>
+            </div>
           </div>
+        </div>
+        <div
+          data-pencil-name="IngredientMarquee"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 130px; justify-content: flex-start; overflow: hidden; width: 100%"
+        >
           <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
+            data-pencil-name="marqueeText"
+            style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 60px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
           >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                保湿※5
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                30種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                髪と地肌にうるおいを与える
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
-          </div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                NMFケア※6
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                10種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                地肌のうるおいを保つ
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
-          </div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                ケラチンケア※7
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                10種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                毛髪を補修する
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
-          </div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                ハリ・コシ※8
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                13種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                髪にハリ・コシを与える
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
-          </div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                切れ毛ケア※9
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                13種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                裂毛・切毛・枝毛を防ぐ
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
-          </div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                トリートメント※10
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                19種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                指通りやまとまりを整える
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
-          </div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                頭皮・毛髪の清潔保持※11
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                13種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                頭皮と毛髪を清潔に保つ
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
-          </div>
-          <div
-            data-pencil-name="row"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; width: 100%"
-          >
-            <div
-              data-pencil-name="cells"
-              style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 14px 0px; width: 100%"
-            >
-              <div
-                data-pencil-name="cat"
-                style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; width: 280px'
-              >
-                フケ・かゆみケア※12
-              </div>
-              <div
-                data-pencil-name="num"
-                style='box-sizing: border-box; color: #3D4655; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 140px'
-              >
-                8種類
-              </div>
-              <div
-                data-pencil-name="role"
-                style='box-sizing: border-box; color: #3D4655; flex: 1 1 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left'
-              >
-                フケ・かゆみを抑える
-              </div>
-            </div>
-            <div
-              data-pencil-name="ln"
-              style="background-color: #E3E8EF; box-sizing: border-box; flex-shrink: 0; height: 1px; width: 100%"
-            ></div>
+            セラミドAP ／ ヒアルロン酸ヒドロキシプロピルトリモニウム ／ アルギニン ／
+            ラウロイルメチルアラニンNa ／ コカミドプロピルベタイン ／ 加水分解シルク ／
+            メドウフォーム種子油 ／ PCA-Na ／ ホホバ種子油 ／ グリセリン ／ トコフェロール ／
+            ドクダミエキス ／ チャ葉エキス ／ センブリエキス ／ ポリクオタニウム-64 ／
+            コレステロール ／
           </div>
         </div>
         <div
@@ -1502,24 +1326,38 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 80px 120px; width: 100%"
       >
         <div
-          data-pencil-name="lab"
-          style='box-sizing: border-box; color: #0D41A8; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; letter-spacing: 2px; line-height: normal; text-align: left; white-space: nowrap'
+          data-pencil-name="top"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 40px; height: fit-content; justify-content: flex-start; width: 100%"
         >
-          COMMITMENT 07
-        </div>
-        <div
-          data-pencil-name="ttl"
-          style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; height: 80px; letter-spacing: 0px; line-height: 39px; text-align: left; width: 820px'
-        >
-          毎日使うものだから、
-          <br />
-          配合しない成分も明確に。
-        </div>
-        <div
-          data-pencil-name="intro"
-          style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 840px'
-        >
-          エシオンは、豊かな泡立ちや仕上がりと、毎日使いやすい低刺激設計とのバランスを考えました。配合する成分を選ぶだけでなく、配合しない成分にも基準を設けた「13の無添加処方」です。
+          <div
+            data-pencil-name="left"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; width: 539px"
+          >
+            <div
+              data-pencil-name="lab"
+              style='box-sizing: border-box; color: #0D41A8; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; letter-spacing: 2px; line-height: normal; text-align: left; white-space: nowrap'
+            >
+              COMMITMENT 07
+            </div>
+            <div
+              data-pencil-name="ttl"
+              style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; height: 80px; letter-spacing: 0px; line-height: 39px; text-align: left; width: 539px'
+            >
+              毎日使うものだから、
+              <br />
+              配合しない成分も明確に。
+            </div>
+            <div
+              data-pencil-name="intro"
+              style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 539px'
+            >
+              エシオンは、豊かな泡立ちや仕上がりと、毎日使いやすい低刺激設計とのバランスを考えました。配合する成分を選ぶだけでなく、配合しない成分にも基準を設けた「13の無添加処方」です。
+            </div>
+          </div>
+          <div
+            data-pencil-name="img"
+            style="background-image: url('a/generated-1785760769166.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; flex-shrink: 0; height: 300px; width: 380px"
+          ></div>
         </div>
         <div
           data-pencil-name="tagwrap"
@@ -1750,12 +1588,20 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               data-pencil-name="row"
               style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
             >
-              <div
-                data-pencil-name="mark"
-                style='box-sizing: border-box; color: #6E86BE; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              <svg
+                data-pencil-name="check"
+                data-icon-name="check"
+                data-icon-set="lucide"
+                viewBox="0 0 13.99993896484375 14"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; flex-shrink: 0; height: 16px; width: 16px"
               >
-                —
-              </div>
+                <path
+                  d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                  fill="#8FA6D6"
+                ></path>
+              </svg>
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #EAF1F8; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 700px'
@@ -1767,12 +1613,20 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               data-pencil-name="row"
               style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
             >
-              <div
-                data-pencil-name="mark"
-                style='box-sizing: border-box; color: #6E86BE; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              <svg
+                data-pencil-name="check"
+                data-icon-name="check"
+                data-icon-set="lucide"
+                viewBox="0 0 13.99993896484375 14"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; flex-shrink: 0; height: 16px; width: 16px"
               >
-                —
-              </div>
+                <path
+                  d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                  fill="#8FA6D6"
+                ></path>
+              </svg>
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #EAF1F8; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 700px'
@@ -1784,12 +1638,20 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               data-pencil-name="row"
               style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
             >
-              <div
-                data-pencil-name="mark"
-                style='box-sizing: border-box; color: #6E86BE; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              <svg
+                data-pencil-name="check"
+                data-icon-name="check"
+                data-icon-set="lucide"
+                viewBox="0 0 13.99993896484375 14"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; flex-shrink: 0; height: 16px; width: 16px"
               >
-                —
-              </div>
+                <path
+                  d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                  fill="#8FA6D6"
+                ></path>
+              </svg>
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #EAF1F8; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 700px'
@@ -1801,12 +1663,20 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               data-pencil-name="row"
               style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
             >
-              <div
-                data-pencil-name="mark"
-                style='box-sizing: border-box; color: #6E86BE; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              <svg
+                data-pencil-name="check"
+                data-icon-name="check"
+                data-icon-set="lucide"
+                viewBox="0 0 13.99993896484375 14"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; flex-shrink: 0; height: 16px; width: 16px"
               >
-                —
-              </div>
+                <path
+                  d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                  fill="#8FA6D6"
+                ></path>
+              </svg>
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #EAF1F8; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 700px'
@@ -1818,12 +1688,20 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               data-pencil-name="row"
               style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
             >
-              <div
-                data-pencil-name="mark"
-                style='box-sizing: border-box; color: #6E86BE; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              <svg
+                data-pencil-name="check"
+                data-icon-name="check"
+                data-icon-set="lucide"
+                viewBox="0 0 13.99993896484375 14"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; flex-shrink: 0; height: 16px; width: 16px"
               >
-                —
-              </div>
+                <path
+                  d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                  fill="#8FA6D6"
+                ></path>
+              </svg>
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #EAF1F8; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 700px'
@@ -1835,12 +1713,20 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
               data-pencil-name="row"
               style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: 100%"
             >
-              <div
-                data-pencil-name="mark"
-                style='box-sizing: border-box; color: #6E86BE; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+              <svg
+                data-pencil-name="check"
+                data-icon-name="check"
+                data-icon-set="lucide"
+                viewBox="0 0 13.99993896484375 14"
+                preserveAspectRatio="xMidYMid meet"
+                xmlns="http://www.w3.org/2000/svg"
+                style="box-sizing: border-box; flex-shrink: 0; height: 16px; width: 16px"
               >
-                —
-              </div>
+                <path
+                  d="M11.48096 2.95313q-0.07178 0.01367-0.12989 0.0581-0.05469 0.04102-3.07617 3.06592l-3.0249 3.00781-1.28857-1.28857q-1.28857-1.28516-1.38086-1.32618-0.08887-0.04443-0.22217-0.04443-0.1333 0-0.23242 0.0376-0.0957 0.03418-0.18799 0.11279-0.08887 0.0752-0.1333 0.1709-0.02734 0.07178-0.03418 0.11279-0.00684 0.04102-0.00684 0.14014l0 0.04102q-0.01367 0.11279 0.04102 0.19824 0.07178 0.10938 0.36572 0.40332 0.19482 0.21191 0.96729 0.98096l1.49707 1.48339q0.28027 0.2666 0.38964 0.33838 0.07178 0.05469 0.18457 0.04102l0.09571 0.01367q0.07178 0 0.14013-0.02734 0.08545-0.07178 0.32129-0.28711 0.23926-0.21875 0.79981-0.76221l2.2832-2.2832q2.08496-2.09863 2.7002-2.71387 0.61524-0.61865 0.64599-0.68701 0.04102-0.08545 0.04102-0.23926 0-0.09912-0.00684-0.14014-0.00684-0.04102-0.03418-0.11279-0.04443-0.08203-0.13672-0.16406-0.08887-0.08545-0.18115-0.11963-0.08887-0.0376-0.20849-0.0376-0.11963 0-0.18799 0.02734z"
+                  fill="#8FA6D6"
+                ></path>
+              </svg>
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #EAF1F8; flex-shrink: 0; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 24px; text-align: left; width: 700px'
@@ -2186,6 +2072,20 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
    if(el.closest("a")) return;
    var a=document.createElement("a"); a.href=href; a.style.cssText="text-decoration:none;color:inherit;cursor:pointer;";
    el.parentNode.insertBefore(a,el); a.appendChild(el);
+ });
+})();</script><style>
+@keyframes esionMarqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+</style>
+<script>(function(){
+ document.querySelectorAll('[data-pencil-name="IngredientMarquee"]').forEach(function(box){
+  box.style.overflow='hidden';
+  var kids=Array.prototype.slice.call(box.children);
+  if(!kids.length)return;
+  var track=document.createElement('div');
+  track.style.cssText='display:flex;align-items:center;white-space:nowrap;width:max-content;animation:esionMarqueeScroll 40s linear infinite;';
+  kids.forEach(function(k){track.appendChild(k);});
+  kids.forEach(function(k){track.appendChild(k.cloneNode(true));});
+  box.appendChild(track);
  });
 })();</script><script>(function(){
  var btns={"btn-product":"product.html","btn-story":"story.html"};

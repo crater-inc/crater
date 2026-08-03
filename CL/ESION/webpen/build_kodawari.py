@@ -101,16 +101,16 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
   /* 13の無添加タグ：はみ出さずに折り返す */
   [data-pencil-name="tagrow"]{ flex-wrap:wrap !important; row-gap:10px !important; }
 
-  /* 全成分テーブル：横スクロールにせず、行ごとに縦積みカード化（役割列が消えないように） */
-  [data-pencil-name="Commitment05"] [data-pencil-name="headrow"]{ display:none !important; }
-  [data-pencil-name="Commitment05"] [data-pencil-name="cells"]{
-    flex-direction:column !important; align-items:flex-start !important; gap:4px !important;
-  }
-  [data-pencil-name="Commitment05"] [data-pencil-name="cat"],
-  [data-pencil-name="Commitment05"] [data-pencil-name="num"],
-  [data-pencil-name="Commitment05"] [data-pencil-name="role"]
-  { width:100% !important; }
-  [data-pencil-name="Commitment05"] [data-pencil-name="num"]{ color:#0D41A8 !important; font-weight:700 !important; font-size:12px !important; }
+  /* 成分タグ：はみ出さずに折り返す（Commitment05も同じtagrow構造を使う） */
+  [data-pencil-name="Commitment05"] [data-pencil-name="tagrow"]{ flex-wrap:wrap !important; row-gap:10px !important; }
+
+  /* Commitment07：右の大きな画像は上に回して縦積みに */
+  [data-pencil-name="Commitment07"] [data-pencil-name="top"]{ flex-direction:column !important; }
+  [data-pencil-name="Commitment07"] [data-pencil-name="left"]{ width:100% !important; }
+  [data-pencil-name="Commitment07"] [data-pencil-name="top"] [data-pencil-name="img"]{ width:100% !important; height:220px !important; }
+
+  /* 成分マーキー：フォントサイズを詰める */
+  [data-pencil-name="IngredientMarquee"] [data-pencil-name="marqueeText"]{ font-size:36px !important; }
 
   /* フッター：絶対配置(1199px前提)を解いて縦積み・2×2カラムに再構成 */
   [data-pencil-name="Footer"]{
@@ -222,6 +222,23 @@ navlinks = '''<script>(function(){
  });
 })();</script>'''
 
+# 成分マーキー（全成分の一部を明朝の大文字で横に無限スライド表示）
+marquee = '''<style>
+@keyframes esionMarqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+</style>
+<script>(function(){
+ document.querySelectorAll('[data-pencil-name="IngredientMarquee"]').forEach(function(box){
+  box.style.overflow='hidden';
+  var kids=Array.prototype.slice.call(box.children);
+  if(!kids.length)return;
+  var track=document.createElement('div');
+  track.style.cssText='display:flex;align-items:center;white-space:nowrap;width:max-content;animation:esionMarqueeScroll 40s linear infinite;';
+  kids.forEach(function(k){track.appendChild(k);});
+  kids.forEach(function(k){track.appendChild(k.cloneNode(true));});
+  box.appendChild(track);
+ });
+})();</script>'''
+
 # CTAボタン（エシオンを見る／誕生秘話を読む）のリンク化
 ctalinks = '''<script>(function(){
  var btns={"btn-product":"product.html","btn-story":"story.html"};
@@ -237,7 +254,7 @@ out = head + css + '''
   </head>
   <body>
 ''' + pw + '''
-''' + body + zoomjs + spnavjs + flinks + navlinks + ctalinks + '''
+''' + body + zoomjs + spnavjs + flinks + navlinks + marquee + ctalinks + '''
 <script src="/comment.js"></script>
   </body>
 </html>'''
