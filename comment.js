@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.3.0 (2026-08-03)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.0 (2026-08-04)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -8,6 +8,7 @@
 //   - ピンは「今見ているビュー(PC/SP)」の分だけ表示。リストは両方まとめて表示
 //   - ステータスで絞り込み：全部 / 未対応 / 修正済のみ。戻すで差し戻し
 //   - 「修正済」にした瞬間、ピン位置の今の文言を自動スナップショットしBefore/Afterで比較できる
+//   - 追加モード中は既存ピンをドラッグして位置を動かせる（誤配置の微調整）
 //   - ?client=1 でクライアント公開モード
 //   - firebase SDK もこのファイルが動的に読み込む＝HTML側は<script>1行だけでOK
 // ============================================================
@@ -97,10 +98,12 @@
       ".cr-ba{display:flex;gap:6px;margin-top:8px;}",
       ".cr-ba button{background:none;border:1px solid #374151;color:#aaa;padding:3px 8px;font-size:10px;cursor:pointer;border-radius:4px;font-family:inherit;}",
       ".cr-ein{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:8px;box-sizing:border-box;font-family:inherit;line-height:1.5;outline:none;resize:vertical;margin-top:6px;}",
-      ".cr-pin{position:absolute;z-index:2147482000;width:28px;height:28px;border-radius:50% 50% 50% 2px;transform:translate(-50%,-100%);background:rgba(37,99,235,.72);box-shadow:0 3px 10px rgba(0,0,0,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;transition:opacity .15s;}",
+      ".cr-pin{position:absolute;z-index:2147482000;width:28px;height:28px;border-radius:50% 50% 50% 2px;transform:translate(-50%,-100%);background:rgba(37,99,235,.72);box-shadow:0 3px 10px rgba(0,0,0,.35);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;transition:opacity .15s;touch-action:none;}",
       ".cr-pin:hover{opacity:1;background:#2563eb;}",
       ".cr-pin.res{background:rgba(107,114,128,.72);}",
       ".cr-pin.res:hover{background:#6b7280;}",
+      "body.cr-mode .cr-pin{cursor:move;}",
+      ".cr-pin.dragging{opacity:1;cursor:grabbing;box-shadow:0 4px 16px rgba(0,0,0,.5);}",
       "body.cr-pins-hidden .cr-pin{display:none;}",
       ".cr-input,.cr-view{position:fixed;background:#1f2937;border:1px solid #374151;border-radius:10px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.55);width:280px;z-index:2147483002;font-family:'Zen Kaku Gothic New',sans-serif;box-sizing:border-box;}",
       ".cr-input textarea,.cr-view textarea{width:100%;background:#111827;border:1px solid #374151;border-radius:6px;color:#e5e7eb;font-size:13px;padding:9px;box-sizing:border-box;font-family:inherit;line-height:1.5;outline:none;resize:vertical;}",
@@ -267,11 +270,46 @@
       visPins.forEach(function (c) {
         var pin = elm("div", { class: "cr-pin" + (c.resolved ? " res" : "") }, String(c._num));
         pin.style.left = c.x + "%"; pin.style.top = c.y + "%"; pin.dataset.id = c.id;
-        pin.addEventListener("click", function (e) { e.stopPropagation(); if (activeId === c.id) { closeView(); return; } closeView(); showView(c, pin, c._num); });
+        pin.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (pin._dragged) { pin._dragged = false; return; } // ドラッグ直後に発火するclickは無視（開かない）
+          if (activeId === c.id) { closeView(); return; }
+          closeView(); showView(c, pin, c._num);
+        });
+        pin.addEventListener("pointerdown", function (e) { dragPin(e, pin, c); });
         r.appendChild(pin);
       });
       renderPanel();
       updateCount();
+    }
+
+    // 追加モード中だけピンをドラッグで動かせる（誤配置の微調整用）。閾値未満の動きはただのクリック扱い＝ view が開く
+    // move/upはdocument側で拾う（要素外に出ても追従。setPointerCaptureに依存しない）
+    function dragPin(e, pin, c) {
+      if (!mode) return;
+      e.stopPropagation(); e.preventDefault();
+      var root = getRoot(), rr = root.getBoundingClientRect(), moved = false;
+      function onMove(ev) {
+        if (!moved && Math.abs(ev.clientX - e.clientX) + Math.abs(ev.clientY - e.clientY) > 4) { moved = true; pin.classList.add("dragging"); }
+        if (!moved) return;
+        var xp = Math.min(100, Math.max(0, ((ev.clientX - rr.left) / rr.width) * 100));
+        var yp = Math.min(100, Math.max(0, ((ev.clientY - rr.top) / rr.height) * 100));
+        pin.style.left = xp + "%"; pin.style.top = yp + "%";
+        pin._nx = xp; pin._ny = yp;
+      }
+      function onUp() {
+        document.removeEventListener("pointermove", onMove);
+        document.removeEventListener("pointerup", onUp);
+        document.removeEventListener("pointercancel", onUp);
+        pin.classList.remove("dragging");
+        if (moved && pin._nx != null) {
+          col().doc(c.id).update({ x: parseFloat(pin._nx.toFixed(2)), y: parseFloat(pin._ny.toFixed(2)) });
+          pin._dragged = true;
+        }
+      }
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", onUp);
+      document.addEventListener("pointercancel", onUp);
     }
 
     // ヘッダー件数：PC ○・SP ○（数字は未対応の残数）
