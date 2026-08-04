@@ -52,6 +52,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 
 /* ---- SP（〜768px）：zoom縮小をやめて実レイアウトを1カラムに再フロー ---- */
 #sp-hamburger{display:none;}
+#sp-nav-drawer{display:none;}
 @media (max-width:768px){
   #kodawariRoot{width:100% !important;}
 

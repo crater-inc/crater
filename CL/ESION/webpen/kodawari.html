@@ -15,6 +15,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 
 /* ---- SP（〜768px）：zoom縮小をやめて実レイアウトを1カラムに再フロー ---- */
 #sp-hamburger{display:none;}
+#sp-nav-drawer{display:none;}
 @media (max-width:768px){
   #kodawariRoot{width:100% !important;}
 
@@ -543,7 +544,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             data-pencil-name="p"
             style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 571px'
           >
-            無香料とは、香料を配合していないこと。無香性とは、本品そのもののにおいを感じにくいことです。※1
+            無香料とは、香料を配合していないこと。無香性※1とは、本品そのもののにおいを感じにくいことです。
           </div>
           <div
             data-pencil-name="p"
@@ -1011,17 +1012,17 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
       </div>
       <div
         data-pencil-name="Commitment05"
-        style="background-color: #FFFFFF; box-sizing: border-box; flex-shrink: 0; height: 972px; position: relative; width: 100%"
+        style="align-items: flex-start; background-color: #FFFFFF; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 80px 120px; width: 100%"
       >
         <div
           data-pencil-name="lab"
-          style='box-sizing: border-box; color: #0D41A8; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; left: 120px; letter-spacing: 2px; line-height: normal; position: absolute; text-align: left; top: 80px; white-space: nowrap; z-index: 0'
+          style='box-sizing: border-box; color: #0D41A8; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 600; letter-spacing: 2px; line-height: normal; text-align: left; white-space: nowrap'
         >
           COMMITMENT 05
         </div>
         <div
           data-pencil-name="ttl"
-          style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; height: 80px; left: 120px; letter-spacing: 0px; line-height: 39px; position: absolute; text-align: left; top: 118px; width: 900px; z-index: 1'
+          style='box-sizing: border-box; color: #002677; flex-shrink: 0; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 28px; font-style: normal; font-weight: 400; height: 80px; letter-spacing: 0px; line-height: 39px; text-align: left; width: 900px'
         >
           全66種類。
           <br />
@@ -1029,17 +1030,17 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
         </div>
         <div
           data-pencil-name="intro"
-          style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; left: 113px; letter-spacing: 0px; line-height: 27px; position: absolute; text-align: left; top: 699px; width: 840px; z-index: 2'
+          style='box-sizing: border-box; color: #4A5578; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 14px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 27px; text-align: left; width: 840px'
         >
           エシオンの全成分は66種類で構成されています。大切にしたのは、成分数の多さではありません。洗う、うるおいを与える、髪を補修する、指通りを整える、髪と地肌を清潔に保つ。毎日のシャンプーに必要な役割を考え、一つずつ組み合わせた結果です。
         </div>
         <div
           data-pencil-name="tags"
-          style="box-sizing: border-box; height: 106px; left: 113px; position: absolute; top: 777px; width: 959px; z-index: 3"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; padding: 16px 0px 0px 0px; width: 100%"
         >
           <div
             data-pencil-name="tagrow"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; gap: 12px; height: fit-content; justify-content: flex-start; left: 0px; position: absolute; top: 16px; width: fit-content; z-index: 0"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: fit-content"
           >
             <div
               data-pencil-name="pill"
@@ -1099,7 +1100,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="tagrow"
-            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; gap: 12px; height: fit-content; justify-content: flex-start; left: 0px; position: absolute; top: 67px; width: fit-content; z-index: 1"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 12px; height: fit-content; justify-content: flex-start; width: fit-content"
           >
             <div
               data-pencil-name="pill"
@@ -1148,37 +1149,93 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
         </div>
         <div
-          data-pencil-name="marqueeText"
-          style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 80px; font-style: normal; font-weight: 400; left: -797px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 207px; white-space: nowrap; z-index: 4'
+          data-pencil-name="IngredientMarquee"
+          style="align-items: center; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 130px; justify-content: flex-start; overflow: hidden; width: 100%"
         >
-          セラミドAP・ヒアルロン酸ヒドロキシプロピルトリモニウム ／ アルギニン ／
-          ラウロイルメチルアラニンNa ／ コカミドプロピルベタイン ／ 加水分解シルク ／
-          メドウフォーム種子油 ／ PCA-Na ／ ホホバ種子油 ／ グリセリン ／ トコフェロール ／
-          ドクダミエキス ／ チャ葉エキス ／ センブリエキス ／ ポリクオタニウム-64 ／ コレステロール
-          ／
+          <div
+            data-pencil-name="marqueeText"
+            style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 60px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+          >
+            セラミドAP ／ ヒアルロン酸ヒドロキシプロピルトリモニウム ／ アルギニン ／
+            ラウロイルメチルアラニンNa ／ コカミドプロピルベタイン ／ 加水分解シルク ／
+            メドウフォーム種子油 ／ PCA-Na ／ ホホバ種子油 ／ グリセリン ／ トコフェロール ／
+            ドクダミエキス ／ チャ葉エキス ／ センブリエキス ／ ポリクオタニウム-64 ／
+            コレステロール ／
+          </div>
         </div>
         <div
-          data-pencil-name="marqueeText"
-          style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 80px; font-style: normal; font-weight: 400; left: -1583px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 333px; white-space: nowrap; z-index: 5'
+          data-pencil-name="footnotes"
+          style="align-items: flex-start; background-color: #F5F7FA; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 8px; height: fit-content; justify-content: flex-start; padding: 24px 28px; width: 100%"
         >
-          セラミドAP・ヒアルロン酸ヒドロキシプロピルトリモニウム・アルギニン・ラウロイルメチルアラニンNa
-          ／ コカミドプロピルベタイン ／ 加水分解シルク ／ メドウフォーム種子油 ／ PCA-Na ／
-          ホホバ種子油 ／ グリセリン ／ トコフェロール ／ ドクダミエキス ／ チャ葉エキス ／
-          センブリエキス ／ ポリクオタニウム-64 ／ コレステロール ／
-        </div>
-        <div
-          data-pencil-name="marqueeText"
-          style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 80px; font-style: normal; font-weight: 400; left: -2031px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 449px; white-space: nowrap; z-index: 6'
-        >
-          ※5
-          グリセリン、ココイル加水分解コラーゲンK・セラミドAP・セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG
-        </div>
-        <div
-          data-pencil-name="marqueeText"
-          style='box-sizing: border-box; color: #002677; font-family: "Hina Mincho", system-ui, sans-serif; font-size: 80px; font-style: normal; font-weight: 400; left: -2902px; letter-spacing: 0px; line-height: normal; position: absolute; text-align: left; top: 565px; white-space: nowrap; z-index: 7'
-        >
-          ※5
-          グリセリン、ココイル加水分解コラーゲンK・セラミドAP・セラミドNG、セラミドNP・PCA・PCA-Na・ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※4
+            ラウロイルメチルアラニンNa、コカミドプロピルベタイン、ラウロイルアスパラギン酸Na、ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※5
+            グリセリン、ココイル加水分解コラーゲンK、セラミドAP、セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※6
+            グリセリン、PCA、PCA-Na、アルギニン、グリシン、アラニン、セリン、トレオニン、ヒスチジン、乳酸Na
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※7
+            ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、クオタニウム-33、コレステロール
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※8
+            ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、アルギニン、アスパラギン酸、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※9
+            ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、PCA、PCA-Na、加水分解シルク、セバシン酸ジエチル、ポリクオタニウム-10、クオタニウム-33、コレステロール
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※10
+            ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アスパラギン酸、ポリクオタニウム-10、クオタニウム-33、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、ジステアリルジモニウムクロリド、コレステロール
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※11
+            サリチル酸、o-シメン-5-オール、フェノールスルホン酸亜鉛、銀、ドクダミエキス、チャ葉エキス、センブリエキス、レモングラス葉/茎エキス、カキタンニン、チョウジエキス、エタノール、カプリル酸グリセリル、炭酸水素Na
+          </div>
+          <div
+            data-pencil-name="note"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            ※12
+            グリチルリチン酸2K、ピロクトンオラミン、サリチル酸、o-シメン-5-オール、ドクダミエキス、チャ葉エキス、チョウジエキス、トコフェロール
+          </div>
+          <div
+            data-pencil-name="closing"
+            style='box-sizing: border-box; color: #9AA3B2; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 10px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: 17px; text-align: left; width: 100%'
+          >
+            （一つの成分が複数の役割を持つため、各分類の合計は66種類にはなりません。）
+          </div>
         </div>
       </div>
       <div
@@ -1321,7 +1378,7 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           </div>
           <div
             data-pencil-name="img"
-            style="background-color: #d9d9d9ff; box-sizing: border-box; flex-shrink: 0; height: 501px; width: 380px"
+            style="background-image: url('a/generated-1785828622958.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; box-sizing: border-box; flex-shrink: 0; height: 501px; width: 380px"
           ></div>
         </div>
         <div
@@ -1469,25 +1526,25 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
             style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; width: 100%"
           >
             <div
-              data-pencil-name="タール系色素"
+              data-pencil-name="タルク"
               style="align-items: flex-start; background-color: #F5F7FA; border-radius: 30px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
             >
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #0D41A8; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
-                タール系色素
+                タルク
               </div>
             </div>
             <div
-              data-pencil-name="蛍光増白剤"
+              data-pencil-name="マイクロビーズ"
               style="align-items: flex-start; background-color: #F5F7FA; border-radius: 30px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: fit-content; justify-content: flex-start; padding: 10px 20px; width: fit-content"
             >
               <div
                 data-pencil-name="t"
                 style='box-sizing: border-box; color: #0D41A8; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
               >
-                蛍光増白剤
+                マイクロビーズ
               </div>
             </div>
           </div>
@@ -1797,6 +1854,8 @@ function pwCheck(){if(document.getElementById('pw-input').value==='view'){docume
           style='box-sizing: border-box; color: #9FB6CC; font-family: "Zen Kaku Gothic New", system-ui, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; left: 72px; letter-spacing: 0px; line-height: 22px; position: absolute; text-align: left; top: 100px; width: 340px; z-index: 1'
         >
           瞬感、におわない。
+          <br />
+          ※無香料であること、シャンプーで洗い流すこと
           <br />
           洗うために、香りはいらなかった。
           <br />

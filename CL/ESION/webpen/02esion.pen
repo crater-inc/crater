@@ -19156,7 +19156,7 @@
           "name": "Hero",
           "clip": true,
           "width": "fill_container",
-          "height": 480,
+          "height": 577,
           "fill": {
             "type": "gradient",
             "gradientType": "linear",
@@ -19324,33 +19324,42 @@
               "type": "frame",
               "id": "QYojK",
               "x": 72,
-              "y": 176,
+              "y": 180,
               "name": "content",
               "width": 640,
               "layout": "vertical",
-              "gap": 16,
+              "gap": 14,
               "children": [
                 {
-                  "type": "text",
-                  "id": "CaPI0",
-                  "name": "eyebrow",
-                  "fill": "#FFFFFF",
-                  "content": "ABOUT ESION",
-                  "fontFamily": "$font-en",
-                  "fontSize": 19,
-                  "fontWeight": "600",
-                  "letterSpacing": 4
-                },
-                {
-                  "type": "text",
-                  "id": "Z7xH6",
-                  "name": "title",
-                  "fill": "#FFFFFF",
-                  "content": "ESIONのこだわり",
-                  "fontFamily": "$font-jp-head",
-                  "fontSize": 70,
-                  "fontWeight": "normal",
-                  "letterSpacing": 4
+                  "type": "frame",
+                  "id": "MYJZS",
+                  "name": "titlegroup",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CaPI0",
+                      "name": "eyebrow",
+                      "fill": "#FFFFFF",
+                      "content": "ABOUT ESION",
+                      "fontFamily": "$font-en",
+                      "fontSize": 19,
+                      "fontWeight": "600",
+                      "letterSpacing": 4
+                    },
+                    {
+                      "type": "text",
+                      "id": "Z7xH6",
+                      "name": "title",
+                      "fill": "#FFFFFF",
+                      "content": "ESIONのこだわり",
+                      "fontFamily": "$font-jp-head",
+                      "fontSize": 100,
+                      "fontWeight": "normal",
+                      "letterSpacing": 6
+                    }
+                  ]
                 },
                 {
                   "type": "text",
@@ -19432,17 +19441,15 @@
           "id": "X2lBw",
           "name": "ProductDesign",
           "width": "fill_container",
+          "height": "fit_content(755)",
           "fill": "$c-bg-soft",
-          "layout": "vertical",
-          "gap": 20,
-          "padding": [
-            64,
-            120
-          ],
+          "layout": "none",
           "children": [
             {
               "type": "text",
               "id": "Pkr5Y",
+              "x": 120,
+              "y": 64,
               "name": "lab",
               "fill": "$c-navy-light",
               "content": "PRODUCT DESIGN",
@@ -19454,6 +19461,8 @@
             {
               "type": "text",
               "id": "lSeDf",
+              "x": 120,
+              "y": 98,
               "name": "ttl",
               "fill": "#002677",
               "content": "一本に込めた、7つのこだわり",
@@ -19464,10 +19473,12 @@
             {
               "type": "text",
               "id": "BjWQR",
+              "x": 120,
+              "y": 156,
               "name": "body",
               "fill": "#4A5578",
               "textGrowth": "fixed-width",
-              "width": 760,
+              "width": 452,
               "content": "香りを残さず、髪と地肌をきちんと洗うこと。洗いながらうるおいを補い、指通りよく整えること。毎日、無理なく使い続けられること。\nエシオンは、洗浄成分、補修・保湿成分、泡立ち・すすぎやすさ、仕上がりまでを一つの設計として考えました。",
               "lineHeight": 1.95,
               "fontFamily": "$font-jp",
@@ -19477,21 +19488,20 @@
             {
               "type": "frame",
               "id": "g66j1",
+              "x": 120,
+              "y": 284,
               "name": "list",
-              "width": "fill_container",
-              "layout": "vertical",
-              "padding": [
-                8,
-                0,
-                0,
-                0
-              ],
+              "width": 451,
+              "height": "fit_content(407)",
+              "layout": "none",
               "children": [
                 {
                   "type": "frame",
                   "id": "CW1uK",
+                  "x": 0,
+                  "y": 8,
                   "name": "row",
-                  "width": "fill_container",
+                  "width": "fill_container(451)",
                   "layout": "vertical",
                   "children": [
                     {
@@ -19543,8 +19553,10 @@
                 {
                   "type": "frame",
                   "id": "fB5Kx",
+                  "x": 0,
+                  "y": 65,
                   "name": "row",
-                  "width": "fill_container",
+                  "width": "fill_container(451)",
                   "layout": "vertical",
                   "children": [
                     {
@@ -19596,8 +19608,10 @@
                 {
                   "type": "frame",
                   "id": "Y3GrK",
+                  "x": 0,
+                  "y": 122,
                   "name": "row",
-                  "width": "fill_container",
+                  "width": "fill_container(451)",
                   "layout": "vertical",
                   "children": [
                     {
@@ -19649,8 +19663,10 @@
                 {
                   "type": "frame",
                   "id": "JOuX4",
+                  "x": 0,
+                  "y": 179,
                   "name": "row",
-                  "width": "fill_container",
+                  "width": "fill_container(451)",
                   "layout": "vertical",
                   "children": [
                     {
@@ -19702,8 +19718,10 @@
                 {
                   "type": "frame",
                   "id": "y8Qcw3",
+                  "x": 0,
+                  "y": 236,
                   "name": "row",
-                  "width": "fill_container",
+                  "width": "fill_container(451)",
                   "layout": "vertical",
                   "children": [
                     {
@@ -19755,8 +19773,10 @@
                 {
                   "type": "frame",
                   "id": "EQWuI",
+                  "x": 0,
+                  "y": 293,
                   "name": "row",
-                  "width": "fill_container",
+                  "width": "fill_container(451)",
                   "layout": "vertical",
                   "children": [
                     {
@@ -19808,8 +19828,10 @@
                 {
                   "type": "frame",
                   "id": "X0Poo7",
+                  "x": 0,
+                  "y": 350,
                   "name": "row",
-                  "width": "fill_container",
+                  "width": "fill_container(451)",
                   "layout": "vertical",
                   "children": [
                     {
@@ -19859,6 +19881,16 @@
                   ]
                 }
               ]
+            },
+            {
+              "type": "rectangle",
+              "id": "aEVra",
+              "x": 661,
+              "y": 98,
+              "name": "img",
+              "fill": "#DDE2E9",
+              "width": "fill_container(450)",
+              "height": 574
             }
           ]
         },
@@ -21402,6 +21434,19 @@
                   "children": [
                     {
                       "type": "rectangle",
+                      "id": "v2aHys",
+                      "name": "img",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1785800767133.png",
+                        "mode": "fill"
+                      },
+                      "width": "fill_container",
+                      "height": 140
+                    },
+                    {
+                      "type": "rectangle",
                       "id": "rR4eU",
                       "name": "dot",
                       "fill": "$c-navy-light",
@@ -21445,6 +21490,19 @@
                   "children": [
                     {
                       "type": "rectangle",
+                      "id": "Zj5PX",
+                      "name": "img",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1785800767843.png",
+                        "mode": "fill"
+                      },
+                      "width": "fill_container",
+                      "height": 140
+                    },
+                    {
+                      "type": "rectangle",
                       "id": "hQb5C",
                       "name": "dot",
                       "fill": "$c-navy-light",
@@ -21486,6 +21544,19 @@
                   "layout": "vertical",
                   "gap": 10,
                   "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "Osjns",
+                      "name": "img",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "./images/generated-1785800767973.png",
+                        "mode": "fill"
+                      },
+                      "width": "fill_container",
+                      "height": 140
+                    },
                     {
                       "type": "rectangle",
                       "id": "t4uhDL",
