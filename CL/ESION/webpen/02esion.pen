@@ -9861,7 +9861,7 @@
           "name": "left-fixed",
           "clip": true,
           "width": 600,
-          "height": 5325,
+          "height": 5019,
           "fill": "#EDF1F7",
           "layout": "none",
           "children": [
@@ -12498,7 +12498,7 @@
           "type": "frame",
           "id": "JyEmS",
           "x": 0,
-          "y": 5325,
+          "y": 5019,
           "name": "Voices",
           "clip": true,
           "width": 1199,
@@ -12987,7 +12987,7 @@
           "type": "frame",
           "id": "FlqGg",
           "x": 0,
-          "y": 5815,
+          "y": 5509,
           "name": "こだわりバナー",
           "clip": true,
           "width": 1199,
@@ -13120,7 +13120,7 @@
           "type": "frame",
           "id": "Zq0pi",
           "x": 0,
-          "y": 6255,
+          "y": 5949,
           "name": "Footer",
           "clip": true,
           "width": 1199,
@@ -19961,7 +19961,7 @@
                   "fill": "#4A5578",
                   "textGrowth": "fixed-width",
                   "width": 571,
-                  "content": "無香料とは、香料を配合していないこと。無香性とは、本品そのもののにおいを感じにくいことです。※1",
+                  "content": "無香料とは、香料を配合していないこと。無香性※1とは、本品そのもののにおいを感じにくいことです。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
                   "fontSize": 14,
@@ -20452,7 +20452,7 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "./images/generated-1785760618322.png",
+                "url": "images/generated-1785760618322.png",
                 "mode": "fill"
               },
               "width": "fill_container",
@@ -20486,7 +20486,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1785760619172.png",
+                        "url": "images/generated-1785760619172.png",
                         "mode": "fill"
                       },
                       "width": "fill_container",
@@ -20542,7 +20542,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1785760616774.png",
+                        "url": "images/generated-1785760616774.png",
                         "mode": "fill"
                       },
                       "width": "fill_container",
@@ -20598,7 +20598,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1785760617954.png",
+                        "url": "images/generated-1785760617954.png",
                         "mode": "fill"
                       },
                       "width": "fill_container",
@@ -21007,15 +21007,17 @@
           "id": "uM2Jr",
           "name": "Commitment05",
           "width": "fill_container",
-          "height": 972,
           "fill": "$c-white",
-          "layout": "none",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            80,
+            120
+          ],
           "children": [
             {
               "type": "text",
               "id": "Hm9ig",
-              "x": 120,
-              "y": 80,
               "name": "lab",
               "fill": "$c-navy-light",
               "content": "COMMITMENT 05",
@@ -21027,8 +21029,6 @@
             {
               "type": "text",
               "id": "OzBQQ",
-              "x": 120,
-              "y": 118,
               "name": "ttl",
               "fill": "#002677",
               "textGrowth": "fixed-width-height",
@@ -21043,8 +21043,6 @@
             {
               "type": "text",
               "id": "heTZo",
-              "x": 113,
-              "y": 699,
               "name": "intro",
               "fill": "#4A5578",
               "textGrowth": "fixed-width",
@@ -21058,18 +21056,20 @@
             {
               "type": "frame",
               "id": "ynlGv",
-              "x": 113,
-              "y": 777,
               "name": "tags",
-              "width": "fill_container(959)",
-              "height": "fit_content(106)",
-              "layout": "none",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "padding": [
+                16,
+                0,
+                0,
+                0
+              ],
               "children": [
                 {
                   "type": "frame",
                   "id": "U90kc3",
-                  "x": 0,
-                  "y": 16,
                   "name": "tagrow",
                   "gap": 12,
                   "children": [
@@ -21203,8 +21203,6 @@
                 {
                   "type": "frame",
                   "id": "q7U3BH",
-                  "x": 0,
-                  "y": 67,
                   "name": "tagrow",
                   "gap": 12,
                   "children": [
@@ -21313,52 +21311,170 @@
               ]
             },
             {
-              "type": "text",
-              "id": "D4nobF",
-              "x": -797,
-              "y": 207,
-              "name": "marqueeText",
-              "fill": "#002677",
-              "content": "セラミドAP・ヒアルロン酸ヒドロキシプロピルトリモニウム  ／  アルギニン  ／  ラウロイルメチルアラニンNa  ／  コカミドプロピルベタイン  ／  加水分解シルク  ／  メドウフォーム種子油  ／  PCA-Na  ／  ホホバ種子油  ／  グリセリン  ／  トコフェロール  ／  ドクダミエキス  ／  チャ葉エキス  ／  センブリエキス  ／  ポリクオタニウム-64  ／  コレステロール  ／  ",
-              "fontFamily": "$font-jp-head",
-              "fontSize": 80,
-              "fontWeight": "normal"
+              "type": "frame",
+              "id": "cMKb7",
+              "name": "IngredientMarquee",
+              "clip": true,
+              "width": "fill_container",
+              "height": 130,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "D4nobF",
+                  "name": "marqueeText",
+                  "fill": "#002677",
+                  "content": "セラミドAP  ／  ヒアルロン酸ヒドロキシプロピルトリモニウム  ／  アルギニン  ／  ラウロイルメチルアラニンNa  ／  コカミドプロピルベタイン  ／  加水分解シルク  ／  メドウフォーム種子油  ／  PCA-Na  ／  ホホバ種子油  ／  グリセリン  ／  トコフェロール  ／  ドクダミエキス  ／  チャ葉エキス  ／  センブリエキス  ／  ポリクオタニウム-64  ／  コレステロール  ／  ",
+                  "fontFamily": "$font-jp-head",
+                  "fontSize": 60,
+                  "fontWeight": "normal"
+                }
+              ]
             },
             {
-              "type": "text",
-              "id": "uBnMk",
-              "x": -1583,
-              "y": 333,
-              "name": "marqueeText",
-              "fill": "#002677",
-              "content": "セラミドAP・ヒアルロン酸ヒドロキシプロピルトリモニウム・アルギニン・ラウロイルメチルアラニンNa  ／  コカミドプロピルベタイン  ／  加水分解シルク  ／  メドウフォーム種子油  ／  PCA-Na  ／  ホホバ種子油  ／  グリセリン  ／  トコフェロール  ／  ドクダミエキス  ／  チャ葉エキス  ／  センブリエキス  ／  ポリクオタニウム-64  ／  コレステロール  ／  ",
-              "fontFamily": "$font-jp-head",
-              "fontSize": 80,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "IRcoR",
-              "x": -2031,
-              "y": 449,
-              "name": "marqueeText",
-              "fill": "#002677",
-              "content": "※5 グリセリン、ココイル加水分解コラーゲンK・セラミドAP・セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
-              "fontFamily": "$font-jp-head",
-              "fontSize": 80,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "PE1eQ",
-              "x": -2902,
-              "y": 565,
-              "name": "marqueeText",
-              "fill": "#002677",
-              "content": "※5 グリセリン、ココイル加水分解コラーゲンK・セラミドAP・セラミドNG、セラミドNP・PCA・PCA-Na・ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
-              "fontFamily": "$font-jp-head",
-              "fontSize": 80,
-              "fontWeight": "normal"
+              "type": "frame",
+              "id": "B06YMw",
+              "name": "footnotes",
+              "width": "fill_container",
+              "fill": "$c-bg-soft",
+              "layout": "vertical",
+              "gap": 8,
+              "padding": [
+                24,
+                28
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "QZLdt",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※4 ラウロイルメチルアラニンNa、コカミドプロピルベタイン、ラウロイルアスパラギン酸Na、ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "mTiUe",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※5 グリセリン、ココイル加水分解コラーゲンK、セラミドAP、セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "VqlSS",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※6 グリセリン、PCA、PCA-Na、アルギニン、グリシン、アラニン、セリン、トレオニン、ヒスチジン、乳酸Na",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "iR5Iu",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※7 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、クオタニウム-33、コレステロール",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "L3gHR",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※8 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、アルギニン、アスパラギン酸、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "WhLvW",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※9 ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、PCA、PCA-Na、加水分解シルク、セバシン酸ジエチル、ポリクオタニウム-10、クオタニウム-33、コレステロール",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "q3uf9H",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※10 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アスパラギン酸、ポリクオタニウム-10、クオタニウム-33、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、ジステアリルジモニウムクロリド、コレステロール",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "HPK3L",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※11 サリチル酸、o-シメン-5-オール、フェノールスルホン酸亜鉛、銀、ドクダミエキス、チャ葉エキス、センブリエキス、レモングラス葉/茎エキス、カキタンニン、チョウジエキス、エタノール、カプリル酸グリセリル、炭酸水素Na",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "o4ULVB",
+                  "name": "note",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※12 グリチルリチン酸2K、ピロクトンオラミン、サリチル酸、o-シメン-5-オール、ドクダミエキス、チャ葉エキス、チョウジエキス、トコフェロール",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Q8kR2V",
+                  "name": "closing",
+                  "fill": "#9AA3B2",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "（一つの成分が複数の役割を持つため、各分類の合計は66種類にはなりません。）",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "700"
+                }
+              ]
             }
           ]
         },
@@ -21439,7 +21555,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1785800767133.png",
+                        "url": "images/generated-1785800767133.png",
                         "mode": "fill"
                       },
                       "width": "fill_container",
@@ -21495,7 +21611,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1785800767843.png",
+                        "url": "images/generated-1785800767843.png",
                         "mode": "fill"
                       },
                       "width": "fill_container",
@@ -21551,7 +21667,7 @@
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "./images/generated-1785800767973.png",
+                        "url": "images/generated-1785800767973.png",
                         "mode": "fill"
                       },
                       "width": "fill_container",
@@ -21666,7 +21782,12 @@
                   "type": "rectangle",
                   "id": "iwmtU",
                   "name": "img",
-                  "fill": "#d9d9d9ff",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "images/generated-1785828622958.png",
+                    "mode": "fill"
+                  },
                   "width": 380,
                   "height": 501
                 }
@@ -21978,7 +22099,7 @@
                     {
                       "type": "frame",
                       "id": "r9EtWR",
-                      "name": "タール系色素",
+                      "name": "タルク",
                       "fill": "$c-bg-soft",
                       "cornerRadius": 30,
                       "padding": [
@@ -21991,7 +22112,7 @@
                           "id": "z8O4wt",
                           "name": "t",
                           "fill": "$c-navy-light",
-                          "content": "タール系色素",
+                          "content": "タルク",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
@@ -22001,7 +22122,7 @@
                     {
                       "type": "frame",
                       "id": "v2fAq",
-                      "name": "蛍光増白剤",
+                      "name": "マイクロビーズ",
                       "fill": "$c-bg-soft",
                       "cornerRadius": 30,
                       "padding": [
@@ -22014,7 +22135,7 @@
                           "id": "cb5da",
                           "name": "t",
                           "fill": "$c-navy-light",
-                          "content": "蛍光増白剤",
+                          "content": "マイクロビーズ",
                           "fontFamily": "$font-jp",
                           "fontSize": 13,
                           "fontWeight": "700"
@@ -22410,6 +22531,7 @@
                   "id": "Y6ucEg",
                   "name": "btn-product",
                   "fill": "$c-navy-deep",
+                  "cornerRadius": 100,
                   "gap": 8,
                   "padding": [
                     16,
@@ -22443,6 +22565,7 @@
                   "type": "frame",
                   "id": "v4oSN",
                   "name": "btn-story",
+                  "cornerRadius": 100,
                   "stroke": "$c-line",
                   "strokeWidth": 1,
                   "gap": 8,
@@ -22523,7 +22646,7 @@
               "fill": "#9FB6CC",
               "textGrowth": "fixed-width",
               "width": 340,
-              "content": "瞬感、におわない。\n洗うために、香りはいらなかった。\n低刺激・無香料・アミノ酸系オールインワンシャンプー",
+              "content": "瞬感、におわない。\n※無香料であること、シャンプーで洗い流すこと\n洗うために、香りはいらなかった。\n低刺激・無香料・アミノ酸系オールインワンシャンプー",
               "lineHeight": 1.8,
               "fontFamily": "$font-jp",
               "fontSize": 12,
@@ -24813,153 +24936,6 @@
               "letterSpacing": 1
             }
           ]
-        }
-      ]
-    },
-    {
-      "type": "frame",
-      "id": "B06YMw",
-      "x": 11017,
-      "y": 5472,
-      "name": "footnotes",
-      "width": "fill_container(959)",
-      "fill": "$c-bg-soft",
-      "layout": "vertical",
-      "gap": 8,
-      "padding": [
-        24,
-        28
-      ],
-      "children": [
-        {
-          "type": "text",
-          "id": "QZLdt",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※4 ラウロイルメチルアラニンNa、コカミドプロピルベタイン、ラウロイルアスパラギン酸Na、ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "mTiUe",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※5 グリセリン、ココイル加水分解コラーゲンK、セラミドAP、セラミドNG、セラミドNP、PCA、PCA-Na、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アルギニン、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン、PG、BG、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、コレステロール、ペンチレングリコール、トコフェロール、乳酸Na、DPG",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "VqlSS",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※6 グリセリン、PCA、PCA-Na、アルギニン、グリシン、アラニン、セリン、トレオニン、ヒスチジン、乳酸Na",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "iR5Iu",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※7 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、クオタニウム-33、コレステロール",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "L3gHR",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※8 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、アルギニン、アスパラギン酸、グリシン、アラニン、セリン、バリン、イソロイシン、トレオニン、プロリン、ヒスチジン、フェニルアラニン",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "WhLvW",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※9 ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、PCA、PCA-Na、加水分解シルク、セバシン酸ジエチル、ポリクオタニウム-10、クオタニウム-33、コレステロール",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "q3uf9H",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※10 ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、γ-ドコサラクトン、セラミドAP、セラミドNG、セラミドNP、ジラウロイルグルタミン酸リシンNa、加水分解シルク、ホホバ種子油、ブドウ種子油、マカデミア種子油、メドウフォーム種子油、アスパラギン酸、ポリクオタニウム-10、クオタニウム-33、ポリクオタニウム-64、ヒアルロン酸ヒドロキシプロピルトリモニウム、ジステアリルジモニウムクロリド、コレステロール",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "HPK3L",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※11 サリチル酸、o-シメン-5-オール、フェノールスルホン酸亜鉛、銀、ドクダミエキス、チャ葉エキス、センブリエキス、レモングラス葉/茎エキス、カキタンニン、チョウジエキス、エタノール、カプリル酸グリセリル、炭酸水素Na",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "o4ULVB",
-          "name": "note",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "※12 グリチルリチン酸2K、ピロクトンオラミン、サリチル酸、o-シメン-5-オール、ドクダミエキス、チャ葉エキス、チョウジエキス、トコフェロール",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "normal"
-        },
-        {
-          "type": "text",
-          "id": "Q8kR2V",
-          "name": "closing",
-          "fill": "#9AA3B2",
-          "textGrowth": "fixed-width",
-          "width": "fill_container",
-          "content": "（一つの成分が複数の役割を持つため、各分類の合計は66種類にはなりません。）",
-          "lineHeight": 1.7,
-          "fontFamily": "$font-jp",
-          "fontSize": 10,
-          "fontWeight": "700"
         }
       ]
     }
