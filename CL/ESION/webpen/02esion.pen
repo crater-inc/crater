@@ -17932,7 +17932,7 @@
                   "fill": "#3D4655",
                   "textGrowth": "fixed-width",
                   "width": "fill_container(617)",
-                  "content": "無香料とは、香料を配合していないこと。無香性とは、においがしないこと。ESIONが目指したのは、香料を配合しない「無香料」にとどまらず、においがしない「無香性」でした。",
+                  "content": "無香料とは、香料を配合していないこと。無香性※1とは、においがしないこと。ESIONが目指したのは、香料を配合しない「無香料」にとどまらず、においがしない「無香性※1」でした。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
@@ -17977,7 +17977,7 @@
                   "fill": "#3D4655",
                   "textGrowth": "fixed-width",
                   "width": "fill_container(617)",
-                  "content": "ようやくにおいを抑えられても、原料を変更することで、泡立ちや洗い上がりまで変わってしまうことがあります。泡立ちだけを良くしても、理想の洗い上がりにはならない。指通りだけを重視しても、求める洗い心地には届かない。",
+                  "content": "においを抑えられても、原料を変更することで、泡立ちや洗い上がりまで変わってしまうことがあります。泡立ちだけを良くしても、理想の洗い上がりにはならない。指通りだけを重視しても、求める洗い心地には届かない。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
@@ -17992,11 +17992,27 @@
                   "fill": "#3D4655",
                   "textGrowth": "fixed-width",
                   "width": "fill_container(617)",
-                  "content": "無香性を目指しながら、泡立ち、洗浄力、指通り、まとまりを両立させるために、何度も何度も試作と改良を繰り返しました。",
+                  "content": "無香性※1を目指しながら、泡立ち、洗浄力、指通り、まとまりを両立させるために、何度も何度も試作と改良を繰り返しました。",
                   "lineHeight": 1.95,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
                   "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "G1GfPG",
+                  "x": 0,
+                  "y": 470,
+                  "name": "footnote",
+                  "fill": "#8A93A6",
+                  "textGrowth": "fixed-width",
+                  "width": 602,
+                  "content": "※1 本品そのもののにおいに関する表現であり、使用者、頭皮、毛髪のにおいがなくなることを意味するものではありません。",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10.5,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.2
                 }
               ]
             },
@@ -18133,7 +18149,7 @@
                       "fill": "#C4D3E0",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "その本質を追求するために、アミノ酸系の洗浄成分を中心に、複数の成分の組み合わせを調整しました。こうして完成したのが「エシオン スカルプケア アミノシャンプー」です。",
+                      "content": "その本質を追求するために、アミノ酸系の洗浄成分※2を中心に、複数の成分の組み合わせを調整しました。こうして完成したのが「エシオン スカルプケア アミノシャンプー」です。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
                       "fontSize": 13,
@@ -18159,7 +18175,7 @@
                       "fill": "#C4D3E0",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "コンディショニング成分やトリートメント成分を配合し、洗い流した後の指通りやまとまりにも配慮。一本で「洗う、補う、整える」オールインワン設計です。",
+                      "content": "コンディショニング成分※3やトリートメント成分※4を配合し、洗い流した後の指通りやまとまりにも配慮。一本で「洗う、補う、整える」オールインワン設計です。",
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
                       "fontSize": 13,
@@ -18176,6 +18192,19 @@
                       "lineHeight": 1.95,
                       "fontFamily": "$font-jp",
                       "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SEIax",
+                      "name": "footnote",
+                      "fill": "#9FB6CC",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "※２洗浄成分：ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、ラウロイルメチルアラニンNa、ラウロイルアスパラギン酸Na、コカミドプロピルベタイン、※３コンディショニング成分：ジラウロイルグルタミン酸リシンNa、※４トリートメント成分：ヒアルロン酸ヒドロキシプロピルトリモニウム",
+                      "lineHeight": 1.6,
+                      "fontFamily": "$font-jp",
+                      "fontSize": 10.5,
                       "fontWeight": "normal"
                     }
                   ]
@@ -23766,7 +23795,7 @@
                   "fill": "#3D4655",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "無香料とは、香料を配合していないこと。無香性とは、においがしないこと。ESIONが目指したのは、香料を配合しない「無香料」にとどまらず、においがしない「無香性」でした。",
+                  "content": "無香料とは、香料を配合していないこと。無香性※1とは、においがしないこと。ESIONが目指したのは、香料を配合しない「無香料」にとどまらず、においがしない「無香性※1」でした。",
                   "lineHeight": 1.9,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
@@ -23805,7 +23834,7 @@
                   "fill": "#3D4655",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "ようやくにおいを抑えられても、原料を変更することで、泡立ちや洗い上がりまで変わってしまうことがあります。泡立ちだけを良くしても、理想の洗い上がりにはならない。指通りだけを重視しても、求める洗い心地には届かない。",
+                  "content": "においを抑えられても、原料を変更することで、泡立ちや洗い上がりまで変わってしまうことがあります。泡立ちだけを良くしても、理想の洗い上がりにはならない。指通りだけを重視しても、求める洗い心地には届かない。",
                   "lineHeight": 1.9,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
@@ -23818,11 +23847,25 @@
                   "fill": "#3D4655",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "無香性を目指しながら、泡立ち、洗浄力、指通り、まとまりを両立させるために、何度も何度も試作と改良を繰り返しました。",
+                  "content": "無香性※1を目指しながら、泡立ち、洗浄力、指通り、まとまりを両立させるために、何度も何度も試作と改良を繰り返しました。",
                   "lineHeight": 1.9,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
                   "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "uYlvt",
+                  "name": "footnote",
+                  "fill": "#8A93A6",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※1 本品そのもののにおいに関する表現であり、使用者、頭皮、毛髪のにおいがなくなることを意味するものではありません。",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
+                  "fontWeight": "normal",
+                  "letterSpacing": 0.2
                 }
               ]
             }
@@ -23934,7 +23977,7 @@
                   "fill": "#C4D3E0",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "その本質を追求するために、アミノ酸系の洗浄成分を中心に、複数の成分の組み合わせを調整しました。こうして完成したのが「エシオン スカルプケア アミノシャンプー」です。",
+                  "content": "その本質を追求するために、アミノ酸系の洗浄成分※2を中心に、複数の成分の組み合わせを調整しました。こうして完成したのが「エシオン スカルプケア アミノシャンプー」です。",
                   "lineHeight": 1.9,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
@@ -23960,7 +24003,7 @@
                   "fill": "#C4D3E0",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "コンディショニング成分やトリートメント成分を配合し、洗い流した後の指通りやまとまりにも配慮。一本で「洗う、補う、整える」オールインワン設計です。",
+                  "content": "コンディショニング成分※3やトリートメント成分※4を配合し、洗い流した後の指通りやまとまりにも配慮。一本で「洗う、補う、整える」オールインワン設計です。",
                   "lineHeight": 1.9,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
@@ -23977,6 +24020,19 @@
                   "lineHeight": 1.9,
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "oSqF7",
+                  "name": "footnote",
+                  "fill": "#9FB6CC",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※２洗浄成分：ココイル加水分解コラーゲンK、ココイル加水分解ダイズタンパクK、ラウロイルメチルアラニンNa、ラウロイルアスパラギン酸Na、コカミドプロピルベタイン、※３コンディショニング成分：ジラウロイルグルタミン酸リシンNa、※４トリートメント成分：ヒアルロン酸ヒドロキシプロピルトリモニウム",
+                  "lineHeight": 1.6,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 10,
                   "fontWeight": "normal"
                 }
               ]
