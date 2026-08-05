@@ -35,6 +35,12 @@ def compress(s):
 def body_inner(s):
     return re.search(r'<body>(.*)</body>', s, re.S).group(1)
 
+# ネイビーのテキスト色を $c-navy-deep（#081B52）に統一（テキストのcolor:のみ）
+def navy_text(s):
+    s = re.sub(r'(color:\s*)#002677([Ff]{2})?', r'\g<1>#081B52', s)
+    s = re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?', r'\g<1>#081B52', s)
+    return s
+
 # コンテンツ幅ガイド（📏 guide-L / guide-R）は本番に不要なので除去
 def strip_guides(s):
     return re.sub(
@@ -45,11 +51,11 @@ pc = compress(open(PC).read())
 sp = compress(open(SP).read())
 
 # PC body（ルート＝bodyの最初のdivに id="storyRoot"。フレーム名非依存＝Pencilで改名されても壊れない）
-pcb = strip_guides(body_inner(pc))
+pcb = navy_text(strip_guides(body_inner(pc)))
 pcb = re.sub(r'<div\b', '<div id="storyRoot"', pcb, 1)
 
 # SP body（同様にルートへ id="spStoryRoot"）
-spb = strip_guides(body_inner(sp))
+spb = navy_text(strip_guides(body_inner(sp)))
 spb = re.sub(r'<div\b', '<div id="spStoryRoot"', spb, 1)
 
 head = '''<!doctype html>

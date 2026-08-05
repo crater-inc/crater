@@ -48,10 +48,10 @@ def tag_rv(s):
 def tag_cta(s):
     return re.sub(r'(data-pencil-name="CTA"\s*\n?\s*style=)','class="ctabtn" \\1',s,1)
 
-# ネイビーのテキスト色を #002677 に変更（テキストのcolor:のみ。背景・グラデは変えない）
+# ネイビーのテキスト色を $c-navy-deep（#081B52）に統一（テキストのcolor:のみ。背景・グラデは変えない）
 def navy_text(s):
-    s=re.sub(r'(color:\s*)#081[Bb]52',r'\g<1>#002677',s)
-    s=re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?',r'\g<1>#002677',s)
+    s=re.sub(r'(color:\s*)#002677([Ff]{2})?',r'\g<1>#081B52',s)
+    s=re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?',r'\g<1>#081B52',s)
     return s
 
 # VOICEの星：lucideのアウトライン星（線）を塗りつぶしの星に差し替え（PC/SP両方）

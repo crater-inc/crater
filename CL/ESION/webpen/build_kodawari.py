@@ -27,9 +27,16 @@ def compress(s):
         s = s.replace("url('%s')" % u, "url('%s')" % out.replace(' ', '%20'))
     return s
 
+# ネイビーのテキスト色を $c-navy-deep（#081B52）に統一（テキストのcolor:のみ）
+def navy_text(s):
+    s = re.sub(r'(color:\s*)#002677([Ff]{2})?', r'\g<1>#081B52', s)
+    s = re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?', r'\g<1>#081B52', s)
+    return s
+
 s = open(SRC).read()
 body = re.search(r'<body>(.*)</body>', s, re.S).group(1)
 body = compress(body)
+body = navy_text(body)
 
 body = re.sub(r'<div\b', '<div id="kodawariRoot"', body, 1)
 

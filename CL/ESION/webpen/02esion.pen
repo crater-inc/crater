@@ -21562,14 +21562,6 @@
                       "height": 140
                     },
                     {
-                      "type": "rectangle",
-                      "id": "rR4eU",
-                      "name": "dot",
-                      "fill": "$c-navy-light",
-                      "width": 28,
-                      "height": 2
-                    },
-                    {
                       "type": "text",
                       "id": "SFR8d",
                       "name": "ttl",
@@ -21618,14 +21610,6 @@
                       "height": 140
                     },
                     {
-                      "type": "rectangle",
-                      "id": "hQb5C",
-                      "name": "dot",
-                      "fill": "$c-navy-light",
-                      "width": 28,
-                      "height": 2
-                    },
-                    {
                       "type": "text",
                       "id": "Yqcw0",
                       "name": "ttl",
@@ -21672,14 +21656,6 @@
                       },
                       "width": "fill_container",
                       "height": 140
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "t4uhDL",
-                      "name": "dot",
-                      "fill": "$c-navy-light",
-                      "width": 28,
-                      "height": 2
                     },
                     {
                       "type": "text",
@@ -24934,6 +24910,1710 @@
               "fontSize": 10,
               "fontWeight": "normal",
               "letterSpacing": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "E8He9",
+      "x": 3114,
+      "y": 8325,
+      "name": "デザイン要件 2026-08",
+      "clip": true,
+      "width": 1100,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "gap": 56,
+      "padding": 64,
+      "children": [
+        {
+          "type": "frame",
+          "id": "jfDNR",
+          "name": "head",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "qo814",
+              "name": "title",
+              "fill": "$c-navy-deep",
+              "content": "WEB DESIGN SYSTEM",
+              "fontFamily": "Jost",
+              "fontSize": 40,
+              "fontWeight": "700",
+              "letterSpacing": 1
+            },
+            {
+              "type": "text",
+              "id": "Xn7gX",
+              "name": "subtitle",
+              "fill": "#8A93A5",
+              "content": "数値要件（index / product / story 実測ベース） — 2026-08-05",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 13
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "a9dk1",
+          "name": "TYPE section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "aT8Q6",
+              "name": "sectionTitle",
+              "fill": "$c-navy-deep",
+              "content": "01 — TYPOGRAPHY",
+              "fontFamily": "Jost",
+              "fontSize": 18,
+              "fontWeight": "700",
+              "letterSpacing": 2
+            },
+            {
+              "type": "frame",
+              "id": "VXkGb",
+              "name": "rows",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Fzn3V",
+                  "name": "Hero JP row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "syNxI",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "誕生秘話",
+                      "lineHeight": 1.05,
+                      "fontFamily": "Hina Mincho",
+                      "fontSize": 100,
+                      "letterSpacing": 6
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tJg5b",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "W7dxjU",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "Hero JP",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "YLdeW",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Hina Mincho / 100px / 400 / ls6px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "lnuzi",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "誕生秘話/こだわりで確定運用中",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZjjMB",
+                  "name": "Hero EN row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qwhw1",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "ESION",
+                      "lineHeight": 1.05,
+                      "fontFamily": "Barlow Condensed",
+                      "fontSize": 78,
+                      "fontWeight": "600",
+                      "letterSpacing": 6
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EBKFV",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dzplW",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "Hero EN",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "fBMfW",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Barlow Condensed / 78px / 600 / ls6px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "r68Von",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "誕生秘話サブ英字",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "d44q1",
+                  "name": "見出し大 JP row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "CxcIk",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "エシオンのこだわり",
+                      "fontFamily": "Hina Mincho",
+                      "fontSize": 44
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SGsAv",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H9sFPd",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "見出し大 JP",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Gw8Fg",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Hina Mincho / 44px / 400",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "qhbJL",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "トップ/商品詳細のセクション見出し",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "KSbpi",
+                  "name": "見出し中 JP row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "DzWwE",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "お客様の声",
+                      "fontFamily": "Hina Mincho",
+                      "fontSize": 28
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HsMPY",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "K1EL8h",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "見出し中 JP",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "U37T4",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Hina Mincho / 28px / 400",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "AXPN9",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "サブ見出し",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WliJc",
+                  "name": "見出し EN（英字大） row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Hh3K5",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "LINEUP",
+                      "lineHeight": 1.05,
+                      "fontFamily": "Barlow Condensed",
+                      "fontSize": 65,
+                      "fontWeight": "600",
+                      "letterSpacing": 1
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EK27n",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MtAaX",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "見出し EN（英字大）",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Vt7bi",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Barlow Condensed / 65px / 600 / ls1px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "PHsti",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "トップの英字大見出し",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZdF0u",
+                  "name": "ショルダー/ラベル row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QIXj9",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "COMMITMENT",
+                      "fontFamily": "Barlow Condensed",
+                      "fontSize": 14,
+                      "fontWeight": "600",
+                      "letterSpacing": 3
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KRFla",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "xM2qr",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "ショルダー/ラベル",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "zQ4mm",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Barlow Condensed / 14px / 600 / ls3px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "C2B20",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "現状12–19pxに分散＝14px 600 ls3pxへ統一提案",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "izb3x",
+                  "name": "本文 row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "K0p1pb",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "毎日使うものだから品質にこだわる。低刺激・無香料。",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 14
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GvQ4F",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "yfBxU",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "本文",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Gie46",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Zen Kaku Gothic New / 14px / 400",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "A93fC",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "現状12.5〜14pxに分散＝14pxへ統一提案",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "q4pdxB",
+                  "name": "キャプション/メタ row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lS6nI",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "税込・送料無料",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 12
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qyVoT",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "CRkVc",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "キャプション/メタ",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "OAYk8",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Zen Kaku Gothic New / 12px / 400",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "ffuNz",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "補助テキスト・注釈",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "djdiU",
+                  "name": "マイクロ（英訳注記等） row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    18,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vBfV2",
+                      "name": "sample",
+                      "fill": "$c-navy-deep",
+                      "textGrowth": "fixed-width",
+                      "width": 640,
+                      "content": "It began with a single question.",
+                      "fontFamily": "Barlow Condensed",
+                      "fontSize": 9,
+                      "letterSpacing": 1.5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DzIfz",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pdz8d",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "マイクロ（英訳注記等）",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "aPq0e",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "Barlow Condensed / 9px / 400 / ls1.5px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "EW7eJ",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "最小サイズ。本文には使わない",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "EqQqA",
+          "name": "SPACING section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "rT41r",
+              "name": "sectionTitle",
+              "fill": "$c-navy-deep",
+              "content": "02 — SPACING",
+              "fontFamily": "Jost",
+              "fontSize": 18,
+              "fontWeight": "700",
+              "letterSpacing": 2
+            },
+            {
+              "type": "frame",
+              "id": "dGCgN",
+              "name": "rows",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "OcbFL",
+                  "name": "基準幅（PC） row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "aKfRu",
+                      "name": "labelCol",
+                      "width": 280,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "vS90f",
+                          "name": "label",
+                          "fill": "#0B2A44",
+                          "content": "基準幅（PC）",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IOjtz",
+                          "name": "value",
+                          "fill": "$c-navy-deep",
+                          "content": "1199px",
+                          "fontFamily": "Jost",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "E8ggmQ",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "sjR2J",
+                      "name": "bar",
+                      "fill": "$c-navy-light",
+                      "width": 120,
+                      "height": 16
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZoSac",
+                      "name": "note",
+                      "fill": "#8A93A5",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "zoomで画面幅にフィット拡縮",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 11
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U7x7n2",
+                  "name": "基準幅（SP） row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "mYOe8",
+                      "name": "labelCol",
+                      "width": 280,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rvx5Q",
+                          "name": "label",
+                          "fill": "#0B2A44",
+                          "content": "基準幅（SP）",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "X96cv",
+                          "name": "value",
+                          "fill": "$c-navy-deep",
+                          "content": "390px",
+                          "fontFamily": "Jost",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "sJVLn",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "aHl3e",
+                      "name": "bar",
+                      "fill": "$c-navy-light",
+                      "width": 60,
+                      "height": 16
+                    },
+                    {
+                      "type": "text",
+                      "id": "k5yJQ",
+                      "name": "note",
+                      "fill": "#8A93A5",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "768px以下でzoom:1に切替",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 11
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "l81CHS",
+                  "name": "サイドマージン row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "y2Gvmu",
+                      "name": "labelCol",
+                      "width": 280,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "RoZTN",
+                          "name": "label",
+                          "fill": "#0B2A44",
+                          "content": "サイドマージン",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "m2rfn6",
+                          "name": "value",
+                          "fill": "$c-navy-deep",
+                          "content": "48px",
+                          "fontFamily": "Jost",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "Oaxhf",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "zXKF2",
+                      "name": "bar",
+                      "fill": "$c-navy-light",
+                      "width": 48,
+                      "height": 16
+                    },
+                    {
+                      "type": "text",
+                      "id": "MfoGe",
+                      "name": "note",
+                      "fill": "#8A93A5",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "セクション両端の内側余白",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 11
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CcH8i",
+                  "name": "3カラムグリッドgap row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "J19BKJ",
+                      "name": "labelCol",
+                      "width": 280,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "UC0Is",
+                          "name": "label",
+                          "fill": "#0B2A44",
+                          "content": "3カラムグリッドgap",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "QHfz1",
+                          "name": "value",
+                          "fill": "$c-navy-deep",
+                          "content": "23px",
+                          "fontFamily": "Jost",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "aKBjA",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "thxAL",
+                      "name": "bar",
+                      "fill": "$c-navy-light",
+                      "width": 23,
+                      "height": 16
+                    },
+                    {
+                      "type": "text",
+                      "id": "ggs02",
+                      "name": "note",
+                      "fill": "#8A93A5",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Reasons等の横並びカード間隔",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 11
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U2lLY",
+                  "name": "カード内padding row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "pHzh0",
+                      "name": "labelCol",
+                      "width": 280,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eFZ8y",
+                          "name": "label",
+                          "fill": "#0B2A44",
+                          "content": "カード内padding",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "nU7jD",
+                          "name": "value",
+                          "fill": "$c-navy-deep",
+                          "content": "16–24px",
+                          "fontFamily": "Jost",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "TK8gp",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "BQfl9",
+                      "name": "bar",
+                      "fill": "$c-navy-light",
+                      "width": 20,
+                      "height": 16
+                    },
+                    {
+                      "type": "text",
+                      "id": "M7AAug",
+                      "name": "note",
+                      "fill": "#8A93A5",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "COMMITMENTカード・情報ボックス",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 11
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DU7G5",
+                  "name": "画像比率 row",
+                  "width": "fill_container",
+                  "gap": 24,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xGDXE",
+                      "name": "labelCol",
+                      "width": 280,
+                      "layout": "vertical",
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ocjVX",
+                          "name": "label",
+                          "fill": "#0B2A44",
+                          "content": "画像比率",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "kA7rU",
+                          "name": "value",
+                          "fill": "$c-navy-deep",
+                          "content": "1:1（正方形）基本",
+                          "fontFamily": "Jost",
+                          "fontSize": 16,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "U11yxZ",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 2,
+                      "id": "eHAKa",
+                      "name": "bar",
+                      "fill": "$c-navy-light",
+                      "width": 80,
+                      "height": 16
+                    },
+                    {
+                      "type": "text",
+                      "id": "M3d53n",
+                      "name": "note",
+                      "fill": "#8A93A5",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "アイコン画像・特徴画像",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 11
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "R8Xu9y",
+          "name": "BUTTONS section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "BYSOR",
+              "name": "sectionTitle",
+              "fill": "$c-navy-deep",
+              "content": "03 — BUTTONS / CTA",
+              "fontFamily": "Jost",
+              "fontSize": 18,
+              "fontWeight": "700",
+              "letterSpacing": 2
+            },
+            {
+              "type": "frame",
+              "id": "Z0YdSm",
+              "name": "rows",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "cwNQ2",
+                  "name": "Primary Large row",
+                  "width": "fill_container",
+                  "gap": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "c7QwM",
+                      "name": "btn",
+                      "width": 220,
+                      "fill": "$c-navy-deep",
+                      "cornerRadius": 40,
+                      "padding": [
+                        15,
+                        32
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rJyWv",
+                          "name": "label",
+                          "fill": "#FFFFFF",
+                          "content": "詳しく見る",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 14,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jzNiT",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "GcLaC",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "Primary Large",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "k3wZj",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "height 52px / radius 40px（ピル） / padding 15px 32px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "PA3fl",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "content": "主要CTA。塗り（navy or white）",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cq6Kv",
+                  "name": "Secondary Compact row",
+                  "width": "fill_container",
+                  "gap": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Qmy51",
+                      "name": "btn",
+                      "width": 220,
+                      "fill": "#00000000",
+                      "cornerRadius": 30,
+                      "stroke": "$c-navy-light",
+                      "strokeWidth": 1,
+                      "padding": [
+                        11,
+                        18
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "I5uAOZ",
+                          "name": "label",
+                          "fill": "$c-navy-light",
+                          "content": "詳しい条件を見る",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "c37GCA",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "imA7J",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "Secondary Compact",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "YXGlH",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "height 42px / radius 30px / padding 11px 18px / border 1px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "UlPLP",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "content": "補助CTA。線ボタン（アウトライン）",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tYSqn",
+                  "name": "Micro Badge row",
+                  "width": "fill_container",
+                  "gap": 32,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "mWs3u",
+                      "name": "btn",
+                      "width": 220,
+                      "fill": "#FFFFFF",
+                      "cornerRadius": 20,
+                      "stroke": "$c-line",
+                      "strokeWidth": 1,
+                      "padding": [
+                        6,
+                        12
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "w4m1qY",
+                          "name": "label",
+                          "fill": "$c-navy-deep",
+                          "content": "まずはお試し",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 11,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gNN8k",
+                      "name": "spec",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "YOHJe",
+                          "name": "role",
+                          "fill": "#0B2A44",
+                          "content": "Micro Badge",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 12,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "L5un2Q",
+                          "name": "specline",
+                          "fill": "#8A93A5",
+                          "content": "height 28px / radius 20px（ピル） / padding 6px 12px",
+                          "fontFamily": "Jost",
+                          "fontSize": 11
+                        },
+                        {
+                          "type": "text",
+                          "id": "zFUwv",
+                          "name": "note",
+                          "fill": "#B8BFCC",
+                          "content": "小バッジ・タグ用途",
+                          "fontFamily": "Zen Kaku Gothic New",
+                          "fontSize": 10
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "dLrhE",
+              "name": "exception",
+              "fill": "#B8BFCC",
+              "content": "※ LINE公式ボタンのみ radius 6px（ブランド規定の例外・変更しない）",
+              "fontFamily": "Zen Kaku Gothic New",
+              "fontSize": 11
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "p7s4r",
+          "name": "COLOR section",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "lOBBt",
+              "name": "sectionTitle",
+              "fill": "$c-navy-deep",
+              "content": "04 — COLOR（実装との差分）",
+              "fontFamily": "Jost",
+              "fontSize": 18,
+              "fontWeight": "700",
+              "letterSpacing": 2
+            },
+            {
+              "type": "frame",
+              "id": "HXg92",
+              "name": "warning",
+              "width": "fill_container",
+              "fill": "#FBE9E9",
+              "cornerRadius": 8,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "U32iVg",
+                  "name": "line1",
+                  "fill": "#7A2E2E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "【確定】$c-navy-deep は #081B52 に統一（ケイスケさん指定）。実装側(index/product/story)は #002677 に寄っていたためズレ＝修正対象",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 13,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "h1Xsq",
+                  "name": "line2",
+                  "fill": "#7A2E2E",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "index / product / story の該当テキストを #081B52 に揃える実装修正が必要（別タスク）",
+                  "fontFamily": "Zen Kaku Gothic New",
+                  "fontSize": 12
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "XJXar",
+              "name": "swatches",
+              "width": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Oy2TS",
+                  "name": "Navy (actual)",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 8,
+                      "id": "Qp1oE",
+                      "name": "sw",
+                      "fill": "#081B52",
+                      "width": "fill_container",
+                      "height": 100
+                    },
+                    {
+                      "type": "text",
+                      "id": "yn14U",
+                      "name": "jp",
+                      "fill": "#0B2A44",
+                      "content": "ネイビー（確定値）",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XrUAr",
+                      "name": "hex",
+                      "fill": "#8A93A5",
+                      "content": "#081B52",
+                      "fontFamily": "Jost",
+                      "fontSize": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "n4DR5m",
+                      "name": "note",
+                      "fill": "#B8BFCC",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "$c-navy-deep として統一。実装側を要修正",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wkT14",
+                  "name": "Navy Light",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 8,
+                      "id": "R95tB",
+                      "name": "sw",
+                      "fill": "#0D41A8",
+                      "width": "fill_container",
+                      "height": 100
+                    },
+                    {
+                      "type": "text",
+                      "id": "dn4IB",
+                      "name": "jp",
+                      "fill": "#0B2A44",
+                      "content": "ネイビーブルー",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "eQGba",
+                      "name": "hex",
+                      "fill": "#8A93A5",
+                      "content": "#0D41A8",
+                      "fontFamily": "Jost",
+                      "fontSize": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "W2kh1",
+                      "name": "note",
+                      "fill": "#B8BFCC",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "一致・変更不要",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "nmD7T",
+                  "name": "Gray Dark",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 8,
+                      "id": "vvJNB",
+                      "name": "sw",
+                      "fill": "#3D4655",
+                      "width": "fill_container",
+                      "height": 100
+                    },
+                    {
+                      "type": "text",
+                      "id": "lAzYZ",
+                      "name": "jp",
+                      "fill": "#0B2A44",
+                      "content": "本文グレー",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CYZnB",
+                      "name": "hex",
+                      "fill": "#8A93A5",
+                      "content": "#3D4655",
+                      "fontFamily": "Jost",
+                      "fontSize": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "AuT0j",
+                      "name": "note",
+                      "fill": "#B8BFCC",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "一致・変更不要",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ycfRu",
+                  "name": "Gray",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 8,
+                      "id": "ZpDtw",
+                      "name": "sw",
+                      "fill": "#727D94",
+                      "width": "fill_container",
+                      "height": 100
+                    },
+                    {
+                      "type": "text",
+                      "id": "Q3xHm",
+                      "name": "jp",
+                      "fill": "#0B2A44",
+                      "content": "メタ/ラベル",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "y47Jx",
+                      "name": "hex",
+                      "fill": "#8A93A5",
+                      "content": "#727D94",
+                      "fontFamily": "Jost",
+                      "fontSize": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "H2HeB",
+                      "name": "note",
+                      "fill": "#B8BFCC",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "一致・変更不要",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 10
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "aMiZh",
+                  "name": "Navy Muted",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 8,
+                      "id": "g3bYsQ",
+                      "name": "sw",
+                      "fill": "#9FB6CC",
+                      "width": "fill_container",
+                      "height": 100
+                    },
+                    {
+                      "type": "text",
+                      "id": "RY2h9",
+                      "name": "jp",
+                      "fill": "#0B2A44",
+                      "content": "濃紺上ラベル(新規)",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Qt4r3",
+                      "name": "hex",
+                      "fill": "#8A93A5",
+                      "content": "#9FB6CC",
+                      "fontFamily": "Jost",
+                      "fontSize": 11
+                    },
+                    {
+                      "type": "text",
+                      "id": "O4DSR",
+                      "name": "note",
+                      "fill": "#B8BFCC",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "全ページ使用・未トークン化",
+                      "fontFamily": "Zen Kaku Gothic New",
+                      "fontSize": 10
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }

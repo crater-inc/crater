@@ -22,8 +22,8 @@ def compress(s):
     return s
 
 def navy_text(s):
-    s=re.sub(r'(color:\s*)#081[Bb]52',r'\g<1>#002677',s)
-    s=re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?',r'\g<1>#002677',s)
+    s=re.sub(r'(color:\s*)#002677([Ff]{2})?',r'\g<1>#081B52',s)
+    s=re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?',r'\g<1>#081B52',s)
     return s
 
 s=compress(open(SRC).read())
@@ -120,7 +120,7 @@ js='''
     x.style.border=on?'2px solid #0D41A8':'1px solid #D8E0EA';
     x.style.background=on?'#F5F8FC':'#FFFFFF';
     var a=x.querySelector('[data-pencil-name="a"]'), p=x.querySelector('[data-pencil-name="p"]');
-    if(a)a.style.color=on?'#002677':'#4A5578';
+    if(a)a.style.color=on?'#081B52':'#4A5578';
     if(p)p.style.color=on?'#0D41A8':'#8A93A6';
    });
    if(tp)tp.textContent=PR[o.getAttribute('data-pencil-name')]||tp.textContent;
