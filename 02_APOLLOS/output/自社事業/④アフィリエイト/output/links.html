@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>はると｜使えるツール、正直に。</title>
+<meta name="description" content="仕事で使えるAIツール・便利サービスを実際に試して、正直な感想だけ書いてます。良いところも微妙なところもそのまま。">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #F4EEE6;
+    color: #2E2A26;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 48px 20px;
+  }
+  .wrap {
+    width: 100%;
+    max-width: 480px;
+  }
+  .profile {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 16px;
+    display: block;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .handle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 12px;
+  }
+  .bio {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 32px;
+  }
+  .card {
+    display: block;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: #2E2A26;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.15s ease;
+  }
+  .card:active {
+    transform: scale(0.98);
+  }
+  .card-label {
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: #B8722F;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 11px;
+    color: #999;
+  }
+  @media (max-width: 768px) {
+    body { padding: 40px 16px; width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="profile">
+      <img class="avatar" src="avatar.png" alt="はると">
+      <div class="name">はると</div>
+      <div class="handle">@benri_log</div>
+      <p class="bio">仕事で使えるAIツール・便利サービスを実際に試して、正直な感想だけ書いてます。良いところも微妙なところもそのまま書く派。</p>
+    </div>
+
+    <nav class="links">
+      <a class="card" href="https://www.miricanvas.com/ja" target="_blank" rel="noopener">
+        <div class="card-label">AIプレゼン・デザイン</div>
+        <div class="card-title">MiriCanvas</div>
+        <div class="card-desc">Canvaに近い操作感で、AIツールが標準で全部入り。無料登録だけでも十分使える。</div>
+      </a>
+    </nav>
+
+    <p class="footer">はると個人の検証にもとづく感想です</p>
+  </div>
+</body>
+</html>
