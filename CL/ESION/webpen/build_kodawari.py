@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-# ESION こだわりページ ビルド：kodawari-export.html → kodawari.html
-# 静的1カラム・zoom追従（innerWidth/1199）・パスワードゲート・フッターリンク・CTAボタンリンク・コメント機能(review.js)
+# ESION こだわりページ ビルド：kodawari-export.html + kodawari-export-sp.html → kodawari.html
+# レスポンシブ1ファイル版（build.py/build_story.pyと同方式）：PC=zoom追従(1199基準) / SP=縦1カラムzoom追従(390基準)
+# パスワードゲート・フッターリンク・CTAボタンリンク・コメント機能(review.js)は共通
 # 使い方: python3 build_kodawari.py
 import re, urllib.parse, os, subprocess
 
-SRC = 'kodawari-export.html'
+PC = 'kodawari-export.html'
+SP = 'kodawari-export-sp.html'
 ALPHA = ['esionLOGO']  # 透過ロゴはpng維持
 
+# 画像を a/ の圧縮版へパス差し替え（build.pyと同方式）。
+# 日本語ファイル名はexportがNFD(分解形)でURLエンコードするが、GitHub上の登録名はNFC＝
+# バイト不一致で404になる。ASCII名(a/)に逃がして正規化ズレを根絶する。
 def compress(s):
     for u in set(re.findall(r"url\('([^']+)'\)", s)):
         if u.startswith('data:'):
@@ -27,18 +32,31 @@ def compress(s):
         s = s.replace("url('%s')" % u, "url('%s')" % out.replace(' ', '%20'))
     return s
 
+def body_inner(s):
+    return re.search(r'<body>(.*)</body>', s, re.S).group(1)
+
 # ネイビーのテキスト色を $c-navy-deep（#081B52）に統一（テキストのcolor:のみ）
 def navy_text(s):
     s = re.sub(r'(color:\s*)#002677([Ff]{2})?', r'\g<1>#081B52', s)
     s = re.sub(r'(color:\s*)#071[Cc]52([Ff]{2})?', r'\g<1>#081B52', s)
     return s
 
-s = open(SRC).read()
-body = re.search(r'<body>(.*)</body>', s, re.S).group(1)
-body = compress(body)
-body = navy_text(body)
+# コンテンツ幅ガイド（📏 guide-L / guide-R）は本番に不要なので除去
+def strip_guides(s):
+    return re.sub(
+        r'<div\s+data-pencil-name="📏 guide[^"]*"\s+style="[^"]*"\s*></div>\s*',
+        '', s)
 
-body = re.sub(r'<div\b', '<div id="kodawariRoot"', body, 1)
+pc = compress(open(PC).read())
+sp = compress(open(SP).read())
+
+# PC body（ルート＝bodyの最初のdivに id="kodawariRoot"。フレーム名非依存＝Pencilで改名されても壊れない）
+pcb = navy_text(strip_guides(body_inner(pc)))
+pcb = re.sub(r'<div\b', '<div id="kodawariRoot"', pcb, 1)
+
+# SP body（同様にルートへ id="spKodawariRoot"）
+spb = navy_text(strip_guides(body_inner(sp)))
+spb = re.sub(r'<div\b', '<div id="spKodawariRoot"', spb, 1)
 
 head = '''<!doctype html>
 <html lang="ja">
@@ -54,149 +72,67 @@ head = '''<!doctype html>
 css = '''
 <style>
 html,body{margin:0;background:#fff;overflow-x:hidden;}
-#kodawariRoot{position:relative;transform-origin:top left;}
+#kodawariRoot,#spKodawariRoot{position:relative;transform-origin:top left;}
 [data-pencil-name="btn-product"],[data-pencil-name="btn-story"]{cursor:pointer;}
-
-/* ---- SP（〜768px）：zoom縮小をやめて実レイアウトを1カラムに再フロー ---- */
-#sp-hamburger{display:none;}
-#sp-nav-drawer{display:none;}
+.lyt-sp{display:none;}
+@media (max-width:768px){ .lyt-pc{display:none;} .lyt-sp{display:block;} }
+/* SP ハンバーガーメニュー（トップ・誕生秘話と同じ全面ネイビー・フェード） */
+#sp-menu{display:none;}
 @media (max-width:768px){
-  #kodawariRoot{width:100% !important;}
-
-  /* バンド共通の左右余白をSP用に詰める */
-  [data-pencil-name="Hero"],[data-pencil-name="Intro"],[data-pencil-name="ProductDesign"],
-  [data-pencil-name^="Commitment"],[data-pencil-name="DailyLife"],[data-pencil-name="CTA"]
-  { padding:56px 24px !important; }
-
-  /* 固定px幅のテキスト・コンテナを親幅いっぱいに解放 */
-  [data-pencil-name="Hero"] [data-pencil-name="eyebrow"],
-  [data-pencil-name="Hero"] [data-pencil-name="title"],
-  [data-pencil-name="Hero"] [data-pencil-name="lead"],
-  [data-pencil-name="Hero"] [data-pencil-name="body"],
-  [data-pencil-name="Intro"] [data-pencil-name="p"],
-  [data-pencil-name="Intro"] [data-pencil-name="emph"],
-  [data-pencil-name="ProductDesign"] [data-pencil-name="body"],
-  [data-pencil-name^="Commitment"] [data-pencil-name="ttl"],
-  [data-pencil-name^="Commitment"] [data-pencil-name="intro"],
-  [data-pencil-name^="Commitment"] [data-pencil-name="body"] [data-pencil-name="p"],
-  [data-pencil-name^="Commitment"] [data-pencil-name="closing"],
-  [data-pencil-name="DailyLife"] [data-pencil-name="ttl"],
-  [data-pencil-name="DailyLife"] [data-pencil-name="intro"],
-  [data-pencil-name="DailyLife"] [data-pencil-name="list"] [data-pencil-name="t"],
-  [data-pencil-name="CTA"] [data-pencil-name="ttl"],
-  [data-pencil-name="CTA"] [data-pencil-name="body"]
-  { width:100% !important; height:auto !important; white-space:normal !important; }
-
-  /* Heroはlayout:noneの絶対配置なのでcontentのleftオフセットも詰める（後勝ちさせるため一番下に置く） */
-  [data-pencil-name="Hero"] [data-pencil-name="content"]
-  { left:24px !important; width:calc(100% - 48px) !important; height:auto !important; }
-
-  [data-pencil-name="Hero"] [data-pencil-name="title"]{ font-size:38px !important; letter-spacing:1px !important; }
-  [data-pencil-name="Intro"] [data-pencil-name="emph"]{ font-size:19px !important; }
-  [data-pencil-name^="Commitment"] [data-pencil-name="ttl"]{ font-size:22px !important; }
-  [data-pencil-name="DailyLife"] [data-pencil-name="ttl"]{ font-size:24px !important; }
-  [data-pencil-name="CTA"] [data-pencil-name="ttl"]{ font-size:24px !important; }
-
-  /* 3カラムのカード・アイテムグリッドは縦積みに */
-  [data-pencil-name="grid"]{ flex-direction:column !important; gap:28px !important; }
-
-  /* CTAボタンは縦積み・全幅 */
-  [data-pencil-name="btns"]{ flex-direction:column !important; width:100% !important; }
-  [data-pencil-name="btn-product"],[data-pencil-name="btn-story"]
-  { width:100% !important; justify-content:center !important; }
-  [data-pencil-name="CTA"] [data-pencil-name="note"]{ width:100% !important; }
-
-  /* 13の無添加タグ：はみ出さずに折り返す */
-  [data-pencil-name="tagrow"]{ flex-wrap:wrap !important; row-gap:10px !important; }
-
-  /* 成分タグ：はみ出さずに折り返す（Commitment05も同じtagrow構造を使う） */
-  [data-pencil-name="Commitment05"] [data-pencil-name="tagrow"]{ flex-wrap:wrap !important; row-gap:10px !important; }
-
-  /* Commitment07：右の大きな画像は上に回して縦積みに */
-  [data-pencil-name="Commitment07"] [data-pencil-name="top"]{ flex-direction:column !important; }
-  [data-pencil-name="Commitment07"] [data-pencil-name="left"]{ width:100% !important; }
-  [data-pencil-name="Commitment07"] [data-pencil-name="top"] [data-pencil-name="img"]{ width:100% !important; height:220px !important; }
-
-  /* 成分マーキー：フォントサイズを詰める */
-  [data-pencil-name="IngredientMarquee"] [data-pencil-name="marqueeText"]{ font-size:36px !important; }
-
-  /* フッター：絶対配置(1199px前提)を解いて縦積み・2×2カラムに再構成 */
-  [data-pencil-name="Footer"]{
-    display:flex !important; flex-direction:column !important;
-    width:100% !important; height:auto !important; overflow:visible !important;
-    padding:48px 24px 32px !important; position:relative !important;
-  }
-  [data-pencil-name="Footer"] > div{ position:static !important; left:auto !important; top:auto !important; }
-  [data-pencil-name="Footer"] [data-pencil-name="logo"]{ order:1; margin-bottom:14px; }
-  [data-pencil-name="Footer"] [data-pencil-name="catch"]{ order:2; width:100% !important; margin-bottom:28px; }
-  [data-pencil-name="Footer"] [data-pencil-name="cols"]{ order:3; flex-wrap:wrap !important; gap:28px 24px !important; width:100% !important; margin-bottom:32px; }
-  [data-pencil-name="Footer"] [data-pencil-name="cols"] > div{ width:calc(50% - 12px) !important; }
-  [data-pencil-name="Footer"] [data-pencil-name="social"]{ order:4; margin-bottom:28px; }
-  [data-pencil-name="Footer"] [data-pencil-name="line"]{ order:5; width:100% !important; margin-bottom:16px; }
-  [data-pencil-name="Footer"] [data-pencil-name="copy"]{ order:6; }
-
-  /* ヘッダー：ナビ文字列と検索/ユーザーアイコンは畳み、ハンバーガーのみ表示 */
-  [data-pencil-name="Header"]{ padding:0 24px !important; }
-  [data-pencil-name="Nav"],
-  [data-pencil-name="H-Right"] [data-icon-name="search"],
-  [data-pencil-name="H-Right"] [data-icon-name="user"]
-  { display:none !important; }
-  #sp-hamburger{
-    display:flex !important;align-items:center;justify-content:center;
-    width:24px;height:24px;cursor:pointer;
-  }
-  #sp-hamburger span{position:relative;width:20px;height:2px;background:#fff;}
-  #sp-hamburger span::before,#sp-hamburger span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:#fff;}
-  #sp-hamburger span::before{top:-6px;}
-  #sp-hamburger span::after{top:6px;}
-
-  #sp-nav-drawer{
-    position:fixed;inset:0;z-index:5000;
-    background:linear-gradient(135deg,#071b52 0%,#0d41a8 100%);
-    display:flex;flex-direction:column;justify-content:center;padding:0 40px;
-    opacity:0;visibility:hidden;transition:opacity .4s ease,visibility .4s ease;
-  }
-  #sp-nav-drawer.open{opacity:1;visibility:visible;}
-  #sp-nav-close{position:absolute;top:20px;right:24px;width:40px;height:40px;background:none;border:none;cursor:pointer;}
-  #sp-nav-close span{position:absolute;top:50%;left:50%;width:22px;height:2px;background:#fff;}
-  #sp-nav-close span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg);}
-  #sp-nav-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
-  #sp-nav-drawer a{
-    display:block;padding:14px 0;font-family:'Barlow Condensed',sans-serif;
-    font-size:26px;letter-spacing:.05em;color:#fff;text-decoration:none;font-weight:600;
-    border-bottom:1px solid rgba(255,255,255,.15);
-  }
+ #sp-menu{display:flex;position:fixed;inset:0;z-index:4900;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,#071b52 0%,#0d41a8 100%);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;padding:0 44px;}
+ #sp-menu.open{opacity:1;visibility:visible;}
+ #sp-close{position:absolute;top:16px;right:18px;width:44px;height:44px;background:none;border:none;cursor:pointer;}
+ #sp-close span{position:absolute;top:50%;left:50%;width:26px;height:2px;background:#fff;border-radius:2px;}
+ #sp-close span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg);}
+ #sp-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
+ #sp-menu nav{display:flex;flex-direction:column;gap:24px;width:100%;}
+ #sp-menu nav a{display:flex;flex-direction:column;gap:3px;text-decoration:none;cursor:pointer;opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease;}
+ #sp-menu.open nav a{opacity:1;transform:none;}
+ #sp-menu nav a em{font-family:'Barlow Condensed',sans-serif;font-style:normal;font-weight:600;font-size:29px;letter-spacing:.05em;color:#fff;line-height:1;}
+ #sp-menu nav a i{font-family:'Zen Kaku Gothic New',sans-serif;font-style:normal;font-size:11.5px;letter-spacing:.08em;color:#9FB6CC;}
+ #sp-menu.open nav a:nth-child(1){transition-delay:.10s}
+ #sp-menu.open nav a:nth-child(2){transition-delay:.15s}
+ #sp-menu.open nav a:nth-child(3){transition-delay:.20s}
+ #sp-menu.open nav a:nth-child(4){transition-delay:.25s}
+ #sp-menu.open nav a:nth-child(5){transition-delay:.30s}
 }
 </style>'''
 
-zoomjs = '''
+# PC用JS（kodawariRoot=zoom拡大。1199基準／パネル開でrvPanelOpen分300px引く＝コメント機能と連動）
+jspc = '''
 <script>
 (function(){
  var root=document.getElementById('kodawariRoot');if(!root)return;
- function z(){
-   if(window.innerWidth<=768){ root.style.zoom=1; return; }
-   root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;
- }
+ function z(){root.style.zoom=(window.innerWidth-((window.rvPanelOpen&&window.innerWidth>768)?300:0))/1199;}
  window.addEventListener('resize',z);window.addEventListener('load',z);z();
 })();
 </script>'''
 
-spnavjs = '''
+# SP用JS（spKodawariRoot=zoom拡大。390基準）
+jssp = '''
 <script>
 (function(){
- var hr=document.querySelector('[data-pencil-name="H-Right"]');
- if(!hr)return;
- var btn=document.createElement('div'); btn.id='sp-hamburger'; btn.innerHTML='<span></span>';
- hr.appendChild(btn);
- var drawer=document.createElement('div'); drawer.id='sp-nav-drawer';
- drawer.innerHTML='<button id="sp-nav-close" aria-label="閉じる"><span></span><span></span></button>'+
-   '<a href="product.html">PRODUCTS</a>'+
-   '<a href="kodawari.html">COMMITMENT</a>'+
-   '<a href="story.html">STORY</a>';
- document.body.appendChild(drawer);
- btn.addEventListener('click',function(){drawer.classList.add('open');document.body.style.overflow='hidden';});
- drawer.querySelector('#sp-nav-close').addEventListener('click',function(){drawer.classList.remove('open');document.body.style.overflow='';});
+ var root=document.getElementById('spKodawariRoot');if(!root)return;
+ function z(){root.style.zoom=window.innerWidth/390;}
+ window.addEventListener('resize',z);window.addEventListener('load',z);z();
 })();
+</script>'''
+
+# SP ハンバーガーメニュー（主要ページへのリンク。誕生秘話ページと共通パターン）
+spmenu = '''
+<div id="sp-menu">
+  <button id="sp-close" aria-label="閉じる" onclick="spMenu(0)"><span></span><span></span></button>
+  <nav>
+    <a href="index.html"><em>LINEUP</em><i>商品ラインナップ</i></a>
+    <a href="kodawari.html"><em>COMMITMENT</em><i>こだわり</i></a>
+    <a href="story.html"><em>STORY</em><i>誕生秘話</i></a>
+    <a href="index.html#FAQ"><em>FAQ</em><i>よくある質問</i></a>
+    <a href="index.html#Contact"><em>CONTACT</em><i>お問い合わせ</i></a>
+  </nav>
+</div>
+<script>
+function spMenu(o){var m=document.getElementById('sp-menu');if(o){m.classList.add('open');document.body.style.overflow='hidden';}else{m.classList.remove('open');document.body.style.overflow='';}}
+document.querySelectorAll('.lyt-sp [data-icon-name="menu"]').forEach(function(b){b.style.cursor='pointer';b.addEventListener('click',function(){spMenu(1);});});
 </script>'''
 
 pw = '''
@@ -216,7 +152,7 @@ pw = '''
 function pwCheck(){if(document.getElementById('pw-input').value==='view'){document.getElementById('pw-lock').style.display='none';sessionStorage.setItem('cv_auth','1');}else{document.getElementById('pw-error').style.display='block';}}
 </script>'''
 
-# フッターの各リンク項目を<a href="#">で包む（全部#仮リンク・ホバー付き）※他ページと共通
+# フッターの各リンク項目を<a href="#">で包む（全部#仮リンク・ホバー付き）※他ページと共通・PC/SP両方に効く
 flinks = '''<style>.esion-flink{cursor:pointer;text-decoration:none;color:inherit;display:block;transition:opacity .2s;}.esion-flink:hover{opacity:.6;}</style>
 <script>(function(){['PRODUCTS','MEMBER','SERVICE','ABOUT'].forEach(function(cn){document.querySelectorAll('[data-pencil-name="'+cn+'"]').forEach(function(col){Array.prototype.slice.call(col.children).slice(1).forEach(function(item){if(item.closest('a'))return;var a=document.createElement('a');a.className='esion-flink';a.href='#';item.parentNode.insertBefore(a,item);a.appendChild(item);});});});})();</script>'''
 
@@ -230,31 +166,15 @@ navlinks = '''<script>(function(){
  });
 })();</script>'''
 
-# 成分マーキー（全成分の一部を明朝の大文字で横に無限スライド表示）
-marquee = '''<style>
-@keyframes esionMarqueeScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-</style>
-<script>(function(){
- document.querySelectorAll('[data-pencil-name="IngredientMarquee"]').forEach(function(box){
-  box.style.overflow='hidden';
-  var kids=Array.prototype.slice.call(box.children);
-  if(!kids.length)return;
-  var track=document.createElement('div');
-  track.style.cssText='display:flex;align-items:center;white-space:nowrap;width:max-content;animation:esionMarqueeScroll 40s linear infinite;';
-  kids.forEach(function(k){track.appendChild(k);});
-  kids.forEach(function(k){track.appendChild(k.cloneNode(true));});
-  box.appendChild(track);
- });
-})();</script>'''
-
-# CTAボタン（エシオンを見る／誕生秘話を読む）のリンク化
+# CTAボタン（エシオンを見る／誕生秘話を読む）のリンク化。PC/SP両方の同名ボタンに効く
 ctalinks = '''<script>(function(){
  var btns={"btn-product":"product.html","btn-story":"story.html"};
  Object.keys(btns).forEach(function(name){
-  var el=document.querySelector('[data-pencil-name="'+name+'"]');
-  if(!el||el.closest("a"))return;
-  var a=document.createElement("a"); a.href=btns[name]; a.style.cssText="text-decoration:none;color:inherit;";
-  el.parentNode.insertBefore(a,el); a.appendChild(el);
+  document.querySelectorAll('[data-pencil-name="'+name+'"]').forEach(function(el){
+   if(el.closest("a"))return;
+   var a=document.createElement("a"); a.href=btns[name]; a.style.cssText="text-decoration:none;color:inherit;";
+   el.parentNode.insertBefore(a,el); a.appendChild(el);
+  });
  });
 })();</script>'''
 
@@ -262,7 +182,9 @@ out = head + css + '''
   </head>
   <body>
 ''' + pw + '''
-''' + body + zoomjs + spnavjs + flinks + navlinks + marquee + ctalinks + '''
+    <div class="lyt-pc">''' + pcb + '''</div>
+    <div class="lyt-sp">''' + spb + '''</div>
+''' + spmenu + jspc + jssp + flinks + navlinks + ctalinks + '''
 <script src="/comment.js"></script>
   </body>
 </html>'''
