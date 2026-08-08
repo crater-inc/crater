@@ -166,13 +166,51 @@ navlinks = '''<script>(function(){
  });
 })();</script>'''
 
+# 写真要素（background-size:coverの実写・生成画像）にスクロール連動パララックスを付与。
+# scrim/overlay等の色調補正レイヤーやロゴ等の小要素は対象外。
+parallax = '''
+<script>
+(function(){
+ function ready(fn){if(document.readyState!=="loading")fn();else document.addEventListener("DOMContentLoaded",fn);}
+ ready(function(){
+  var els=[];
+  document.querySelectorAll('div[style*="background-size: cover"]').forEach(function(el){
+   var st=el.getAttribute('style')||'';
+   if(st.indexOf('mix-blend-mode')!==-1)return;
+   if(el.offsetHeight<100)return;
+   el.style.transformOrigin='center';
+   el.style.willChange='transform';
+   els.push(el);
+  });
+  if(!els.length)return;
+  var ticking=false;
+  function update(){
+   var vh=window.innerHeight;
+   els.forEach(function(el){
+    var r=el.getBoundingClientRect();
+    if(r.height<=0)return;
+    var progress=(vh-r.top)/(vh+r.height);
+    if(progress<0)progress=0;if(progress>1)progress=1;
+    var shift=(progress-0.5)*44;
+    el.style.transform='scale(1.12) translateY('+shift.toFixed(1)+'px)';
+   });
+   ticking=false;
+  }
+  function onScroll(){if(!ticking){ticking=true;window.requestAnimationFrame(update);}}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  update();
+ });
+})();
+</script>'''
+
 out = head + css + '''
   </head>
   <body>
 ''' + pw + '''
     <div class="lyt-pc">''' + pcb + '''</div>
     <div class="lyt-sp">''' + spb + '''</div>
-''' + spmenu + jspc + jssp + flinks + navlinks + '''
+''' + spmenu + jspc + jssp + flinks + navlinks + parallax + '''
 <script src="/comment.js"></script>
   </body>
 </html>'''
