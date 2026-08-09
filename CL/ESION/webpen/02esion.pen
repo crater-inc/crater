@@ -17468,7 +17468,7 @@
           "name": "CHAPTER 02",
           "clip": true,
           "width": "fill_container",
-          "height": 741,
+          "height": 723,
           "fill": "#FFFFFF",
           "layout": "none",
           "children": [
@@ -17486,7 +17486,7 @@
                   "type": "rectangle",
                   "id": "bIqVM",
                   "x": 48,
-                  "y": 76,
+                  "y": 99,
                   "name": "img",
                   "fill": {
                     "type": "image",
@@ -17495,15 +17495,15 @@
                     "mode": "fill"
                   },
                   "width": 463,
-                  "height": "fill_container(558)"
+                  "height": "fill_container(532)"
                 }
               ]
             },
             {
               "type": "frame",
               "id": "H59iKM",
-              "x": 567,
-              "y": 80,
+              "x": 568,
+              "y": 120,
               "name": "head",
               "width": "fill_container(447)",
               "height": "fit_content(164)",
@@ -17556,8 +17556,8 @@
             {
               "type": "frame",
               "id": "I3MLRt",
-              "x": 567,
-              "y": 271,
+              "x": 568,
+              "y": 311,
               "name": "body",
               "width": 518,
               "layout": "vertical",
@@ -17647,24 +17647,6 @@
           },
           "layout": "none",
           "children": [
-            {
-              "type": "rectangle",
-              "id": "YW3bJ",
-              "x": 1812,
-              "y": 1369,
-              "rotation": -270,
-              "flipY": true,
-              "fill": {
-                "type": "image",
-                "opacity": 0.15,
-                "enabled": true,
-                "url": "%E6%AD%A3%E9%9D%A2%E8%83%8C%E6%99%AF%E7%99%BD10001000close.png",
-                "mode": "fill",
-                "blendMode": "multiply"
-              },
-              "width": 1964,
-              "height": 1964
-            },
             {
               "type": "text",
               "id": "eVaHA",
@@ -18734,7 +18716,7 @@
               "fill": {
                 "type": "image",
                 "enabled": true,
-                "url": "Image%203%20(1).png",
+                "url": "./images/generated-1786224768796.png",
                 "mode": "fill"
               },
               "width": 1199,
@@ -18746,12 +18728,7 @@
               "x": 0,
               "y": 0,
               "name": "overlay",
-              "fill": {
-                "type": "color",
-                "color": "#001b638c",
-                "enabled": true,
-                "blendMode": "darken"
-              },
+              "fill": "#001b638c",
               "width": 1199,
               "height": 640
             },
@@ -19304,6 +19281,32 @@
           "children": [
             {
               "type": "frame",
+              "id": "w65FO",
+              "x": 0,
+              "y": 70,
+              "name": "Frame 12",
+              "width": "fit_content(1199)",
+              "height": "fit_content(632)",
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "McxKg",
+                  "x": 0,
+                  "y": -70,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "Generated%20with%20Kive.ai%20-%20kive-image%20(4).jpg",
+                    "mode": "fill"
+                  },
+                  "width": 1596,
+                  "height": 841
+                }
+              ]
+            },
+            {
+              "type": "frame",
               "id": "UFlnj",
               "layoutPosition": "absolute",
               "x": 0,
@@ -19312,28 +19315,26 @@
               "width": 1199,
               "height": 70,
               "fill": "#FFFFFF00",
-              "padding": [
-                0,
-                48
-              ],
-              "justifyContent": "space_between",
-              "alignItems": "center",
+              "layout": "none",
               "children": [
                 {
                   "type": "frame",
                   "id": "P2t8fY",
+                  "x": 48,
+                  "y": 23,
                   "name": "H-Left",
                   "gap": 36,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "rectangle",
-                      "id": "MKqHV",
+                      "id": "iiCxJ",
+                      "name": "logo",
                       "fill": {
                         "type": "image",
                         "enabled": true,
-                        "url": "esionLOGO%E3%81%AE%E3%82%B3%E3%83%92%E3%82%9A%E3%83%BC.png",
-                        "mode": "fill"
+                        "url": "esionLOGO_navy.png",
+                        "mode": "fit"
                       },
                       "width": 83,
                       "height": 24
@@ -19349,7 +19350,7 @@
                           "type": "text",
                           "id": "dFFkr",
                           "name": "商品一覧",
-                          "fill": "#FFFFFF",
+                          "fill": "#3d4554ff",
                           "content": "PRODUCTS",
                           "fontFamily": "$font-en",
                           "fontSize": 13,
@@ -19360,7 +19361,7 @@
                           "type": "text",
                           "id": "lA8Zo",
                           "name": "こだわり",
-                          "fill": "#FFFFFF",
+                          "fill": "#3d4554ff",
                           "content": "COMMITMENT",
                           "fontFamily": "$font-en",
                           "fontSize": 13,
@@ -19371,7 +19372,7 @@
                           "type": "text",
                           "id": "z0JecQ",
                           "name": "誕生秘話",
-                          "fill": "#FFFFFF",
+                          "fill": "#3d4554ff",
                           "content": "STORY",
                           "fontFamily": "$font-en",
                           "fontSize": 13,
@@ -19382,7 +19383,7 @@
                           "type": "text",
                           "id": "dvPxK",
                           "name": "よくある質問",
-                          "fill": "#FFFFFF",
+                          "fill": "#3d4554ff",
                           "content": "FAQ",
                           "fontFamily": "$font-en",
                           "fontSize": 13,
@@ -19396,6 +19397,8 @@
                 {
                   "type": "frame",
                   "id": "MrSSf",
+                  "x": 1047,
+                  "y": 25,
                   "name": "H-Right",
                   "gap": 20,
                   "alignItems": "center",
@@ -19416,7 +19419,7 @@
                           "height": 20,
                           "icon": "search",
                           "library": "lucide",
-                          "fill": "#FFFFFF"
+                          "fill": "#3d4554ff"
                         },
                         {
                           "type": "icon",
@@ -19426,7 +19429,7 @@
                           "height": 20,
                           "icon": "user",
                           "library": "lucide",
-                          "fill": "#FFFFFF"
+                          "fill": "#3d4554ff"
                         },
                         {
                           "type": "icon",
@@ -19436,7 +19439,7 @@
                           "height": 20,
                           "icon": "shopping-bag",
                           "library": "lucide",
-                          "fill": "#FFFFFF"
+                          "fill": "#3d4554ff"
                         }
                       ]
                     }
@@ -19470,7 +19473,7 @@
                       "x": 0,
                       "y": -11,
                       "name": "eyebrow",
-                      "fill": "#FFFFFF",
+                      "fill": "#002678ff",
                       "content": "ABOUT ESION",
                       "fontFamily": "$font-en",
                       "fontSize": 19,
@@ -19480,10 +19483,10 @@
                     {
                       "type": "text",
                       "id": "Z7xH6",
-                      "x": 0,
+                      "x": -3,
                       "y": 6,
                       "name": "title",
-                      "fill": "#FFFFFF",
+                      "fill": "#002678ff",
                       "textGrowth": "fixed-width-height",
                       "width": 352,
                       "height": 65,
@@ -19499,7 +19502,7 @@
                       "x": -13,
                       "y": 78,
                       "name": "title",
-                      "fill": "#FFFFFF",
+                      "fill": "#002678ff",
                       "textGrowth": "fixed-width",
                       "width": 314,
                       "content": "こだわり",
@@ -19516,7 +19519,7 @@
                   "x": 0,
                   "y": 179,
                   "name": "lead",
-                  "fill": "#EAF1F8",
+                  "fill": "#002678ff",
                   "content": "いい髪は、いい地肌から。",
                   "fontFamily": "$font-jp",
                   "fontSize": 19,
@@ -19528,7 +19531,7 @@
                   "x": 0,
                   "y": 220,
                   "name": "body",
-                  "fill": "#C7D2E6",
+                  "fill": "#002678ff",
                   "textGrowth": "fixed-width",
                   "width": 560,
                   "content": "エシオン スカルプケアアミノシャンプーは、\n無香料・低刺激設計のアミノ酸系オールインワンシャンプーです。",
@@ -23562,36 +23565,28 @@
           "layout": "vertical",
           "children": [
             {
-              "type": "group",
-              "id": "qSoeJ",
+              "type": "frame",
+              "id": "OMC3g",
+              "name": "img",
+              "clip": true,
+              "width": "fill_container",
+              "height": 280,
+              "layout": "none",
               "children": [
                 {
-                  "type": "frame",
-                  "id": "OMC3g",
-                  "x": 0,
+                  "type": "rectangle",
+                  "id": "X037Q",
+                  "x": -94,
                   "y": 0,
-                  "name": "img",
-                  "clip": true,
-                  "width": "fill_container(390)",
-                  "height": 280,
-                  "layout": "none",
-                  "children": [
-                    {
-                      "type": "rectangle",
-                      "id": "X037Q",
-                      "x": -94,
-                      "y": 0,
-                      "name": "img-fill",
-                      "fill": {
-                        "type": "image",
-                        "enabled": true,
-                        "url": "Image-2-(5).png",
-                        "mode": "fill"
-                      },
-                      "width": 484,
-                      "height": 347
-                    }
-                  ]
+                  "name": "img-fill",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "Image-2-(5).png",
+                    "mode": "fill"
+                  },
+                  "width": 484,
+                  "height": 347
                 }
               ]
             },
@@ -24852,7 +24847,7 @@
                   "fill": {
                     "type": "image",
                     "enabled": true,
-                    "url": "Image%203%20(1).png",
+                    "url": "images/generated-1786224768796.png",
                     "mode": "fill"
                   },
                   "width": 390,

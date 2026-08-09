@@ -168,38 +168,60 @@ navlinks = '''<script>(function(){
 
 # 写真要素（background-size:coverの実写・生成画像）にスクロール連動パララックスを付与。
 # scrim/overlay等の色調補正レイヤーやロゴ等の小要素は対象外。
+# background-size/positionを毎フレーム書き換える方式は、細かい泡等の高周波テクスチャの
+# 写真で再デコードが間に合わずモアレ状の乱れが出ることがあったため使わない。
+# 実画像の縦横比からbackground-sizeを一度だけpx指定で拡大（歪みなし）しておき、
+# スクロールでは既に描画済みのレイヤーをtransform:translateYで動かすだけにする
+# （GPU合成のみで完結し再デコードが走らないため乱れない）。
 parallax = '''
 <script>
 (function(){
  function ready(fn){if(document.readyState!=="loading")fn();else document.addEventListener("DOMContentLoaded",fn);}
  ready(function(){
-  var els=[];
+  var ZOOM=1.35,items=[];
+  function resize(it){
+   var cw=it.el.offsetWidth,ch=it.el.offsetHeight;
+   if(!cw||!ch)return;
+   var scale=Math.max(cw/it.iw,ch/it.ih)*ZOOM;
+   it.el.style.backgroundSize=(it.iw*scale).toFixed(1)+'px '+(it.ih*scale).toFixed(1)+'px';
+   it.maxShift=ch*(ZOOM-1)/2*0.85;
+  }
   document.querySelectorAll('div[style*="background-size: cover"]').forEach(function(el){
    var st=el.getAttribute('style')||'';
    if(st.indexOf('mix-blend-mode')!==-1)return;
+   if(st.indexOf('rotate(')!==-1)return;
    if(el.offsetHeight<100)return;
-   el.style.transformOrigin='center';
-   el.style.willChange='transform';
-   els.push(el);
+   var m=st.match(/background-image:\\s*url\\('([^']+)'\\)/);
+   if(!m)return;
+   var img=new Image();
+   img.onload=function(){
+    if(!img.naturalWidth||!img.naturalHeight)return;
+    var base=el.style.transform||'';
+    var it={el:el,iw:img.naturalWidth,ih:img.naturalHeight,maxShift:0,base:base};
+    el.style.willChange='transform';
+    items.push(it);
+    resize(it);
+    update();
+   };
+   img.src=m[1];
   });
-  if(!els.length)return;
   var ticking=false;
   function update(){
    var vh=window.innerHeight;
-   els.forEach(function(el){
-    var r=el.getBoundingClientRect();
+   items.forEach(function(it){
+    var r=it.el.getBoundingClientRect();
     if(r.height<=0)return;
     var progress=(vh-r.top)/(vh+r.height);
     if(progress<0)progress=0;if(progress>1)progress=1;
-    var shift=(progress-0.5)*44;
-    el.style.transform='scale(1.12) translateY('+shift.toFixed(1)+'px)';
+    var shift=(progress-0.5)*2*it.maxShift;
+    it.el.style.transform=(it.base?it.base+' ':'')+'translateY('+shift.toFixed(1)+'px)';
    });
    ticking=false;
   }
   function onScroll(){if(!ticking){ticking=true;window.requestAnimationFrame(update);}}
+  function onResize(){items.forEach(resize);update();}
   window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',onScroll);
-  update();
+  window.addEventListener('resize',onResize);
  });
 })();
 </script>'''
