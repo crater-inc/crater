@@ -47,8 +47,18 @@ def strip_guides(s):
         r'<div\s+data-pencil-name="📏 guide[^"]*"\s+style="[^"]*"\s*></div>\s*',
         '', s)
 
-pc = compress(open(PC).read())
-sp = compress(open(SP).read())
+# Pencil export_htmlのバグ：色+blendModeのfill（CH01のscrim=#bae1ff80/screen）が
+# 単色矩形のはずが巨大なノイズ状data:image/webpとして誤って書き出され、
+# 写真と重なって横縞のモアレ状の乱れになる（実測756KB＝単色ならありえないサイズ）。
+# 本来の単色+blendModeに戻す。
+def fix_scrim(s):
+    return re.sub(
+        r"(data-pencil-name=\"scrim\"\s+style=\")background-image: url\('data:image/webp;base64,[^']*'\); background-repeat: no-repeat; background-size: 100% 100%; ",
+        r"\1background-color: #bae1ff80; ",
+        s)
+
+pc = fix_scrim(compress(open(PC).read()))
+sp = fix_scrim(compress(open(SP).read()))
 
 # PC body（ルート＝bodyの最初のdivに id="storyRoot"。フレーム名非依存＝Pencilで改名されても壊れない）
 pcb = navy_text(strip_guides(body_inner(pc)))
@@ -232,7 +242,7 @@ out = head + css + '''
 ''' + pw + '''
     <div class="lyt-pc">''' + pcb + '''</div>
     <div class="lyt-sp">''' + spb + '''</div>
-''' + spmenu + jspc + jssp + flinks + navlinks + parallax + '''
+''' + spmenu + jspc + jssp + flinks + navlinks + '''
 <script src="/comment.js"></script>
   </body>
 </html>'''
