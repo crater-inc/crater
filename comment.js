@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.1 (2026-08-10)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.2 (2026-08-10)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -43,13 +43,26 @@
     function elm(t, a, x) { var n = document.createElement(t); if (a) for (var k in a) n.setAttribute(k, a[k]); if (x != null) n.textContent = x; return n; }
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
+    // ピンの%座標はCSSのposition:absoluteで解釈されるため、基準要素(root)自身がposition:static だと
+    // ブラウザは祖先を辿って「初期包含ブロック(≒ビューポート相当のサイズ)」を基準にしてしまう。
+    // rootの実サイズ(getBoundingClientRectで測った高さ)と食い違い、スクロールした先に打ったピンほど
+    // 大きくズレる（保存は正しいのに描画だけ画面上部に潰れる）。position:relativeを与えて自分自身を
+    // 基準にすれば、レイアウトを一切変えずに包含ブロックを固定できる（見た目に副作用なし・冪等）。
+    function ensurePositioned(el) {
+      if (getComputedStyle(el).position === "static") el.style.position = "relative";
+    }
     // 表示中の拡大コンテナ（zoom基準）を掴む＝この中に%でピンを置くと正確
     function getRoot() {
       var ids = ["pageRoot", "pdpRoot", "spRoot", "storyRoot", "wf-overlay"];
-      for (var i = 0; i < ids.length; i++) { var n = $(ids[i]); if (n && n.offsetParent !== null && n.getBoundingClientRect().width > 0) return n; }
-      var z = document.querySelectorAll('[style*="zoom"]');
-      for (var j = 0; j < z.length; j++) { if (z[j].offsetParent !== null && z[j].getBoundingClientRect().width > 0) return z[j]; }
-      return document.body;
+      var found = null;
+      for (var i = 0; i < ids.length; i++) { var n = $(ids[i]); if (n && n.offsetParent !== null && n.getBoundingClientRect().width > 0) { found = n; break; } }
+      if (!found) {
+        var z = document.querySelectorAll('[style*="zoom"]');
+        for (var j = 0; j < z.length; j++) { if (z[j].offsetParent !== null && z[j].getBoundingClientRect().width > 0) { found = z[j]; break; } }
+      }
+      if (!found) found = document.body;
+      ensurePositioned(found);
+      return found;
     }
     // getRoot()がdocument.bodyにフォールバックした場合、body.idは通常空文字。
     // 保存側とピン描画側の両方で同じ文字列を得るための共通ヘルパー（片方だけ"body"扱いすると不一致でピンが消える）。
