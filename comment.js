@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.0 (2026-08-04)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.1 (2026-08-10)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -51,6 +51,10 @@
       for (var j = 0; j < z.length; j++) { if (z[j].offsetParent !== null && z[j].getBoundingClientRect().width > 0) return z[j]; }
       return document.body;
     }
+    // getRoot()がdocument.bodyにフォールバックした場合、body.idは通常空文字。
+    // 保存側とピン描画側の両方で同じ文字列を得るための共通ヘルパー（片方だけ"body"扱いすると不一致でピンが消える）。
+    function rootIdOf(el) { return el.id || "body"; }
+    function elFromRootId(id) { return id === "body" ? document.body : $(id); }
     // ルートのidからビュー名（PC/SP）を判定。SP用コンテナ(spRoot等)は "sp" を含む前提
     function viewOf(id) { return /sp/i.test(id || "") ? "SP" : "PC"; }
     // 1ページ＝1ドキュメント（PC/SPを同じ所に貯める）。doc IDにできる文字だけ
@@ -223,7 +227,7 @@
       input.querySelector(".cr-send").addEventListener("click", function () {
         var text = ta.value.trim(); if (!text) return;
         var name = input.querySelector("input").value.trim() || "匿名";
-        col().add({ x: parseFloat(xp), y: parseFloat(yp), text: text, name: name, section: ctx.section, hint: ctx.hint, hintExact: ctx.exact, root: r.id || "body", view: viewOf(r.id), resolved: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+        col().add({ x: parseFloat(xp), y: parseFloat(yp), text: text, name: name, section: ctx.section, hint: ctx.hint, hintExact: ctx.exact, root: rootIdOf(r), view: viewOf(r.id), resolved: false, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
         closeInput();
       });
       var ime = false;
@@ -235,7 +239,7 @@
     // 「修正済」にする瞬間、ピン座標に今ある文言を自動スナップショット＝Before(hint)/Afterの比較に使う
     // elementFromPointはビューポート外だとnullを返すため、対象位置へ一瞬スクロールして取得し元へ戻す
     function captureAfter(c) {
-      var r = $(c.root);
+      var r = elFromRootId(c.root);
       if (!r) return "";
       var origX = window.pageXOffset, origY = window.pageYOffset;
       var rr = r.getBoundingClientRect();
@@ -262,8 +266,8 @@
     }
 
     function renderPins() {
-      curRoot = getRoot().id;
       var r = getRoot();
+      curRoot = rootIdOf(r);
       Array.prototype.slice.call(document.querySelectorAll(".cr-pin")).forEach(function (p) { p.remove(); });
       // ピンは「今見ているビュー」の分だけ
       var visPins = comments.filter(function (c) { return c.root === curRoot && matchStatus(c); });
