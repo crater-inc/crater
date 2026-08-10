@@ -23,11 +23,6 @@
     
 @media (max-width: 768px) {
   body { overflow-x: hidden; }
-  [data-pencil-name="TOP"], [data-pencil-name="SERVICE"], [data-pencil-name="RESULTS"],
-  [data-pencil-name="COMPANY"], [data-pencil-name="FAQ"], [data-pencil-name="PRIVACY"] {
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
   [style*="flex-direction: row"] {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -40,7 +35,6 @@
   [data-pencil-name="Sec3_Arrow1"], [data-pencil-name="Sec3_Arrow2"] {
     transform: rotate(90deg);
   }
-  [style*="width: 800px"] { width: 100% !important; max-width: 100% !important; }
   [style*="padding: 100px 80px"] { padding: 56px 24px !important; }
   [style*="padding: 60px 80px"] { padding: 40px 24px !important; }
   [style*="padding: 0px 80px 100px 80px"] { padding: 0px 24px 56px 24px !important; }
@@ -61,9 +55,9 @@
   #wf-hamburger span { display: block; width: 100%; height: 2px; background: #1A1A1A; }
   #wf-mobile-menu {
     position: fixed; inset: 0; background: #FFFFFF; z-index: 99990;
-    display: none; flex-direction: column; padding: 24px;
+    flex-direction: column; padding: 24px;
   }
-  #wf-mobile-menu.open { display: flex; }
+  #wf-mobile-menu.open { display: flex !important; }
   #wf-mobile-menu-top { display: flex; justify-content: flex-end; margin-bottom: 24px; }
   #wf-mobile-menu-close { background: none; border: none; font-size: 28px; cursor: pointer; color: #1A1A1A; line-height: 1; }
   #wf-mobile-menu a {
@@ -72,15 +66,12 @@
     text-decoration: none; color: #1A1A1A;
   }
   #wf-mobile-menu a.active { font-weight: 700; text-decoration: underline; }
+  [data-pencil-name="NavGroup"] { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
 }
 
     </style>
 
-  <style>
-@media (max-width: 768px) {
-  [data-pencil-name="NavGroup"] { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
-}
-</style>
+  
 <style>
 [data-pencil-name="TOP"], [data-pencil-name="SERVICE"], [data-pencil-name="RESULTS"],
 [data-pencil-name="COMPANY"], [data-pencil-name="FAQ"], [data-pencil-name="PRIVACY"] {
@@ -91,8 +82,7 @@
 [style*="width: 800px"] { width: 100% !important; max-width: 800px !important; }
 </style>
 <style>
-#wf-mobile-menu { display: none !important; }
-#wf-mobile-menu.open { display: flex !important; }
+#wf-mobile-menu { display: none; }
 </style>
 </head>
   <body>
@@ -325,268 +315,278 @@
           専属チームがチームミーティングを行い、最適な解決策を提案します
         </div>
         <div
-          data-pencil-name="C_TeamList"
-          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 16px; height: fit-content; justify-content: flex-start; width: 100%"
+          data-pencil-name="C_TeamGrid"
+          style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; width: 100%"
         >
           <div
-            data-pencil-name="CTeamRow_0"
-            style="align-items: flex-start; background-color: #F2F2F2; border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
+            data-pencil-name="C_TeamGridRow_0"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
           >
             <div
-              data-pencil-name="CTeamPhoto_0"
-              style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 120px; justify-content: center; width: 120px"
+              data-pencil-name="C_TeamCard"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 14px; height: fit-content; justify-content: flex-start"
             >
               <div
-                data-pencil-name="Label"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                data-pencil-name="CTeamPhoto_0"
+                style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 260px; justify-content: center; width: 100%"
               >
-                PHOTO
+                <div
+                  data-pencil-name="Label"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  PHOTO
+                </div>
+              </div>
+              <div
+                data-pencil-name="CTeamText_0"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
+              >
+                <div
+                  data-pencil-name="CTeamName_0"
+                  style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  山上真司
+                </div>
+                <div
+                  data-pencil-name="CTeamBio_0"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                >
+                  大手住宅メーカー・外資系金融機関を経て完全中立の独立系FPへ。住宅×金融、両面の最適化コンサルに定評。累積1000世帯以上の家計コンサルティング。年間講演20回。
+                </div>
+                <div
+                  data-pencil-name="CTeamCred_0"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
+                >
+                  2級FP技能士／住宅ローンアドバイザー／確定拠出年金診断士®／相続士®上級資格者
+                </div>
               </div>
             </div>
             <div
-              data-pencil-name="CTeamText_0"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start"
+              data-pencil-name="C_TeamCard"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 14px; height: fit-content; justify-content: flex-start"
             >
               <div
-                data-pencil-name="CTeamName_0"
-                style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                data-pencil-name="CTeamPhoto_1"
+                style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 260px; justify-content: center; width: 100%"
               >
-                山上真司
+                <div
+                  data-pencil-name="Label"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  PHOTO
+                </div>
               </div>
               <div
-                data-pencil-name="CTeamBio_0"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                data-pencil-name="CTeamText_1"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
               >
-                大手住宅メーカー・外資系金融機関を経て完全中立の独立系FPへ。住宅×金融、両面の最適化コンサルに定評。累積1000世帯以上の家計コンサルティング。年間講演20回。
+                <div
+                  data-pencil-name="CTeamName_1"
+                  style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  分部彰吾
+                </div>
+                <div
+                  data-pencil-name="CTeamBio_1"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                >
+                  一般社団法人確定拠出年金診断協会 代表理事／株式会社visible
+                  代表取締役。メガバンク系金融機関新卒→保険代理店FP→独立。金融機関で累積150講演。
+                </div>
+                <div
+                  data-pencil-name="CTeamCred_1"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
+                >
+                  著書「退職金で損する人得する人」
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-name="C_TeamCard"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 14px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-name="CTeamPhoto_2"
+                style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 260px; justify-content: center; width: 100%"
+              >
+                <div
+                  data-pencil-name="Label"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  PHOTO
+                </div>
               </div>
               <div
-                data-pencil-name="CTeamCred_0"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
+                data-pencil-name="CTeamText_2"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
               >
-                2級FP技能士／住宅ローンアドバイザー／確定拠出年金診断士®／相続士®上級資格者
+                <div
+                  data-pencil-name="CTeamName_2"
+                  style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  横田健一
+                </div>
+                <div
+                  data-pencil-name="CTeamBio_2"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                >
+                  日本FP協会CFP資格標準テキスト監修者／DCプランナー実務必携執筆者。東京大学卒業後、野村証券新卒入社→独立系FPへ。
+                </div>
+                <div
+                  data-pencil-name="CTeamCred_2"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
+                >
+                  CFP／1級FP技能士／日本証券アナリスト協会認定アナリスト(CMA)。著書「60歳からの賢い『お金の回し方』」
+                </div>
+              </div>
+            </div>
+            <div
+              data-pencil-name="C_TeamCard"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 14px; height: fit-content; justify-content: flex-start"
+            >
+              <div
+                data-pencil-name="CTeamPhoto_3"
+                style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 260px; justify-content: center; width: 100%"
+              >
+                <div
+                  data-pencil-name="Label"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  PHOTO
+                </div>
+              </div>
+              <div
+                data-pencil-name="CTeamText_3"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
+              >
+                <div
+                  data-pencil-name="CTeamName_3"
+                  style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  片岡佳樹（ライフプラン）
+                </div>
+                <div
+                  data-pencil-name="CTeamBio_3"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                >
+                  陸上自衛隊出身。「自衛隊時代に『おかねで知らずに損していた』経験から、同じ想いをする人を減らしたい」という思いで従事。
+                </div>
               </div>
             </div>
           </div>
           <div
-            data-pencil-name="CTeamRow_1"
-            style="align-items: flex-start; background-color: #F2F2F2; border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
+            data-pencil-name="C_TeamGridRow_1"
+            style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 20px; height: fit-content; justify-content: flex-start; width: 100%"
           >
             <div
-              data-pencil-name="CTeamPhoto_1"
-              style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 120px; justify-content: center; width: 120px"
+              data-pencil-name="C_TeamCard"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 14px; height: fit-content; justify-content: flex-start"
             >
               <div
-                data-pencil-name="Label"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                data-pencil-name="CTeamPhoto_4"
+                style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 260px; justify-content: center; width: 100%"
               >
-                PHOTO
+                <div
+                  data-pencil-name="Label"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  PHOTO
+                </div>
+              </div>
+              <div
+                data-pencil-name="CTeamText_4"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
+              >
+                <div
+                  data-pencil-name="CTeamName_4"
+                  style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  杉山晃貴（証券）
+                </div>
+                <div
+                  data-pencil-name="CTeamBio_4"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                >
+                  Amazon、外資系生命保険会社を経て独立系FP・IFAへ。税理士向け勉強会も実施。
+                </div>
+                <div
+                  data-pencil-name="CTeamCred_4"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
+                >
+                  相談しやすいキャラクターとわかりやすい説明が好評
+                </div>
               </div>
             </div>
             <div
-              data-pencil-name="CTeamText_1"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start"
+              data-pencil-name="C_TeamCard"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 14px; height: fit-content; justify-content: flex-start"
             >
               <div
-                data-pencil-name="CTeamName_1"
-                style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                data-pencil-name="CTeamPhoto_5"
+                style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 260px; justify-content: center; width: 100%"
               >
-                分部彰吾
+                <div
+                  data-pencil-name="Label"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  PHOTO
+                </div>
               </div>
               <div
-                data-pencil-name="CTeamBio_1"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                data-pencil-name="CTeamText_5"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
               >
-                一般社団法人確定拠出年金診断協会 代表理事／株式会社visible
-                代表取締役。メガバンク系金融機関新卒→保険代理店FP→独立。金融機関で累積150講演。
-              </div>
-              <div
-                data-pencil-name="CTeamCred_1"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
-              >
-                著書「退職金で損する人得する人」
-              </div>
-            </div>
-          </div>
-          <div
-            data-pencil-name="CTeamRow_2"
-            style="align-items: flex-start; background-color: #F2F2F2; border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
-          >
-            <div
-              data-pencil-name="CTeamPhoto_2"
-              style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 120px; justify-content: center; width: 120px"
-            >
-              <div
-                data-pencil-name="Label"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                PHOTO
-              </div>
-            </div>
-            <div
-              data-pencil-name="CTeamText_2"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start"
-            >
-              <div
-                data-pencil-name="CTeamName_2"
-                style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                横田健一
-              </div>
-              <div
-                data-pencil-name="CTeamBio_2"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
-              >
-                日本FP協会CFP資格標準テキスト監修者／DCプランナー実務必携執筆者。東京大学卒業後、野村証券新卒入社→独立系FPへ。
-              </div>
-              <div
-                data-pencil-name="CTeamCred_2"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
-              >
-                CFP／1級FP技能士／日本証券アナリスト協会認定アナリスト(CMA)。著書「60歳からの賢い『お金の回し方』」
-              </div>
-            </div>
-          </div>
-          <div
-            data-pencil-name="CTeamRow_3"
-            style="align-items: flex-start; background-color: #F2F2F2; border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
-          >
-            <div
-              data-pencil-name="CTeamPhoto_3"
-              style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 120px; justify-content: center; width: 120px"
-            >
-              <div
-                data-pencil-name="Label"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                PHOTO
+                <div
+                  data-pencil-name="CTeamName_5"
+                  style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  松田直樹（保険）
+                </div>
+                <div
+                  data-pencil-name="CTeamBio_5"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                >
+                  製薬会社→MR（抗がん剤担当）→ソニー生命→独立系FPへ。
+                </div>
+                <div
+                  data-pencil-name="CTeamCred_5"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
+                >
+                  医療現場やがん治療を知っているからこそできる保険の最適化提案が好評
+                </div>
               </div>
             </div>
             <div
-              data-pencil-name="CTeamText_3"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start"
+              data-pencil-name="C_TeamCard"
+              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 14px; height: fit-content; justify-content: flex-start"
             >
               <div
-                data-pencil-name="CTeamName_3"
-                style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                data-pencil-name="CTeamPhoto_6"
+                style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 260px; justify-content: center; width: 100%"
               >
-                片岡佳樹（ライフプラン）
+                <div
+                  data-pencil-name="Label"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  PHOTO
+                </div>
               </div>
               <div
-                data-pencil-name="CTeamBio_3"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                data-pencil-name="CTeamText_6"
+                style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 6px; height: fit-content; justify-content: flex-start; width: 100%"
               >
-                陸上自衛隊出身。「自衛隊時代に『おかねで知らずに損していた』経験から、同じ想いをする人を減らしたい」という思いで従事。
-              </div>
-            </div>
-          </div>
-          <div
-            data-pencil-name="CTeamRow_4"
-            style="align-items: flex-start; background-color: #F2F2F2; border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
-          >
-            <div
-              data-pencil-name="CTeamPhoto_4"
-              style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 120px; justify-content: center; width: 120px"
-            >
-              <div
-                data-pencil-name="Label"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                PHOTO
-              </div>
-            </div>
-            <div
-              data-pencil-name="CTeamText_4"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start"
-            >
-              <div
-                data-pencil-name="CTeamName_4"
-                style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                杉山晃貴（証券）
-              </div>
-              <div
-                data-pencil-name="CTeamBio_4"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
-              >
-                Amazon、外資系生命保険会社を経て独立系FP・IFAへ。税理士向け勉強会も実施。
-              </div>
-              <div
-                data-pencil-name="CTeamCred_4"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
-              >
-                相談しやすいキャラクターとわかりやすい説明が好評
-              </div>
-            </div>
-          </div>
-          <div
-            data-pencil-name="CTeamRow_5"
-            style="align-items: flex-start; background-color: #F2F2F2; border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
-          >
-            <div
-              data-pencil-name="CTeamPhoto_5"
-              style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 120px; justify-content: center; width: 120px"
-            >
-              <div
-                data-pencil-name="Label"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                PHOTO
-              </div>
-            </div>
-            <div
-              data-pencil-name="CTeamText_5"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start"
-            >
-              <div
-                data-pencil-name="CTeamName_5"
-                style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                松田直樹（保険）
-              </div>
-              <div
-                data-pencil-name="CTeamBio_5"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
-              >
-                製薬会社→MR（抗がん剤担当）→ソニー生命→独立系FPへ。
-              </div>
-              <div
-                data-pencil-name="CTeamCred_5"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 11px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; width: 100%'
-              >
-                医療現場やがん治療を知っているからこそできる保険の最適化提案が好評
-              </div>
-            </div>
-          </div>
-          <div
-            data-pencil-name="CTeamRow_6"
-            style="align-items: flex-start; background-color: #F2F2F2; border-radius: 4px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 20px; width: 100%"
-          >
-            <div
-              data-pencil-name="CTeamPhoto_6"
-              style="align-items: center; background-color: #E0E0E0; border: 1px solid #BBBBBB; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 0px; height: 120px; justify-content: center; width: 120px"
-            >
-              <div
-                data-pencil-name="Label"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                PHOTO
-              </div>
-            </div>
-            <div
-              data-pencil-name="CTeamText_6"
-              style="align-items: flex-start; box-sizing: border-box; display: flex; flex-direction: column; flex: 1 1 0; gap: 6px; height: fit-content; justify-content: flex-start"
-            >
-              <div
-                data-pencil-name="CTeamName_6"
-                style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
-              >
-                小宮翔真（ライフプラン／資産運用／保険）
-              </div>
-              <div
-                data-pencil-name="CTeamBio_6"
-                style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
-              >
-                株式投資が身近な家庭環境で育ち中1から株式投資。不動産会社新卒→FP事業部新規立上げ→独立系FPへ。
+                <div
+                  data-pencil-name="CTeamName_6"
+                  style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 16px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+                >
+                  小宮翔真（ライフプラン／資産運用／保険）
+                </div>
+                <div
+                  data-pencil-name="CTeamBio_6"
+                  style='box-sizing: border-box; color: #666666; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 13px; font-style: normal; font-weight: 400; letter-spacing: 0px; line-height: 22px; text-align: left; width: 100%'
+                >
+                  株式投資が身近な家庭環境で育ち中1から株式投資。不動産会社新卒→FP事業部新規立上げ→独立系FPへ。
+                </div>
               </div>
             </div>
           </div>

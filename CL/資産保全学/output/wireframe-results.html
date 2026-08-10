@@ -23,11 +23,6 @@
     
 @media (max-width: 768px) {
   body { overflow-x: hidden; }
-  [data-pencil-name="TOP"], [data-pencil-name="SERVICE"], [data-pencil-name="RESULTS"],
-  [data-pencil-name="COMPANY"], [data-pencil-name="FAQ"], [data-pencil-name="PRIVACY"] {
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
   [style*="flex-direction: row"] {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -40,7 +35,6 @@
   [data-pencil-name="Sec3_Arrow1"], [data-pencil-name="Sec3_Arrow2"] {
     transform: rotate(90deg);
   }
-  [style*="width: 800px"] { width: 100% !important; max-width: 100% !important; }
   [style*="padding: 100px 80px"] { padding: 56px 24px !important; }
   [style*="padding: 60px 80px"] { padding: 40px 24px !important; }
   [style*="padding: 0px 80px 100px 80px"] { padding: 0px 24px 56px 24px !important; }
@@ -61,9 +55,9 @@
   #wf-hamburger span { display: block; width: 100%; height: 2px; background: #1A1A1A; }
   #wf-mobile-menu {
     position: fixed; inset: 0; background: #FFFFFF; z-index: 99990;
-    display: none; flex-direction: column; padding: 24px;
+    flex-direction: column; padding: 24px;
   }
-  #wf-mobile-menu.open { display: flex; }
+  #wf-mobile-menu.open { display: flex !important; }
   #wf-mobile-menu-top { display: flex; justify-content: flex-end; margin-bottom: 24px; }
   #wf-mobile-menu-close { background: none; border: none; font-size: 28px; cursor: pointer; color: #1A1A1A; line-height: 1; }
   #wf-mobile-menu a {
@@ -72,15 +66,12 @@
     text-decoration: none; color: #1A1A1A;
   }
   #wf-mobile-menu a.active { font-weight: 700; text-decoration: underline; }
+  [data-pencil-name="NavGroup"] { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
 }
 
     </style>
 
-  <style>
-@media (max-width: 768px) {
-  [data-pencil-name="NavGroup"] { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
-}
-</style>
+  
 <style>
 [data-pencil-name="TOP"], [data-pencil-name="SERVICE"], [data-pencil-name="RESULTS"],
 [data-pencil-name="COMPANY"], [data-pencil-name="FAQ"], [data-pencil-name="PRIVACY"] {
@@ -91,8 +82,7 @@
 [style*="width: 800px"] { width: 100% !important; max-width: 800px !important; }
 </style>
 <style>
-#wf-mobile-menu { display: none !important; }
-#wf-mobile-menu.open { display: flex !important; }
+#wf-mobile-menu { display: none; }
 </style>
 </head>
   <body>
@@ -218,7 +208,7 @@
         >
           <div
             data-pencil-name="RStatNum_12万人"
-            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 26px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 40px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
           >
             12万人
           </div>
@@ -235,7 +225,7 @@
         >
           <div
             data-pencil-name="RStatNum_週間1位"
-            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 26px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 40px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
           >
             週間1位
           </div>
@@ -252,7 +242,7 @@
         >
           <div
             data-pencil-name="RStatNum_150拠点以上"
-            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 26px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 40px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
           >
             150拠点以上
           </div>
@@ -269,7 +259,7 @@
         >
           <div
             data-pencil-name="RStatNum_1000世帯超"
-            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 26px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
+            style='box-sizing: border-box; color: #1A1A1A; font-family: "Noto Sans JP", system-ui, sans-serif; font-size: 40px; font-style: normal; font-weight: 700; letter-spacing: 0px; line-height: normal; text-align: left; white-space: nowrap'
           >
             1000世帯超
           </div>
