@@ -1,0 +1,276 @@
+{%- comment -%} EC テンプレ 商品詳細（PDP）グレー基調・アパレル型 {%- endcomment -%}
+<style>
+  .ec-pdp{background:#a6a6a6;}
+  /* パンくず */
+  .ec-pdp__crumb{padding:28px 64px 0;font-family:var(--ec-en);font-size:12px;font-weight:600;letter-spacing:2px;color:#33333399;}
+  /* メイン2カラム */
+  .ec-pdp__main{display:flex;gap:56px;align-items:flex-start;padding:36px 64px 80px;}
+  .ec-pdp__gallery{flex:1;display:flex;gap:16px;align-items:flex-start;}
+  .ec-pdp__stage{flex:1;border-radius:8px;overflow:hidden;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#d6d6d6,#aeaeae);}
+  .ec-pdp__stage img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ec-pdp__ph{font-family:var(--ec-jp);font-size:12px;letter-spacing:3px;color:#ffffffcc;}
+  .ec-pdp__thumbs{display:flex;flex-direction:column;gap:12px;width:84px;}
+  .ec-pdp__thumb{width:84px;height:104px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;background:linear-gradient(135deg,#d6d6d6,#aeaeae);padding:0;}
+  .ec-pdp__thumb.is-active{border-color:var(--ec-ink);}
+  .ec-pdp__thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  /* 商品情報 */
+  .ec-pdp__info{width:520px;flex-shrink:0;display:flex;flex-direction:column;gap:22px;}
+  .ec-pdp__cat{font-family:var(--ec-en);font-size:12px;font-weight:600;letter-spacing:3px;color:#88888899;}
+  .ec-pdp__name{font-family:'Noto Serif JP',serif;font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:1px;color:var(--ec-ink);line-height:1.3;margin:0;}
+  .ec-pdp__price{font-family:var(--ec-jp);font-size:22px;font-weight:600;color:var(--ec-ink);}
+  .ec-pdp__desc{font-family:var(--ec-jp);font-size:15px;line-height:1.9;color:#444;}
+  /* 購入 */
+  .ec-pdp__buy{display:flex;gap:14px;align-items:stretch;}
+  .ec-pdp__qty{display:flex;align-items:center;gap:16px;padding:0 18px;height:56px;border:1px solid #00000022;border-radius:8px;}
+  .ec-pdp__qty button{border:0;background:transparent;font-size:20px;line-height:1;color:var(--ec-ink);cursor:pointer;padding:0;width:20px;}
+  .ec-pdp__qty input{width:28px;text-align:center;border:0;background:transparent;font-family:var(--ec-jp);font-size:16px;font-weight:600;color:var(--ec-ink);-moz-appearance:textfield;}
+  .ec-pdp__qty input::-webkit-outer-spin-button,.ec-pdp__qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  .ec-pdp__cart{flex:1;height:56px;border:0;border-radius:8px;background:#111;color:var(--ec-white);font-family:var(--ec-jp);font-size:15px;font-weight:600;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;}
+  .ec-pdp__cart:hover{opacity:.88;}
+  .ec-pdp__cart[disabled]{opacity:.4;cursor:not-allowed;}
+  /* スペック */
+  .ec-pdp__spec{border-radius:8px;background:#e6e6e6;padding:6px 22px;}
+  .ec-pdp__specrow{display:flex;justify-content:space-between;padding:14px 0;}
+  .ec-pdp__speck{font-family:var(--ec-jp);font-size:13px;font-weight:600;color:#666;}
+  .ec-pdp__specv{font-family:var(--ec-jp);font-size:13px;color:var(--ec-ink);}
+  /* エディトリアル帯 */
+  .ec-pdp__ed{height:clamp(360px,42vw,600px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:linear-gradient(150deg,#c7c7c7,#9a9a9a);}
+  .ec-pdp__ed-en{font-family:var(--ec-en);font-size:clamp(44px,7vw,72px);font-weight:600;color:#1f1f1f;margin:0;}
+  .ec-pdp__ed-jp{font-family:'Noto Serif JP',serif;font-size:clamp(16px,2vw,20px);font-weight:600;letter-spacing:2px;color:#333;}
+  /* ストーリー */
+  .ec-pdp__story{display:flex;gap:56px;align-items:center;padding:96px 64px;}
+  .ec-pdp__story-img{width:560px;height:620px;border-radius:8px;background:linear-gradient(135deg,#d6d6d6,#aeaeae);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ec-pdp__story-img img{width:100%;height:100%;object-fit:cover;}
+  .ec-pdp__story-tx{flex:1;display:flex;flex-direction:column;gap:20px;}
+  .ec-pdp__ey{font-family:var(--ec-en);font-size:12px;font-weight:600;letter-spacing:3px;color:#555;}
+  .ec-pdp__story-h{font-family:'Noto Serif JP',serif;font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.4;color:var(--ec-ink);margin:0;white-space:pre-line;}
+  .ec-pdp__story-b{font-family:var(--ec-jp);font-size:15px;line-height:1.95;color:#333;}
+  /* 使い方 */
+  .ec-pdp__eat{padding:88px 64px;background:#a6a6a6;display:flex;flex-direction:column;gap:40px;}
+  .ec-pdp__eat-head{text-align:center;}
+  .ec-pdp__eat-en{font-family:var(--ec-en);font-size:clamp(32px,4vw,40px);font-weight:600;color:#111;margin:0;}
+  .ec-pdp__eat-jp{font-family:var(--ec-jp);font-size:13px;font-weight:600;letter-spacing:3px;color:#333;margin-top:6px;}
+  .ec-pdp__steps{display:flex;gap:24px;}
+  .ec-pdp__step{flex:1;background:#eee;border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:12px;}
+  .ec-pdp__step-n{font-family:var(--ec-en);font-size:30px;font-weight:600;color:#8a8a8a;}
+  .ec-pdp__step-t{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:600;color:var(--ec-ink);}
+  .ec-pdp__step-d{font-family:var(--ec-jp);font-size:14px;line-height:1.85;color:#444;}
+  /* 詳細情報 */
+  .ec-pdp__al{padding:72px 64px;background:#a6a6a6;display:flex;flex-direction:column;gap:24px;}
+  .ec-pdp__al-h{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:600;color:var(--ec-ink);margin:0;}
+  .ec-pdp__al-table{max-width:820px;border-radius:8px;overflow:hidden;background:var(--ec-paper);}
+  .ec-pdp__al-row{display:flex;}
+  .ec-pdp__al-row:nth-child(even){background:#ececec;}
+  .ec-pdp__al-k{width:240px;padding:16px 20px;font-family:var(--ec-jp);font-size:13px;font-weight:600;color:#666;}
+  .ec-pdp__al-v{flex:1;padding:16px 20px;font-family:var(--ec-jp);font-size:13px;line-height:1.7;color:var(--ec-ink);}
+  /* 他の商品 */
+  .ec-pdp__rel{padding:80px 64px;display:flex;flex-direction:column;gap:36px;}
+  .ec-pdp__rel-en{font-family:var(--ec-en);font-size:clamp(32px,4vw,40px);font-weight:600;color:var(--ec-ink);margin:0;}
+  .ec-pdp__rel-jp{font-family:var(--ec-jp);font-size:13px;font-weight:600;letter-spacing:3px;color:#555;margin-top:6px;}
+  .ec-pdp__rel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  .ec-pdp__rel-card{text-decoration:none;color:inherit;}
+  .ec-pdp__rel-img{width:100%;height:420px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#d6d6d6,#aeaeae);}
+  .ec-pdp__rel-img img{width:100%;height:100%;object-fit:cover;}
+  .ec-pdp__rel-nm{font-family:var(--ec-jp);font-weight:600;font-size:18px;color:var(--ec-ink);margin:14px 0 4px;}
+  .ec-pdp__rel-pr{font-family:var(--ec-jp);font-size:15px;color:#555;}
+  @media(max-width:900px){
+    .ec-pdp__main{flex-direction:column;gap:28px;padding:28px 32px 56px;}
+    .ec-pdp__gallery{flex-direction:row-reverse;width:100%;}
+    .ec-pdp__info{width:100%;}
+    .ec-pdp__story{flex-direction:column;gap:28px;padding:64px 32px;}
+    .ec-pdp__story-img{width:100%;height:auto;aspect-ratio:9/10;}
+    .ec-pdp__steps{flex-direction:column;}
+    .ec-pdp__eat,.ec-pdp__al,.ec-pdp__rel{padding:56px 32px;}
+    .ec-pdp__rel-grid{grid-template-columns:1fr;}
+    .ec-pdp__al-k{width:120px;}
+  }
+</style>
+
+<section class="ec ec-pdp">
+  <div class="ec-pdp__crumb">HOME / SHOP / {{ product.title }}</div>
+
+  <div class="ec-pdp__main">
+    <div class="ec-pdp__gallery">
+      <div class="ec-pdp__stage" id="ecStage">
+        {%- if product.featured_image -%}
+          <img id="ecStageImg" src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}">
+        {%- else -%}
+          <span class="ec-pdp__ph">商品写真</span>
+        {%- endif -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="ec-pdp__thumbs">
+          {%- for image in product.images limit: 5 -%}
+            <button type="button" class="ec-pdp__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ image | image_url: width: 1200 }}" aria-label="画像{{ forloop.index }}">
+              <img src="{{ image | image_url: width: 200 }}" alt="" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="ec-pdp__thumbs">
+          {%- for i in (1..4) -%}
+            <button type="button" class="ec-pdp__thumb{% if forloop.first %} is-active{% endif %}" aria-label="画像{{ i }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="ec-pdp__info">
+      <div class="ec-pdp__cat">{{ section.settings.category_label | default: product.type | default: shop.name }}</div>
+      <h1 class="ec-pdp__name">{{ product.title }}</h1>
+      <div class="ec-pdp__price">{{ product.price | money }}</div>
+      <div class="ec-pdp__desc">{% if product.description != blank %}{{ product.description }}{% else %}ここに商品の説明文が入ります。素材・特徴・魅力を簡潔に伝えます。{% endif %}</div>
+
+      {%- form 'product', product, class: 'ec-pdp__form' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <div class="ec-pdp__buy">
+          <div class="ec-pdp__qty">
+            <button type="button" onclick="var q=this.parentNode.querySelector('input');q.value=Math.max(1,parseInt(q.value||1)-1)">−</button>
+            <input type="number" name="quantity" value="1" min="1" inputmode="numeric">
+            <button type="button" onclick="var q=this.parentNode.querySelector('input');q.value=parseInt(q.value||1)+1">＋</button>
+          </div>
+          <button type="submit" class="ec-pdp__cart" {% unless product.available %}disabled{% endunless %}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+            {% if product.available %}カートに入れる{% else %}売り切れ{% endif %}
+          </button>
+        </div>
+      {%- endform -%}
+
+      {%- assign spec_blocks = section.blocks | where: "type", "spec" -%}
+      {%- if spec_blocks.size > 0 -%}
+        <div class="ec-pdp__spec">
+          {%- for block in spec_blocks -%}
+            <div class="ec-pdp__specrow" {{ block.shopify_attributes }}><span class="ec-pdp__speck">{{ block.settings.label }}</span><span class="ec-pdp__specv">{{ block.settings.value }}</span></div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%} エディトリアル帯 {%- endcomment -%}
+  <div class="ec-pdp__ed">
+    <p class="ec-pdp__ed-en">{{ section.settings.editorial_en | default: 'First Look' }}</p>
+    <div class="ec-pdp__ed-jp">{{ section.settings.editorial_jp | default: 'ひと目で伝わる、商品の世界観。' }}</div>
+  </div>
+
+  {%- comment -%} ストーリー {%- endcomment -%}
+  <div class="ec-pdp__story">
+    <div class="ec-pdp__story-img">{% if product.images[1] %}<img src="{{ product.images[1] | image_url: width: 1000 }}" alt="">{% else %}<span class="ec-pdp__ph">素材カット</span>{% endif %}</div>
+    <div class="ec-pdp__story-tx">
+      <div class="ec-pdp__ey">STORY</div>
+      <h2 class="ec-pdp__story-h">{{ section.settings.story_heading | default: 'この商品にまつわる物語。' }}</h2>
+      <div class="ec-pdp__story-b">{% if section.settings.story_body != blank %}{{ section.settings.story_body }}{% else %}ここに商品の背景やこだわりのストーリーを記載します。素材選びや製法など、丁寧に伝えたいポイントをまとめます。{% endif %}</div>
+    </div>
+  </div>
+
+  {%- comment -%} 使い方 {%- endcomment -%}
+  {%- assign step_blocks = section.blocks | where: "type", "step" -%}
+  {%- if step_blocks.size > 0 -%}
+    <div class="ec-pdp__eat">
+      <div class="ec-pdp__eat-head">
+        <p class="ec-pdp__eat-en">{{ section.settings.steps_en | default: 'How to Use' }}</p>
+        <div class="ec-pdp__eat-jp">{{ section.settings.steps_jp | default: '使い方' }}</div>
+      </div>
+      <div class="ec-pdp__steps">
+        {%- for block in step_blocks -%}
+          <div class="ec-pdp__step" {{ block.shopify_attributes }}><div class="ec-pdp__step-n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</div><div class="ec-pdp__step-t">{{ block.settings.title }}</div><div class="ec-pdp__step-d">{{ block.settings.desc }}</div></div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} 詳細情報 {%- endcomment -%}
+  {%- assign detail_blocks = section.blocks | where: "type", "detail" -%}
+  {%- if detail_blocks.size > 0 -%}
+    <div class="ec-pdp__al">
+      <h2 class="ec-pdp__al-h">{{ section.settings.detail_heading | default: '詳細情報' }}</h2>
+      <div class="ec-pdp__al-table">
+        {%- for block in detail_blocks -%}
+          <div class="ec-pdp__al-row" {{ block.shopify_attributes }}><div class="ec-pdp__al-k">{{ block.settings.label }}</div><div class="ec-pdp__al-v">{{ block.settings.value }}</div></div>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} 他の商品 {%- endcomment -%}
+  {%- if product.collections.size > 0 -%}{%- assign relcol = product.collections.first -%}{%- else -%}{%- assign relcol = collections.all -%}{%- endif -%}
+  <div class="ec-pdp__rel">
+    <div><p class="ec-pdp__rel-en">{{ section.settings.related_en | default: 'Other Products' }}</p><div class="ec-pdp__rel-jp">{{ section.settings.related_jp | default: '他の商品' }}</div></div>
+    <div class="ec-pdp__rel-grid">
+      {%- assign shown = 0 -%}
+      {%- for p in relcol.products -%}
+        {%- if p.id != product.id and shown < 2 -%}
+          {%- assign shown = shown | plus: 1 -%}
+          <a class="ec-pdp__rel-card" href="{{ p.url }}">
+            <div class="ec-pdp__rel-img">{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 800 }}" alt="{{ p.title | escape }}">{% else %}<span class="ec-pdp__ph">商品写真</span>{% endif %}</div>
+            <div class="ec-pdp__rel-nm">{{ p.title }}</div>
+            <div class="ec-pdp__rel-pr">{{ p.price | money }}</div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var sec = document.currentScript.closest('.ec-pdp');
+    if(!sec) return;
+    var stage = sec.querySelector('#ecStageImg');
+    var thumbs = sec.querySelectorAll('.ec-pdp__thumb');
+    if(!stage) return;
+    thumbs.forEach(function(btn){
+      var full = btn.getAttribute('data-full');
+      if(!full) return;
+      btn.addEventListener('mouseenter', function(){ stage.src = full; setActive(btn); });
+      btn.addEventListener('click', function(){ stage.src = full; setActive(btn); });
+    });
+    function setActive(active){
+      thumbs.forEach(function(b){ b.classList.remove('is-active'); });
+      active.classList.add('is-active');
+    }
+  })();
+</script>
+{% schema %}
+{
+  "name": "EC Product",
+  "settings": [
+    { "type": "text", "id": "category_label", "label": "カテゴリラベル（未設定＝商品タイプ）" },
+    { "type": "header", "content": "エディトリアル帯" },
+    { "type": "text", "id": "editorial_en", "label": "見出し(英語)", "default": "First Look" },
+    { "type": "text", "id": "editorial_jp", "label": "見出し(日本語)", "default": "ひと目で伝わる、商品の世界観。" },
+    { "type": "header", "content": "ストーリー" },
+    { "type": "text", "id": "story_heading", "label": "ストーリー見出し", "default": "この商品にまつわる物語。" },
+    { "type": "textarea", "id": "story_body", "label": "ストーリー本文" },
+    { "type": "header", "content": "使い方（ステップブロックがある時のみ表示）" },
+    { "type": "text", "id": "steps_en", "label": "見出し(英語)", "default": "How to Use" },
+    { "type": "text", "id": "steps_jp", "label": "見出し(日本語)", "default": "使い方" },
+    { "type": "header", "content": "詳細情報（詳細ブロックがある時のみ表示）" },
+    { "type": "text", "id": "detail_heading", "label": "見出し", "default": "詳細情報" },
+    { "type": "header", "content": "他の商品" },
+    { "type": "text", "id": "related_en", "label": "見出し(英語)", "default": "Other Products" },
+    { "type": "text", "id": "related_jp", "label": "見出し(日本語)", "default": "他の商品" }
+  ],
+  "blocks": [
+    { "type": "spec", "name": "クイックスペック", "settings": [
+      { "type": "text", "id": "label", "label": "項目名", "default": "内容量" },
+      { "type": "text", "id": "value", "label": "値", "default": "" }
+    ]},
+    { "type": "step", "name": "使い方ステップ", "settings": [
+      { "type": "text", "id": "title", "label": "タイトル", "default": "ステップ名" },
+      { "type": "textarea", "id": "desc", "label": "説明" }
+    ]},
+    { "type": "detail", "name": "詳細情報行", "settings": [
+      { "type": "text", "id": "label", "label": "項目名", "default": "項目名" },
+      { "type": "textarea", "id": "value", "label": "内容" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EC Product",
+    "blocks": [
+      { "type": "spec", "settings": { "label": "内容量", "value": "" } },
+      { "type": "spec", "settings": { "label": "素材", "value": "" } }
+    ]
+  }]
+}
+{% endschema %}

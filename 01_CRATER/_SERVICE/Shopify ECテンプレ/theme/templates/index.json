@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "hero": { "type": "ec-hero", "settings": {} },
+    "lineup": {
+      "type": "ec-product-lineup",
+      "blocks": {
+        "b1": { "type": "item", "settings": { "name": "商品名が入ります", "price": "¥0,000（税込）" } },
+        "b2": { "type": "item", "settings": { "name": "商品名が入ります", "price": "¥0,000（税込）" } },
+        "b3": { "type": "item", "settings": { "name": "商品名が入ります", "price": "¥0,000（税込）" } }
+      },
+      "block_order": ["b1", "b2", "b3"],
+      "settings": {}
+    },
+    "sets": {
+      "type": "ec-bundle-tiles",
+      "blocks": {
+        "t1": { "type": "tile", "settings": { "title": "Tile Title A", "desc": "ここにタイルの説明が入ります" } },
+        "t2": { "type": "tile", "settings": { "title": "Tile Title B", "desc": "ここにタイルの説明が入ります" } }
+      },
+      "block_order": ["t1", "t2"],
+      "settings": {}
+    },
+    "statement": { "type": "ec-statement", "settings": {} },
+    "craft": { "type": "ec-craft", "settings": {} },
+    "story": { "type": "ec-story", "settings": {} },
+    "pick": { "type": "ec-pickup", "settings": {} },
+    "voice": {
+      "type": "ec-voice",
+      "blocks": {
+        "v1": { "type": "voice", "settings": { "title": "満足の一言タイトル", "quote": "お客様の感想がここに入ります。" } },
+        "v2": { "type": "voice", "settings": { "title": "満足の一言タイトル", "quote": "お客様の感想がここに入ります。" } },
+        "v3": { "type": "voice", "settings": { "title": "満足の一言タイトル", "quote": "お客様の感想がここに入ります。" } }
+      },
+      "block_order": ["v1", "v2", "v3"],
+      "settings": {}
+    },
+    "trust": { "type": "ec-trust", "settings": {} },
+    "faq": {
+      "type": "ec-faq",
+      "blocks": {
+        "q1": { "type": "qa", "settings": { "q": "配送にはどのくらいかかりますか？", "a": "ご注文確認後、通常3〜5営業日以内に発送いたします。" } },
+        "q2": { "type": "qa", "settings": { "q": "返品・交換はできますか？", "a": "商品到着後7日以内であれば、未使用に限り承ります。詳しくは返品ポリシーをご確認ください。" } },
+        "q3": { "type": "qa", "settings": { "q": "ギフト用の対応はできますか？", "a": "はい。ラッピング等のギフト対応も承っております。" } },
+        "q4": { "type": "qa", "settings": { "q": "支払い方法を教えてください", "a": "クレジットカード等、各種お支払い方法に対応しています。" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4"],
+      "settings": {}
+    },
+    "blog": {
+      "type": "ec-blog",
+      "blocks": {
+        "a1": { "type": "article", "settings": { "date": "2026.06.01", "title": "記事タイトルが入ります" } },
+        "a2": { "type": "article", "settings": { "date": "2026.05.20", "title": "記事タイトルが入ります" } },
+        "a3": { "type": "article", "settings": { "date": "2026.05.02", "title": "記事タイトルが入ります" } }
+      },
+      "block_order": ["a1", "a2", "a3"],
+      "settings": {}
+    },
+    "cta": { "type": "ec-cta", "settings": {} }
+  },
+  "order": ["hero", "lineup", "sets", "statement", "craft", "story", "pick", "voice", "trust", "faq", "blog", "cta"]
+}

@@ -1,0 +1,33 @@
+{%- comment -%} EC テンプレ こだわり・製法（画像左／テキスト右） {%- endcomment -%}
+<style>
+  .ec-craft{display:grid;grid-template-columns:1fr 1fr;background:var(--ec-paper);}
+  .ec-craft__img{position:relative;min-height:520px;background:linear-gradient(135deg,#d6d6d6,#aeaeae);overflow:hidden;}
+  .ec-craft__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1!important;}
+  .ec-craft__body{display:flex;flex-direction:column;justify-content:center;gap:18px;padding:64px 72px;}
+  .ec-craft__eye{font-family:var(--ec-en);font-size:12px;letter-spacing:3px;color:var(--ec-sub);}
+  .ec-craft__t{font-family:var(--ec-en);font-weight:600;font-size:clamp(28px,3.2vw,40px);color:var(--ec-ink);margin:0;}
+  .ec-craft__jp{font-family:var(--ec-jp);font-weight:600;font-size:13px;letter-spacing:3px;color:var(--ec-meta,#888);margin:0;}
+  .ec-craft__d{font-family:var(--ec-jp);font-size:15px;line-height:1.9;color:#444;margin:0;}
+  @media(max-width:768px){.ec-craft{grid-template-columns:1fr;}.ec-craft__img{min-height:280px;}.ec-craft__body{padding:48px 32px;}}
+</style>
+<section class="ec ec-craft">
+  <div class="ec-craft__img">{%- if section.settings.image != blank -%}<img src="{{ section.settings.image | image_url: width: 1200 }}" alt="" loading="lazy">{%- else -%}<img src="{{ 'ec-craft.jpg' | asset_url }}" alt="" loading="lazy">{%- endif -%}</div>
+  <div class="ec-craft__body">
+    <h2 class="ec-craft__t">{{ section.settings.heading }}</h2>
+    {%- if section.settings.subheading != blank -%}<div class="ec-craft__jp">{{ section.settings.subheading }}</div>{%- endif -%}
+    <p class="ec-craft__d">{{ section.settings.body }}</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "EC Craft",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "上ラベル", "default": "CRAFT" },
+    { "type": "text", "id": "heading", "label": "見出し(英語)", "default": "The Craft" },
+    { "type": "image_picker", "id": "image", "label": "画像（未設定＝グレーのダミー）" },
+    { "type": "text", "id": "subheading", "label": "サブ(日本語)", "default": "こだわりの製法" },
+    { "type": "textarea", "id": "body", "label": "本文", "default": "厳選した素材と丁寧な製法で、ひとつひとつ仕上げています。ここにブランドのこだわりポイントを具体的に記載します。" }
+  ],
+  "presets": [{ "name": "EC Craft" }]
+}
+{% endschema %}

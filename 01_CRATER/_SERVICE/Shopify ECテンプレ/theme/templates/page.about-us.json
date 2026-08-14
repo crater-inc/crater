@@ -1,0 +1,43 @@
+{
+  "sections": {
+    "about_intro": {
+      "type": "ec-statement",
+      "settings": {
+        "eyebrow": "ABOUT",
+        "heading": "ブランドの世界観を伝える見出しが入ります。",
+        "body": "ここにブランドのステートメント本文が入ります。\n\nどんな想いでこのブランドをつくったか、どんな体験を届けたいか。\n\n読み手の心に残るメッセージを、\nここで丁寧に伝えます。"
+      }
+    },
+    "about_story": {
+      "type": "ec-story",
+      "settings": {
+        "eyebrow": "STORY",
+        "heading": "Our Story",
+        "subheading": "私たちの物語",
+        "body": "ブランドがどんな想いで生まれたか、ここで語ります。読み手が背景を理解し、共感できるようなストーリーをここに記載します。"
+      }
+    },
+    "about_craft": {
+      "type": "ec-craft",
+      "settings": {
+        "heading": "The Craft",
+        "subheading": "こだわりの製法",
+        "body": "厳選した素材と丁寧な製法で、ひとつひとつ仕上げています。ここにブランドのこだわりポイントを具体的に記載します。"
+      }
+    },
+    "about_trust": {
+      "type": "ec-trust",
+      "settings": {}
+    },
+    "about_cta": {
+      "type": "ec-cta",
+      "settings": {
+        "heading": "今すぐチェックしてみませんか。",
+        "subheading": "ここにサブコピーが入ります。",
+        "button_label": "商品を見る",
+        "button_link": "/collections/all"
+      }
+    }
+  },
+  "order": ["about_intro", "about_story", "about_craft", "about_trust", "about_cta"]
+}
