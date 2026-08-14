@@ -1,0 +1,26 @@
+{%- comment -%} EC テンプレ ブランドストーリー {%- endcomment -%}
+<style>
+  .ec-story{background:#c2c2c2;padding:96px 64px;}
+  .ec-story__eye{font-family:var(--ec-en);font-size:12px;letter-spacing:3px;color:var(--ec-sub);}
+  .ec-story__t{font-family:var(--ec-en);font-weight:600;font-size:clamp(40px,5vw,64px);color:var(--ec-ink);margin:6px 0 20px;line-height:1;}
+  .ec-story__jp{font-family:var(--ec-jp);font-weight:600;font-size:13px;letter-spacing:3px;color:var(--ec-sub);}
+  .ec-story__d{font-family:var(--ec-jp);font-size:16px;line-height:2;color:#444;max-width:760px;margin:22px 0 0;}
+  @media(max-width:768px){.ec-story{padding:64px 32px;}}
+</style>
+<section class="ec ec-story">
+  <h2 class="ec-story__t">{{ section.settings.heading }}</h2>
+  <div class="ec-story__jp">{{ section.settings.subheading }}</div>
+  <p class="ec-story__d">{{ section.settings.body }}</p>
+</section>
+{% schema %}
+{
+  "name": "EC Story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "上ラベル", "default": "STORY" },
+    { "type": "text", "id": "heading", "label": "見出し(英語)", "default": "Our Story" },
+    { "type": "text", "id": "subheading", "label": "サブ(日本語)", "default": "私たちの物語" },
+    { "type": "textarea", "id": "body", "label": "本文", "default": "ブランドがどんな想いで生まれたか、ここで語ります。読み手が背景を理解し、共感できるようなストーリーをここに記載します。" }
+  ],
+  "presets": [{ "name": "EC Story" }]
+}
+{% endschema %}

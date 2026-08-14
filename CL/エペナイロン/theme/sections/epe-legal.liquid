@@ -1,0 +1,59 @@
+{%- comment -%} エペナイロン 法定ページ（特定商取引法など）。テーブル形式・ダーク基調 {%- endcomment -%}
+<style>
+  .epe-legal{background:var(--epe-section-bg);padding:80px 80px 100px;}
+  .epe-legal__eyebrow{font-family:var(--epe-en);font-size:12px;letter-spacing:2px;color:var(--epe-text-muted);margin-bottom:10px;}
+  .epe-legal__title{font-family:var(--epe-jp);font-size:28px;font-weight:700;color:var(--epe-text-white);margin:0 0 48px;}
+  .epe-legal__table{max-width:820px;}
+  .epe-legal__row{display:flex;gap:40px;padding:20px 0;border-bottom:1px solid var(--epe-line);}
+  .epe-legal__k{width:220px;flex-shrink:0;font-family:var(--epe-jp);font-size:14px;font-weight:600;color:var(--epe-text-white);}
+  .epe-legal__v{flex:1;font-family:var(--epe-jp);font-size:14px;line-height:1.7;color:var(--epe-text-body);white-space:pre-line;}
+  @media(max-width:768px){
+    .epe-legal{padding:48px 24px 64px;}
+    .epe-legal__title{font-size:22px;margin-bottom:32px;}
+    .epe-legal__row{flex-direction:column;gap:8px;padding:16px 0;}
+    .epe-legal__k{width:auto;}
+  }
+</style>
+<section class="epe epe-legal">
+  <div class="epe-legal__eyebrow">LEGAL</div>
+  <h1 class="epe-legal__title">{{ section.settings.title }}</h1>
+  <div class="epe-legal__table">
+    {%- for block in section.blocks -%}
+      <div class="epe-legal__row" {{ block.shopify_attributes }}>
+        <div class="epe-legal__k">{{ block.settings.label }}</div>
+        <div class="epe-legal__v">{{ block.settings.value }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "EPE Legal",
+  "settings": [
+    { "type": "text", "id": "title", "label": "見出し", "default": "特定商取引法に基づく表記" }
+  ],
+  "blocks": [
+    { "type": "row", "name": "行", "settings": [
+      { "type": "text", "id": "label", "label": "項目名", "default": "項目名" },
+      { "type": "textarea", "id": "value", "label": "内容" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EPE Legal",
+    "blocks": [
+      { "type": "row", "settings": { "label": "販売事業者", "value": "○○株式会社" } },
+      { "type": "row", "settings": { "label": "運営統括責任者", "value": "◯◯ ◯◯" } },
+      { "type": "row", "settings": { "label": "所在地", "value": "〒000-0000 東京都◯◯区◯◯ 0-0-0" } },
+      { "type": "row", "settings": { "label": "電話番号", "value": "00-0000-0000（受付時間：平日10:00〜17:00）" } },
+      { "type": "row", "settings": { "label": "メールアドレス", "value": "info@example.com" } },
+      { "type": "row", "settings": { "label": "販売価格", "value": "各商品ページに税込価格で表示" } },
+      { "type": "row", "settings": { "label": "商品代金以外の必要料金", "value": "送料・消費税等（各商品ページに記載）" } },
+      { "type": "row", "settings": { "label": "お支払い方法", "value": "クレジットカード、その他各種決済方法" } },
+      { "type": "row", "settings": { "label": "お支払い時期", "value": "ご注文確定時" } },
+      { "type": "row", "settings": { "label": "商品の引き渡し時期", "value": "ご注文確認後、通常3〜5営業日以内に発送" } },
+      { "type": "row", "settings": { "label": "返品・交換について", "value": "商品到着後7日以内、未使用に限り対応" } },
+      { "type": "row", "settings": { "label": "キャンセルについて", "value": "発送前のみキャンセル可能" } }
+    ]
+  }]
+}
+{% endschema %}

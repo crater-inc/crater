@@ -1,0 +1,16 @@
+{%- comment -%}
+  エペナイロン 汎用画像タイル（Pencil: dPk87 ImageCard）
+  Params: image, alt, link(optional), height(optional css, default 280px), name(optional), price(optional)
+{%- endcomment -%}
+{%- liquid
+  assign card_height = height | default: '280px'
+  assign card_tag = 'div'
+  if link != blank
+    assign card_tag = 'a'
+  endif
+-%}
+<{{ card_tag }}{% if link != blank %} href="{{ link }}"{% endif %} class="epe-imgcard">
+  <div class="epe-imgcard__img" style="height:{{ card_height }};{% if image != blank %}background-image:url({{ image | image_url: width: 900 }});{% endif %}"></div>
+  {%- if name != blank -%}<div class="epe-imgcard__name">{{ name }}</div>{%- endif -%}
+  {%- if price != blank -%}<div class="epe-imgcard__price">{{ price }}</div>{%- endif -%}
+</{{ card_tag }}>

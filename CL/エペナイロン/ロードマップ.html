@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エペナイロン ECサイト構築ロードマップ</title>
+<style>
+  :root{
+    --bg:#f7f6f4; --panel:#ffffff; --ink:#1c1c1c; --sub:#555; --meta:#888;
+    --line:#e4e2de; --accent:#1c1c1c; --done:#2f7d4f; --doing:#b7791f; --todo:#9a9a9a;
+    --warn-bg:#fff4e5; --warn-line:#e8b463; --risk-bg:#fdeceb; --risk-line:#e08a82;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif; line-height:1.7; overflow-x:hidden;}
+  .wrap{max-width:920px; margin:0 auto; padding:56px 32px 100px;}
+  header.page{margin-bottom:48px;}
+  h1{font-size:26px; font-weight:700; margin:0 0 8px;}
+  .lead{color:var(--sub); font-size:14px; margin:0;}
+  .updated{color:var(--meta); font-size:11px; margin-top:6px;}
+
+  .status-now{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px 28px; margin-bottom:48px;}
+  .status-now h2{font-size:14px; margin:0 0 12px; letter-spacing:.05em; color:var(--meta); text-transform:uppercase;}
+  .status-now ul{margin:0; padding-left:20px; font-size:14px; color:var(--ink);}
+  .status-now li{margin-bottom:6px;}
+
+  h2.phase-title{font-size:13px; letter-spacing:.08em; color:var(--meta); text-transform:uppercase; margin:0 0 6px;}
+
+  .phase{position:relative; padding-left:28px; margin-bottom:36px; border-left:2px solid var(--line);}
+  .phase:last-of-type{border-left:2px solid transparent;}
+  .phase::before{content:""; position:absolute; left:-7px; top:2px; width:12px; height:12px; border-radius:50%; background:var(--todo); border:2px solid var(--bg);}
+  .phase.done::before{background:var(--done);}
+  .phase.doing::before{background:var(--doing);}
+  .phase-head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:10px;}
+  .phase-num{font-size:12px; color:var(--meta);}
+  .phase-name{font-size:18px; font-weight:700;}
+  .tag{display:inline-block; font-size:11px; padding:2px 10px; border-radius:999px; font-weight:600;}
+  .tag.done{background:#e6f4ea; color:var(--done);}
+  .tag.doing{background:#fbeed9; color:var(--doing);}
+  .tag.todo{background:#f0f0ee; color:var(--todo);}
+
+  table.tasks{width:100%; border-collapse:collapse; font-size:14px;}
+  table.tasks td{padding:8px 0; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.tasks tr:last-child td{border-bottom:none;}
+  table.tasks td.mark{width:22px; font-size:14px;}
+  table.tasks td.task{color:var(--ink);}
+  table.tasks td.note{color:var(--meta); font-size:12px; text-align:right; width:220px;}
+
+  .callouts{margin-top:56px;}
+  .callouts h2{font-size:20px; font-weight:700; margin:0 0 20px;}
+  .callout{border-radius:12px; padding:20px 24px; margin-bottom:16px; border:1px solid;}
+  .callout h3{font-size:14px; margin:0 0 10px;}
+  .callout ul{margin:0; padding-left:20px; font-size:13.5px; color:var(--ink);}
+  .callout li{margin-bottom:8px;}
+  .callout li b{font-weight:700;}
+  .callout.decide{background:var(--warn-bg); border-color:var(--warn-line);}
+  .callout.risk{background:var(--risk-bg); border-color:var(--risk-line);}
+  .callout.pages{background:var(--panel); border-color:var(--line);}
+
+  footer.note{margin-top:56px; font-size:12px; color:var(--meta); border-top:1px solid var(--line); padding-top:16px;}
+
+  @media (max-width:768px){
+    .wrap{padding:32px 20px 80px; width:100%;}
+    h1{font-size:22px;}
+    .phase-name{font-size:16px;}
+    table.tasks td.note{width:auto; display:block; text-align:left; padding-top:2px;}
+    table.tasks tr{display:block; padding:6px 0; border-bottom:1px solid var(--line);}
+    table.tasks td{border-bottom:none; padding:2px 0;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page">
+    <h1>エペナイロン ECサイト構築ロードマップ</h1>
+    <p class="lead">Shopify静的サイト構築｜Pencil→クロコ仕上げフロー</p>
+    <p class="updated">最終更新：2026-08-15</p>
+  </header>
+
+  <div class="status-now">
+    <h2>現在地</h2>
+    <ul>
+      <li><b>フルカスタムLiquidテーマを構築済み</b>（`CL/エペナイロン/theme/`）。TOP・商品詳細・商品一覧・ブログ一覧/記事・カート/会員ページ・特定商取引法ページまで一通り実装、全ページSPレスポンシブ対応済み</li>
+      <li>画像は全てグレープレースホルダー。KVは実写なし、ケイスケさんが自分で制作予定 → 完成次第クロコが差し替え</li>
+      <li>Contact・Blogの中身は汎用プレースホルダーに置き換え済み（元Pencilの別会社ダミーデータは使用していない）→ 実データ確定後に管理画面から設定</li>
+      <li>Shopifyストアへの実デプロイ（push）・商品登録はまだ。次はストアアクセス受領とデプロイ</li>
+    </ul>
+  </div>
+
+  <div class="phase done">
+    <div class="phase-head">
+      <span class="phase-num">Phase 1</span>
+      <span class="phase-name">デザイン｜PC（Pencil）</span>
+      <span class="tag done">完了</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">✅</td><td class="task">TOPページ</td><td class="note">Pencil→Liquid実装済み</td></tr>
+      <tr><td class="mark">✅</td><td class="task">商品詳細ページ</td><td class="note">Pencil→Liquid実装済み（バリエーション選択込み）</td></tr>
+      <tr><td class="mark">✅</td><td class="task">商品一覧（コレクション）ページ</td><td class="note">Pencil未着手だったためLiquidで新規デザイン</td></tr>
+      <tr><td class="mark">✅</td><td class="task">ブログ一覧・記事詳細ページ</td><td class="note">Pencil未着手だったためLiquidで新規デザイン</td></tr>
+      <tr><td class="mark">✅</td><td class="task">カート／マイページ等Shopify標準画面のスタイリング</td><td class="note">ダーク配色に上書き</td></tr>
+      <tr><td class="mark">✅</td><td class="task">法定ページ（特商法表記）</td><td class="note">専用ページ実装。プライバシー/利用規約はShopify標準ポリシーをダーク化して流用</td></tr>
+    </table>
+  </div>
+
+  <div class="phase done">
+    <div class="phase-head">
+      <span class="phase-num">Phase 2</span>
+      <span class="phase-name">デザイン｜SP（レスポンシブ必須）</span>
+      <span class="tag done">完了</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">✅</td><td class="task">全ページSP対応</td><td class="note">TOP/商品詳細はPencilのSP設計を反映。新規ページはCSSで新規レスポンシブ対応</td></tr>
+    </table>
+  </div>
+
+  <div class="phase todo">
+    <div class="phase-head">
+      <span class="phase-num">Phase 3</span>
+      <span class="phase-name">コンテンツ確定</span>
+      <span class="tag todo">未着手</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">◻︎</td><td class="task">商品マスタ（品番・価格・カラー／サイズ展開・在庫）</td><td class="note">ケイスケさん</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">ブランドコピー確定（About本文・Material本文は現状ダミー）</td><td class="note">壁打ち可</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">Contact実データ（住所・電話・営業時間）</td><td class="note">現状ダミー</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">ブログ記事（最低数本）</td><td class="note">未着手</td></tr>
+    </table>
+  </div>
+
+  <div class="phase todo">
+    <div class="phase-head">
+      <span class="phase-num">Phase 4</span>
+      <span class="phase-name">KV・商品写真</span>
+      <span class="tag todo">ケイスケさん制作中</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">◻︎</td><td class="task">KV・商品写真制作（実写なし、ケイスケさん本人が制作）</td><td class="note">完成次第クロコへ</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">受領後、Pencilのグレープレースホルダーを実画像に差し替え</td><td class="note">クロコ</td></tr>
+    </table>
+  </div>
+
+  <div class="phase todo">
+    <div class="phase-head">
+      <span class="phase-num">Phase 5</span>
+      <span class="phase-name">Shopify実装</span>
+      <span class="tag doing">進行中</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">✅</td><td class="task">テーマ方針決定</td><td class="note">フルカスタムLiquidで確定・実装済み</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">Shopifyストアアクセス受領・テーマpush</td><td class="note">Theme Access想定・要受領</td></tr>
+      <tr><td class="mark">✅</td><td class="task">Pencilデザイン→Liquid／CSSへのセクション実装</td><td class="note">TOP・商品詳細・一覧・ブログ・カート・法定ページ実装済み</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">商品登録（バリエーション・在庫連携）</td><td class="note">商品マスタ確定後</td></tr>
+    </table>
+  </div>
+
+  <div class="phase todo">
+    <div class="phase-head">
+      <span class="phase-num">Phase 6</span>
+      <span class="phase-name">決済・配送・法務設定</span>
+      <span class="tag todo">未着手</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">◻︎</td><td class="task">決済ゲートウェイ設定</td><td class="note">要担当確認</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">配送地域・送料設定</td><td class="note">要担当確認</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">消費税設定</td><td class="note">要担当確認</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">特定商取引法に基づく表記の内容確定</td><td class="note">法務事項</td></tr>
+    </table>
+  </div>
+
+  <div class="phase todo">
+    <div class="phase-head">
+      <span class="phase-num">Phase 7</span>
+      <span class="phase-name">SEO・AIO／パフォーマンス</span>
+      <span class="tag todo">未着手</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">◻︎</td><td class="task">JSON-LD構造化データ・セマンティックHTML・llms.txt（クレーター標準）</td><td class="note">クロコ標準対応</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">画像圧縮・軽量化</td><td class="note">実画像確定後</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">表示速度・Core Web Vitals確認</td><td class="note">公開前</td></tr>
+    </table>
+  </div>
+
+  <div class="phase todo">
+    <div class="phase-head">
+      <span class="phase-num">Phase 8</span>
+      <span class="phase-name">QA・公開</span>
+      <span class="tag todo">未着手</span>
+    </div>
+    <table class="tasks">
+      <tr><td class="mark">◻︎</td><td class="task">PC／SP実機チェック</td><td class="note">公開前</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">全ページ・リンク導線確認</td><td class="note">公開前</td></tr>
+      <tr><td class="mark">◻︎</td><td class="task">独自ドメイン切り替え・公開</td><td class="note">要ドメイン確認</td></tr>
+    </table>
+  </div>
+
+  <div class="callouts">
+    <h2>細かい気になる部分・要確認事項</h2>
+
+    <div class="callout decide">
+      <h3>🟡 意思決定が必要（着手前に決めたい）</h3>
+      <ul>
+        <li><b>Shopifyテーマ方針</b>：フルカスタムLiquidでゼロから組むか、既存テーマを土台に改造するか。今のダークミニマルなデザインは既製テーマだと再現度が下がりやすいので、個人的にはフルカスタム推奨</li>
+        <li><b>Shopifyストアへのアクセス</b>：開発ストア（無料のテスト環境）を今から作るのか、すでに本番ストアの契約があるのか。ここが無いとLiquidの実装・確認が一切できない</li>
+        <li><b>独自ドメイン</b>：取得済みか、これから取得するか（DNS設定のタイミングにも関わる）</li>
+        <li><b>決済・配送・税の設定担当</b>：ケイスケさんが自分でやるか、クロコが手順込みで進めるか</li>
+      </ul>
+    </div>
+
+    <div class="callout risk">
+      <h3>🔴 リスク・注意点</h3>
+      <ul>
+        <li>Contact欄・ブログ記事は<b>Liquid実装時に汎用プレースホルダーへ置き換え済み</b>（他社の実データは使っていない）。ただし住所・電話・記事内容はダミーのままなので、<b>本番公開前に必ず実データへ差し替え</b>（管理画面の該当セクション設定から入力するだけでよい設計）</li>
+        <li>フォントは参考画像からの<b>目視推定（Poppins＋Noto Sans JP）</b>のままLiquidにも反映済み。正式に使うフォントが決まっているなら早めに教えてほしい（後からの変更は`theme.liquid`のトークン1箇所で対応可能）</li>
+        <li>Shopifyのカート／チェックアウトページは、プランによってカスタマイズできる範囲に制限がある（Shopify Plus以外はcheckout自体のデザイン自由度が低い）。契約プランの確認が必要</li>
+      </ul>
+    </div>
+
+    <div class="callout pages">
+      <h3>抜け漏れやすいページ（Shopify標準だが忘れがち）</h3>
+      <ul>
+        <li>特定商取引法に基づく表記／プライバシーポリシー／利用規約／送料・返品ポリシー</li>
+        <li>404ページ／検索結果ページ／会員ログイン・マイページ</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="note">
+    CL/エペナイロン/ロードマップ.html｜進捗はCLAUDE.md・MEMORY_エペナイロン.mdと連動して更新
+  </footer>
+
+</div>
+</body>
+</html>

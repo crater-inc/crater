@@ -1,0 +1,53 @@
+{%- comment -%} EC テンプレ FAQ（全幅アコーディオン） {%- endcomment -%}
+<style>
+  .ec-faq{background:var(--ec-paper);padding:84px 64px;}
+  .ec-faq__t{font-family:var(--ec-en);font-weight:600;font-size:clamp(40px,5vw,64px);color:var(--ec-ink);margin:0;line-height:1;}
+  .ec-faq__jp{font-family:var(--ec-jp);font-weight:600;font-size:13px;letter-spacing:3px;color:var(--ec-sub);margin:8px 0 24px;}
+  .ec-faq details{border-bottom:1px solid var(--ec-line);}
+  .ec-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+    padding:24px 4px;font-family:var(--ec-jp);font-size:16px;color:var(--ec-ink);}
+  .ec-faq summary::-webkit-details-marker{display:none;}
+  .ec-faq summary .ic{position:relative;width:18px;height:18px;flex:0 0 18px;}
+  .ec-faq summary .ic::before,.ec-faq summary .ic::after{content:"";position:absolute;background:var(--ec-ink);}
+  .ec-faq summary .ic::before{top:8px;left:0;width:18px;height:1.5px;}
+  .ec-faq summary .ic::after{left:8px;top:0;width:1.5px;height:18px;transition:.25s;}
+  .ec-faq details[open] summary .ic::after{transform:rotate(90deg);opacity:0;}
+  .ec-faq__a{padding:0 4px 24px;font-family:var(--ec-jp);font-size:15px;line-height:1.8;color:#555;margin:0;white-space:pre-line;}
+  @media(max-width:768px){.ec-faq{padding:56px 32px;}}
+</style>
+<section class="ec ec-faq">
+  <h2 class="ec-faq__t">{{ section.settings.heading }}</h2>
+  <div class="ec-faq__jp">{{ section.settings.subheading }}</div>
+  <div class="ec-faq__list">
+    {%- for block in section.blocks -%}
+      <details {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.q }}<span class="ic"></span></summary>
+        <p class="ec-faq__a">{{ block.settings.a }}</p>
+      </details>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "EC FAQ",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "見出し", "default": "FAQ" },
+    { "type": "text", "id": "subheading", "label": "サブ", "default": "よくあるご質問" }
+  ],
+  "blocks": [
+    { "type": "qa", "name": "Q&A", "settings": [
+      { "type": "text", "id": "q", "label": "質問", "default": "配送にはどのくらいかかりますか？" },
+      { "type": "textarea", "id": "a", "label": "回答", "default": "ご注文確認後、通常3〜5営業日以内に発送いたします。" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EC FAQ",
+    "blocks": [
+      { "type": "qa", "settings": { "q": "配送にはどのくらいかかりますか？" } },
+      { "type": "qa", "settings": { "q": "返品・交換はできますか？" } },
+      { "type": "qa", "settings": { "q": "ギフト用の対応はできますか？" } },
+      { "type": "qa", "settings": { "q": "支払い方法を教えてください" } }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "epe_legal": {
+      "type": "epe-legal",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "販売事業者", "value": "○○株式会社" } },
+        "r2": { "type": "row", "settings": { "label": "運営統括責任者", "value": "◯◯ ◯◯" } },
+        "r3": { "type": "row", "settings": { "label": "所在地", "value": "〒000-0000 東京都◯◯区◯◯ 0-0-0" } },
+        "r4": { "type": "row", "settings": { "label": "電話番号", "value": "00-0000-0000（受付時間：平日10:00〜17:00）" } },
+        "r5": { "type": "row", "settings": { "label": "メールアドレス", "value": "info@example.com" } },
+        "r6": { "type": "row", "settings": { "label": "販売価格", "value": "各商品ページに税込価格で表示" } },
+        "r7": { "type": "row", "settings": { "label": "商品代金以外の必要料金", "value": "送料・消費税等（各商品ページに記載）" } },
+        "r8": { "type": "row", "settings": { "label": "お支払い方法", "value": "クレジットカード、その他各種決済方法" } },
+        "r9": { "type": "row", "settings": { "label": "お支払い時期", "value": "ご注文確定時" } },
+        "r10": { "type": "row", "settings": { "label": "商品の引き渡し時期", "value": "ご注文確認後、通常3〜5営業日以内に発送" } },
+        "r11": { "type": "row", "settings": { "label": "返品・交換について", "value": "商品到着後7日以内、未使用に限り対応" } },
+        "r12": { "type": "row", "settings": { "label": "キャンセルについて", "value": "発送前のみキャンセル可能" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11", "r12"],
+      "settings": { "title": "特定商取引法に基づく表記" }
+    }
+  },
+  "order": ["epe_legal"]
+}

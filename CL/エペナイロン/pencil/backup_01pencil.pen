@@ -1,0 +1,3665 @@
+{
+  "version": "2.14",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none"
+    },
+    {
+      "type": "rectangle",
+      "id": "OAQtN",
+      "x": -2867,
+      "y": -914,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "CleanShot%202026-05-11%20at%2011.28.59%202.png",
+        "mode": "fill"
+      },
+      "width": 391,
+      "height": 4096
+    },
+    {
+      "type": "rectangle",
+      "id": "fm1IU",
+      "x": -3435,
+      "y": -914,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "CleanShot%202026-05-11%20at%2011.48.07%202.png",
+        "mode": "fill"
+      },
+      "width": 405,
+      "height": 1629
+    },
+    {
+      "type": "rectangle",
+      "id": "qpmKj",
+      "x": -2156,
+      "y": -881,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "01%20%E3%83%88%E3%83%83%E3%83%95%E3%82%9A%E3%83%98%E3%82%9A%E3%83%BC%E3%82%B7%E3%82%99_pc.jpg",
+        "mode": "fill"
+      },
+      "width": 1162,
+      "height": 4143
+    },
+    {
+      "type": "rectangle",
+      "id": "t2JLP",
+      "x": -2156,
+      "y": -1790,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "01%20%E3%83%88%E3%83%83%E3%83%95%E3%82%9A%E3%83%98%E3%82%9A%E3%83%BC%E3%82%B7%E3%82%99_pc-1.jpg",
+        "mode": "fill"
+      },
+      "width": 1340,
+      "height": 803
+    },
+    {
+      "type": "frame",
+      "id": "jrJlz",
+      "x": 1050,
+      "y": -881,
+      "name": "TOP page (PC)",
+      "clip": true,
+      "width": 1340,
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "shArn",
+          "name": "Hero",
+          "clip": true,
+          "width": 1340,
+          "height": 793,
+          "fill": "$epe-img-placeholder-dark",
+          "layout": "none",
+          "children": [
+            {
+              "id": "a7b764",
+              "type": "ref",
+              "ref": "r4yvFI",
+              "name": "Header",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "type": "frame",
+              "id": "sL77K",
+              "x": 88,
+              "y": 268,
+              "name": "HeroText",
+              "width": 420,
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "PcZ2G",
+                  "name": "Headline",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "q8QGSZ",
+                      "name": "Line1",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Redefining",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 36,
+                      "fontWeight": "300"
+                    },
+                    {
+                      "type": "text",
+                      "id": "H8uF67",
+                      "name": "Line2",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "high specifications.",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 36,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "vcqgl",
+                  "name": "Body",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Overflowing pockets, excessive weight, ornamentation for the sake of design.\nAre these truly necessary in our daily lives in the city?\n\nWe realize it.\nIt's not high-spec, it's over-spec.\nepe pursues functional beauty born from subtraction.\nThe optimal solution of durability and lightness, achieved through specially processed, high-density fabric.\n\nA streamlined design, stripped of the noise of the city.\nOnly what you truly need, in your hands.\nepe is now redefining the definition of high-spec.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "S0oRS",
+              "x": 88,
+              "y": 725,
+              "name": "SliderControls",
+              "gap": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "lJeGi",
+                  "name": "Current",
+                  "fill": "$epe-text-white",
+                  "content": "01",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon",
+                  "id": "OZx32",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "icon",
+                  "id": "i1zmi",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "text",
+                  "id": "Ny6mz",
+                  "name": "Total",
+                  "fill": "$epe-text-white",
+                  "content": "03",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "SjSRE",
+              "x": 1180,
+              "y": 744,
+              "name": "ProgressDots",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "orT9j",
+                  "fill": "$epe-text-white",
+                  "width": 24,
+                  "height": 2
+                },
+                {
+                  "type": "rectangle",
+                  "id": "v86QD",
+                  "fill": "#FFFFFF55",
+                  "width": 24,
+                  "height": 2
+                },
+                {
+                  "type": "rectangle",
+                  "id": "D69wCr",
+                  "fill": "#FFFFFF55",
+                  "width": 24,
+                  "height": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Wld2W",
+          "name": "About",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "gap": 70,
+          "padding": [
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "F9dhb",
+              "name": "AboutLeft",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eEQSa",
+                  "name": "Label",
+                  "fill": "$epe-text-white",
+                  "content": "About",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "N0EW5U",
+                  "name": "Heading",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "ハイスペックを、再定義する。",
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "iRaIY",
+                  "name": "Paragraphs",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "q5QfDl",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "溢れかえるポケット、過剰な重厚さ、デザインのための装飾。\n都市を生きる私たちの日常に、それは本当に必要だろうか。",
+                      "lineHeight": 1.8,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "wzFPk",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "私たちは気づいている。\nそれはハイスペックではなく、オーバースペックであることを。",
+                      "lineHeight": 1.8,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Sgtek",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "epeが追求するのは、引き算から生まれる機能美だ。\n特殊な加工を施した高密度な生地がもたらす、耐久性と軽さの最適解。\n都市のノイズを削ぎ落とした、無駄のない造形。",
+                      "lineHeight": 1.8,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZDNDK",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "真に必要なものだけを、あなたの手に。\nepeは今、ハイスペックの定義を書き換える。",
+                      "lineHeight": 1.8,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "J7L34Z",
+                  "name": "AndMoreButton",
+                  "fill": "$epe-button-bg",
+                  "gap": 8,
+                  "padding": [
+                    13,
+                    22
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QKb1k",
+                      "fill": "$epe-text-white",
+                      "content": "And more",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "eq2KZ",
+                      "width": 14,
+                      "height": 14,
+                      "icon": "chevron-right",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "DegLt",
+              "name": "AboutPhoto",
+              "fill": "$epe-img-placeholder",
+              "width": "fill_container",
+              "height": 440
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "E6kRUw",
+          "name": "Product",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 36,
+          "padding": [
+            0,
+            80,
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "FbSjQ",
+              "name": "ProductHeader",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FML2L",
+                  "name": "Title",
+                  "fill": "$epe-text-white",
+                  "content": "Product",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "T0tXJ",
+                  "name": "AllButton",
+                  "fill": "$epe-button-bg",
+                  "gap": 8,
+                  "padding": [
+                    13,
+                    22
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "QJ5H9",
+                      "fill": "$epe-text-white",
+                      "content": "All",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "g8pw8",
+                      "width": 14,
+                      "height": 14,
+                      "icon": "chevron-right",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "S9B5v0",
+              "name": "ProductGrid",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "id": "TEfSY",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "ProductItem1",
+                  "width": "fill_container",
+                  "height": 280
+                },
+                {
+                  "id": "kHUEW",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "ProductItem2",
+                  "width": "fill_container",
+                  "height": 280
+                },
+                {
+                  "id": "y7iC1k",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "ProductItem3",
+                  "width": "fill_container",
+                  "height": 280
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XvYc0",
+          "name": "Material",
+          "clip": true,
+          "width": "fill_container",
+          "height": 600,
+          "fill": "$epe-img-placeholder-dark",
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "Lx2og",
+              "x": 0,
+              "y": 0,
+              "name": "Photo",
+              "fill": "$epe-img-placeholder-dark",
+              "width": 1340,
+              "height": 600
+            },
+            {
+              "type": "frame",
+              "id": "ptxry",
+              "x": 880,
+              "y": 80,
+              "name": "MaterialContent",
+              "width": 380,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "jbpxc",
+                  "name": "Label",
+                  "fill": "$epe-text-white",
+                  "content": "Material",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 17,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "TFcOM",
+                  "name": "Heading",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "素材について",
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "sKcwQ",
+                  "name": "Body",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "pqq5E",
+                  "name": "AndMoreButton",
+                  "fill": "$epe-button-bg",
+                  "gap": 8,
+                  "padding": [
+                    13,
+                    22
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BSAz9",
+                      "fill": "$epe-text-white",
+                      "content": "And more",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "Yh5o1",
+                      "width": 14,
+                      "height": 14,
+                      "icon": "chevron-right",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "E5kL2",
+          "name": "Styling",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 36,
+          "padding": [
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "muodo",
+              "name": "Title",
+              "fill": "$epe-text-white",
+              "content": "Styling",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 30,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "k7as5",
+              "name": "StylingGrid",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "id": "BMhoe",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "StylingItem",
+                  "width": "fill_container",
+                  "height": 280,
+                  "fill": "$epe-img-placeholder"
+                },
+                {
+                  "id": "NpmWP",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "StylingItem",
+                  "width": "fill_container",
+                  "height": 280,
+                  "fill": "$epe-img-placeholder"
+                },
+                {
+                  "id": "fuvA0",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "StylingItem",
+                  "width": "fill_container",
+                  "height": 280,
+                  "fill": "$epe-img-placeholder"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "pWtSp",
+          "name": "Contact",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "gap": 70,
+          "padding": [
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "ka5Qw",
+              "name": "ContactLeft",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 28,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "x2oxb",
+                  "name": "Title",
+                  "fill": "$epe-text-white",
+                  "content": "Contact",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 30,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "n1zQI",
+                  "name": "ContactTable",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "S8edzn",
+                      "name": "Row-Address",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 40,
+                      "padding": [
+                        18,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "LxZjW",
+                          "name": "RowLabel",
+                          "fill": "$epe-text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 110,
+                          "content": "Address",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "pzDO7",
+                          "name": "RowValue",
+                          "fill": "$epe-text-white",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "297-0078 千葉県茂原市高師台3-10-8",
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "j9drt",
+                      "name": "Row-Schedule",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 40,
+                      "padding": [
+                        18,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "sLnkE",
+                          "name": "RowLabel",
+                          "fill": "$epe-text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 110,
+                          "content": "Schedule",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Vctyy",
+                          "name": "RowValue",
+                          "fill": "$epe-text-white",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "10:00〜18:00（定休日：水・木）",
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ClOMl",
+                      "name": "Row-Phone",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 40,
+                      "padding": [
+                        18,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "hKslP",
+                          "name": "RowLabel",
+                          "fill": "$epe-text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 110,
+                          "content": "Phone",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "srXp6",
+                          "name": "RowValue",
+                          "fill": "$epe-text-white",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "0475-22-4354",
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "h0sdS",
+                      "name": "Row-Email",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "gap": 40,
+                      "padding": [
+                        18,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "J07qY",
+                          "name": "RowLabel",
+                          "fill": "$epe-text-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 110,
+                          "content": "Email",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "s9Oy0",
+                          "name": "RowValue",
+                          "fill": "$epe-text-white",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "297-0078 千葉県茂原市高師台3-10-8",
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "S2X9Y",
+              "name": "ContactPhoto",
+              "fill": "$epe-img-placeholder",
+              "width": "fill_container",
+              "height": 340
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "dPbwv",
+          "name": "Blog",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 36,
+          "padding": [
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "z0HN9",
+              "name": "Title",
+              "fill": "$epe-text-white",
+              "content": "Blog",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 30,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "Vkge4",
+              "name": "BlogRow0",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "id": "bPcp9",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost",
+                  "width": "fill_container",
+                  "descendants": {
+                    "pEnZo": {
+                      "fill": "$epe-img-placeholder"
+                    }
+                  }
+                },
+                {
+                  "id": "H1DBlS",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost",
+                  "width": "fill_container",
+                  "descendants": {
+                    "pEnZo": {
+                      "fill": "$epe-img-placeholder"
+                    }
+                  }
+                },
+                {
+                  "id": "cdol7",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost",
+                  "width": "fill_container",
+                  "descendants": {
+                    "pEnZo": {
+                      "fill": "$epe-img-placeholder"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Z41TyC",
+              "name": "BlogRow1",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "id": "B9MDJ",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost",
+                  "width": "fill_container",
+                  "descendants": {
+                    "pEnZo": {
+                      "fill": "$epe-img-placeholder"
+                    }
+                  }
+                },
+                {
+                  "id": "e98LdX",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost",
+                  "width": "fill_container",
+                  "descendants": {
+                    "pEnZo": {
+                      "fill": "$epe-img-placeholder"
+                    }
+                  }
+                },
+                {
+                  "id": "bujzQ",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost",
+                  "width": "fill_container",
+                  "descendants": {
+                    "pEnZo": {
+                      "fill": "$epe-img-placeholder"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "bRR5P",
+          "name": "Footer",
+          "reusable": true,
+          "width": "fill_container",
+          "height": 364,
+          "fill": "$epe-footer-bg",
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            64,
+            80,
+            32,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Zvj1m",
+              "name": "FooterTop",
+              "width": "fill_container",
+              "gap": 60,
+              "justifyContent": "space_between",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "NuGX2",
+                  "name": "Brand",
+                  "width": 280,
+                  "layout": "vertical",
+                  "gap": 18,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "xscOA",
+                      "name": "Logo",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "assets/logo-horizontal-white.png",
+                        "mode": "fit"
+                      },
+                      "width": 130,
+                      "height": 17.3
+                    },
+                    {
+                      "type": "text",
+                      "id": "AfKFv",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Functional beauty, born from subtraction.",
+                      "lineHeight": 1.6,
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "lfLHZ",
+                      "name": "SnsRow",
+                      "gap": 16,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "kFXZC",
+                          "name": "Facebook",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "facebook",
+                          "library": "lucide",
+                          "fill": "$epe-text-muted"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "Q7GyZw",
+                          "name": "X",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "twitter",
+                          "library": "lucide",
+                          "fill": "$epe-text-muted"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "S3Xln1",
+                          "name": "Instagram",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "instagram",
+                          "library": "lucide",
+                          "fill": "$epe-text-muted"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f1RVBV",
+                  "name": "Columns",
+                  "gap": 64,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "jh7sJ",
+                      "name": "Col-Navigation",
+                      "width": 170,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "rJGj4",
+                          "fill": "$epe-text-muted",
+                          "content": "Navigation",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CptSK",
+                          "name": "Links",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "m2qLYH",
+                              "fill": "$epe-text-white",
+                              "content": "Home",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "z4mdLZ",
+                              "fill": "$epe-text-white",
+                              "content": "About",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "o4gtBe",
+                              "fill": "$epe-text-white",
+                              "content": "Product",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "qJwcc",
+                              "fill": "$epe-text-white",
+                              "content": "Material",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "SpvhQ",
+                              "fill": "$epe-text-white",
+                              "content": "Styling",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xMmod",
+                      "name": "Col-Information",
+                      "width": 170,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Lapcn",
+                          "fill": "$epe-text-muted",
+                          "content": "Information",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "m8iHk",
+                          "name": "Links",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "SwHpo",
+                              "fill": "$epe-text-white",
+                              "content": "Blog",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "meXC7",
+                              "fill": "$epe-text-white",
+                              "content": "Contact",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "nhPMW",
+                      "name": "Col-Legal",
+                      "width": 170,
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fxeBu",
+                          "fill": "$epe-text-muted",
+                          "content": "Legal",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "huSkl",
+                          "name": "Links",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "ehZ6W",
+                              "fill": "$epe-text-white",
+                              "content": "Privacy Policy",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "YuVi2",
+                              "fill": "$epe-text-white",
+                              "content": "Terms of Service",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "FL7Ks",
+                              "fill": "$epe-text-white",
+                              "content": "特定商取引法に基づく表記",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "y3iP9",
+              "name": "Divider",
+              "fill": "$epe-line",
+              "width": "fill_container",
+              "height": 1
+            },
+            {
+              "type": "frame",
+              "id": "Xve38",
+              "name": "FooterBottom",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mtq85",
+                  "fill": "$epe-text-muted",
+                  "content": "© 2026 EPE NYLON. All rights reserved.",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "r4yvFI",
+      "x": 1050,
+      "y": -1071,
+      "name": "Header",
+      "reusable": true,
+      "width": 1340,
+      "padding": [
+        24,
+        48
+      ],
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "rHsnl",
+          "name": "Logo",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "assets/logo-horizontal-white.png",
+            "mode": "fit"
+          },
+          "width": 156,
+          "height": 20.8
+        },
+        {
+          "type": "frame",
+          "id": "w3XFk",
+          "name": "RightGroup",
+          "gap": 48,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "W4PAqv",
+              "name": "Nav",
+              "gap": 32,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hUPy5",
+                  "name": "Home",
+                  "fill": "$epe-text-white",
+                  "content": "Home",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "eexpu",
+                  "name": "About",
+                  "fill": "$epe-text-white",
+                  "content": "About",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "bxEsp",
+                  "name": "Product",
+                  "fill": "$epe-text-white",
+                  "content": "Product",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "qR6ph",
+                  "name": "Material",
+                  "fill": "$epe-text-white",
+                  "content": "Material",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "s7fnc5",
+                  "name": "Styling",
+                  "fill": "$epe-text-white",
+                  "content": "Styling",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "wX2mQ",
+                  "name": "Blog",
+                  "fill": "$epe-text-white",
+                  "content": "Blog",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "NSeIx",
+                  "name": "Contact",
+                  "fill": "$epe-text-white",
+                  "content": "Contact",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vzPun",
+              "name": "Right",
+              "gap": 18,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "a5bKT9",
+                  "name": "Facebook",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "facebook",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "icon",
+                  "id": "gIWnM",
+                  "name": "X",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "twitter",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "icon",
+                  "id": "DfrOe",
+                  "name": "Instagram",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "instagram",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "rectangle",
+                  "id": "fDjGf",
+                  "name": "Divider",
+                  "fill": "$epe-line",
+                  "width": 1,
+                  "height": 20
+                },
+                {
+                  "type": "icon",
+                  "id": "annSC",
+                  "name": "Search",
+                  "width": 18,
+                  "height": 18,
+                  "icon": "search",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "frame",
+                  "id": "IwUgv",
+                  "name": "CartWrap",
+                  "width": 22,
+                  "height": 22,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "TBeCN",
+                      "x": 0,
+                      "y": 0,
+                      "width": 20,
+                      "height": 20,
+                      "icon": "shopping-bag",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    },
+                    {
+                      "type": "ellipse",
+                      "id": "Apdme",
+                      "layoutPosition": "absolute",
+                      "x": 14,
+                      "y": 0,
+                      "name": "Badge",
+                      "fill": "#E0332F",
+                      "width": 8,
+                      "height": 8
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "dPk87",
+      "x": 0,
+      "y": -360,
+      "name": "ImageCard",
+      "reusable": true,
+      "width": 300,
+      "height": 260,
+      "fill": "$epe-img-placeholder"
+    },
+    {
+      "type": "frame",
+      "id": "Wzi8p",
+      "x": 0,
+      "y": -440,
+      "name": "BlogCard",
+      "reusable": true,
+      "width": 320,
+      "layout": "vertical",
+      "gap": 14,
+      "children": [
+        {
+          "id": "pEnZo",
+          "type": "ref",
+          "ref": "dPk87",
+          "name": "BlogImage",
+          "width": "fill_container",
+          "height": 240
+        },
+        {
+          "type": "text",
+          "id": "LuT7L",
+          "name": "Date",
+          "fill": "$epe-text-muted",
+          "content": "2026年 5月 04日",
+          "fontFamily": "$epe-font-jp",
+          "fontSize": 13,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "HuAW3",
+          "name": "PostTitle",
+          "fill": "$epe-text-white",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "直営店舗におけるGW営業日のご案内",
+          "fontFamily": "$epe-font-jp",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "L4tc6Y",
+      "x": 2640,
+      "y": -881,
+      "name": "Product Detail Page (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "WBzl4",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "sPbKn",
+          "name": "Breadcrumb",
+          "gap": 8,
+          "padding": [
+            24,
+            80
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "smuf4",
+              "fill": "$epe-text-muted",
+              "content": "Home",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "QFV9H",
+              "fill": "$epe-text-muted",
+              "content": "/",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "MNOFY",
+              "fill": "$epe-text-muted",
+              "content": "Product",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "YAWOk",
+              "fill": "$epe-text-muted",
+              "content": "/",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "UT5G6",
+              "fill": "$epe-text-muted",
+              "content": "Backpack Model 01",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "f2WDzJ",
+          "name": "ProductMain",
+          "width": "fill_container",
+          "gap": 60,
+          "padding": [
+            10,
+            80,
+            70,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "mtZP5",
+              "name": "Gallery",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "a37Zk8",
+                  "name": "MainImage",
+                  "fill": "$epe-img-placeholder",
+                  "width": "fill_container",
+                  "height": 620
+                },
+                {
+                  "type": "frame",
+                  "id": "n1tWz",
+                  "name": "Thumbs",
+                  "width": "fill_container",
+                  "gap": 12,
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "Zry1x",
+                      "name": "Thumb1",
+                      "fill": "$epe-img-placeholder",
+                      "width": "fill_container",
+                      "height": 96,
+                      "stroke": "$epe-text-white",
+                      "strokeWidth": 2
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "uSoVp",
+                      "name": "Thumb2",
+                      "fill": "$epe-img-placeholder",
+                      "width": "fill_container",
+                      "height": 96
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "z8JtF8",
+                      "name": "Thumb3",
+                      "fill": "$epe-img-placeholder",
+                      "width": "fill_container",
+                      "height": 96
+                    },
+                    {
+                      "type": "rectangle",
+                      "id": "usOC2",
+                      "name": "Thumb4",
+                      "fill": "$epe-img-placeholder",
+                      "width": "fill_container",
+                      "height": 96
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "SV7Mo",
+              "name": "InfoPanel",
+              "width": 460,
+              "layout": "vertical",
+              "gap": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "H6pDgw",
+                  "fill": "$epe-text-muted",
+                  "content": "EPE NYLON",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "HSXUa",
+                  "fill": "$epe-text-white",
+                  "content": "Streamline Backpack",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 28,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "l638Oh",
+                  "fill": "$epe-text-white",
+                  "content": "¥28,600（税込）",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 20,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "a5QJQ1",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "高密度ナイロン素材を使用した、軽量設計のユーティリティバックパック。都市の日常に必要な機能だけを、削ぎ落としたデザインで。",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "rectangle",
+                  "id": "A4KZf",
+                  "fill": "$epe-line",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "Z87vN",
+                  "name": "ColorBlock",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Cf7Df",
+                      "fill": "$epe-text-muted",
+                      "content": "Color : Black",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "X2sB2",
+                      "name": "ColorRow",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "PZoHh",
+                          "fill": "#1A1A1A",
+                          "width": 26,
+                          "height": 26,
+                          "stroke": "$epe-text-white",
+                          "strokeWidth": 2
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "IaL5G",
+                          "fill": "#4A4A4A",
+                          "width": 26,
+                          "height": 26,
+                          "stroke": "$epe-line",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "iI6yJ",
+                          "fill": "#1B2A4A",
+                          "width": 26,
+                          "height": 26,
+                          "stroke": "$epe-line",
+                          "strokeWidth": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mZ10z",
+                  "name": "SizeBlock",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "D498h",
+                      "fill": "$epe-text-muted",
+                      "content": "Size",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kcJBb",
+                      "name": "SizeRow",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "xKjzQ",
+                          "stroke": "$epe-text-white",
+                          "strokeWidth": 1,
+                          "padding": [
+                            10,
+                            18
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "P0zRj",
+                              "fill": "$epe-text-white",
+                              "content": "ONE SIZE",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Q6jAbP",
+                  "name": "QtyBlock",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sxSbO",
+                      "fill": "$epe-text-muted",
+                      "content": "Quantity",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "QwRFJ",
+                      "name": "QtyRow",
+                      "stroke": "$epe-line",
+                      "strokeWidth": 1,
+                      "padding": [
+                        8,
+                        4
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "hzQWp",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "minus",
+                          "library": "lucide",
+                          "fill": "$epe-text-white"
+                        },
+                        {
+                          "type": "text",
+                          "id": "XXzTS",
+                          "fill": "$epe-text-white",
+                          "textGrowth": "fixed-width",
+                          "width": 40,
+                          "content": "1",
+                          "textAlign": "center",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "j7kh0",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "plus",
+                          "library": "lucide",
+                          "fill": "$epe-text-white"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Fjo9j",
+                  "name": "AddToCartButton",
+                  "width": "fill_container",
+                  "fill": "$epe-button-bg",
+                  "gap": 10,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "M882lQ",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "shopping-bag",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GPdy0",
+                      "fill": "$epe-text-white",
+                      "content": "Add to Cart",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "pCPx7",
+                  "name": "WishRow",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "UsEiY",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "heart",
+                      "library": "lucide",
+                      "fill": "$epe-text-muted"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XjY5y",
+                      "fill": "$epe-text-muted",
+                      "content": "Add to Wishlist",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EVTMi",
+                  "name": "Accordion",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Jcv6Q",
+                      "name": "AccRow-Material",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "padding": [
+                        16,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zKaFG",
+                          "fill": "$epe-text-white",
+                          "content": "Material",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "PhS4G",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "chevron-down",
+                          "library": "lucide",
+                          "fill": "$epe-text-white"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LOInQ",
+                      "name": "AccRow-Size Guide",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "padding": [
+                        16,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "jragX",
+                          "fill": "$epe-text-white",
+                          "content": "Size Guide",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "X9EcD",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "chevron-down",
+                          "library": "lucide",
+                          "fill": "$epe-text-white"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "e4B2E",
+                      "name": "AccRow-Shipping & Returns",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "padding": [
+                        16,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MUXft",
+                          "fill": "$epe-text-white",
+                          "content": "Shipping & Returns",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "pxuT0",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "chevron-down",
+                          "library": "lucide",
+                          "fill": "$epe-text-white"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "EgrxB",
+          "name": "DescriptionSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            10,
+            80,
+            80,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "Fq5ga",
+              "fill": "$epe-text-white",
+              "content": "Description",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 30,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "Bnvvs",
+              "name": "DescBody",
+              "width": 700,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "VD0gf",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "特殊な加工を施した高密度ナイロンを採用し、耐久性と軽さを両立したユーティリティバックパック。\n溢れかえるポケットや過剰な装飾を削ぎ落とし、都市の日常に本当に必要な機能だけを残した無駄のない造形。\n背面パッドとストラップの設計により、長時間の着用でも負担の少ない快適な使い心地を実現しています。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "P20dU",
+              "name": "SpecTable",
+              "width": 700,
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ZhqsS",
+                  "name": "Spec-素材",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YJgkX",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "素材",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "a0qoyE",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "高密度ナイロン（撥水加工）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a7jqu",
+                  "name": "Spec-サイズ",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C0AAA",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "サイズ",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FNjTn",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "W320 × H460 × D150 mm",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OtTwo",
+                  "name": "Spec-重量",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XGqbI",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "重量",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AyPxS",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "約 650g",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "RgO72",
+                  "name": "Spec-生産国",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "F6uFHG",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "生産国",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GRzo2",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "日本",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tPkWx",
+                  "name": "Spec-お手入れ方法",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "q8t3d6",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "お手入れ方法",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "k6ig9",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "乾いた布で軽く拭き取り。水洗い不可",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "VKoYk",
+          "name": "RelatedProducts",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            0,
+            80,
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "JhsBF",
+              "fill": "$epe-text-white",
+              "content": "You may also like",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 30,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "R630kP",
+              "name": "RelatedGrid",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "id": "GlUW9",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "RelatedItem1",
+                  "width": "fill_container",
+                  "height": 280
+                },
+                {
+                  "id": "M3F4Tg",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "RelatedItem2",
+                  "width": "fill_container",
+                  "height": 280
+                },
+                {
+                  "id": "SbtZl",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "RelatedItem3",
+                  "width": "fill_container",
+                  "height": 280
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ARekG",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "AlAat",
+      "x": 1050,
+      "y": -1211,
+      "name": "HeaderSP",
+      "reusable": true,
+      "width": 390,
+      "padding": [
+        16,
+        20
+      ],
+      "justifyContent": "space_between",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "Ua0Zs",
+          "name": "Logo",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "assets/logo-horizontal-white.png",
+            "mode": "fit"
+          },
+          "width": 96,
+          "height": 12.8
+        },
+        {
+          "type": "frame",
+          "id": "pVKUq",
+          "name": "Right",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "icon",
+              "id": "L6YI3",
+              "width": 18,
+              "height": 18,
+              "icon": "search",
+              "library": "lucide",
+              "fill": "$epe-text-white"
+            },
+            {
+              "type": "frame",
+              "id": "TZxhw",
+              "name": "CartWrap",
+              "width": 22,
+              "height": 22,
+              "layout": "none",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "JgNMz",
+                  "x": 0,
+                  "y": 0,
+                  "width": 20,
+                  "height": 20,
+                  "icon": "shopping-bag",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "s44VpS",
+                  "layoutPosition": "absolute",
+                  "x": 14,
+                  "y": 0,
+                  "name": "Badge",
+                  "fill": "#E0332F",
+                  "width": 8,
+                  "height": 8
+                }
+              ]
+            },
+            {
+              "type": "icon",
+              "id": "VNGGa",
+              "width": 22,
+              "height": 22,
+              "icon": "menu",
+              "library": "lucide",
+              "fill": "$epe-text-white"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "P1TxHU",
+      "x": 2640,
+      "y": 1706,
+      "name": "TOP page (SP)",
+      "clip": true,
+      "width": 390,
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ZftXC",
+          "name": "Hero",
+          "clip": true,
+          "width": 390,
+          "height": 640,
+          "fill": "$epe-img-placeholder-dark",
+          "layout": "none",
+          "children": [
+            {
+              "id": "kY8Yq",
+              "type": "ref",
+              "ref": "AlAat",
+              "name": "Header",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "type": "frame",
+              "id": "f7SeCo",
+              "x": 24,
+              "y": 260,
+              "name": "HeroText",
+              "width": 342,
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "R6RuIC",
+                  "name": "Headline",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 2,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MJkKP",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Redefining",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 26,
+                      "fontWeight": "300"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GlQ7J",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "high specifications.",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 26,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "qT5mQ",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Overflowing pockets, excessive weight, ornamentation for the sake of design.\nAre these truly necessary in our daily lives in the city?\n\nWe realize it.\nIt's not high-spec, it's over-spec.\nepe pursues functional beauty born from subtraction.\n\nA streamlined design, stripped of the noise of the city.\nepe is now redefining the definition of high-spec.",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 12.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CEExJ",
+              "x": 24,
+              "y": 585,
+              "name": "SliderControls",
+              "gap": 14,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "vSSGI",
+                  "fill": "$epe-text-white",
+                  "content": "01",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon",
+                  "id": "tLubG",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "arrow-left",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "icon",
+                  "id": "pAUWe",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "arrow-right",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                },
+                {
+                  "type": "text",
+                  "id": "W9Ef3z",
+                  "fill": "$epe-text-white",
+                  "content": "03",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "y6OdP",
+          "name": "About",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            56,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "vJ6Gx",
+              "fill": "$epe-text-white",
+              "content": "About",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Th9W3",
+              "fill": "$epe-text-white",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "ハイスペックを、再定義する。",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "NcxyY",
+              "name": "Paragraphs",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "caZpp",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "溢れかえるポケット、過剰な重厚さ、デザインのための装飾。\n都市を生きる私たちの日常に、それは本当に必要だろうか。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 13.5,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "jT31I",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "私たちは気づいている。\nそれはハイスペックではなく、オーバースペックであることを。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 13.5,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "ymKcH",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "epeが追求するのは、引き算から生まれる機能美だ。\n特殊な加工を施した高密度な生地がもたらす、耐久性と軽さの最適解。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 13.5,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "Y9f5p",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "真に必要なものだけを、あなたの手に。\nepeは今、ハイスペックの定義を書き換える。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 13.5,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xMrfP",
+              "name": "AndMoreButton",
+              "width": "fill_container",
+              "fill": "$epe-button-bg",
+              "gap": 8,
+              "padding": [
+                14,
+                0
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AE5lP",
+                  "fill": "$epe-text-white",
+                  "content": "And more",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "icon",
+                  "id": "tC7SR",
+                  "width": 14,
+                  "height": 14,
+                  "icon": "chevron-right",
+                  "library": "lucide",
+                  "fill": "$epe-text-white"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "yyMKT",
+              "name": "AboutPhoto",
+              "fill": "$epe-img-placeholder",
+              "width": "fill_container",
+              "height": 280
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BHSNu",
+          "name": "Product",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            0,
+            24,
+            56,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "oeDrN",
+              "name": "ProductHeader",
+              "width": "fill_container",
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "IaEZX",
+                  "fill": "$epe-text-white",
+                  "content": "Product",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "frame",
+                  "id": "FIcUJ",
+                  "name": "AllButton",
+                  "fill": "$epe-button-bg",
+                  "gap": 6,
+                  "padding": [
+                    11,
+                    18
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x1qGb",
+                      "fill": "$epe-text-white",
+                      "content": "All",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "Q9XC9",
+                      "width": 13,
+                      "height": 13,
+                      "icon": "chevron-right",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ZeYxA",
+              "name": "ProductList",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "id": "q9ZRN",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "ProductItem1",
+                  "width": "fill_container",
+                  "height": 300
+                },
+                {
+                  "id": "lDg3P",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "ProductItem2",
+                  "width": "fill_container",
+                  "height": 300
+                },
+                {
+                  "id": "C4njtw",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "ProductItem3",
+                  "width": "fill_container",
+                  "height": 300
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "FBrz8",
+          "name": "Material",
+          "clip": true,
+          "width": "fill_container",
+          "height": 660,
+          "fill": "$epe-img-placeholder-dark",
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "lL5OJ",
+              "x": 0,
+              "y": 0,
+              "name": "Photo",
+              "fill": "$epe-img-placeholder-dark",
+              "width": 390,
+              "height": 660
+            },
+            {
+              "type": "frame",
+              "id": "RbAoj",
+              "x": 24,
+              "y": 280,
+              "name": "MaterialContent",
+              "width": 342,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Pzuek",
+                  "fill": "$epe-text-white",
+                  "content": "Material",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "IFiTA",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "素材について",
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "HG9wf",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 13.5,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "R5Vmi",
+                  "name": "AndMoreButton",
+                  "width": "fill_container",
+                  "fill": "$epe-button-bg",
+                  "gap": 8,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "G44EX",
+                      "fill": "$epe-text-white",
+                      "content": "And more",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "R0zMqr",
+                      "width": 14,
+                      "height": 14,
+                      "icon": "chevron-right",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "HVE8i",
+          "name": "Styling",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            56,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "V2i1t4",
+              "fill": "$epe-text-white",
+              "content": "Styling",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "RxRJG",
+              "name": "StylingList",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "id": "H0nTdb",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "StylingItem1",
+                  "width": "fill_container",
+                  "height": 300
+                },
+                {
+                  "id": "pmYnf",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "StylingItem2",
+                  "width": "fill_container",
+                  "height": 300
+                },
+                {
+                  "id": "l8uwsQ",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "StylingItem3",
+                  "width": "fill_container",
+                  "height": 300
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BYVdi",
+          "name": "Contact",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            56,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "ZXViu",
+              "fill": "$epe-text-white",
+              "content": "Contact",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "I3oMgB",
+              "name": "ContactTable",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "yBygP",
+                  "name": "Row-Address",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "O7Yc2N",
+                      "fill": "$epe-text-muted",
+                      "content": "Address",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WZF9L",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "297-0078 千葉県茂原市高師台3-10-8",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13.5,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "tx1N3",
+                  "name": "Row-Schedule",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "It0T9",
+                      "fill": "$epe-text-muted",
+                      "content": "Schedule",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "susvD",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "10:00〜18:00（定休日：水・木）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13.5,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "J8UQc8",
+                  "name": "Row-Phone",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tC49A",
+                      "fill": "$epe-text-muted",
+                      "content": "Phone",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GEhUb",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "0475-22-4354",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13.5,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WFONX",
+                  "name": "Row-Email",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "layout": "vertical",
+                  "gap": 4,
+                  "padding": [
+                    14,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "W2EK6c",
+                      "fill": "$epe-text-muted",
+                      "content": "Email",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rTjtv",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "297-0078 千葉県茂原市高師台3-10-8",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13.5,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "gx9DT",
+              "name": "ContactPhoto",
+              "fill": "$epe-img-placeholder",
+              "width": "fill_container",
+              "height": 220
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "N06AT",
+          "name": "Blog",
+          "width": "fill_container",
+          "fill": "$epe-section-bg",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            56,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "myAST",
+              "fill": "$epe-text-white",
+              "content": "Blog",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "QliBs",
+              "name": "BlogList",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 28,
+              "children": [
+                {
+                  "id": "fCOHQ",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost1",
+                  "width": "fill_container"
+                },
+                {
+                  "id": "UewWy",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost2",
+                  "width": "fill_container"
+                },
+                {
+                  "id": "aiVpg",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost3",
+                  "width": "fill_container"
+                },
+                {
+                  "id": "DWOtV",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost4",
+                  "width": "fill_container"
+                },
+                {
+                  "id": "E6HQ6V",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost5",
+                  "width": "fill_container"
+                },
+                {
+                  "id": "cbBcb",
+                  "type": "ref",
+                  "ref": "Wzi8p",
+                  "name": "BlogPost6",
+                  "width": "fill_container"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "T1KNR",
+          "type": "ref",
+          "ref": "PPRop",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "PPRop",
+      "x": 2640,
+      "y": 9525,
+      "name": "FooterSP",
+      "reusable": true,
+      "width": 390,
+      "fill": "$epe-footer-bg",
+      "layout": "vertical",
+      "gap": 36,
+      "padding": [
+        48,
+        24,
+        32,
+        24
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "H66Bz",
+          "name": "Brand",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "vkk9M",
+              "name": "Logo",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "assets/logo-horizontal-white.png",
+                "mode": "fit"
+              },
+              "width": 110,
+              "height": 14.7
+            },
+            {
+              "type": "text",
+              "id": "Zhu4I",
+              "fill": "$epe-text-muted",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Functional beauty, born from subtraction.",
+              "lineHeight": 1.6,
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12.5,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "DBLB7",
+              "name": "SnsRow",
+              "gap": 16,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "icon",
+                  "id": "ZLipy",
+                  "name": "Facebook",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "facebook",
+                  "library": "lucide",
+                  "fill": "$epe-text-muted"
+                },
+                {
+                  "type": "icon",
+                  "id": "ESyqn",
+                  "name": "X",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "twitter",
+                  "library": "lucide",
+                  "fill": "$epe-text-muted"
+                },
+                {
+                  "type": "icon",
+                  "id": "cgZWj",
+                  "name": "Instagram",
+                  "width": 16,
+                  "height": 16,
+                  "icon": "instagram",
+                  "library": "lucide",
+                  "fill": "$epe-text-muted"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LVmTp",
+          "name": "Columns",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 28,
+          "children": [
+            {
+              "type": "frame",
+              "id": "ikEb0",
+              "name": "Col-Navigation",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Sb9f9",
+                  "fill": "$epe-text-muted",
+                  "content": "Navigation",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "u3SLd",
+                  "name": "Links",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KJnR1",
+                      "fill": "$epe-text-white",
+                      "content": "Home",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "HsxWL",
+                      "fill": "$epe-text-white",
+                      "content": "About",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SvNBp",
+                      "fill": "$epe-text-white",
+                      "content": "Product",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "wHtn9",
+                      "fill": "$epe-text-white",
+                      "content": "Material",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "gqz8i",
+                      "fill": "$epe-text-white",
+                      "content": "Styling",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "M1mkq",
+              "name": "Col-Information",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "JcsFV",
+                  "fill": "$epe-text-muted",
+                  "content": "Information",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "r8i23S",
+                  "name": "Links",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x4bANp",
+                      "fill": "$epe-text-white",
+                      "content": "Blog",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "g6P8W",
+                      "fill": "$epe-text-white",
+                      "content": "Contact",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Mh6rK",
+              "name": "Col-Legal",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "eqqym",
+                  "fill": "$epe-text-muted",
+                  "content": "Legal",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "egYdD",
+                  "name": "Links",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UEEwo",
+                      "fill": "$epe-text-white",
+                      "content": "Privacy Policy",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "y2K4M",
+                      "fill": "$epe-text-white",
+                      "content": "Terms of Service",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "C2XYK",
+                      "fill": "$epe-text-white",
+                      "content": "特定商取引法に基づく表記",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "HI2vL",
+          "name": "Divider",
+          "fill": "$epe-line",
+          "width": "fill_container",
+          "height": 1
+        },
+        {
+          "type": "text",
+          "id": "bnYqo",
+          "fill": "$epe-text-muted",
+          "content": "© 2026 EPE NYLON. All rights reserved.",
+          "fontFamily": "$epe-font-en",
+          "fontSize": 11,
+          "fontWeight": "normal"
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "epe-section-bg": {
+      "type": "color",
+      "value": "#3B393A"
+    },
+    "epe-footer-bg": {
+      "type": "color",
+      "value": "#000000"
+    },
+    "epe-text-white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "epe-text-muted": {
+      "type": "color",
+      "value": "#ADADAD"
+    },
+    "epe-button-bg": {
+      "type": "color",
+      "value": "#000000"
+    },
+    "epe-line": {
+      "type": "color",
+      "value": "#6B6B6B"
+    },
+    "epe-font-en": {
+      "type": "string",
+      "value": "Poppins"
+    },
+    "epe-font-jp": {
+      "type": "string",
+      "value": "Noto Sans JP"
+    },
+    "epe-text-body": {
+      "type": "color",
+      "value": "#E4E4E4"
+    },
+    "epe-img-placeholder": {
+      "type": "color",
+      "value": "#C7C7C7"
+    },
+    "epe-img-placeholder-dark": {
+      "type": "color",
+      "value": "#4D4D4D"
+    }
+  },
+  "fileToken": "8d216573-e2fa-411a-8ab5-58915bfd6103"
+}

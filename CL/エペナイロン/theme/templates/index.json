@@ -1,0 +1,51 @@
+{
+  "sections": {
+    "hero": {
+      "type": "epe-hero",
+      "blocks": {
+        "s1": { "type": "slide", "settings": {} },
+        "s2": { "type": "slide", "settings": {} },
+        "s3": { "type": "slide", "settings": {} }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {}
+    },
+    "about": { "type": "epe-about", "settings": {} },
+    "product": {
+      "type": "epe-product-lineup",
+      "blocks": {
+        "p1": { "type": "item", "settings": { "name": "商品名が入ります", "price": "¥0,000（税込）" } },
+        "p2": { "type": "item", "settings": { "name": "商品名が入ります", "price": "¥0,000（税込）" } },
+        "p3": { "type": "item", "settings": { "name": "商品名が入ります", "price": "¥0,000（税込）" } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {}
+    },
+    "material": { "type": "epe-material", "settings": {} },
+    "styling": {
+      "type": "epe-styling",
+      "blocks": {
+        "st1": { "type": "item", "settings": {} },
+        "st2": { "type": "item", "settings": {} },
+        "st3": { "type": "item", "settings": {} }
+      },
+      "block_order": ["st1", "st2", "st3"],
+      "settings": {}
+    },
+    "contact": { "type": "epe-contact", "settings": {} },
+    "blog": {
+      "type": "epe-blog",
+      "blocks": {
+        "b1": { "type": "article", "settings": {} },
+        "b2": { "type": "article", "settings": {} },
+        "b3": { "type": "article", "settings": {} },
+        "b4": { "type": "article", "settings": {} },
+        "b5": { "type": "article", "settings": {} },
+        "b6": { "type": "article", "settings": {} }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"],
+      "settings": {}
+    }
+  },
+  "order": ["hero", "about", "product", "material", "styling", "contact", "blog"]
+}

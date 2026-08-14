@@ -1,0 +1,63 @@
+{%- comment -%} エペナイロン About（Pencil PC: Wld2W／SP: y6OdP） {%- endcomment -%}
+<style>
+  .epe-about{background:var(--epe-section-bg);display:flex;gap:70px;padding:90px 80px;}
+  .epe-about__left{flex:1;display:flex;flex-direction:column;gap:20px;}
+  .epe-about__label{font-family:var(--epe-en);color:var(--epe-text-white);font-size:17px;}
+  .epe-about__heading{font-family:var(--epe-jp);color:var(--epe-text-white);font-size:30px;font-weight:700;margin:0;line-height:1.4;}
+  .epe-about__paras{display:flex;flex-direction:column;gap:20px;}
+  .epe-about__paras p{font-family:var(--epe-jp);color:var(--epe-text-body);font-size:14px;line-height:1.8;margin:0;white-space:pre-line;}
+  .epe-about__btn{display:inline-flex;align-items:center;gap:8px;background:var(--epe-button-bg);color:var(--epe-text-white);
+    font-family:var(--epe-en);font-size:13px;padding:13px 22px;border:0;text-decoration:none;width:max-content;}
+  .epe-about__btn svg{width:14px;height:14px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;}
+  .epe-about__photo{flex:1;background:var(--epe-img-placeholder);background-size:cover;background-position:center;min-height:440px;}
+  @media(max-width:768px){
+    .epe-about{flex-direction:column;gap:24px;padding:56px 24px;}
+    .epe-about__label{font-size:15px;}
+    .epe-about__heading{font-size:24px;}
+    .epe-about__paras{gap:18px;}
+    .epe-about__btn{width:100%;justify-content:center;}
+    .epe-about__photo{min-height:280px;}
+  }
+</style>
+<section class="epe epe-about" id="about">
+  <div class="epe-about__left">
+    <div class="epe-about__label">{{ section.settings.label }}</div>
+    <h2 class="epe-about__heading">{{ section.settings.heading }}</h2>
+    <div class="epe-about__paras">
+      {%- for block in section.blocks -%}
+        <p>{{ block.settings.text }}</p>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.button_label != blank -%}
+      <a class="epe-about__btn" href="{{ section.settings.button_link | default: '/pages/about' }}">
+        {{ section.settings.button_label }}
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    {%- endif -%}
+  </div>
+  <div class="epe-about__photo"{% if section.settings.photo != blank %} style="background-image:url({{ section.settings.photo | image_url: width: 1600 }});"{% endif %}></div>
+</section>
+{% schema %}
+{
+  "name": "EPE About",
+  "settings": [
+    { "type": "text", "id": "label", "label": "ラベル", "default": "About" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "ハイスペックを、再定義する。" },
+    { "type": "image_picker", "id": "photo", "label": "写真（未設定＝グレープレースホルダー）" },
+    { "type": "text", "id": "button_label", "label": "ボタン文言", "default": "And more" },
+    { "type": "url", "id": "button_link", "label": "ボタンリンク" }
+  ],
+  "blocks": [
+    { "type": "paragraph", "name": "段落", "settings": [ { "type": "textarea", "id": "text", "label": "本文" } ] }
+  ],
+  "presets": [{
+    "name": "EPE About",
+    "blocks": [
+      { "type": "paragraph", "settings": { "text": "溢れかえるポケット、過剰な重厚さ、デザインのための装飾。\n都市を生きる私たちの日常に、それは本当に必要だろうか。" } },
+      { "type": "paragraph", "settings": { "text": "私たちは気づいている。\nそれはハイスペックではなく、オーバースペックであることを。" } },
+      { "type": "paragraph", "settings": { "text": "epeが追求するのは、引き算から生まれる機能美だ。\n特殊な加工を施した高密度な生地がもたらす、耐久性と軽さの最適解。\n都市のノイズを削ぎ落とした、無駄のない造形。" } },
+      { "type": "paragraph", "settings": { "text": "真に必要なものだけを、あなたの手に。\nepeは今、ハイスペックの定義を書き換える。" } }
+    ]
+  }]
+}
+{% endschema %}

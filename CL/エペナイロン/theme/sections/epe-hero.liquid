@@ -1,0 +1,92 @@
+{%- comment -%} エペナイロン Hero（KVスライダー。Pencil: shArn／SP: ZftXC） {%- endcomment -%}
+<style>
+  .epe-hero{position:relative;width:100%;aspect-ratio:1340/793;min-height:520px;overflow:hidden;background:var(--epe-img-placeholder-dark);}
+  .epe-hero__slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .8s ease;background-color:var(--epe-img-placeholder-dark);}
+  .epe-hero__slide.is-active{opacity:1;}
+  .epe-hero__ov{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(0,0,0,0) 55%);pointer-events:none;}
+  .epe-hero__text{position:absolute;left:6.5%;top:33.8%;width:31.3%;min-width:280px;z-index:2;display:flex;flex-direction:column;gap:18px;}
+  .epe-hero__headline{display:flex;flex-direction:column;gap:2px;}
+  .epe-hero__headline span{font-family:var(--epe-en);color:var(--epe-text-white);font-size:clamp(24px,2.6vw,36px);line-height:1.15;}
+  .epe-hero__headline .l1{font-weight:300;}
+  .epe-hero__headline .l2{font-weight:700;}
+  .epe-hero__body{font-family:var(--epe-en);color:var(--epe-text-white);font-size:13px;line-height:1.7;white-space:pre-line;margin:0;}
+  .epe-hero__controls{position:absolute;left:6.5%;top:91.4%;z-index:2;display:flex;align-items:center;gap:14px;font-family:var(--epe-en);color:var(--epe-text-white);font-size:13px;}
+  .epe-hero__controls button{background:none;border:0;padding:4px;color:var(--epe-text-white);cursor:pointer;display:flex;}
+  .epe-hero__controls svg{width:16px;height:16px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;}
+  .epe-hero__dots{position:absolute;right:6.5%;top:93.8%;z-index:2;display:flex;gap:8px;}
+  .epe-hero__dots button{width:24px;height:2px;padding:0;border:0;background:#FFFFFF55;cursor:pointer;}
+  .epe-hero__dots button.is-active{background:var(--epe-text-white);}
+  @media(max-width:768px){
+    .epe-hero{aspect-ratio:390/640;min-height:560px;}
+    .epe-hero__text{left:6.15%;top:40.6%;width:87.7%;min-width:0;gap:14px;}
+    .epe-hero__headline span{font-size:22px;}
+    .epe-hero__body{font-size:12px;}
+    .epe-hero__controls{left:6.15%;top:91.4%;}
+    .epe-hero__dots{display:none;}
+  }
+</style>
+<section class="epe epe-hero" id="hero" data-epe-hero="{{ section.id }}">
+  {%- for block in section.blocks -%}
+    {%- assign img = block.settings.image -%}
+    <div class="epe-hero__slide{% if forloop.first %} is-active{% endif %}"
+      {%- if img != blank -%} style="background-image:url({{ img | image_url: width: 2400 }});"{%- endif -%}
+      {{ block.shopify_attributes }}></div>
+  {%- endfor -%}
+  <div class="epe-hero__ov"></div>
+  <div class="epe-hero__text">
+    <div class="epe-hero__headline">
+      <span class="l1">{{ section.settings.headline_l1 }}</span>
+      <span class="l2">{{ section.settings.headline_l2 }}</span>
+    </div>
+    <p class="epe-hero__body">{{ section.settings.body }}</p>
+  </div>
+  <div class="epe-hero__controls">
+    <span class="epe-hero__current">01</span>
+    <button type="button" class="epe-hero__prev" aria-label="Previous"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+    <button type="button" class="epe-hero__next" aria-label="Next"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    <span class="epe-hero__total">{{ section.blocks.size | prepend: '00' | slice: -2, 2 }}</span>
+  </div>
+  <div class="epe-hero__dots">
+    {%- for block in section.blocks -%}
+      <button type="button" class="{% if forloop.first %}is-active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
+    {%- endfor -%}
+  </div>
+</section>
+<script>
+  (function(){
+    var root = document.querySelector('[data-epe-hero="{{ section.id }}"]');
+    if(!root) return;
+    var slides = root.querySelectorAll('.epe-hero__slide');
+    var dots = root.querySelectorAll('.epe-hero__dots button');
+    var current = root.querySelector('.epe-hero__current');
+    var idx = 0;
+    function show(i){
+      idx = (i + slides.length) % slides.length;
+      slides.forEach(function(s,n){ s.classList.toggle('is-active', n===idx); });
+      dots.forEach(function(d,n){ d.classList.toggle('is-active', n===idx); });
+      if(current) current.textContent = String(idx+1).padStart(2,'0');
+    }
+    var prev = root.querySelector('.epe-hero__prev');
+    var next = root.querySelector('.epe-hero__next');
+    if(prev) prev.addEventListener('click', function(){ show(idx-1); });
+    if(next) next.addEventListener('click', function(){ show(idx+1); });
+    dots.forEach(function(d){ d.addEventListener('click', function(){ show(parseInt(d.dataset.index,10)); }); });
+    if(slides.length > 1){
+      setInterval(function(){ show(idx+1); }, 6000);
+    }
+  })();
+</script>
+{% schema %}
+{
+  "name": "EPE Hero",
+  "settings": [
+    { "type": "text", "id": "headline_l1", "label": "見出し1行目（細字）", "default": "Redefining" },
+    { "type": "text", "id": "headline_l2", "label": "見出し2行目（太字）", "default": "high specifications." },
+    { "type": "textarea", "id": "body", "label": "本文", "default": "Overflowing pockets, excessive weight, ornamentation for the sake of design.\nAre these truly necessary in our daily lives in the city?\n\nWe realize it.\nIt's not high-spec, it's over-spec.\nepe pursues functional beauty born from subtraction.\nThe optimal solution of durability and lightness, achieved through specially processed, high-density fabric.\n\nA streamlined design, stripped of the noise of the city.\nOnly what you truly need, in your hands.\nepe is now redefining the definition of high-spec." }
+  ],
+  "blocks": [
+    { "type": "slide", "name": "スライド", "settings": [ { "type": "image_picker", "id": "image", "label": "画像（未設定＝グレープレースホルダー）" } ] }
+  ],
+  "presets": [{ "name": "EPE Hero", "blocks": [{ "type": "slide" }, { "type": "slide" }, { "type": "slide" }] }]
+}
+{% endschema %}

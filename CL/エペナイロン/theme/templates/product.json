@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "epe_product": {
+      "type": "epe-product",
+      "blocks": {
+        "sp1": { "type": "spec", "settings": { "label": "素材", "value": "高密度ナイロン（撥水加工）" } },
+        "sp2": { "type": "spec", "settings": { "label": "サイズ", "value": "W320 × H460 × D150 mm" } },
+        "sp3": { "type": "spec", "settings": { "label": "重量", "value": "約 650g" } },
+        "sp4": { "type": "spec", "settings": { "label": "生産国", "value": "日本" } },
+        "sp5": { "type": "spec", "settings": { "label": "お手入れ方法", "value": "乾いた布で軽く拭き取り。水洗い不可" } },
+        "ac1": { "type": "accordion", "settings": { "title": "Material", "content": "<p>高密度ナイロン（撥水加工）を使用しています。</p>" } },
+        "ac2": { "type": "accordion", "settings": { "title": "Size Guide", "content": "<p>サイズ詳細は商品説明をご確認ください。</p>" } },
+        "ac3": { "type": "accordion", "settings": { "title": "Shipping & Returns", "content": "<p>ご注文確認後、通常3〜5営業日以内に発送いたします。</p>" } }
+      },
+      "block_order": ["sp1", "sp2", "sp3", "sp4", "sp5", "ac1", "ac2", "ac3"],
+      "settings": {}
+    }
+  },
+  "order": ["epe_product"]
+}

@@ -1,0 +1,295 @@
+{%- comment -%} エペナイロン 商品詳細ページ（Pencil: L4tc6Y）。パンくず／ギャラリー＋情報パネル（バリエーション選択込み）／説明＋スペック／関連商品 {%- endcomment -%}
+<style>
+  .epe-pdp{background:var(--epe-section-bg);}
+  .epe-pdp__crumb{display:flex;align-items:center;gap:8px;padding:24px 80px;font-family:var(--epe-en);font-size:12px;color:var(--epe-text-muted);}
+  .epe-pdp__crumb a{color:var(--epe-text-muted);text-decoration:none;}
+  .epe-pdp__crumb a:hover{color:var(--epe-text-white);}
+  .epe-pdp__main{display:flex;gap:60px;padding:10px 80px 70px;}
+  .epe-pdp__gallery{flex:1;display:flex;flex-direction:column;gap:14px;}
+  .epe-pdp__main-img{width:100%;height:620px;background:var(--epe-img-placeholder);background-size:cover;background-position:center;}
+  .epe-pdp__thumbs{display:flex;gap:12px;}
+  .epe-pdp__thumb{flex:1;height:96px;background:var(--epe-img-placeholder);background-size:cover;background-position:center;border:2px solid transparent;cursor:pointer;padding:0;}
+  .epe-pdp__thumb.is-active{border-color:var(--epe-text-white);}
+  .epe-pdp__info{width:460px;flex-shrink:0;display:flex;flex-direction:column;gap:22px;}
+  .epe-pdp__brand{font-family:var(--epe-en);font-size:13px;color:var(--epe-text-muted);}
+  .epe-pdp__title{font-family:var(--epe-en);font-size:28px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  .epe-pdp__price{font-family:var(--epe-en);font-size:20px;font-weight:600;color:var(--epe-text-white);}
+  .epe-pdp__desc{font-family:var(--epe-jp);font-size:14px;line-height:1.7;color:var(--epe-text-body);}
+  .epe-pdp__divider{height:1px;background:var(--epe-line);width:100%;}
+  .epe-pdp__opt{display:flex;flex-direction:column;gap:10px;}
+  .epe-pdp__opt-label{font-family:var(--epe-en);font-size:13px;color:var(--epe-text-muted);}
+  .epe-pdp__swatches{display:flex;gap:10px;}
+  .epe-pdp__swatch{width:26px;height:26px;border-radius:50%;border:1px solid var(--epe-line);cursor:pointer;padding:0;}
+  .epe-pdp__swatch.is-selected{border:2px solid var(--epe-text-white);}
+  .epe-pdp__sizes{display:flex;gap:10px;flex-wrap:wrap;}
+  .epe-pdp__size{padding:10px 18px;border:1px solid var(--epe-text-white);background:none;color:var(--epe-text-white);font-family:var(--epe-en);font-size:13px;cursor:pointer;}
+  .epe-pdp__size.is-selected{background:var(--epe-text-white);color:var(--epe-section-bg);}
+  .epe-pdp__size[disabled]{opacity:.3;cursor:not-allowed;text-decoration:line-through;}
+  .epe-pdp__qty{display:flex;align-items:center;gap:16px;padding:8px 4px;border:1px solid var(--epe-line);width:max-content;}
+  .epe-pdp__qty button{border:0;background:none;color:var(--epe-text-white);cursor:pointer;padding:6px;}
+  .epe-pdp__qty input{width:40px;text-align:center;border:0;background:none;font-family:var(--epe-en);font-size:14px;color:var(--epe-text-white);}
+  .epe-pdp__addcart{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--epe-button-bg);color:var(--epe-text-white);
+    border:0;padding:16px 0;font-family:var(--epe-en);font-size:14px;font-weight:600;cursor:pointer;width:100%;}
+  .epe-pdp__addcart[disabled]{opacity:.4;cursor:not-allowed;}
+  .epe-pdp__addcart svg{width:16px;height:16px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;}
+  .epe-pdp__wish{display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--epe-text-muted);font-family:var(--epe-en);font-size:12px;cursor:pointer;padding:0;width:max-content;}
+  .epe-pdp__wish svg{width:15px;height:15px;stroke:var(--epe-text-muted);fill:none;stroke-width:1.5;}
+  .epe-pdp__acc-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--epe-line);cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;width:100%;color:var(--epe-text-white);font-family:var(--epe-en);font-size:14px;}
+  .epe-pdp__acc-row svg{width:16px;height:16px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;transition:transform .2s;}
+  .epe-pdp__acc-row.is-open svg{transform:rotate(180deg);}
+  .epe-pdp__acc-panel{max-height:0;overflow:hidden;font-family:var(--epe-jp);font-size:13px;line-height:1.7;color:var(--epe-text-body);}
+  .epe-pdp__acc-panel.is-open{max-height:400px;padding:12px 0 4px;}
+  .epe-pdp__section-head{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  .epe-pdp__descsec{display:flex;flex-direction:column;gap:32px;padding:10px 80px 80px;}
+  .epe-pdp__descbody{width:700px;max-width:100%;font-family:var(--epe-jp);font-size:14px;line-height:1.8;color:var(--epe-text-body);white-space:pre-line;}
+  .epe-pdp__spectable{width:700px;max-width:100%;display:flex;flex-direction:column;}
+  .epe-pdp__specrow{display:flex;gap:40px;padding:16px 0;border-bottom:1px solid var(--epe-line);}
+  .epe-pdp__speck{width:140px;flex-shrink:0;font-family:var(--epe-jp);font-size:13px;color:var(--epe-text-muted);}
+  .epe-pdp__specv{font-family:var(--epe-jp);font-size:13px;color:var(--epe-text-white);}
+  .epe-pdp__related{display:flex;flex-direction:column;gap:32px;padding:0 80px 90px;}
+  .epe-pdp__related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:900px){
+    .epe-pdp__crumb{padding:16px 24px;}
+    .epe-pdp__main{flex-direction:column;gap:28px;padding:0 24px 40px;}
+    .epe-pdp__main-img{height:400px;}
+    .epe-pdp__info{width:100%;}
+    .epe-pdp__descsec,.epe-pdp__related{padding:0 24px 56px;}
+    .epe-pdp__descbody,.epe-pdp__spectable{width:100%;}
+    .epe-pdp__related-grid{grid-template-columns:1fr;}
+    .epe-pdp__section-head{font-size:24px;}
+  }
+</style>
+<section class="epe epe-pdp">
+  <div class="epe-pdp__crumb">
+    <a href="/">Home</a><span>/</span>
+    <a href="{{ section.settings.collection_link | default: '/collections/all' }}">Product</a><span>/</span>
+    <span>{{ product.title }}</span>
+  </div>
+
+  <div class="epe-pdp__main">
+    <div class="epe-pdp__gallery">
+      <div class="epe-pdp__main-img" id="EpeMainImg-{{ section.id }}"{% if product.featured_image %} style="background-image:url({{ product.featured_image | image_url: width: 1200 }});"{% endif %}></div>
+      <div class="epe-pdp__thumbs">
+        {%- if product.images.size > 0 -%}
+          {%- for image in product.images limit: 4 -%}
+            <button type="button" class="epe-pdp__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ image | image_url: width: 1200 }}" style="background-image:url({{ image | image_url: width: 300 }});" aria-label="画像{{ forloop.index }}"></button>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..4) -%}<button type="button" class="epe-pdp__thumb{% if forloop.first %} is-active{% endif %}" aria-label="画像{{ i }}"></button>{%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="epe-pdp__info">
+      <div class="epe-pdp__brand">{{ section.settings.brand_label | default: shop.name | upcase }}</div>
+      <h1 class="epe-pdp__title">{{ product.title }}</h1>
+      <div class="epe-pdp__price" id="EpePrice-{{ section.id }}">{{ product.selected_or_first_available_variant.price | default: product.price | money }}</div>
+      <div class="epe-pdp__desc">{%- if product.description != blank -%}{{ product.description | strip_html }}{%- else -%}{{ section.settings.fallback_desc }}{%- endif -%}</div>
+      <div class="epe-pdp__divider"></div>
+
+      {%- form 'product', product, id: 'EpeProductForm-' | append: section.id -%}
+        <input type="hidden" name="id" id="EpeVariantId-{{ section.id }}" value="{{ product.selected_or_first_available_variant.id }}">
+        {%- for option in product.options_with_values -%}
+          <div class="epe-pdp__opt" data-option-index="{{ forloop.index0 }}" style="margin-bottom:18px;">
+            <div class="epe-pdp__opt-label">{{ option.name }}{% if option.name == 'Color' or option.name == 'カラー' %} : <span class="epe-pdp__opt-current">{{ option.selected_value }}</span>{% endif %}</div>
+            {%- if option.name == 'Color' or option.name == 'カラー' -%}
+              <div class="epe-pdp__swatches">
+                {%- for value in option.values -%}
+                  {%- liquid
+                    assign v_key = value | handle
+                    case v_key
+                      when 'black', 'kuro', 'ブラック', '黒'
+                        assign swatch_color = '#1A1A1A'
+                      when 'white', 'off-white', 'ホワイト', '白'
+                        assign swatch_color = '#F2F2F2'
+                      when 'gray', 'grey', 'charcoal', 'グレー'
+                        assign swatch_color = '#4A4A4A'
+                      when 'navy', 'ネイビー', '紺'
+                        assign swatch_color = '#1B2A4A'
+                      when 'beige', 'ベージュ'
+                        assign swatch_color = '#C7B79C'
+                      when 'brown', 'ブラウン', '茶'
+                        assign swatch_color = '#5B4636'
+                      when 'olive', 'カーキ', 'オリーブ'
+                        assign swatch_color = '#5C5A3D'
+                      else
+                        assign swatch_color = '#8A8A8A'
+                    endcase
+                  -%}
+                  <button type="button" class="epe-pdp__swatch{% if value == option.selected_value %} is-selected{% endif %}"
+                    style="background:{{ swatch_color }};"
+                    data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value | escape }}" aria-label="{{ value }}"></button>
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <div class="epe-pdp__sizes">
+                {%- for value in option.values -%}
+                  <button type="button" class="epe-pdp__size{% if value == option.selected_value %} is-selected{% endif %}"
+                    data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value | escape }}">{{ value }}</button>
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+        <div class="epe-pdp__opt" style="margin-bottom:18px;">
+          <div class="epe-pdp__opt-label">Quantity</div>
+          <div class="epe-pdp__qty">
+            <button type="button" onclick="var q=this.parentNode.querySelector('input');q.value=Math.max(1,parseInt(q.value||1)-1)" aria-label="減らす">−</button>
+            <input type="number" name="quantity" value="1" min="1" inputmode="numeric">
+            <button type="button" onclick="var q=this.parentNode.querySelector('input');q.value=parseInt(q.value||1)+1" aria-label="増やす">＋</button>
+          </div>
+        </div>
+
+        <button type="submit" class="epe-pdp__addcart" id="EpeAddCart-{{ section.id }}" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+          <svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span id="EpeAddCartLabel-{{ section.id }}">{% if product.selected_or_first_available_variant.available %}Add to Cart{% else %}Sold Out{% endif %}</span>
+        </button>
+      {%- endform -%}
+
+      <button type="button" class="epe-pdp__wish"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>Add to Wishlist</button>
+
+      <div class="epe-pdp__accordion">
+        {%- assign acc_blocks = section.blocks | where: "type", "accordion" -%}
+        {%- for block in acc_blocks -%}
+          <button type="button" class="epe-pdp__acc-row" data-acc-toggle {{ block.shopify_attributes }}>{{ block.settings.title }}<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="epe-pdp__acc-panel">{{ block.settings.content }}</div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="epe-pdp__descsec">
+    <h2 class="epe-pdp__section-head">{{ section.settings.description_heading | default: 'Description' }}</h2>
+    <div class="epe-pdp__descbody">{{ section.settings.description_body }}</div>
+    {%- assign spec_blocks = section.blocks | where: "type", "spec" -%}
+    {%- if spec_blocks.size > 0 -%}
+      <div class="epe-pdp__spectable">
+        {%- for block in spec_blocks -%}
+          <div class="epe-pdp__specrow" {{ block.shopify_attributes }}><div class="epe-pdp__speck">{{ block.settings.label }}</div><div class="epe-pdp__specv">{{ block.settings.value }}</div></div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="epe-pdp__related">
+    <h2 class="epe-pdp__section-head">{{ section.settings.related_heading | default: 'You may also like' }}</h2>
+    <div class="epe-pdp__related-grid">
+      {%- if product.collections.size > 0 -%}{%- assign relcol = product.collections.first -%}{%- else -%}{%- assign relcol = collections.all -%}{%- endif -%}
+      {%- assign shown = 0 -%}
+      {%- for p in relcol.products -%}
+        {%- if p.id != product.id and shown < 3 -%}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- render 'epe-image-card', image: p.featured_image, alt: p.title, link: p.url, name: p.title, price: p.price | money %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{{ product.variants | json | script_tag: type: 'application/json', id: 'EpeVariants-' | append: section.id }}
+<script>
+  (function(){
+    var sectionId = {{ section.id | json }};
+    var root = document.currentScript.closest('.epe-pdp') || document;
+    var variantsEl = document.getElementById('EpeVariants-' + sectionId);
+    var variants = variantsEl ? JSON.parse(variantsEl.textContent) : [];
+    var selected = {{ product.options_with_values | map: 'selected_value' | json }};
+
+    var priceEl = document.getElementById('EpePrice-' + sectionId);
+    var variantInput = document.getElementById('EpeVariantId-' + sectionId);
+    var addBtn = document.getElementById('EpeAddCart-' + sectionId);
+    var addLabel = document.getElementById('EpeAddCartLabel-' + sectionId);
+
+    function money(cents){
+      return '¥' + Math.floor(cents/100).toLocaleString('ja-JP');
+    }
+    function findVariant(){
+      return variants.find(function(v){
+        return v.options.every(function(opt, i){ return opt === selected[i]; });
+      });
+    }
+    function updateUI(){
+      var v = findVariant();
+      root.querySelectorAll('[data-option-index]').forEach(function(el){
+        if(el.dataset.value === undefined) return;
+        var idx = parseInt(el.dataset.optionIndex, 10);
+        el.classList.toggle('is-selected', el.dataset.value === selected[idx]);
+      });
+      if(!v){
+        if(addBtn) addBtn.disabled = true;
+        if(addLabel) addLabel.textContent = 'Unavailable';
+        return;
+      }
+      if(variantInput) variantInput.value = v.id;
+      if(priceEl) priceEl.textContent = money(v.price);
+      if(addBtn) addBtn.disabled = !v.available;
+      if(addLabel) addLabel.textContent = v.available ? 'Add to Cart' : 'Sold Out';
+    }
+    root.querySelectorAll('[data-option-index][data-value]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var idx = parseInt(btn.dataset.optionIndex, 10);
+        selected[idx] = btn.dataset.value;
+        var labelEl = root.querySelector('.epe-pdp__opt[data-option-index="' + idx + '"] .epe-pdp__opt-current');
+        if(labelEl) labelEl.textContent = btn.dataset.value;
+        updateUI();
+      });
+    });
+
+    var stage = document.getElementById('EpeMainImg-' + sectionId);
+    root.querySelectorAll('.epe-pdp__thumb').forEach(function(btn){
+      var full = btn.getAttribute('data-full');
+      btn.addEventListener('click', function(){
+        if(stage && full) stage.style.backgroundImage = 'url(' + full + ')';
+        root.querySelectorAll('.epe-pdp__thumb').forEach(function(b){ b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+      });
+    });
+
+    root.querySelectorAll('[data-acc-toggle]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var panel = btn.nextElementSibling;
+        var open = btn.classList.toggle('is-open');
+        if(panel) panel.classList.toggle('is-open', open);
+      });
+    });
+  })();
+</script>
+{% schema %}
+{
+  "name": "EPE Product",
+  "settings": [
+    { "type": "text", "id": "brand_label", "label": "ブランドラベル（未設定＝ショップ名）" },
+    { "type": "url", "id": "collection_link", "label": "パンくず「Product」のリンク" },
+    { "type": "textarea", "id": "fallback_desc", "label": "商品説明が未入力の場合の代替文", "default": "特殊な加工を施した高密度ナイロンを採用し、耐久性と軽さを両立したユーティリティアイテム。都市の日常に本当に必要な機能だけを残した無駄のない造形です。" },
+    { "type": "header", "content": "Description セクション" },
+    { "type": "text", "id": "description_heading", "label": "見出し", "default": "Description" },
+    { "type": "textarea", "id": "description_body", "label": "本文", "default": "特殊な加工を施した高密度ナイロンを採用し、耐久性と軽さを両立したユーティリティアイテム。\n溢れかえるポケットや過剰な装飾を削ぎ落とし、都市の日常に本当に必要な機能だけを残した無駄のない造形。\n背面パッドとストラップの設計により、長時間の着用でも負担の少ない快適な使い心地を実現しています。" },
+    { "type": "header", "content": "関連商品" },
+    { "type": "text", "id": "related_heading", "label": "見出し", "default": "You may also like" }
+  ],
+  "blocks": [
+    { "type": "spec", "name": "スペック行", "settings": [
+      { "type": "text", "id": "label", "label": "項目名", "default": "項目名" },
+      { "type": "text", "id": "value", "label": "値", "default": "" }
+    ]},
+    { "type": "accordion", "name": "アコーディオン", "settings": [
+      { "type": "text", "id": "title", "label": "タイトル", "default": "Material" },
+      { "type": "richtext", "id": "content", "label": "内容" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EPE Product",
+    "blocks": [
+      { "type": "spec", "settings": { "label": "素材", "value": "高密度ナイロン（撥水加工）" } },
+      { "type": "spec", "settings": { "label": "サイズ", "value": "" } },
+      { "type": "spec", "settings": { "label": "重量", "value": "" } },
+      { "type": "spec", "settings": { "label": "生産国", "value": "日本" } },
+      { "type": "spec", "settings": { "label": "お手入れ方法", "value": "乾いた布で軽く拭き取り。水洗い不可" } },
+      { "type": "accordion", "settings": { "title": "Material" } },
+      { "type": "accordion", "settings": { "title": "Size Guide" } },
+      { "type": "accordion", "settings": { "title": "Shipping & Returns" } }
+    ]
+  }]
+}
+{% endschema %}

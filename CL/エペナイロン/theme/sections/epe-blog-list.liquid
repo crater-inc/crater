@@ -1,0 +1,42 @@
+{%- comment -%} エペナイロン ブログ一覧。Pencilに未着手のため既存トーンで新規デザイン {%- endcomment -%}
+<style>
+  .epe-bloglist{background:var(--epe-section-bg);}
+  .epe-bloglist__hero{padding:72px 80px 40px;}
+  .epe-bloglist__title{font-family:var(--epe-en);font-weight:700;font-size:clamp(36px,5vw,52px);color:var(--epe-text-white);margin:0;}
+  .epe-bloglist__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:0 80px 90px;}
+  .epe-bloglist__pager{display:flex;justify-content:center;gap:16px;padding:0 80px 80px;font-family:var(--epe-en);font-size:13px;}
+  .epe-bloglist__pager a{color:var(--epe-text-white);text-decoration:none;padding:8px 16px;border:1px solid var(--epe-line);}
+  @media(max-width:768px){
+    .epe-bloglist__hero{padding:48px 24px 28px;}
+    .epe-bloglist__grid{grid-template-columns:1fr;gap:32px;padding:0 24px 56px;}
+    .epe-bloglist__pager{padding:0 24px 56px;}
+  }
+</style>
+<section class="epe epe-bloglist">
+  <div class="epe-bloglist__hero">
+    <h1 class="epe-bloglist__title">{{ blog.title | default: 'Blog' }}</h1>
+  </div>
+  <div class="epe-bloglist__grid">
+    {%- paginate blog.articles by 9 -%}
+      {%- for article in blog.articles -%}
+        {%- render 'epe-blog-card', image: article.image, link: article.url, date: article.published_at | date: '%Y年 %m月 %d日', title: article.title %}
+      {%- else -%}
+        {%- for i in (1..3) -%}
+          {%- render 'epe-blog-card', date: '20XX年 0月 00日', title: '記事タイトルが入ります' %}
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+    {%- if paginate.pages > 1 -%}
+      <div class="epe-bloglist__pager">
+        {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">← Prev</a>{%- endif -%}
+        {%- if paginate.next -%}<a href="{{ paginate.next.url }}">Next →</a>{%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- endpaginate -%}
+</section>
+{% schema %}
+{
+  "name": "EPE Blog List",
+  "presets": [{ "name": "EPE Blog List" }]
+}
+{% endschema %}

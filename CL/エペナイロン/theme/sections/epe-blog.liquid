@@ -1,0 +1,53 @@
+{%- comment -%}
+  エペナイロン TOP Blog（Pencil PC: dPbwv／SP: N06AT）
+  注意：Pencil元デザインの記事6件は別の実在店舗の同一ダミー投稿だったため、汎用プレースホルダーに置き換えている。
+{%- endcomment -%}
+<style>
+  .epe-blog{background:var(--epe-section-bg);padding:90px 80px;display:flex;flex-direction:column;gap:36px;}
+  .epe-blog h2{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  .epe-blog__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:768px){
+    .epe-blog{padding:56px 24px;gap:22px;}
+    .epe-blog h2{font-size:24px;}
+    .epe-blog__grid{grid-template-columns:1fr;gap:28px;}
+  }
+</style>
+<section class="epe epe-blog" id="blog">
+  <h2>{{ section.settings.heading }}</h2>
+  <div class="epe-blog__grid">
+    {%- assign epe_blog = section.settings.blog -%}
+    {%- if epe_blog != blank and epe_blog.articles.size > 0 -%}
+      {%- for article in epe_blog.articles limit: 6 -%}
+        {%- render 'epe-blog-card', image: article.image, link: article.url, date: article.published_at | date: '%Y年 %m月 %d日', title: article.title %}
+      {%- endfor -%}
+    {%- else -%}
+      {%- for block in section.blocks -%}
+        {%- render 'epe-blog-card', image: block.settings.image, link: block.settings.link, date: block.settings.date, title: block.settings.title %}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "EPE Blog",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "見出し", "default": "Blog" },
+    { "type": "blog", "id": "blog", "label": "表示するブログ（未選択の場合は下のブロックを使用）" }
+  ],
+  "blocks": [
+    { "type": "article", "name": "記事", "settings": [
+      { "type": "image_picker", "id": "image", "label": "画像（未設定＝グレープレースホルダー）" },
+      { "type": "text", "id": "date", "label": "日付", "default": "20XX年 0月 00日" },
+      { "type": "text", "id": "title", "label": "タイトル", "default": "記事タイトルが入ります" },
+      { "type": "url", "id": "link", "label": "リンク" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EPE Blog",
+    "blocks": [
+      { "type": "article" }, { "type": "article" }, { "type": "article" },
+      { "type": "article" }, { "type": "article" }, { "type": "article" }
+    ]
+  }]
+}
+{% endschema %}

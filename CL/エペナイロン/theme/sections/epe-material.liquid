@@ -1,0 +1,45 @@
+{%- comment -%} エペナイロン Material（Pencil PC: XvYc0／SP: FBrz8） {%- endcomment -%}
+<style>
+  .epe-material{position:relative;width:100%;aspect-ratio:1340/600;min-height:420px;overflow:hidden;background:var(--epe-img-placeholder-dark);}
+  .epe-material__photo{position:absolute;inset:0;background-size:cover;background-position:center;background-color:var(--epe-img-placeholder-dark);}
+  .epe-material__content{position:absolute;left:65.7%;top:13.3%;width:28.4%;min-width:260px;display:flex;flex-direction:column;gap:16px;}
+  .epe-material__label{font-family:var(--epe-en);color:var(--epe-text-white);font-size:17px;}
+  .epe-material__heading{font-family:var(--epe-jp);color:var(--epe-text-white);font-size:30px;font-weight:700;margin:0;}
+  .epe-material__body{font-family:var(--epe-jp);color:var(--epe-text-body);font-size:14px;line-height:1.7;margin:0;white-space:pre-line;}
+  .epe-material__btn{display:inline-flex;align-items:center;gap:8px;background:var(--epe-button-bg);color:var(--epe-text-white);
+    font-family:var(--epe-en);font-size:13px;padding:13px 22px;text-decoration:none;width:max-content;}
+  .epe-material__btn svg{width:14px;height:14px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;}
+  @media(max-width:768px){
+    .epe-material{aspect-ratio:390/660;min-height:500px;}
+    .epe-material__content{left:6.15%;top:42.4%;width:87.7%;min-width:0;gap:14px;}
+    .epe-material__heading{font-size:24px;}
+  }
+</style>
+<section class="epe epe-material" id="material">
+  <div class="epe-material__photo"{% if section.settings.photo != blank %} style="background-image:url({{ section.settings.photo | image_url: width: 1800 }});"{% endif %}></div>
+  <div class="epe-material__content">
+    <div class="epe-material__label">{{ section.settings.label }}</div>
+    <h2 class="epe-material__heading">{{ section.settings.heading }}</h2>
+    <p class="epe-material__body">{{ section.settings.body }}</p>
+    {%- if section.settings.button_label != blank -%}
+      <a class="epe-material__btn" href="{{ section.settings.button_link | default: '/pages/about' }}">
+        {{ section.settings.button_label }}
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "EPE Material",
+  "settings": [
+    { "type": "image_picker", "id": "photo", "label": "写真（未設定＝グレープレースホルダー）" },
+    { "type": "text", "id": "label", "label": "ラベル", "default": "Material" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "素材について" },
+    { "type": "textarea", "id": "body", "label": "本文", "default": "テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト" },
+    { "type": "text", "id": "button_label", "label": "ボタン文言", "default": "And more" },
+    { "type": "url", "id": "button_link", "label": "ボタンリンク" }
+  ],
+  "presets": [{ "name": "EPE Material" }]
+}
+{% endschema %}

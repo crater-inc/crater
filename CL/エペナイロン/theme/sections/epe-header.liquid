@@ -1,0 +1,97 @@
+{%- comment -%} エペナイロン グローバルヘッダー（透過・KV/セクションの上に重ねる。Pencil: r4yvFI） {%- endcomment -%}
+<style>
+  .epe-hd{position:absolute;top:0;left:0;width:100%;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px 48px;font-family:var(--epe-en);}
+  .epe-hd__logo{display:block;width:120px;}
+  .epe-hd__logo img{width:100%;height:auto;display:block;}
+  .epe-hd__right{display:flex;align-items:center;gap:48px;}
+  .epe-hd__nav{display:flex;align-items:center;gap:32px;}
+  .epe-hd__nav a{color:var(--epe-text-white);text-decoration:none;font-size:15px;letter-spacing:.3px;transition:opacity .2s;}
+  .epe-hd__nav a:hover{opacity:.6;}
+  .epe-hd__icons{display:flex;align-items:center;gap:18px;}
+  .epe-hd__icons a{display:flex;color:var(--epe-text-white);}
+  .epe-hd__icons svg{width:18px;height:18px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;}
+  .epe-hd__divider{width:1px;height:20px;background:var(--epe-line);}
+  .epe-hd__cart{position:relative;display:flex;}
+  .epe-hd__badge{position:absolute;top:-2px;right:-4px;width:8px;height:8px;border-radius:50%;background:#E0332F;}
+  .epe-hd__burger{display:none;background:none;border:0;color:var(--epe-text-white);cursor:pointer;padding:0;}
+  .epe-hd__drawer{position:fixed;inset:0;z-index:80;background:var(--epe-footer-bg);display:flex;flex-direction:column;
+    padding:24px 24px 40px;transform:translateX(100%);transition:transform .3s ease;}
+  .epe-hd__drawer.is-open{transform:translateX(0);}
+  .epe-hd__drawer-close{align-self:flex-end;background:none;border:0;color:var(--epe-text-white);padding:8px;cursor:pointer;}
+  .epe-hd__drawer-nav{display:flex;flex-direction:column;gap:24px;margin-top:32px;}
+  .epe-hd__drawer-nav a{color:var(--epe-text-white);text-decoration:none;font-family:var(--epe-en);font-size:20px;}
+  @media(max-width:900px){
+    .epe-hd{padding:16px 20px;}
+    .epe-hd__nav,.epe-hd__icons .epe-hd__nav-icons{display:none;}
+    .epe-hd__logo{width:96px;}
+    .epe-hd__right{gap:16px;}
+    .epe-hd__social,.epe-hd__divider{display:none;}
+    .epe-hd__burger{display:flex;}
+  }
+</style>
+<header class="epe epe-hd">
+  <a href="/" class="epe-hd__logo">
+    <img src="{{ 'logo-horizontal-white.png' | asset_url }}" alt="{{ shop.name }}" width="120">
+  </a>
+  <div class="epe-hd__right">
+    <nav class="epe-hd__nav">
+      <a href="/">{{ section.settings.nav_home | default: 'Home' }}</a>
+      <a href="{{ section.settings.about_link | default: '/#about' }}">{{ section.settings.nav_about | default: 'About' }}</a>
+      <a href="{{ section.settings.product_link | default: '/#product' }}">{{ section.settings.nav_product | default: 'Product' }}</a>
+      <a href="{{ section.settings.material_link | default: '/#material' }}">{{ section.settings.nav_material | default: 'Material' }}</a>
+      <a href="{{ section.settings.styling_link | default: '/#styling' }}">{{ section.settings.nav_styling | default: 'Styling' }}</a>
+      <a href="{{ section.settings.blog_link | default: '/blogs/journal' }}">{{ section.settings.nav_blog | default: 'Blog' }}</a>
+      <a href="{{ section.settings.contact_link | default: '/#contact' }}">{{ section.settings.nav_contact | default: 'Contact' }}</a>
+    </nav>
+    <div class="epe-hd__icons">
+      <div class="epe-hd__social" style="display:flex;align-items:center;gap:18px;">
+        <a href="{{ section.settings.facebook | default: '#' }}" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>
+        <a href="{{ section.settings.twitter | default: '#' }}" aria-label="X"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="{{ section.settings.instagram | default: '#' }}" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--epe-text-white)" stroke="none"/></svg></a>
+      </div>
+      <div class="epe-hd__divider"></div>
+      <a href="/search" aria-label="Search" class="epe-hd__nav-icons"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></a>
+      <a href="/cart" class="epe-hd__cart epe-hd__nav-icons" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        {%- if cart.item_count > 0 -%}<span class="epe-hd__badge"></span>{%- endif -%}
+      </a>
+      <button type="button" class="epe-hd__burger" aria-label="Menu" onclick="document.getElementById('EpeDrawer-{{ section.id }}').classList.add('is-open')">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="epe-hd__drawer" id="EpeDrawer-{{ section.id }}">
+  <button type="button" class="epe-hd__drawer-close" aria-label="Close" onclick="document.getElementById('EpeDrawer-{{ section.id }}').classList.remove('is-open')">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+  </button>
+  <nav class="epe-hd__drawer-nav">
+    <a href="/">{{ section.settings.nav_home | default: 'Home' }}</a>
+    <a href="{{ section.settings.about_link | default: '/#about' }}">{{ section.settings.nav_about | default: 'About' }}</a>
+    <a href="{{ section.settings.product_link | default: '/#product' }}">{{ section.settings.nav_product | default: 'Product' }}</a>
+    <a href="{{ section.settings.material_link | default: '/#material' }}">{{ section.settings.nav_material | default: 'Material' }}</a>
+    <a href="{{ section.settings.styling_link | default: '/#styling' }}">{{ section.settings.nav_styling | default: 'Styling' }}</a>
+    <a href="{{ section.settings.blog_link | default: '/blogs/journal' }}">{{ section.settings.nav_blog | default: 'Blog' }}</a>
+    <a href="{{ section.settings.contact_link | default: '/#contact' }}">{{ section.settings.nav_contact | default: 'Contact' }}</a>
+    <a href="/search">Search</a>
+    <a href="/cart">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
+  </nav>
+</div>
+{% schema %}
+{
+  "name": "EPE Header",
+  "settings": [
+    { "type": "url", "id": "about_link", "label": "Aboutリンク" },
+    { "type": "url", "id": "product_link", "label": "Productリンク" },
+    { "type": "url", "id": "material_link", "label": "Materialリンク" },
+    { "type": "url", "id": "styling_link", "label": "Stylingリンク" },
+    { "type": "url", "id": "blog_link", "label": "Blogリンク" },
+    { "type": "url", "id": "contact_link", "label": "Contactリンク" },
+    { "type": "url", "id": "facebook", "label": "Facebook URL" },
+    { "type": "url", "id": "twitter", "label": "X (Twitter) URL" },
+    { "type": "url", "id": "instagram", "label": "Instagram URL" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,9 @@
+{%- comment -%}
+  エペナイロン ブログカード（Pencil: Wzi8p BlogCard）
+  Params: image, link, date, title
+{%- endcomment -%}
+<a href="{{ link }}" class="epe-blogcard">
+  <div class="epe-blogcard__img"{% if image != blank %} style="background-image:url({{ image | image_url: width: 900 }});"{% endif %}></div>
+  <div class="epe-blogcard__date">{{ date }}</div>
+  <div class="epe-blogcard__title">{{ title }}</div>
+</a>

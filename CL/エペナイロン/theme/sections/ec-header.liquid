@@ -1,0 +1,60 @@
+{%- comment -%} EC テンプレ 透過グローバルヘッダー（KV画像の上に重ねる） {%- endcomment -%}
+<style>
+  .ec-hd{position:absolute;top:0;left:0;width:100%;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:40px;font-family:var(--ec-en);}
+  .ec-hd__logo{display:block;width:120px;}
+  .ec-hd__logo img{width:100%;height:auto;display:block;}
+  .ec-hd__right{display:flex;align-items:center;gap:40px;}
+  .ec-hd__nav{display:flex;align-items:center;gap:30px;}
+  .ec-hd__nav a{color:#f7f4efee;text-decoration:none;font-size:16px;letter-spacing:1px;transition:opacity .2s;}
+  .ec-hd__nav a:hover{opacity:.6;}
+  .ec-hd__icons{display:flex;align-items:center;gap:22px;}
+  .ec-hd__icons a{display:flex;color:#f7f4ef;}
+  .ec-hd__icons svg{width:20px;height:20px;stroke:#f7f4ef;fill:none;stroke-width:1.5;}
+  .ec-hd__burger{display:none;background:none;border:0;color:#f7f4ef;}
+  @media(max-width:900px){
+    .ec-hd{padding:22px 24px;}
+    .ec-hd__nav{display:none;}
+    .ec-hd__logo{width:96px;}
+    .ec-hd__burger{display:flex;}
+  }
+  /* === トップ以外の全ページ：ソリッドなグレーヘッダー（黒ロゴ・黒メニュー）。透過だと白文字が背景に溶けて崩れるため === */
+  body:not(.template--index) .ec-hd{position:relative;background:#a6a6a6;padding:22px 40px;}
+  body:not(.template--index) .ec-hd__logo img{filter:brightness(0);}
+  body:not(.template--index) .ec-hd__nav a{color:#111111;}
+  body:not(.template--index) .ec-hd__icons a{color:#111111;}
+  body:not(.template--index) .ec-hd__icons svg{stroke:#111111;}
+  body:not(.template--index) .ec-hd__burger{color:#111111;}
+  @media(max-width:900px){
+    body:not(.template--index) .ec-hd{padding:18px 24px;}
+  }
+</style>
+<header class="ec ec-hd">
+  <a href="/" class="ec-hd__logo">
+    <img src="{{ 'ec-logo-white.png' | asset_url }}" alt="{{ shop.name }}" width="120">
+  </a>
+  <div class="ec-hd__right">
+    <nav class="ec-hd__nav">
+      <a href="/">HOME</a>
+      <a href="{{ section.settings.shop_link | default: '/collections/all' }}">SHOP</a>
+      <a href="{{ section.settings.about_link | default: '/pages/about' }}">ABOUT</a>
+      <a href="{{ section.settings.journal_link | default: '/blogs/journal' }}">JOURNAL</a>
+    </nav>
+    <div class="ec-hd__icons">
+      <a href="/search" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></a>
+      <a href="/account" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+      <a href="/cart" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></a>
+    </div>
+  </div>
+</header>
+{% schema %}
+{
+  "name": "EC Header",
+  "settings": [
+    { "type": "url", "id": "shop_link", "label": "SHOPリンク" },
+    { "type": "url", "id": "about_link", "label": "ABOUTリンク" },
+    { "type": "url", "id": "journal_link", "label": "JOURNALリンク" }
+  ]
+}
+{% endschema %}

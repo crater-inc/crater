@@ -1,0 +1,85 @@
+{%- comment -%} EC テンプレ ジャーナル（Shopify標準ブログ連動／未設定時はダミー） {%- endcomment -%}
+<style>
+  .ec-blog{background:var(--ec-paper2);padding:84px 64px;}
+  .ec-blog__head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:40px;}
+  .ec-blog__t{font-family:var(--ec-en);font-weight:600;font-size:clamp(40px,5vw,64px);color:var(--ec-ink);margin:0;line-height:1;}
+  .ec-blog__jp{font-family:var(--ec-jp);font-weight:600;font-size:13px;letter-spacing:3px;color:var(--ec-sub);margin-top:8px;}
+  .ec-blog__va{font-family:var(--ec-en);font-size:15px;letter-spacing:1px;color:var(--ec-ink);text-decoration:none;display:flex;align-items:center;gap:7px;}
+  .ec-blog__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 28px;}
+  .ec-blog__card{display:block;text-decoration:none;color:inherit;}
+  .ec-blog__img{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,#d6d6d6,#aeaeae);overflow:hidden;}
+  .ec-blog__img img{width:100%;height:100%;object-fit:cover;display:block;opacity:1!important;}
+  .ec-blog__date{font-family:var(--ec-en);font-size:14px;letter-spacing:1px;color:var(--ec-sub);margin:16px 0 6px;}
+  .ec-blog__ct{font-family:var(--ec-jp);font-weight:600;font-size:17px;line-height:1.5;color:var(--ec-ink);}
+  .ec-blog__ex{font-family:var(--ec-jp);font-size:14px;line-height:1.75;color:#666;margin-top:8px;}
+  .ec-blog__more{display:inline-block;margin-top:16px;font-family:var(--ec-en);font-size:12px;letter-spacing:2px;color:var(--ec-ink);border-bottom:1px solid var(--ec-ink);padding-bottom:5px;}
+  .ec-blog__card:hover .ec-blog__more{opacity:.6;}
+  @media(max-width:768px){.ec-blog{padding:56px 32px;}.ec-blog__grid{grid-template-columns:1fr;}}
+</style>
+{%- assign eblog = blogs[section.settings.blog] -%}
+<section class="ec ec-blog">
+  <div class="ec-blog__head">
+    <div>
+      <h2 class="ec-blog__t">{{ section.settings.heading }}</h2>
+      <div class="ec-blog__jp">{{ section.settings.subheading }}</div>
+    </div>
+    {%- if eblog != blank -%}
+      <a class="ec-blog__va" href="{{ eblog.url }}">{{ section.settings.view_all_label }}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></svg></a>
+    {%- endif -%}
+  </div>
+  <div class="ec-blog__grid">
+    {%- if eblog != blank and eblog.articles_count > 0 -%}
+      {%- for article in eblog.articles limit: 6 -%}
+        <a class="ec-blog__card" href="{{ article.url }}">
+          <div class="ec-blog__img">
+            {%- if article.image -%}<img src="{{ article.image | image_url: width: 800 }}" alt="{{ article.title | escape }}" loading="lazy">
+            {%- else -%}<img src="{{ 'ec-dummy-photo.jpg' | asset_url }}" alt="" loading="lazy">{%- endif -%}
+          </div>
+          <div class="ec-blog__date">{{ article.published_at | date: '%Y.%m.%d' }}</div>
+          <div class="ec-blog__ct">{{ article.title }}</div>
+          {%- if article.excerpt != blank -%}<div class="ec-blog__ex">{{ article.excerpt | strip_html | truncate: 60 }}</div>{%- endif -%}
+          <span class="ec-blog__more">READ MORE</span>
+        </a>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for block in section.blocks -%}
+        <a class="ec-blog__card" href="{{ block.settings.link | default: '/blogs/journal' }}" {{ block.shopify_attributes }}>
+          <div class="ec-blog__img">{%- if block.settings.image != blank -%}<img src="{{ block.settings.image | image_url: width: 800 }}" alt="{{ block.settings.title | escape }}" loading="lazy">{%- else -%}<img src="{{ 'ec-dummy-photo.jpg' | asset_url }}" alt="" loading="lazy">{%- endif -%}</div>
+          <div class="ec-blog__date">{{ block.settings.date }}</div>
+          <div class="ec-blog__ct">{{ block.settings.title }}</div>
+          {%- if block.settings.excerpt != blank -%}<div class="ec-blog__ex">{{ block.settings.excerpt }}</div>{%- endif -%}
+          <span class="ec-blog__more">READ MORE</span>
+        </a>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "EC Journal",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "見出し", "default": "Journal" },
+    { "type": "text", "id": "subheading", "label": "サブ", "default": "読みもの" },
+    { "type": "text", "id": "view_all_label", "label": "View all", "default": "View all" },
+    { "type": "blog", "id": "blog", "label": "連動するブログ（未選択=ダミー表示）" }
+  ],
+  "blocks": [
+    { "type": "article", "name": "記事(ダミー)", "settings": [
+      { "type": "image_picker", "id": "image", "label": "アイキャッチ（未設定＝グレーのダミー）" },
+      { "type": "text", "id": "date", "label": "日付", "default": "2026.06.01" },
+      { "type": "text", "id": "title", "label": "タイトル", "default": "記事タイトルが入ります" },
+      { "type": "textarea", "id": "excerpt", "label": "抜粋" },
+      { "type": "url", "id": "link", "label": "リンク" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EC Journal",
+    "blocks": [
+      { "type": "article", "settings": { "date": "2026.06.01", "title": "記事タイトルが入ります" } },
+      { "type": "article", "settings": { "date": "2026.05.20", "title": "記事タイトルが入ります" } },
+      { "type": "article", "settings": { "date": "2026.05.02", "title": "記事タイトルが入ります" } }
+    ]
+  }]
+}
+{% endschema %}
