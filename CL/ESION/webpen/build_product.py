@@ -149,6 +149,7 @@ js='''
   [].slice.call(document.querySelectorAll('[data-pencil-name="'+name+'"]')).forEach(function(el){
    el.style.cursor='pointer';
    el.style.textDecoration='underline';
+   if(el.parentElement){ el.parentElement.style.flexWrap='wrap'; el.parentElement.style.rowGap='2px'; }
    el.addEventListener('click',function(){ window.open(CHECKLIST_LINKS[name],'_blank'); });
   });
  });
