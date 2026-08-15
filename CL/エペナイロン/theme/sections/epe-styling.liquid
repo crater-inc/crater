@@ -1,4 +1,4 @@
-{%- comment -%} エペナイロン Styling（Pencil PC: E5kL2／SP: HVE8i）。ルックブック風・キャプションなしの画像グリッド {%- endcomment -%}
+{%- comment -%} エペナイロン Styling（Pencil PC: E5kL2／SP: HVE8i）。ルックブック風の画像グリッド {%- endcomment -%}
 <style>
   .epe-styling{background:var(--epe-section-bg);padding:90px 80px;display:flex;flex-direction:column;gap:36px;}
   .epe-styling h2{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
@@ -13,7 +13,7 @@
   <h2>{{ section.settings.heading }}</h2>
   <div class="epe-styling__grid">
     {%- for block in section.blocks -%}
-      {%- render 'epe-image-card', image: block.settings.image, link: block.settings.link %}
+      {%- render 'epe-image-card', image: block.settings.image, link: block.settings.link, name: block.settings.caption %}
     {%- endfor -%}
   </div>
 </section>
@@ -26,12 +26,17 @@
   "blocks": [
     { "type": "item", "name": "画像", "settings": [
       { "type": "image_picker", "id": "image", "label": "画像（未設定＝グレープレースホルダー）" },
+      { "type": "text", "id": "caption", "label": "キャプション" },
       { "type": "url", "id": "link", "label": "リンク" }
     ]}
   ],
   "presets": [{
     "name": "EPE Styling",
-    "blocks": [{ "type": "item" }, { "type": "item" }, { "type": "item" }]
+    "blocks": [
+      { "type": "item", "settings": { "caption": "Look 01" } },
+      { "type": "item", "settings": { "caption": "Look 02" } },
+      { "type": "item", "settings": { "caption": "Look 03" } }
+    ]
   }]
 }
 {% endschema %}
