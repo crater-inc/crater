@@ -168,4 +168,15 @@ Liquidを先に組んだ4種のページ（商品一覧・ブログ一覧・ブ�
 - **Pickup Product**：商品名＋価格キャプションを追加（Liquidは元々`epe-image-card`にname/price渡していたため表示済みだったが、Pencilには無かったので追加。プレースホルダーは他ページと同じ「商品名が入ります」「¥0,000（税込）」に統一）
 - **Styling**：新たに`caption`フィールドをブロックスキーマに追加（Liquid: `epe-styling.liquid`のblocks設定に`caption`(text)追加、`epe-image-card`のname引数に渡す）。プレースホルダーは「Look 01」「Look 02」「Look 03」
 - Pencil側はどちらも各カードをCardラッパーフレーム(vertical, gap14)に組み替え、画像refをその中にMoveしてから名前/価格またはキャプションのテキストノードを追加
+
+## 2026-08-16 追記：商品詳細の詳細セクション画像、Pencilだけ16:9になってなかったバグを修正
+ケイスケさんの実測指摘（Pencil上で605×367＝比率1.65を確認、イラレでも検証）で発覚。Liquid側`.epe-pdp__detail-img`は8/15の16:9統一時点で`aspect-ratio:16/9`に正しくなっていたが、**Pencil側だけ605×367のまま取り残されていた**（原稿docx分割作業とタイミングがズレて16:9統一パスから漏れた）。該当10箇所（FABRIC×2/ZIPPER/FRONT POCKET/SIDE POCKET/PC ROOM/MAIN ROOM/CHEST BELT/PISNAME/GIFT。Shippingは元々hide_imageで画像なし）を605×340.3125（16:9）に修正。
+- **教訓**：Liquid⇄Pencilの一括統一作業は、後から追加されたセクション（今回でいう詳細セクションの11分割）が漏れやすい。全ページ一括系の修正をした後は、後発で追加された領域が対象に含まれているか個別に再確認する。
+
+## 2026-08-16 追記：商品詳細ページ SP版をPencilに新規作成
+これまで商品詳細ページはPencil上にPC版（`Product Detail Page (PC)` = L4tc6Y）しかなく、SP版が存在しなかった（TOPページはPC/SP両方あるが、商品詳細を含む他の下層ページは軒並みPC版のみ）。ケイスケさんの指示で新規作成：`Product Detail Page (SP)`（幅390、L4tc6Yの下に配置）。
+- Liquidのモバイルブレークポイント（`@media(max-width:900px)`）に忠実：ギャラリー→情報パネルの縦積み、メイン画像・サムネイルは4:5のまま（PC同様に対象外）、サムネイル4列×3段、詳細セクション画像は16:9（342幅×9/16=192.375）、Description/SPECテーブル/関連商品は幅100%・関連商品は1カラム縦積み
+- 詳細セクション10項目は原稿docxの実文言（FABRIC〜GIFT）をそのまま使用
+- Color/Size/Quantity/Add to Cart/Wishlistは構造のみ再現（実バリエーション未登録のためプレースホルダー）
+- **未対応で気づいた点（今回のスコープ外・要確認）**：TOPページSP版のPickup Product/Styling（`BHSNu`/`HVE8i`内の`dPk87`参照、height:300）も実は4:5(342幅なら427.5)になっておらず、詳細セクションと同種のズレが残っている可能性。指摘があれば次回修正。
 - **未対応で見つけたもの**：商品詳細ページの関連商品（Related Products）もPencil側にキャプションが無い状態（Liquidにはname/price渡し済み）。今回のスコープ外だったため未着手。次に触るときはここも要確認
