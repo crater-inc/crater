@@ -180,6 +180,21 @@ Liquidを先に組んだ4種のページ（商品一覧・ブログ一覧・ブ�
 - Color/Size/Quantity/Add to Cart/Wishlistは構造のみ再現（実バリエーション未登録のためプレースホルダー）
 - **未対応で気づいた点（今回のスコープ外・要確認）**：TOPページSP版のPickup Product/Styling（`BHSNu`/`HVE8i`内の`dPk87`参照、height:300）も実は4:5(342幅なら427.5)になっておらず、詳細セクションと同種のズレが残っている可能性。指摘があれば次回修正。
 
+## 2026-08-16 追記：ダミー画像をグレーグラデーションに統一
+「ダミーの画像とはグレーグラデね」との指示で、`--epe-img-placeholder`/`--epe-img-placeholder-dark`のCSS変数を単色（`#C7C7C7`/`#4D4D4D`）からグラデーション（`linear-gradient(135deg,...)`）に変更。`background-color:`指定だとグラデーションが効かないため、該当4箇所（`.epe-imgcard__img`/`.epe-blogcard__img`/`.epe-material__photo`/`.epe-hero__slide`）を`background:`に統一。CSS変数1箇所の変更で全ページ自動反映（サイト全体のダミー画像がグラデーション化）。
+
+## 2026-08-16 追記：商品一覧(PC)に左カテゴリサイドメニューを追加
+「左絡むでメニュー作ってカテゴリなどのサイドメニュー」との指示。`epe-collection.liquid`を2カラム構成（左220pxサイドバー＋右メイン列）に変更。カテゴリリンクは`category`ブロック（テキスト+URL、他ページと同じblocks+presetsパターン）で管理者が編集可能。初期値はダミーで「All/Backpack/Tote Bag/Shoulder Bag/Accessory」を`templates/collection.json`に投入。SPは縦積み（サイドバーが横並びのタグ風に変化）。Pencil「商品一覧 (PC)」(`hg9gi`)にも同構成を反映。
+
+## 2026-08-16 追記：About・Materialページを新規作成
+ケイスケさんからCanvaの原稿ボード（`epeナイロン_ページ別原稿イメージ`ホワイトボード、URL: canva.link/tv1sidv6k37nwun）を共有され、そこに書かれた実コピーで両ページを新規構築。今まで両方ともTOPページ内のセクション（`epe-about.liquid`/`epe-material.liquid`＝ティザー）しか無く、専用ページは存在しなかった。
+
+- **Material**（`epe-material-page.liquid`／`templates/page.material.json`）：ヒーロー写真＋導入文（"Not Over-Spec, But Real-Spec."）＋4セクション（CORDURA® re/cor™／OEKO-TEX® Rip-Stop／ファスナー(YKK)／ポケット設計）を左右交互レイアウトで配置＋Supportセクション（本文はCanva側も「原稿作成」のプレースホルダーのままだったため、暫定コピーで仮置き。実原稿確定時に差し替え要）
+- **About**（`epe-about-page.liquid`／`templates/page.about.json`）：ヒーロー写真＋導入文（"ハイスペックを、再定義する。"）＋3ピラー構成（Well-Designed/デザイン性、Full of Functionality/機能性、Durable/耐久性）、各ピラーに一言コピー（「飾らないことが、最大の知性になる。」等）付き
+- 画像エリアは全てグレーグラデーションのダミー（実写真はケイスケさん制作待ち）
+- ヘッダー/フッターの About・Material リンクを、ページ内アンカー（`/#about`等）から実ページ（`/pages/about`、`/pages/material`）に変更。Shopify管理画面でこのハンドル（`about`/`material`）でページを作成しテンプレートを割り当てる必要あり（`legal-notice`と同じ手順）
+- Pencilにも「Material Page (PC)」「About Page (PC)」を新規構築（`y5HRb`の右、`OCiCt`の下に配置）。SP版は今回未着手（PDPと同様、要望があれば次回）
+
 ## 2026-08-16 追記：Shopifyストア接続完了（下書きテーマとしてpush済み）
 - ストアURL：`prwybv-g4.myshopify.com`（epe | nylon）。オーナーはkskakari@gmail.com（株式会社クレーターが「組織のオーナー」＝A CURRYなど他ストアと同じShopify組織配下）
 - **コラボレーター招待・Theme Accessアプリは不要と判明**：オーナー本人のアカウントでCLIから直接OAuthログインすれば繋がる。ユーザー枠の上限エラーは無関係で、単にBasicプラン等の仕様（プラン改定でスタッフ0人枠）が原因だった可能性が高い（組織全体でユーザー枠がプールされる、という仮説は調査の結果誤りと判明。Shopify公式ヘルプによれば上限はストアごとに独立）
