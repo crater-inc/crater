@@ -1,0 +1,76 @@
+{%- comment -%} エペナイロン About（ブランドストーリー）ページ。Pencil: 別途「About Page (PC)」に反映 {%- endcomment -%}
+<style>
+  .epe-abtpage{background:var(--epe-section-bg);}
+  .epe-abtpage__hero{width:100%;aspect-ratio:1340/600;background:var(--epe-img-placeholder-dark);background-size:cover;background-position:center;}
+  .epe-abtpage__intro{padding:64px 80px;max-width:820px;}
+  .epe-abtpage__intro h2{font-family:var(--epe-jp);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0 0 24px;}
+  .epe-abtpage__intro p{font-family:var(--epe-jp);font-size:15px;line-height:1.9;color:var(--epe-text-body);margin:0;white-space:pre-line;}
+  .epe-abtpage__pillar{padding:80px;border-top:1px solid var(--epe-line);display:flex;flex-direction:column;gap:28px;}
+  .epe-abtpage__pillar-img{width:100%;aspect-ratio:16/9;background:var(--epe-img-placeholder);background-size:cover;background-position:center;}
+  .epe-abtpage__pillar-head{display:flex;align-items:baseline;gap:16px;}
+  .epe-abtpage__pillar-en{font-family:var(--epe-en);font-size:15px;letter-spacing:1px;color:var(--epe-text-muted);}
+  .epe-abtpage__pillar-jp{font-family:var(--epe-jp);font-size:26px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  .epe-abtpage__pillar-body{font-family:var(--epe-jp);font-size:14px;line-height:1.9;color:var(--epe-text-body);max-width:700px;}
+  .epe-abtpage__pillar-body p{margin:0 0 1em;}
+  .epe-abtpage__pillar-body p:last-child{margin-bottom:0;}
+  .epe-abtpage__pillar-quote{font-family:var(--epe-jp);font-size:19px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  @media(max-width:900px){
+    .epe-abtpage__intro{padding:40px 24px;}
+    .epe-abtpage__intro h2{font-size:22px;}
+    .epe-abtpage__pillar{padding:48px 24px;gap:20px;}
+    .epe-abtpage__pillar-jp{font-size:22px;}
+    .epe-abtpage__pillar-quote{font-size:16px;}
+  }
+</style>
+<section class="epe epe-abtpage">
+  <div class="epe-pagehero">
+    <div class="epe-pagehero__crumb"><a href="{{ routes.root_url }}">Home</a> / About</div>
+    <h1 class="epe-pagehero__title">{{ section.settings.heading | default: 'About' }}</h1>
+  </div>
+  <div class="epe-abtpage__hero"{% if section.settings.hero_image %} style="background-image:url({{ section.settings.hero_image | image_url: width: 1600 }});"{% endif %}></div>
+  <div class="epe-abtpage__intro">
+    <h2>{{ section.settings.intro_title | default: 'ハイスペックを、再定義する。' }}</h2>
+    <p>{{ section.settings.intro_body }}</p>
+  </div>
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'pillar' -%}
+      <div class="epe-abtpage__pillar" {{ block.shopify_attributes }}>
+        <div class="epe-abtpage__pillar-img"{% if block.settings.image %} style="background-image:url({{ block.settings.image | image_url: width: 1600 }});"{% endif %}></div>
+        <div class="epe-abtpage__pillar-head">
+          <span class="epe-abtpage__pillar-en">{{ block.settings.label_en }}</span>
+          <h3 class="epe-abtpage__pillar-jp">{{ block.settings.label_jp }}</h3>
+        </div>
+        <div class="epe-abtpage__pillar-body">{{ block.settings.body }}</div>
+        <p class="epe-abtpage__pillar-quote">{{ block.settings.quote }}</p>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+</section>
+{% schema %}
+{
+  "name": "EPE About Page",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "ヒーロー画像（未設定＝グレープレースホルダー）" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "About" },
+    { "type": "text", "id": "intro_title", "label": "導入見出し", "default": "ハイスペックを、再定義する。" },
+    { "type": "textarea", "id": "intro_body", "label": "導入本文" }
+  ],
+  "blocks": [
+    { "type": "pillar", "name": "ピラー（柱）セクション", "settings": [
+      { "type": "image_picker", "id": "image", "label": "画像（未設定＝グレープレースホルダー）" },
+      { "type": "text", "id": "label_en", "label": "英語ラベル", "default": "Well-Designed" },
+      { "type": "text", "id": "label_jp", "label": "日本語ラベル", "default": "デザイン性" },
+      { "type": "richtext", "id": "body", "label": "本文" },
+      { "type": "text", "id": "quote", "label": "一言コピー" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EPE About Page",
+    "blocks": [
+      { "type": "pillar", "settings": { "label_en": "Well-Designed", "label_jp": "デザイン性" } },
+      { "type": "pillar", "settings": { "label_en": "Full of Functionality", "label_jp": "機能性" } },
+      { "type": "pillar", "settings": { "label_en": "Durable", "label_jp": "耐久性" } }
+    ]
+  }]
+}
+{% endschema %}

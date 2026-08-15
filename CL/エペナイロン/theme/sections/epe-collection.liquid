@@ -1,14 +1,24 @@
 {%- comment -%} エペナイロン 商品一覧（コレクション）。Pencilに未着手のため既存トーンで新規デザイン {%- endcomment -%}
 <style>
   .epe-col{background:var(--epe-section-bg);}
-  .epe-col__bar{display:flex;justify-content:space-between;align-items:center;padding:0 80px 32px;border-bottom:1px solid var(--epe-line);margin:0 80px;}
+  .epe-col__wrap{display:flex;align-items:flex-start;gap:56px;padding:0 80px 90px;}
+  .epe-col__sidebar{width:220px;flex-shrink:0;display:flex;flex-direction:column;gap:14px;position:sticky;top:24px;padding-top:32px;}
+  .epe-col__sidebar-title{font-family:var(--epe-en);font-size:13px;letter-spacing:1px;color:var(--epe-text-muted);margin:0 0 6px;}
+  .epe-col__cat{font-family:var(--epe-en);font-size:15px;color:var(--epe-text-body);text-decoration:none;padding:2px 0;}
+  .epe-col__cat:hover{color:var(--epe-text-white);}
+  .epe-col__cat.is-active{color:var(--epe-text-white);font-weight:600;}
+  .epe-col__main{flex:1;min-width:0;}
+  .epe-col__bar{display:flex;justify-content:space-between;align-items:center;padding:32px 0;border-bottom:1px solid var(--epe-line);}
   .epe-col__count{font-family:var(--epe-en);font-size:13px;color:var(--epe-text-muted);}
   .epe-col__sort{display:flex;align-items:center;gap:8px;font-family:var(--epe-jp);font-size:13px;color:var(--epe-text-muted);}
   .epe-col__sort select{border:0;background:transparent;font-family:var(--epe-jp);font-size:13px;color:var(--epe-text-white);cursor:pointer;}
-  .epe-col__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:56px 80px 90px;}
-  @media(max-width:768px){
-    .epe-col__bar{padding:0 24px 24px;margin:0 24px;}
-    .epe-col__grid{grid-template-columns:1fr;gap:36px;padding:40px 24px 64px;}
+  .epe-col__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:32px 0 0;}
+  @media(max-width:900px){
+    .epe-col__wrap{flex-direction:column;gap:24px;padding:0 24px 64px;}
+    .epe-col__sidebar{width:100%;flex-direction:row;flex-wrap:wrap;gap:16px 24px;position:static;padding-top:0;}
+    .epe-col__sidebar-title{width:100%;}
+    .epe-col__bar{padding:24px 0;}
+    .epe-col__grid{grid-template-columns:1fr;gap:36px;}
   }
 </style>
 <section class="epe epe-col">
@@ -17,31 +27,41 @@
     <h1 class="epe-pagehero__title">{{ section.settings.title | default: collection.title | default: 'Shop' }}</h1>
     {%- if section.settings.subheading != blank -%}<p class="epe-pagehero__sub">{{ section.settings.subheading }}</p>{%- endif -%}
   </div>
-  <div class="epe-col__bar">
-    <div class="epe-col__count">{{ collection.products_count | default: 0 }} {% if collection.products_count == 1 %}item{% else %}items{% endif %}</div>
-    {%- if collection.sort_options.size > 0 -%}
-      <div class="epe-col__sort">
-        <label for="EpeSort">Sort</label>
-        <select id="EpeSort" onchange="if(this.value){window.location.href=this.value}">
-          {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-          {%- for option in collection.sort_options -%}
-            <option value="{{ collection.url }}?sort_by={{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
-          {%- endfor -%}
-        </select>
+  <div class="epe-col__wrap">
+    <aside class="epe-col__sidebar">
+      <h3 class="epe-col__sidebar-title">Category</h3>
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: routes.all_products_collection_url }}" class="epe-col__cat{% if block.settings.label == section.settings.title %} is-active{% endif %}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+      {%- endfor -%}
+    </aside>
+    <div class="epe-col__main">
+      <div class="epe-col__bar">
+        <div class="epe-col__count">{{ collection.products_count | default: 0 }} {% if collection.products_count == 1 %}item{% else %}items{% endif %}</div>
+        {%- if collection.sort_options.size > 0 -%}
+          <div class="epe-col__sort">
+            <label for="EpeSort">Sort</label>
+            <select id="EpeSort" onchange="if(this.value){window.location.href=this.value}">
+              {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+              {%- for option in collection.sort_options -%}
+                <option value="{{ collection.url }}?sort_by={{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+              {%- endfor -%}
+            </select>
+          </div>
+        {%- endif -%}
       </div>
-    {%- endif -%}
-  </div>
-  <div class="epe-col__grid">
-    {%- if collection.products.size > 0 -%}
-      {%- for product in collection.products -%}
-        {%- assign product_price = product.price | money -%}
-        {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product_price %}
-      {%- endfor -%}
-    {%- else -%}
-      {%- for i in (1..6) -%}
-        {%- render 'epe-image-card', name: '商品名が入ります', price: '¥0,000（税込）' %}
-      {%- endfor -%}
-    {%- endif -%}
+      <div class="epe-col__grid">
+        {%- if collection.products.size > 0 -%}
+          {%- for product in collection.products -%}
+            {%- assign product_price = product.price | money -%}
+            {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product_price %}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..6) -%}
+            {%- render 'epe-image-card', name: '商品名が入ります', price: '¥0,000（税込）' %}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
   </div>
 </section>
 {% schema %}
@@ -51,6 +71,21 @@
     { "type": "text", "id": "title", "label": "見出し（未設定＝コレクション名）" },
     { "type": "text", "id": "subheading", "label": "サブテキスト" }
   ],
-  "presets": [{ "name": "EPE Collection" }]
+  "blocks": [
+    { "type": "category", "name": "カテゴリ", "settings": [
+      { "type": "text", "id": "label", "label": "カテゴリ名", "default": "カテゴリ名" },
+      { "type": "url", "id": "link", "label": "リンク（未設定＝全商品）" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EPE Collection",
+    "blocks": [
+      { "type": "category", "settings": { "label": "All" } },
+      { "type": "category", "settings": { "label": "Backpack" } },
+      { "type": "category", "settings": { "label": "Tote Bag" } },
+      { "type": "category", "settings": { "label": "Shoulder Bag" } },
+      { "type": "category", "settings": { "label": "Accessory" } }
+    ]
+  }]
 }
 {% endschema %}

@@ -2,6 +2,14 @@
   "sections": {
     "epe_collection": {
       "type": "epe-collection",
+      "blocks": {
+        "cat1": { "type": "category", "settings": { "label": "All" } },
+        "cat2": { "type": "category", "settings": { "label": "Backpack" } },
+        "cat3": { "type": "category", "settings": { "label": "Tote Bag" } },
+        "cat4": { "type": "category", "settings": { "label": "Shoulder Bag" } },
+        "cat5": { "type": "category", "settings": { "label": "Accessory" } }
+      },
+      "block_order": ["cat1", "cat2", "cat3", "cat4", "cat5"],
       "settings": {}
     }
   },

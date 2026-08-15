@@ -50,7 +50,7 @@
         --epe-section-bg:#3B393A; --epe-footer-bg:#000000;
         --epe-text-white:#FFFFFF; --epe-text-body:#E4E4E4; --epe-text-muted:#ADADAD;
         --epe-line:#6B6B6B; --epe-button-bg:#000000;
-        --epe-img-placeholder:#C7C7C7; --epe-img-placeholder-dark:#4D4D4D;
+        --epe-img-placeholder:linear-gradient(135deg,#D6D6D6,#B4B4B4); --epe-img-placeholder-dark:linear-gradient(135deg,#5C5C5C,#3A3A3A);
         --epe-en:'Poppins', sans-serif; --epe-jp:'Noto Sans JP', 'Hiragino Kaku Gothic ProN', sans-serif;
       }
       /* === エペナイロン 全ページ共通タイポ：Releaseのフォント変数を上書き（商品一覧/詳細/カート等すべてに反映） === */
@@ -90,11 +90,11 @@
       .epe ::selection{background:var(--epe-text-white);color:var(--epe-section-bg);}
       /* === エペナイロン 共通コンポーネント：画像タイル（snippets/epe-image-card.liquid） === */
       .epe-imgcard{display:block;text-decoration:none;color:inherit;}
-      .epe-imgcard__img{width:100%;background-color:var(--epe-img-placeholder);background-size:cover;background-position:center;}
+      .epe-imgcard__img{width:100%;background:var(--epe-img-placeholder);background-size:cover;background-position:center;}
       .epe-imgcard__name{font-family:var(--epe-jp);font-size:14px;color:var(--epe-text-white);margin-top:14px;}
       .epe-imgcard__price{font-family:var(--epe-en);font-size:13px;color:var(--epe-text-muted);margin-top:4px;}
       .epe-blogcard{display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;}
-      .epe-blogcard__img{width:100%;aspect-ratio:16/9;background-color:var(--epe-img-placeholder);background-size:cover;background-position:center;}
+      .epe-blogcard__img{width:100%;aspect-ratio:16/9;background:var(--epe-img-placeholder);background-size:cover;background-position:center;}
       .epe-blogcard__date{font-family:var(--epe-jp);font-size:13px;color:var(--epe-text-muted);}
       .epe-blogcard__title{font-family:var(--epe-jp);font-size:15px;color:var(--epe-text-white);line-height:1.5;}
     </style>

@@ -1,0 +1,83 @@
+{%- comment -%} エペナイロン Material（素材）ページ。Pencil: 別途「Material Page (PC)」に反映 {%- endcomment -%}
+<style>
+  .epe-matpage{background:var(--epe-section-bg);}
+  .epe-matpage__hero{width:100%;aspect-ratio:1340/600;background:var(--epe-img-placeholder-dark);background-size:cover;background-position:center;}
+  .epe-matpage__intro{padding:64px 80px 0;max-width:820px;}
+  .epe-matpage__intro h2{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0 0 20px;}
+  .epe-matpage__intro p{font-family:var(--epe-jp);font-size:15px;line-height:1.9;color:var(--epe-text-body);margin:0;white-space:pre-line;}
+  .epe-matpage__section{display:flex;align-items:center;gap:64px;padding:80px;border-bottom:1px solid var(--epe-line);}
+  .epe-matpage__section:nth-child(even){flex-direction:row-reverse;}
+  .epe-matpage__section-text{flex:1;min-width:0;}
+  .epe-matpage__section-text h3{font-family:var(--epe-en);font-size:24px;font-weight:700;color:var(--epe-text-white);margin:0 0 20px;}
+  .epe-matpage__section-text p{font-family:var(--epe-jp);font-size:14px;line-height:1.9;color:var(--epe-text-body);margin:0 0 16px;}
+  .epe-matpage__section-text p:last-child{margin-bottom:0;}
+  .epe-matpage__section-img{width:420px;flex-shrink:0;aspect-ratio:16/9;background:var(--epe-img-placeholder);background-size:cover;background-position:center;}
+  .epe-matpage__note{padding:70px 80px;text-align:center;}
+  .epe-matpage__note h3{font-family:var(--epe-en);font-size:22px;font-weight:700;color:var(--epe-text-white);margin:0 0 14px;}
+  .epe-matpage__note p{font-family:var(--epe-jp);font-size:14px;line-height:1.8;color:var(--epe-text-body);margin:0 auto;max-width:600px;}
+  @media(max-width:900px){
+    .epe-matpage__intro{padding:40px 24px 0;}
+    .epe-matpage__intro h2{font-size:24px;}
+    .epe-matpage__section{flex-direction:column !important;gap:24px;padding:48px 24px;}
+    .epe-matpage__section-img{width:100%;}
+    .epe-matpage__note{padding:48px 24px;}
+  }
+</style>
+<section class="epe epe-matpage">
+  <div class="epe-pagehero">
+    <div class="epe-pagehero__crumb"><a href="{{ routes.root_url }}">Home</a> / Material</div>
+    <h1 class="epe-pagehero__title">{{ section.settings.heading | default: 'Material' }}</h1>
+  </div>
+  <div class="epe-matpage__hero"{% if section.settings.hero_image %} style="background-image:url({{ section.settings.hero_image | image_url: width: 1600 }});"{% endif %}></div>
+  <div class="epe-matpage__intro">
+    <h2>{{ section.settings.intro_title | default: 'Not Over-Spec, But Real-Spec.' }}</h2>
+    <p>{{ section.settings.intro_body }}</p>
+  </div>
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'material_section' -%}
+      <div class="epe-matpage__section" {{ block.shopify_attributes }}>
+        <div class="epe-matpage__section-text">
+          <h3>{{ block.settings.title }}</h3>
+          {{ block.settings.body }}
+        </div>
+        <div class="epe-matpage__section-img"{% if block.settings.image %} style="background-image:url({{ block.settings.image | image_url: width: 900 }});"{% endif %}></div>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if section.settings.note_heading != blank -%}
+    <div class="epe-matpage__note">
+      <h3>{{ section.settings.note_heading }}</h3>
+      <p>{{ section.settings.note_body }}</p>
+    </div>
+  {%- endif -%}
+</section>
+{% schema %}
+{
+  "name": "EPE Material Page",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "ヒーロー画像（未設定＝グレープレースホルダー）" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "Material" },
+    { "type": "text", "id": "intro_title", "label": "導入見出し", "default": "Not Over-Spec, But Real-Spec." },
+    { "type": "textarea", "id": "intro_body", "label": "導入本文", "default": "使いきれない多機能や、日常には過剰な重厚さを捨て、現代の都市生活における「真の必然性」だけを抽出した。\nこれは、オーバースペック（過剰）へのアンチテーゼであり、リアルスペック（真の機能美）の証明である。" },
+    { "type": "header", "content": "Supportセクション" },
+    { "type": "text", "id": "note_heading", "label": "見出し", "default": "Support" },
+    { "type": "textarea", "id": "note_body", "label": "本文", "default": "epeの製品を長く安心してお使いいただくためのサポート情報をご案内します。" }
+  ],
+  "blocks": [
+    { "type": "material_section", "name": "素材セクション", "settings": [
+      { "type": "text", "id": "title", "label": "見出し", "default": "見出しが入ります" },
+      { "type": "image_picker", "id": "image", "label": "画像（未設定＝グレープレースホルダー）" },
+      { "type": "richtext", "id": "body", "label": "本文" }
+    ]}
+  ],
+  "presets": [{
+    "name": "EPE Material Page",
+    "blocks": [
+      { "type": "material_section", "settings": { "title": "再生素材の最高峰「CORDURA® re/cor™」" } },
+      { "type": "material_section", "settings": { "title": "安心・安全な繊維製品基準 エコテックス（OEKO-TEX®）STANDARD100" } },
+      { "type": "material_section", "settings": { "title": "ファスナー" } },
+      { "type": "material_section", "settings": { "title": "細部にまでこだわる機能性" } }
+    ]
+  }]
+}
+{% endschema %}
