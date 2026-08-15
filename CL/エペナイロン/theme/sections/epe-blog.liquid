@@ -1,20 +1,20 @@
 {%- comment -%}
-  エペナイロン TOP Blog（Pencil PC: dPbwv／SP: N06AT）
+  エペナイロン TOP Journal（Pencil PC: dPbwv／SP: N06AT）
   注意：Pencil元デザインの記事6件は別の実在店舗の同一ダミー投稿だったため、汎用プレースホルダーに置き換えている。
 {%- endcomment -%}
 <style>
-  .epe-blog{background:var(--epe-section-bg);padding:90px 80px;display:flex;flex-direction:column;gap:36px;}
-  .epe-blog h2{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
-  .epe-blog__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .epe-journal{background:var(--epe-section-bg);padding:90px 80px;display:flex;flex-direction:column;gap:36px;}
+  .epe-journal h2{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  .epe-journal__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   @media(max-width:768px){
-    .epe-blog{padding:56px 24px;gap:22px;}
-    .epe-blog h2{font-size:24px;}
-    .epe-blog__grid{grid-template-columns:1fr;gap:28px;}
+    .epe-journal{padding:56px 24px;gap:22px;}
+    .epe-journal h2{font-size:24px;}
+    .epe-journal__grid{grid-template-columns:1fr;gap:28px;}
   }
 </style>
-<section class="epe epe-blog" id="blog">
+<section class="epe epe-journal" id="journal">
   <h2>{{ section.settings.heading }}</h2>
-  <div class="epe-blog__grid">
+  <div class="epe-journal__grid">
     {%- assign epe_blog = section.settings.blog -%}
     {%- if epe_blog != blank and epe_blog.articles.size > 0 -%}
       {%- for article in epe_blog.articles limit: 6 -%}
@@ -29,9 +29,9 @@
 </section>
 {% schema %}
 {
-  "name": "EPE Blog",
+  "name": "EPE Journal",
   "settings": [
-    { "type": "text", "id": "heading", "label": "見出し", "default": "Blog" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "Journal" },
     { "type": "blog", "id": "blog", "label": "表示するブログ（未選択の場合は下のブロックを使用）" }
   ],
   "blocks": [
@@ -43,7 +43,7 @@
     ]}
   ],
   "presets": [{
-    "name": "EPE Blog",
+    "name": "EPE Journal",
     "blocks": [
       { "type": "article" }, { "type": "article" }, { "type": "article" },
       { "type": "article" }, { "type": "article" }, { "type": "article" }

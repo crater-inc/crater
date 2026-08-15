@@ -1,0 +1,78 @@
+{%- comment -%} エペナイロン カート。Shop/Journal/Legalと共通のページヒーロー、実カート機能（数量更新・削除・チェックアウト） {%- endcomment -%}
+<style>
+  .epe-cart{background:var(--epe-section-bg);}
+  .epe-cart__body{padding:0 80px 90px;}
+  .epe-cart__empty{font-family:var(--epe-jp);font-size:15px;color:var(--epe-text-body);}
+  .epe-cart__empty a{color:var(--epe-text-white);}
+  .epe-cart__items{display:flex;flex-direction:column;}
+  .epe-cart__row{display:flex;gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid var(--epe-line);}
+  .epe-cart__img{width:110px;height:110px;flex-shrink:0;background:var(--epe-img-placeholder);background-size:cover;background-position:center;}
+  .epe-cart__info{flex:1;display:flex;flex-direction:column;gap:6px;}
+  .epe-cart__name{font-family:var(--epe-jp);font-size:15px;color:var(--epe-text-white);text-decoration:none;}
+  .epe-cart__variant{font-family:var(--epe-en);font-size:12px;color:var(--epe-text-muted);}
+  .epe-cart__remove{font-family:var(--epe-en);font-size:12px;color:var(--epe-text-muted);text-decoration:underline;width:max-content;}
+  .epe-cart__qty{width:70px;padding:8px;background:none;border:1px solid var(--epe-line);color:var(--epe-text-white);font-family:var(--epe-en);font-size:14px;text-align:center;}
+  .epe-cart__linetotal{width:110px;text-align:right;font-family:var(--epe-en);font-size:14px;font-weight:600;color:var(--epe-text-white);}
+  .epe-cart__summary{display:flex;flex-direction:column;align-items:flex-end;gap:20px;padding-top:32px;}
+  .epe-cart__subtotal{display:flex;justify-content:space-between;width:400px;max-width:100%;font-family:var(--epe-en);}
+  .epe-cart__subtotal-label{font-size:14px;color:var(--epe-text-muted);}
+  .epe-cart__subtotal-value{font-size:18px;font-weight:600;color:var(--epe-text-white);}
+  .epe-cart__note{font-family:var(--epe-jp);font-size:12px;color:var(--epe-text-muted);width:400px;max-width:100%;text-align:right;}
+  .epe-cart__actions{display:flex;flex-direction:column;gap:10px;width:400px;max-width:100%;}
+  .epe-cart__btn{display:flex;align-items:center;justify-content:center;padding:16px 0;font-family:var(--epe-en);font-size:14px;font-weight:600;border:0;cursor:pointer;text-decoration:none;}
+  .epe-cart__btn--checkout{background:var(--epe-button-bg);color:var(--epe-text-white);}
+  .epe-cart__btn--update{background:none;border:1px solid var(--epe-line);color:var(--epe-text-white);}
+  @media(max-width:768px){
+    .epe-cart__body{padding:0 24px 56px;}
+    .epe-cart__row{flex-wrap:wrap;gap:14px;}
+    .epe-cart__img{width:80px;height:80px;}
+    .epe-cart__info{width:calc(100% - 94px);}
+    .epe-cart__qty,.epe-cart__linetotal{margin-left:94px;}
+    .epe-cart__summary,.epe-cart__subtotal,.epe-cart__note,.epe-cart__actions{width:100%;}
+  }
+</style>
+<section class="epe epe-cart">
+  <div class="epe-pagehero">
+    <div class="epe-pagehero__crumb"><a href="/">Home</a> / Cart</div>
+    <h1 class="epe-pagehero__title">Cart</h1>
+  </div>
+  <div class="epe-cart__body">
+    {%- if cart.item_count == 0 -%}
+      <p class="epe-cart__empty">カートに商品がありません。<a href="/collections/all">Shopを見る →</a></p>
+    {%- else -%}
+      {%- form 'cart', cart, class: 'epe-cart__form' -%}
+        <div class="epe-cart__items">
+          {%- for item in cart.items -%}
+            <div class="epe-cart__row">
+              <a href="{{ item.url }}" class="epe-cart__img"{% if item.image %} style="background-image:url({{ item.image | image_url: width: 300 }});"{% endif %}></a>
+              <div class="epe-cart__info">
+                <a href="{{ item.url }}" class="epe-cart__name">{{ item.product.title }}</a>
+                {%- if item.variant.title != 'Default Title' -%}<div class="epe-cart__variant">{{ item.variant.title }}</div>{%- endif -%}
+                <a href="{{ item.url_to_remove }}" class="epe-cart__remove">Remove</a>
+              </div>
+              <input type="number" class="epe-cart__qty" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0" inputmode="numeric" aria-label="数量">
+              <div class="epe-cart__linetotal">{{ item.final_line_price | money }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+        <div class="epe-cart__summary">
+          <div class="epe-cart__subtotal">
+            <span class="epe-cart__subtotal-label">Subtotal</span>
+            <span class="epe-cart__subtotal-value">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="epe-cart__note">送料・税金はご購入手続き画面で計算されます。</p>
+          <div class="epe-cart__actions">
+            <button type="submit" name="update" class="epe-cart__btn epe-cart__btn--update">Update Cart</button>
+            <button type="submit" name="checkout" class="epe-cart__btn epe-cart__btn--checkout">Check Out</button>
+          </div>
+        </div>
+      {%- endform -%}
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "EPE Cart",
+  "presets": [{ "name": "EPE Cart" }]
+}
+{% endschema %}

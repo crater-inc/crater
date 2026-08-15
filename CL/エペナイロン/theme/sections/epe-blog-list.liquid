@@ -1,20 +1,18 @@
 {%- comment -%} エペナイロン ブログ一覧。Pencilに未着手のため既存トーンで新規デザイン {%- endcomment -%}
 <style>
   .epe-bloglist{background:var(--epe-section-bg);}
-  .epe-bloglist__hero{padding:72px 80px 40px;}
-  .epe-bloglist__title{font-family:var(--epe-en);font-weight:700;font-size:clamp(36px,5vw,52px);color:var(--epe-text-white);margin:0;}
   .epe-bloglist__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:0 80px 90px;}
   .epe-bloglist__pager{display:flex;justify-content:center;gap:16px;padding:0 80px 80px;font-family:var(--epe-en);font-size:13px;}
   .epe-bloglist__pager a{color:var(--epe-text-white);text-decoration:none;padding:8px 16px;border:1px solid var(--epe-line);}
   @media(max-width:768px){
-    .epe-bloglist__hero{padding:48px 24px 28px;}
     .epe-bloglist__grid{grid-template-columns:1fr;gap:32px;padding:0 24px 56px;}
     .epe-bloglist__pager{padding:0 24px 56px;}
   }
 </style>
 <section class="epe epe-bloglist">
-  <div class="epe-bloglist__hero">
-    <h1 class="epe-bloglist__title">{{ blog.title | default: 'Blog' }}</h1>
+  <div class="epe-pagehero">
+    <div class="epe-pagehero__crumb"><a href="/">Home</a> / Journal</div>
+    <h1 class="epe-pagehero__title">{{ blog.title | default: 'Journal' }}</h1>
   </div>
   <div class="epe-bloglist__grid">
     {%- paginate blog.articles by 9 -%}
@@ -36,7 +34,7 @@
 </section>
 {% schema %}
 {
-  "name": "EPE Blog List",
-  "presets": [{ "name": "EPE Blog List" }]
+  "name": "EPE Journal List",
+  "presets": [{ "name": "EPE Journal List" }]
 }
 {% endschema %}

@@ -15,7 +15,7 @@
 </style>
 <section class="epe epe-article">
   <div class="epe-article__wrap">
-    <a class="epe-article__back" href="{{ blog.url }}">← {{ blog.title | default: 'Blog' }}</a>
+    <a class="epe-article__back" href="{{ blog.url }}">← {{ blog.title | default: 'Journal' }}</a>
     <div class="epe-article__date">{{ article.published_at | date: '%Y年 %m月 %d日' }}</div>
     <h1 class="epe-article__title">{{ article.title }}</h1>
     <div class="epe-article__img"{% if article.image %} style="background-image:url({{ article.image | image_url: width: 1400 }});"{% endif %}></div>

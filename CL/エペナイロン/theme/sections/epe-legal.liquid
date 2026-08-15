@@ -1,29 +1,31 @@
 {%- comment -%} エペナイロン 法定ページ（特定商取引法など）。テーブル形式・ダーク基調 {%- endcomment -%}
 <style>
-  .epe-legal{background:var(--epe-section-bg);padding:80px 80px 100px;}
-  .epe-legal__eyebrow{font-family:var(--epe-en);font-size:12px;letter-spacing:2px;color:var(--epe-text-muted);margin-bottom:10px;}
-  .epe-legal__title{font-family:var(--epe-jp);font-size:28px;font-weight:700;color:var(--epe-text-white);margin:0 0 48px;}
+  .epe-legal{background:var(--epe-section-bg);}
+  .epe-legal__body{padding:0 80px 100px;}
   .epe-legal__table{max-width:820px;}
   .epe-legal__row{display:flex;gap:40px;padding:20px 0;border-bottom:1px solid var(--epe-line);}
   .epe-legal__k{width:220px;flex-shrink:0;font-family:var(--epe-jp);font-size:14px;font-weight:600;color:var(--epe-text-white);}
   .epe-legal__v{flex:1;font-family:var(--epe-jp);font-size:14px;line-height:1.7;color:var(--epe-text-body);white-space:pre-line;}
   @media(max-width:768px){
-    .epe-legal{padding:48px 24px 64px;}
-    .epe-legal__title{font-size:22px;margin-bottom:32px;}
+    .epe-legal__body{padding:0 24px 64px;}
     .epe-legal__row{flex-direction:column;gap:8px;padding:16px 0;}
     .epe-legal__k{width:auto;}
   }
 </style>
 <section class="epe epe-legal">
-  <div class="epe-legal__eyebrow">LEGAL</div>
-  <h1 class="epe-legal__title">{{ section.settings.title }}</h1>
-  <div class="epe-legal__table">
-    {%- for block in section.blocks -%}
-      <div class="epe-legal__row" {{ block.shopify_attributes }}>
-        <div class="epe-legal__k">{{ block.settings.label }}</div>
-        <div class="epe-legal__v">{{ block.settings.value }}</div>
-      </div>
-    {%- endfor -%}
+  <div class="epe-pagehero">
+    <div class="epe-pagehero__crumb"><a href="/">Home</a> / Legal</div>
+    <h1 class="epe-pagehero__title">{{ section.settings.title }}</h1>
+  </div>
+  <div class="epe-legal__body">
+    <div class="epe-legal__table">
+      {%- for block in section.blocks -%}
+        <div class="epe-legal__row" {{ block.shopify_attributes }}>
+          <div class="epe-legal__k">{{ block.settings.label }}</div>
+          <div class="epe-legal__v">{{ block.settings.value }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
   </div>
 </section>
 {% schema %}

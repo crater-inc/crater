@@ -75,14 +75,17 @@
         --color-foreground:255,255,255;
         --color-foreground-heading:255,255,255;
       }
-      /* === カート：ボタン・アクセントを黒基調に統一 === */
-      body.template--cart .button:not(.button--tertiary),
-      body.template--cart button[type="submit"]:not(.button--tertiary){
-        --color-button:0,0,0; --color-button-text:255,255,255;
+      /* === エペナイロン 共通ページヒーロー（パンくず+タイトル）：Shop/Journal/Legal/Cart で共通使用 === */
+      .epe-pagehero{padding:72px 80px 40px;}
+      .epe-pagehero__crumb{font-family:var(--epe-en);font-size:12px;letter-spacing:2px;color:var(--epe-text-muted);margin-bottom:14px;}
+      .epe-pagehero__crumb a{color:var(--epe-text-muted);text-decoration:none;}
+      .epe-pagehero__crumb a:hover{color:var(--epe-text-white);}
+      .epe-pagehero__title{font-family:var(--epe-en);font-weight:700;font-size:48px;color:var(--epe-text-white);margin:0 0 10px;line-height:1.15;}
+      .epe-pagehero__sub{font-family:var(--epe-jp);font-size:14px;color:var(--epe-text-muted);margin:0;}
+      @media(max-width:768px){
+        .epe-pagehero{padding:48px 24px 28px;}
+        .epe-pagehero__title{font-size:32px;}
       }
-      body.template--cart a{color:var(--epe-text-white);}
-      body.template--cart{font-family:var(--epe-jp);}
-      body.template--cart h1,body.template--cart h2,body.template--cart h3{font-family:var(--epe-en)!important;}
       .epe, .epe *{box-sizing:border-box;}
       .epe ::selection{background:var(--epe-text-white);color:var(--epe-section-bg);}
       /* === エペナイロン 共通コンポーネント：画像タイル（snippets/epe-image-card.liquid） === */

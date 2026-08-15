@@ -107,6 +107,22 @@
 - Contact欄の住所電話・Blog記事は元Pencilが別の実在店舗（Baracca）のダミーだったため、Liquid化にあたり**汎用プレースホルダー文言に置き換え済み**（実データ確定後は管理画面から設定するだけでよい設計）
 - 商品のカラー展開（Black/Gray/Navy等の英語カラー名）は`epe-product.liquid`内にswatch色マッピングを実装済み。実際の商品オプション値がこの想定と異なる名称になる場合は`epe-product.liquid`のcase/whenブロックに追記が必要
 
+## 2026-08-15：追加4ページ、Pencilにも反映
+Liquidを先に組んだ4種のページ（商品一覧・ブログ一覧・ブログ記事詳細・カート・特定商取引法＝5ページ）を、後追いでPencil(`01pencil.pen`)にも同一構成で作成。Pencilが正、の原則を維持。
+- 商品一覧 (PC)：`hg9gi`
+- ブログ一覧 (PC)：`eokQx`
+- ブログ記事詳細 (PC)：`rYLEK`
+- カート (PC)：`PFpV8`
+- 特定商取引法 (PC)：`y5HRb`
+
+いずれもHeader(`r4yvFI`)/Footer(`bRR5P`)を使い回し、Liquid実装（`epe-collection.liquid`/`epe-blog-list.liquid`/`epe-article.liquid`/カート標準画面のダーク化/`epe-legal.liquid`）と同一内容。SP版は未着手（Liquid側は`@media(max-width:768px)`で対応済みだが、Pencilでの正式なSPワイヤーは今後）。
+
+## 2026-08-15 追記：Journalリネーム・ページヒーロー統一・ギャラリー比率修正
+- **Blog→Journal**：Header/Footerのナビ表示、TOPのBlogセクション見出し、ブログ一覧タイトル、記事詳細の戻るリンクなど、表示文言を全て「Journal」に統一（PencilとLiquid両方）。内部的なファイル名・Shopifyの`blog`オブジェクト名はそのまま（Shopify側の仕様用語のため）
+- **ページヒーロー（パンくず+タイトル）統一**：商品一覧(Shop)のパンくず(12px)+タイトル(48px)パターンを共通CSS化（`theme.liquid`の`.epe-pagehero`）し、Journal一覧・特定商取引法・カートページにも同一適用。カートはDawn標準の`main-cart`を使うのをやめ、`epe-cart.liquid`を新規に完全自作（実カート機能：数量更新・削除・チェックアウト）に切り替え
+- **商品詳細ギャラリーの比率統一**：メイン画像とサムネイルを同じ縦横比(4:5)に統一。サムネイルは4列グリッドにしたので、5枚目以降は自動で2段目に折り返す仕様（Pencilでは2段の例を実際に作成）
+- **Pencil側の不具合修正**：新規5ページ作成時に誤って存在しない変数`$epe-en`/`$epe-jp`を指定していたため、フォントが変数参照されずリテラル値に固定されていた（表示は偶然崩れなかったが、トークン一元管理の仕組みから外れていた）。正しい変数`$epe-font-en`/`$epe-font-jp`に全78ノード一括修正済み
+
 **未対応・次のアクション**：
 - ロゴ以外の実画像（KV・商品写真）は未反映。ケイスケさん制作分が届き次第、各セクションの`image_picker`設定に差し替え
 - 商品登録（バリエーション・在庫）はまだ。商品マスタ確定後にShopify管理画面で登録
