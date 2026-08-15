@@ -1,21 +1,15 @@
 {
   "is_sample": false,
-  "updated_at": "2026-08-14T07:28:37+09:00",
-  "insight": "最大の流入サイトであるCHICSが前週比-34%と6サイト中で最も大きく減少しており、今日最も注目すべき動き。",
-  "suggestion": "CHICSの流入チャネル・ページ別の内訳を確認し、特定要因による減少か全体的な落ち込みかを切り分けることを推奨。",
+  "updated_at": "2026-08-15T07:10:05+09:00",
+  "insight": "CHICSが直近7日で200セッションと6サイト中最多だが、前週比-24%と最も大きく減少している。",
+  "suggestion": "CHICSの流入経路・ページ別データを確認し、特定チャネルの減少が起きていないか確認する。",
   "sites": [
     {
       "id": "crater",
       "name": "CRATER",
       "ga4_property_id": "353705241",
-      "comment": "163セッションで前週比+43%と大幅増加、伸び幅が大きいためボット・スパムトラフィックの混入有無も確認したい。",
+      "comment": "126セッションで前週比-19%とやや減少。",
       "daily": [
-        {
-          "date": "2026-05-16",
-          "sessions": 11,
-          "users": 7,
-          "pageviews": 49
-        },
         {
           "date": "2026-05-17",
           "sessions": 11,
@@ -552,9 +546,15 @@
         },
         {
           "date": "2026-08-14",
+          "sessions": 15,
+          "users": 14,
+          "pageviews": 24
+        },
+        {
+          "date": "2026-08-15",
           "sessions": 1,
           "users": 1,
-          "pageviews": 1
+          "pageviews": 2
         }
       ],
       "breakdown": {
@@ -602,6 +602,11 @@
           {
             "date": "2026-06-09",
             "path": "/",
+            "pageviews": 44
+          },
+          {
+            "date": "2026-06-25",
+            "path": "/info/",
             "pageviews": 44
           },
           {
@@ -900,11 +905,6 @@
             "pageviews": 12
           },
           {
-            "date": "2026-05-16",
-            "path": "/",
-            "pageviews": 11
-          },
-          {
             "date": "2026-05-19",
             "path": "/",
             "pageviews": 11
@@ -940,11 +940,6 @@
             "pageviews": 11
           },
           {
-            "date": "2026-06-09",
-            "path": "/works/web/",
-            "pageviews": 10
-          },
-          {
             "date": "2026-06-10",
             "path": "/about/",
             "pageviews": 10
@@ -960,11 +955,6 @@
             "pageviews": 10
           },
           {
-            "date": "2026-06-18",
-            "path": "/works/web/",
-            "pageviews": 10
-          },
-          {
             "date": "2026-06-21",
             "path": "/",
             "pageviews": 10
@@ -972,11 +962,6 @@
           {
             "date": "2026-06-23",
             "path": "/contact/",
-            "pageviews": 10
-          },
-          {
-            "date": "2026-06-23",
-            "path": "/works/web/",
             "pageviews": 10
           },
           {
@@ -1030,6 +1015,11 @@
             "pageviews": 9
           },
           {
+            "date": "2026-07-08",
+            "path": "/info/",
+            "pageviews": 9
+          },
+          {
             "date": "2026-07-30",
             "path": "/about/",
             "pageviews": 9
@@ -1043,11 +1033,6 @@
             "date": "2026-08-12",
             "path": "/",
             "pageviews": 9
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/works/web/",
-            "pageviews": 8
           },
           {
             "date": "2026-05-28",
@@ -1115,6 +1100,11 @@
             "pageviews": 7
           },
           {
+            "date": "2026-05-27",
+            "path": "/info/",
+            "pageviews": 7
+          },
+          {
             "date": "2026-05-28",
             "path": "/contact/",
             "pageviews": 7
@@ -1122,11 +1112,6 @@
           {
             "date": "2026-05-28",
             "path": "/works/",
-            "pageviews": 7
-          },
-          {
-            "date": "2026-05-28",
-            "path": "/works/web/",
             "pageviews": 7
           },
           {
@@ -1230,11 +1215,6 @@
             "pageviews": 7
           },
           {
-            "date": "2026-08-08",
-            "path": "/works/web/",
-            "pageviews": 7
-          },
-          {
             "date": "2026-08-09",
             "path": "/",
             "pageviews": 7
@@ -1330,11 +1310,6 @@
             "pageviews": 6
           },
           {
-            "date": "2026-06-19",
-            "path": "/works/web/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-06-29",
             "path": "/works/",
             "pageviews": 6
@@ -1357,6 +1332,11 @@
           {
             "date": "2026-07-13",
             "path": "/contact/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-07-15",
+            "path": "/info/",
             "pageviews": 6
           },
           {
@@ -1435,11 +1415,6 @@
             "pageviews": 5
           },
           {
-            "date": "2026-05-20",
-            "path": "/works/web/",
-            "pageviews": 5
-          },
-          {
             "date": "2026-05-24",
             "path": "/about/",
             "pageviews": 5
@@ -1447,6 +1422,16 @@
           {
             "date": "2026-05-26",
             "path": "/works/package/",
+            "pageviews": 5
+          },
+          {
+            "date": "2026-05-28",
+            "path": "/info/",
+            "pageviews": 5
+          },
+          {
+            "date": "2026-05-30",
+            "path": "/info/",
             "pageviews": 5
           },
           {
@@ -1526,6 +1511,11 @@
           },
           {
             "date": "2026-06-23",
+            "path": "/info/",
+            "pageviews": 5
+          },
+          {
+            "date": "2026-06-23",
             "path": "/works/logo/",
             "pageviews": 5
           },
@@ -1552,11 +1542,6 @@
           {
             "date": "2026-07-01",
             "path": "/about/",
-            "pageviews": 5
-          },
-          {
-            "date": "2026-07-02",
-            "path": "/works/web/",
             "pageviews": 5
           },
           {
@@ -1645,11 +1630,6 @@
             "pageviews": 5
           },
           {
-            "date": "2026-05-17",
-            "path": "/works/web/",
-            "pageviews": 4
-          },
-          {
             "date": "2026-05-20",
             "path": "/about/",
             "pageviews": 4
@@ -1685,13 +1665,13 @@
             "pageviews": 4
           },
           {
-            "date": "2026-06-01",
-            "path": "/contact/",
+            "date": "2026-05-31",
+            "path": "/info/",
             "pageviews": 4
           },
           {
-            "date": "2026-06-04",
-            "path": "/works/web/",
+            "date": "2026-06-01",
+            "path": "/contact/",
             "pageviews": 4
           },
           {
@@ -1717,11 +1697,6 @@
           {
             "date": "2026-06-16",
             "path": "/10th/",
-            "pageviews": 4
-          },
-          {
-            "date": "2026-06-16",
-            "path": "/works/web/",
             "pageviews": 4
           },
           {
@@ -1815,11 +1790,6 @@
             "pageviews": 4
           },
           {
-            "date": "2026-07-16",
-            "path": "/works/web/",
-            "pageviews": 4
-          },
-          {
             "date": "2026-07-17",
             "path": "/contact/",
             "pageviews": 4
@@ -1871,6 +1841,11 @@
           },
           {
             "date": "2026-08-08",
+            "path": "/info/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-08-08",
             "path": "/works/logo/",
             "pageviews": 4
           },
@@ -1880,11 +1855,6 @@
             "pageviews": 4
           },
           {
-            "date": "2026-05-16",
-            "path": "/about/",
-            "pageviews": 3
-          },
-          {
             "date": "2026-05-18",
             "path": "/works/",
             "pageviews": 3
@@ -1892,6 +1862,11 @@
           {
             "date": "2026-05-21",
             "path": "/10th/",
+            "pageviews": 3
+          },
+          {
+            "date": "2026-05-21",
+            "path": "/info/",
             "pageviews": 3
           },
           {
@@ -1917,11 +1892,6 @@
           {
             "date": "2026-05-25",
             "path": "/contact/",
-            "pageviews": 3
-          },
-          {
-            "date": "2026-05-25",
-            "path": "/works/web/",
             "pageviews": 3
           },
           {
@@ -1956,7 +1926,7 @@
           },
           {
             "date": "2026-06-05",
-            "path": "/works/web/",
+            "path": "/info/",
             "pageviews": 3
           },
           {
@@ -1975,23 +1945,18 @@
             "pageviews": 3
           },
           {
-            "date": "2026-06-06",
-            "path": "/works/web/",
-            "pageviews": 3
-          },
-          {
             "date": "2026-06-08",
             "path": "/contact/",
             "pageviews": 3
           },
           {
-            "date": "2026-06-10",
-            "path": "/works/web/",
+            "date": "2026-06-11",
+            "path": "/contact/",
             "pageviews": 3
           },
           {
             "date": "2026-06-11",
-            "path": "/contact/",
+            "path": "/info/",
             "pageviews": 3
           },
           {
@@ -2025,11 +1990,6 @@
             "pageviews": 3
           },
           {
-            "date": "2026-06-17",
-            "path": "/works/web/",
-            "pageviews": 3
-          },
-          {
             "date": "2026-06-19",
             "path": "/10th/",
             "pageviews": 3
@@ -2057,6 +2017,16 @@
           {
             "date": "2026-06-22",
             "path": "/contact/",
+            "pageviews": 3
+          },
+          {
+            "date": "2026-06-24",
+            "path": "/info/",
+            "pageviews": 3
+          },
+          {
+            "date": "2026-06-26",
+            "path": "/info/",
             "pageviews": 3
           },
           {
@@ -2120,11 +2090,6 @@
             "pageviews": 3
           },
           {
-            "date": "2026-07-14",
-            "path": "/works/web/",
-            "pageviews": 3
-          },
-          {
             "date": "2026-07-15",
             "path": "/contact/",
             "pageviews": 3
@@ -2137,11 +2102,6 @@
           {
             "date": "2026-07-16",
             "path": "/works/",
-            "pageviews": 3
-          },
-          {
-            "date": "2026-07-17",
-            "path": "/works/web/",
             "pageviews": 3
           },
           {
@@ -2190,11 +2150,6 @@
             "pageviews": 3
           },
           {
-            "date": "2026-08-04",
-            "path": "/works/web/",
-            "pageviews": 3
-          },
-          {
             "date": "2026-08-08",
             "path": "/contact/",
             "pageviews": 3
@@ -2225,9 +2180,9 @@
             "pageviews": 3
           },
           {
-            "date": "2026-05-16",
-            "path": "/works/package/",
-            "pageviews": 2
+            "date": "2026-08-14",
+            "path": "/",
+            "pageviews": 3
           },
           {
             "date": "2026-05-18",
@@ -2237,6 +2192,11 @@
           {
             "date": "2026-05-18",
             "path": "/contact/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-05-18",
+            "path": "/info/",
             "pageviews": 2
           },
           {
@@ -2325,11 +2285,6 @@
             "pageviews": 2
           },
           {
-            "date": "2026-05-29",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-05-30",
             "path": "/10th/",
             "pageviews": 2
@@ -2355,11 +2310,6 @@
             "pageviews": 2
           },
           {
-            "date": "2026-06-02",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-06-03",
             "path": "/10th/",
             "pageviews": 2
@@ -2371,12 +2321,22 @@
           },
           {
             "date": "2026-06-04",
+            "path": "/info/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-06-04",
             "path": "/works/package/",
             "pageviews": 2
           },
           {
             "date": "2026-06-06",
             "path": "/10th/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-06-06",
+            "path": "/info/",
             "pageviews": 2
           },
           {
@@ -2417,6 +2377,16 @@
           {
             "date": "2026-06-13",
             "path": "/contact/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-06-16",
+            "path": "/info/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-06-18",
+            "path": "/info/",
             "pageviews": 2
           },
           {
@@ -2450,16 +2420,6 @@
             "pageviews": 2
           },
           {
-            "date": "2026-06-25",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-06-26",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-06-27",
             "path": "/",
             "pageviews": 2
@@ -2467,11 +2427,6 @@
           {
             "date": "2026-06-29",
             "path": "/works/package/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-06-29",
-            "path": "/works/web/",
             "pageviews": 2
           },
           {
@@ -2495,8 +2450,18 @@
             "pageviews": 2
           },
           {
+            "date": "2026-07-02",
+            "path": "/info/",
+            "pageviews": 2
+          },
+          {
             "date": "2026-07-04",
             "path": "/about/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-06",
+            "path": "/info/",
             "pageviews": 2
           },
           {
@@ -2517,6 +2482,11 @@
           {
             "date": "2026-07-09",
             "path": "/10th/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-09",
+            "path": "/info/",
             "pageviews": 2
           },
           {
@@ -2575,11 +2545,6 @@
             "pageviews": 2
           },
           {
-            "date": "2026-07-22",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-07-23",
             "path": "/10th/",
             "pageviews": 2
@@ -2611,37 +2576,22 @@
           },
           {
             "date": "2026-07-27",
+            "path": "/info/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-27",
             "path": "/works/",
             "pageviews": 2
           },
           {
             "date": "2026-07-28",
             "path": "/works/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-07-28",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-07-29",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-07-30",
-            "path": "/works/web/",
             "pageviews": 2
           },
           {
             "date": "2026-07-31",
             "path": "/10th/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-07-31",
-            "path": "/works/web/",
             "pageviews": 2
           },
           {
@@ -2675,11 +2625,6 @@
             "pageviews": 2
           },
           {
-            "date": "2026-08-06",
-            "path": "/works/web/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-08-07",
             "path": "/10th/",
             "pageviews": 2
@@ -2706,7 +2651,7 @@
           },
           {
             "date": "2026-08-10",
-            "path": "/works/web/",
+            "path": "/info/",
             "pageviews": 2
           },
           {
@@ -2718,16 +2663,6 @@
             "date": "2026-08-12",
             "path": "/10th/",
             "pageviews": 2
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/works/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/works/logo/",
-            "pageviews": 1
           },
           {
             "date": "2026-05-17",
@@ -2755,8 +2690,8 @@
             "pageviews": 1
           },
           {
-            "date": "2026-05-18",
-            "path": "/works/web/",
+            "date": "2026-05-19",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2770,18 +2705,8 @@
             "pageviews": 1
           },
           {
-            "date": "2026-05-21",
-            "path": "/works/web/",
-            "pageviews": 1
-          },
-          {
             "date": "2026-05-22",
             "path": "/10th/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-05-22",
-            "path": "/works/web/",
             "pageviews": 1
           },
           {
@@ -2792,16 +2717,16 @@
           {
             "date": "2026-05-23",
             "path": "/works/logo/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/works/web/",
             "pageviews": 1
           },
           {
             "date": "2026-05-24",
             "path": "/contact/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-05-25",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2820,8 +2745,8 @@
             "pageviews": 1
           },
           {
-            "date": "2026-05-27",
-            "path": "/works/web/",
+            "date": "2026-05-29",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2830,13 +2755,18 @@
             "pageviews": 1
           },
           {
+            "date": "2026-06-01",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
             "date": "2026-06-02",
             "path": "/10th/",
             "pageviews": 1
           },
           {
-            "date": "2026-06-03",
-            "path": "/works/web/",
+            "date": "2026-06-02",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2851,7 +2781,12 @@
           },
           {
             "date": "2026-06-08",
-            "path": "/works/web/",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-06-09",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2870,11 +2805,6 @@
             "pageviews": 1
           },
           {
-            "date": "2026-06-11",
-            "path": "/works/web/",
-            "pageviews": 1
-          },
-          {
             "date": "2026-06-12",
             "path": "/works/",
             "pageviews": 1
@@ -2882,11 +2812,6 @@
           {
             "date": "2026-06-12",
             "path": "/works/logo/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-06-12",
-            "path": "/works/web/",
             "pageviews": 1
           },
           {
@@ -2902,11 +2827,6 @@
           {
             "date": "2026-06-13",
             "path": "/works/package/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-06-13",
-            "path": "/works/web/",
             "pageviews": 1
           },
           {
@@ -2925,8 +2845,8 @@
             "pageviews": 1
           },
           {
-            "date": "2026-06-14",
-            "path": "/works/web/",
+            "date": "2026-06-15",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2940,8 +2860,18 @@
             "pageviews": 1
           },
           {
+            "date": "2026-06-17",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
             "date": "2026-06-20",
             "path": "/10th/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-06-20",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2960,8 +2890,8 @@
             "pageviews": 1
           },
           {
-            "date": "2026-06-24",
-            "path": "/works/web/",
+            "date": "2026-06-22",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -2986,6 +2916,11 @@
           },
           {
             "date": "2026-07-01",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-07-01",
             "path": "/works/",
             "pageviews": 1
           },
@@ -3002,6 +2937,11 @@
           {
             "date": "2026-07-03",
             "path": "/works/logo/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-07-04",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -3020,18 +2960,13 @@
             "pageviews": 1
           },
           {
-            "date": "2026-07-06",
-            "path": "/works/web/",
+            "date": "2026-07-07",
+            "path": "/info/",
             "pageviews": 1
           },
           {
             "date": "2026-07-08",
             "path": "/10th/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-07-08",
-            "path": "/works/web/",
             "pageviews": 1
           },
           {
@@ -3042,11 +2977,6 @@
           {
             "date": "2026-07-09",
             "path": "/works/logo/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-07-09",
-            "path": "/works/web/",
             "pageviews": 1
           },
           {
@@ -3072,11 +3002,6 @@
           {
             "date": "2026-07-12",
             "path": "/contact/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-07-13",
-            "path": "/works/web/",
             "pageviews": 1
           },
           {
@@ -3115,6 +3040,11 @@
             "pageviews": 1
           },
           {
+            "date": "2026-07-18",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
             "date": "2026-07-19",
             "path": "/about/",
             "pageviews": 1
@@ -3135,18 +3065,13 @@
             "pageviews": 1
           },
           {
-            "date": "2026-07-20",
-            "path": "/works/web/",
-            "pageviews": 1
-          },
-          {
             "date": "2026-07-21",
-            "path": "/works/web/",
+            "path": "/info/",
             "pageviews": 1
           },
           {
-            "date": "2026-07-23",
-            "path": "/works/web/",
+            "date": "2026-07-22",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -3165,11 +3090,6 @@
             "pageviews": 1
           },
           {
-            "date": "2026-07-26",
-            "path": "/works/web/",
-            "pageviews": 1
-          },
-          {
             "date": "2026-07-27",
             "path": "/works/logo/",
             "pageviews": 1
@@ -3180,8 +3100,8 @@
             "pageviews": 1
           },
           {
-            "date": "2026-07-27",
-            "path": "/works/web/",
+            "date": "2026-07-28",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -3190,8 +3110,18 @@
             "pageviews": 1
           },
           {
+            "date": "2026-07-29",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
             "date": "2026-07-30",
             "path": "/10th/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-07-30",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -3222,6 +3152,11 @@
           {
             "date": "2026-08-03",
             "path": "/10th/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-03",
+            "path": "/info/",
             "pageviews": 1
           },
           {
@@ -3260,11 +3195,6 @@
             "pageviews": 1
           },
           {
-            "date": "2026-08-07",
-            "path": "/works/web/",
-            "pageviews": 1
-          },
-          {
             "date": "2026-08-08",
             "path": "/10th/",
             "pageviews": 1
@@ -3300,8 +3230,33 @@
             "pageviews": 1
           },
           {
+            "date": "2026-08-12",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
             "date": "2026-08-14",
+            "path": "/10th/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-14",
+            "path": "/contact/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-14",
+            "path": "/info/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-15",
             "path": "/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-15",
+            "path": "/works/",
             "pageviews": 1
           }
         ],
@@ -3747,6 +3702,11 @@
             "sessions": 10
           },
           {
+            "date": "2026-08-14",
+            "channel": "Direct",
+            "sessions": 10
+          },
+          {
             "date": "2026-06-11",
             "channel": "Direct",
             "sessions": 9
@@ -4032,11 +3992,6 @@
             "sessions": 6
           },
           {
-            "date": "2026-05-16",
-            "channel": "Direct",
-            "sessions": 5
-          },
-          {
             "date": "2026-05-26",
             "channel": "Organic Search",
             "sessions": 5
@@ -4110,11 +4065,6 @@
             "date": "2026-08-10",
             "channel": "Organic Search",
             "sessions": 5
-          },
-          {
-            "date": "2026-05-16",
-            "channel": "Referral",
-            "sessions": 4
           },
           {
             "date": "2026-05-20",
@@ -4194,6 +4144,11 @@
           {
             "date": "2026-08-10",
             "channel": "Referral",
+            "sessions": 4
+          },
+          {
+            "date": "2026-08-14",
+            "channel": "Organic Search",
             "sessions": 4
           },
           {
@@ -4330,11 +4285,6 @@
             "date": "2026-08-08",
             "channel": "Referral",
             "sessions": 3
-          },
-          {
-            "date": "2026-05-16",
-            "channel": "Organic Search",
-            "sessions": 2
           },
           {
             "date": "2026-05-17",
@@ -4763,7 +4713,17 @@
           },
           {
             "date": "2026-08-14",
-            "channel": "Organic Search",
+            "channel": "Referral",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-14",
+            "channel": "Unassigned",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-15",
+            "channel": "Direct",
             "sessions": 1
           }
         ],
@@ -5209,6 +5169,11 @@
             "sessions": 9
           },
           {
+            "date": "2026-08-14",
+            "category": "desktop",
+            "sessions": 9
+          },
+          {
             "date": "2026-05-22",
             "category": "mobile",
             "sessions": 8
@@ -5257,11 +5222,6 @@
             "date": "2026-08-11",
             "category": "desktop",
             "sessions": 8
-          },
-          {
-            "date": "2026-05-16",
-            "category": "desktop",
-            "sessions": 7
           },
           {
             "date": "2026-05-24",
@@ -5389,6 +5349,11 @@
             "sessions": 6
           },
           {
+            "date": "2026-08-14",
+            "category": "mobile",
+            "sessions": 6
+          },
+          {
             "date": "2026-06-11",
             "category": "mobile",
             "sessions": 5
@@ -5467,11 +5432,6 @@
             "date": "2026-08-13",
             "category": "desktop",
             "sessions": 5
-          },
-          {
-            "date": "2026-05-16",
-            "category": "mobile",
-            "sessions": 4
           },
           {
             "date": "2026-05-21",
@@ -5664,8 +5624,8 @@
             "sessions": 1
           },
           {
-            "date": "2026-08-14",
-            "category": "mobile",
+            "date": "2026-08-15",
+            "category": "desktop",
             "sessions": 1
           }
         ]
@@ -5675,7 +5635,7 @@
       "id": "acurry",
       "name": "A CURRY",
       "ga4_property_id": "506973253",
-      "comment": "19セッションと母数は小さいが前週比+46%の増加、絶対数が小さいため変動の解釈には注意が必要。",
+      "comment": "19セッションで前週比+46%だが、母数が小さいため変動の影響を受けやすい。",
       "daily": [
         {
           "date": "2026-05-18",
@@ -6748,14 +6708,8 @@
       "id": "chics",
       "name": "CHICS",
       "ga4_property_id": "259441420",
-      "comment": "174セッションで前週比-34%、6サイト中最大の流入源だが今週は大きく減少。",
+      "comment": "200セッションで前週比-24%、6サイト中最大の減少幅。",
       "daily": [
-        {
-          "date": "2026-05-16",
-          "sessions": 42,
-          "users": 39,
-          "pageviews": 78
-        },
         {
           "date": "2026-05-17",
           "sessions": 35,
@@ -7292,9 +7246,9 @@
         },
         {
           "date": "2026-08-14",
-          "sessions": 4,
-          "users": 4,
-          "pageviews": 8
+          "sessions": 30,
+          "users": 27,
+          "pageviews": 70
         }
       ],
       "breakdown": {
@@ -7860,11 +7814,6 @@
             "pageviews": 13
           },
           {
-            "date": "2026-05-16",
-            "path": "/news/825/",
-            "pageviews": 12
-          },
-          {
             "date": "2026-05-21",
             "path": "/news/1372/",
             "pageviews": 12
@@ -8031,6 +7980,11 @@
           },
           {
             "date": "2026-08-12",
+            "path": "/news/1357/",
+            "pageviews": 12
+          },
+          {
+            "date": "2026-08-14",
             "path": "/news/1357/",
             "pageviews": 12
           },
@@ -8268,11 +8222,6 @@
             "date": "2026-08-07",
             "path": "/news/825/",
             "pageviews": 9
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/news/1074/",
-            "pageviews": 8
           },
           {
             "date": "2026-05-17",
@@ -8600,6 +8549,11 @@
             "pageviews": 8
           },
           {
+            "date": "2026-08-14",
+            "path": "/",
+            "pageviews": 8
+          },
+          {
             "date": "2026-07-06",
             "path": "/news/1074/",
             "pageviews": 7
@@ -8608,11 +8562,6 @@
             "date": "2026-08-07",
             "path": "/",
             "pageviews": 7
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/news/1093/",
-            "pageviews": 6
           },
           {
             "date": "2026-05-17",
@@ -9415,9 +9364,19 @@
             "pageviews": 6
           },
           {
-            "date": "2026-05-16",
-            "path": "/news/2768/",
-            "pageviews": 5
+            "date": "2026-08-14",
+            "path": "/news/1074/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-08-14",
+            "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-08-14",
+            "path": "/news/825/",
+            "pageviews": 6
           },
           {
             "date": "2026-06-01",
@@ -9835,11 +9794,6 @@
             "pageviews": 4
           },
           {
-            "date": "2026-05-16",
-            "path": "/",
-            "pageviews": 3
-          },
-          {
             "date": "2026-05-24",
             "path": "/",
             "pageviews": 3
@@ -9858,16 +9812,6 @@
             "date": "2026-08-09",
             "path": "/news/825/",
             "pageviews": 3
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/news/1357/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/news/1372/",
-            "pageviews": 2
           },
           {
             "date": "2026-05-19",
@@ -10351,7 +10295,7 @@
           },
           {
             "date": "2026-08-14",
-            "path": "/news/825/",
+            "path": "/news/1372/",
             "pageviews": 2
           },
           {
@@ -10677,11 +10621,6 @@
             "sessions": 33
           },
           {
-            "date": "2026-05-16",
-            "channel": "Organic Search",
-            "sessions": 32
-          },
-          {
             "date": "2026-08-06",
             "channel": "Organic Search",
             "sessions": 32
@@ -10788,6 +10727,11 @@
           },
           {
             "date": "2026-07-19",
+            "channel": "Organic Search",
+            "sessions": 22
+          },
+          {
+            "date": "2026-08-14",
             "channel": "Organic Search",
             "sessions": 22
           },
@@ -10940,11 +10884,6 @@
             "date": "2026-07-26",
             "channel": "Direct",
             "sessions": 10
-          },
-          {
-            "date": "2026-05-16",
-            "channel": "Direct",
-            "sessions": 9
           },
           {
             "date": "2026-05-21",
@@ -11257,6 +11196,11 @@
             "sessions": 6
           },
           {
+            "date": "2026-08-14",
+            "channel": "Direct",
+            "sessions": 6
+          },
+          {
             "date": "2026-05-21",
             "channel": "Referral",
             "sessions": 5
@@ -11379,11 +11323,6 @@
           {
             "date": "2026-08-13",
             "channel": "Direct",
-            "sessions": 4
-          },
-          {
-            "date": "2026-08-14",
-            "channel": "Organic Search",
             "sessions": 4
           },
           {
@@ -11522,9 +11461,9 @@
             "sessions": 2
           },
           {
-            "date": "2026-05-16",
+            "date": "2026-08-14",
             "channel": "Referral",
-            "sessions": 1
+            "sessions": 2
           },
           {
             "date": "2026-05-19",
@@ -12104,11 +12043,6 @@
             "sessions": 24
           },
           {
-            "date": "2026-05-16",
-            "category": "desktop",
-            "sessions": 23
-          },
-          {
             "date": "2026-06-28",
             "category": "desktop",
             "sessions": 23
@@ -12244,9 +12178,9 @@
             "sessions": 19
           },
           {
-            "date": "2026-05-16",
-            "category": "mobile",
-            "sessions": 18
+            "date": "2026-08-14",
+            "category": "desktop",
+            "sessions": 19
           },
           {
             "date": "2026-05-26",
@@ -12604,6 +12538,11 @@
             "sessions": 10
           },
           {
+            "date": "2026-08-14",
+            "category": "mobile",
+            "sessions": 10
+          },
+          {
             "date": "2026-06-07",
             "category": "mobile",
             "sessions": 9
@@ -12719,11 +12658,6 @@
             "sessions": 3
           },
           {
-            "date": "2026-05-16",
-            "category": "tablet",
-            "sessions": 2
-          },
-          {
             "date": "2026-05-19",
             "category": "tablet",
             "sessions": 2
@@ -12826,16 +12760,6 @@
           {
             "date": "2026-08-12",
             "category": "tablet",
-            "sessions": 2
-          },
-          {
-            "date": "2026-08-14",
-            "category": "desktop",
-            "sessions": 2
-          },
-          {
-            "date": "2026-08-14",
-            "category": "mobile",
             "sessions": 2
           },
           {
@@ -13112,6 +13036,11 @@
             "date": "2026-08-13",
             "category": "tablet",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-14",
+            "category": "tablet",
+            "sessions": 1
           }
         ]
       }
@@ -13120,14 +13049,8 @@
       "id": "years",
       "name": "YEARS",
       "ga4_property_id": "431033867",
-      "comment": "68セッションで前週比-53%。",
+      "comment": "59セッションで前週比-45%。",
       "daily": [
-        {
-          "date": "2026-05-16",
-          "sessions": 21,
-          "users": 19,
-          "pageviews": 22
-        },
         {
           "date": "2026-05-17",
           "sessions": 19,
@@ -13661,6 +13584,12 @@
           "sessions": 11,
           "users": 11,
           "pageviews": 11
+        },
+        {
+          "date": "2026-08-14",
+          "sessions": 1,
+          "users": 1,
+          "pageviews": 1
         }
       ],
       "breakdown": {
@@ -14189,16 +14118,6 @@
             "date": "2026-07-24",
             "path": "/",
             "pageviews": 6
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/604/",
-            "pageviews": 5
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/847/",
-            "pageviews": 5
           },
           {
             "date": "2026-05-18",
@@ -14786,11 +14705,6 @@
             "pageviews": 3
           },
           {
-            "date": "2026-05-16",
-            "path": "/879/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-05-17",
             "path": "/",
             "pageviews": 2
@@ -15129,16 +15043,6 @@
             "date": "2026-08-11",
             "path": "/contact/",
             "pageviews": 2
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-05-16",
-            "path": "/278/",
-            "pageviews": 1
           },
           {
             "date": "2026-05-18",
@@ -15913,11 +15817,6 @@
             "sessions": 19
           },
           {
-            "date": "2026-05-16",
-            "channel": "Organic Search",
-            "sessions": 16
-          },
-          {
             "date": "2026-05-31",
             "channel": "Organic Search",
             "sessions": 16
@@ -16333,11 +16232,6 @@
             "sessions": 4
           },
           {
-            "date": "2026-05-16",
-            "channel": "Direct",
-            "sessions": 3
-          },
-          {
             "date": "2026-05-19",
             "channel": "Referral",
             "sessions": 3
@@ -16411,11 +16305,6 @@
             "date": "2026-07-25",
             "channel": "Referral",
             "sessions": 3
-          },
-          {
-            "date": "2026-05-16",
-            "channel": "Referral",
-            "sessions": 2
           },
           {
             "date": "2026-05-18",
@@ -16835,6 +16724,11 @@
           {
             "date": "2026-08-13",
             "channel": "Organic Search",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-14",
+            "channel": "Direct",
             "sessions": 1
           }
         ],
@@ -17265,11 +17159,6 @@
             "sessions": 14
           },
           {
-            "date": "2026-05-16",
-            "category": "desktop",
-            "sessions": 13
-          },
-          {
             "date": "2026-05-21",
             "category": "mobile",
             "sessions": 13
@@ -17488,11 +17377,6 @@
             "date": "2026-07-25",
             "category": "desktop",
             "sessions": 9
-          },
-          {
-            "date": "2026-05-16",
-            "category": "mobile",
-            "sessions": 8
           },
           {
             "date": "2026-06-28",
@@ -17828,6 +17712,11 @@
             "date": "2026-07-07",
             "category": "tablet",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-14",
+            "category": "desktop",
+            "sessions": 1
           }
         ]
       }
@@ -17836,7 +17725,7 @@
       "id": "apollos",
       "name": "APOLLOS",
       "ga4_property_id": "545852964",
-      "comment": "14セッションで前週比-22%とやや減少。",
+      "comment": "14セッションで前週比±0%、横ばい。",
       "daily": [
         {
           "date": "2026-07-16",
@@ -17999,6 +17888,12 @@
           "sessions": 1,
           "users": 1,
           "pageviews": 1
+        },
+        {
+          "date": "2026-08-14",
+          "sessions": 1,
+          "users": 1,
+          "pageviews": 1
         }
       ],
       "breakdown": {
@@ -18155,6 +18050,11 @@
           },
           {
             "date": "2026-08-13",
+            "path": "/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-14",
             "path": "/",
             "pageviews": 1
           }
@@ -18339,6 +18239,11 @@
             "date": "2026-08-13",
             "channel": "Direct",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-14",
+            "channel": "Direct",
+            "sessions": 1
           }
         ],
         "devices": [
@@ -18511,6 +18416,11 @@
             "date": "2026-08-13",
             "category": "mobile",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-14",
+            "category": "desktop",
+            "sessions": 1
           }
         ]
       }
@@ -18519,7 +18429,7 @@
       "id": "birth",
       "name": "BIRTH",
       "ga4_property_id": "547744931",
-      "comment": "15セッション、計測開始間もなく前週比較データなし。",
+      "comment": "15セッションで比較データなし、計測開始間もない。",
       "daily": [
         {
           "date": "2026-07-30",
@@ -18695,10 +18605,14 @@
     {
       "date": "2026-08-14",
       "text": "最大の流入サイトであるCHICSが前週比-34%と6サイト中で最も大きく減少しており、今日最も注目すべき動き。"
+    },
+    {
+      "date": "2026-08-15",
+      "text": "CHICSが直近7日で200セッションと6サイト中最多だが、前週比-24%と最も大きく減少している。"
     }
   ],
   "bownow": {
-    "updated_at": "2026-08-14T07:29:53+09:00",
+    "updated_at": "2026-08-15T07:11:22+09:00",
     "sites_covered": [
       "crater",
       "chics",
@@ -18707,16 +18621,43 @@
     ],
     "note": "【表示基準】BowNowが訪問元IPアドレスから企業を自動識別できた場合のみ、その企業名をここに表示しています(個人利用の回線など識別できない訪問は対象外)。識別できた企業は日々蓄積して表示。4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。",
     "scanned_leads_this_run": 1000,
-    "companies_total": 195,
+    "companies_total": 198,
     "companies": [
+      {
+        "cid": "cid_a01f42034d9c3b3be3c2",
+        "name": "足立医師協同組合",
+        "pref_name": "東京都",
+        "city_name": "足立区",
+        "session_count": 1,
+        "uu_count": 1,
+        "last_visit_at": "2026-08-14 15:44:26 UTC"
+      },
       {
         "cid": "cid_2ec11c0fc28c7664d60c",
         "name": "株式会社クレーター",
         "pref_name": "東京都",
-        "city_name": "新宿区",
-        "session_count": 1932,
-        "uu_count": 117,
-        "last_visit_at": "2026-08-13 13:56:31 UTC"
+        "city_name": "世田谷区",
+        "session_count": 1934,
+        "uu_count": 119,
+        "last_visit_at": "2026-08-14 09:29:22 UTC"
+      },
+      {
+        "cid": "cid_4807de7ad59d7115c119",
+        "name": "株式会社三栄コーポレーション",
+        "pref_name": "東京都",
+        "city_name": "台東区",
+        "session_count": 1,
+        "uu_count": 1,
+        "last_visit_at": "2026-08-14 04:40:13 UTC"
+      },
+      {
+        "cid": "cid_4ce609242ff6d7959dd8",
+        "name": "日本放送協会",
+        "pref_name": "東京都",
+        "city_name": "渋谷区",
+        "session_count": 29,
+        "uu_count": 28,
+        "last_visit_at": "2026-08-14 02:54:13 UTC"
       },
       {
         "cid": "cid_7c22fda82f7bab505b6c",
