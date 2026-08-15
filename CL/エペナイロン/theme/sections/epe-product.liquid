@@ -36,8 +36,9 @@
   .epe-pdp__wish svg{width:15px;height:15px;stroke:var(--epe-text-muted);fill:none;stroke-width:1.5;}
   .epe-pdp__section-head{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
   .epe-pdp__details{display:flex;flex-direction:column;width:100%;}
-  .epe-pdp__detail{display:flex;flex-direction:column;gap:10px;padding:28px 0;border-bottom:1px solid var(--epe-line);}
+  .epe-pdp__detail{display:flex;flex-direction:column;gap:14px;padding:28px 0;border-bottom:1px solid var(--epe-line);}
   .epe-pdp__detail:first-child{padding-top:0;}
+  .epe-pdp__detail-img{width:100%;aspect-ratio:4/3;background:var(--epe-img-placeholder);background-size:cover;background-position:center;}
   .epe-pdp__detail-title{font-family:var(--epe-en);font-size:16px;font-weight:700;color:var(--epe-text-white);margin:0;}
   .epe-pdp__detail-body{font-family:var(--epe-jp);font-size:14px;line-height:1.8;color:var(--epe-text-body);}
   .epe-pdp__detail-body p{margin:0 0 1em;}
@@ -157,6 +158,9 @@
         <div class="epe-pdp__details">
           {%- for block in detail_blocks -%}
             <div class="epe-pdp__detail" {{ block.shopify_attributes }}>
+              {%- unless block.settings.hide_image -%}
+                <div class="epe-pdp__detail-img"{% if block.settings.image %} style="background-image:url({{ block.settings.image | image_url: width: 900 }});"{% endif %}></div>
+              {%- endunless -%}
               <h3 class="epe-pdp__detail-title">{{ block.settings.title }}</h3>
               <div class="epe-pdp__detail-body">{{ block.settings.content }}</div>
             </div>
@@ -274,6 +278,8 @@
     ]},
     { "type": "detail_section", "name": "詳細セクション", "settings": [
       { "type": "text", "id": "title", "label": "見出し", "default": "Material" },
+      { "type": "image_picker", "id": "image", "label": "画像" },
+      { "type": "checkbox", "id": "hide_image", "label": "画像エリアを表示しない", "default": false },
       { "type": "richtext", "id": "content", "label": "本文" }
     ]}
   ],
@@ -286,8 +292,8 @@
       { "type": "spec", "settings": { "label": "生産国", "value": "日本" } },
       { "type": "spec", "settings": { "label": "お手入れ方法", "value": "乾いた布で軽く拭き取り。水洗い不可" } },
       { "type": "detail_section", "settings": { "title": "Material" } },
-      { "type": "detail_section", "settings": { "title": "Size Guide" } },
-      { "type": "detail_section", "settings": { "title": "Shipping & Returns" } }
+      { "type": "detail_section", "settings": { "title": "Size Guide", "hide_image": true } },
+      { "type": "detail_section", "settings": { "title": "Shipping & Returns", "hide_image": true } }
     ]
   }]
 }
