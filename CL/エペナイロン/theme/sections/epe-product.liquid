@@ -34,12 +34,14 @@
   .epe-pdp__addcart svg{width:16px;height:16px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;}
   .epe-pdp__wish{display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--epe-text-muted);font-family:var(--epe-en);font-size:12px;cursor:pointer;padding:0;width:max-content;}
   .epe-pdp__wish svg{width:15px;height:15px;stroke:var(--epe-text-muted);fill:none;stroke-width:1.5;}
-  .epe-pdp__acc-row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--epe-line);cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;width:100%;color:var(--epe-text-white);font-family:var(--epe-en);font-size:14px;}
-  .epe-pdp__acc-row svg{width:16px;height:16px;stroke:var(--epe-text-white);fill:none;stroke-width:1.5;transition:transform .2s;}
-  .epe-pdp__acc-row.is-open svg{transform:rotate(180deg);}
-  .epe-pdp__acc-panel{max-height:0;overflow:hidden;font-family:var(--epe-jp);font-size:13px;line-height:1.7;color:var(--epe-text-body);}
-  .epe-pdp__acc-panel.is-open{max-height:400px;padding:12px 0 4px;}
   .epe-pdp__section-head{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  .epe-pdp__details{display:flex;flex-direction:column;width:700px;max-width:100%;}
+  .epe-pdp__detail{display:flex;flex-direction:column;gap:10px;padding:28px 0;border-bottom:1px solid var(--epe-line);}
+  .epe-pdp__detail:first-child{padding-top:0;}
+  .epe-pdp__detail-title{font-family:var(--epe-en);font-size:16px;font-weight:700;color:var(--epe-text-white);margin:0;}
+  .epe-pdp__detail-body{font-family:var(--epe-jp);font-size:14px;line-height:1.8;color:var(--epe-text-body);}
+  .epe-pdp__detail-body p{margin:0 0 1em;}
+  .epe-pdp__detail-body p:last-child{margin-bottom:0;}
   .epe-pdp__descsec{display:flex;flex-direction:column;gap:32px;padding:10px 80px 80px;}
   .epe-pdp__descbody{width:700px;max-width:100%;font-family:var(--epe-jp);font-size:14px;line-height:1.8;color:var(--epe-text-body);white-space:pre-line;}
   .epe-pdp__spectable{width:700px;max-width:100%;display:flex;flex-direction:column;}
@@ -149,14 +151,6 @@
       {%- endform -%}
 
       <button type="button" class="epe-pdp__wish"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>Add to Wishlist</button>
-
-      <div class="epe-pdp__accordion">
-        {%- assign acc_blocks = section.blocks | where: "type", "accordion" -%}
-        {%- for block in acc_blocks -%}
-          <button type="button" class="epe-pdp__acc-row" data-acc-toggle {{ block.shopify_attributes }}>{{ block.settings.title }}<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
-          <div class="epe-pdp__acc-panel">{{ block.settings.content }}</div>
-        {%- endfor -%}
-      </div>
     </div>
   </div>
 
@@ -168,6 +162,17 @@
       <div class="epe-pdp__spectable">
         {%- for block in spec_blocks -%}
           <div class="epe-pdp__specrow" {{ block.shopify_attributes }}><div class="epe-pdp__speck">{{ block.settings.label }}</div><div class="epe-pdp__specv">{{ block.settings.value }}</div></div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- assign detail_blocks = section.blocks | where: "type", "detail_section" -%}
+    {%- if detail_blocks.size > 0 -%}
+      <div class="epe-pdp__details">
+        {%- for block in detail_blocks -%}
+          <div class="epe-pdp__detail" {{ block.shopify_attributes }}>
+            <h3 class="epe-pdp__detail-title">{{ block.settings.title }}</h3>
+            <div class="epe-pdp__detail-body">{{ block.settings.content }}</div>
+          </div>
         {%- endfor -%}
       </div>
     {%- endif -%}
@@ -246,14 +251,6 @@
         btn.classList.add('is-active');
       });
     });
-
-    root.querySelectorAll('[data-acc-toggle]').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var panel = btn.nextElementSibling;
-        var open = btn.classList.toggle('is-open');
-        if(panel) panel.classList.toggle('is-open', open);
-      });
-    });
   })();
 </script>
 {% schema %}
@@ -274,9 +271,9 @@
       { "type": "text", "id": "label", "label": "項目名", "default": "項目名" },
       { "type": "text", "id": "value", "label": "値", "default": "" }
     ]},
-    { "type": "accordion", "name": "アコーディオン", "settings": [
-      { "type": "text", "id": "title", "label": "タイトル", "default": "Material" },
-      { "type": "richtext", "id": "content", "label": "内容" }
+    { "type": "detail_section", "name": "詳細セクション", "settings": [
+      { "type": "text", "id": "title", "label": "見出し", "default": "Material" },
+      { "type": "richtext", "id": "content", "label": "本文" }
     ]}
   ],
   "presets": [{
@@ -287,9 +284,9 @@
       { "type": "spec", "settings": { "label": "重量", "value": "" } },
       { "type": "spec", "settings": { "label": "生産国", "value": "日本" } },
       { "type": "spec", "settings": { "label": "お手入れ方法", "value": "乾いた布で軽く拭き取り。水洗い不可" } },
-      { "type": "accordion", "settings": { "title": "Material" } },
-      { "type": "accordion", "settings": { "title": "Size Guide" } },
-      { "type": "accordion", "settings": { "title": "Shipping & Returns" } }
+      { "type": "detail_section", "settings": { "title": "Material" } },
+      { "type": "detail_section", "settings": { "title": "Size Guide" } },
+      { "type": "detail_section", "settings": { "title": "Shipping & Returns" } }
     ]
   }]
 }

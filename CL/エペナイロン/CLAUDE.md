@@ -138,4 +138,10 @@ Liquidを先に組んだ4種のページ（商品一覧・ブログ一覧・ブ�
   - SPECテーブル：Item Number/Name/Color/Material/Size/Capacity/Weight/Country Of Origin の8項目（実データ：epe201・¥25,300は商品自体の価格なので実商品登録時にShopify側で設定）
   - アコーディオン5本：Fabric/Zipper・Pocket & Storage・Chest Belt/Details・Gift Wrapping・Shipping & Returns（原稿の全項目を分類して格納）
 - 商品タイトル・価格自体（`product.title`/`product.price`）はShopify側の実商品レコードに依存するため、商品登録時に「DAY PACK」「¥25,300」で登録すれば自動反映される
-- Pencil側は未反映（今回はLiquidのみの依頼だったため）。必要であれば別途Pencilの商品詳細フレーム(`L4tc6Y`)にも同じ調整を反映可能
+
+## 2026-08-15 追記：Pencil/Liquid同時反映を標準ルール化、アコーディオン→長いページ化
+- ケイスケさんから「pencilは毎回やってください」「というかわからなくなるのでどちらも毎回よろ」と明確な指示。以後、Liquidのデザイン変更は聞かれなくても毎回Pencil側にも反映する（[[feedback_pencil_liquid_同時反映必須]]として記録）
+- 上記の商品詳細ギャラリー調整（画像縮小・6列サムネイル・sticky）とDAY PACK実データを、Pencil側の商品詳細ページ(`L4tc6Y`)にも反映。ギャラリー列472px固定＋情報パネルfill_container、サムネイル6列×2段、商品名/価格/SPEC8項目/コンテンツをDAY PACK実データに統一
+- ケイスケさんがPencilを直接見ていて発覚したバグ2件を修正：①ジャーナル一覧ページのヒーロー(`BbWXb`)が`layout`未指定でパンくずとタイトルが横並びになっていた→`layout:"vertical"`を追加 ②記事詳細ページ(`rYLEK`)でタイトルと画像の間にgapがなく密着していた→タイトルブロック(`USezG`)にpadding-bottom 32を追加
+- ヘッダーの左右余白について確認依頼があったが、Pencil(`r4yvFI`/`AlAat`)とLiquid(`epe-header.liquid`)のpadding・gap値はPC/SP含め既に完全一致していたため変更なし
+- **アコーディオン→常時表示の「長いページ」に変更**：商品詳細の詳細情報（Fabric/Zipper・Pocket & Storage・Chest Belt/Details・Gift Wrapping・Shipping & Returns）は、クリックで開く方式をやめて全て常時展開の縦積みセクションに変更。Liquidは`section.blocks`のtype名を`accordion`→`detail_section`にリネームし、JSのトグル処理を削除。表示位置はSPECテーブルの下（Descriptionセクション内）。Pencil側もアコーディオン風の行(`EVTMi`)を削除し、DescriptionSection内に見出し+本文の`DetailsSection`を新設して同内容を反映
