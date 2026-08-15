@@ -191,7 +191,8 @@
       {%- for p in relcol.products -%}
         {%- if p.id != product.id and shown < 3 -%}
           {%- assign shown = shown | plus: 1 -%}
-          {%- render 'epe-image-card', image: p.featured_image, alt: p.title, link: p.url, name: p.title, price: p.price | money %}
+          {%- assign p_price = p.price | money -%}
+          {%- render 'epe-image-card', image: p.featured_image, alt: p.title, link: p.url, name: p.title, price: p_price %}
         {%- endif -%}
       {%- endfor -%}
     </div>

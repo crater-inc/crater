@@ -34,7 +34,8 @@
   <div class="epe-col__grid">
     {%- if collection.products.size > 0 -%}
       {%- for product in collection.products -%}
-        {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product.price | money %}
+        {%- assign product_price = product.price | money -%}
+        {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product_price %}
       {%- endfor -%}
     {%- else -%}
       {%- for i in (1..6) -%}

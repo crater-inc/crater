@@ -17,7 +17,8 @@
   <div class="epe-bloglist__grid">
     {%- paginate blog.articles by 9 -%}
       {%- for article in blog.articles -%}
-        {%- render 'epe-blog-card', image: article.image, link: article.url, date: article.published_at | date: '%Y年 %m月 %d日', title: article.title %}
+        {%- assign article_date = article.published_at | date: '%Y年 %m月 %d日' -%}
+        {%- render 'epe-blog-card', image: article.image, link: article.url, date: article_date, title: article.title %}
       {%- else -%}
         {%- for i in (1..3) -%}
           {%- render 'epe-blog-card', date: '20XX年 0月 00日', title: '記事タイトルが入ります' %}

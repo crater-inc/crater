@@ -26,7 +26,8 @@
     {%- if epe_col == blank -%}{%- assign epe_col = collections.all -%}{%- endif -%}
     {%- if epe_col.products.size > 0 -%}
       {%- for product in epe_col.products limit: 3 -%}
-        {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product.price | money, ratio: '4/5' %}
+        {%- assign product_price = product.price | money -%}
+        {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product_price, ratio: '4/5' %}
       {%- endfor -%}
     {%- else -%}
       {%- for block in section.blocks -%}

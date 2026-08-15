@@ -18,7 +18,8 @@
     {%- assign epe_blog = section.settings.blog -%}
     {%- if epe_blog != blank and epe_blog.articles.size > 0 -%}
       {%- for article in epe_blog.articles limit: 6 -%}
-        {%- render 'epe-blog-card', image: article.image, link: article.url, date: article.published_at | date: '%Y年 %m月 %d日', title: article.title %}
+        {%- assign article_date = article.published_at | date: '%Y年 %m月 %d日' -%}
+        {%- render 'epe-blog-card', image: article.image, link: article.url, date: article_date, title: article.title %}
       {%- endfor -%}
     {%- else -%}
       {%- for block in section.blocks -%}
