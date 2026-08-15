@@ -179,4 +179,11 @@ Liquidを先に組んだ4種のページ（商品一覧・ブログ一覧・ブ�
 - 詳細セクション10項目は原稿docxの実文言（FABRIC〜GIFT）をそのまま使用
 - Color/Size/Quantity/Add to Cart/Wishlistは構造のみ再現（実バリエーション未登録のためプレースホルダー）
 - **未対応で気づいた点（今回のスコープ外・要確認）**：TOPページSP版のPickup Product/Styling（`BHSNu`/`HVE8i`内の`dPk87`参照、height:300）も実は4:5(342幅なら427.5)になっておらず、詳細セクションと同種のズレが残っている可能性。指摘があれば次回修正。
+
+## 2026-08-16 追記：Shopifyストア接続完了（下書きテーマとしてpush済み）
+- ストアURL：`prwybv-g4.myshopify.com`（epe | nylon）。オーナーはkskakari@gmail.com（株式会社クレーターが「組織のオーナー」＝A CURRYなど他ストアと同じShopify組織配下）
+- **コラボレーター招待・Theme Accessアプリは不要と判明**：オーナー本人のアカウントでCLIから直接OAuthログインすれば繋がる。ユーザー枠の上限エラーは無関係で、単にBasicプラン等の仕様（プラン改定でスタッフ0人枠）が原因だった可能性が高い（組織全体でユーザー枠がプールされる、という仮説は調査の結果誤りと判明。Shopify公式ヘルプによれば上限はストアごとに独立）
+- ケイスケさん本人のターミナルで`shopify theme push --unpublished --store=prwybv-g4.myshopify.com`を実行→デバイス認証コードでログイン→テーマ名「EPE NYLON - Draft」で下書きとしてpush成功（**Bash直接実行はClaude Codeの自動モード分類器にブロックされるため、本番外部サービスへの書き込み系コマンドは毎回ケイスケさん本人のターミナル実行が必要**）
+- 下書きテーマID：`160914014393`。プレビューURL：`https://prwybv-g4.myshopify.com?preview_theme_id=160914014393`（本番非公開・関係者のみ閲覧可）。エディタ：`https://prwybv-g4.myshopify.com/admin/themes/160914014393/editor`
+- **次のアクション**：プレビュー内容の確認（実装ズレ・文字化け等がないか）→ 問題なければ商品登録・実画像差し替え → 最終的に「このテーマを公開する」で本番切り替え（要ケイスケさん確認、無断で公開しない）
 - **未対応で見つけたもの**：商品詳細ページの関連商品（Related Products）もPencil側にキャプションが無い状態（Liquidにはname/price渡し済み）。今回のスコープ外だったため未着手。次に触るときはここも要確認
