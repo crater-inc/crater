@@ -95,7 +95,11 @@
               "ref": "r4yvFI",
               "name": "Header",
               "x": 0,
-              "y": 0
+              "y": 0,
+              "padding": [
+                24,
+                28
+              ]
             },
             {
               "type": "frame",
@@ -380,14 +384,14 @@
               "name": "AboutPhoto",
               "fill": "$epe-img-placeholder",
               "width": "fill_container",
-              "height": 440
+              "height": 312
             }
           ]
         },
         {
           "type": "frame",
           "id": "E6kRUw",
-          "name": "Product",
+          "name": "Pickup Product",
           "width": "fill_container",
           "fill": "$epe-section-bg",
           "layout": "vertical",
@@ -412,7 +416,7 @@
                   "id": "FML2L",
                   "name": "Title",
                   "fill": "$epe-text-white",
-                  "content": "Product",
+                  "content": "Pickup Product",
                   "fontFamily": "$epe-font-en",
                   "fontSize": 30,
                   "fontWeight": "700"
@@ -459,28 +463,118 @@
               "gap": 24,
               "children": [
                 {
-                  "id": "TEfSY",
-                  "type": "ref",
-                  "ref": "dPk87",
-                  "name": "ProductItem1",
+                  "type": "frame",
+                  "id": "r3486",
+                  "name": "Card",
                   "width": "fill_container",
-                  "height": 280
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "id": "TEfSY",
+                      "type": "ref",
+                      "ref": "dPk87",
+                      "name": "ProductItem1",
+                      "width": "fill_container",
+                      "height": 472
+                    },
+                    {
+                      "type": "text",
+                      "id": "mgUUi",
+                      "name": "Name",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "wTdKi",
+                      "name": "Price",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 },
                 {
-                  "id": "kHUEW",
-                  "type": "ref",
-                  "ref": "dPk87",
-                  "name": "ProductItem2",
+                  "type": "frame",
+                  "id": "Zrh5R",
+                  "name": "Card",
                   "width": "fill_container",
-                  "height": 280
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "id": "kHUEW",
+                      "type": "ref",
+                      "ref": "dPk87",
+                      "name": "ProductItem2",
+                      "width": "fill_container",
+                      "height": 472
+                    },
+                    {
+                      "type": "text",
+                      "id": "h48Pp",
+                      "name": "Name",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "rggyd",
+                      "name": "Price",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 },
                 {
-                  "id": "y7iC1k",
-                  "type": "ref",
-                  "ref": "dPk87",
-                  "name": "ProductItem3",
+                  "type": "frame",
+                  "id": "lkBZY",
+                  "name": "Card",
                   "width": "fill_container",
-                  "height": 280
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "id": "y7iC1k",
+                      "type": "ref",
+                      "ref": "dPk87",
+                      "name": "ProductItem3",
+                      "width": "fill_container",
+                      "height": 472
+                    },
+                    {
+                      "type": "text",
+                      "id": "BAvDR",
+                      "name": "Name",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jLORp",
+                      "name": "Price",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             }
@@ -618,31 +712,91 @@
               "gap": 24,
               "children": [
                 {
-                  "id": "BMhoe",
-                  "type": "ref",
-                  "ref": "dPk87",
-                  "name": "StylingItem",
+                  "type": "frame",
+                  "id": "Ctl6o",
+                  "name": "Card",
                   "width": "fill_container",
-                  "height": 280,
-                  "fill": "$epe-img-placeholder"
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "id": "BMhoe",
+                      "type": "ref",
+                      "ref": "dPk87",
+                      "name": "StylingItem",
+                      "width": "fill_container",
+                      "height": 212,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "b20axm",
+                      "name": "Caption",
+                      "fill": "$epe-text-white",
+                      "content": "Look 01",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 },
                 {
-                  "id": "NpmWP",
-                  "type": "ref",
-                  "ref": "dPk87",
-                  "name": "StylingItem",
+                  "type": "frame",
+                  "id": "PRjzj",
+                  "name": "Card",
                   "width": "fill_container",
-                  "height": 280,
-                  "fill": "$epe-img-placeholder"
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "id": "NpmWP",
+                      "type": "ref",
+                      "ref": "dPk87",
+                      "name": "StylingItem",
+                      "width": "fill_container",
+                      "height": 212,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "iNQoR",
+                      "name": "Caption",
+                      "fill": "$epe-text-white",
+                      "content": "Look 02",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 },
                 {
-                  "id": "fuvA0",
-                  "type": "ref",
-                  "ref": "dPk87",
-                  "name": "StylingItem",
+                  "type": "frame",
+                  "id": "XiJ09",
+                  "name": "Card",
                   "width": "fill_container",
-                  "height": 280,
-                  "fill": "$epe-img-placeholder"
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "id": "fuvA0",
+                      "type": "ref",
+                      "ref": "dPk87",
+                      "name": "StylingItem",
+                      "width": "fill_container",
+                      "height": 212,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "c4kIMU",
+                      "name": "Caption",
+                      "fill": "$epe-text-white",
+                      "content": "Look 03",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
                 }
               ]
             }
@@ -859,7 +1013,7 @@
               "name": "ContactPhoto",
               "fill": "$epe-img-placeholder",
               "width": "fill_container",
-              "height": 340
+              "height": 312
             }
           ]
         },
@@ -1507,7 +1661,7 @@
       "name": "ImageCard",
       "reusable": true,
       "width": 300,
-      "height": 260,
+      "height": 169,
       "fill": "$epe-img-placeholder"
     },
     {
@@ -1527,7 +1681,7 @@
           "ref": "dPk87",
           "name": "BlogImage",
           "width": "fill_container",
-          "height": 240
+          "height": 212
         },
         {
           "type": "text",
@@ -1622,7 +1776,7 @@
               "type": "text",
               "id": "UT5G6",
               "fill": "$epe-text-muted",
-              "content": "Backpack Model 01",
+              "content": "DAY PACK",
               "fontFamily": "$epe-font-en",
               "fontSize": 12,
               "fontWeight": "normal"
@@ -1634,7 +1788,7 @@
           "id": "f2WDzJ",
           "name": "ProductMain",
           "width": "fill_container",
-          "gap": 60,
+          "gap": 56,
           "padding": [
             10,
             80,
@@ -1646,9 +1800,9 @@
               "type": "frame",
               "id": "mtZP5",
               "name": "Gallery",
-              "width": "fill_container",
+              "width": 519,
               "layout": "vertical",
-              "gap": 14,
+              "gap": 10,
               "children": [
                 {
                   "type": "rectangle",
@@ -1656,7 +1810,7 @@
                   "name": "MainImage",
                   "fill": "$epe-img-placeholder",
                   "width": "fill_container",
-                  "height": 825
+                  "height": 649
                 },
                 {
                   "type": "frame",
@@ -1664,88 +1818,120 @@
                   "name": "Thumbs",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 12,
+                  "gap": 8,
                   "children": [
                     {
                       "type": "frame",
-                      "id": "yg8i3",
+                      "id": "nx4rB",
                       "name": "ThumbRow",
                       "width": "fill_container",
-                      "gap": 12,
+                      "gap": 8,
                       "children": [
                         {
                           "type": "frame",
-                          "id": "J98wKZ",
+                          "id": "tfHZi",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
                           "fill": "$epe-img-placeholder",
                           "stroke": "$epe-text-white",
                           "strokeWidth": 2
                         },
                         {
                           "type": "frame",
-                          "id": "w5hZJ",
+                          "id": "g6EkAU",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
                           "fill": "$epe-img-placeholder"
                         },
                         {
                           "type": "frame",
-                          "id": "G4hHu",
+                          "id": "vm3tO",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
                           "fill": "$epe-img-placeholder"
                         },
                         {
                           "type": "frame",
-                          "id": "r33Qr",
+                          "id": "cShRh",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "nwVyi",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 100,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bj0cH",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 100,
                           "fill": "$epe-img-placeholder"
                         }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "J63u4u",
+                      "id": "tIXz4",
                       "name": "ThumbRow",
                       "width": "fill_container",
-                      "gap": 12,
+                      "gap": 8,
                       "children": [
                         {
                           "type": "frame",
-                          "id": "bXf9u",
+                          "id": "N3MeKp",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
                           "fill": "$epe-img-placeholder"
                         },
                         {
                           "type": "frame",
-                          "id": "Z0hm9",
+                          "id": "kZwgY",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
                           "fill": "$epe-img-placeholder"
                         },
                         {
                           "type": "frame",
-                          "id": "tY6h6",
+                          "id": "VWZ3X",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
                           "fill": "$epe-img-placeholder"
                         },
                         {
                           "type": "frame",
-                          "id": "SqDMF",
+                          "id": "IVxyn",
                           "name": "Thumb",
                           "width": "fill_container",
-                          "height": 195,
+                          "height": 100,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "mE1fl",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 100,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JGeQD",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 100,
                           "fill": "$epe-img-placeholder"
                         }
                       ]
@@ -1758,7 +1944,7 @@
               "type": "frame",
               "id": "SV7Mo",
               "name": "InfoPanel",
-              "width": 460,
+              "width": "fill_container",
               "layout": "vertical",
               "gap": 22,
               "children": [
@@ -1775,7 +1961,7 @@
                   "type": "text",
                   "id": "HSXUa",
                   "fill": "$epe-text-white",
-                  "content": "Streamline Backpack",
+                  "content": "DAY PACK",
                   "fontFamily": "$epe-font-en",
                   "fontSize": 28,
                   "fontWeight": "700"
@@ -1784,7 +1970,7 @@
                   "type": "text",
                   "id": "l638Oh",
                   "fill": "$epe-text-white",
-                  "content": "¥28,600（税込）",
+                  "content": "¥25,300（税込）",
                   "fontFamily": "$epe-font-en",
                   "fontSize": 20,
                   "fontWeight": "600"
@@ -1795,7 +1981,7 @@
                   "fill": "$epe-text-body",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "高密度ナイロン素材を使用した、軽量設計のユーティリティバックパック。都市の日常に必要な機能だけを、削ぎ落としたデザインで。",
+                  "content": "本体生地には、CORDURA糸とリサイクルPET糸から生まれたサステナブルナイロン素材「CORDURA® RE/COR™」を採用。210D TWILL NYLON生地に綿をボンディングし、柔らかさとハリを絶妙なバランスで両立。環境に配慮した高耐久・高機能を実現しました。",
                   "lineHeight": 1.7,
                   "fontFamily": "$epe-font-jp",
                   "fontSize": 14,
@@ -2036,116 +2222,541 @@
                 },
                 {
                   "type": "frame",
-                  "id": "EVTMi",
-                  "name": "Accordion",
+                  "id": "aqaqc",
+                  "name": "DetailsSection",
                   "width": "fill_container",
                   "layout": "vertical",
                   "children": [
                     {
                       "type": "frame",
-                      "id": "Jcv6Q",
-                      "name": "AccRow-Material",
+                      "id": "EA07d",
+                      "name": "Detail-FABRIC",
                       "width": "fill_container",
                       "stroke": "$epe-line",
                       "strokeWidth": {
                         "bottom": 1
                       },
+                      "layout": "vertical",
+                      "gap": 14,
                       "padding": [
-                        16,
+                        0,
+                        0,
+                        28,
                         0
                       ],
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
                       "children": [
                         {
-                          "type": "text",
-                          "id": "zKaFG",
-                          "fill": "$epe-text-white",
-                          "content": "Material",
-                          "fontFamily": "$epe-font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "rectangle",
+                          "id": "vgMN9",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
                         },
                         {
-                          "type": "icon",
-                          "id": "PhS4G",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "chevron-down",
-                          "library": "lucide",
-                          "fill": "$epe-text-white"
+                          "type": "text",
+                          "id": "B7YURG",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "FABRIC",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "o42pcU",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "本体生地に採用した「CORDURA® RE/COR™」は、CORDURA糸とリサイクルPET糸で作られたサステナブルナイロン素材。210D TWILL NYLON生地に綿をボンディングし、柔らかさとハリを絶妙なバランスで調整。環境に配慮しながら高耐久・高機能を実現しました。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "LOInQ",
-                      "name": "AccRow-Size Guide",
+                      "id": "LolWm",
+                      "name": "Detail-FABRIC",
                       "width": "fill_container",
                       "stroke": "$epe-line",
                       "strokeWidth": {
                         "bottom": 1
                       },
+                      "layout": "vertical",
+                      "gap": 14,
                       "padding": [
-                        16,
+                        28,
                         0
                       ],
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
                       "children": [
                         {
-                          "type": "text",
-                          "id": "jragX",
-                          "fill": "$epe-text-white",
-                          "content": "Size Guide",
-                          "fontFamily": "$epe-font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "type": "rectangle",
+                          "id": "LlDCd",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
                         },
                         {
-                          "type": "icon",
-                          "id": "X9EcD",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "chevron-down",
-                          "library": "lucide",
-                          "fill": "$epe-text-white"
+                          "type": "text",
+                          "id": "IAP8z",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "FABRIC",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "UfSMp",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "内装生地には国際的な有害化学物質基準に関する安全性試験をクリアしたOEKO-TEX®認定生地を採用。軽量ながら引き裂き強度の高い210Dのリップストップ生地を使用しているため、荷物を気兼ねなく出し入れすることが出来ます。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
                     {
                       "type": "frame",
-                      "id": "e4B2E",
-                      "name": "AccRow-Shipping & Returns",
+                      "id": "T6wIZv",
+                      "name": "Detail-ZIPPER",
                       "width": "fill_container",
                       "stroke": "$epe-line",
                       "strokeWidth": {
                         "bottom": 1
                       },
+                      "layout": "vertical",
+                      "gap": 14,
                       "padding": [
-                        16,
+                        28,
                         0
                       ],
-                      "justifyContent": "space_between",
-                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "xzWaE",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "ya4r0",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "ZIPPER",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "JrCp3",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "ファスナーには世界基準でも安定した品質を誇る、世界シェアNo.1のYKK社製コイルファスナーを採用。表面には撥水加工を施した「WATER-R」を使用しており、軽度の雨や汚れを弾きます。プラスチック部材には韓国の大手メーカー「WOOJIN」社製品を使用しています。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Fvrbm",
+                      "name": "Detail-FRONT POCKET",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "RPfaJ",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "B1HfL",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "FRONT POCKET",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HyADa",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "フロントポケットはマチ付きのため多くの荷物を収納可能。中にメッシュポケットがあり、バッグの中でバラバラになりがちな小物の仕分けもできます。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "B2WVj8",
+                      "name": "Detail-SIDE POCKET",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "Jx418",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "Saqkm",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "SIDE POCKET",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ous5o",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "正面左側のポケットはマグネット式になっており、開閉しやすい仕様に。正面右側のポケットはファスナー式になっており、スマホやパスケースなどの収納に便利です。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "boVFI",
+                      "name": "Detail-PC ROOM",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "k4aeqW",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "e6p67l",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "PC ROOM",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "w7bIW8",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "背面のPCルームはクッション性の生地を採用しており、16インチ程度のPCまで収納可能です。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kASGz",
+                      "name": "Detail-MAIN ROOM",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "BhhR8",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "upCen",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "MAIN ROOM",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VTPoi",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "メインルーム奥側には大小のオープンポケットを配置。手前には2つのファスナーポケット、左側にボトルホルダーを配置しています。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JodRb",
+                      "name": "Detail-CHEST BELT",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "zODKR",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "LDxjz",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "CHEST BELT",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "oa5sK",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "肩のずり落ちを防ぎ、疲労を軽減させるチェストストラップを装備。着脱式のため、使用しない場合は取り外すことができます。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sGOjZ",
+                      "name": "Detail-PISNAME",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "P2RXV9",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "f0fXvp",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "PISNAME",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "H8tpw",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "epeオリジナルのピスネームは、主張しすぎないグレーカラーに仕上げました。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jcYwr",
+                      "name": "Detail-GIFT",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "wSs7H",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 340.3125
+                        },
+                        {
+                          "type": "text",
+                          "id": "wSUfl",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "GIFT",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "e9OQL",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "epeを大切な方へプレゼントするお客様のため、ギフトラッピングを無料でご用意しています。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TNOWj",
+                      "name": "Detail-Shipping & Returns",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
                       "children": [
                         {
                           "type": "text",
-                          "id": "MUXft",
+                          "id": "q0BaPN",
+                          "name": "Title",
                           "fill": "$epe-text-white",
                           "content": "Shipping & Returns",
                           "fontFamily": "$epe-font-en",
-                          "fontSize": 14,
-                          "fontWeight": "normal"
+                          "fontSize": 16,
+                          "fontWeight": "700"
                         },
                         {
-                          "type": "icon",
-                          "id": "pxuT0",
-                          "width": 16,
-                          "height": 16,
-                          "icon": "chevron-down",
-                          "library": "lucide",
-                          "fill": "$epe-text-white"
+                          "type": "text",
+                          "id": "lWwNC",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "ご注文確認後、通常3〜5営業日以内に発送いたします。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -2192,7 +2803,7 @@
                   "fill": "$epe-text-body",
                   "textGrowth": "fixed-width",
                   "width": "fill_container",
-                  "content": "特殊な加工を施した高密度ナイロンを採用し、耐久性と軽さを両立したユーティリティバックパック。\n溢れかえるポケットや過剰な装飾を削ぎ落とし、都市の日常に本当に必要な機能だけを残した無駄のない造形。\n背面パッドとストラップの設計により、長時間の着用でも負担の少ない快適な使い心地を実現しています。",
+                  "content": "本体生地には、CORDURA糸とリサイクルPET糸から生まれたサステナブルナイロン素材「CORDURA® RE/COR™」を採用。210D TWILL NYLON生地に綿をボンディングし、柔らかさとハリを絶妙なバランスで両立させながら、環境に配慮した高耐久・高機能を実現しました。\n溢れかえるポケットや過剰な装飾を削ぎ落とし、都市の日常に本当に必要な機能だけを残した無駄のない造形。着脱式のチェストベルトと背面のクッション性PCルームにより、長時間の着用でも負担の少ない快適な使い心地を実現しています。",
                   "lineHeight": 1.8,
                   "fontFamily": "$epe-font-jp",
                   "fontSize": 14,
@@ -2209,8 +2820,8 @@
               "children": [
                 {
                   "type": "frame",
-                  "id": "ZhqsS",
-                  "name": "Spec-素材",
+                  "id": "iFvk0",
+                  "name": "Spec-Item Number",
                   "width": "fill_container",
                   "stroke": "$epe-line",
                   "strokeWidth": {
@@ -2224,22 +2835,24 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "YJgkX",
+                      "id": "rv0G9",
+                      "name": "Label",
                       "fill": "$epe-text-muted",
                       "textGrowth": "fixed-width",
                       "width": 140,
-                      "content": "素材",
+                      "content": "Item Number",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "a0qoyE",
+                      "id": "xpZMX",
+                      "name": "Value",
                       "fill": "$epe-text-white",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "高密度ナイロン（撥水加工）",
+                      "content": "epe201",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -2248,8 +2861,8 @@
                 },
                 {
                   "type": "frame",
-                  "id": "a7jqu",
-                  "name": "Spec-サイズ",
+                  "id": "UZB11",
+                  "name": "Spec-Item Name",
                   "width": "fill_container",
                   "stroke": "$epe-line",
                   "strokeWidth": {
@@ -2263,22 +2876,24 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "C0AAA",
+                      "id": "J5oWq",
+                      "name": "Label",
                       "fill": "$epe-text-muted",
                       "textGrowth": "fixed-width",
                       "width": 140,
-                      "content": "サイズ",
+                      "content": "Item Name",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "FNjTn",
+                      "id": "jEMPl",
+                      "name": "Value",
                       "fill": "$epe-text-white",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "W320 × H460 × D150 mm",
+                      "content": "DAY PACK（デイパック）",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -2287,8 +2902,8 @@
                 },
                 {
                   "type": "frame",
-                  "id": "OtTwo",
-                  "name": "Spec-重量",
+                  "id": "H8HYLS",
+                  "name": "Spec-Color",
                   "width": "fill_container",
                   "stroke": "$epe-line",
                   "strokeWidth": {
@@ -2302,22 +2917,24 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "XGqbI",
+                      "id": "uF1dB",
+                      "name": "Label",
                       "fill": "$epe-text-muted",
                       "textGrowth": "fixed-width",
                       "width": 140,
-                      "content": "重量",
+                      "content": "Color",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "AyPxS",
+                      "id": "IDuwR",
+                      "name": "Value",
                       "fill": "$epe-text-white",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "約 650g",
+                      "content": "Black",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -2326,8 +2943,8 @@
                 },
                 {
                   "type": "frame",
-                  "id": "RgO72",
-                  "name": "Spec-生産国",
+                  "id": "poIQs",
+                  "name": "Spec-Material",
                   "width": "fill_container",
                   "stroke": "$epe-line",
                   "strokeWidth": {
@@ -2341,22 +2958,24 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "F6uFHG",
+                      "id": "PTscJ",
+                      "name": "Label",
                       "fill": "$epe-text-muted",
                       "textGrowth": "fixed-width",
                       "width": 140,
-                      "content": "生産国",
+                      "content": "Material",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "GRzo2",
+                      "id": "JVr8r",
+                      "name": "Value",
                       "fill": "$epe-text-white",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "日本",
+                      "content": "CORDURA® RE/COR™",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -2365,8 +2984,8 @@
                 },
                 {
                   "type": "frame",
-                  "id": "tPkWx",
-                  "name": "Spec-お手入れ方法",
+                  "id": "bysTu",
+                  "name": "Spec-Size",
                   "width": "fill_container",
                   "stroke": "$epe-line",
                   "strokeWidth": {
@@ -2380,22 +2999,147 @@
                   "children": [
                     {
                       "type": "text",
-                      "id": "q8t3d6",
+                      "id": "lxCia",
+                      "name": "Label",
                       "fill": "$epe-text-muted",
                       "textGrowth": "fixed-width",
                       "width": 140,
-                      "content": "お手入れ方法",
+                      "content": "Size",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "k6ig9",
+                      "id": "CdWhl",
+                      "name": "Value",
                       "fill": "$epe-text-white",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "乾いた布で軽く拭き取り。水洗い不可",
+                      "content": "W320 × H450 × D150mm",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Q5rqwz",
+                  "name": "Spec-Capacity",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wrf14",
+                      "name": "Label",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "Capacity",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "XR6g9",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "約20L",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wZpZ3",
+                  "name": "Spec-Weight",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "wB2rp",
+                      "name": "Label",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "Weight",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JjAoV",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "約920g",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Z42u0",
+                  "name": "Spec-Country Of Origin",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TLvQn",
+                      "name": "Label",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 140,
+                      "content": "Country Of Origin",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "bnW3k",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "VIETNAM",
                       "fontFamily": "$epe-font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -2442,7 +3186,7 @@
                   "ref": "dPk87",
                   "name": "RelatedItem1",
                   "width": "fill_container",
-                  "height": 280
+                  "height": 212
                 },
                 {
                   "id": "M3F4Tg",
@@ -2450,7 +3194,7 @@
                   "ref": "dPk87",
                   "name": "RelatedItem2",
                   "width": "fill_container",
-                  "height": 280
+                  "height": 212
                 },
                 {
                   "id": "SbtZl",
@@ -2458,7 +3202,7 @@
                   "ref": "dPk87",
                   "name": "RelatedItem3",
                   "width": "fill_container",
-                  "height": 280
+                  "height": 212
                 }
               ]
             }
@@ -3732,45 +4476,10 @@
         },
         {
           "type": "frame",
-          "id": "BfOtK",
-          "name": "Bar",
+          "id": "U5qLA",
+          "name": "Wrap",
           "width": "fill_container",
-          "padding": [
-            0,
-            80,
-            32,
-            80
-          ],
-          "justifyContent": "space_between",
-          "alignItems": "center",
-          "children": [
-            {
-              "type": "text",
-              "id": "VdoaR",
-              "fill": "$epe-text-muted",
-              "content": "12 items",
-              "fontFamily": "$epe-font-en",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            },
-            {
-              "type": "text",
-              "id": "SxoRN",
-              "fill": "$epe-text-muted",
-              "content": "Sort ▾",
-              "fontFamily": "$epe-font-en",
-              "fontSize": 13,
-              "fontWeight": "normal"
-            }
-          ]
-        },
-        {
-          "type": "frame",
-          "id": "DQ1GT",
-          "name": "Grid",
-          "width": "fill_container",
-          "layout": "vertical",
-          "gap": 24,
+          "gap": 56,
           "padding": [
             0,
             80,
@@ -3780,155 +4489,115 @@
           "children": [
             {
               "type": "frame",
-              "id": "mhzKR",
-              "name": "Row",
-              "width": "fill_container",
-              "gap": 24,
+              "id": "La6lD",
+              "name": "Sidebar",
+              "width": 220,
+              "layout": "vertical",
+              "gap": 14,
+              "padding": [
+                32,
+                0,
+                0,
+                0
+              ],
               "children": [
                 {
-                  "type": "frame",
-                  "id": "sbU72",
-                  "name": "Card",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 14,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "f1Tc2M",
-                      "width": "fill_container",
-                      "height": 280,
-                      "fill": "$epe-img-placeholder"
-                    },
-                    {
-                      "type": "text",
-                      "id": "ttdQy",
-                      "fill": "$epe-text-white",
-                      "content": "商品名が入ります",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "ZupiE",
-                      "fill": "$epe-text-muted",
-                      "content": "¥0,000（税込）",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
+                  "type": "text",
+                  "id": "dBj1n",
+                  "name": "SidebarTitle",
+                  "fill": "$epe-text-muted",
+                  "content": "Category",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
                 },
                 {
-                  "type": "frame",
-                  "id": "U5u76",
-                  "name": "Card",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 14,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "EapRr",
-                      "width": "fill_container",
-                      "height": 280,
-                      "fill": "$epe-img-placeholder"
-                    },
-                    {
-                      "type": "text",
-                      "id": "C4iKpw",
-                      "fill": "$epe-text-white",
-                      "content": "商品名が入ります",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "oMLjb",
-                      "fill": "$epe-text-muted",
-                      "content": "¥0,000（税込）",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
+                  "type": "text",
+                  "id": "J2yHJ0",
+                  "name": "Cat-All",
+                  "fill": "$epe-text-white",
+                  "content": "All",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "600"
                 },
                 {
-                  "type": "frame",
-                  "id": "wrtSA",
-                  "name": "Card",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 14,
-                  "children": [
-                    {
-                      "type": "frame",
-                      "id": "RDVLT",
-                      "width": "fill_container",
-                      "height": 280,
-                      "fill": "$epe-img-placeholder"
-                    },
-                    {
-                      "type": "text",
-                      "id": "egJB8",
-                      "fill": "$epe-text-white",
-                      "content": "商品名が入ります",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "g6wIWh",
-                      "fill": "$epe-text-muted",
-                      "content": "¥0,000（税込）",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
+                  "type": "text",
+                  "id": "uTn3U",
+                  "name": "Cat-Backpack",
+                  "fill": "$epe-text-body",
+                  "content": "Backpack",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "BNzWJ",
+                  "name": "Cat-Tote Bag",
+                  "fill": "$epe-text-body",
+                  "content": "Tote Bag",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "x1VLV",
+                  "name": "Cat-Shoulder Bag",
+                  "fill": "$epe-text-body",
+                  "content": "Shoulder Bag",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "D2vtW",
+                  "name": "Cat-Accessory",
+                  "fill": "$epe-text-body",
+                  "content": "Accessory",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
                 }
               ]
             },
             {
               "type": "frame",
-              "id": "VjWGO",
-              "name": "Row",
+              "id": "mU7Re",
+              "name": "Main",
               "width": "fill_container",
-              "gap": 24,
+              "layout": "vertical",
               "children": [
                 {
                   "type": "frame",
-                  "id": "JzLq0",
-                  "name": "Card",
+                  "id": "BfOtK",
+                  "name": "Bar",
                   "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 14,
+                  "padding": [
+                    32,
+                    0
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
                   "children": [
                     {
-                      "type": "frame",
-                      "id": "EEO0E",
-                      "width": "fill_container",
-                      "height": 280,
-                      "fill": "$epe-img-placeholder"
-                    },
-                    {
                       "type": "text",
-                      "id": "KLKxp",
-                      "fill": "$epe-text-white",
-                      "content": "商品名が入ります",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 14,
+                      "id": "VdoaR",
+                      "fill": "$epe-text-muted",
+                      "content": "12 items",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "h2LIRP",
+                      "id": "SxoRN",
                       "fill": "$epe-text-muted",
-                      "content": "¥0,000（税込）",
-                      "fontFamily": "$epe-font-jp",
+                      "content": "Sort ▾",
+                      "fontFamily": "$epe-font-en",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     }
@@ -3936,71 +4605,245 @@
                 },
                 {
                   "type": "frame",
-                  "id": "V8yr6",
-                  "name": "Card",
+                  "id": "DQ1GT",
+                  "name": "Grid",
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 14,
+                  "gap": 24,
+                  "padding": [
+                    32,
+                    0,
+                    0,
+                    0
+                  ],
                   "children": [
                     {
                       "type": "frame",
-                      "id": "zn84F",
+                      "id": "mhzKR",
+                      "name": "Row",
                       "width": "fill_container",
-                      "height": 280,
-                      "fill": "$epe-img-placeholder"
+                      "gap": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "sbU72",
+                          "name": "Card",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "f1Tc2M",
+                              "width": "fill_container",
+                              "height": 212,
+                              "fill": "$epe-img-placeholder"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ttdQy",
+                              "fill": "$epe-text-white",
+                              "content": "商品名が入ります",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ZupiE",
+                              "fill": "$epe-text-muted",
+                              "content": "¥0,000（税込）",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "U5u76",
+                          "name": "Card",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "EapRr",
+                              "width": "fill_container",
+                              "height": 212,
+                              "fill": "$epe-img-placeholder"
+                            },
+                            {
+                              "type": "text",
+                              "id": "C4iKpw",
+                              "fill": "$epe-text-white",
+                              "content": "商品名が入ります",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "oMLjb",
+                              "fill": "$epe-text-muted",
+                              "content": "¥0,000（税込）",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wrtSA",
+                          "name": "Card",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "RDVLT",
+                              "width": "fill_container",
+                              "height": 212,
+                              "fill": "$epe-img-placeholder"
+                            },
+                            {
+                              "type": "text",
+                              "id": "egJB8",
+                              "fill": "$epe-text-white",
+                              "content": "商品名が入ります",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "g6wIWh",
+                              "fill": "$epe-text-muted",
+                              "content": "¥0,000（税込）",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
                     },
-                    {
-                      "type": "text",
-                      "id": "H0DWWZ",
-                      "fill": "$epe-text-white",
-                      "content": "商品名が入ります",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "MZXCh",
-                      "fill": "$epe-text-muted",
-                      "content": "¥0,000（税込）",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "YlK2S",
-                  "name": "Card",
-                  "width": "fill_container",
-                  "layout": "vertical",
-                  "gap": 14,
-                  "children": [
                     {
                       "type": "frame",
-                      "id": "JzMvI",
+                      "id": "VjWGO",
+                      "name": "Row",
                       "width": "fill_container",
-                      "height": 280,
-                      "fill": "$epe-img-placeholder"
-                    },
-                    {
-                      "type": "text",
-                      "id": "W3VPp",
-                      "fill": "$epe-text-white",
-                      "content": "商品名が入ります",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 14,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "Vrwba",
-                      "fill": "$epe-text-muted",
-                      "content": "¥0,000（税込）",
-                      "fontFamily": "$epe-font-jp",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
+                      "gap": 24,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "JzLq0",
+                          "name": "Card",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "EEO0E",
+                              "width": "fill_container",
+                              "height": 212,
+                              "fill": "$epe-img-placeholder"
+                            },
+                            {
+                              "type": "text",
+                              "id": "KLKxp",
+                              "fill": "$epe-text-white",
+                              "content": "商品名が入ります",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "h2LIRP",
+                              "fill": "$epe-text-muted",
+                              "content": "¥0,000（税込）",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "V8yr6",
+                          "name": "Card",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "zn84F",
+                              "width": "fill_container",
+                              "height": 212,
+                              "fill": "$epe-img-placeholder"
+                            },
+                            {
+                              "type": "text",
+                              "id": "H0DWWZ",
+                              "fill": "$epe-text-white",
+                              "content": "商品名が入ります",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "MZXCh",
+                              "fill": "$epe-text-muted",
+                              "content": "¥0,000（税込）",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YlK2S",
+                          "name": "Card",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "JzMvI",
+                              "width": "fill_container",
+                              "height": 212,
+                              "fill": "$epe-img-placeholder"
+                            },
+                            {
+                              "type": "text",
+                              "id": "W3VPp",
+                              "fill": "$epe-text-white",
+                              "content": "商品名が入ります",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Vrwba",
+                              "fill": "$epe-text-muted",
+                              "content": "¥0,000（税込）",
+                              "fontFamily": "$epe-font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
                     }
                   ]
                 }
@@ -4040,6 +4883,7 @@
           "id": "BbWXb",
           "name": "Hero",
           "width": "fill_container",
+          "layout": "vertical",
           "gap": 14,
           "padding": [
             72,
@@ -4103,7 +4947,7 @@
                       "type": "frame",
                       "id": "wmY9i",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4138,7 +4982,7 @@
                       "type": "frame",
                       "id": "gvKjY",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4173,7 +5017,7 @@
                       "type": "frame",
                       "id": "dN8Jm",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4217,7 +5061,7 @@
                       "type": "frame",
                       "id": "dE1Cz",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4252,7 +5096,7 @@
                       "type": "frame",
                       "id": "jbbeb",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4287,7 +5131,7 @@
                       "type": "frame",
                       "id": "DYQYO",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4331,7 +5175,7 @@
                       "type": "frame",
                       "id": "xPWGj",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4366,7 +5210,7 @@
                       "type": "frame",
                       "id": "O0qh9",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4401,7 +5245,7 @@
                       "type": "frame",
                       "id": "bof2p",
                       "width": "fill_container",
-                      "height": 200,
+                      "height": 212,
                       "fill": "$epe-img-placeholder"
                     },
                     {
@@ -4521,7 +5365,7 @@
               "padding": [
                 24,
                 0,
-                0,
+                32,
                 0
               ],
               "children": [
@@ -4553,7 +5397,7 @@
               "id": "YFocS",
               "name": "MainImage",
               "width": "fill_container",
-              "height": 420,
+              "height": 428,
               "fill": "$epe-img-placeholder"
             },
             {
@@ -5479,6 +6323,2344 @@
         },
         {
           "id": "A81xDq",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "rectangle",
+      "id": "W2WgV6",
+      "x": 5302,
+      "y": 868,
+      "name": "Image",
+      "fill": "$epe-img-placeholder",
+      "width": "fill_container(430)",
+      "height": 261
+    },
+    {
+      "type": "frame",
+      "id": "pOJ0G",
+      "x": 5302,
+      "y": 1156,
+      "width": "fill_container(465)",
+      "height": 261,
+      "fill": "$epe-img-placeholder"
+    },
+    {
+      "type": "rectangle",
+      "id": "X6wh6",
+      "x": 5817,
+      "y": 999,
+      "name": "Image",
+      "fill": "$epe-img-placeholder",
+      "width": "fill_container(605)",
+      "height": 367
+    },
+    {
+      "type": "frame",
+      "id": "dIRix",
+      "x": 6447,
+      "y": 999,
+      "width": "fill_container(605)",
+      "height": 340,
+      "fill": "$epe-img-placeholder"
+    },
+    {
+      "type": "frame",
+      "id": "W3h9kN",
+      "x": 3677,
+      "y": 6675.125,
+      "name": "Product Detail Page (SP)",
+      "clip": true,
+      "width": 390,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "mntWv",
+          "type": "ref",
+          "ref": "AlAat",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "Xhc8F",
+          "name": "Breadcrumb",
+          "gap": 8,
+          "padding": [
+            16,
+            24
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "WoEp3",
+              "name": "Home",
+              "fill": "$epe-text-muted",
+              "content": "Home",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Rsl6v",
+              "name": "Slash1",
+              "fill": "$epe-text-muted",
+              "content": "/",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "R4ayw",
+              "name": "Product",
+              "fill": "$epe-text-muted",
+              "content": "Product",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "bhZ8z",
+              "name": "Slash2",
+              "fill": "$epe-text-muted",
+              "content": "/",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Sx4xr",
+              "name": "DAY PACK",
+              "fill": "$epe-text-muted",
+              "content": "DAY PACK",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "aJEUn",
+          "name": "ProductMain",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 28,
+          "padding": [
+            0,
+            24,
+            40,
+            24
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "gJ6rv",
+              "name": "Gallery",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "rectangle",
+                  "id": "OSlre",
+                  "name": "MainImage",
+                  "fill": "$epe-img-placeholder",
+                  "width": "fill_container",
+                  "height": 427.5
+                },
+                {
+                  "type": "frame",
+                  "id": "OgwP2",
+                  "name": "Thumbs",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "VJZrb",
+                      "name": "ThumbRow0",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "lsaGh",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "D4pTQ",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "zNKvJ",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "OoXti",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "htjyj",
+                      "name": "ThumbRow1",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "J5dHG",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "FiPXa",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "KTBKK",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "cuFcB",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "V5d0Xv",
+                      "name": "ThumbRow2",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "R8Dcmt",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "SOAfN",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "vEAgh",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "SXGLb",
+                          "name": "Thumb",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 99.375
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "viq84",
+              "name": "InfoPanel",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 22,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "o4j6em",
+                  "name": "Brand",
+                  "fill": "$epe-text-muted",
+                  "content": "EPE NYLON",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "hKIkQ",
+                  "name": "Title",
+                  "fill": "$epe-text-white",
+                  "content": "DAY PACK",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 28,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "B8B6SH",
+                  "name": "Price",
+                  "fill": "$epe-text-white",
+                  "content": "¥25,300（税込）",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 20,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "W6Xe96",
+                  "name": "Desc",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "本体生地には、CORDURA糸とリサイクルPET糸から生まれたサステナブルナイロン素材「CORDURA® RE/COR™」を採用。210D TWILL NYLON生地に綿をボンディングし、柔らかさとハリを絶妙なバランスで両立。環境に配慮した高耐久・高機能を実現しました。",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "rectangle",
+                  "id": "c5a7ZV",
+                  "name": "Divider",
+                  "fill": "$epe-line",
+                  "width": "fill_container",
+                  "height": 1
+                },
+                {
+                  "type": "frame",
+                  "id": "TiOK6",
+                  "name": "ColorBlock",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AmbpA",
+                      "name": "Label",
+                      "fill": "$epe-text-muted",
+                      "content": "Color : Black",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "M1i1Y",
+                      "name": "Swatches",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "R8gIN8",
+                          "name": "Swatch",
+                          "fill": "#1A1A1A",
+                          "width": 26,
+                          "height": 26,
+                          "stroke": "$epe-line",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "g9DLEu",
+                          "name": "Swatch",
+                          "fill": "#F2F2F2",
+                          "width": 26,
+                          "height": 26,
+                          "stroke": "$epe-line",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "ellipse",
+                          "id": "NH093",
+                          "name": "Swatch",
+                          "fill": "#4A4A4A",
+                          "width": 26,
+                          "height": 26,
+                          "stroke": "$epe-line",
+                          "strokeWidth": 1
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Bz832",
+                  "name": "SizeBlock",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Bv8QT",
+                      "name": "Label",
+                      "fill": "$epe-text-muted",
+                      "content": "Size",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ud5Ck",
+                      "name": "Sizes",
+                      "gap": 10,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "wBwh6",
+                          "name": "SizeBtn",
+                          "stroke": "$epe-text-white",
+                          "strokeWidth": 1,
+                          "padding": [
+                            10,
+                            18
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Q0EBW",
+                              "name": "Label",
+                              "fill": "$epe-text-white",
+                              "content": "S",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "y6zVIE",
+                          "name": "SizeBtn",
+                          "stroke": "$epe-text-white",
+                          "strokeWidth": 1,
+                          "padding": [
+                            10,
+                            18
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "cobZK",
+                              "name": "Label",
+                              "fill": "$epe-text-white",
+                              "content": "M",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "S8WfZy",
+                          "name": "SizeBtn",
+                          "stroke": "$epe-text-white",
+                          "strokeWidth": 1,
+                          "padding": [
+                            10,
+                            18
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "tJs47",
+                              "name": "Label",
+                              "fill": "$epe-text-white",
+                              "content": "L",
+                              "fontFamily": "$epe-font-en",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FM9kN",
+                  "name": "QtyBlock",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "coLr4",
+                      "name": "Label",
+                      "fill": "$epe-text-muted",
+                      "content": "Quantity",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "w5kzC",
+                      "name": "Qty",
+                      "stroke": "$epe-line",
+                      "strokeWidth": 1,
+                      "gap": 16,
+                      "padding": [
+                        8,
+                        4
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "JnpPB",
+                          "name": "Minus",
+                          "fill": "$epe-text-white",
+                          "content": "−",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "TWjIx",
+                          "name": "Value",
+                          "fill": "$epe-text-white",
+                          "content": "1",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "J2QGE",
+                          "name": "Plus",
+                          "fill": "$epe-text-white",
+                          "content": "＋",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "oDfgV",
+                  "name": "AddToCartButton",
+                  "width": "fill_container",
+                  "fill": "$epe-button-bg",
+                  "gap": 10,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "UTs6N",
+                      "name": "BagIcon",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "shopping-bag",
+                      "library": "lucide",
+                      "fill": "$epe-text-white"
+                    },
+                    {
+                      "type": "text",
+                      "id": "tPLCC",
+                      "name": "Label",
+                      "fill": "$epe-text-white",
+                      "content": "Add to Cart",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FzcCk",
+                  "name": "WishRow",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "zeSHP",
+                      "name": "HeartIcon",
+                      "width": 15,
+                      "height": 15,
+                      "icon": "heart",
+                      "library": "lucide",
+                      "fill": "$epe-text-muted"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Z3iOW",
+                      "name": "Label",
+                      "fill": "$epe-text-muted",
+                      "content": "Add to Wishlist",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Iu7TY",
+                  "name": "DetailsSection",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "SWZ1A",
+                      "name": "Detail-FABRIC",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        0,
+                        0,
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "T9y5b",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "Q4Vcs",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "FABRIC",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "jDGem",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "本体生地に採用した「CORDURA® RE/COR™（コーデュラ レコー）」は、CORDURA糸とリサイクルPET糸で作られたサステナブルナイロン素材。210D TWILL NYLON生地に綿をボンディングし、柔らかさとハリを絶妙なバランスで調整。環境に配慮しながら高耐久・高機能を実現しました。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "yEqvz",
+                      "name": "Detail-FABRIC",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "hEIa0",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "h3PjG",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "FABRIC",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "REQdz",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "内装生地には国際的な有害化学物質基準に関する安全性試験をクリアしたOEKO-TEX®認定生地を採用。軽量ながら引き裂き強度の高い210Dのリップストップ生地を使用しているため、荷物を気兼ねなく出し入れすることが出来ます。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "b54nIl",
+                      "name": "Detail-ZIPPER",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "lnHAb",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "b7BWXg",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "ZIPPER",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ReBpV",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "ファスナーには世界基準でも安定した品質を誇る、世界シェアNo.1のYKK社製コイルファスナーを採用。表面には撥水加工を施した「WATER-R」を使用しており、軽度の雨や汚れを弾きます（水量が多かったり、長時間雨水に晒されると浸水する恐れがあります）。プラスチック部材には多くの国際的アウトドアブランドも採用している韓国の大手プラスチック部材メーカー「WOOJIN（ウージン）」社製品を使用。高い耐久性に加えて、スタイリッシュなデザインが特徴の高品質パーツとなっています。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "BeTOm",
+                      "name": "Detail-FRONT POCKET",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "N8dI1",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "RokuC",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "FRONT POCKET",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "lUsVj",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "フロントポケットはマチ付きのため多くの荷物を収納可能。中にメッシュポケットがあり、バッグの中でバラバラになりがちな小物の仕分けもできます。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EVswF",
+                      "name": "Detail-SIDE POCKET",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "EURv4",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "cj9vt",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "SIDE POCKET",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cIC2t",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "正面左側のポケットはマグネット式になっており、開閉しやすい仕様に。500mlペットボトルや折り畳み傘などの収納に最適です。\n正面右側のポケットはファスナー式になっており、スマホやパスケースなどの収納に便利。同ポケット内のループにはキーチェーンなどを取り付けることができます。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "AHLM6",
+                      "name": "Detail-PC ROOM",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "S83PoB",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "oXW14",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "PC ROOM",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "m7BkVl",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "背面のPCルームはクッション性の生地を採用しており、大切なガジェットを保護します。16インチ程度のPCまで収納可能です。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "v8v65Y",
+                      "name": "Detail-MAIN ROOM",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "TYI6P",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "E3jw2T",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "MAIN ROOM",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Tmodb",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "メインルーム奥側には大小のオープンポケットを配置。大きい方のポケットはクッション性の生地になっており、こちらにPCを収納することもできます。\nメインルーム手前には2つのファスナーポケットを配置。上部のポケットはメッシュになっています。\nメインルーム左側にボトルホルダーを配置。使用しない場合はホックで固定しておくことができるため、収納の邪魔になりません。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "s0hAr",
+                      "name": "Detail-CHEST BELT",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "E6p7G",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "MxiCz",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "CHEST BELT",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "oz6yi",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "肩のずり落ちを防ぎ、疲労を軽減させるチェストストラップを装備。着脱式のため、使用しない場合は取り外すことができます。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "a2DkWa",
+                      "name": "Detail-PISNAME",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "BwJu1",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "AyARx",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "PISNAME",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "V2TWN",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "epeオリジナルのピスネームは、主張しすぎないグレーカラーに仕上げました。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GOG91",
+                      "name": "Detail-GIFT",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "id": "N4mkJL",
+                          "name": "Image",
+                          "fill": "$epe-img-placeholder",
+                          "width": "fill_container",
+                          "height": 192.375
+                        },
+                        {
+                          "type": "text",
+                          "id": "vwSUG",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "GIFT",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "SPdOp",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "epeを大切な方へプレゼントするお客様のため、ギフトラッピングを無料でご用意しています。\n※ギフトをご希望の方は、必ずギフトラッピングの希望欄にチェックを入れてください。\n※ラッピングの仕様は、写真と異なる場合がございますので、ご了承ください。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rgOeE",
+                      "name": "Detail-Shipping & Returns",
+                      "width": "fill_container",
+                      "stroke": "$epe-line",
+                      "strokeWidth": {
+                        "bottom": 1
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": [
+                        28,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TJsqS",
+                          "name": "Title",
+                          "fill": "$epe-text-white",
+                          "content": "Shipping & Returns",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ZrcCx",
+                          "name": "Body",
+                          "fill": "$epe-text-body",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "ご注文確認後、通常3〜5営業日以内に発送いたします。",
+                          "lineHeight": 1.8,
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "jfABc",
+          "name": "DescriptionSection",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            0,
+            24,
+            56,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "StoPj",
+              "name": "Heading",
+              "fill": "$epe-text-white",
+              "content": "Description",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "H0nZJp",
+              "name": "DescBody",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "f511JR",
+                  "name": "Body",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "本体生地には、CORDURA糸とリサイクルPET糸から生まれたサステナブルナイロン素材「CORDURA® RE/COR™」を採用。210D TWILL NYLON生地に綿をボンディングし、柔らかさとハリを絶妙なバランスで両立させながら、環境に配慮した高耐久・高機能を実現しました。\n溢れかえるポケットや過剰な装飾を削ぎ落とし、都市の日常に本当に必要な機能だけを残した無駄のない造形。着脱式のチェストベルトと背面のクッション性PCルームにより、長時間の着用でも負担の少ない快適な使い心地を実現しています。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "hZGhK",
+              "name": "SpecTable",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vwKos",
+                  "name": "Spec-Item Number",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tDraO",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Item Number",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "L3JEG",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "epe201",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FzvQ3",
+                  "name": "Spec-Item Name",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "KMYNj",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Item Name",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Js7YV",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "DAY PACK（デイパック）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cq6hH",
+                  "name": "Spec-Color",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AOSSq",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Color",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "U2ioIL",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "Black",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "a7h9g6",
+                  "name": "Spec-Material",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xCrBz",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Material",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ivuvE",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "CORDURA® RE/COR™",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "FAA8j",
+                  "name": "Spec-Size",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MPvEJ",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Size",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "HruvB",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "W320 × H450 × D150mm",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "h8f3q",
+                  "name": "Spec-Capacity",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "DQd7S",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Capacity",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "E8MaKO",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "約20L",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "b3ASJs",
+                  "name": "Spec-Weight",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XFowN",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Weight",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FAkSo",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "約920g",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "CAQjj",
+                  "name": "Spec-Country Of Origin",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FH8MU",
+                      "name": "Key",
+                      "fill": "$epe-text-muted",
+                      "textGrowth": "fixed-width",
+                      "width": 110,
+                      "content": "Country Of Origin",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "njARx",
+                      "name": "Value",
+                      "fill": "$epe-text-white",
+                      "content": "VIETNAM",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "u99EdY",
+          "name": "RelatedProducts",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            0,
+            24,
+            56,
+            24
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "L7esg",
+              "name": "Heading",
+              "fill": "$epe-text-white",
+              "content": "You may also like",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 24,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "An6ht",
+              "name": "RelatedGrid",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 24,
+              "children": [
+                {
+                  "id": "XaZMU",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "RelatedItem1",
+                  "width": "fill_container",
+                  "height": 192.375
+                },
+                {
+                  "id": "ABLoJ",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "RelatedItem2",
+                  "width": "fill_container",
+                  "height": 192.375
+                },
+                {
+                  "id": "Ls4YW",
+                  "type": "ref",
+                  "ref": "dPk87",
+                  "name": "RelatedItem3",
+                  "width": "fill_container",
+                  "height": 192.375
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "k6TB3q",
+          "type": "ref",
+          "ref": "PPRop",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "OCiCt",
+      "x": 12337,
+      "y": -881,
+      "name": "Material Page (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "YcFkb",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "IIRgN",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            72,
+            80,
+            40,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "DeBov",
+              "name": "Crumb",
+              "fill": "$epe-text-muted",
+              "content": "Home / Material",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "xremt",
+              "name": "Title",
+              "fill": "$epe-text-white",
+              "content": "Material",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 48,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "efScK",
+          "name": "HeroPhoto",
+          "fill": "$epe-img-placeholder-dark",
+          "width": "fill_container",
+          "height": 600
+        },
+        {
+          "type": "frame",
+          "id": "L15hZ",
+          "name": "Intro",
+          "width": 820,
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            64,
+            80,
+            0,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "Il83y",
+              "name": "IntroHeading",
+              "fill": "$epe-text-white",
+              "content": "Not Over-Spec, But Real-Spec.",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 30,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "XEVIT",
+              "name": "IntroBody",
+              "fill": "$epe-text-body",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "使いきれない多機能や、日常には過剰な重厚さを捨て、現代の都市生活における「真の必然性」だけを抽出した。\nこれは、オーバースペック（過剰）へのアンチテーゼであり、リアルスペック（真の機能美）の証明である。",
+              "lineHeight": 1.9,
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "e6iZpq",
+          "name": "Section-0",
+          "width": "fill_container",
+          "stroke": "$epe-line",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "gap": 64,
+          "padding": 80,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "pMEwr",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "iB6IS",
+                  "name": "Title",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "再生素材の最高峰「CORDURA® re/cor™」",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "PO87V",
+                  "name": "Body",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "コーデュラ（CORDURA®）は、米インビスタ（INVISTA）社が開発した、通常のナイロンの約7倍の強度を持つ超高機能ナイロン素材です。軽量、撥水性も兼ね備えているため、アウトドア、ミリタリー用品などに広く採用されている素材です。\n\nepeナイロンでは、このうちre/cor™を採用しており、これはコーデュラの中で唯一のサスティナブルナイロン素材となっており、epeでは、CORDURA RE/COR™ 210D TWILL NYLON生地に綿をポンディング（ナイロン裏側に貼り合わせる）し、柔らかいハリと絶妙なバランスで調整しています。\n\n通常の平織りナイロンのような均一な反射ではなく、斜めの織り目（ツイル）によって、光が流れるような鈍い光沢を放ち、アウトドア的な、「てかり」ではなく、モードで知的な印象を与えるマッド感あるシルクのような質感でオンオフともに使用できます。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "V73w9",
+              "name": "Image",
+              "fill": "$epe-img-placeholder",
+              "width": 420,
+              "height": 236.25
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "jRsHq",
+          "name": "Section-1",
+          "width": "fill_container",
+          "stroke": "$epe-line",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "gap": 64,
+          "padding": 80,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "K4HW70",
+              "name": "Image",
+              "fill": "$epe-img-placeholder",
+              "width": 420,
+              "height": 236.25
+            },
+            {
+              "type": "frame",
+              "id": "hsPQn",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rMxGk",
+                  "name": "Title",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "安心・安全な繊維製品基準 エコテックス（OEKO-TEX®）STANDARD100",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "KpGK2",
+                  "name": "Body",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "内装生地には、国際的な有害化学物質基準に関する安全試験をクリアしたエコテックス（OEKO-TEX®）認証生地の210D Rip-Stopを採用。\n\nRip-Stop構造とは、格子状にナイロン繊維を織り込むことで、万が一生地が裂けてもその進行を食い止める、非常に高い引き裂き強度を誇ります。\n\nこれは過酷な使用に耐える強度と、軽量化を実現したepeナイロンは、人体・環境への安全性を考慮した設計になっており、移動を楽にするという目的に寄与しています。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Ep5Tp",
+          "name": "Section-2",
+          "width": "fill_container",
+          "stroke": "$epe-line",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "gap": 64,
+          "padding": 80,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "kgGNJ",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AkJLk",
+                  "name": "Title",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "ファスナー",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Qv3KU",
+                  "name": "Body",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "ファスナーには、世界基準でも安定した品質を誇る、世界シェアNo.1のYKK社製コイルファスナーを採用。表面には撥水加工を施した「WATER-R」を使用しており、軽度な雨や汚れをしっかりはじきます。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "rectangle",
+              "id": "G42fNM",
+              "name": "Image",
+              "fill": "$epe-img-placeholder",
+              "width": 420,
+              "height": 236.25
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OAZdx",
+          "name": "Section-3",
+          "width": "fill_container",
+          "stroke": "$epe-line",
+          "strokeWidth": {
+            "bottom": 1
+          },
+          "gap": 64,
+          "padding": 80,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "GSC3n",
+              "name": "Image",
+              "fill": "$epe-img-placeholder",
+              "width": 420,
+              "height": 236.25
+            },
+            {
+              "type": "frame",
+              "id": "koT5G",
+              "name": "Text",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Cclne",
+                  "name": "Title",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "細部にまでこだわる機能性",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 24,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Aeyyq",
+                  "name": "Body",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "徹底した無駄を省くepeでは、バッグの表面には極力ポケットを配置しない設計にしています。内装には機能的なポケットを多数配置しており、多様な使用用途にも対応いたします。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "geBeL",
+          "name": "Note",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            70,
+            80
+          ],
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "zmi26",
+              "name": "NoteHeading",
+              "fill": "$epe-text-white",
+              "content": "Support",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 22,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "R29T29",
+              "name": "NoteBody",
+              "fill": "$epe-text-body",
+              "textGrowth": "fixed-width",
+              "width": 600,
+              "content": "epeの製品を長く安心してお使いいただくためのサポート情報をご案内します。",
+              "lineHeight": 1.8,
+              "textAlign": "center",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "id": "xud5t",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "vJBUn",
+      "x": 12337,
+      "y": 2722.5,
+      "name": "About Page (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "JlSQD",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "ojLim",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            72,
+            80,
+            40,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "ZSkOs",
+              "name": "Crumb",
+              "fill": "$epe-text-muted",
+              "content": "Home / About",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "UXhoB",
+              "name": "Title",
+              "fill": "$epe-text-white",
+              "content": "About",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 48,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "Smf0p",
+          "name": "HeroPhoto",
+          "fill": "$epe-img-placeholder-dark",
+          "width": "fill_container",
+          "height": 600
+        },
+        {
+          "type": "frame",
+          "id": "MMtpF",
+          "name": "Intro",
+          "width": 820,
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            64,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "aEFeS",
+              "name": "IntroHeading",
+              "fill": "$epe-text-white",
+              "content": "ハイスペックを、再定義する。",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 30,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "kc0MS",
+              "name": "IntroBody",
+              "fill": "$epe-text-body",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "溢れかえるポケット、過剰な重厚さ、デザインのための装飾。\n都市を生きる私たちの日常に、それは本当に必要だろうか。\n\n私たちは気づいている。\nそれはハイスペックではなく、オーバースペックであることを。\n\nepeが追求するのは、引き算から生まれる機能美だ。\n特殊な加工を施した高密度な生地がもたらす、耐久性と軽さの最適解。\n都市のノイズを削ぎ落とした、無駄のない造形。\n\n真に必要なものだけを、あなたの手に。\nepeは今、ハイスペックの定義を書き換える。",
+              "lineHeight": 1.9,
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 15,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "P1AKI",
+          "name": "Pillar-Well-Designed",
+          "width": "fill_container",
+          "stroke": "$epe-line",
+          "strokeWidth": {
+            "top": 1
+          },
+          "layout": "vertical",
+          "gap": 28,
+          "padding": 80,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "yrNte",
+              "name": "Image",
+              "fill": "$epe-img-placeholder",
+              "width": "fill_container",
+              "height": 678.75
+            },
+            {
+              "type": "frame",
+              "id": "poZdO",
+              "name": "Head",
+              "gap": 16,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ErIJh",
+                  "name": "LabelEn",
+                  "fill": "$epe-text-muted",
+                  "content": "Well-Designed",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "r7HJTy",
+                  "name": "LabelJp",
+                  "fill": "$epe-text-white",
+                  "content": "デザイン性",
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 26,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "XTM27",
+              "name": "Body",
+              "fill": "$epe-text-body",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "デザインのためのデザインを捨て、機能から逆算されたライン。\n\n無駄な装飾を削ぎ落としたシルエットは、どんなファッションにも、どんな都市の風景にも、静かに、そして確かな存在感を持って溶け込みます。",
+              "lineHeight": 1.9,
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "HNXvp",
+              "name": "Quote",
+              "fill": "$epe-text-white",
+              "content": "「飾らないことが、最大の知性になる。」",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 19,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xSQeW",
+          "name": "Pillar-Full of Functionality",
+          "width": "fill_container",
+          "stroke": "$epe-line",
+          "strokeWidth": {
+            "top": 1
+          },
+          "layout": "vertical",
+          "gap": 28,
+          "padding": 80,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "T8iWr",
+              "name": "Image",
+              "fill": "$epe-img-placeholder",
+              "width": "fill_container",
+              "height": 678.75
+            },
+            {
+              "type": "frame",
+              "id": "xLTmV",
+              "name": "Head",
+              "gap": 16,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "F13NM3",
+                  "name": "LabelEn",
+                  "fill": "$epe-text-muted",
+                  "content": "Full of Functionality",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "kHBX1",
+                  "name": "LabelJp",
+                  "fill": "$epe-text-white",
+                  "content": "機能性",
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 26,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Qxw19",
+              "name": "Body",
+              "fill": "$epe-text-body",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "複雑なギミックは、時に自由を奪う。epeが追求したのは、思考を止めない直感的な使い心地です。\n\nデバイスを守る独自の緩衝構造や、吸い付くように閉まるマグネットバックル。必要なものが、必要な瞬間にそこにある。\n\nそれが私たちが定義する、現代の機動力です。",
+              "lineHeight": 1.9,
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "Q0tMS",
+              "name": "Quote",
+              "fill": "$epe-text-white",
+              "content": "「その機能に、迷いはないか。」",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 19,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mXBMW",
+          "name": "Pillar-Durable",
+          "width": "fill_container",
+          "stroke": "$epe-line",
+          "strokeWidth": {
+            "top": 1
+          },
+          "layout": "vertical",
+          "gap": 28,
+          "padding": 80,
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "gkhLU",
+              "name": "Image",
+              "fill": "$epe-img-placeholder",
+              "width": "fill_container",
+              "height": 678.75
+            },
+            {
+              "type": "frame",
+              "id": "p5XMh",
+              "name": "Head",
+              "gap": 16,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "s88DG2",
+                  "name": "LabelEn",
+                  "fill": "$epe-text-muted",
+                  "content": "Durable",
+                  "fontFamily": "$epe-font-en",
+                  "fontSize": 15,
+                  "fontWeight": "normal",
+                  "letterSpacing": 1
+                },
+                {
+                  "type": "text",
+                  "id": "Tukkr",
+                  "name": "LabelJp",
+                  "fill": "$epe-text-white",
+                  "content": "耐久性",
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 26,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "eOUVU",
+              "name": "Body",
+              "fill": "$epe-text-body",
+              "textGrowth": "fixed-width",
+              "width": 700,
+              "content": "驚くほどの軽さと、日常の過酷さに耐えうる強靭さ。選び抜かれた高密度な再生素材は、特殊なボンディング加工によって、自立するほどの美しさと耐久性を獲得しました。\n\n使い捨てない。長く、深く、使い込む。その選択そのものが、あなたのスペックを証明します。",
+              "lineHeight": 1.9,
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "HGPTx",
+              "name": "Quote",
+              "fill": "$epe-text-white",
+              "content": "「タフであること、それが新しいエチケット。」",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 19,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "id": "v2erWP",
           "type": "ref",
           "ref": "bRR5P",
           "name": "Footer",
