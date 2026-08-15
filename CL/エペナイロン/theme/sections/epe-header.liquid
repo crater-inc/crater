@@ -39,7 +39,7 @@
     <nav class="epe-hd__nav">
       <a href="/">{{ section.settings.nav_home | default: 'Home' }}</a>
       <a href="{{ section.settings.about_link | default: '/#about' }}">{{ section.settings.nav_about | default: 'About' }}</a>
-      <a href="{{ section.settings.product_link | default: '/#product' }}">{{ section.settings.nav_product | default: 'Product' }}</a>
+      <a href="{{ section.settings.product_link | default: '/collections/all' }}">{{ section.settings.nav_product | default: 'Product' }}</a>
       <a href="{{ section.settings.material_link | default: '/#material' }}">{{ section.settings.nav_material | default: 'Material' }}</a>
       <a href="{{ section.settings.styling_link | default: '/#styling' }}">{{ section.settings.nav_styling | default: 'Styling' }}</a>
       <a href="{{ section.settings.blog_link | default: '/blogs/journal' }}">{{ section.settings.nav_blog | default: 'Journal' }}</a>
@@ -70,7 +70,7 @@
   <nav class="epe-hd__drawer-nav">
     <a href="/">{{ section.settings.nav_home | default: 'Home' }}</a>
     <a href="{{ section.settings.about_link | default: '/#about' }}">{{ section.settings.nav_about | default: 'About' }}</a>
-    <a href="{{ section.settings.product_link | default: '/#product' }}">{{ section.settings.nav_product | default: 'Product' }}</a>
+    <a href="{{ section.settings.product_link | default: '/collections/all' }}">{{ section.settings.nav_product | default: 'Product' }}</a>
     <a href="{{ section.settings.material_link | default: '/#material' }}">{{ section.settings.nav_material | default: 'Material' }}</a>
     <a href="{{ section.settings.styling_link | default: '/#styling' }}">{{ section.settings.nav_styling | default: 'Styling' }}</a>
     <a href="{{ section.settings.blog_link | default: '/blogs/journal' }}">{{ section.settings.nav_blog | default: 'Journal' }}</a>
