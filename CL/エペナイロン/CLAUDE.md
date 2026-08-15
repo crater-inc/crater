@@ -146,4 +146,15 @@ Liquidを先に組んだ4種のページ（商品一覧・ブログ一覧・ブ�
 - ヘッダーの左右余白について確認依頼があったが、Pencil(`r4yvFI`/`AlAat`)とLiquid(`epe-header.liquid`)のpadding・gap値はPC/SP含め既に完全一致していたため変更なし
 - **アコーディオン→常時表示の「長いページ」に変更**：商品詳細の詳細情報（Fabric/Zipper・Pocket & Storage・Chest Belt/Details・Gift Wrapping・Shipping & Returns）は、クリックで開く方式をやめて全て常時展開の縦積みセクションに変更。Liquidは`section.blocks`のtype名を`accordion`→`detail_section`にリネームし、JSのトグル処理を削除。Pencil側もアコーディオン風の行(`EVTMi`)を削除し、見出し+本文の`DetailsSection`を新設して同内容を反映
 - **同日追記：長いページ化した詳細セクションを右カラム（スクロール側）に移動**。ギャラリー左固定＋右パネルスクロールの構成にした意図（右側をスクロールしてもらう流れ）に合わせて、Fabric/Zipper等の詳細セクションはDescription/SPECより下の全幅エリアではなく、右の情報パネル内（Add to Cart / Wishlistの直下）に配置し直した。Description見出し・本文・SPECテーブルは従来通りSPECテーブルは全幅エリアに残す。Liquid: `.epe-pdp__details`をInfoPanel内に移動しwidth:700px→100%に変更。Pencil: `DetailsSection`を`EgrxB`(DescriptionSection)から`SV7Mo`(InfoPanel)のWishRowの後ろにMoveしwidth:fill_containerに変更
-- **同日再追記：デイパック原稿案.docxの構成通りに9〜11項目へ分割し、各項目に画像エリアを追加**。ケイスケさんから「ワードにあるように、画像を入れる領域をちゃんととってください。ワードは指示なので」と明確な指示。元原稿は【FABRIC】【FABRIC】【ZIPPER】【FRONT POCKET】【SIDE POCKET】【PC ROOM】【MAIN ROOM】【CHEST BELT】【PISNAME】と9つの見出しブロックに分かれており、それぞれが写真1枚とセットになる想定（GIFTセクションも原稿に「ギフト写真（準備中）」と明記あり）。それに合わせて詳細セクションを5個の統合ブロックから11個（FABRIC×2・ZIPPER・FRONT POCKET・SIDE POCKET・PC ROOM・MAIN ROOM・CHEST BELT・PISNAME・GIFT・Shipping & Returns）に分割し直し、各項目の先頭に画像プレースホルダー（4:3比率、グレー）を追加。Shipping & Returnsのみ画像なし（原稿に写真の言及なし）。Liquid: `detail_section`ブロックに`image`(image_picker)と`hide_image`(checkbox)設定を追加、`.epe-pdp__detail-img`で4:3のプレースホルダーを表示。Pencil: 各Detail行の先頭にheight489（fill_container幅×3/4）のImage矩形を追加
+- **同日再追記：デイパック原稿案.docxの構成通りに9〜11項目へ分割し、各項目に画像エリアを追加**。ケイスケさんから「ワードにあるように、画像を入れる領域をちゃんととってください。ワードは指示なので」と明確な指示。元原稿は【FABRIC】【FABRIC】【ZIPPER】【FRONT POCKET】【SIDE POCKET】【PC ROOM】【MAIN ROOM】【CHEST BELT】【PISNAME】と9つの見出しブロックに分かれており、それぞれが写真1枚とセットになる想定（GIFTセクションも原稿に「ギフト写真（準備中）」と明記あり）。それに合わせて詳細セクションを5個の統合ブロックから11個（FABRIC×2・ZIPPER・FRONT POCKET・SIDE POCKET・PC ROOM・MAIN ROOM・CHEST BELT・PISNAME・GIFT・Shipping & Returns）に分割し直し、各項目の先頭に画像プレースホルダーを追加。Shipping & Returnsのみ画像なし（原稿に写真の言及なし）。Liquid: `detail_section`ブロックに`image`(image_picker)と`hide_image`(checkbox)設定を追加。
+
+## 2026-08-15 追記：ダミー画像の比率を全ページ16:9に統一（グローバルルール化）
+ケイスケさんから「画像の比率が毎回ページごとに違うのが気になる。他の案件でも。一旦16:9で統一しませんか」と明確な指示。**グローバルCLAUDE.md（`~/.claude/CLAUDE.md`）の「画像・ビジュアル配置のルール」に反映済み**：ダミー・プレースホルダー画像枠は指示がなくても16:9をデフォルトにする。KV・既に確定済みの画像枠（今回は商品詳細ページ左のメイン商品写真）は対象外。
+
+エペナイロン内の該当箇所を全て16:9に修正（商品詳細の左ギャラリー＝メイン画像＋サムネイルのみ、ケイスケさんの明示的な指示により対象外・4:5のまま維持）：
+- 商品詳細の詳細セクション画像（4:3→16:9）
+- 商品一覧/TOP商品ラインナップ/関連商品/Stylingの商品カード画像（`epe-image-card`スニペット、旧280px固定→`aspect-ratio:16/9`に変更。未使用だった`height`パラメータも削除）
+- Journal一覧/TOPジャーナルプレビューのカード画像（`epe-blog-card`、旧240px固定→`aspect-ratio:16/9`）
+- 記事詳細のメイン画像（旧420px固定→`aspect-ratio:16/9`）
+- Pencil側も全ページ同数値で追従：dPk87(ImageCard)参照インスタンス・Wzi8pマスターの内部画像・Shop/Journal一覧の個別カード・About/Contact写真・記事詳細メイン画像・商品詳細の詳細セクション画像を、それぞれの実測幅×9/16で計算した高さに一括更新（layout問題なし確認済み）
+- 対象外にしたもの：Hero/KV（1340/793、CLAUDE.mdの790px基準ルールが優先）、Material全幅バナー（KVに準じる雰囲気の全画面ビジュアルのため据え置き）、カート内の商品サムネイル（110×110、UI要素であり content画像ではないため）
