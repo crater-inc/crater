@@ -26,11 +26,11 @@
     {%- if epe_col == blank -%}{%- assign epe_col = collections.all -%}{%- endif -%}
     {%- if epe_col.products.size > 0 -%}
       {%- for product in epe_col.products limit: 3 -%}
-        {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product.price | money %}
+        {%- render 'epe-image-card', image: product.featured_image, alt: product.title, link: product.url, name: product.title, price: product.price | money, ratio: '4/5' %}
       {%- endfor -%}
     {%- else -%}
       {%- for block in section.blocks -%}
-        {%- render 'epe-image-card', image: block.settings.image, alt: block.settings.name, link: block.settings.link, name: block.settings.name, price: block.settings.price %}
+        {%- render 'epe-image-card', image: block.settings.image, alt: block.settings.name, link: block.settings.link, name: block.settings.name, price: block.settings.price, ratio: '4/5' %}
       {%- endfor -%}
     {%- endif -%}
   </div>
@@ -39,7 +39,7 @@
 {
   "name": "EPE Product Lineup",
   "settings": [
-    { "type": "text", "id": "heading", "label": "見出し", "default": "Product" },
+    { "type": "text", "id": "heading", "label": "見出し", "default": "Pickup Product" },
     { "type": "collection", "id": "collection", "label": "表示するコレクション（未選択＝全商品を自動表示）" },
     { "type": "text", "id": "view_all_label", "label": "ボタン文言", "default": "All" },
     { "type": "url", "id": "view_all_link", "label": "ボタンリンク" }
