@@ -35,7 +35,7 @@
   .epe-pdp__wish{display:flex;align-items:center;gap:8px;background:none;border:0;color:var(--epe-text-muted);font-family:var(--epe-en);font-size:12px;cursor:pointer;padding:0;width:max-content;}
   .epe-pdp__wish svg{width:15px;height:15px;stroke:var(--epe-text-muted);fill:none;stroke-width:1.5;}
   .epe-pdp__section-head{font-family:var(--epe-en);font-size:30px;font-weight:700;color:var(--epe-text-white);margin:0;}
-  .epe-pdp__details{display:flex;flex-direction:column;width:700px;max-width:100%;}
+  .epe-pdp__details{display:flex;flex-direction:column;width:100%;}
   .epe-pdp__detail{display:flex;flex-direction:column;gap:10px;padding:28px 0;border-bottom:1px solid var(--epe-line);}
   .epe-pdp__detail:first-child{padding-top:0;}
   .epe-pdp__detail-title{font-family:var(--epe-en);font-size:16px;font-weight:700;color:var(--epe-text-white);margin:0;}
@@ -151,6 +151,18 @@
       {%- endform -%}
 
       <button type="button" class="epe-pdp__wish"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>Add to Wishlist</button>
+
+      {%- assign detail_blocks = section.blocks | where: "type", "detail_section" -%}
+      {%- if detail_blocks.size > 0 -%}
+        <div class="epe-pdp__details">
+          {%- for block in detail_blocks -%}
+            <div class="epe-pdp__detail" {{ block.shopify_attributes }}>
+              <h3 class="epe-pdp__detail-title">{{ block.settings.title }}</h3>
+              <div class="epe-pdp__detail-body">{{ block.settings.content }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
     </div>
   </div>
 
@@ -162,17 +174,6 @@
       <div class="epe-pdp__spectable">
         {%- for block in spec_blocks -%}
           <div class="epe-pdp__specrow" {{ block.shopify_attributes }}><div class="epe-pdp__speck">{{ block.settings.label }}</div><div class="epe-pdp__specv">{{ block.settings.value }}</div></div>
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-    {%- assign detail_blocks = section.blocks | where: "type", "detail_section" -%}
-    {%- if detail_blocks.size > 0 -%}
-      <div class="epe-pdp__details">
-        {%- for block in detail_blocks -%}
-          <div class="epe-pdp__detail" {{ block.shopify_attributes }}>
-            <h3 class="epe-pdp__detail-title">{{ block.settings.title }}</h3>
-            <div class="epe-pdp__detail-body">{{ block.settings.content }}</div>
-          </div>
         {%- endfor -%}
       </div>
     {%- endif -%}
