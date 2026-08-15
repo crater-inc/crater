@@ -128,3 +128,14 @@ Liquidを先に組んだ4種のページ（商品一覧・ブログ一覧・ブ�
 - 商品登録（バリエーション・在庫）はまだ。商品マスタ確定後にShopify管理画面で登録
 - Shopifyストアへの実デプロイ（Theme Access等でのpush）は未実施。ロードマップPhase 5の残タスク
 - コンテンツ確定（About/Material本文、Contact実データ、Tokushoho実データ）は`ロードマップ.html` Phase 3のまま未着手
+
+## 2026-08-15 追記：商品詳細ギャラリー調整＋DAY PACK実原稿を反映（`epe-product.liquid`）
+- **ギャラリーの比率調整**：メイン画像を一回り小さく（ギャラリー列を`flex:1`→`width:42%`）、情報パネル列をその分広げた（固定460px→`flex:1`可変）
+- **サムネイル**：4列→6列グリッドに変更、枚数上限も撤廃（`product.images limit:4`→全件ループ、プレースホルダーも12枚に）。5枚以降は自動で2段目・3段目に折り返す
+- **左カラム固定スクロール**：`.epe-pdp__gallery{position:sticky;top:24px}`を追加。右の情報パネルだけがスクロールし、左の画像は画面内に留まる仕様に（スマホは`position:static`で従来通り縦積み）。Playwrightで1600px幅の静的プレビューを作りスクロール前後のスクショで動作確認済み
+- **DAY PACK実原稿を投入**：`CL/エペナイロン/brief/商品詳細情報/デイパック原稿案.docx`から抽出した実コピーを`templates/product.json`のセクション設定に反映（schemaのデフォルト値は汎用のまま維持し、product.json側だけ上書き）
+  - Description本文：CORDURA® RE/COR™素材の説明
+  - SPECテーブル：Item Number/Name/Color/Material/Size/Capacity/Weight/Country Of Origin の8項目（実データ：epe201・¥25,300は商品自体の価格なので実商品登録時にShopify側で設定）
+  - アコーディオン5本：Fabric/Zipper・Pocket & Storage・Chest Belt/Details・Gift Wrapping・Shipping & Returns（原稿の全項目を分類して格納）
+- 商品タイトル・価格自体（`product.title`/`product.price`）はShopify側の実商品レコードに依存するため、商品登録時に「DAY PACK」「¥25,300」で登録すれば自動反映される
+- Pencil側は未反映（今回はLiquidのみの依頼だったため）。必要であれば別途Pencilの商品詳細フレーム(`L4tc6Y`)にも同じ調整を反映可能

@@ -866,7 +866,7 @@
         {
           "type": "frame",
           "id": "dPbwv",
-          "name": "Blog",
+          "name": "Journal",
           "width": "fill_container",
           "fill": "$epe-section-bg",
           "layout": "vertical",
@@ -881,7 +881,7 @@
               "id": "z0HN9",
               "name": "Title",
               "fill": "$epe-text-white",
-              "content": "Blog",
+              "content": "Journal",
               "fontFamily": "$epe-font-en",
               "fontSize": 30,
               "fontWeight": "700"
@@ -1184,7 +1184,7 @@
                               "type": "text",
                               "id": "SwHpo",
                               "fill": "$epe-text-white",
-                              "content": "Blog",
+                              "content": "Journal",
                               "fontFamily": "$epe-font-en",
                               "fontSize": 13,
                               "fontWeight": "normal"
@@ -1389,7 +1389,7 @@
                   "id": "wX2mQ",
                   "name": "Blog",
                   "fill": "$epe-text-white",
-                  "content": "Blog",
+                  "content": "Journal",
                   "fontFamily": "$epe-font-en",
                   "fontSize": 15,
                   "fontWeight": "normal"
@@ -1656,48 +1656,99 @@
                   "name": "MainImage",
                   "fill": "$epe-img-placeholder",
                   "width": "fill_container",
-                  "height": 620
+                  "height": 825
                 },
                 {
                   "type": "frame",
                   "id": "n1tWz",
                   "name": "Thumbs",
                   "width": "fill_container",
+                  "layout": "vertical",
                   "gap": 12,
                   "children": [
                     {
-                      "type": "rectangle",
-                      "id": "Zry1x",
-                      "name": "Thumb1",
-                      "fill": "$epe-img-placeholder",
+                      "type": "frame",
+                      "id": "yg8i3",
+                      "name": "ThumbRow",
                       "width": "fill_container",
-                      "height": 96,
-                      "stroke": "$epe-text-white",
-                      "strokeWidth": 2
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "J98wKZ",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder",
+                          "stroke": "$epe-text-white",
+                          "strokeWidth": 2
+                        },
+                        {
+                          "type": "frame",
+                          "id": "w5hZJ",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "G4hHu",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "r33Qr",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder"
+                        }
+                      ]
                     },
                     {
-                      "type": "rectangle",
-                      "id": "uSoVp",
-                      "name": "Thumb2",
-                      "fill": "$epe-img-placeholder",
+                      "type": "frame",
+                      "id": "J63u4u",
+                      "name": "ThumbRow",
                       "width": "fill_container",
-                      "height": 96
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "z8JtF8",
-                      "name": "Thumb3",
-                      "fill": "$epe-img-placeholder",
-                      "width": "fill_container",
-                      "height": 96
-                    },
-                    {
-                      "type": "rectangle",
-                      "id": "usOC2",
-                      "name": "Thumb4",
-                      "fill": "$epe-img-placeholder",
-                      "width": "fill_container",
-                      "height": 96
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "bXf9u",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Z0hm9",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tY6h6",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SqDMF",
+                          "name": "Thumb",
+                          "width": "fill_container",
+                          "height": 195,
+                          "fill": "$epe-img-placeholder"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -3237,7 +3288,7 @@
         {
           "type": "frame",
           "id": "N06AT",
-          "name": "Blog",
+          "name": "Journal",
           "width": "fill_container",
           "fill": "$epe-section-bg",
           "layout": "vertical",
@@ -3251,7 +3302,7 @@
               "type": "text",
               "id": "myAST",
               "fill": "$epe-text-white",
-              "content": "Blog",
+              "content": "Journal",
               "fontFamily": "$epe-font-en",
               "fontSize": 24,
               "fontWeight": "700"
@@ -3520,7 +3571,7 @@
                       "type": "text",
                       "id": "x4bANp",
                       "fill": "$epe-text-white",
-                      "content": "Blog",
+                      "content": "Journal",
                       "fontFamily": "$epe-font-en",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -3611,6 +3662,1827 @@
           "fontFamily": "$epe-font-en",
           "fontSize": 11,
           "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "hg9gi",
+      "x": 5117,
+      "y": -881,
+      "name": "商品一覧 (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "ArQBo",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "iXYdY",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            72,
+            80,
+            40,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "WcUqI",
+              "name": "Crumb",
+              "fill": "$epe-text-muted",
+              "content": "Home / Shop",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "B4oiD",
+              "name": "Title",
+              "fill": "$epe-text-white",
+              "content": "Shop",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 48,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "T5Y280",
+              "name": "Sub",
+              "fill": "$epe-text-muted",
+              "content": "全商品",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BfOtK",
+          "name": "Bar",
+          "width": "fill_container",
+          "padding": [
+            0,
+            80,
+            32,
+            80
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "VdoaR",
+              "fill": "$epe-text-muted",
+              "content": "12 items",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "SxoRN",
+              "fill": "$epe-text-muted",
+              "content": "Sort ▾",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "DQ1GT",
+          "name": "Grid",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            0,
+            80,
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "mhzKR",
+              "name": "Row",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sbU72",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "f1Tc2M",
+                      "width": "fill_container",
+                      "height": 280,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ttdQy",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "ZupiE",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "U5u76",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "EapRr",
+                      "width": "fill_container",
+                      "height": 280,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "C4iKpw",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "oMLjb",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wrtSA",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "RDVLT",
+                      "width": "fill_container",
+                      "height": 280,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "egJB8",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "g6wIWh",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "VjWGO",
+              "name": "Row",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "JzLq0",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "EEO0E",
+                      "width": "fill_container",
+                      "height": 280,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "KLKxp",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "h2LIRP",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "V8yr6",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "zn84F",
+                      "width": "fill_container",
+                      "height": 280,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "H0DWWZ",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MZXCh",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "YlK2S",
+                  "name": "Card",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JzMvI",
+                      "width": "fill_container",
+                      "height": 280,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "W3VPp",
+                      "fill": "$epe-text-white",
+                      "content": "商品名が入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Vrwba",
+                      "fill": "$epe-text-muted",
+                      "content": "¥0,000（税込）",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ZMaYc",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "eokQx",
+      "x": 6557,
+      "y": -881,
+      "name": "ジャーナル一覧 (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "HIl8O",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "BbWXb",
+          "name": "Hero",
+          "width": "fill_container",
+          "gap": 14,
+          "padding": [
+            72,
+            80,
+            40,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "KlSCR",
+              "name": "Crumb",
+              "fill": "$epe-text-muted",
+              "content": "Home / Journal",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "E3cp4e",
+              "fill": "$epe-text-white",
+              "content": "Journal",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 48,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "i43HU",
+          "name": "Grid",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 28,
+          "padding": [
+            0,
+            80,
+            40,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "i1rFg",
+              "name": "Row",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ex8tT",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "wmY9i",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "J9Jgl",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "CXPxs",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "vvzp4",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "gvKjY",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "o1dun6",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "PZVr0",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "HOaa0",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dN8Jm",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jeQRU",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "M6NHH2",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xiooh",
+              "name": "Row",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zLryr",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "dE1Cz",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sSIGo",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "N9vy0",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "TiSik",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "jbbeb",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "biZhu",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "eJwYN",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "zXjql",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "DYQYO",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zcYBq",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "zlvZn",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "i48Dq",
+              "name": "Row",
+              "width": "fill_container",
+              "gap": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "lIUAV",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xPWGj",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sMpuU",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Q9i9PW",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DTkXO",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "O0qh9",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sV8QZ",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sOrBw",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "T55TBW",
+                  "name": "BlogCard",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bof2p",
+                      "width": "fill_container",
+                      "height": 200,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "text",
+                      "id": "K6JsM",
+                      "fill": "$epe-text-muted",
+                      "content": "20XX年 0月 00日",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "sWd1Y",
+                      "fill": "$epe-text-white",
+                      "content": "記事タイトルが入ります",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 15,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "o0i5w",
+          "name": "Pager",
+          "width": "fill_container",
+          "gap": 16,
+          "padding": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "J5Mdz",
+              "fill": "$epe-text-white",
+              "content": "← Prev",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "oaQTD",
+              "fill": "$epe-text-white",
+              "content": "Next →",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "id": "Sr8sY",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "rYLEK",
+      "x": 7997,
+      "y": -881,
+      "name": "ジャーナル記事詳細 (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "ePHXZ",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "q3GmQ",
+          "name": "Wrap",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            72,
+            290,
+            90,
+            290
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "m4n3S8",
+              "name": "Back",
+              "fill": "$epe-text-muted",
+              "content": "← Journal",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "USezG",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                24,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qyRS2",
+                  "fill": "$epe-text-muted",
+                  "content": "20XX年 0月 00日",
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "miiD6",
+                  "fill": "$epe-text-white",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "記事タイトルが入ります記事タイトルが入ります",
+                  "lineHeight": 1.4,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 28,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YFocS",
+              "name": "MainImage",
+              "width": "fill_container",
+              "height": 420,
+              "fill": "$epe-img-placeholder"
+            },
+            {
+              "type": "frame",
+              "id": "V9A3N",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "padding": [
+                40,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "KSZvP",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "a3HVxf",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "f92lQs",
+                  "fill": "$epe-text-body",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。本文テキストが入ります。",
+                  "lineHeight": 1.9,
+                  "fontFamily": "$epe-font-jp",
+                  "fontSize": 15,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "QFntd",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "PFpV8",
+      "x": 9437,
+      "y": -881,
+      "name": "カート (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "diZex",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "WR6Fm",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            72,
+            80,
+            40,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "GTPDV",
+              "name": "Crumb",
+              "fill": "$epe-text-muted",
+              "content": "Home / Cart",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "NlVs2",
+              "fill": "$epe-text-white",
+              "content": "Cart",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 48,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Q79NTl",
+          "name": "Wrap",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            0,
+            80,
+            90,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "ahAPl",
+              "name": "Items",
+              "width": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zQxSm",
+                  "name": "LineItem",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 24,
+                  "padding": [
+                    24,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qxNvQ",
+                      "width": 110,
+                      "height": 110,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "u4GqV",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "DCesF",
+                          "fill": "$epe-text-white",
+                          "content": "商品名が入ります",
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "eVPeW",
+                          "fill": "$epe-text-muted",
+                          "content": "Color: Black / Size: M",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "rH3pJ",
+                      "fill": "$epe-text-white",
+                      "content": "数量：1",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "AWpDZ",
+                      "fill": "$epe-text-white",
+                      "content": "¥0,000",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "DW1pw",
+                  "name": "LineItem",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 24,
+                  "padding": [
+                    24,
+                    0
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LmtLh",
+                      "width": 110,
+                      "height": 110,
+                      "fill": "$epe-img-placeholder"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "VEXIx",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Ah7cH",
+                          "fill": "$epe-text-white",
+                          "content": "商品名が入ります",
+                          "fontFamily": "$epe-font-jp",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "G8FQm",
+                          "fill": "$epe-text-muted",
+                          "content": "Color: Black / Size: M",
+                          "fontFamily": "$epe-font-en",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "GKBlI",
+                      "fill": "$epe-text-white",
+                      "content": "数量：1",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "NirNF",
+                      "fill": "$epe-text-white",
+                      "content": "¥0,000",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HNpF7",
+              "name": "Summary",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 20,
+              "padding": [
+                32,
+                0,
+                0,
+                0
+              ],
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "j0GR3",
+                  "width": 400,
+                  "justifyContent": "space_between",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t09Z9E",
+                      "fill": "$epe-text-muted",
+                      "content": "Subtotal",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MTr7t",
+                      "fill": "$epe-text-white",
+                      "content": "¥0,000",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 16,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "fLtFM",
+                  "width": 400,
+                  "fill": "$epe-button-bg",
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "tE1EQ",
+                      "fill": "$epe-text-white",
+                      "content": "Check Out",
+                      "fontFamily": "$epe-font-en",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "R1KxOi",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "y5HRb",
+      "x": 10877,
+      "y": -881,
+      "name": "特定商取引法 (PC)",
+      "clip": true,
+      "width": 1340,
+      "fill": "$epe-section-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "z6yBr3",
+          "type": "ref",
+          "ref": "r4yvFI",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "T0dtzr",
+          "name": "Hero",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "padding": [
+            72,
+            80,
+            40,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "MFvrS",
+              "name": "Crumb",
+              "fill": "$epe-text-muted",
+              "content": "Home / Legal",
+              "fontFamily": "$epe-font-en",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "qABed",
+              "name": "Title",
+              "fill": "$epe-text-white",
+              "content": "特定商取引法に基づく表記",
+              "fontFamily": "$epe-font-jp",
+              "fontSize": 48,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xjDJb",
+          "name": "Wrap",
+          "width": "fill_container",
+          "layout": "vertical",
+          "padding": [
+            0,
+            80,
+            100,
+            80
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "DALxP",
+              "name": "Table",
+              "width": 820,
+              "layout": "vertical",
+              "padding": [
+                48,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "P4Wlr8",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jeRvS",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "販売事業者",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "g108SR",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "○○株式会社",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "i4liN",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "W8MGl",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "運営統括責任者",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fuZBB",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "◯◯ ◯◯",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "f1lQk",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "X3xRG",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "所在地",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VpoJl",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "〒000-0000 東京都◯◯区◯◯ 0-0-0",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "e7IkC8",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cQVm4",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "電話番号",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "nKNhg",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "00-0000-0000（受付時間：平日10:00〜17:00）",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "h8QzLx",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "qQxRU",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "メールアドレス",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VQiGr",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "info@example.com",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "na47z",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FlAqv",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "販売価格",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "w9Ssp",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "各商品ページに税込価格で表示",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "wqRBV",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PKs3x",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "商品代金以外の必要料金",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jNtLc",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "送料・消費税等（各商品ページに記載）",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "WlGZQ",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "xmk6C",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "お支払い方法",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "TP0Q0",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "クレジットカード、その他各種決済方法",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EOhJX",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "fVnLb",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "お支払い時期",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WFtNA",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "ご注文確定時",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "opkr6",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "g37H4p",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "商品の引き渡し時期",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "WoRGO",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "ご注文確認後、通常3〜5営業日以内に発送",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SK7Fj",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sXx9s",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "返品・交換について",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "fqAcs",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "商品到着後7日以内、未使用に限り対応",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "imUzY",
+                  "name": "Row",
+                  "width": "fill_container",
+                  "stroke": "$epe-line",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "gap": 40,
+                  "padding": [
+                    20,
+                    0
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "k38shX",
+                      "fill": "$epe-text-white",
+                      "textGrowth": "fixed-width",
+                      "width": 220,
+                      "content": "キャンセルについて",
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jm8cd",
+                      "fill": "$epe-text-body",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "発送前のみキャンセル可能",
+                      "lineHeight": 1.7,
+                      "fontFamily": "$epe-font-jp",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "A81xDq",
+          "type": "ref",
+          "ref": "bRR5P",
+          "name": "Footer",
+          "width": "fill_container"
         }
       ]
     }
