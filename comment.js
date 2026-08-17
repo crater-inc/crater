@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.2 (2026-08-10)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.3 (2026-08-17)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -42,6 +42,13 @@
     function $(id) { return document.getElementById(id); }
     function elm(t, a, x) { var n = document.createElement(t); if (a) for (var k in a) n.setAttribute(k, a[k]); if (x != null) n.textContent = x; return n; }
     function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+    function linkify(escaped) {
+      return escaped.replace(/(https?:\/\/[^\s<]+)/g, function (url) {
+        var trail = "", m = url.match(/[。、）)\]」』.,;:!?]+$/);
+        if (m) { trail = m[0]; url = url.slice(0, -trail.length); }
+        return '<a href="' + url + '" target="_blank" rel="noopener" class="cr-link">' + url + '</a>' + trail;
+      });
+    }
 
     // ピンの%座標はCSSのposition:absoluteで解釈されるため、基準要素(root)自身がposition:static だと
     // ブラウザは祖先を辿って「初期包含ブロック(≒ビューポート相当のサイズ)」を基準にしてしまう。
@@ -109,7 +116,7 @@
       ".cr-bdg{font-size:9px;color:#9fb4d6;border:1px solid #33465e;border-radius:4px;padding:1px 6px;letter-spacing:.06em;flex-shrink:0;}",
       ".cr-nm{font-size:11px;color:#888;}",
       ".cr-sec{font-size:10px;color:#5b6b8c;margin-bottom:2px;}",
-      ".cr-tx{font-size:12px;color:#e0e0e0;line-height:1.6;}",
+      ".cr-tx{font-size:12px;color:#e0e0e0;line-height:1.6;overflow-wrap:anywhere;word-break:break-word;}",
       ".cr-hint{font-size:10px;color:#6b7280;margin:2px 0 6px;}",
       ".cr-after{font-size:10px;color:#4ade80;margin:0 0 6px;}",
       ".cr-ba{display:flex;gap:6px;margin-top:8px;}",
@@ -133,7 +140,8 @@
       ".cr-vnum{font-size:12px;color:#93b0e0;font-weight:700;}",
       ".cr-va{display:flex;gap:4px;}",
       ".cr-va button{background:none;border:1px solid #374151;color:#aaa;padding:3px 7px;font-size:10px;cursor:pointer;border-radius:4px;font-family:inherit;}",
-      ".cr-vtx{font-size:13px;color:#e5e7eb;line-height:1.6;}",
+      ".cr-vtx{font-size:13px;color:#e5e7eb;line-height:1.6;overflow-wrap:anywhere;word-break:break-word;}",
+      ".cr-link{color:#7dd3fc;text-decoration:underline;}",
       ".cr-badge{display:inline-block;margin-top:6px;font-size:10px;color:#4ade80;}",
       ".cr-meta{font-size:10px;color:#6b7280;margin-top:6px;}",
       "body.cr-mode{cursor:crosshair;}",
@@ -348,7 +356,7 @@
       view.innerHTML = '<div class="cr-vh"><span class="cr-vnum">#' + num + ' ' + esc(c.name || "匿名") + '</span><div class="cr-va"><button class="e">編集</button><button class="r">' + (c.resolved ? "戻す" : "修正済") + '</button><button class="d">削除</button></div></div>' +
         (c.section ? '<div class="cr-hint">📍 ' + esc(c.section) + (c.hint ? " ／ 修正前：" + (c.hintExact ? "選択：" : "") + "「" + esc(c.hint) + "」" : "") + '</div>' : "") +
         (c.afterHint ? '<div class="cr-after">✓ 修正後：「' + esc(c.afterHint) + '」</div>' : "") +
-        '<div class="cr-vtx" id="crv-' + c.id + '">' + esc(c.text) + '</div>' +
+        '<div class="cr-vtx" id="crv-' + c.id + '">' + linkify(esc(c.text)) + '</div>' +
         (c.resolved ? '<span class="cr-badge">✓ 修正済み</span>' : "") + (date ? '<div class="cr-meta">' + date + '</div>' : "");
       document.body.appendChild(view);
       view.querySelector(".e").addEventListener("click", function () { editView(c); });
@@ -381,14 +389,14 @@
           (c.section ? '<div class="cr-sec">' + esc(c.section) + '</div>' : "") +
           (c.hint ? '<div class="cr-hint">修正前：「' + esc(c.hint) + '」</div>' : "") +
           (c.afterHint ? '<div class="cr-after">✓ 修正後：「' + esc(c.afterHint) + '」</div>' : "") +
-          '<div class="cr-tx">' + esc(c.text) + '</div>' +
+          '<div class="cr-tx">' + linkify(esc(c.text)) + '</div>' +
           '<div class="cr-ba"><button class="e">編集</button><button class="r">' + (c.resolved ? "戻す" : "修正済") + '</button><button class="d">削除</button></div>';
         var txEl = it.querySelector(".cr-tx");
         it.querySelector(".e").addEventListener("click", function (e) { e.stopPropagation(); inlineEdit(it, txEl, c); });
         it.querySelector(".r").addEventListener("click", function (e) { e.stopPropagation(); toggleResolved(c); });
         it.querySelector(".d").addEventListener("click", function (e) { e.stopPropagation(); if (!confirm("削除？")) return; col().doc(c.id).delete(); });
         it.addEventListener("click", function (e) {
-          if (e.target.closest("button") || e.target.closest("textarea")) return;
+          if (e.target.closest("button") || e.target.closest("textarea") || e.target.closest("a")) return;
           if (c.root !== curRoot) return; // 別ビューのコメントはこのビューにピンが無い
           var pin = getRoot().querySelector('.cr-pin[data-id="' + c.id + '"]'); if (pin) { pin.scrollIntoView({ behavior: "smooth", block: "center" }); setTimeout(function () { pin.click(); }, 400); }
         });
