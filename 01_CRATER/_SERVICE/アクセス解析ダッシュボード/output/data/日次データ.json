@@ -1,21 +1,15 @@
 {
   "is_sample": false,
-  "updated_at": "2026-08-17T07:07:52+09:00",
-  "insight": "CHICSが直近7日で201セッション（前週比-22%）と、6サイト中最も大きい実数減少を記録している。",
-  "suggestion": "CHICSのGA4でトラフィックソース別の内訳を確認し、特定チャネルでの落ち込みか全体的な減少かを切り分ける。",
+  "updated_at": "2026-08-18T07:11:11+09:00",
+  "insight": "CRATERの直近7日sessionsが89件で前週比-53%と、6サイト中(YEARSの既知件を除き)最も大きな減少幅。件数規模の小ささも踏まえると、前週側に一時的なスパム・ボットトラフィックの水増しがあった可能性も否定できない。",
+  "suggestion": "CRATERの前週データをトラフィックソース・直帰率などで確認し、前週の数値が異常値だったのか実減少なのかを切り分けることを推奨。",
   "sites": [
     {
       "id": "crater",
       "name": "CRATER",
       "ga4_property_id": "353705241",
-      "comment": "136セッションで前週比-18%とやや減少傾向。",
+      "comment": "直近7日sessions=89、前週比-53%と6サイト中最大の減少幅。",
       "daily": [
-        {
-          "date": "2026-05-19",
-          "sessions": 19,
-          "users": 17,
-          "pageviews": 37
-        },
         {
           "date": "2026-05-20",
           "sessions": 34,
@@ -549,6 +543,18 @@
           "sessions": 15,
           "users": 14,
           "pageviews": 34
+        },
+        {
+          "date": "2026-08-17",
+          "sessions": 12,
+          "users": 12,
+          "pageviews": 29
+        },
+        {
+          "date": "2026-08-18",
+          "sessions": 1,
+          "users": 1,
+          "pageviews": 1
         }
       ],
       "breakdown": {
@@ -899,11 +905,6 @@
             "pageviews": 12
           },
           {
-            "date": "2026-05-19",
-            "path": "/",
-            "pageviews": 11
-          },
-          {
             "date": "2026-05-27",
             "path": "/about/",
             "pageviews": 11
@@ -1229,11 +1230,6 @@
             "pageviews": 7
           },
           {
-            "date": "2026-05-19",
-            "path": "/10th/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-05-22",
             "path": "/works/",
             "pageviews": 6
@@ -1400,6 +1396,11 @@
           },
           {
             "date": "2026-08-03",
+            "path": "/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-08-17",
             "path": "/",
             "pageviews": 6
           },
@@ -2189,19 +2190,9 @@
             "pageviews": 3
           },
           {
-            "date": "2026-05-19",
-            "path": "/about/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/contact/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/works/",
-            "pageviews": 2
+            "date": "2026-08-17",
+            "path": "/10th/",
+            "pageviews": 3
           },
           {
             "date": "2026-05-21",
@@ -2664,9 +2655,9 @@
             "pageviews": 2
           },
           {
-            "date": "2026-05-19",
-            "path": "/info/",
-            "pageviews": 1
+            "date": "2026-08-17",
+            "path": "/contact/",
+            "pageviews": 2
           },
           {
             "date": "2026-05-20",
@@ -3231,6 +3222,21 @@
           {
             "date": "2026-08-15",
             "path": "/works/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-17",
+            "path": "/works/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-17",
+            "path": "/works/logo/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-18",
+            "path": "/",
             "pageviews": 1
           }
         ],
@@ -3586,11 +3592,6 @@
             "sessions": 12
           },
           {
-            "date": "2026-05-19",
-            "channel": "Direct",
-            "sessions": 11
-          },
-          {
             "date": "2026-05-22",
             "channel": "Direct",
             "sessions": 11
@@ -3816,11 +3817,6 @@
             "sessions": 8
           },
           {
-            "date": "2026-05-19",
-            "channel": "Organic Search",
-            "sessions": 7
-          },
-          {
             "date": "2026-06-15",
             "channel": "Direct",
             "sessions": 7
@@ -3958,6 +3954,11 @@
           {
             "date": "2026-08-08",
             "channel": "Organic Search",
+            "sessions": 6
+          },
+          {
+            "date": "2026-08-17",
+            "channel": "Direct",
             "sessions": 6
           },
           {
@@ -4251,6 +4252,11 @@
             "sessions": 3
           },
           {
+            "date": "2026-08-17",
+            "channel": "Referral",
+            "sessions": 3
+          },
+          {
             "date": "2026-05-28",
             "channel": "Referral",
             "sessions": 2
@@ -4436,9 +4442,9 @@
             "sessions": 2
           },
           {
-            "date": "2026-05-19",
-            "channel": "Referral",
-            "sessions": 1
+            "date": "2026-08-17",
+            "channel": "Organic Search",
+            "sessions": 2
           },
           {
             "date": "2026-05-21",
@@ -4688,6 +4694,16 @@
           {
             "date": "2026-08-16",
             "channel": "Referral",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-17",
+            "channel": "Organic Social",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-18",
+            "channel": "Direct",
             "sessions": 1
           }
         ],
@@ -4953,11 +4969,6 @@
             "sessions": 17
           },
           {
-            "date": "2026-05-19",
-            "category": "desktop",
-            "sessions": 16
-          },
-          {
             "date": "2026-05-26",
             "category": "desktop",
             "sessions": 16
@@ -5064,6 +5075,11 @@
           },
           {
             "date": "2026-08-05",
+            "category": "desktop",
+            "sessions": 11
+          },
+          {
+            "date": "2026-08-17",
             "category": "desktop",
             "sessions": 11
           },
@@ -5458,11 +5474,6 @@
             "sessions": 4
           },
           {
-            "date": "2026-05-19",
-            "category": "mobile",
-            "sessions": 3
-          },
-          {
             "date": "2026-05-31",
             "category": "desktop",
             "sessions": 3
@@ -5591,6 +5602,16 @@
             "date": "2026-08-07",
             "category": "tablet",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-17",
+            "category": "mobile",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-18",
+            "category": "desktop",
+            "sessions": 1
           }
         ]
       }
@@ -5599,7 +5620,7 @@
       "id": "acurry",
       "name": "A CURRY",
       "ga4_property_id": "506973253",
-      "comment": "19セッションで前週比+46%だが母数が小さく、急増の内訳（流入元）を確認したい。",
+      "comment": "直近7日sessions=19、前週比+46%だが母数が小さく変動の影響を受けやすい水準。",
       "daily": [
         {
           "date": "2026-05-24",
@@ -6651,14 +6672,8 @@
       "id": "chics",
       "name": "CHICS",
       "ga4_property_id": "259441420",
-      "comment": "201セッションで前週比-22%、6サイト中最大の実数減少。",
+      "comment": "直近7日sessions=187で6サイト中最多、前週比は-22%。",
       "daily": [
-        {
-          "date": "2026-05-19",
-          "sessions": 62,
-          "users": 53,
-          "pageviews": 121
-        },
         {
           "date": "2026-05-20",
           "sessions": 67,
@@ -7192,6 +7207,18 @@
           "sessions": 28,
           "users": 26,
           "pageviews": 57
+        },
+        {
+          "date": "2026-08-17",
+          "sessions": 50,
+          "users": 40,
+          "pageviews": 119
+        },
+        {
+          "date": "2026-08-18",
+          "sessions": 1,
+          "users": 1,
+          "pageviews": 2
         }
       ],
       "breakdown": {
@@ -7247,11 +7274,6 @@
             "pageviews": 27
           },
           {
-            "date": "2026-05-19",
-            "path": "/news/1357/",
-            "pageviews": 26
-          },
-          {
             "date": "2026-05-27",
             "path": "/news/825/",
             "pageviews": 26
@@ -7279,6 +7301,11 @@
           {
             "date": "2026-07-21",
             "path": "/",
+            "pageviews": 24
+          },
+          {
+            "date": "2026-08-17",
+            "path": "/news/1357/",
             "pageviews": 24
           },
           {
@@ -7517,11 +7544,6 @@
             "pageviews": 16
           },
           {
-            "date": "2026-06-23",
-            "path": "/news/1372/",
-            "pageviews": 16
-          },
-          {
             "date": "2026-06-25",
             "path": "/news/2006/",
             "pageviews": 16
@@ -7534,11 +7556,6 @@
           {
             "date": "2026-07-03",
             "path": "/news/1357/",
-            "pageviews": 16
-          },
-          {
-            "date": "2026-07-03",
-            "path": "/news/1372/",
             "pageviews": 16
           },
           {
@@ -7682,6 +7699,11 @@
             "pageviews": 14
           },
           {
+            "date": "2026-07-16",
+            "path": "/news/1829/",
+            "pageviews": 14
+          },
+          {
             "date": "2026-07-19",
             "path": "/news/1357/",
             "pageviews": 14
@@ -7737,6 +7759,11 @@
             "pageviews": 13
           },
           {
+            "date": "2026-06-21",
+            "path": "/news/1829/",
+            "pageviews": 13
+          },
+          {
             "date": "2026-07-04",
             "path": "/news/1074/",
             "pageviews": 13
@@ -7762,16 +7789,6 @@
             "pageviews": 13
           },
           {
-            "date": "2026-05-21",
-            "path": "/news/1372/",
-            "pageviews": 12
-          },
-          {
-            "date": "2026-05-25",
-            "path": "/news/1372/",
-            "pageviews": 12
-          },
-          {
             "date": "2026-05-27",
             "path": "/news/1357/",
             "pageviews": 12
@@ -7794,11 +7811,6 @@
           {
             "date": "2026-06-08",
             "path": "/news/1357/",
-            "pageviews": 12
-          },
-          {
-            "date": "2026-06-08",
-            "path": "/news/1372/",
             "pageviews": 12
           },
           {
@@ -7882,6 +7894,11 @@
             "pageviews": 12
           },
           {
+            "date": "2026-07-09",
+            "path": "/news/1829/",
+            "pageviews": 12
+          },
+          {
             "date": "2026-07-10",
             "path": "/",
             "pageviews": 12
@@ -7947,16 +7964,6 @@
             "pageviews": 11
           },
           {
-            "date": "2026-05-19",
-            "path": "/news/1372/",
-            "pageviews": 10
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/news/2768/",
-            "pageviews": 10
-          },
-          {
             "date": "2026-05-22",
             "path": "/",
             "pageviews": 10
@@ -8013,17 +8020,17 @@
           },
           {
             "date": "2026-06-09",
+            "path": "/news/1829/",
+            "pageviews": 10
+          },
+          {
+            "date": "2026-06-09",
             "path": "/news/2768/",
             "pageviews": 10
           },
           {
             "date": "2026-06-11",
             "path": "/news/1074/",
-            "pageviews": 10
-          },
-          {
-            "date": "2026-06-11",
-            "path": "/news/1372/",
             "pageviews": 10
           },
           {
@@ -8044,6 +8051,11 @@
           {
             "date": "2026-06-22",
             "path": "/news/825/",
+            "pageviews": 10
+          },
+          {
+            "date": "2026-06-23",
+            "path": "/news/1829/",
             "pageviews": 10
           },
           {
@@ -8117,6 +8129,11 @@
             "pageviews": 10
           },
           {
+            "date": "2026-07-25",
+            "path": "/news/1829/",
+            "pageviews": 10
+          },
+          {
             "date": "2026-07-27",
             "path": "/news/1074/",
             "pageviews": 10
@@ -8167,23 +8184,18 @@
             "pageviews": 8
           },
           {
+            "date": "2026-05-23",
+            "path": "/news/1829/",
+            "pageviews": 8
+          },
+          {
             "date": "2026-05-26",
             "path": "/news/1074/",
             "pageviews": 8
           },
           {
             "date": "2026-05-26",
-            "path": "/news/1372/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-05-26",
             "path": "/news/2006/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-05-28",
-            "path": "/news/1372/",
             "pageviews": 8
           },
           {
@@ -8199,16 +8211,6 @@
           {
             "date": "2026-06-01",
             "path": "/news/1074/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-06-01",
-            "path": "/news/1372/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-06-02",
-            "path": "/news/1372/",
             "pageviews": 8
           },
           {
@@ -8234,11 +8236,6 @@
           {
             "date": "2026-06-08",
             "path": "/news/2768/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-06-09",
-            "path": "/news/1372/",
             "pageviews": 8
           },
           {
@@ -8278,17 +8275,17 @@
           },
           {
             "date": "2026-06-17",
-            "path": "/news/1372/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-06-17",
             "path": "/news/825/",
             "pageviews": 8
           },
           {
             "date": "2026-06-18",
             "path": "/news/825/",
+            "pageviews": 8
+          },
+          {
+            "date": "2026-06-19",
+            "path": "/news/1829/",
             "pageviews": 8
           },
           {
@@ -8307,6 +8304,11 @@
             "pageviews": 8
           },
           {
+            "date": "2026-06-25",
+            "path": "/news/1829/",
+            "pageviews": 8
+          },
+          {
             "date": "2026-06-27",
             "path": "/news/1357/",
             "pageviews": 8
@@ -8319,11 +8321,6 @@
           {
             "date": "2026-07-02",
             "path": "/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-07-02",
-            "path": "/news/1372/",
             "pageviews": 8
           },
           {
@@ -8353,7 +8350,17 @@
           },
           {
             "date": "2026-07-06",
+            "path": "/news/1829/",
+            "pageviews": 8
+          },
+          {
+            "date": "2026-07-06",
             "path": "/news/2768/",
+            "pageviews": 8
+          },
+          {
+            "date": "2026-07-07",
+            "path": "/news/1829/",
             "pageviews": 8
           },
           {
@@ -8414,11 +8421,6 @@
           {
             "date": "2026-07-28",
             "path": "/",
-            "pageviews": 8
-          },
-          {
-            "date": "2026-07-28",
-            "path": "/news/1372/",
             "pageviews": 8
           },
           {
@@ -8497,28 +8499,18 @@
             "pageviews": 7
           },
           {
+            "date": "2026-07-22",
+            "path": "/news/1829/",
+            "pageviews": 7
+          },
+          {
             "date": "2026-08-07",
             "path": "/",
             "pageviews": 7
           },
           {
-            "date": "2026-05-19",
-            "path": "/news/1093/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/news/2006/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-05-20",
             "path": "/news/1093/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-05-20",
-            "path": "/news/1372/",
             "pageviews": 6
           },
           {
@@ -8577,6 +8569,11 @@
             "pageviews": 6
           },
           {
+            "date": "2026-05-25",
+            "path": "/news/1829/",
+            "pageviews": 6
+          },
+          {
             "date": "2026-05-26",
             "path": "/",
             "pageviews": 6
@@ -8594,6 +8591,11 @@
           {
             "date": "2026-05-27",
             "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-05-27",
+            "path": "/news/1829/",
             "pageviews": 6
           },
           {
@@ -8622,11 +8624,6 @@
             "pageviews": 6
           },
           {
-            "date": "2026-05-30",
-            "path": "/news/1372/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-05-31",
             "path": "/news/1093/",
             "pageviews": 6
@@ -8662,28 +8659,13 @@
             "pageviews": 6
           },
           {
-            "date": "2026-06-03",
-            "path": "/news/1372/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-06-04",
             "path": "/news/1093/",
             "pageviews": 6
           },
           {
-            "date": "2026-06-04",
-            "path": "/news/1372/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-06-05",
             "path": "/news/1093/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-06-05",
-            "path": "/news/1372/",
             "pageviews": 6
           },
           {
@@ -8722,11 +8704,6 @@
             "pageviews": 6
           },
           {
-            "date": "2026-06-12",
-            "path": "/news/1372/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-06-13",
             "path": "/news/1074/",
             "pageviews": 6
@@ -8754,11 +8731,6 @@
           {
             "date": "2026-06-15",
             "path": "/news/1093/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-06-15",
-            "path": "/news/1372/",
             "pageviews": 6
           },
           {
@@ -8817,6 +8789,11 @@
             "pageviews": 6
           },
           {
+            "date": "2026-06-22",
+            "path": "/news/1829/",
+            "pageviews": 6
+          },
+          {
             "date": "2026-06-23",
             "path": "/news/1074/",
             "pageviews": 6
@@ -8834,11 +8811,6 @@
           {
             "date": "2026-06-24",
             "path": "/news/1093/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-06-24",
-            "path": "/news/1372/",
             "pageviews": 6
           },
           {
@@ -8849,11 +8821,6 @@
           {
             "date": "2026-06-25",
             "path": "/news/1093/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-06-25",
-            "path": "/news/1372/",
             "pageviews": 6
           },
           {
@@ -8874,6 +8841,11 @@
           {
             "date": "2026-06-27",
             "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-06-27",
+            "path": "/news/1829/",
             "pageviews": 6
           },
           {
@@ -8988,17 +8960,17 @@
           },
           {
             "date": "2026-07-09",
-            "path": "/news/1372/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-07-09",
             "path": "/news/825/",
             "pageviews": 6
           },
           {
             "date": "2026-07-10",
             "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-07-10",
+            "path": "/news/1829/",
             "pageviews": 6
           },
           {
@@ -9019,6 +8991,11 @@
           {
             "date": "2026-07-13",
             "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-07-13",
+            "path": "/news/1829/",
             "pageviews": 6
           },
           {
@@ -9192,6 +9169,11 @@
             "pageviews": 6
           },
           {
+            "date": "2026-08-03",
+            "path": "/news/1829/",
+            "pageviews": 6
+          },
+          {
             "date": "2026-08-04",
             "path": "/news/1093/",
             "pageviews": 6
@@ -9204,6 +9186,11 @@
           {
             "date": "2026-08-05",
             "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-08-05",
+            "path": "/news/1829/",
             "pageviews": 6
           },
           {
@@ -9267,11 +9254,6 @@
             "pageviews": 6
           },
           {
-            "date": "2026-08-12",
-            "path": "/news/1372/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-08-13",
             "path": "/news/1093/",
             "pageviews": 6
@@ -9302,6 +9284,16 @@
             "pageviews": 6
           },
           {
+            "date": "2026-08-17",
+            "path": "/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-08-17",
+            "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
             "date": "2026-06-01",
             "path": "/news/2768/",
             "pageviews": 5
@@ -9310,11 +9302,6 @@
             "date": "2026-06-19",
             "path": "/news/1357/",
             "pageviews": 5
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/news/825/",
-            "pageviews": 4
           },
           {
             "date": "2026-05-20",
@@ -9327,13 +9314,18 @@
             "pageviews": 4
           },
           {
-            "date": "2026-05-23",
-            "path": "/news/825/",
+            "date": "2026-05-21",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
-            "date": "2026-05-24",
-            "path": "/news/1372/",
+            "date": "2026-05-22",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-05-23",
+            "path": "/news/825/",
             "pageviews": 4
           },
           {
@@ -9342,18 +9334,23 @@
             "pageviews": 4
           },
           {
-            "date": "2026-05-27",
-            "path": "/news/1372/",
+            "date": "2026-05-28",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
             "date": "2026-05-29",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
             "date": "2026-05-30",
             "path": "/news/825/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-05-31",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9367,8 +9364,23 @@
             "pageviews": 4
           },
           {
+            "date": "2026-06-04",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-06-05",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
             "date": "2026-06-05",
             "path": "/news/2006/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-06-06",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9383,7 +9395,12 @@
           },
           {
             "date": "2026-06-07",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-06-08",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9403,7 +9420,12 @@
           },
           {
             "date": "2026-06-10",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-06-11",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9414,6 +9436,11 @@
           {
             "date": "2026-06-14",
             "path": "/news/1357/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-06-15",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9438,7 +9465,7 @@
           },
           {
             "date": "2026-06-18",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9462,13 +9489,13 @@
             "pageviews": 4
           },
           {
-            "date": "2026-06-22",
-            "path": "/news/1372/",
+            "date": "2026-06-23",
+            "path": "/",
             "pageviews": 4
           },
           {
-            "date": "2026-06-23",
-            "path": "/",
+            "date": "2026-06-24",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9482,11 +9509,6 @@
             "pageviews": 4
           },
           {
-            "date": "2026-06-26",
-            "path": "/news/1372/",
-            "pageviews": 4
-          },
-          {
             "date": "2026-06-28",
             "path": "/news/1074/",
             "pageviews": 4
@@ -9497,8 +9519,13 @@
             "pageviews": 4
           },
           {
+            "date": "2026-06-29",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
             "date": "2026-06-30",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9528,11 +9555,6 @@
           },
           {
             "date": "2026-07-10",
-            "path": "/news/1372/",
-            "pageviews": 4
-          },
-          {
-            "date": "2026-07-10",
             "path": "/news/2768/",
             "pageviews": 4
           },
@@ -9557,11 +9579,6 @@
             "pageviews": 4
           },
           {
-            "date": "2026-07-13",
-            "path": "/news/1372/",
-            "pageviews": 4
-          },
-          {
             "date": "2026-07-14",
             "path": "/news/2006/",
             "pageviews": 4
@@ -9569,6 +9586,16 @@
           {
             "date": "2026-07-15",
             "path": "/news/1074/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-07-15",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-07-17",
+            "path": "/news/1829/",
             "pageviews": 4
           },
           {
@@ -9588,11 +9615,6 @@
           },
           {
             "date": "2026-07-23",
-            "path": "/news/1372/",
-            "pageviews": 4
-          },
-          {
-            "date": "2026-07-23",
             "path": "/news/2006/",
             "pageviews": 4
           },
@@ -9604,11 +9626,6 @@
           {
             "date": "2026-07-26",
             "path": "/news/825/",
-            "pageviews": 4
-          },
-          {
-            "date": "2026-07-27",
-            "path": "/news/1372/",
             "pageviews": 4
           },
           {
@@ -9634,11 +9651,6 @@
           {
             "date": "2026-07-31",
             "path": "/",
-            "pageviews": 4
-          },
-          {
-            "date": "2026-07-31",
-            "path": "/news/1372/",
             "pageviews": 4
           },
           {
@@ -9677,11 +9689,6 @@
             "pageviews": 4
           },
           {
-            "date": "2026-08-09",
-            "path": "/news/1372/",
-            "pageviews": 4
-          },
-          {
             "date": "2026-08-10",
             "path": "/news/2768/",
             "pageviews": 4
@@ -9693,6 +9700,21 @@
           },
           {
             "date": "2026-08-13",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-08-13",
+            "path": "/news/825/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-08-17",
+            "path": "/news/1829/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-08-17",
             "path": "/news/825/",
             "pageviews": 4
           },
@@ -9722,11 +9744,6 @@
             "pageviews": 3
           },
           {
-            "date": "2026-05-19",
-            "path": "/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-05-20",
             "path": "/",
             "pageviews": 2
@@ -9734,6 +9751,11 @@
           {
             "date": "2026-05-20",
             "path": "/news/1074/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-05-20",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -9744,11 +9766,6 @@
           {
             "date": "2026-05-23",
             "path": "/news/1074/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/news/1372/",
             "pageviews": 2
           },
           {
@@ -9787,6 +9804,11 @@
             "pageviews": 2
           },
           {
+            "date": "2026-05-30",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
             "date": "2026-05-31",
             "path": "/news/1074/",
             "pageviews": 2
@@ -9802,13 +9824,18 @@
             "pageviews": 2
           },
           {
-            "date": "2026-06-06",
-            "path": "/news/1074/",
+            "date": "2026-06-01",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-06-02",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
             "date": "2026-06-06",
-            "path": "/news/1372/",
+            "path": "/news/1074/",
             "pageviews": 2
           },
           {
@@ -9837,8 +9864,13 @@
             "pageviews": 2
           },
           {
+            "date": "2026-06-12",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
             "date": "2026-06-13",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -9853,7 +9885,7 @@
           },
           {
             "date": "2026-06-16",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -9878,7 +9910,7 @@
           },
           {
             "date": "2026-06-20",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -9903,6 +9935,11 @@
           },
           {
             "date": "2026-06-26",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-06-26",
             "path": "/news/825/",
             "pageviews": 2
           },
@@ -9918,12 +9955,12 @@
           },
           {
             "date": "2026-06-28",
-            "path": "/news/2768/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
-            "date": "2026-07-01",
-            "path": "/news/1372/",
+            "date": "2026-06-28",
+            "path": "/news/2768/",
             "pageviews": 2
           },
           {
@@ -9934,6 +9971,11 @@
           {
             "date": "2026-07-04",
             "path": "/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-04",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -9948,17 +9990,27 @@
           },
           {
             "date": "2026-07-05",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-05",
             "path": "/news/2006/",
             "pageviews": 2
           },
           {
             "date": "2026-07-07",
-            "path": "/news/1372/",
+            "path": "/news/2768/",
             "pageviews": 2
           },
           {
-            "date": "2026-07-07",
-            "path": "/news/2768/",
+            "date": "2026-07-08",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-11",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -9984,21 +10036,11 @@
           {
             "date": "2026-07-14",
             "path": "/news/1074/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-07-14",
-            "path": "/news/1372/",
             "pageviews": 2
           },
           {
             "date": "2026-07-15",
             "path": "/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-07-15",
-            "path": "/news/1372/",
             "pageviews": 2
           },
           {
@@ -10033,7 +10075,7 @@
           },
           {
             "date": "2026-07-20",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -10043,7 +10085,7 @@
           },
           {
             "date": "2026-07-21",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -10058,12 +10100,22 @@
           },
           {
             "date": "2026-07-23",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-23",
             "path": "/news/2768/",
             "pageviews": 2
           },
           {
             "date": "2026-07-24",
             "path": "/news/1074/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-24",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -10077,28 +10129,38 @@
             "pageviews": 2
           },
           {
-            "date": "2026-07-25",
-            "path": "/news/1372/",
-            "pageviews": 2
-          },
-          {
             "date": "2026-07-26",
             "path": "/news/1357/",
             "pageviews": 2
           },
           {
+            "date": "2026-07-27",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
             "date": "2026-07-29",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
             "date": "2026-07-30",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-07-31",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
             "date": "2026-08-01",
             "path": "/news/1074/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-01",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -10128,17 +10190,22 @@
           },
           {
             "date": "2026-08-05",
-            "path": "/news/1372/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-08-05",
             "path": "/news/2006/",
             "pageviews": 2
           },
           {
             "date": "2026-08-06",
             "path": "/news/1074/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-06",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-07",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -10149,6 +10216,11 @@
           {
             "date": "2026-08-08",
             "path": "/news/1074/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-08",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -10167,6 +10239,11 @@
             "pageviews": 2
           },
           {
+            "date": "2026-08-10",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
             "date": "2026-08-11",
             "path": "/",
             "pageviews": 2
@@ -10178,7 +10255,7 @@
           },
           {
             "date": "2026-08-11",
-            "path": "/news/1372/",
+            "path": "/news/1829/",
             "pageviews": 2
           },
           {
@@ -10193,17 +10270,17 @@
           },
           {
             "date": "2026-08-12",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-12",
             "path": "/news/2006/",
             "pageviews": 2
           },
           {
             "date": "2026-08-12",
             "path": "/news/2768/",
-            "pageviews": 2
-          },
-          {
-            "date": "2026-08-14",
-            "path": "/news/1372/",
             "pageviews": 2
           },
           {
@@ -10218,7 +10295,17 @@
           },
           {
             "date": "2026-08-16",
+            "path": "/news/1829/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-16",
             "path": "/news/2768/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-18",
+            "path": "/news/1357/",
             "pageviews": 2
           },
           {
@@ -10364,11 +10451,6 @@
             "sessions": 55
           },
           {
-            "date": "2026-05-19",
-            "channel": "Organic Search",
-            "sessions": 54
-          },
-          {
             "date": "2026-07-28",
             "channel": "Organic Search",
             "sessions": 54
@@ -10485,6 +10567,11 @@
           },
           {
             "date": "2026-06-06",
+            "channel": "Organic Search",
+            "sessions": 40
+          },
+          {
+            "date": "2026-08-17",
             "channel": "Organic Search",
             "sessions": 40
           },
@@ -10949,11 +11036,6 @@
             "sessions": 8
           },
           {
-            "date": "2026-05-19",
-            "channel": "Direct",
-            "sessions": 7
-          },
-          {
             "date": "2026-05-26",
             "channel": "Direct",
             "sessions": 7
@@ -11030,6 +11112,11 @@
           },
           {
             "date": "2026-08-09",
+            "channel": "Direct",
+            "sessions": 7
+          },
+          {
+            "date": "2026-08-17",
             "channel": "Direct",
             "sessions": 7
           },
@@ -11319,6 +11406,11 @@
             "sessions": 3
           },
           {
+            "date": "2026-08-17",
+            "channel": "Referral",
+            "sessions": 3
+          },
+          {
             "date": "2026-06-01",
             "channel": "Referral",
             "sessions": 2
@@ -11387,11 +11479,6 @@
             "date": "2026-08-16",
             "channel": "Referral",
             "sessions": 2
-          },
-          {
-            "date": "2026-05-19",
-            "channel": "Unassigned",
-            "sessions": 1
           },
           {
             "date": "2026-05-21",
@@ -11612,6 +11699,11 @@
             "date": "2026-08-13",
             "channel": "Referral",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-18",
+            "channel": "Organic Search",
+            "sessions": 1
           }
         ],
         "devices": [
@@ -11644,11 +11736,6 @@
             "date": "2026-06-04",
             "category": "desktop",
             "sessions": 54
-          },
-          {
-            "date": "2026-05-19",
-            "category": "desktop",
-            "sessions": 52
           },
           {
             "date": "2026-06-11",
@@ -11926,6 +12013,11 @@
             "sessions": 27
           },
           {
+            "date": "2026-08-17",
+            "category": "desktop",
+            "sessions": 27
+          },
+          {
             "date": "2026-07-13",
             "category": "mobile",
             "sessions": 26
@@ -12038,6 +12130,11 @@
           {
             "date": "2026-08-14",
             "category": "desktop",
+            "sessions": 21
+          },
+          {
+            "date": "2026-08-17",
+            "category": "mobile",
             "sessions": 21
           },
           {
@@ -12486,11 +12583,6 @@
             "sessions": 9
           },
           {
-            "date": "2026-05-19",
-            "category": "mobile",
-            "sessions": 8
-          },
-          {
             "date": "2026-07-20",
             "category": "desktop",
             "sessions": 8
@@ -12569,11 +12661,6 @@
             "date": "2026-08-11",
             "category": "tablet",
             "sessions": 3
-          },
-          {
-            "date": "2026-05-19",
-            "category": "tablet",
-            "sessions": 2
           },
           {
             "date": "2026-05-20",
@@ -12672,6 +12759,11 @@
           },
           {
             "date": "2026-08-12",
+            "category": "tablet",
+            "sessions": 2
+          },
+          {
+            "date": "2026-08-17",
             "category": "tablet",
             "sessions": 2
           },
@@ -12964,6 +13056,11 @@
             "date": "2026-08-16",
             "category": "tablet",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-18",
+            "category": "mobile",
+            "sessions": 1
           }
         ]
       }
@@ -12972,14 +13069,8 @@
       "id": "years",
       "name": "YEARS",
       "ga4_property_id": "431033867",
-      "comment": "51セッションで前週比-46%。",
+      "comment": "直近7日sessions=45、前週比-30%。",
       "daily": [
-        {
-          "date": "2026-05-19",
-          "sessions": 43,
-          "users": 39,
-          "pageviews": 59
-        },
         {
           "date": "2026-05-20",
           "sessions": 37,
@@ -13513,6 +13604,12 @@
           "sessions": 6,
           "users": 6,
           "pageviews": 7
+        },
+        {
+          "date": "2026-08-17",
+          "sessions": 1,
+          "users": 1,
+          "pageviews": 1
         }
       ],
       "breakdown": {
@@ -13591,11 +13688,6 @@
             "date": "2026-06-30",
             "path": "/879/",
             "pageviews": 14
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/879/",
-            "pageviews": 13
           },
           {
             "date": "2026-05-30",
@@ -13933,11 +14025,6 @@
             "pageviews": 7
           },
           {
-            "date": "2026-05-19",
-            "path": "/604/",
-            "pageviews": 6
-          },
-          {
             "date": "2026-05-22",
             "path": "/604/",
             "pageviews": 6
@@ -14153,16 +14240,6 @@
             "pageviews": 5
           },
           {
-            "date": "2026-05-19",
-            "path": "/",
-            "pageviews": 4
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/278/",
-            "pageviews": 4
-          },
-          {
             "date": "2026-05-31",
             "path": "/879/",
             "pageviews": 4
@@ -14351,11 +14428,6 @@
             "date": "2026-08-11",
             "path": "/879/",
             "pageviews": 4
-          },
-          {
-            "date": "2026-05-19",
-            "path": "/847/",
-            "pageviews": 3
           },
           {
             "date": "2026-05-23",
@@ -15351,6 +15423,11 @@
             "date": "2026-08-13",
             "path": "/",
             "pageviews": 1
+          },
+          {
+            "date": "2026-08-17",
+            "path": "/",
+            "pageviews": 1
           }
         ],
         "sources": [
@@ -15448,11 +15525,6 @@
             "date": "2026-08-03",
             "channel": "Direct",
             "sessions": 37
-          },
-          {
-            "date": "2026-05-19",
-            "channel": "Organic Search",
-            "sessions": 36
           },
           {
             "date": "2026-05-27",
@@ -16025,11 +16097,6 @@
             "sessions": 5
           },
           {
-            "date": "2026-05-19",
-            "channel": "Direct",
-            "sessions": 4
-          },
-          {
             "date": "2026-05-20",
             "channel": "Referral",
             "sessions": 4
@@ -16098,11 +16165,6 @@
             "date": "2026-08-04",
             "channel": "Organic Search",
             "sessions": 4
-          },
-          {
-            "date": "2026-05-19",
-            "channel": "Referral",
-            "sessions": 3
           },
           {
             "date": "2026-05-21",
@@ -16587,6 +16649,11 @@
           {
             "date": "2026-08-14",
             "channel": "Direct",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-17",
+            "channel": "Organic Social",
             "sessions": 1
           }
         ],
@@ -16757,11 +16824,6 @@
             "sessions": 28
           },
           {
-            "date": "2026-05-19",
-            "category": "desktop",
-            "sessions": 27
-          },
-          {
             "date": "2026-05-27",
             "category": "desktop",
             "sessions": 27
@@ -16910,11 +16972,6 @@
             "date": "2026-07-23",
             "category": "mobile",
             "sessions": 17
-          },
-          {
-            "date": "2026-05-19",
-            "category": "mobile",
-            "sessions": 16
           },
           {
             "date": "2026-05-20",
@@ -17565,6 +17622,11 @@
             "date": "2026-08-14",
             "category": "desktop",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-17",
+            "category": "desktop",
+            "sessions": 1
           }
         ]
       }
@@ -17573,7 +17635,7 @@
       "id": "apollos",
       "name": "APOLLOS",
       "ga4_property_id": "545852964",
-      "comment": "10セッションで前週比-9%とほぼ横ばい。",
+      "comment": "直近7日sessions=13、前週比+18%。",
       "daily": [
         {
           "date": "2026-07-16",
@@ -17753,13 +17815,13 @@
           "date": "2026-08-16",
           "sessions": 1,
           "users": 1,
-          "pageviews": 1
+          "pageviews": 2
         },
         {
           "date": "2026-08-17",
-          "sessions": 1,
-          "users": 1,
-          "pageviews": 1
+          "sessions": 4,
+          "users": 4,
+          "pageviews": 6
         }
       ],
       "breakdown": {
@@ -17810,6 +17872,11 @@
             "pageviews": 3
           },
           {
+            "date": "2026-08-17",
+            "path": "/",
+            "pageviews": 3
+          },
+          {
             "date": "2026-07-23",
             "path": "/info/",
             "pageviews": 2
@@ -17930,8 +17997,13 @@
             "pageviews": 1
           },
           {
-            "date": "2026-08-17",
+            "date": "2026-08-16",
             "path": "/",
+            "pageviews": 1
+          },
+          {
+            "date": "2026-08-17",
+            "path": "/contact/",
             "pageviews": 1
           }
         ],
@@ -17977,6 +18049,11 @@
             "sessions": 3
           },
           {
+            "date": "2026-08-17",
+            "channel": "Direct",
+            "sessions": 3
+          },
+          {
             "date": "2026-07-17",
             "channel": "Direct",
             "sessions": 2
@@ -18128,12 +18205,17 @@
           },
           {
             "date": "2026-08-16",
-            "channel": "Unassigned",
+            "channel": "Direct",
             "sessions": 1
           },
           {
             "date": "2026-08-17",
-            "channel": "Direct",
+            "channel": "Organic Search",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-17",
+            "channel": "Unassigned",
             "sessions": 1
           }
         ],
@@ -18169,6 +18251,11 @@
             "sessions": 4
           },
           {
+            "date": "2026-08-17",
+            "category": "desktop",
+            "sessions": 4
+          },
+          {
             "date": "2026-07-30",
             "category": "desktop",
             "sessions": 3
@@ -18322,11 +18409,6 @@
             "date": "2026-08-16",
             "category": "desktop",
             "sessions": 1
-          },
-          {
-            "date": "2026-08-17",
-            "category": "desktop",
-            "sessions": 1
           }
         ]
       }
@@ -18335,7 +18417,7 @@
       "id": "birth",
       "name": "BIRTH",
       "ga4_property_id": "547744931",
-      "comment": "15セッション、計測開始間もなく比較データなし。",
+      "comment": "直近7日sessions=15、計測開始間もなく前週比較データなし。",
       "daily": [
         {
           "date": "2026-07-30",
@@ -18523,10 +18605,14 @@
     {
       "date": "2026-08-17",
       "text": "CHICSが直近7日で201セッション（前週比-22%）と、6サイト中最も大きい実数減少を記録している。"
+    },
+    {
+      "date": "2026-08-18",
+      "text": "CRATERの直近7日sessionsが89件で前週比-53%と、6サイト中(YEARSの既知件を除き)最も大きな減少幅。件数規模の小ささも踏まえると、前週側に一時的なスパム・ボットトラフィックの水増しがあった可能性も否定できない。"
     }
   ],
   "bownow": {
-    "updated_at": "2026-08-17T07:09:06+09:00",
+    "updated_at": "2026-08-18T07:12:27+09:00",
     "sites_covered": [
       "crater",
       "chics",
@@ -18535,8 +18621,71 @@
     ],
     "note": "【表示基準】BowNowが訪問元IPアドレスから企業を自動識別できた場合のみ、その企業名をここに表示しています(個人利用の回線など識別できない訪問は対象外)。識別できた企業は日々蓄積して表示。4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。",
     "scanned_leads_this_run": 1000,
-    "companies_total": 201,
+    "companies_total": 208,
     "companies": [
+      {
+        "cid": "cid_578d9b21ce22a301d653",
+        "name": "有限会社双子座",
+        "pref_name": "神奈川県",
+        "city_name": "川崎市麻生区",
+        "session_count": 2,
+        "uu_count": 2,
+        "last_visit_at": "2026-08-17 13:00:18 UTC"
+      },
+      {
+        "cid": "cid_1c16621fece7a3cc2c0c",
+        "name": "尼崎市役所",
+        "pref_name": "兵庫県",
+        "city_name": "尼崎市",
+        "session_count": 2,
+        "uu_count": 2,
+        "last_visit_at": "2026-08-17 08:33:44 UTC"
+      },
+      {
+        "cid": "cid_6a5c4feea239ce27a853",
+        "name": "エイチ・シー・ネットワークス株式会社",
+        "pref_name": "東京都",
+        "city_name": "台東区",
+        "session_count": 27,
+        "uu_count": 25,
+        "last_visit_at": "2026-08-17 05:17:06 UTC"
+      },
+      {
+        "cid": "cid_f37ad8d2c94466d49448",
+        "name": "アンリミテッドアム株式会社",
+        "pref_name": "和歌山県",
+        "city_name": "和歌山市",
+        "session_count": 1,
+        "uu_count": 1,
+        "last_visit_at": "2026-08-17 04:09:09 UTC"
+      },
+      {
+        "cid": "cid_2a577dc4b9d123c65a41",
+        "name": "学校法人産業医科大学",
+        "pref_name": "福岡県",
+        "city_name": "北九州市八幡西区",
+        "session_count": 3,
+        "uu_count": 3,
+        "last_visit_at": "2026-08-17 01:32:12 UTC"
+      },
+      {
+        "cid": "cid_1ca08d531be70c7a60bd",
+        "name": "株式会社ダイコー",
+        "pref_name": "愛知県",
+        "city_name": "名古屋市名東区",
+        "session_count": 1,
+        "uu_count": 1,
+        "last_visit_at": "2026-08-17 01:00:48 UTC"
+      },
+      {
+        "cid": "cid_866441",
+        "name": "株式会社アプライズ",
+        "pref_name": "静岡県",
+        "city_name": null,
+        "session_count": 7,
+        "uu_count": 4,
+        "last_visit_at": "2026-08-17 00:33:58 UTC"
+      },
       {
         "cid": "cid_4a5036c6707436002d88",
         "name": "NX情報システム株式会社",
@@ -18551,7 +18700,7 @@
         "name": "株式会社クレーター",
         "pref_name": "東京都",
         "city_name": "新宿区",
-        "session_count": 1942,
+        "session_count": 1941,
         "uu_count": 121,
         "last_visit_at": "2026-08-16 00:12:24 UTC"
       },
