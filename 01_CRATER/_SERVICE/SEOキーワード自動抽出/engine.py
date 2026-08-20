@@ -169,26 +169,33 @@ def main(sites=None, dry=False):
     today = datetime.date.today().isoformat()
 
     for tab, cfg in (sites or SITES).items():
-        ws = sh.worksheet(tab)
-        existing_vals = ws.get_all_values()[1:]  # ヘッダー除く
-        seen = {norm(r[2]) for r in existing_vals if len(r) > 2 and r[2]}
-        max_no = max([int(r[0]) for r in existing_vals if r and r[0].isdigit()] or [0])
+        try:
+            ws = sh.worksheet(tab)
+            existing_vals = ws.get_all_values()[1:]  # ヘッダー除く
+            seen = {norm(r[2]) for r in existing_vals if len(r) > 2 and r[2]}
+            max_no = max([int(r[0]) for r in existing_vals if r and r[0].isdigit()] or [0])
 
-        cands = collect_candidates(cfg["seeds"], cfg["ng"], seen)
-        chosen = pick(cands, n=cfg.get("per_run", PER_SITE))
-        if not chosen:
-            print(f"[{tab}] 新規KWなし（井戸が枯れ気味／要・切り口追加）"); continue
+            cands = collect_candidates(cfg["seeds"], cfg["ng"], seen)
+            chosen = pick(cands, n=cfg.get("per_run", PER_SITE))
+            if not chosen:
+                print(f"[{tab}] 新規KWなし（井戸が枯れ気味／要・切り口追加）"); continue
 
-        rows = []
-        for k, it in enumerate(chosen, 1):
-            ku = "トレンド" if it["fresh"] else "定番"
-            # 列: No./抽出日/キーワード/区分/検索ボリューム/SEO難易度/ステータス/ブログカテゴリ/校正チェック日/アップ日/記事URL/アクセス数
-            rows.append([max_no + k, today, it["kw"], ku, it["vol"], it["diff"],
-                         "", "", "", "", "", ""])
-        print(f"[{tab}] {len(rows)}個採用: " + ", ".join(f"{r[2]}({r[4]})" for r in rows))
-        if not dry:
-            start = len(existing_vals) + 2
-            ws.update(rows, f"A{start}:L{start+len(rows)-1}", value_input_option="USER_ENTERED")
+            rows = []
+            for k, it in enumerate(chosen, 1):
+                ku = "トレンド" if it["fresh"] else "定番"
+                # 列: No./抽出日/キーワード/区分/検索ボリューム/SEO難易度/ステータス/ブログカテゴリ/校正チェック日/アップ日/記事URL/アクセス数
+                rows.append([max_no + k, today, it["kw"], ku, it["vol"], it["diff"],
+                             "", "", "", "", "", ""])
+            print(f"[{tab}] {len(rows)}個採用: " + ", ".join(f"{r[2]}({r[4]})" for r in rows))
+            if not dry:
+                start = len(existing_vals) + 2
+                end = start + len(rows) - 1
+                if end > ws.row_count:  # シートの行数上限を超える分は自動で拡張
+                    ws.add_rows(end - ws.row_count)
+                ws.update(rows, f"A{start}:L{end}", value_input_option="USER_ENTERED")
+        except Exception as e:
+            # 1サイトの失敗で他サイトの処理まで止まらないようにする
+            print(f"[{tab}] エラーでスキップ: {e}")
     print("完了", today)
 
 
