@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>柚子胡椒プリプリ豚カレー｜A CURRY</title>
+<meta name="description" content="和のスパイス、柚子胡椒。プリプリの国産豚軟骨に、爽やかな香りとピリッとした辛さが重なる、あ！となるちょい辛の一皿。カレーランド監修。200g・国産素材。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Serif+JP:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..0&display=block" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;
+    --sub:#555;          /* 本文補足 */
+    --meta:#888;         /* ラベル・メタ */
+    --line:#0000001a;
+    --hair:#0000000f;    /* 極細行間罫線 */
+    --bg:#ffffff;
+    --soft:#f7f4ef;
+    --accent:#c94f6d;    /* ステップ番号（全味共通） */
+    --gold:#c9a24f;
+    --curry:#A3CC44;     /* 柚子胡椒（緑） */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Sans JP',sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.7;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  .en{font-family:'Playfair Display',serif;}
+  .mincho{font-family:'Noto Serif JP',serif;}
+  .material-symbols-rounded{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;line-height:1;}
+
+  /* ===== ヘッダー（ロゴ左・メニュー右） ===== */
+  .site-header{
+    position:sticky;top:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 48px;
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-header .logo{height:30px;width:auto;}
+  .gnav{display:flex;align-items:center;gap:34px;}
+  .gnav a{font-family:'Playfair Display',serif;font-size:13px;color:var(--ink);letter-spacing:1.5px;}
+  .gnav a:hover{opacity:.55;}
+  .header-cart{display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:1px;}
+  .header-cart svg{width:20px;height:20px;}
+
+  /* ===== パンくず ===== */
+  .breadcrumb{
+    max-width:1440px;margin:0 auto;
+    padding:26px 48px 0;
+    font-family:'Playfair Display',serif;
+    font-size:12px;letter-spacing:2px;color:#33333399;
+  }
+
+  /* ===== 商品ボディ 2カラム ===== */
+  .product{
+    max-width:1440px;margin:0 auto;
+    padding:36px 48px 0;
+    display:grid;
+    grid-template-columns:minmax(0,560px) 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  /* 左：sticky画像（メイン＋右サムネ縦列） */
+  .gallery{position:sticky;top:96px;display:flex;gap:12px;align-items:flex-start;}
+  .gallery .main{
+    flex:1;min-width:0;aspect-ratio:460/663;
+    border-radius:8px;overflow:hidden;background:var(--curry);
+    display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:12px;letter-spacing:3px;
+  }
+  .gallery .main img{width:100%;height:100%;object-fit:cover;}
+  /* サムネ縦列（5枚でメイン画像高さにぴったり／比率はメインに合わせる） */
+  .thumbs{display:flex;flex-direction:column;gap:12px;width:88px;flex-shrink:0;}
+  .thumbs button{
+    width:100%;aspect-ratio:88/123;border-radius:8px;overflow:hidden;
+    border:2px solid transparent;padding:0;background:var(--curry);
+    display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:10px;letter-spacing:2px;
+    transition:border-color .2s;
+  }
+  .thumbs button.active{border-color:var(--ink);}
+  .thumbs img{width:100%;height:100%;object-fit:cover;}
+
+  /* 右：コンテンツ */
+  .col-right{display:flex;flex-direction:column;gap:100px;}
+  .block{display:flex;flex-direction:column;}
+
+  /* 商品情報 */
+  .info{display:flex;flex-direction:column;gap:22px;}
+  .info .cat{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;letter-spacing:3px;color:#00000099;}
+  .info .name{font-family:'Noto Serif JP',serif;font-size:38px;font-weight:600;letter-spacing:1px;line-height:1.3;}
+  .info .price{font-size:22px;font-weight:600;}
+  .info .desc{font-size:15px;line-height:1.9;color:var(--sub);}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{padding:7px 14px;border-radius:999px;border:1px solid #00000026;font-size:12px;font-weight:600;letter-spacing:1px;color:#333;}
+  .buy{display:flex;align-items:center;gap:14px;}
+  .qty{display:flex;align-items:center;gap:20px;height:56px;padding:0 18px;border-radius:8px;background:#f2f2f2;border:1px solid #00000022;}
+  .qty button{background:none;border:none;font-size:18px;line-height:1;color:var(--ink);width:16px;}
+  .qty span{font-size:18px;font-weight:600;min-width:14px;text-align:center;}
+  .cart-btn{flex:1;height:56px;border:none;border-radius:8px;background:#111;color:#f7f4ef;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:1px;}
+  .cart-btn svg{width:18px;height:18px;}
+  .cart-btn:hover{background:#000;}
+  /* スペック（案E：アイコン＋項目名＋値・行間罫線・枠なし） */
+  .spec{display:flex;flex-direction:column;}
+  .spec .row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;}
+  .spec .row+.row{border-top:1px solid var(--line);}
+  .spec .rk{display:flex;align-items:center;gap:12px;}
+  .spec .rk .material-symbols-rounded{font-size:20px;color:#555;}
+  .spec .rk .kt{font-size:14px;font-weight:600;color:#333;}
+  .spec .rv{font-size:15px;font-weight:600;color:var(--ink);}
+
+  /* First Bite */
+  .fb-en{font-family:'Playfair Display',serif;font-size:clamp(56px,8vw,96px);font-weight:600;line-height:.93;color:#1f1f1f;}
+  .fb-copy{font-family:'Noto Serif JP',serif;font-size:clamp(24px,3.4vw,32px);font-weight:600;letter-spacing:1px;line-height:1.4;margin-top:10px;}
+  .fb-sub{font-size:14px;letter-spacing:1px;line-height:1.8;color:var(--sub);margin-top:10px;}
+  .fb-img{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#cdd6b3;margin-top:24px;display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:12px;letter-spacing:3px;}
+  .fb-img img{width:100%;height:100%;object-fit:cover;}
+
+  /* THE RECIPE */
+  .recipe .ey{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;letter-spacing:3px;color:#555;}
+  .recipe .h{font-family:'Noto Serif JP',serif;font-size:clamp(26px,3.6vw,32px);font-weight:600;line-height:1.4;margin-top:20px;}
+  .recipe .b{font-size:15px;line-height:1.95;color:#333;margin-top:20px;}
+
+  /* 素材のこだわり（Ingredients：写真大きく縦積み・見出しと説明を密着） */
+  .ing-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;}
+  .ing-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:var(--sub);margin-top:5px;}
+  .ing-list{display:flex;flex-direction:column;gap:48px;margin-top:28px;}
+  .ing-item{display:flex;flex-direction:column;gap:14px;}
+  .ing-item .iimg{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:#c9c1b3;}
+  .ing-item .iimg img{width:100%;height:100%;object-fit:cover;}
+  .ing-item .itxt{display:flex;flex-direction:column;gap:6px;}
+  .ing-item .inm{font-size:20px;font-weight:600;color:var(--ink);}
+  .ing-item .idesc{font-size:14px;line-height:1.9;color:var(--sub);}
+
+  /* 原材料・アレルゲン（案E：外枠なし・アイコン＋項目名＋値・行間罫線） */
+  .zairyo-h{font-family:'Noto Serif JP',serif;font-size:24px;font-weight:600;margin-bottom:14px;}
+  .table{display:flex;flex-direction:column;}
+  .trow{display:flex;align-items:flex-start;padding:16px 0;}
+  .trow+.trow{border-top:1px solid var(--hair);}
+  .trow .tk{width:172px;flex-shrink:0;display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:600;color:#666;}
+  .trow .tk .material-symbols-rounded{font-size:17px;color:#666;flex-shrink:0;}
+  .trow .tv{flex:1;min-width:0;font-size:12.5px;line-height:1.75;color:var(--ink);}
+
+  /* How to Eat（枠なし・行間罫線区切り） */
+  .eat-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;}
+  .eat-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#333;margin-top:6px;}
+  .steps{display:flex;flex-direction:column;margin-top:20px;}
+  .step{display:flex;gap:20px;align-items:flex-start;padding:26px 0;}
+  .step+.step{border-top:1px solid var(--line);}
+  .step .num{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;color:var(--accent);}
+  .step .st{font-family:'Noto Serif JP',serif;font-size:19px;font-weight:600;}
+  .step .sd{font-size:14px;line-height:1.85;color:var(--sub);margin-top:8px;}
+
+  /* ===== レビュー ===== */
+  .voice{background:var(--soft);padding:88px 48px;margin-top:96px;}
+  .voice-inner{max-width:1312px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:44px;}
+  .voice-head{text-align:center;}
+  .voice-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;}
+  .voice-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#333;margin-top:8px;}
+  .summary{display:flex;align-items:center;gap:14px;}
+  .stars{display:flex;gap:3px;}
+  .stars svg{width:22px;height:22px;fill:var(--gold);}
+  .summary .score{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;}
+  .summary .cnt{font-size:13px;color:#555;}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;}
+  .card{background:#fff;border:1px solid #d8d3ca;border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:16px;}
+  .card .cstars{display:flex;gap:2px;}
+  .card .cstars svg{width:15px;height:15px;fill:var(--gold);}
+  .card .ct{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:600;line-height:1.4;}
+  .card .cb{font-size:14px;line-height:1.9;color:var(--sub);}
+  .card .cn{font-size:12px;letter-spacing:1px;color:var(--meta);}
+
+  /* ===== Other Curry ===== */
+  .other{max-width:1440px;margin:0 auto;padding:80px 48px;}
+  .other-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#1a1a1a;}
+  .other-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#555;margin-top:6px;}
+  .other-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px;}
+  .other-card .oimg{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:12px;letter-spacing:3px;}
+  .other-card .onm{font-size:18px;font-weight:600;margin-top:14px;}
+  .other-card .opr{font-size:15px;color:#555;margin-top:4px;}
+  .other-card:nth-child(1) .oimg{background:#E99980;}
+  .other-card:nth-child(2) .oimg{background:#F2C645;}
+
+  /* ===== フッター ===== */
+  .footer{background:#171717;color:#f7f4ef;padding:76px 48px 44px;}
+  .footer-inner{max-width:1440px;margin:0 auto;display:flex;flex-direction:column;gap:64px;}
+  .footer-top{display:flex;justify-content:space-between;gap:64px;flex-wrap:wrap;}
+  .newsletter{width:380px;max-width:100%;}
+  .newsletter .nh{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:3px;color:#f7f4ef99;}
+  .newsletter .nd{font-size:14px;line-height:1.7;color:#f7f4efcc;margin-top:16px;}
+  .nform{display:flex;justify-content:space-between;align-items:center;background:#f2f2f2;height:50px;padding:0 20px;margin-top:16px;border-radius:2px;}
+  .nform input{border:none;background:none;font-size:16px;color:#1a1a1a;width:70%;outline:none;}
+  .nform button{background:none;border:none;font-family:'Playfair Display',serif;font-size:12px;letter-spacing:2px;color:#1a1a1a;}
+  .fcols{display:flex;gap:64px;flex-wrap:wrap;}
+  .fcol h4{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:2px;color:#f7f4ef99;font-weight:500;margin-bottom:14px;}
+  .fcol a{display:block;font-size:13px;color:#f7f4efcc;margin-bottom:14px;}
+  .fcol a:hover{color:#f7f4ef;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .footer-brand .flogo{height:44px;width:auto;margin-bottom:16px;}
+  .footer-brand .ftg{font-size:13px;color:#f7f4ef99;}
+  .fsns svg{width:20px;height:20px;stroke:#f7f4ef;}
+
+  /* ===== レスポンシブ ===== */
+  @media (max-width:768px){
+    .site-header{padding:14px 20px;}
+    .gnav{gap:18px;}
+    .gnav a:not(.header-cart){display:none;}
+    .breadcrumb{padding:22px 32px 0;}
+    .product{grid-template-columns:1fr;gap:40px;padding:24px 32px 0;}
+    .gallery{position:static;}
+    .thumbs{width:64px;}
+    .col-right{gap:72px;}
+    .info .name{font-size:30px;}
+    .voice{padding:64px 32px;margin-top:72px;}
+    .cards{grid-template-columns:1fr;}
+    .other{padding:64px 32px;}
+    .other-grid{grid-template-columns:1fr;}
+    .footer{padding:56px 32px 40px;}
+    .footer-top{flex-direction:column;gap:40px;}
+    .fcols{gap:40px;}
+    .trow .tk{width:140px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header class="site-header">
+  <a href="#"><img class="logo" src="logo_ink.png" alt="A CURRY"></a>
+  <nav class="gnav">
+    <a href="#">HOME</a>
+    <a href="#">CURRY</a>
+    <a href="#">ABOUT</a>
+    <a href="#">JOURNAL</a>
+    <a href="#" class="header-cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      CART
+    </a>
+  </nav>
+</header>
+
+<!-- パンくず -->
+<div class="breadcrumb">HOME / SHOP / 柚子胡椒プリプリ豚カレー</div>
+
+<!-- 商品ボディ -->
+<section class="product">
+  <!-- 左：sticky画像 -->
+  <div class="gallery">
+    <div class="main">商品写真</div>
+    <div class="thumbs">
+      <button class="active">写真</button>
+      <button>写真</button>
+      <button>写真</button>
+      <button>写真</button>
+      <button>写真</button>
+    </div>
+  </div>
+
+  <!-- 右：コンテンツ -->
+  <div class="col-right">
+
+    <!-- 商品情報 -->
+    <div class="info block">
+      <div class="cat">YUZU PORK CURRY</div>
+      <h1 class="name">柚子胡椒プリプリ豚カレー</h1>
+      <div class="price">¥1,180（税込）</div>
+      <p class="desc">和のスパイス、柚子胡椒。プリプリの国産豚軟骨に、爽やかな香りとピリッとした辛さが重なる、あ！となるちょい辛の一皿。カレーランド監修。</p>
+      <div class="chips">
+        <span class="chip">国産豚軟骨</span>
+        <span class="chip">柚子胡椒</span>
+        <span class="chip">カレーランド監修</span>
+        <span class="chip">ちょい辛</span>
+      </div>
+      <div class="buy">
+        <div class="qty">
+          <button id="minus">−</button><span id="qtyval">1</span><button id="plus">＋</button>
+        </div>
+        <button class="cart-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          カートに入れる
+        </button>
+      </div>
+      <div class="spec">
+        <div class="row"><span class="rk"><span class="material-symbols-rounded">package_2</span><span class="kt">内容量</span></span><span class="rv">200g（1人前）</span></div>
+        <div class="row"><span class="rk"><span class="material-symbols-rounded">local_fire_department</span><span class="kt">辛さ</span></span><span class="rv">ちょい辛</span></div>
+        <div class="row"><span class="rk"><span class="material-symbols-rounded">calendar_month</span><span class="kt">賞味期限</span></span><span class="rv">2028年6月26日</span></div>
+        <div class="row"><span class="rk"><span class="material-symbols-rounded">factory</span><span class="kt">製造</span></span><span class="rv">キャニオンスパイス</span></div>
+      </div>
+    </div>
+
+    <!-- First Bite -->
+    <div class="fb block">
+      <div class="fb-en en">First Bite</div>
+      <div class="fb-copy mincho">ひと口目に、小さな「あ！」。</div>
+      <div class="fb-sub">プリプリの国産豚軟骨に、柚子胡椒の爽やかな香りとピリッとした辛さが重なる。</div>
+      <div class="fb-img">素材カット</div>
+    </div>
+
+    <!-- THE RECIPE -->
+    <div class="recipe block">
+      <div class="ey">THE RECIPE</div>
+      <h2 class="h">柚子胡椒を、<br>カレーで昇華する。</h2>
+      <p class="b">和のスパイス「柚子胡椒」の爽やかな香りとピリッとした辛味。食べ応えのあるプリプリ食感の国産豚軟骨に、丁寧に作り上げたカレールウを合わせました。ひと口ごとに、小さな「あ！」が生まれる、ちょい辛の一皿です。</p>
+    </div>
+
+    <!-- 素材のこだわり -->
+    <div class="ingredients block">
+      <div class="ing-head">
+        <div class="en">Ingredients</div>
+        <div class="jp">素材のこだわり</div>
+      </div>
+      <div class="ing-list">
+        <div class="ing-item">
+          <div class="iimg"><img src="yuzu-materials/yuzu-mat1.jpg" alt="柚子胡椒"></div>
+          <div class="itxt">
+            <div class="inm">柚子胡椒</div>
+            <div class="idesc">爽やかな香りとピリッとした辛味。和のスパイスが余韻をつくります。</div>
+          </div>
+        </div>
+        <div class="ing-item">
+          <div class="iimg"><img src="yuzu-materials/yuzu-mat2.jpg" alt="国産豚軟骨"></div>
+          <div class="itxt">
+            <div class="inm">国産豚軟骨</div>
+            <div class="idesc">食べ応えのあるプリプリ食感。噛むほどに旨みが広がります。</div>
+          </div>
+        </div>
+        <div class="ing-item">
+          <div class="iimg"><img src="yuzu-materials/yuzu-mat3.jpg" alt="ほうれん草 &amp; マンゴー"></div>
+          <div class="itxt">
+            <div class="inm">ほうれん草 &amp; マンゴー</div>
+            <div class="idesc">隠し味のコクとやさしい甘み。味に奥行きを与えます。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 原材料・アレルゲン -->
+    <div class="zairyo block">
+      <h2 class="zairyo-h">原材料・アレルゲン</h2>
+      <div class="table">
+        <div class="trow"><div class="tk"><span class="material-symbols-rounded">restaurant</span>原材料名</div><div class="tv">豚軟骨（国産）、カレールウ、ほうれん草ピューレ、マンゴーチャツネ、柚子こしょう、おろしにんにく、おろししょうが、カレー粉／香料、増粘剤（グァーガム、キサンタン）、調味料（アミノ酸等）、カラメル色素、乳化剤、酸味料、クチナシ色素、（一部に小麦・乳成分・豚肉・鶏肉・大豆・りんご・バナナを含む）</div></div>
+        <div class="trow"><div class="tk"><span class="material-symbols-rounded">warning</span>含む（一部）</div><div class="tv">小麦・乳成分・豚肉・鶏肉・大豆・りんご・バナナ</div></div>
+        <div class="trow"><div class="tk"><span class="material-symbols-rounded">factory</span>同工場で製造</div><div class="tv">卵・えび・かに・落花生・くるみ・カシューナッツ</div></div>
+        <div class="trow"><div class="tk"><span class="material-symbols-rounded">nutrition</span>栄養成分（200g）</div><div class="tv">エネルギー 282kcal／たんぱく質 14.5g／脂質 18.0g／炭水化物 15.4g／食塩相当量 2.9g</div></div>
+        <div class="trow"><div class="tk"><span class="material-symbols-rounded">thermostat</span>保存・殺菌</div><div class="tv">直射日光を避け常温で保存。気密性容器に密封し、加圧加熱殺菌。</div></div>
+        <div class="trow"><div class="tk"><span class="material-symbols-rounded">storefront</span>製造・販売</div><div class="tv">製造：キャニオンスパイス（大阪府泉南市）／販売：株式会社クレーター</div></div>
+      </div>
+    </div>
+
+    <!-- How to Eat -->
+    <div class="eat block">
+      <div class="eat-head">
+        <div class="en">How to Eat</div>
+        <div class="jp">3ステップで、あ！</div>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num en">01</div>
+          <div><div class="st">温める</div><div class="sd">袋のまま熱湯で5〜7分。電子レンジは中身を耐熱容器に移しラップをかけ、500Wで約2分温めます。</div></div>
+        </div>
+        <div class="step">
+          <div class="num en">02</div>
+          <div><div class="st">かける</div><div class="sd">炊きたてのごはんにたっぷりと。お好みでルウとごはんは別皿にしても。</div></div>
+        </div>
+        <div class="step">
+          <div class="num en">03</div>
+          <div><div class="st">味わう</div><div class="sd">一口目の「あ！」を、ぜひ。仕上げに刻みねぎや温泉卵もおすすめです。</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- レビュー -->
+<section class="voice">
+  <div class="voice-inner">
+    <div class="voice-head">
+      <div class="en">Voice</div>
+      <div class="jp">お客様の声</div>
+    </div>
+    <div class="summary">
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg>
+      </div>
+      <div class="score en">5.0</div>
+      <div class="cnt">20件のレビュー</div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="cstars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg></div>
+        <div class="ct">また、絶対に買う。</div>
+        <div class="cb">スパイスの香りが本格的で、レトルトの概念が変わりました。ひと口目で本当に「あ！」と声が出た。</div>
+        <div class="cn">40代・女性</div>
+      </div>
+      <div class="card">
+        <div class="cstars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg></div>
+        <div class="ct">柚子胡椒が、想像以上。</div>
+        <div class="cb">柚子の爽やかな香りとプリプリの豚軟骨。今までにない組み合わせで、箸が止まりませんでした。</div>
+        <div class="cn">30代・男性</div>
+      </div>
+      <div class="card">
+        <div class="cstars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.1 21.7l1.8-7.3L1.2 9.5l7.5-.6z"/></svg></div>
+        <div class="ct">これをギフトにしました。</div>
+        <div class="cb">パッケージがおしゃれで、渡した相手にすごく喜ばれた。味も間違いなくて、また贈りたい一皿です。</div>
+        <div class="cn">50代・女性</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Other Curry -->
+<section class="other">
+  <div class="other-head">
+    <div class="en">Other Curry</div>
+    <div class="jp">ほかの「あ！」</div>
+  </div>
+  <div class="other-grid">
+    <a class="other-card" href="#">
+      <div class="oimg">商品写真</div>
+      <div class="onm">肉じゃがカレー</div>
+      <div class="opr">¥1,180（税込）</div>
+    </a>
+    <a class="other-card" href="#">
+      <div class="oimg">商品写真</div>
+      <div class="onm">牡蠣とココナッツのスープカレー</div>
+      <div class="opr">¥1,180（税込）</div>
+    </a>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="newsletter">
+        <div class="nh">NEWSLETTER</div>
+        <div class="nd">初めての方へ。ご登録で10%OFFクーポンをお届けします。</div>
+        <form class="nform" onsubmit="return false;">
+          <input type="email" placeholder="メールアドレス">
+          <button type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
+      <div class="fcols">
+        <div class="fcol">
+          <h4>SHOP</h4>
+          <a href="#">肉じゃがカレー</a>
+          <a href="#">牡蠣ココナッツ</a>
+          <a href="#">柚子胡椒豚</a>
+          <a href="#">セット商品</a>
+        </div>
+        <div class="fcol">
+          <h4>MENU</h4>
+          <a href="#">ホーム</a>
+          <a href="#">ジャーナル</a>
+          <a href="#">ブランドについて</a>
+          <a href="#">こだわり</a>
+          <a href="#">お客様の声</a>
+        </div>
+        <div class="fcol">
+          <h4>SUPPORT</h4>
+          <a href="#">よくある質問</a>
+          <a href="#">お問い合わせ</a>
+          <a href="#">特定商取引法</a>
+          <a href="#">プライバシーポリシー</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-brand">
+        <img class="flogo" src="assets/logo_white.png" alt="A CURRY" onerror="this.style.display='none'">
+        <div class="ftg">あ！となる一皿。</div>
+      </div>
+      <div class="fsns">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- 構造化データ（AIO/SEO） -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org/",
+  "@type":"Product",
+  "name":"柚子胡椒プリプリ豚カレー",
+  "description":"和のスパイス、柚子胡椒。プリプリの国産豚軟骨に、爽やかな香りとピリッとした辛さが重なる、あ！となるちょい辛の一皿。カレーランド監修。",
+  "brand":{"@type":"Brand","name":"A CURRY"},
+  "category":"レトルトカレー",
+  "offers":{"@type":"Offer","price":"1180","priceCurrency":"JPY","availability":"https://schema.org/InStock"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"20"}
+}
+</script>
+
+<script>
+  // サムネ選択（実写真は後日、今はダミー）
+  document.querySelectorAll('.thumbs button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.thumbs button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+  // 数量
+  let qty = 1;
+  const qtyval = document.getElementById('qtyval');
+  document.getElementById('plus').onclick = ()=>{ qty++; qtyval.textContent = qty; };
+  document.getElementById('minus').onclick = ()=>{ if(qty>1){ qty--; qtyval.textContent = qty; } };
+</script>
+
+</body>
+</html>
