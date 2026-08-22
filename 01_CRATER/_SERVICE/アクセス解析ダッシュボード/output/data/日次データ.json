@@ -1,21 +1,15 @@
 {
   "is_sample": false,
-  "updated_at": "2026-08-21T07:14:04+09:00",
-  "insight": "CRATERは直近7日で125セッション・前週比-32%と、6サイト中で最も大きな減少幅かつ一定規模のボリュームを持つサイトの落ち込みであり、今週最も注目すべき動き。一方CHICSは247セッションで前週比+18%と最多かつ好調。",
-  "suggestion": "CRATERの減少要因（流入経路や施策終了の有無など）を確認する。",
+  "updated_at": "2026-08-22T07:10:49+09:00",
+  "insight": "CHICSが直近7日で242セッション・前週比+26%と6サイト中最多かつ増加率も高い。",
+  "suggestion": "CHICSの流入経路・ページ別内訳を確認し、増加の要因を特定する。",
   "sites": [
     {
       "id": "crater",
       "name": "CRATER",
       "ga4_property_id": "353705241",
-      "comment": "125セッションで前週比-32%と大きく減少。",
+      "comment": "144セッションで前週比-19%とやや減少。",
       "daily": [
-        {
-          "date": "2026-05-23",
-          "sessions": 9,
-          "users": 6,
-          "pageviews": 28
-        },
         {
           "date": "2026-05-24",
           "sessions": 9,
@@ -549,6 +543,12 @@
           "sessions": 21,
           "users": 20,
           "pageviews": 45
+        },
+        {
+          "date": "2026-08-21",
+          "sessions": 35,
+          "users": 35,
+          "pageviews": 45
         }
       ],
       "breakdown": {
@@ -837,11 +837,6 @@
             "date": "2026-07-28",
             "path": "/",
             "pageviews": 13
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/",
-            "pageviews": 12
           },
           {
             "date": "2026-05-27",
@@ -1619,6 +1614,11 @@
             "pageviews": 5
           },
           {
+            "date": "2026-08-21",
+            "path": "/",
+            "pageviews": 5
+          },
+          {
             "date": "2026-05-24",
             "path": "/",
             "pageviews": 4
@@ -1854,9 +1854,14 @@
             "pageviews": 4
           },
           {
-            "date": "2026-05-23",
-            "path": "/works/",
-            "pageviews": 3
+            "date": "2026-08-21",
+            "path": "/contact/",
+            "pageviews": 4
+          },
+          {
+            "date": "2026-08-21",
+            "path": "/works/logo/",
+            "pageviews": 4
           },
           {
             "date": "2026-05-25",
@@ -2169,9 +2174,9 @@
             "pageviews": 3
           },
           {
-            "date": "2026-05-23",
-            "path": "/about/",
-            "pageviews": 2
+            "date": "2026-08-21",
+            "path": "/10th/",
+            "pageviews": 3
           },
           {
             "date": "2026-05-24",
@@ -2639,14 +2644,9 @@
             "pageviews": 2
           },
           {
-            "date": "2026-05-23",
-            "path": "/10th/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/works/logo/",
-            "pageviews": 1
+            "date": "2026-08-21",
+            "path": "/works/",
+            "pageviews": 2
           },
           {
             "date": "2026-05-24",
@@ -3361,6 +3361,11 @@
             "sessions": 19
           },
           {
+            "date": "2026-08-21",
+            "channel": "Organic Search",
+            "sessions": 19
+          },
+          {
             "date": "2026-05-27",
             "channel": "Direct",
             "sessions": 18
@@ -3602,6 +3607,11 @@
           },
           {
             "date": "2026-08-14",
+            "channel": "Direct",
+            "sessions": 11
+          },
+          {
+            "date": "2026-08-21",
             "channel": "Direct",
             "sessions": 11
           },
@@ -3866,11 +3876,6 @@
             "sessions": 7
           },
           {
-            "date": "2026-05-23",
-            "channel": "Direct",
-            "sessions": 6
-          },
-          {
             "date": "2026-05-24",
             "channel": "Organic Search",
             "sessions": 6
@@ -4101,11 +4106,6 @@
             "sessions": 4
           },
           {
-            "date": "2026-05-23",
-            "channel": "Organic Search",
-            "sessions": 3
-          },
-          {
             "date": "2026-05-24",
             "channel": "Direct",
             "sessions": 3
@@ -4222,6 +4222,11 @@
           },
           {
             "date": "2026-08-17",
+            "channel": "Referral",
+            "sessions": 3
+          },
+          {
+            "date": "2026-08-21",
             "channel": "Referral",
             "sessions": 3
           },
@@ -4423,6 +4428,11 @@
           {
             "date": "2026-08-20",
             "channel": "Organic Social",
+            "sessions": 2
+          },
+          {
+            "date": "2026-08-21",
+            "channel": "Unassigned",
             "sessions": 2
           },
           {
@@ -4903,6 +4913,11 @@
             "sessions": 19
           },
           {
+            "date": "2026-08-21",
+            "category": "mobile",
+            "sessions": 19
+          },
+          {
             "date": "2026-06-01",
             "category": "desktop",
             "sessions": 18
@@ -4959,6 +4974,11 @@
           },
           {
             "date": "2026-08-07",
+            "category": "desktop",
+            "sessions": 16
+          },
+          {
+            "date": "2026-08-21",
             "category": "desktop",
             "sessions": 16
           },
@@ -5126,11 +5146,6 @@
             "date": "2026-08-15",
             "category": "desktop",
             "sessions": 9
-          },
-          {
-            "date": "2026-05-23",
-            "category": "desktop",
-            "sessions": 8
           },
           {
             "date": "2026-05-25",
@@ -5533,11 +5548,6 @@
             "sessions": 2
           },
           {
-            "date": "2026-05-23",
-            "category": "mobile",
-            "sessions": 1
-          },
-          {
             "date": "2026-05-26",
             "category": "mobile",
             "sessions": 1
@@ -5589,7 +5599,7 @@
       "id": "acurry",
       "name": "A CURRY",
       "ga4_property_id": "506973253",
-      "comment": "19セッションで前週比+46%と大幅増加だが母数が小さく、一時的な変動やボット・スパムの可能性も考えられる。",
+      "comment": "19セッションで前週比+46%だが母数が小さく、急伸のためボット等の混入有無も念のため確認したい。",
       "daily": [
         {
           "date": "2026-05-24",
@@ -6641,14 +6651,8 @@
       "id": "chics",
       "name": "CHICS",
       "ga4_property_id": "259441420",
-      "comment": "247セッションで前週比+18%、6サイト中最多かつ伸びも堅調。",
+      "comment": "242セッションで前週比+26%、6サイト中最多セッション数。",
       "daily": [
-        {
-          "date": "2026-05-23",
-          "sessions": 48,
-          "users": 42,
-          "pageviews": 91
-        },
         {
           "date": "2026-05-24",
           "sessions": 38,
@@ -7182,6 +7186,18 @@
           "sessions": 40,
           "users": 39,
           "pageviews": 119
+        },
+        {
+          "date": "2026-08-21",
+          "sessions": 44,
+          "users": 41,
+          "pageviews": 117
+        },
+        {
+          "date": "2026-08-22",
+          "sessions": 1,
+          "users": 0,
+          "pageviews": 0
         }
       ],
       "breakdown": {
@@ -7314,6 +7330,11 @@
           {
             "date": "2026-08-10",
             "path": "/",
+            "pageviews": 22
+          },
+          {
+            "date": "2026-08-21",
+            "path": "/news/1357/",
             "pageviews": 22
           },
           {
@@ -7687,9 +7708,9 @@
             "pageviews": 14
           },
           {
-            "date": "2026-05-23",
-            "path": "/news/1357/",
-            "pageviews": 13
+            "date": "2026-08-21",
+            "path": "/",
+            "pageviews": 14
           },
           {
             "date": "2026-06-18",
@@ -8097,6 +8118,11 @@
             "pageviews": 10
           },
           {
+            "date": "2026-08-21",
+            "path": "/news/825/",
+            "pageviews": 10
+          },
+          {
             "date": "2026-07-29",
             "path": "/news/1074/",
             "pageviews": 9
@@ -8110,11 +8136,6 @@
             "date": "2026-08-07",
             "path": "/news/825/",
             "pageviews": 9
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/news/1829/",
-            "pageviews": 8
           },
           {
             "date": "2026-05-26",
@@ -8445,16 +8466,6 @@
             "date": "2026-08-07",
             "path": "/",
             "pageviews": 7
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/news/1093/",
-            "pageviews": 6
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/news/2768/",
-            "pageviews": 6
           },
           {
             "date": "2026-05-24",
@@ -9228,6 +9239,11 @@
           },
           {
             "date": "2026-08-20",
+            "path": "/news/1093/",
+            "pageviews": 6
+          },
+          {
+            "date": "2026-08-21",
             "path": "/news/1093/",
             "pageviews": 6
           },
@@ -9242,11 +9258,6 @@
             "pageviews": 5
           },
           {
-            "date": "2026-05-23",
-            "path": "/news/825/",
-            "pageviews": 4
-          },
-          {
             "date": "2026-05-25",
             "path": "/news/2006/",
             "pageviews": 4
@@ -9662,6 +9673,11 @@
             "pageviews": 4
           },
           {
+            "date": "2026-08-21",
+            "path": "/news/1074/",
+            "pageviews": 4
+          },
+          {
             "date": "2026-05-24",
             "path": "/",
             "pageviews": 3
@@ -9685,11 +9701,6 @@
             "date": "2026-08-16",
             "path": "/news/825/",
             "pageviews": 3
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/news/1074/",
-            "pageviews": 2
           },
           {
             "date": "2026-05-24",
@@ -10244,6 +10255,16 @@
           {
             "date": "2026-08-20",
             "path": "/news/2006/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-21",
+            "path": "/news/2006/",
+            "pageviews": 2
+          },
+          {
+            "date": "2026-08-21",
+            "path": "/news/2768/",
             "pageviews": 2
           },
           {
@@ -10524,11 +10545,6 @@
             "sessions": 36
           },
           {
-            "date": "2026-05-23",
-            "channel": "Organic Search",
-            "sessions": 35
-          },
-          {
             "date": "2026-05-31",
             "channel": "Organic Search",
             "sessions": 34
@@ -10545,6 +10561,11 @@
           },
           {
             "date": "2026-08-05",
+            "channel": "Organic Search",
+            "sessions": 33
+          },
+          {
+            "date": "2026-08-21",
             "channel": "Organic Search",
             "sessions": 33
           },
@@ -10834,11 +10855,6 @@
             "sessions": 10
           },
           {
-            "date": "2026-05-23",
-            "channel": "Direct",
-            "sessions": 9
-          },
-          {
             "date": "2026-05-28",
             "channel": "Direct",
             "sessions": 9
@@ -10890,6 +10906,11 @@
           },
           {
             "date": "2026-08-19",
+            "channel": "Direct",
+            "sessions": 9
+          },
+          {
+            "date": "2026-08-21",
             "channel": "Direct",
             "sessions": 9
           },
@@ -11264,11 +11285,6 @@
             "sessions": 4
           },
           {
-            "date": "2026-05-23",
-            "channel": "Referral",
-            "sessions": 3
-          },
-          {
             "date": "2026-05-25",
             "channel": "Referral",
             "sessions": 3
@@ -11414,9 +11430,9 @@
             "sessions": 2
           },
           {
-            "date": "2026-05-23",
-            "channel": "Unassigned",
-            "sessions": 1
+            "date": "2026-08-21",
+            "channel": "Referral",
+            "sessions": 2
           },
           {
             "date": "2026-05-24",
@@ -11631,6 +11647,11 @@
           {
             "date": "2026-08-20",
             "channel": "Referral",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-22",
+            "channel": "Organic Search",
             "sessions": 1
           }
         ],
@@ -11861,6 +11882,11 @@
             "sessions": 31
           },
           {
+            "date": "2026-08-21",
+            "category": "desktop",
+            "sessions": 31
+          },
+          {
             "date": "2026-06-05",
             "category": "mobile",
             "sessions": 30
@@ -11884,11 +11910,6 @@
             "date": "2026-07-30",
             "category": "desktop",
             "sessions": 30
-          },
-          {
-            "date": "2026-05-23",
-            "category": "mobile",
-            "sessions": 29
           },
           {
             "date": "2026-07-01",
@@ -12159,11 +12180,6 @@
             "date": "2026-07-19",
             "category": "mobile",
             "sessions": 18
-          },
-          {
-            "date": "2026-05-23",
-            "category": "desktop",
-            "sessions": 17
           },
           {
             "date": "2026-05-24",
@@ -12446,6 +12462,11 @@
             "sessions": 12
           },
           {
+            "date": "2026-08-21",
+            "category": "mobile",
+            "sessions": 12
+          },
+          {
             "date": "2026-07-26",
             "category": "desktop",
             "sessions": 11
@@ -12589,11 +12610,6 @@
             "date": "2026-08-11",
             "category": "tablet",
             "sessions": 3
-          },
-          {
-            "date": "2026-05-23",
-            "category": "tablet",
-            "sessions": 2
           },
           {
             "date": "2026-05-25",
@@ -12984,6 +13000,16 @@
             "date": "2026-08-20",
             "category": "tablet",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-21",
+            "category": "tablet",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-22",
+            "category": "mobile",
+            "sessions": 1
           }
         ]
       }
@@ -12992,14 +13018,8 @@
       "id": "years",
       "name": "YEARS",
       "ga4_property_id": "431033867",
-      "comment": "25セッションで前週比-58%(既知の要因)。",
+      "comment": "30セッションで前週比-49%。",
       "daily": [
-        {
-          "date": "2026-05-23",
-          "sessions": 24,
-          "users": 21,
-          "pageviews": 27
-        },
         {
           "date": "2026-05-24",
           "sessions": 23,
@@ -13530,15 +13550,15 @@
         },
         {
           "date": "2026-08-20",
-          "sessions": 4,
-          "users": 3,
-          "pageviews": 3
+          "sessions": 5,
+          "users": 4,
+          "pageviews": 4
         },
         {
           "date": "2026-08-21",
-          "sessions": 3,
-          "users": 3,
-          "pageviews": 7
+          "sessions": 7,
+          "users": 7,
+          "pageviews": 12
         }
       ],
       "breakdown": {
@@ -13659,11 +13679,6 @@
             "pageviews": 11
           },
           {
-            "date": "2026-05-23",
-            "path": "/879/",
-            "pageviews": 10
-          },
-          {
             "date": "2026-05-25",
             "path": "/879/",
             "pageviews": 10
@@ -13711,6 +13726,11 @@
           {
             "date": "2026-07-21",
             "path": "/879/",
+            "pageviews": 10
+          },
+          {
+            "date": "2026-08-21",
+            "path": "/",
             "pageviews": 10
           },
           {
@@ -13935,11 +13955,6 @@
           },
           {
             "date": "2026-08-18",
-            "path": "/",
-            "pageviews": 7
-          },
-          {
-            "date": "2026-08-21",
             "path": "/",
             "pageviews": 7
           },
@@ -14329,11 +14344,6 @@
             "pageviews": 4
           },
           {
-            "date": "2026-05-23",
-            "path": "/847/",
-            "pageviews": 3
-          },
-          {
             "date": "2026-05-24",
             "path": "/604/",
             "pageviews": 3
@@ -14567,11 +14577,6 @@
             "date": "2026-08-08",
             "path": "/",
             "pageviews": 3
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/",
-            "pageviews": 2
           },
           {
             "date": "2026-05-25",
@@ -14894,14 +14899,9 @@
             "pageviews": 2
           },
           {
-            "date": "2026-05-23",
-            "path": "/278/",
-            "pageviews": 1
-          },
-          {
-            "date": "2026-05-23",
-            "path": "/604/",
-            "pageviews": 1
+            "date": "2026-08-20",
+            "path": "/",
+            "pageviews": 2
           },
           {
             "date": "2026-05-24",
@@ -15307,11 +15307,6 @@
             "date": "2026-08-17",
             "path": "/",
             "pageviews": 1
-          },
-          {
-            "date": "2026-08-20",
-            "path": "/",
-            "pageviews": 1
           }
         ],
         "sources": [
@@ -15579,11 +15574,6 @@
             "date": "2026-07-25",
             "channel": "Direct",
             "sessions": 21
-          },
-          {
-            "date": "2026-05-23",
-            "channel": "Organic Search",
-            "sessions": 20
           },
           {
             "date": "2026-06-06",
@@ -15961,9 +15951,9 @@
             "sessions": 5
           },
           {
-            "date": "2026-05-23",
+            "date": "2026-08-21",
             "channel": "Direct",
-            "sessions": 4
+            "sessions": 5
           },
           {
             "date": "2026-05-28",
@@ -16101,11 +16091,6 @@
             "sessions": 3
           },
           {
-            "date": "2026-08-21",
-            "channel": "Direct",
-            "sessions": 3
-          },
-          {
             "date": "2026-05-30",
             "channel": "Unassigned",
             "sessions": 2
@@ -16218,6 +16203,11 @@
           {
             "date": "2026-08-05",
             "channel": "Referral",
+            "sessions": 2
+          },
+          {
+            "date": "2026-08-21",
+            "channel": "Organic Search",
             "sessions": 2
           },
           {
@@ -16513,6 +16503,11 @@
           {
             "date": "2026-08-20",
             "channel": "AI Assistant",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-20",
+            "channel": "Organic Search",
             "sessions": 1
           }
         ],
@@ -16928,11 +16923,6 @@
             "sessions": 13
           },
           {
-            "date": "2026-05-23",
-            "category": "desktop",
-            "sessions": 12
-          },
-          {
             "date": "2026-05-31",
             "category": "mobile",
             "sessions": 12
@@ -17041,11 +17031,6 @@
             "date": "2026-07-24",
             "category": "mobile",
             "sessions": 11
-          },
-          {
-            "date": "2026-05-23",
-            "category": "mobile",
-            "sessions": 10
           },
           {
             "date": "2026-06-07",
@@ -17328,6 +17313,11 @@
             "sessions": 4
           },
           {
+            "date": "2026-08-21",
+            "category": "desktop",
+            "sessions": 4
+          },
+          {
             "date": "2026-06-21",
             "category": "desktop",
             "sessions": 3
@@ -17363,9 +17353,9 @@
             "sessions": 3
           },
           {
-            "date": "2026-05-23",
-            "category": "tablet",
-            "sessions": 2
+            "date": "2026-08-21",
+            "category": "mobile",
+            "sessions": 3
           },
           {
             "date": "2026-05-30",
@@ -17395,11 +17385,6 @@
           {
             "date": "2026-08-11",
             "category": "mobile",
-            "sessions": 2
-          },
-          {
-            "date": "2026-08-21",
-            "category": "desktop",
             "sessions": 2
           },
           {
@@ -17483,7 +17468,7 @@
             "sessions": 1
           },
           {
-            "date": "2026-08-21",
+            "date": "2026-08-20",
             "category": "mobile",
             "sessions": 1
           }
@@ -17494,7 +17479,7 @@
       "id": "apollos",
       "name": "APOLLOS",
       "ga4_property_id": "545852964",
-      "comment": "11セッションで前週比-15%、母数が小さく影響は限定的。",
+      "comment": "12セッションで前週比-14%とやや減少。",
       "daily": [
         {
           "date": "2026-07-16",
@@ -17687,6 +17672,12 @@
           "sessions": 1,
           "users": 1,
           "pageviews": 3
+        },
+        {
+          "date": "2026-08-21",
+          "sessions": 3,
+          "users": 3,
+          "pageviews": 3
         }
       ],
       "breakdown": {
@@ -17738,6 +17729,11 @@
           },
           {
             "date": "2026-08-17",
+            "path": "/",
+            "pageviews": 3
+          },
+          {
+            "date": "2026-08-21",
             "path": "/",
             "pageviews": 3
           },
@@ -17929,6 +17925,11 @@
             "sessions": 3
           },
           {
+            "date": "2026-08-21",
+            "channel": "Direct",
+            "sessions": 3
+          },
+          {
             "date": "2026-07-17",
             "channel": "Direct",
             "sessions": 2
@@ -18146,6 +18147,11 @@
             "sessions": 3
           },
           {
+            "date": "2026-08-21",
+            "category": "desktop",
+            "sessions": 3
+          },
+          {
             "date": "2026-07-17",
             "category": "desktop",
             "sessions": 2
@@ -18297,7 +18303,7 @@
       "id": "birth",
       "name": "BIRTH",
       "ga4_property_id": "547744931",
-      "comment": "17セッションで比較データなし、計測開始間もない。",
+      "comment": "18セッション、比較データなし（計測開始間もない）。",
       "daily": [
         {
           "date": "2026-07-30",
@@ -18328,6 +18334,12 @@
           "sessions": 1,
           "users": 1,
           "pageviews": 3
+        },
+        {
+          "date": "2026-08-21",
+          "sessions": 1,
+          "users": 1,
+          "pageviews": 1
         }
       ],
       "breakdown": {
@@ -18418,6 +18430,16 @@
             "date": "2026-08-20",
             "channel": "Direct",
             "sessions": 1
+          },
+          {
+            "date": "2026-08-21",
+            "channel": "Direct",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-21",
+            "channel": "Unassigned",
+            "sessions": 1
           }
         ],
         "devices": [
@@ -18448,6 +18470,11 @@
           },
           {
             "date": "2026-08-20",
+            "category": "desktop",
+            "sessions": 1
+          },
+          {
+            "date": "2026-08-21",
             "category": "desktop",
             "sessions": 1
           }
@@ -18543,10 +18570,14 @@
     {
       "date": "2026-08-21",
       "text": "CRATERは直近7日で125セッション・前週比-32%と、6サイト中で最も大きな減少幅かつ一定規模のボリュームを持つサイトの落ち込みであり、今週最も注目すべき動き。一方CHICSは247セッションで前週比+18%と最多かつ好調。"
+    },
+    {
+      "date": "2026-08-22",
+      "text": "CHICSが直近7日で242セッション・前週比+26%と6サイト中最多かつ増加率も高い。"
     }
   ],
   "bownow": {
-    "updated_at": "2026-08-21T07:15:30+09:00",
+    "updated_at": "2026-08-22T07:12:21+09:00",
     "sites_covered": [
       "crater",
       "chics",
@@ -18555,8 +18586,107 @@
     ],
     "note": "【表示基準】BowNowが訪問元IPアドレスから企業を自動識別できた場合のみ、その企業名をここに表示しています(個人利用の回線など識別できない訪問は対象外)。識別できた企業は日々蓄積して表示。4サイト(CRATER/CHICS/YEARS/APOLLOS)共通の1トラッキングコードのため、サイト別の内訳は取得できません。",
     "scanned_leads_this_run": 1000,
-    "companies_total": 229,
+    "companies_total": 237,
     "companies": [
+      {
+        "cid": "cid_2ec11c0fc28c7664d60c",
+        "name": "株式会社クレーター",
+        "pref_name": "東京都",
+        "city_name": "新宿区",
+        "session_count": 1956,
+        "uu_count": 126,
+        "last_visit_at": "2026-08-21 12:22:44 UTC"
+      },
+      {
+        "cid": "cid_3cf3339df58ded36b99a",
+        "name": "株式会社クロスハウス",
+        "pref_name": "東京都",
+        "city_name": "品川区",
+        "session_count": 10,
+        "uu_count": 10,
+        "last_visit_at": "2026-08-21 09:16:01 UTC"
+      },
+      {
+        "cid": "cid_934",
+        "name": "株式会社資生堂",
+        "pref_name": "東京都",
+        "city_name": "中央区",
+        "session_count": 1,
+        "uu_count": 1,
+        "last_visit_at": "2026-08-21 07:50:01 UTC"
+      },
+      {
+        "cid": "cid_9c474224e74a26eb0ea5",
+        "name": "楽天グループ株式会社",
+        "pref_name": "東京都",
+        "city_name": "世田谷区",
+        "session_count": 116,
+        "uu_count": 52,
+        "last_visit_at": "2026-08-21 07:36:41 UTC"
+      },
+      {
+        "cid": "cid_de3388cf2eca79890ce3",
+        "name": "響株式会社",
+        "pref_name": "茨城県",
+        "city_name": "水戸市",
+        "session_count": 4,
+        "uu_count": 3,
+        "last_visit_at": "2026-08-21 06:24:16 UTC"
+      },
+      {
+        "cid": "cid_614c9b60ccc6f83ec987",
+        "name": "CRRGlobalJapan合同会社",
+        "pref_name": "東京都",
+        "city_name": "千代田区",
+        "session_count": 13,
+        "uu_count": 13,
+        "last_visit_at": "2026-08-21 05:39:28 UTC"
+      },
+      {
+        "cid": "cid_7d96926c0fdcfb67ec36",
+        "name": "宮城県庁",
+        "pref_name": "宮城県",
+        "city_name": "仙台市青葉区",
+        "session_count": 44,
+        "uu_count": 32,
+        "last_visit_at": "2026-08-21 05:34:51 UTC"
+      },
+      {
+        "cid": "cid_78386b4ba48425e89a22",
+        "name": "愛知ドビー株式会社",
+        "pref_name": "愛知県",
+        "city_name": "名古屋市中川区",
+        "session_count": 2,
+        "uu_count": 2,
+        "last_visit_at": "2026-08-21 04:49:21 UTC"
+      },
+      {
+        "cid": "cid_30854",
+        "name": "秋田県庁",
+        "pref_name": "秋田県",
+        "city_name": "秋田市",
+        "session_count": 19,
+        "uu_count": 17,
+        "last_visit_at": "2026-08-21 04:40:41 UTC"
+      },
+      {
+        "cid": "cid_f7dcaa544fba93ee4ef6",
+        "name": "学校法人東京経済大学",
+        "pref_name": "東京都",
+        "city_name": "国分寺市",
+        "session_count": 2,
+        "uu_count": 2,
+        "last_visit_at": "2026-08-21 04:15:40 UTC"
+      },
+      {
+        "cid": "cid_8be1c43540667b7c4560",
+        "name": "デジタル庁",
+        "pref_name": "東京都",
+        "city_name": "千代田区",
+        "session_count": 72,
+        "uu_count": 67,
+        "last_visit_at": "2026-08-21 00:45:37 UTC"
+      },
       {
         "cid": "cid_315281",
         "name": "海保商事株式会社",
@@ -18643,18 +18773,9 @@
         "name": "エグゼクティブ・センター東京銀行協会ビル丸の内",
         "pref_name": "東京都",
         "city_name": "千代田区",
-        "session_count": 2,
+        "session_count": 4,
         "uu_count": 2,
         "last_visit_at": "2026-08-19 05:07:00 UTC"
-      },
-      {
-        "cid": "cid_2ec11c0fc28c7664d60c",
-        "name": "株式会社クレーター",
-        "pref_name": "東京都",
-        "city_name": "世田谷区",
-        "session_count": 1955,
-        "uu_count": 124,
-        "last_visit_at": "2026-08-19 04:30:19 UTC"
       },
       {
         "cid": "cid_24261",
@@ -18949,8 +19070,8 @@
         "name": "石川県立伝統産業工芸館",
         "pref_name": "石川県",
         "city_name": "金沢市",
-        "session_count": 23,
-        "uu_count": 22,
+        "session_count": 22,
+        "uu_count": 21,
         "last_visit_at": "2026-08-12 06:08:57 UTC"
       },
       {
@@ -19132,15 +19253,6 @@
         "session_count": 13,
         "uu_count": 11,
         "last_visit_at": "2026-08-07 08:13:44 UTC"
-      },
-      {
-        "cid": "cid_de3388cf2eca79890ce3",
-        "name": "響株式会社",
-        "pref_name": "茨城県",
-        "city_name": "水戸市",
-        "session_count": 3,
-        "uu_count": 2,
-        "last_visit_at": "2026-08-07 03:56:22 UTC"
       },
       {
         "cid": "cid_dbaa7c35a2bbd1cf5a5c",
@@ -19735,15 +19847,6 @@
         "session_count": 4,
         "uu_count": 4,
         "last_visit_at": "2026-07-27 02:50:23 UTC"
-      },
-      {
-        "cid": "cid_3cf3339df58ded36b99a",
-        "name": "株式会社クロスハウス",
-        "pref_name": "東京都",
-        "city_name": "品川区",
-        "session_count": 8,
-        "uu_count": 8,
-        "last_visit_at": "2026-07-27 01:57:09 UTC"
       },
       {
         "cid": "cid_c78ab7ad8266048847a6",
