@@ -44,9 +44,7 @@
     position:sticky;top:0;z-index:100;
     display:flex;justify-content:space-between;align-items:center;
     padding:18px 48px;
-    background:rgba(255,255,255,.9);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+    background:var(--bg);
   }
   .site-header .logo{height:30px;width:auto;}
   .gnav{display:flex;align-items:center;gap:34px;}
@@ -164,7 +162,7 @@
   .step .sd{font-size:14px;line-height:1.85;color:var(--sub);margin-top:8px;}
 
   /* ===== レビュー ===== */
-  .voice{background:var(--soft);padding:88px 48px;margin-top:96px;}
+  .voice{background:var(--bg);padding:88px 48px;margin-top:96px;}
   .voice-inner{max-width:1312px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:44px;}
   .voice-head{text-align:center;}
   .voice-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;}
@@ -175,7 +173,7 @@
   .summary .score{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;}
   .summary .cnt{font-size:13px;color:#555;}
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;}
-  .card{background:#fff;border:1px solid #d8d3ca;border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:16px;}
+  .card{background:#fff;border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:16px;}
   .card .cstars{display:flex;gap:2px;}
   .card .cstars svg{width:15px;height:15px;fill:var(--gold);}
   .card .ct{font-family:'Noto Serif JP',serif;font-size:18px;font-weight:600;line-height:1.4;}
