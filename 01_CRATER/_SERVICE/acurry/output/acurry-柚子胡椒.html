@@ -184,12 +184,10 @@
   .other{max-width:1440px;margin:0 auto;padding:80px 48px;}
   .other-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#1a1a1a;}
   .other-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#555;margin-top:6px;}
-  .other-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:36px;}
-  .other-card .oimg{width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:12px;letter-spacing:3px;}
-  .other-card .onm{font-size:18px;font-weight:600;margin-top:14px;}
-  .other-card .opr{font-size:15px;color:#555;margin-top:4px;}
-  .other-card:nth-child(1) .oimg{background:#E99980;}
-  .other-card:nth-child(2) .oimg{background:#F2C645;}
+  .other-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;}
+  .other-card .oimg{width:100%;aspect-ratio:4/5;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:11px;letter-spacing:2px;}
+  .other-card .onm{font-size:16px;font-weight:600;margin-top:14px;line-height:1.5;}
+  .other-card .opr{font-size:14px;color:#555;margin-top:4px;}
 
   /* ===== フッター ===== */
   .footer{background:#171717;color:#f7f4ef;padding:76px 48px 44px;}
@@ -432,18 +430,7 @@
     <div class="en">Other Curry</div>
     <div class="jp">ほかの「あ！」</div>
   </div>
-  <div class="other-grid">
-    <a class="other-card" href="#">
-      <div class="oimg">商品写真</div>
-      <div class="onm">肉じゃがカレー</div>
-      <div class="opr">¥1,180（税込）</div>
-    </a>
-    <a class="other-card" href="#">
-      <div class="oimg">商品写真</div>
-      <div class="onm">牡蠣とココナッツのスープカレー</div>
-      <div class="opr">¥1,180（税込）</div>
-    </a>
-  </div>
+  <div class="other-grid" id="otherGrid"></div>
 </section>
 
 <!-- フッター -->
@@ -522,6 +509,19 @@
   const qtyval = document.getElementById('qtyval');
   document.getElementById('plus').onclick = ()=>{ qty++; qtyval.textContent = qty; };
   document.getElementById('minus').onclick = ()=>{ if(qty>1){ qty--; qtyval.textContent = qty; } };
+
+  // Other Curry：柚子以外の商品からランダムに3つ表示
+  const otherProducts = [
+    {name:"肉じゃがカレー", price:"¥1,180（税込）", color:"#E99980"},
+    {name:"牡蠣とココナッツのスープカレー", price:"¥1,180（税込）", color:"#F2C645"},
+    {name:"3種テイスティングセット", price:"¥3,240（税込）", color:"#d9c7b5"},
+    {name:"バリューパック", price:"¥3,180（税込）", color:"#aebf96"},
+    {name:"ギフトセット", price:"¥3,500（税込）", color:"#c3b2cf"}
+  ];
+  const pick3 = [...otherProducts].sort(()=>Math.random()-0.5).slice(0,3);
+  document.getElementById('otherGrid').innerHTML = pick3.map(p=>
+    `<a class="other-card" href="#"><div class="oimg" style="background:${p.color}">商品写真</div><div class="onm">${p.name}</div><div class="opr">${p.price}</div></a>`
+  ).join('');
 </script>
 
 </body>
