@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "legal": {
+      "type": "acurry-legal",
+      "blocks": {
+        "r1": { "type": "row", "settings": { "label": "販売業者", "value": "株式会社クレーター" } },
+        "r2": { "type": "row", "settings": { "label": "運営統括責任者", "value": "明里 圭修" } },
+        "r3": { "type": "row", "settings": { "label": "所在地", "value": "〒155-0031\n東京都世田谷区北沢3丁目20-18 北沢宝ビル3F" } },
+        "r4": { "type": "row", "settings": { "label": "電話番号", "value": "03-6665-0846\n受付時間：平日10:00〜18:00（土日祝を除く）\n※お問い合わせはメールフォームをご利用ください。" } },
+        "r5": { "type": "row", "settings": { "label": "メールアドレス", "value": "acurry@crater.co.jp" } },
+        "r6": { "type": "row", "settings": { "label": "販売URL", "value": "https://acurry.jp/" } },
+        "r7": { "type": "row", "settings": { "label": "販売価格", "value": "各商品ページに表示された金額（税込）\n単品：1,180円（税込）" } },
+        "r8": { "type": "row", "settings": { "label": "商品代金以外の必要料金", "value": "消費税（税込価格に含む）、送料、決済手数料（発生する場合）\n※送料は配送地域・ご注文金額により異なります。ご購入手続き画面でご確認いただけます。" } },
+        "r9": { "type": "row", "settings": { "label": "お支払い方法", "value": "各種クレジットカード、その他ご購入手続き画面に表示される決済方法" } },
+        "r10": { "type": "row", "settings": { "label": "お支払い時期", "value": "各決済方法の規定に準じます。" } },
+        "r11": { "type": "row", "settings": { "label": "商品の引渡時期", "value": "ご注文（ご入金）確認後、通常3〜5営業日以内に発送いたします。" } },
+        "r12": { "type": "row", "settings": { "label": "返品・交換について", "value": "食品という商品の性質上、お客様都合による返品・交換はお受けできません。\n万一、商品に破損・品質不良があった場合は、商品到着後7日以内にお問い合わせフォームよりご連絡ください。良品との交換、または返金にて対応いたします。" } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10", "r11", "r12"],
+      "settings": {
+        "eyebrow": "LEGAL NOTICE",
+        "heading": "Legal Notice",
+        "subheading": "特定商取引法に基づく表記",
+        "intro": "「特定商取引法」に基づき、以下のとおり表示いたします。"
+      }
+    }
+  },
+  "order": ["legal"]
+}
