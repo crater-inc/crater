@@ -1,0 +1,114 @@
+{%- comment -%} A CURRY セットPDP（食べ比べ＝サイズ選択／ギフト＝単品 兼用）。3種ミックス系 {%- endcomment -%}
+<style>
+  #acuset{background:var(--acu-paper);}
+  #acuset .set-crumb{font-family:var(--acu-en);font-size:12px;font-weight:600;letter-spacing:3px;color:#33333399;padding:28px 64px 0;}
+  #acuset .set-crumb a{color:inherit;text-decoration:none;}
+  #acuset .set-wrap{max-width:1200px;margin:0 auto;padding:36px 64px 96px;display:grid;grid-template-columns:minmax(0,520px) minmax(340px,1fr);gap:56px;align-items:start;}
+  /* 左：3種を表す3色ビジュアル */
+  #acuset .set-visual{aspect-ratio:4/5;border-radius:10px;overflow:hidden;position:relative;display:flex;flex-direction:column;}
+  #acuset .set-bands{flex:1;display:flex;}
+  #acuset .set-bands span{flex:1;}
+  #acuset .set-vcap{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;color:#fff;
+    background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,0));}
+  #acuset .set-vcap .vt{font-family:var(--acu-en);font-weight:600;font-size:clamp(28px,3.6vw,44px);line-height:1;}
+  #acuset .set-vcap .vs{font-family:var(--acu-jp);font-size:13px;margin-top:4px;color:#ffffffdd;}
+  /* 右：情報 */
+  #acuset .set-info{display:flex;flex-direction:column;gap:22px;}
+  #acuset .set-ey{font-family:var(--acu-en);font-size:13px;font-weight:600;letter-spacing:4px;color:var(--acu-sub);}
+  #acuset .set-name{font-family:'Noto Serif JP',serif;font-size:34px;font-weight:600;line-height:1.3;color:var(--acu-ink);}
+  #acuset .set-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  #acuset .set-price .p{font-size:24px;font-weight:600;color:var(--acu-ink);}
+  #acuset .set-price .u{font-size:13px;color:#555;}
+  #acuset .set-desc{font-family:var(--acu-jp);font-size:15px;line-height:1.9;color:#444;}
+  #acuset .set-pick-h{font-family:var(--acu-jp);font-size:13px;font-weight:600;color:#333;}
+  #acuset .set-opts{display:flex;flex-wrap:wrap;gap:10px;}
+  #acuset .set-opt{font-family:var(--acu-jp);font-size:14px;font-weight:600;color:#333;background:#fff;
+    border:1.5px solid var(--acu-line);border-radius:8px;padding:12px 18px;cursor:pointer;transition:border-color .2s,background .2s;text-align:left;}
+  #acuset .set-opt small{display:block;font-weight:400;font-size:12px;color:#777;margin-top:2px;}
+  #acuset .set-opt:hover{border-color:#aaa;}
+  #acuset .set-opt.active{border-color:var(--acu-ink);background:#111;color:#f7f4ef;}
+  #acuset .set-opt.active small{color:#f7f4efcc;}
+  #acuset .set-cart{height:56px;border:none;border-radius:8px;background:#111;color:#f7f4ef;
+    font-family:var(--acu-jp);font-size:15px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:background .2s;}
+  #acuset .set-cart:hover{background:#000;}
+  #acuset .set-note{font-family:var(--acu-jp);font-size:13px;line-height:1.8;color:#666;}
+  #acuset .set-note a{color:var(--acu-ink);}
+  @media(max-width:860px){
+    #acuset .set-crumb{padding:22px 32px 0;}
+    #acuset .set-wrap{grid-template-columns:1fr;gap:32px;padding:24px 32px 64px;}
+  }
+</style>
+{%- assign fv = product.selected_or_first_available_variant -%}
+{%- assign fv_cnt = 0 -%}
+{%- if fv.title contains '9' -%}{%- assign fv_cnt = 9 -%}{%- elsif fv.title contains '6' -%}{%- assign fv_cnt = 6 -%}{%- elsif fv.title contains '3' -%}{%- assign fv_cnt = 3 -%}{%- endif -%}
+{%- if product.variants.size > 1 and fv_cnt > 0 -%}{%- assign fv_per_amt = fv.price | divided_by: fv_cnt | money -%}{%- assign fv_per = '1個あたり ' | append: fv_per_amt -%}{%- else -%}{%- assign fv_per = section.settings.price_note -%}{%- endif -%}
+<section id="acuset" class="acu">
+  <div class="set-crumb"><a href="{{ routes.root_url }}">HOME</a> / <a href="{{ routes.all_products_collection_url }}">SHOP</a> / {{ product.title }}</div>
+  <div class="set-wrap">
+    <div class="set-visual">
+      <div class="set-bands"><span style="background:#E99980"></span><span style="background:#A3CC44"></span><span style="background:#F2C645"></span></div>
+      <div class="set-vcap">
+        <div class="vt">{{ section.settings.visual_title | default: '3 Flavors' }}</div>
+        <div class="vs">{{ section.settings.visual_sub | default: '肉じゃが ・ 柚子胡椒 ・ 牡蠣ココナッツ' }}</div>
+      </div>
+    </div>
+    <div class="set-info">
+      <div class="set-ey">{{ section.settings.eyebrow }}</div>
+      <h1 class="set-name">{{ product.title }}</h1>
+      <div class="set-price">
+        <span class="p" id="setPrice">{{ fv.price | money }}</span>
+        <span class="u" id="setPer">{{ fv_per }}</span>
+      </div>
+      <p class="set-desc">{{ section.settings.desc }}</p>
+      {%- form 'product', product, id: 'setForm' -%}
+        <input type="hidden" name="id" id="setVid" value="{{ fv.id }}">
+        {%- if product.variants.size > 1 -%}
+          <div class="set-pick-h">{{ product.options.first }}を選ぶ</div>
+          <div class="set-opts">
+            {%- for variant in product.variants -%}
+              {%- assign cnt = 0 -%}
+              {%- if variant.title contains '9' -%}{%- assign cnt = 9 -%}{%- elsif variant.title contains '6' -%}{%- assign cnt = 6 -%}{%- elsif variant.title contains '3' -%}{%- assign cnt = 3 -%}{%- endif -%}
+              {%- assign perfmt = '' -%}
+              {%- if cnt > 0 -%}{%- assign perfmt = variant.price | divided_by: cnt | money -%}{%- endif -%}
+              <button type="button" class="set-opt{% if variant.id == fv.id %} active{% endif %}" data-vid="{{ variant.id }}" data-price="{{ variant.price | money }}" data-per="{% if perfmt != '' %}1個あたり {{ perfmt }}{% endif %}"{% unless variant.available %} disabled{% endunless %}>
+                {{ variant.title }}<small>{{ variant.price | money }}{% if perfmt != '' %} ・1個{{ perfmt }}{% endif %}</small>
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        <button type="submit" class="set-cart">カートに入れる</button>
+      {%- endform -%}
+      <p class="set-note">{{ section.settings.note }}</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var root=document.getElementById('acuset'); if(!root) return;
+  var vid=root.querySelector('#setVid'), pEl=root.querySelector('#setPrice'), perEl=root.querySelector('#setPer');
+  root.querySelectorAll('.set-opt').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(btn.hasAttribute('disabled')) return;
+      root.querySelectorAll('.set-opt').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      if(vid) vid.value=btn.dataset.vid;
+      if(pEl&&btn.dataset.price) pEl.textContent=btn.dataset.price;
+      if(perEl) perEl.textContent=btn.dataset.per||'';
+    });
+  });
+})();
+</script>
+{% schema %}
+{
+  "name": "A CURRY セットPDP",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "英字ラベル", "default": "SET" },
+    { "type": "text", "id": "visual_title", "label": "ビジュアル大見出し", "default": "3 Flavors" },
+    { "type": "text", "id": "visual_sub", "label": "ビジュアル小見出し", "default": "肉じゃが ・ 柚子胡椒 ・ 牡蠣ココナッツ" },
+    { "type": "text", "id": "price_note", "label": "価格の補足（サイズ無しの時に表示）", "default": "（税込）" },
+    { "type": "textarea", "id": "desc", "label": "説明文", "default": "3種を食べ比べできるセットです。" },
+    { "type": "textarea", "id": "note", "label": "下部の注記", "default": "肉じゃが・柚子胡椒・牡蠣ココナッツの3種が入ります。各味の詳しい紹介は単品ページでご覧いただけます。" }
+  ],
+  "presets": [{ "name": "A CURRY セットPDP" }]
+}
+{% endschema %}
