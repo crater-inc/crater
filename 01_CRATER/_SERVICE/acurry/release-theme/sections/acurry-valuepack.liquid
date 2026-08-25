@@ -1,0 +1,101 @@
+{%- comment -%} A CURRY バリューパック（味を選ぶ・3個入り）PDP。単品より安いまとめ買い商品 {%- endcomment -%}
+<style>
+  #acuvp{background:var(--acu-paper);}
+  #acuvp .vp-crumb{font-family:var(--acu-en);font-size:12px;font-weight:600;letter-spacing:3px;color:#33333399;padding:28px 64px 0;}
+  #acuvp .vp-crumb a{color:inherit;text-decoration:none;}
+  #acuvp .vp-wrap{max-width:1200px;margin:0 auto;padding:36px 64px 96px;display:grid;grid-template-columns:minmax(0,520px) minmax(340px,1fr);gap:56px;align-items:start;}
+  /* 左：味で色が変わるビジュアル */
+  #acuvp .vp-visual{aspect-ratio:4/5;border-radius:10px;overflow:hidden;position:relative;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    background:#E99980;transition:background .35s ease;color:#ffffffee;}
+  #acuvp .vp-visual .vp-x3{font-family:var(--acu-en);font-weight:600;font-size:clamp(64px,9vw,108px);line-height:1;}
+  #acuvp .vp-visual .vp-vl{font-family:var(--acu-en);font-size:13px;letter-spacing:4px;}
+  #acuvp .vp-boxes{position:absolute;bottom:26px;display:flex;gap:8px;}
+  #acuvp .vp-boxes span{width:34px;height:46px;border:1.5px solid #ffffffcc;border-radius:4px;}
+  /* 右：情報 */
+  #acuvp .vp-info{display:flex;flex-direction:column;gap:22px;}
+  #acuvp .vp-ey{font-family:var(--acu-en);font-size:13px;font-weight:600;letter-spacing:4px;color:var(--acu-sub);}
+  #acuvp .vp-name{font-family:'Noto Serif JP',serif;font-size:34px;font-weight:600;line-height:1.3;color:var(--acu-ink);}
+  #acuvp .vp-price{display:flex;align-items:baseline;gap:12px;}
+  #acuvp .vp-price .p{font-size:24px;font-weight:600;color:var(--acu-ink);}
+  #acuvp .vp-price .u{font-size:13px;color:#555;}
+  #acuvp .vp-save{display:inline-block;align-self:flex-start;background:#eef3e4;border:1px solid #cddba9;color:#4a5a24;
+    font-family:var(--acu-jp);font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:6px;}
+  #acuvp .vp-desc{font-family:var(--acu-jp);font-size:15px;line-height:1.9;color:#444;}
+  #acuvp .vp-pick-h{font-family:var(--acu-jp);font-size:13px;font-weight:600;color:#333;}
+  #acuvp .vp-flavors{display:flex;flex-wrap:wrap;gap:10px;}
+  #acuvp .vp-flavor{font-family:var(--acu-jp);font-size:14px;font-weight:600;color:#333;background:#fff;
+    border:1.5px solid var(--acu-line);border-radius:8px;padding:12px 18px;cursor:pointer;transition:border-color .2s,background .2s;}
+  #acuvp .vp-flavor:hover{border-color:#aaa;}
+  #acuvp .vp-flavor.active{border-color:var(--acu-ink);background:#111;color:#f7f4ef;}
+  #acuvp .vp-cart{height:56px;border:none;border-radius:8px;background:#111;color:#f7f4ef;
+    font-family:var(--acu-jp);font-size:15px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:background .2s;}
+  #acuvp .vp-cart:hover{background:#000;}
+  #acuvp .vp-note{font-family:var(--acu-jp);font-size:13px;line-height:1.8;color:#666;}
+  #acuvp .vp-note a{color:var(--acu-ink);}
+  @media(max-width:860px){
+    #acuvp .vp-crumb{padding:22px 32px 0;}
+    #acuvp .vp-wrap{grid-template-columns:1fr;gap:32px;padding:24px 32px 64px;}
+  }
+</style>
+{%- assign v1180 = 1180 -%}
+<section id="acuvp" class="acu">
+  <div class="vp-crumb"><a href="{{ routes.root_url }}">HOME</a> / <a href="{{ routes.all_products_collection_url }}">SHOP</a> / {{ product.title }}</div>
+  <div class="vp-wrap">
+    <div class="vp-visual" id="vpVisual">
+      <div class="vp-x3">×3</div>
+      <div class="vp-vl">VALUE PACK</div>
+      <div class="vp-boxes"><span></span><span></span><span></span></div>
+    </div>
+    <div class="vp-info">
+      <div class="vp-ey">VALUE PACK</div>
+      <h1 class="vp-name">{{ product.title }}</h1>
+      <div class="vp-price">
+        <span class="p">{{ product.price | money }}</span>
+        <span class="u">（税込・3個入り／1個あたり {{ product.price | divided_by: 3 | money }}）</span>
+      </div>
+      <span class="vp-save">単品3個（{{ 354000 | money }}）より約{{ 36000 | money }}おトク</span>
+      <p class="vp-desc">{{ section.settings.desc }}</p>
+      {%- form 'product', product, id: 'vpForm' -%}
+        <input type="hidden" name="id" id="vpVid" value="{{ product.selected_or_first_available_variant.id }}">
+        <div class="vp-pick-h">味を選ぶ</div>
+        <div class="vp-flavors" id="vpFlavors">
+          {%- for variant in product.variants -%}
+            {%- assign vc = 'E99980' -%}
+            {%- if variant.title contains '柚子' -%}{%- assign vc = 'A3CC44' -%}
+            {%- elsif variant.title contains '牡蠣' or variant.title contains 'ココナッツ' -%}{%- assign vc = 'F2C645' -%}
+            {%- endif -%}
+            <button type="button" class="vp-flavor{% if forloop.first %} active{% endif %}" data-vid="{{ variant.id }}" data-color="{{ vc }}"{% unless variant.available %} disabled{% endunless %}>{{ variant.title }}{% unless variant.available %}（在庫なし）{% endunless %}</button>
+          {%- endfor -%}
+        </div>
+        <button type="submit" class="vp-cart">カートに入れる</button>
+      {%- endform -%}
+      <p class="vp-note">同じ味が3個届きます。まとめ買い・ストックにどうぞ。<br>各味の詳しい紹介は単品ページでご覧いただけます。</p>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var root=document.getElementById('acuvp'); if(!root) return;
+  var vid=root.querySelector('#vpVid'), visual=root.querySelector('#vpVisual');
+  var first=root.querySelector('.vp-flavor'); if(first&&first.dataset.color){visual.style.background='#'+first.dataset.color;}
+  root.querySelectorAll('.vp-flavor').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(btn.hasAttribute('disabled')) return;
+      root.querySelectorAll('.vp-flavor').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      if(vid) vid.value=btn.dataset.vid;
+      if(btn.dataset.color) visual.style.background='#'+btn.dataset.color;
+    });
+  });
+})();
+</script>
+{% schema %}
+{
+  "name": "A CURRY バリューパック",
+  "settings": [
+    { "type": "textarea", "id": "desc", "label": "説明文", "default": "お気に入りの味を、3個まとめて。1個あたりが少しおトクになる、ストック向けのまとめ買いパックです。まずは気に入った一皿を、切らさないように。" }
+  ],
+  "presets": [{ "name": "A CURRY バリューパック" }]
+}
+{% endschema %}

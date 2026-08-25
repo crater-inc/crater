@@ -152,6 +152,7 @@
 #acu2 .qty input{width:34px;text-align:center;border:0;background:transparent;font-family:inherit;font-size:18px;font-weight:600;color:var(--ink);-moz-appearance:textfield;outline:none;}
 #acu2 .qty input::-webkit-outer-spin-button,#acu2 .qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
 #acu2 .cart-btn[disabled]{opacity:.4;cursor:not-allowed;}
+#acu2 .vp-xsell{display:inline-block;width:fit-content;margin-top:-8px;font-family:'Noto Sans JP',sans-serif;font-size:13px;color:#555;text-decoration:none;border-bottom:1px solid #bbb;padding-bottom:2px;}#acu2 .vp-xsell strong{color:var(--ink);font-weight:600;}#acu2 .vp-xsell:hover{color:var(--ink);border-color:#666;}
 #acu2 .other-card .oimg img{width:100%;height:100%;object-fit:cover;}
 </style>
 
@@ -198,6 +199,7 @@
           {% if product.available %}カートに入れる{% else %}売り切れ{% endif %}
         </button>
       {%- endform -%}
+      <a class="vp-xsell" href="/products/value-pack">3個まとめ買いは <strong>バリューパックが{{ 36000 | money }}おトク</strong> →</a>
       <div class="spec">
         <div class="row"><span class="rk"><span class="material-symbols-rounded">package_2</span><span class="kt">内容量</span></span><span class="rv">200g（1人前）</span></div>
         <div class="row"><span class="rk"><span class="material-symbols-rounded">local_fire_department</span><span class="kt">辛さ</span></span><span class="rv">{{ spice }}</span></div>
