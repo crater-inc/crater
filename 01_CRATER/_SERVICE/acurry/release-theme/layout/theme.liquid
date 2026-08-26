@@ -59,9 +59,9 @@
         --font-button-family:'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif;
         --font-italic-family:'Playfair Display','Noto Sans JP',serif;
       }
-      /* === トップ以外の全ページ：グレー基調の背景（返品・ポリシー・カート・商品・一覧など全て統一） === */
-      body:not(.template--index){background:#a6a6a6;}
-      body:not(.template--index) .content-for-layout{background:#a6a6a6;}
+      /* === トップ以外の全ページ：グレー基調の背景（返品・ポリシー・カート・商品・一覧など全て統一）。柚子PDP基準の #b3b3b3 に一本化してヘッダーとツートンにならないようにする === */
+      body:not(.template--index){background:#b3b3b3;}
+      body:not(.template--index) .content-for-layout{background:#b3b3b3;}
       /* === 細かい下層ページ（ポリシー・お問い合わせ・FAQ・404・検索など）：Release標準セクションの白背景もグレーに統一。
             Releaseは各セクションを rgb(var(--color-background)) で塗るので、その変数を上書きしてグレー化。
             商品/コレクション/カート、独自Aboutは除外して崩れを防ぐ === */
@@ -70,8 +70,8 @@
       body.template--404 [class*="color-scheme-"],
       body.template--search [class*="color-scheme-"],
       body.template--list-collections [class*="color-scheme-"]{
-        --color-background:166,166,166;
-        --gradient-background:#a6a6a6;
+        --color-background:179,179,179;
+        --gradient-background:#b3b3b3;
       }
       .acu, .acu *{box-sizing:border-box;}
       .acu ::selection{background:var(--acu-ink);color:#fff;}

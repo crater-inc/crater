@@ -19,13 +19,23 @@
     .acu-hd__logo{width:96px;}
     .acu-hd__burger{display:flex;}
   }
-  /* === トップ以外の全ページ：ソリッドなグレーヘッダー（黒ロゴ・黒メニュー）。透過だと白文字が背景に溶けて崩れるため === */
-  body:not(.template--index) .acu-hd{position:relative;background:#a6a6a6;padding:22px 40px;}
+  /* === トップ以外の全ページ：ヘッダーを各ページの背景に溶け込ませる（ヘッダーと背景のツートンを回避） === */
+  /* デフォルト＝商品詳細・一覧・ブログ系のグレー #b3b3b3（黒ロゴ・黒メニュー） */
+  body:not(.template--index) .acu-hd{position:relative;background:#b3b3b3;padding:22px 40px;}
   body:not(.template--index) .acu-hd__logo img{filter:brightness(0);}
   body:not(.template--index) .acu-hd__nav a{color:#111111;}
   body:not(.template--index) .acu-hd__icons a{color:#111111;}
   body:not(.template--index) .acu-hd__icons svg{stroke:#111111;}
   body:not(.template--index) .acu-hd__burger{color:#111111;}
+  /* 固定ページ（FAQ・お問い合わせ・各ポリシー・特商法）＝ペーパー #f2f2f2 に合わせる */
+  body.template--page .acu-hd{background:var(--acu-paper);}
+  /* ブランドについて＝先頭がダークヒーローなのでヘッダーもダークに溶け込ませる（白ロゴ・白メニュー） */
+  body.template--about-us .acu-hd{background:var(--acu-dark1);}
+  body.template--about-us .acu-hd__logo img{filter:none;}
+  body.template--about-us .acu-hd__nav a{color:#f7f4efee;}
+  body.template--about-us .acu-hd__icons a{color:#f7f4ef;}
+  body.template--about-us .acu-hd__icons svg{stroke:#f7f4ef;}
+  body.template--about-us .acu-hd__burger{color:#f7f4ef;}
   @media(max-width:900px){
     body:not(.template--index) .acu-hd{padding:18px 24px;}
   }
