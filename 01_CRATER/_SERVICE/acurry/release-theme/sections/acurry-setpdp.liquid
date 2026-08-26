@@ -1,95 +1,225 @@
-{%- comment -%} A CURRY セットPDP（食べ比べ＝サイズ選択／ギフト＝単品 兼用）。3種ミックス系 {%- endcomment -%}
+{%- comment -%} A CURRY セットPDP（食べ比べ＝サイズ選択／ギフト＝単品 兼用）。柚子デザイン基準に統一 {%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Serif+JP:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..0&display=block" rel="stylesheet">
 <style>
-  #acuset{background:var(--acu-paper);}
-  #acuset .set-crumb{font-family:var(--acu-en);font-size:12px;font-weight:600;letter-spacing:3px;color:#33333399;padding:28px 64px 0;}
-  #acuset .set-crumb a{color:inherit;text-decoration:none;}
-  #acuset .set-wrap{max-width:1200px;margin:0 auto;padding:36px 64px 96px;display:grid;grid-template-columns:minmax(0,520px) minmax(340px,1fr);gap:56px;align-items:start;}
-  /* 左：3種を表す3色ビジュアル */
-  #acuset .set-visual{aspect-ratio:4/5;border-radius:10px;overflow:hidden;position:relative;display:flex;flex-direction:column;}
-  #acuset .set-bands{flex:1;display:flex;}
-  #acuset .set-bands span{flex:1;}
-  #acuset .set-vcap{position:absolute;left:0;right:0;bottom:0;padding:22px 24px;color:#fff;
-    background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,0));}
-  #acuset .set-vcap .vt{font-family:var(--acu-en);font-weight:600;font-size:clamp(28px,3.6vw,44px);line-height:1;}
-  #acuset .set-vcap .vs{font-family:var(--acu-jp);font-size:13px;margin-top:4px;color:#ffffffdd;}
-  /* 右：情報 */
-  #acuset .set-info{display:flex;flex-direction:column;gap:22px;}
-  #acuset .set-ey{font-family:var(--acu-en);font-size:13px;font-weight:600;letter-spacing:4px;color:var(--acu-sub);}
-  #acuset .set-name{font-family:'Noto Serif JP',serif;font-size:34px;font-weight:600;line-height:1.3;color:var(--acu-ink);}
-  #acuset .set-price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
-  #acuset .set-price .p{font-size:24px;font-weight:600;color:var(--acu-ink);}
-  #acuset .set-price .u{font-size:13px;color:#555;}
-  #acuset .set-desc{font-family:var(--acu-jp);font-size:15px;line-height:1.9;color:#444;}
-  #acuset .set-pick-h{font-family:var(--acu-jp);font-size:13px;font-weight:600;color:#333;}
-  #acuset .set-opts{display:flex;flex-wrap:wrap;gap:10px;}
-  #acuset .set-opt{font-family:var(--acu-jp);font-size:14px;font-weight:600;color:#333;background:#fff;
-    border:1.5px solid var(--acu-line);border-radius:8px;padding:12px 18px;cursor:pointer;transition:border-color .2s,background .2s;text-align:left;}
-  #acuset .set-opt small{display:block;font-weight:400;font-size:12px;color:#777;margin-top:2px;}
-  #acuset .set-opt:hover{border-color:#aaa;}
-  #acuset .set-opt.active{border-color:var(--acu-ink);background:#111;color:#f7f4ef;}
-  #acuset .set-opt.active small{color:#f7f4efcc;}
-  #acuset .set-cart{height:56px;border:none;border-radius:8px;background:#111;color:#f7f4ef;
-    font-family:var(--acu-jp);font-size:15px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:background .2s;}
-  #acuset .set-cart:hover{background:#000;}
-  #acuset .set-note{font-family:var(--acu-jp);font-size:13px;line-height:1.8;color:#666;}
-  #acuset .set-note a{color:var(--acu-ink);}
-  @media(max-width:860px){
-    #acuset .set-crumb{padding:22px 32px 0;}
-    #acuset .set-wrap{grid-template-columns:1fr;gap:32px;padding:24px 32px 64px;}
+  #acuset{
+    --ink:#1a1a1a;--sub:#555;--meta:#888;--line:#0000001a;--hair:#0000000f;
+    --bg:#b3b3b3;--gold:#c9a24f;--accent:#c9a24f;
+  }
+  #acuset *{margin:0;padding:0;box-sizing:border-box;}
+  #acuset{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;overflow-x:clip;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;}
+  #acuset img{max-width:100%;display:block;}
+  #acuset a{color:inherit;text-decoration:none;}
+  #acuset button{font-family:inherit;cursor:pointer;}
+  #acuset .en{font-family:'Playfair Display',serif;}
+  #acuset .mincho{font-family:'Noto Serif JP',serif;}
+  /* パンくず */
+  #acuset .breadcrumb{max-width:1440px;margin:0 auto;padding:26px 48px 0;font-family:'Playfair Display',serif;font-size:12px;letter-spacing:2px;color:#000;}
+  #acuset .breadcrumb a:hover{text-decoration:underline;}
+  /* 2カラム */
+  #acuset .product{max-width:1440px;margin:0 auto;padding:36px 48px 0;display:grid;grid-template-columns:minmax(0,560px) minmax(340px,1fr);gap:48px;align-items:start;}
+  /* 左：sticky 3種ビジュアル */
+  #acuset .gallery{position:sticky;top:96px;}
+  #acuset .visual{aspect-ratio:460/663;border-radius:8px;overflow:hidden;position:relative;display:flex;flex-direction:column;}
+  #acuset .bands{flex:1;display:flex;}
+  #acuset .bands span{flex:1;}
+  #acuset .vcap{position:absolute;left:0;right:0;bottom:0;padding:28px 30px;color:#fff;background:linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,0));}
+  #acuset .vcap .vt{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(32px,4.4vw,52px);line-height:1.05;}
+  #acuset .vcap .vs{font-family:'Noto Sans JP',sans-serif;font-size:13px;margin-top:6px;color:#ffffffe6;}
+  /* 右：コンテンツ */
+  #acuset .col-right{display:flex;flex-direction:column;gap:72px;}
+  #acuset .block{display:flex;flex-direction:column;}
+  /* 商品情報 */
+  #acuset .info{display:flex;flex-direction:column;gap:20px;}
+  #acuset .info .cat{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;letter-spacing:3px;color:#00000099;}
+  #acuset .info .name{font-family:'Noto Serif JP',serif;font-size:34px;font-weight:600;letter-spacing:1px;line-height:1.35;}
+  #acuset .info .price{font-size:22px;font-weight:600;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  #acuset .info .price .per{font-size:13px;font-weight:400;color:var(--sub);letter-spacing:.5px;}
+  #acuset .info .desc{font-size:15px;line-height:1.9;color:var(--sub);}
+  #acuset .pick-h{font-size:13px;font-weight:600;color:#333;}
+  #acuset .opts{display:flex;flex-wrap:wrap;gap:10px;}
+  #acuset .opt{font-size:14px;font-weight:600;color:#333;background:#f2f2f2;border:1.5px solid #00000022;border-radius:8px;padding:12px 18px;text-align:left;transition:border-color .2s,background .2s,color .2s;}
+  #acuset .opt small{display:block;font-weight:400;font-size:12px;color:#777;margin-top:3px;}
+  #acuset .opt:hover{border-color:#888;}
+  #acuset .opt.active{border-color:var(--ink);background:#111;color:#f7f4ef;}
+  #acuset .opt.active small{color:#f7f4efcc;}
+  #acuset .opt[disabled]{opacity:.4;cursor:not-allowed;}
+  #acuset .cart-btn{height:56px;border:none;border-radius:8px;background:#111;color:#f7f4ef;display:flex;align-items:center;justify-content:center;gap:10px;font-size:15px;font-weight:600;letter-spacing:1px;transition:background .2s;}
+  #acuset .cart-btn svg{width:18px;height:18px;}
+  #acuset .cart-btn:hover{background:#000;}
+  #acuset .note{font-size:13px;line-height:1.85;color:#666;}
+  #acuset .note a{color:var(--ink);border-bottom:1px solid #999;padding-bottom:1px;}
+  /* セクション見出し */
+  #acuset .sec-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;line-height:1.16;}
+  #acuset .sec-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:var(--sub);margin-top:6px;}
+  /* セット内容（3種カード縦積み） */
+  #acuset .flist{display:flex;flex-direction:column;gap:28px;margin-top:26px;}
+  #acuset .fitem{display:flex;gap:18px;align-items:center;}
+  #acuset .fitem .sw{width:96px;height:96px;flex-shrink:0;border-radius:8px;}
+  #acuset .fitem .ftx{display:flex;flex-direction:column;gap:5px;min-width:0;}
+  #acuset .fitem .fnm{font-size:18px;font-weight:600;color:var(--ink);}
+  #acuset .fitem .fds{font-size:14px;line-height:1.8;color:var(--sub);}
+  #acuset .fitem .flk{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:2px;color:#333;border-bottom:1px solid #333;padding-bottom:2px;align-self:flex-start;margin-top:2px;}
+  /* How to Eat */
+  #acuset .eat-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#111;line-height:1.16;}
+  #acuset .eat-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#333;margin-top:6px;}
+  #acuset .steps{display:flex;flex-direction:column;margin-top:20px;}
+  #acuset .step{display:flex;gap:20px;align-items:flex-start;padding:26px 0;}
+  #acuset .step+.step{border-top:1px solid var(--line);}
+  #acuset .step .num{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;color:var(--accent);}
+  #acuset .step .st{font-family:'Noto Serif JP',serif;font-size:19px;font-weight:600;}
+  #acuset .step .sd{font-size:14px;line-height:1.85;color:var(--sub);margin-top:8px;}
+  /* Other Curry */
+  #acuset .other{max-width:1440px;margin:0 auto;padding:80px 48px 96px;}
+  #acuset .other-head .en{font-family:'Playfair Display',serif;font-size:40px;font-weight:600;color:#1a1a1a;line-height:1.16;}
+  #acuset .other-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#555;margin-top:6px;}
+  #acuset .other-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px;}
+  #acuset .other-card .oimg{width:100%;aspect-ratio:4/5;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#ffffffcc;font-size:11px;letter-spacing:2px;}
+  #acuset .other-card .oimg img{width:100%;height:100%;object-fit:cover;}
+  #acuset .other-card .onm{font-size:16px;font-weight:600;margin-top:14px;line-height:1.5;}
+  #acuset .other-card .opr{font-size:14px;color:#555;margin-top:4px;}
+  @media(max-width:768px){
+    #acuset .breadcrumb{padding:22px 32px 0;}
+    #acuset .product{grid-template-columns:1fr;gap:40px;padding:24px 32px 0;}
+    #acuset .gallery{position:static;}
+    #acuset .col-right{gap:56px;}
+    #acuset .info .name{font-size:28px;}
+    #acuset .other{padding:64px 32px 72px;}
+    #acuset .other-grid{grid-template-columns:1fr;}
   }
 </style>
-{%- assign fv = product.selected_or_first_available_variant -%}
-{%- assign fv_cnt = 0 -%}
-{%- if fv.title contains '9' -%}{%- assign fv_cnt = 9 -%}{%- elsif fv.title contains '6' -%}{%- assign fv_cnt = 6 -%}{%- elsif fv.title contains '3' -%}{%- assign fv_cnt = 3 -%}{%- endif -%}
-{%- if product.variants.size > 1 and fv_cnt > 0 -%}{%- assign fv_per_amt = fv.price | divided_by: fv_cnt | money -%}{%- assign fv_per = '1個あたり ' | append: fv_per_amt -%}{%- else -%}{%- assign fv_per = section.settings.price_note -%}{%- endif -%}
+
+{%- liquid
+  assign fv = product.selected_or_first_available_variant
+  assign fv_cnt = 0
+  if fv.title contains '9'
+    assign fv_cnt = 9
+  elsif fv.title contains '6'
+    assign fv_cnt = 6
+  elsif fv.title contains '3'
+    assign fv_cnt = 3
+  endif
+  if product.variants.size > 1 and fv_cnt > 0
+    assign fv_per_amt = fv.price | divided_by: fv_cnt | money
+    assign fv_per = '1個あたり ' | append: fv_per_amt
+  else
+    assign fv_per = section.settings.price_note
+  endif
+-%}
 <section id="acuset" class="acu">
-  <div class="set-crumb"><a href="{{ routes.root_url }}">HOME</a> / <a href="{{ routes.all_products_collection_url }}">SHOP</a> / {{ product.title }}</div>
-  <div class="set-wrap">
-    <div class="set-visual">
-      <div class="set-bands"><span style="background:#E99980"></span><span style="background:#A3CC44"></span><span style="background:#F2C645"></span></div>
-      <div class="set-vcap">
-        <div class="vt">{{ section.settings.visual_title | default: '3 Flavors' }}</div>
-        <div class="vs">{{ section.settings.visual_sub | default: '肉じゃが ・ 柚子胡椒 ・ 牡蠣ココナッツ' }}</div>
+
+  <div class="breadcrumb"><a href="{{ routes.root_url }}">HOME</a> / <a href="{{ routes.all_products_collection_url }}">SHOP</a> / {{ product.title }}</div>
+
+  <section class="product">
+    <div class="gallery">
+      <div class="visual">
+        <div class="bands"><span style="background:#E99980"></span><span style="background:#A3CC44"></span><span style="background:#F2C645"></span></div>
+        <div class="vcap">
+          <div class="vt en">{{ section.settings.visual_title | default: '3 Flavors' }}</div>
+          <div class="vs">{{ section.settings.visual_sub | default: '肉じゃが ・ 柚子胡椒 ・ 牡蠣ココナッツ' }}</div>
+        </div>
       </div>
     </div>
-    <div class="set-info">
-      <div class="set-ey">{{ section.settings.eyebrow }}</div>
-      <h1 class="set-name">{{ product.title }}</h1>
-      <div class="set-price">
-        <span class="p" id="setPrice">{{ fv.price | money }}</span>
-        <span class="u" id="setPer">{{ fv_per }}</span>
+
+    <div class="col-right">
+      <div class="info">
+        <div class="cat">{{ section.settings.eyebrow }}</div>
+        <h1 class="name">{{ product.title }}</h1>
+        <div class="price"><span id="setPrice">{{ fv.price | money }}</span><span class="per" id="setPer">{{ fv_per }}</span></div>
+        <p class="desc">{{ section.settings.desc }}</p>
+        {%- form 'product', product, id: 'setForm' -%}
+          <input type="hidden" name="id" id="setVid" value="{{ fv.id }}">
+          {%- if product.variants.size > 1 -%}
+            <div class="pick-h">{{ product.options.first }}を選ぶ</div>
+            <div class="opts">
+              {%- for variant in product.variants -%}
+                {%- assign cnt = 0 -%}
+                {%- if variant.title contains '9' -%}{%- assign cnt = 9 -%}{%- elsif variant.title contains '6' -%}{%- assign cnt = 6 -%}{%- elsif variant.title contains '3' -%}{%- assign cnt = 3 -%}{%- endif -%}
+                {%- assign perfmt = '' -%}
+                {%- if cnt > 0 -%}{%- assign perfmt = variant.price | divided_by: cnt | money -%}{%- endif -%}
+                <button type="button" class="opt{% if variant.id == fv.id %} active{% endif %}" data-vid="{{ variant.id }}" data-price="{{ variant.price | money }}" data-per="{% if perfmt != '' %}1個あたり {{ perfmt }}{% endif %}"{% unless variant.available %} disabled{% endunless %}>
+                  {{ variant.title }}<small>{{ variant.price | money }}{% if perfmt != '' %} ・1個{{ perfmt }}{% endif %}</small>
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          <button type="submit" class="cart-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            カートに入れる
+          </button>
+        {%- endform -%}
+        <p class="note">{{ section.settings.note }}</p>
       </div>
-      <p class="set-desc">{{ section.settings.desc }}</p>
-      {%- form 'product', product, id: 'setForm' -%}
-        <input type="hidden" name="id" id="setVid" value="{{ fv.id }}">
-        {%- if product.variants.size > 1 -%}
-          <div class="set-pick-h">{{ product.options.first }}を選ぶ</div>
-          <div class="set-opts">
-            {%- for variant in product.variants -%}
-              {%- assign cnt = 0 -%}
-              {%- if variant.title contains '9' -%}{%- assign cnt = 9 -%}{%- elsif variant.title contains '6' -%}{%- assign cnt = 6 -%}{%- elsif variant.title contains '3' -%}{%- assign cnt = 3 -%}{%- endif -%}
-              {%- assign perfmt = '' -%}
-              {%- if cnt > 0 -%}{%- assign perfmt = variant.price | divided_by: cnt | money -%}{%- endif -%}
-              <button type="button" class="set-opt{% if variant.id == fv.id %} active{% endif %}" data-vid="{{ variant.id }}" data-price="{{ variant.price | money }}" data-per="{% if perfmt != '' %}1個あたり {{ perfmt }}{% endif %}"{% unless variant.available %} disabled{% endunless %}>
-                {{ variant.title }}<small>{{ variant.price | money }}{% if perfmt != '' %} ・1個{{ perfmt }}{% endif %}</small>
-              </button>
-            {%- endfor -%}
+
+      <div class="flavors-sec">
+        <div class="sec-head">
+          <div class="en">Inside</div>
+          <div class="jp">セット内容</div>
+        </div>
+        <div class="flist">
+          <div class="fitem">
+            <div class="sw" style="background:#E99980"></div>
+            <div class="ftx"><div class="fnm">肉じゃがカレー</div><div class="fds">定番の家庭料理を、32種スパイスと直火焙煎ルウで。あ！となる中辛。</div><a class="flk" href="/products/acurry-nikujaga-single">SINGLE →</a></div>
           </div>
-        {%- endif -%}
-        <button type="submit" class="set-cart">カートに入れる</button>
-      {%- endform -%}
-      <p class="set-note">{{ section.settings.note }}</p>
+          <div class="fitem">
+            <div class="sw" style="background:#A3CC44"></div>
+            <div class="ftx"><div class="fnm">柚子胡椒プリプリ豚カレー</div><div class="fds">和のスパイス柚子胡椒と、プリプリの国産豚軟骨。爽やかなちょい辛。</div><a class="flk" href="/products/acurry-yuzu-single">SINGLE →</a></div>
+          </div>
+          <div class="fitem">
+            <div class="sw" style="background:#F2C645"></div>
+            <div class="ftx"><div class="fnm">牡蠣とココナッツのスープカレー</div><div class="fds">海のミルクと、ヤシのミルク。濃厚な旨みをやさしく包む中辛。</div><a class="flk" href="/products/acurry-kaki-single">SINGLE →</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eat">
+        <div class="eat-head">
+          <div class="en">How to Eat</div>
+          <div class="jp">3ステップで、あ！</div>
+        </div>
+        <div class="steps">
+          <div class="step"><div class="num en">01</div><div><div class="st">温める</div><div class="sd">袋のまま熱湯で5〜7分。電子レンジは中身を耐熱容器に移しラップをかけ、500Wで約2分温めます。</div></div></div>
+          <div class="step"><div class="num en">02</div><div><div class="st">かける</div><div class="sd">炊きたてのごはんにたっぷりと。お好みでルウとごはんは別皿にしても。</div></div></div>
+          <div class="step"><div class="num en">03</div><div><div class="st">味わう</div><div class="sd">3種を順番に。味の違いと、それぞれの「あ！」を、ぜひ食べ比べて。</div></div></div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="other">
+    <div class="other-head">
+      <div class="en">Other Curry</div>
+      <div class="jp">ほかの「あ！」</div>
+    </div>
+    {%- if product.collections.size > 0 -%}{%- assign relcol = product.collections.first -%}{%- else -%}{%- assign relcol = collections.all -%}{%- endif -%}
+    <div class="other-grid">
+      {%- assign shown = 0 -%}
+      {%- for p in relcol.products -%}
+        {%- if p.id != product.id and shown < 3 -%}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- assign rkey = 'A3CC44' -%}
+          {%- if p.title contains '肉じゃが' -%}{%- assign rkey = 'E99980' -%}{%- elsif p.title contains '牡蠣' or p.title contains 'ココナッツ' -%}{%- assign rkey = 'F2C645' -%}{%- elsif p.title contains 'ギフト' or p.title contains 'バリュー' or p.title contains '食べ比べ' -%}{%- assign rkey = 'c9a24f' -%}{%- endif -%}
+          <a class="other-card" href="{{ p.url }}">
+            <div class="oimg" style="background:#{{ rkey }}">{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 700 }}" alt="{{ p.title | escape }}">{% else %}商品写真{% endif %}</div>
+            <div class="onm">{{ p.title }}</div>
+            <div class="opr">{{ p.price | money }}</div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
 </section>
 <script>
 (function(){
   var root=document.getElementById('acuset'); if(!root) return;
   var vid=root.querySelector('#setVid'), pEl=root.querySelector('#setPrice'), perEl=root.querySelector('#setPer');
-  root.querySelectorAll('.set-opt').forEach(function(btn){
+  root.querySelectorAll('.opt').forEach(function(btn){
     btn.addEventListener('click',function(){
       if(btn.hasAttribute('disabled')) return;
-      root.querySelectorAll('.set-opt').forEach(function(b){b.classList.remove('active');});
+      root.querySelectorAll('.opt').forEach(function(b){b.classList.remove('active');});
       btn.classList.add('active');
       if(vid) vid.value=btn.dataset.vid;
       if(pEl&&btn.dataset.price) pEl.textContent=btn.dataset.price;

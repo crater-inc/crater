@@ -1,0 +1,277 @@
+{%- comment -%} A CURRY 商品詳細（PDP）Pencil準拠・グレー基調・アパレル型 {%- endcomment -%}
+{%- liquid
+  assign t = product.title
+  # 商品名から味ごとの情報を自動判定（メタフィールドがあれば優先）
+  assign key = 'E99980'
+  assign spice = '中辛'
+  assign bestbefore = ''
+  assign al_contains = '小麦・乳成分・豚肉・鶏肉・大豆・りんご・バナナ'
+  assign al_factory = '卵・えび・かに・落花生・くるみ・カシューナッツ'
+  if t contains '肉じゃが'
+    assign key = 'E99980'
+    assign spice = '中辛'
+    assign bestbefore = '2027年6月13日'
+    assign al_contains = '小麦・乳成分・牛肉・豚肉・鶏肉・大豆・さば'
+    assign al_factory = '卵・えび・かに・落花生・くるみ'
+  elsif t contains '柚子'
+    assign key = 'A3CC44'
+    assign spice = 'ちょい辛'
+    assign bestbefore = '2028年6月26日'
+  elsif t contains '牡蠣' or t contains 'ココナッツ'
+    assign key = 'F2C645'
+    assign spice = '中辛'
+    assign bestbefore = '2028年6月25日'
+  endif
+  assign m = product.metafields.custom
+  if m.spice != blank
+    assign spice = m.spice
+  endif
+  if m.best_before != blank
+    assign bestbefore = m.best_before
+  endif
+  if m.allergen_contains != blank
+    assign al_contains = m.allergen_contains
+  endif
+  if m.allergen_factory != blank
+    assign al_factory = m.allergen_factory
+  endif
+-%}
+<style>
+  .acu-pdp{background:#a6a6a6;}
+  /* パンくず */
+  .acu-pdp__crumb{padding:28px 64px 0;font-family:var(--acu-en);font-size:12px;font-weight:600;letter-spacing:2px;color:#33333399;}
+  /* メイン2カラム */
+  .acu-pdp__main{display:flex;gap:56px;align-items:flex-start;padding:36px 64px 80px;}
+  .acu-pdp__gallery{flex:1;display:flex;gap:16px;align-items:flex-start;}
+  .acu-pdp__stage{flex:1;border-radius:8px;overflow:hidden;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;}
+  .acu-pdp__stage img{width:100%;height:100%;object-fit:cover;display:block;}
+  .acu-pdp__ph{font-family:var(--acu-jp);font-size:12px;letter-spacing:3px;color:#ffffffcc;}
+  .acu-pdp__thumbs{display:flex;flex-direction:column;gap:12px;width:84px;}
+  .acu-pdp__thumb{width:84px;height:104px;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;background:#{{ key }};padding:0;}
+  .acu-pdp__thumb.is-active{border-color:var(--acu-ink);}
+  .acu-pdp__thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  /* 商品情報 */
+  .acu-pdp__info{width:520px;flex-shrink:0;display:flex;flex-direction:column;gap:22px;}
+  .acu-pdp__cat{font-family:var(--acu-en);font-size:12px;font-weight:600;letter-spacing:3px;color:#88888899;}
+  .acu-pdp__name{font-family:'Noto Serif JP',serif;font-size:clamp(28px,3vw,38px);font-weight:600;letter-spacing:1px;color:var(--acu-ink);line-height:1.3;margin:0;}
+  .acu-pdp__price{font-family:var(--acu-jp);font-size:22px;font-weight:600;color:var(--acu-ink);}
+  .acu-pdp__desc{font-family:var(--acu-jp);font-size:15px;line-height:1.9;color:#444;}
+  /* 購入 */
+  .acu-pdp__buy{display:flex;gap:14px;align-items:stretch;}
+  .acu-pdp__qty{display:flex;align-items:center;gap:16px;padding:0 18px;height:56px;border:1px solid #00000022;border-radius:8px;}
+  .acu-pdp__qty button{border:0;background:transparent;font-size:20px;line-height:1;color:var(--acu-ink);cursor:pointer;padding:0;width:20px;}
+  .acu-pdp__qty input{width:28px;text-align:center;border:0;background:transparent;font-family:var(--acu-jp);font-size:16px;font-weight:600;color:var(--acu-ink);-moz-appearance:textfield;}
+  .acu-pdp__qty input::-webkit-outer-spin-button,.acu-pdp__qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
+  .acu-pdp__cart{flex:1;height:56px;border:0;border-radius:8px;background:#111;color:var(--acu-white);font-family:var(--acu-jp);font-size:15px;font-weight:600;letter-spacing:1px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;}
+  .acu-pdp__cart:hover{opacity:.88;}
+  .acu-pdp__cart[disabled]{opacity:.4;cursor:not-allowed;}
+  /* スペック */
+  .acu-pdp__spec{border-radius:8px;background:#e6e6e6;padding:6px 22px;}
+  .acu-pdp__specrow{display:flex;justify-content:space-between;padding:14px 0;}
+  .acu-pdp__speck{font-family:var(--acu-jp);font-size:13px;font-weight:600;color:#666;}
+  .acu-pdp__specv{font-family:var(--acu-jp);font-size:13px;color:var(--acu-ink);}
+  /* エディトリアル帯 */
+  .acu-pdp__ed{height:clamp(360px,42vw,600px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#{{ key }};}
+  .acu-pdp__ed-en{font-family:var(--acu-en);font-size:clamp(44px,7vw,72px);font-weight:600;color:#1f1f1f;margin:0;}
+  .acu-pdp__ed-jp{font-family:'Noto Serif JP',serif;font-size:clamp(16px,2vw,20px);font-weight:600;letter-spacing:2px;color:#3a2a26;}
+  /* ストーリー */
+  .acu-pdp__story{display:flex;gap:56px;align-items:center;padding:96px 64px;}
+  .acu-pdp__story-img{width:560px;height:620px;border-radius:8px;background:#cfb9ad;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .acu-pdp__story-img img{width:100%;height:100%;object-fit:cover;}
+  .acu-pdp__story-tx{flex:1;display:flex;flex-direction:column;gap:20px;}
+  .acu-pdp__ey{font-family:var(--acu-en);font-size:12px;font-weight:600;letter-spacing:3px;color:#555;}
+  .acu-pdp__story-h{font-family:'Noto Serif JP',serif;font-size:clamp(26px,3vw,34px);font-weight:600;line-height:1.4;color:var(--acu-ink);margin:0;white-space:pre-line;}
+  .acu-pdp__story-b{font-family:var(--acu-jp);font-size:15px;line-height:1.95;color:#333;}
+  /* 食べ方 */
+  .acu-pdp__eat{padding:88px 64px;background:#a6a6a6;display:flex;flex-direction:column;gap:40px;}
+  .acu-pdp__eat-head{text-align:center;}
+  .acu-pdp__eat-en{font-family:var(--acu-en);font-size:clamp(32px,4vw,40px);font-weight:600;color:#111;margin:0;}
+  .acu-pdp__eat-jp{font-family:var(--acu-jp);font-size:13px;font-weight:600;letter-spacing:3px;color:#333;margin-top:6px;}
+  .acu-pdp__steps{display:flex;gap:24px;}
+  .acu-pdp__step{flex:1;background:#eee;border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:12px;}
+  .acu-pdp__step-n{font-family:var(--acu-en);font-size:30px;font-weight:600;color:#c94f6d;}
+  .acu-pdp__step-t{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:600;color:var(--acu-ink);}
+  .acu-pdp__step-d{font-family:var(--acu-jp);font-size:14px;line-height:1.85;color:#444;}
+  /* 原材料・アレルゲン */
+  .acu-pdp__al{padding:72px 64px;background:#a6a6a6;display:flex;flex-direction:column;gap:24px;}
+  .acu-pdp__al-h{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:600;color:var(--acu-ink);margin:0;}
+  .acu-pdp__al-table{max-width:820px;border-radius:8px;overflow:hidden;background:var(--acu-paper);}
+  .acu-pdp__al-row{display:flex;}
+  .acu-pdp__al-row:nth-child(even){background:#ececec;}
+  .acu-pdp__al-k{width:240px;padding:16px 20px;font-family:var(--acu-jp);font-size:13px;font-weight:600;color:#666;}
+  .acu-pdp__al-v{flex:1;padding:16px 20px;font-family:var(--acu-jp);font-size:13px;line-height:1.7;color:var(--acu-ink);}
+  /* 他の商品 */
+  .acu-pdp__rel{padding:80px 64px;display:flex;flex-direction:column;gap:36px;}
+  .acu-pdp__rel-en{font-family:var(--acu-en);font-size:clamp(32px,4vw,40px);font-weight:600;color:var(--acu-ink);margin:0;}
+  .acu-pdp__rel-jp{font-family:var(--acu-jp);font-size:13px;font-weight:600;letter-spacing:3px;color:#555;margin-top:6px;}
+  .acu-pdp__rel-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  .acu-pdp__rel-card{text-decoration:none;color:inherit;}
+  .acu-pdp__rel-img{width:100%;height:420px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .acu-pdp__rel-img img{width:100%;height:100%;object-fit:cover;}
+  .acu-pdp__rel-nm{font-family:var(--acu-jp);font-weight:600;font-size:18px;color:var(--acu-ink);margin:14px 0 4px;}
+  .acu-pdp__rel-pr{font-family:var(--acu-jp);font-size:15px;color:#555;}
+  @media(max-width:900px){
+    .acu-pdp__main{flex-direction:column;gap:28px;padding:28px 32px 56px;}
+    .acu-pdp__gallery{flex-direction:row-reverse;width:100%;}
+    .acu-pdp__info{width:100%;}
+    .acu-pdp__story{flex-direction:column;gap:28px;padding:64px 32px;}
+    .acu-pdp__story-img{width:100%;height:auto;aspect-ratio:9/10;}
+    .acu-pdp__steps{flex-direction:column;}
+    .acu-pdp__eat,.acu-pdp__al,.acu-pdp__rel{padding:56px 32px;}
+    .acu-pdp__rel-grid{grid-template-columns:1fr;}
+    .acu-pdp__al-k{width:120px;}
+  }
+</style>
+
+<section class="acu acu-pdp" data-key="{{ key }}">
+  <div class="acu-pdp__crumb">HOME / SHOP / {{ product.title }}</div>
+
+  <div class="acu-pdp__main">
+    <div class="acu-pdp__gallery">
+      <div class="acu-pdp__stage" id="acuStage" style="{% unless product.featured_image %}background:#{{ key }};{% endunless %}">
+        {%- if product.featured_image -%}
+          <img id="acuStageImg" src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title | escape }}">
+        {%- else -%}
+          <span class="acu-pdp__ph">商品写真</span>
+        {%- endif -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="acu-pdp__thumbs">
+          {%- for image in product.images limit: 5 -%}
+            <button type="button" class="acu-pdp__thumb{% if forloop.first %} is-active{% endif %}" data-full="{{ image | image_url: width: 1200 }}" aria-label="画像{{ forloop.index }}">
+              <img src="{{ image | image_url: width: 200 }}" alt="" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="acu-pdp__thumbs">
+          {%- for i in (1..4) -%}
+            <button type="button" class="acu-pdp__thumb{% if forloop.first %} is-active{% endif %}" aria-label="画像{{ i }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="acu-pdp__info">
+      <div class="acu-pdp__cat">A CURRY</div>
+      <h1 class="acu-pdp__name">{{ product.title }}</h1>
+      <div class="acu-pdp__price">{{ product.price | money }}</div>
+      <div class="acu-pdp__desc">{% if product.description != blank %}{{ product.description }}{% else %}国産素材を厳選し、味ごとに設計したレシピで丁寧に仕上げた、あ！となる一皿。{% endif %}</div>
+
+      {%- form 'product', product, class: 'acu-pdp__form' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <div class="acu-pdp__buy">
+          <div class="acu-pdp__qty">
+            <button type="button" onclick="var q=this.parentNode.querySelector('input');q.value=Math.max(1,parseInt(q.value||1)-1)">−</button>
+            <input type="number" name="quantity" value="1" min="1" inputmode="numeric">
+            <button type="button" onclick="var q=this.parentNode.querySelector('input');q.value=parseInt(q.value||1)+1">＋</button>
+          </div>
+          <button type="submit" class="acu-pdp__cart" {% unless product.available %}disabled{% endunless %}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+            {% if product.available %}カートに入れる{% else %}売り切れ{% endif %}
+          </button>
+        </div>
+      {%- endform -%}
+
+      <div class="acu-pdp__spec">
+        <div class="acu-pdp__specrow"><span class="acu-pdp__speck">内容量</span><span class="acu-pdp__specv">200g（1人前）</span></div>
+        <div class="acu-pdp__specrow"><span class="acu-pdp__speck">辛さ</span><span class="acu-pdp__specv">{{ spice }}</span></div>
+        {%- if bestbefore != blank -%}<div class="acu-pdp__specrow"><span class="acu-pdp__speck">賞味期限</span><span class="acu-pdp__specv">{{ bestbefore }}</span></div>{%- endif -%}
+        <div class="acu-pdp__specrow"><span class="acu-pdp__speck">製造</span><span class="acu-pdp__specv">キャニオンスパイス</span></div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} エディトリアル帯 {%- endcomment -%}
+  <div class="acu-pdp__ed">
+    <p class="acu-pdp__ed-en">First Bite</p>
+    <div class="acu-pdp__ed-jp">あ！は、いつも一口目に。</div>
+  </div>
+
+  {%- comment -%} ストーリー {%- endcomment -%}
+  <div class="acu-pdp__story">
+    <div class="acu-pdp__story-img">{% if product.images[1] %}<img src="{{ product.images[1] | image_url: width: 1000 }}" alt="">{% else %}<span class="acu-pdp__ph">素材カット</span>{% endif %}</div>
+    <div class="acu-pdp__story-tx">
+      <div class="acu-pdp__ey">THE RECIPE</div>
+      <h2 class="acu-pdp__story-h">{{ section.settings.story_heading | default: 'まだ知らない相性を、ひと皿に。' }}</h2>
+      <div class="acu-pdp__story-b">{% if section.settings.story_body != blank %}{{ section.settings.story_body }}{% else %}素材と素材、時には素材とカレーの、まだ知られていない相性を、丁寧に確かめて。奇をてらうのではなく、必然としての新しさを。ひと口ごとに、小さな「あ！」が生まれる、そんな一皿に仕上げました。{% endif %}</div>
+    </div>
+  </div>
+
+  {%- comment -%} 食べ方 {%- endcomment -%}
+  <div class="acu-pdp__eat">
+    <div class="acu-pdp__eat-head">
+      <p class="acu-pdp__eat-en">How to Eat</p>
+      <div class="acu-pdp__eat-jp">3ステップで、あ！</div>
+    </div>
+    <div class="acu-pdp__steps">
+      <div class="acu-pdp__step"><div class="acu-pdp__step-n">01</div><div class="acu-pdp__step-t">温める</div><div class="acu-pdp__step-d">袋のまま熱湯で5〜7分、または中身を耐熱容器に移して電子レンジで温めます。</div></div>
+      <div class="acu-pdp__step"><div class="acu-pdp__step-n">02</div><div class="acu-pdp__step-t">かける</div><div class="acu-pdp__step-d">炊きたてのごはんにたっぷりと。お好みでルウとごはんは別皿でも。</div></div>
+      <div class="acu-pdp__step"><div class="acu-pdp__step-n">03</div><div class="acu-pdp__step-t">味わう</div><div class="acu-pdp__step-d">一口目の「あ！」を、ぜひ。仕上げに刻みねぎや温泉卵もおすすめです。</div></div>
+    </div>
+  </div>
+
+  {%- comment -%} 原材料・アレルゲン {%- endcomment -%}
+  <div class="acu-pdp__al">
+    <h2 class="acu-pdp__al-h">原材料・アレルゲン</h2>
+    <div class="acu-pdp__al-table">
+      <div class="acu-pdp__al-row"><div class="acu-pdp__al-k">含む（原材料の一部）</div><div class="acu-pdp__al-v">{{ al_contains }}</div></div>
+      <div class="acu-pdp__al-row"><div class="acu-pdp__al-k">同工場で製造</div><div class="acu-pdp__al-v">{{ al_factory }}</div></div>
+      <div class="acu-pdp__al-row"><div class="acu-pdp__al-k">製造所</div><div class="acu-pdp__al-v">株式会社キャニオンスパイス（大阪府泉南市りんくう南浜2-17）</div></div>
+    </div>
+  </div>
+
+  {%- comment -%} 他の商品 {%- endcomment -%}
+  {%- if product.collections.size > 0 -%}{%- assign relcol = product.collections.first -%}{%- else -%}{%- assign relcol = collections.all -%}{%- endif -%}
+  <div class="acu-pdp__rel">
+    <div><p class="acu-pdp__rel-en">Other Curry</p><div class="acu-pdp__rel-jp">ほかの「あ！」</div></div>
+    <div class="acu-pdp__rel-grid">
+      {%- assign shown = 0 -%}
+      {%- for p in relcol.products -%}
+        {%- if p.id != product.id and shown < 2 -%}
+          {%- assign shown = shown | plus: 1 -%}
+          {%- assign rkey = 'E99980' -%}
+          {%- if p.title contains '柚子' -%}{%- assign rkey = 'A3CC44' -%}{%- elsif p.title contains '牡蠣' or p.title contains 'ココナッツ' -%}{%- assign rkey = 'F2C645' -%}{%- endif -%}
+          <a class="acu-pdp__rel-card" href="{{ p.url }}">
+            <div class="acu-pdp__rel-img" style="{% unless p.featured_image %}background:#{{ rkey }};{% endunless %}">{% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 800 }}" alt="{{ p.title | escape }}">{% else %}<span class="acu-pdp__ph">商品写真</span>{% endif %}</div>
+            <div class="acu-pdp__rel-nm">{{ p.title }}</div>
+            <div class="acu-pdp__rel-pr">{{ p.price | money }}</div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function(){
+    var sec = document.currentScript.closest('.acu-pdp');
+    if(!sec) return;
+    var stage = sec.querySelector('#acuStageImg');
+    var thumbs = sec.querySelectorAll('.acu-pdp__thumb');
+    if(!stage) return;
+    thumbs.forEach(function(btn){
+      var full = btn.getAttribute('data-full');
+      if(!full) return;
+      // マウスオーバーで大画像を切替
+      btn.addEventListener('mouseenter', function(){ stage.src = full; setActive(btn); });
+      // SP・クリックで固定
+      btn.addEventListener('click', function(){ stage.src = full; setActive(btn); });
+    });
+    function setActive(active){
+      thumbs.forEach(function(b){ b.classList.remove('is-active'); });
+      active.classList.add('is-active');
+    }
+  })();
+</script>
+{% schema %}
+{
+  "name": "A CURRY Product",
+  "settings": [
+    { "type": "header", "content": "ストーリー（味ごとに編集可）" },
+    { "type": "text", "id": "story_heading", "label": "ストーリー見出し", "default": "まだ知らない相性を、ひと皿に。" },
+    { "type": "textarea", "id": "story_body", "label": "ストーリー本文" }
+  ],
+  "presets": [{ "name": "A CURRY Product" }]
+}
+{% endschema %}

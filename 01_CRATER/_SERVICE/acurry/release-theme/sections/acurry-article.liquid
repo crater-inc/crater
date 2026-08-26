@@ -1,0 +1,109 @@
+{%- comment -%} A CURRY 記事詳細（ジャーナル）柚子デザイン基準 {%- endcomment -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Noto+Serif+JP:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  #acu-art{--ink:#1a1a1a;--sub:#555;--meta:#888;--line:#0000001a;--bg:#b3b3b3;}
+  #acu-art *{margin:0;padding:0;box-sizing:border-box;}
+  #acu-art{font-family:'Noto Sans JP',sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;overflow-x:clip;-webkit-font-smoothing:antialiased;}
+  #acu-art a{color:inherit;}
+  #acu-art img{max-width:100%;display:block;}
+  #acu-art .en{font-family:'Playfair Display',serif;}
+  #acu-art .wrap{max-width:760px;margin:0 auto;padding:56px 24px 0;}
+  #acu-art .crumb{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:2px;color:#000;text-decoration:none;}
+  #acu-art .crumb a{text-decoration:none;}
+  #acu-art .crumb a:hover{text-decoration:underline;}
+  /* ヘッダー */
+  #acu-art .ahead{margin-top:28px;}
+  #acu-art .meta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:'Playfair Display',serif;font-size:13px;letter-spacing:1px;color:var(--sub);}
+  #acu-art .meta .tag{background:#00000012;border-radius:999px;padding:4px 12px;font-family:'Noto Sans JP',sans-serif;font-size:12px;letter-spacing:1px;color:#333;}
+  #acu-art .atitle{font-family:'Noto Serif JP',serif;font-weight:600;font-size:clamp(28px,4.2vw,42px);line-height:1.45;letter-spacing:.5px;color:var(--ink);margin-top:16px;}
+  #acu-art .byline{font-size:13px;color:var(--sub);margin-top:16px;}
+  /* アイキャッチ */
+  #acu-art .hero-img{max-width:760px;margin:36px auto 0;padding:0 24px;}
+  #acu-art .hero-img .box{width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:linear-gradient(135deg,#d6d6d6,#aeaeae);}
+  #acu-art .hero-img .box img{width:100%;height:100%;object-fit:cover;}
+  /* 本文 */
+  #acu-art .rte{max-width:760px;margin:40px auto 0;padding:0 24px;}
+  #acu-art .rte>*{margin-bottom:1.4em;}
+  #acu-art .rte p{font-size:16px;line-height:1.95;color:#2a2a2a;}
+  #acu-art .rte h2{font-family:'Noto Serif JP',serif;font-size:26px;font-weight:600;line-height:1.5;color:var(--ink);margin-top:1.6em;}
+  #acu-art .rte h3{font-family:'Noto Serif JP',serif;font-size:20px;font-weight:600;line-height:1.5;color:var(--ink);margin-top:1.4em;}
+  #acu-art .rte a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;}
+  #acu-art .rte ul,#acu-art .rte ol{padding-left:1.4em;}
+  #acu-art .rte li{font-size:16px;line-height:1.9;color:#2a2a2a;margin-bottom:.5em;}
+  #acu-art .rte img{border-radius:8px;margin:1.6em auto;}
+  #acu-art .rte blockquote{border-left:3px solid #00000033;padding:4px 0 4px 20px;color:#444;font-family:'Noto Serif JP',serif;font-size:18px;line-height:1.8;}
+  #acu-art .rte strong{font-weight:600;}
+  #acu-art .rte hr{border:none;border-top:1px solid var(--line);margin:2em 0;}
+  /* フッター導線 */
+  #acu-art .afoot{max-width:760px;margin:56px auto 0;padding:32px 24px 0;border-top:1px solid var(--line);display:flex;justify-content:center;}
+  #acu-art .back{display:inline-flex;align-items:center;gap:8px;font-family:'Playfair Display',serif;font-size:13px;letter-spacing:2px;color:var(--ink);border:1px solid #00000026;border-radius:8px;padding:13px 24px;transition:background .2s;}
+  #acu-art .back:hover{background:#00000010;}
+  /* 関連 */
+  #acu-art .rel{max-width:1120px;margin:0 auto;padding:80px 48px 96px;}
+  #acu-art .rel-head .en{font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:#1a1a1a;line-height:1.16;}
+  #acu-art .rel-head .jp{font-size:13px;font-weight:600;letter-spacing:3px;color:#555;margin-top:6px;}
+  #acu-art .rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:32px;}
+  #acu-art .rel-card .im{width:100%;aspect-ratio:16/10;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#d6d6d6,#aeaeae);}
+  #acu-art .rel-card .im img{width:100%;height:100%;object-fit:cover;}
+  #acu-art .rel-card .dt{font-family:'Playfair Display',serif;font-size:13px;color:var(--sub);margin:14px 0 5px;}
+  #acu-art .rel-card .ti{font-weight:600;font-size:16px;line-height:1.5;color:var(--ink);}
+  @media(max-width:768px){
+    #acu-art .wrap{padding:44px 32px 0;}
+    #acu-art .hero-img,#acu-art .rte,#acu-art .afoot{padding-left:32px;padding-right:32px;}
+    #acu-art .rel{padding:64px 32px 72px;}
+    #acu-art .rel-grid{grid-template-columns:1fr;gap:32px;}
+  }
+</style>
+<article id="acu-art">
+  <div class="wrap">
+    <div class="crumb"><a href="{{ routes.root_url }}">HOME</a> / <a href="{{ blog.url }}">JOURNAL</a></div>
+    <header class="ahead">
+      <div class="meta">
+        <span>{{ article.published_at | date: '%Y.%m.%d' }}</span>
+        {%- if article.tags.size > 0 -%}<span class="tag">{{ article.tags.first }}</span>{%- endif -%}
+      </div>
+      <h1 class="atitle">{{ article.title }}</h1>
+      {%- if article.author != blank -%}<div class="byline">文／{{ article.author }}</div>{%- endif -%}
+    </header>
+  </div>
+
+  {%- if article.image -%}
+    <div class="hero-img"><div class="box"><img src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.title | escape }}"></div></div>
+  {%- endif -%}
+
+  <div class="rte">{{ article.content }}</div>
+
+  <div class="afoot">
+    <a class="back" href="{{ blog.url }}">‹ JOURNAL 一覧へ</a>
+  </div>
+
+  {%- assign rel_shown = 0 -%}
+  {%- assign has_rel = false -%}
+  {%- for a in blog.articles -%}{%- if a.id != article.id -%}{%- assign has_rel = true -%}{%- endif -%}{%- endfor -%}
+  {%- if has_rel -%}
+    <section class="rel">
+      <div class="rel-head"><div class="en">Read More</div><div class="jp">ほかの読みもの</div></div>
+      <div class="rel-grid">
+        {%- for a in blog.articles -%}
+          {%- if a.id != article.id and rel_shown < 3 -%}
+            {%- assign rel_shown = rel_shown | plus: 1 -%}
+            <a class="rel-card" href="{{ a.url }}">
+              <div class="im">{%- if a.image -%}<img src="{{ a.image | image_url: width: 700 }}" alt="{{ a.title | escape }}" loading="lazy">{%- else -%}<img src="{{ 'acurry-dummy-product.jpg' | asset_url }}" alt="" loading="lazy">{%- endif -%}</div>
+              <div class="dt">{{ a.published_at | date: '%Y.%m.%d' }}</div>
+              <div class="ti">{{ a.title }}</div>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </section>
+  {%- endif -%}
+</article>
+{% schema %}
+{
+  "name": "A CURRY 記事詳細",
+  "settings": [],
+  "presets": [{ "name": "A CURRY 記事詳細" }]
+}
+{% endschema %}
