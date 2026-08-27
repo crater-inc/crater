@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.3 (2026-08-17)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.4 (2026-08-28)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -60,7 +60,7 @@
     }
     // 表示中の拡大コンテナ（zoom基準）を掴む＝この中に%でピンを置くと正確
     function getRoot() {
-      var ids = ["pageRoot", "pdpRoot", "spRoot", "storyRoot", "wf-overlay"];
+      var ids = ["cr-stage", "pageRoot", "pdpRoot", "spRoot", "storyRoot", "wf-overlay"];
       var found = null;
       for (var i = 0; i < ids.length; i++) { var n = $(ids[i]); if (n && n.offsetParent !== null && n.getBoundingClientRect().width > 0) { found = n; break; } }
       if (!found) {
@@ -84,6 +84,7 @@
     // ---- CSS ----
     var css = document.createElement("style");
     css.textContent = [
+      "#cr-stage{position:relative;transition:zoom .3s ease;transform-origin:top left;}",
       "#cr-open{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border:none;border-radius:50%;background:#111;color:#fff;cursor:pointer;z-index:2147483000;display:flex;align-items:center;justify-content:center;transition:right .25s,background .2s;}",
       "#cr-open:hover{background:#333;}",
       "#cr-open svg{width:19px;height:19px;display:block;}",
@@ -159,11 +160,28 @@
       '<div id="cr-status"><button data-s="ALL" class="on">全部</button><button data-s="OPEN">未対応</button><button data-s="DONE">修正済</button></div>' +
       '<div id="cr-filter"><button data-f="ALL" class="on">ALL</button><button data-f="PC">PC</button><button data-f="SP">SP</button></div>' +
       '<div id="cr-list"><div id="cr-empty">コメントなし</div></div>';
+    // コンテンツを #cr-stage で包む（パネルを開くとステージだけ zoom 縮小＝パネルと重ならず、ピン座標も追従する）
+    var stage = elm("div", { id: "cr-stage" });
+    (function () {
+      var kids = [].slice.call(document.body.childNodes);
+      for (var i = 0; i < kids.length; i++) {
+        var n = kids[i];
+        if (n.nodeType === 1 && (n.id === "cr-open" || n.id === "cr-panel" || n.tagName === "SCRIPT" || n.tagName === "STYLE")) continue;
+        stage.appendChild(n);
+      }
+      document.body.appendChild(stage);
+    })();
     document.body.appendChild(openBtn);
     document.body.appendChild(panel);
 
-    // パネル開閉：開くとページ側zoomが window.rvPanelOpen を見てコンテンツを縮小→パネルと重ならず全部見える（PCのみ・SPはボトムシート）
-    function toggle() { var o = panel.classList.toggle("open"); openBtn.classList.toggle("shift"); document.body.classList.toggle("cr-open-on", o); window.rvPanelOpen = o; window.dispatchEvent(new Event("resize")); }
+    // パネル開閉：開くと #cr-stage（コンテンツ）だけ zoom 縮小してパネルと重ならせない→右側にピンをしっかり落とせる（PCのみ・SPはボトムシート）。互換のため window.rvPanelOpen も維持。
+    function toggle() {
+      var o = panel.classList.toggle("open"); openBtn.classList.toggle("shift");
+      document.body.classList.toggle("cr-open-on", o); window.rvPanelOpen = o;
+      var st = $("cr-stage");
+      if (st && window.innerWidth > 768) st.style.zoom = o ? ((window.innerWidth - 300) / window.innerWidth) : "";
+      window.dispatchEvent(new Event("resize"));
+    }
     openBtn.addEventListener("click", toggle);
     $("cr-x").addEventListener("click", toggle);
 
