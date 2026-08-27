@@ -63,6 +63,19 @@
   .big-rec:active { transform: scale(.96); }
   .hint { font-size: 13px; color: var(--meta); margin-top: 10px; }
 
+  .or-divider { font-size: 12px; color: var(--meta); margin-top: 6px; }
+  .text-add-row { display: flex; gap: 10px; width: 100%; max-width: 320px; }
+  .text-add-row input {
+    flex: 1; min-width: 0; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 12px 14px; color: var(--text); font-size: 16px; outline: none;
+  }
+  .text-add-row input::placeholder { color: var(--meta); }
+  .text-add-row button {
+    background: var(--rec); color: #fff; border: none; border-radius: 12px;
+    padding: 12px 18px; font-size: 15px; font-weight: 700; cursor: pointer;
+  }
+  .text-add-row button:disabled { opacity: .5; cursor: default; }
+
   .rec-status { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; color: var(--sub); font-size: 15px; }
   .pulse { width: 12px; height: 12px; border-radius: 50%; background: var(--rec); animation: pulse 1.2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
@@ -111,6 +124,12 @@
     <div class="brand">Task<br>Add</div>
     <button class="big-rec" onclick="goRecord()" aria-label="録音"></button>
     <div class="hint">押して話すと、シートの一番上に追加されます</div>
+
+    <div class="or-divider">または</div>
+    <div class="text-add-row">
+      <input type="text" id="textInput" placeholder="テキストで入力…" />
+      <button id="textAddBtn" onclick="sendTextInput()">追加</button>
+    </div>
   </section>
 
   <section id="record" class="screen">
@@ -299,6 +318,42 @@ function showRetry(text) {
 }
 
 function retrySend() { send(lastFailedText); }
+
+// テキスト入力からの追加。音声と同じGASエンドポイント（{text, idToken}）に送るだけなので、
+// 1st/2nd/状態は音声の時と同じくGAS側で0・0・01_TODO固定になる。
+// 録音画面(record)専用のshowRetry()は使わず、失敗時はトーストのみ・入力欄の文字はそのまま残して再送しやすくする
+async function sendTextInput() {
+  const inputEl = document.getElementById('textInput');
+  const btnEl = document.getElementById('textAddBtn');
+  const text = inputEl.value.trim();
+  if (!text || btnEl.disabled) return;
+  btnEl.disabled = true;
+  toast('追加中…');
+  try {
+    if (!auth.currentUser) { throw new Error('not logged in'); }
+    const idToken = await auth.currentUser.getIdToken();
+    const res = await fetch(GAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ text, idToken })
+    });
+    const data = await res.json();
+    if (data.ok) {
+      toast('追加しました');
+      inputEl.value = '';
+    } else {
+      toast('追加に失敗しました: ' + (data.error || '不明なエラー'), true);
+    }
+  } catch (err) {
+    toast('通信に失敗しました', true);
+  }
+  btnEl.disabled = false;
+}
+
+document.getElementById('textInput').addEventListener('keydown', (ev) => {
+  // isComposingは日本語入力の漢字変換確定時のEnterでtrueになる。ここで拾うと変換途中で送信されてしまうため無視する
+  if (ev.key === 'Enter' && !ev.isComposing) sendTextInput();
+});
 
 function cancelRecord() {
   stopRecognition();
