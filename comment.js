@@ -1,5 +1,5 @@
 // ============================================================
-// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.4 (2026-08-28)
+// CRATER 修正コメントツール（汎用・クラウド版）  v1.4.5 (2026-08-28)
 // 要件定義・変更履歴：01_CRATER/_TOOL/修正コメントツール/
 // ★このファイルが唯一の最新の正。改善したら冒頭バージョンを上げ、変更履歴.md/SKILLも更新。
 // 使い方：テストアップHTMLの </body> 直前に  <script src="/comment.js"></script>  を1行入れるだけ。
@@ -84,7 +84,7 @@
     // ---- CSS ----
     var css = document.createElement("style");
     css.textContent = [
-      "#cr-stage{position:relative;transition:zoom .3s ease;transform-origin:top left;}",
+      "#cr-stage{position:relative;transition:transform .3s ease;transform-origin:top left;}",
       "#cr-open{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border:none;border-radius:50%;background:#111;color:#fff;cursor:pointer;z-index:2147483000;display:flex;align-items:center;justify-content:center;transition:right .25s,background .2s;}",
       "#cr-open:hover{background:#333;}",
       "#cr-open svg{width:19px;height:19px;display:block;}",
@@ -160,7 +160,7 @@
       '<div id="cr-status"><button data-s="ALL" class="on">全部</button><button data-s="OPEN">未対応</button><button data-s="DONE">修正済</button></div>' +
       '<div id="cr-filter"><button data-f="ALL" class="on">ALL</button><button data-f="PC">PC</button><button data-f="SP">SP</button></div>' +
       '<div id="cr-list"><div id="cr-empty">コメントなし</div></div>';
-    // コンテンツを #cr-stage で包む（パネルを開くとステージだけ zoom 縮小＝パネルと重ならず、ピン座標も追従する）
+    // コンテンツを #cr-stage で包む（パネルを開くとステージだけ transform:scale で左に縮小＝パネルと重ならず、ピン座標も縮小後の実値で一致する）
     var stage = elm("div", { id: "cr-stage" });
     (function () {
       var kids = [].slice.call(document.body.childNodes);
@@ -174,12 +174,13 @@
     document.body.appendChild(openBtn);
     document.body.appendChild(panel);
 
-    // パネル開閉：開くと #cr-stage（コンテンツ）だけ zoom 縮小してパネルと重ならせない→右側にピンをしっかり落とせる（PCのみ・SPはボトムシート）。互換のため window.rvPanelOpen も維持。
+    // パネル開閉：開くと #cr-stage（コンテンツ）だけ transform:scale で左に縮めてパネルと重ならせない→右側にもピンを正確に落とせる（PCのみ・SPはボトムシート）。
+    // ※zoomはブラウザによって getBoundingClientRect に反映されず、パネルを開いた時のピン座標がズレる（＝環境依存でブレる）。transform:scale なら全ブラウザで座標が縮小後の実値になり一致する。互換のため window.rvPanelOpen も維持。
     function toggle() {
       var o = panel.classList.toggle("open"); openBtn.classList.toggle("shift");
       document.body.classList.toggle("cr-open-on", o); window.rvPanelOpen = o;
       var st = $("cr-stage");
-      if (st && window.innerWidth > 768) st.style.zoom = o ? ((window.innerWidth - 300) / window.innerWidth) : "";
+      if (st && window.innerWidth > 768) st.style.transform = o ? ("scale(" + ((window.innerWidth - 300) / window.innerWidth) + ")") : "";
       window.dispatchEvent(new Event("resize"));
     }
     openBtn.addEventListener("click", toggle);
