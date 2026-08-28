@@ -48,6 +48,16 @@
               "children": [
                 {
                   "type": "text",
+                  "id": "F8NHUX",
+                  "name": "Nav_トップ",
+                  "fill": "$text-secondary",
+                  "content": "トップ",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
                   "id": "qyV2M",
                   "name": "Nav_サービス",
                   "fill": "$text-secondary",
@@ -192,6 +202,16 @@
                   "fontFamily": "$font-jp",
                   "fontSize": 13,
                   "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "F83FW",
+                  "name": "FNav_プライバシーポリシー",
+                  "fill": "$text-secondary",
+                  "content": "プライバシーポリシー",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
                 }
               ]
             },
@@ -311,7 +331,7 @@
                       "id": "DIkqP",
                       "name": "Sec1_Eyebrow",
                       "fill": "$text-secondary",
-                      "content": "多くの方の誤解「お金があれば安心」",
+                      "content": "累計1000世帯超のコンサルティング実績",
                       "fontFamily": "$font-jp",
                       "fontSize": 14,
                       "fontWeight": "700"
@@ -323,7 +343,7 @@
                       "fill": "$text-primary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "今ある資産で\n困る人をゼロに。",
+                      "content": "50代・60代の、\nかしこい資産の守り方。",
                       "lineHeight": 1.4,
                       "fontFamily": "$font-jp",
                       "fontSize": 44,
@@ -336,91 +356,11 @@
                       "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "商品セールスではなく、真っ当な情報を届け、知らずに損する人をゼロに。",
+                      "content": "今ある資産をどう守り、どう活かすか。商品を売らない中立の立場で、根拠のある答えをお伝えします。",
                       "lineHeight": 1.8,
                       "fontFamily": "$font-jp",
                       "fontSize": 16,
                       "fontWeight": "normal"
-                    },
-                    {
-                      "type": "frame",
-                      "id": "BTCGJ",
-                      "name": "Sec1_Hooks",
-                      "gap": 16,
-                      "children": [
-                        {
-                          "type": "frame",
-                          "id": "V6JMk",
-                          "name": "Hook_いくら使っていいの…？",
-                          "fill": "$bg-gray",
-                          "cornerRadius": 4,
-                          "layout": "vertical",
-                          "padding": [
-                            16,
-                            20
-                          ],
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "z4Hzw",
-                              "name": "HookText_いくら使っていいの…？",
-                              "fill": "$text-primary",
-                              "content": "いくら使っていいの…？",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "I20md",
-                          "name": "Hook_いまのままで足りる…？",
-                          "fill": "$bg-gray",
-                          "cornerRadius": 4,
-                          "layout": "vertical",
-                          "padding": [
-                            16,
-                            20
-                          ],
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "evyqt",
-                              "name": "HookText_いまのままで足りる…？",
-                              "fill": "$text-primary",
-                              "content": "いまのままで足りる…？",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "frame",
-                          "id": "IhT1k",
-                          "name": "Hook_いまの解決策は最適…？",
-                          "fill": "$bg-gray",
-                          "cornerRadius": 4,
-                          "layout": "vertical",
-                          "padding": [
-                            16,
-                            20
-                          ],
-                          "children": [
-                            {
-                              "type": "text",
-                              "id": "epoxa",
-                              "name": "HookText_いまの解決策は最適…？",
-                              "fill": "$text-primary",
-                              "content": "いまの解決策は最適…？",
-                              "fontFamily": "$font-jp",
-                              "fontSize": 13,
-                              "fontWeight": "normal"
-                            }
-                          ]
-                        }
-                      ]
                     },
                     {
                       "type": "frame",
@@ -451,16 +391,6 @@
                               "fontWeight": "700"
                             }
                           ]
-                        },
-                        {
-                          "type": "text",
-                          "id": "F47q8N",
-                          "name": "Sec1_CTASub",
-                          "fill": "$text-secondary",
-                          "content": "対面勉強会について見る ＞",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -513,7 +443,7 @@
               "id": "o6SWYg",
               "name": "Sec2_Body",
               "width": "fill_container",
-              "gap": 32,
+              "gap": 40,
               "children": [
                 {
                   "type": "frame",
@@ -529,14 +459,36 @@
                   "padding": 32,
                   "children": [
                     {
-                      "type": "text",
-                      "id": "N7Dkb",
-                      "name": "Sec2_LeftTitle",
-                      "fill": "$text-primary",
-                      "content": "一般的な相談窓口（金融機関・保険代理店・IFA）",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 16,
-                      "fontWeight": "700"
+                      "type": "frame",
+                      "id": "x33GbW",
+                      "name": "Sec2_LeftHead",
+                      "width": "fill_container",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "rktWB",
+                          "name": "Sec2_LeftIcon",
+                          "width": 28,
+                          "height": 28,
+                          "icon": "building-2",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        },
+                        {
+                          "type": "text",
+                          "id": "N7Dkb",
+                          "name": "Sec2_LeftTitle",
+                          "fill": "$text-primary",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "一般的な相談窓口（金融機関・保険代理店・IFA）",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
                     },
                     {
                       "type": "text",
@@ -591,48 +543,76 @@
                   ]
                 },
                 {
-                  "type": "text",
-                  "id": "hvr1B",
-                  "name": "Sec2_VS",
-                  "fill": "$text-secondary",
-                  "content": "VS",
-                  "fontFamily": "$font-jp",
-                  "fontSize": 24,
-                  "fontWeight": "700"
-                },
-                {
                   "type": "frame",
                   "id": "kPCQp",
                   "name": "Sec2_Right",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "$text-primary",
                   "cornerRadius": 4,
-                  "layout": "vertical",
-                  "gap": 12,
+                  "gap": 24,
                   "padding": 32,
                   "children": [
                     {
-                      "type": "text",
-                      "id": "hBmKY",
-                      "name": "Sec2_RightTitle",
-                      "fill": "$bg-white",
-                      "content": "資産保全学",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 16,
-                      "fontWeight": "700"
+                      "type": "frame",
+                      "id": "U2MLr",
+                      "name": "Sec2_RightTextCol",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "d9aljB",
+                          "name": "Sec2_RightHead",
+                          "width": "fill_container",
+                          "gap": 10,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "ohUzw",
+                              "name": "Sec2_RightIcon",
+                              "width": 28,
+                              "height": 28,
+                              "icon": "compass",
+                              "library": "lucide",
+                              "fill": "$bg-white"
+                            },
+                            {
+                              "type": "text",
+                              "id": "hBmKY",
+                              "name": "Sec2_RightTitle",
+                              "fill": "$bg-white",
+                              "content": "資産保全学",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "rDZPB",
+                          "name": "Sec2_RightBody",
+                          "fill": "$bg-white",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "ライフプランから考え、販売商品を持たない解決",
+                          "lineHeight": 1.7,
+                          "fontFamily": "$font-jp",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     },
                     {
-                      "type": "text",
-                      "id": "rDZPB",
-                      "name": "Sec2_RightBody",
-                      "fill": "$bg-white",
-                      "textGrowth": "fixed-width",
-                      "width": "fill_container",
-                      "content": "ライフプランから考え、販売商品を持たない解決",
-                      "lineHeight": 1.7,
-                      "fontFamily": "$font-jp",
-                      "fontSize": 16,
-                      "fontWeight": "normal"
+                      "id": "EF2sQ",
+                      "type": "ref",
+                      "ref": "mdqZ3",
+                      "name": "Sec2_RightImage",
+                      "width": 160,
+                      "height": 220
                     }
                   ]
                 }
@@ -650,17 +630,7 @@
                   "id": "i2Tqco",
                   "name": "Sec2Sub_単なる知識を得る講座ではありません。",
                   "fill": "$text-secondary",
-                  "content": "単なる知識を得る講座ではありません。",
-                  "fontFamily": "$font-jp",
-                  "fontSize": 14,
-                  "fontWeight": "normal"
-                },
-                {
-                  "type": "text",
-                  "id": "KglJ1",
-                  "name": "Sec2Sub_知識だけ得る講座とは異なります。",
-                  "fill": "$text-secondary",
-                  "content": "知識だけ得る講座とは異なります。",
+                  "content": "知識を得るだけで終わらせず、実行まで並走します。",
                   "fontFamily": "$font-jp",
                   "fontSize": 14,
                   "fontWeight": "normal"
@@ -695,45 +665,26 @@
               "fontWeight": "700"
             },
             {
+              "type": "text",
+              "id": "wJYwU",
+              "name": "Sec3_Logic",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "手段（商品）を先に決めると、うまくいきません。私たちは、現在地と目的のギャップを埋める提案をします。",
+              "lineHeight": 1.8,
+              "fontFamily": "$font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
               "type": "frame",
               "id": "I30Nq",
               "name": "Sec3_Steps",
               "width": "fill_container",
               "gap": 20,
+              "alignItems": "center",
               "children": [
-                {
-                  "type": "frame",
-                  "id": "JgRw8",
-                  "name": "Step_目的地",
-                  "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "layout": "vertical",
-                  "gap": 8,
-                  "padding": 24,
-                  "children": [
-                    {
-                      "type": "text",
-                      "id": "U7Ajyi",
-                      "name": "StepLabel_目的地",
-                      "fill": "$text-secondary",
-                      "content": "【目的地】",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 13,
-                      "fontWeight": "normal"
-                    },
-                    {
-                      "type": "text",
-                      "id": "w7DKo",
-                      "name": "StepDesc_目的地",
-                      "fill": "$text-primary",
-                      "content": "未来の設定",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 18,
-                      "fontWeight": "700"
-                    }
-                  ]
-                },
                 {
                   "type": "frame",
                   "id": "Sahf5",
@@ -746,11 +697,21 @@
                   "padding": 24,
                   "children": [
                     {
+                      "type": "icon",
+                      "id": "O0rL5",
+                      "name": "Step_現在地_Icon",
+                      "width": 24,
+                      "height": 24,
+                      "icon": "search",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
+                    {
                       "type": "text",
                       "id": "xnadK",
                       "name": "StepLabel_現在地",
                       "fill": "$text-secondary",
-                      "content": "【現在地】",
+                      "content": "現在地の確認",
                       "fontFamily": "$font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
@@ -768,9 +729,19 @@
                   ]
                 },
                 {
+                  "type": "text",
+                  "id": "MNLFd",
+                  "name": "Sec3_Arrow1",
+                  "fill": "$text-secondary",
+                  "content": "→",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 24,
+                  "fontWeight": "normal"
+                },
+                {
                   "type": "frame",
-                  "id": "gFelA",
-                  "name": "Step_手段",
+                  "id": "JgRw8",
+                  "name": "Step_目的地",
                   "width": "fill_container",
                   "fill": "$bg-gray",
                   "cornerRadius": 4,
@@ -779,21 +750,31 @@
                   "padding": 24,
                   "children": [
                     {
+                      "type": "icon",
+                      "id": "ehlss",
+                      "name": "Step_目的地_Icon",
+                      "width": 24,
+                      "height": 24,
+                      "icon": "flag",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
+                    {
                       "type": "text",
-                      "id": "WgOv5",
-                      "name": "StepLabel_手段",
+                      "id": "U7Ajyi",
+                      "name": "StepLabel_目的地",
                       "fill": "$text-secondary",
-                      "content": "【手段】",
+                      "content": "目的地の確認",
                       "fontFamily": "$font-jp",
                       "fontSize": 13,
                       "fontWeight": "normal"
                     },
                     {
                       "type": "text",
-                      "id": "j7xTB",
-                      "name": "StepDesc_手段",
+                      "id": "w7DKo",
+                      "name": "StepDesc_目的地",
                       "fill": "$text-primary",
-                      "content": "解決策の実行",
+                      "content": "未来の設定",
                       "fontFamily": "$font-jp",
                       "fontSize": 18,
                       "fontWeight": "700"
@@ -807,7 +788,7 @@
               "id": "XRaN0",
               "name": "Sec3_Correction",
               "fill": "$text-secondary",
-              "content": "↓ 状況変化に合わせた修正",
+              "content": "↓ 現状分析（現在地の把握）でわかること",
               "fontFamily": "$font-jp",
               "fontSize": 14,
               "fontWeight": "normal"
@@ -828,9 +809,20 @@
                   "cornerRadius": 4,
                   "stroke": "$line",
                   "strokeWidth": 1,
-                  "layout": "vertical",
+                  "gap": 10,
                   "padding": 16,
+                  "alignItems": "center",
                   "children": [
+                    {
+                      "type": "icon",
+                      "id": "EbMNw",
+                      "name": "Outcome_Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-check",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "Ei5Zp",
@@ -854,9 +846,20 @@
                   "cornerRadius": 4,
                   "stroke": "$line",
                   "strokeWidth": 1,
-                  "layout": "vertical",
+                  "gap": 10,
                   "padding": 16,
+                  "alignItems": "center",
                   "children": [
+                    {
+                      "type": "icon",
+                      "id": "xcKer",
+                      "name": "Outcome_Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-check",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "gVoEq",
@@ -880,9 +883,20 @@
                   "cornerRadius": 4,
                   "stroke": "$line",
                   "strokeWidth": 1,
-                  "layout": "vertical",
+                  "gap": 10,
                   "padding": 16,
+                  "alignItems": "center",
                   "children": [
+                    {
+                      "type": "icon",
+                      "id": "KX8iD",
+                      "name": "Outcome_Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-check",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "HHjbs",
@@ -906,9 +920,20 @@
                   "cornerRadius": 4,
                   "stroke": "$line",
                   "strokeWidth": 1,
-                  "layout": "vertical",
+                  "gap": 10,
                   "padding": 16,
+                  "alignItems": "center",
                   "children": [
+                    {
+                      "type": "icon",
+                      "id": "n1AZVO",
+                      "name": "Outcome_Icon",
+                      "width": 18,
+                      "height": 18,
+                      "icon": "circle-check",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "fThHR",
@@ -967,6 +992,7 @@
               "id": "pPW1d",
               "name": "Sec4_Steps",
               "width": "fill_container",
+              "height": 440,
               "gap": 24,
               "children": [
                 {
@@ -974,6 +1000,7 @@
                   "id": "f0qvV",
                   "name": "S4_STEP01",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "$bg-white",
                   "cornerRadius": 4,
                   "stroke": "$line",
@@ -982,6 +1009,24 @@
                   "gap": 12,
                   "padding": 28,
                   "children": [
+                    {
+                      "id": "gTnkz",
+                      "type": "ref",
+                      "ref": "mdqZ3",
+                      "name": "S4_StepImage",
+                      "width": "fill_container",
+                      "height": 220
+                    },
+                    {
+                      "type": "icon",
+                      "id": "GPaeW",
+                      "name": "S4_STEP01_Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "stethoscope",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "xSbTe",
@@ -1024,6 +1069,7 @@
                   "id": "okLaM",
                   "name": "S4_STEP02",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "$bg-white",
                   "cornerRadius": 4,
                   "stroke": "$line",
@@ -1032,6 +1078,24 @@
                   "gap": 12,
                   "padding": 28,
                   "children": [
+                    {
+                      "id": "AVopD",
+                      "type": "ref",
+                      "ref": "mdqZ3",
+                      "name": "S4_StepImage",
+                      "width": "fill_container",
+                      "height": 220
+                    },
+                    {
+                      "type": "icon",
+                      "id": "k06sGr",
+                      "name": "S4_STEP02_Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "wrench",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "CafsM",
@@ -1074,6 +1138,7 @@
                   "id": "sQEJG",
                   "name": "S4_STEP04",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "$bg-white",
                   "cornerRadius": 4,
                   "stroke": "$line",
@@ -1083,11 +1148,29 @@
                   "padding": 28,
                   "children": [
                     {
+                      "id": "U5BXBT",
+                      "type": "ref",
+                      "ref": "mdqZ3",
+                      "name": "S4_StepImage",
+                      "width": "fill_container",
+                      "height": 220
+                    },
+                    {
+                      "type": "icon",
+                      "id": "Yf0d5",
+                      "name": "S4_STEP04_Icon",
+                      "width": 26,
+                      "height": 26,
+                      "icon": "refresh-cw",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
+                    {
                       "type": "text",
                       "id": "P00NJ",
                       "name": "S4num_STEP04",
                       "fill": "$text-secondary",
-                      "content": "STEP04",
+                      "content": "STEP03",
                       "fontFamily": "$font-jp",
                       "fontSize": 12,
                       "fontWeight": "700"
@@ -1149,6 +1232,16 @@
                   "gap": 8,
                   "padding": 20,
                   "children": [
+                    {
+                      "type": "icon",
+                      "id": "phvIv",
+                      "name": "Cat_資産運用_Icon",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "trending-up",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "p0ATg",
@@ -1213,6 +1306,16 @@
                   "padding": 20,
                   "children": [
                     {
+                      "type": "icon",
+                      "id": "H31iw",
+                      "name": "Cat_固定費_Icon",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "house",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
+                    {
                       "type": "text",
                       "id": "zed6K",
                       "name": "CatTitle_固定費",
@@ -1265,6 +1368,16 @@
                   "gap": 8,
                   "padding": 20,
                   "children": [
+                    {
+                      "type": "icon",
+                      "id": "skuyx",
+                      "name": "Cat_その他_Icon",
+                      "width": 22,
+                      "height": 22,
+                      "icon": "package",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "rzs6s",
@@ -1358,14 +1471,33 @@
                   ],
                   "children": [
                     {
-                      "type": "text",
-                      "id": "l5bAcU",
-                      "name": "StatNum_12万人",
-                      "fill": "$text-primary",
-                      "content": "12万人",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 26,
-                      "fontWeight": "700"
+                      "type": "frame",
+                      "id": "eTjVq",
+                      "name": "StatNumWrap",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "T8Cw1S",
+                          "name": "StatNumBig",
+                          "fill": "$text-primary",
+                          "content": "12",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 40,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "OxJEU",
+                          "name": "StatNumUnit",
+                          "fill": "$text-primary",
+                          "content": "万人",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
                     },
                     {
                       "type": "text",
@@ -1396,14 +1528,43 @@
                   ],
                   "children": [
                     {
-                      "type": "text",
-                      "id": "jydkF",
-                      "name": "StatNum_週間1位",
-                      "fill": "$text-primary",
-                      "content": "週間1位",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 26,
-                      "fontWeight": "700"
+                      "type": "frame",
+                      "id": "vzbcx",
+                      "name": "StatNumWrap",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XX4ph",
+                          "name": "StatNumUnit",
+                          "fill": "$text-primary",
+                          "content": "週間",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "h0Ut2",
+                          "name": "StatNumBig",
+                          "fill": "$text-primary",
+                          "content": "1",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 40,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "syNEt",
+                          "name": "StatNumUnit",
+                          "fill": "$text-primary",
+                          "content": "位",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
                     },
                     {
                       "type": "text",
@@ -1434,14 +1595,33 @@
                   ],
                   "children": [
                     {
-                      "type": "text",
-                      "id": "UM1FT",
-                      "name": "StatNum_150拠点以上",
-                      "fill": "$text-primary",
-                      "content": "150拠点以上",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 26,
-                      "fontWeight": "700"
+                      "type": "frame",
+                      "id": "xOpQQ",
+                      "name": "StatNumWrap",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "m0als",
+                          "name": "StatNumBig",
+                          "fill": "$text-primary",
+                          "content": "150",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 40,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "J0ypu",
+                          "name": "StatNumUnit",
+                          "fill": "$text-primary",
+                          "content": "拠点以上",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
                     },
                     {
                       "type": "text",
@@ -1472,14 +1652,33 @@
                   ],
                   "children": [
                     {
-                      "type": "text",
-                      "id": "HCMki",
-                      "name": "StatNum_1000世帯超",
-                      "fill": "$text-primary",
-                      "content": "1000世帯超",
-                      "fontFamily": "$font-jp",
-                      "fontSize": 26,
-                      "fontWeight": "700"
+                      "type": "frame",
+                      "id": "U0MtOG",
+                      "name": "StatNumWrap",
+                      "gap": 2,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "GFjiy",
+                          "name": "StatNumBig",
+                          "fill": "$text-primary",
+                          "content": "1000",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 40,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mCrfB",
+                          "name": "StatNumUnit",
+                          "fill": "$text-primary",
+                          "content": "世帯超",
+                          "fontFamily": "$font-jp",
+                          "fontSize": 16,
+                          "fontWeight": "700"
+                        }
+                      ]
                     },
                     {
                       "type": "text",
@@ -2698,6 +2897,7 @@
               "id": "f4m05",
               "name": "S_StepsRow",
               "width": "fill_container",
+              "height": 480,
               "gap": 20,
               "children": [
                 {
@@ -2705,6 +2905,7 @@
                   "id": "AUXrp",
                   "name": "SS_STEP01",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "$bg-white",
                   "cornerRadius": 4,
                   "stroke": "$line",
@@ -2713,6 +2914,24 @@
                   "gap": 10,
                   "padding": 28,
                   "children": [
+                    {
+                      "id": "cQpIZ",
+                      "type": "ref",
+                      "ref": "mdqZ3",
+                      "name": "SS_StepImage",
+                      "width": "fill_container",
+                      "height": 220
+                    },
+                    {
+                      "type": "icon",
+                      "id": "Dk2ci",
+                      "name": "SS_STEP01_Icon",
+                      "width": 24,
+                      "height": 24,
+                      "icon": "stethoscope",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "mRnNv",
@@ -2755,6 +2974,7 @@
                   "id": "XtAIA",
                   "name": "SS_STEP02",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "$bg-white",
                   "cornerRadius": 4,
                   "stroke": "$line",
@@ -2763,6 +2983,24 @@
                   "gap": 10,
                   "padding": 28,
                   "children": [
+                    {
+                      "id": "fUPPs",
+                      "type": "ref",
+                      "ref": "mdqZ3",
+                      "name": "SS_StepImage",
+                      "width": "fill_container",
+                      "height": 220
+                    },
+                    {
+                      "type": "icon",
+                      "id": "v0QCDL",
+                      "name": "SS_STEP02_Icon",
+                      "width": 24,
+                      "height": 24,
+                      "icon": "wrench",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
                     {
                       "type": "text",
                       "id": "I8GGW",
@@ -2805,6 +3043,7 @@
                   "id": "othwO",
                   "name": "SS_STEP04",
                   "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "$bg-white",
                   "cornerRadius": 4,
                   "stroke": "$line",
@@ -2814,11 +3053,29 @@
                   "padding": 28,
                   "children": [
                     {
+                      "id": "qiNAM",
+                      "type": "ref",
+                      "ref": "mdqZ3",
+                      "name": "SS_StepImage",
+                      "width": "fill_container",
+                      "height": 220
+                    },
+                    {
+                      "type": "icon",
+                      "id": "bUFJw",
+                      "name": "SS_STEP04_Icon",
+                      "width": 24,
+                      "height": 24,
+                      "icon": "refresh-cw",
+                      "library": "lucide",
+                      "fill": "$text-secondary"
+                    },
+                    {
                       "type": "text",
                       "id": "mjeui",
                       "name": "SSnum_STEP04",
                       "fill": "$text-secondary",
-                      "content": "STEP04",
+                      "content": "STEP03",
                       "fontFamily": "$font-jp",
                       "fontSize": 12,
                       "fontWeight": "700"
@@ -2842,7 +3099,7 @@
                       "fill": "$text-secondary",
                       "textGrowth": "fixed-width",
                       "width": "fill_container",
-                      "content": "年1回のライフプラン・解決策見直し。いつでもLINEで質問可能です。",
+                      "content": "年1回のライフプラン・解決策見直し。いつでもLINEで質問可能です。卒業生同士がつながれるコミュニティも準備中です（予定）。",
                       "lineHeight": 1.7,
                       "fontFamily": "$font-jp",
                       "fontSize": 12,
@@ -3551,14 +3808,33 @@
               ],
               "children": [
                 {
-                  "type": "text",
-                  "id": "DHJT8",
-                  "name": "RStatNum_12万人",
-                  "fill": "$text-primary",
-                  "content": "12万人",
-                  "fontFamily": "$font-jp",
-                  "fontSize": 26,
-                  "fontWeight": "700"
+                  "type": "frame",
+                  "id": "YT2eO",
+                  "name": "StatNumWrap",
+                  "gap": 2,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lu445",
+                      "name": "StatNumBig",
+                      "fill": "$text-primary",
+                      "content": "12",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "c5E8d",
+                      "name": "StatNumUnit",
+                      "fill": "$text-primary",
+                      "content": "万人",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
                 },
                 {
                   "type": "text",
@@ -3589,14 +3865,43 @@
               ],
               "children": [
                 {
-                  "type": "text",
-                  "id": "FBDHX",
-                  "name": "RStatNum_週間1位",
-                  "fill": "$text-primary",
-                  "content": "週間1位",
-                  "fontFamily": "$font-jp",
-                  "fontSize": 26,
-                  "fontWeight": "700"
+                  "type": "frame",
+                  "id": "q971S",
+                  "name": "StatNumWrap",
+                  "gap": 2,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kDcpt",
+                      "name": "StatNumUnit",
+                      "fill": "$text-primary",
+                      "content": "週間",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "TEpel",
+                      "name": "StatNumBig",
+                      "fill": "$text-primary",
+                      "content": "1",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "lsqym",
+                      "name": "StatNumUnit",
+                      "fill": "$text-primary",
+                      "content": "位",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
                 },
                 {
                   "type": "text",
@@ -3627,14 +3932,33 @@
               ],
               "children": [
                 {
-                  "type": "text",
-                  "id": "h3voT",
-                  "name": "RStatNum_150拠点以上",
-                  "fill": "$text-primary",
-                  "content": "150拠点以上",
-                  "fontFamily": "$font-jp",
-                  "fontSize": 26,
-                  "fontWeight": "700"
+                  "type": "frame",
+                  "id": "Y6Qm59",
+                  "name": "StatNumWrap",
+                  "gap": 2,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jXCJl",
+                      "name": "StatNumBig",
+                      "fill": "$text-primary",
+                      "content": "150",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YJVpG",
+                      "name": "StatNumUnit",
+                      "fill": "$text-primary",
+                      "content": "拠点以上",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
                 },
                 {
                   "type": "text",
@@ -3665,14 +3989,33 @@
               ],
               "children": [
                 {
-                  "type": "text",
-                  "id": "pUBEg",
-                  "name": "RStatNum_1000世帯超",
-                  "fill": "$text-primary",
-                  "content": "1000世帯超",
-                  "fontFamily": "$font-jp",
-                  "fontSize": 26,
-                  "fontWeight": "700"
+                  "type": "frame",
+                  "id": "H8Yx9f",
+                  "name": "StatNumWrap",
+                  "gap": 2,
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "i7cDBu",
+                      "name": "StatNumBig",
+                      "fill": "$text-primary",
+                      "content": "1000",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 40,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "w8SCAs",
+                      "name": "StatNumUnit",
+                      "fill": "$text-primary",
+                      "content": "世帯超",
+                      "fontFamily": "$font-jp",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
                 },
                 {
                   "type": "text",
@@ -3743,6 +4086,29 @@
                   "gap": 10,
                   "alignItems": "center",
                   "children": [
+                    {
+                      "type": "frame",
+                      "id": "UcrGM",
+                      "name": "RCase2Avatar_0",
+                      "width": 40,
+                      "height": 40,
+                      "fill": "$bg-gray",
+                      "cornerRadius": 999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "KFXdp",
+                          "name": "RCase2Avatar_0_Icon",
+                          "width": 20,
+                          "height": 20,
+                          "icon": "user",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        }
+                      ]
+                    },
                     {
                       "type": "text",
                       "id": "kV2KK",
@@ -4013,6 +4379,29 @@
                   "gap": 10,
                   "alignItems": "center",
                   "children": [
+                    {
+                      "type": "frame",
+                      "id": "eWnQN",
+                      "name": "RCase2Avatar_1",
+                      "width": 40,
+                      "height": 40,
+                      "fill": "$bg-gray",
+                      "cornerRadius": 999,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "C3gN4",
+                          "name": "RCase2Avatar_1_Icon",
+                          "width": 20,
+                          "height": 20,
+                          "icon": "user",
+                          "library": "lucide",
+                          "fill": "$text-secondary"
+                        }
+                      ]
+                    },
                     {
                       "type": "text",
                       "id": "F3wKP",
@@ -4775,77 +5164,276 @@
             },
             {
               "type": "frame",
-              "id": "o4V1aK",
-              "name": "C_TeamList",
+              "id": "gcOH2",
+              "name": "C_TeamGrid",
               "width": "fill_container",
               "layout": "vertical",
-              "gap": 16,
+              "gap": 24,
               "children": [
                 {
                   "type": "frame",
-                  "id": "jxcXI",
-                  "name": "CTeamRow_0",
+                  "id": "b5k3Z",
+                  "name": "C_TeamGridRow_0",
                   "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "gap": 24,
-                  "padding": 20,
+                  "gap": 20,
                   "children": [
                     {
-                      "id": "sOQ2U",
-                      "type": "ref",
-                      "ref": "mdqZ3",
-                      "name": "CTeamPhoto_0",
-                      "width": 120,
-                      "height": 120,
-                      "descendants": {
-                        "dMMqN": {
-                          "content": "PHOTO"
+                      "type": "frame",
+                      "id": "Q8qHym",
+                      "name": "C_TeamCard",
+                      "width": 305,
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "id": "sOQ2U",
+                          "type": "ref",
+                          "ref": "mdqZ3",
+                          "name": "CTeamPhoto_0",
+                          "width": "fill_container",
+                          "height": 380,
+                          "descendants": {
+                            "dMMqN": {
+                              "content": "PHOTO"
+                            }
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "S7liP",
+                          "name": "CTeamText_0",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "R67qbF",
+                              "name": "CTeamName_0",
+                              "fill": "$text-primary",
+                              "content": "山上真司",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "vkEcD",
+                              "name": "CTeamBio_0",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "大手住宅メーカー・外資系金融機関を経て完全中立の独立系FPへ。住宅×金融、両面の最適化コンサルに定評。累積1000世帯以上の家計コンサルティング。年間講演20回。",
+                              "lineHeight": 1.7,
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Kn7GE",
+                              "name": "CTeamCred_0",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "2級FP技能士／住宅ローンアドバイザー／確定拠出年金診断士®／相続士®上級資格者",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
-                      }
+                      ]
                     },
                     {
                       "type": "frame",
-                      "id": "S7liP",
-                      "name": "CTeamText_0",
-                      "width": "fill_container",
+                      "id": "zTGLU",
+                      "name": "C_TeamCard",
+                      "width": 305,
                       "layout": "vertical",
-                      "gap": 6,
+                      "gap": 14,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "R67qbF",
-                          "name": "CTeamName_0",
-                          "fill": "$text-primary",
-                          "content": "山上真司",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 16,
-                          "fontWeight": "700"
+                          "id": "XgMMr",
+                          "type": "ref",
+                          "ref": "mdqZ3",
+                          "name": "CTeamPhoto_1",
+                          "width": "fill_container",
+                          "height": 380,
+                          "descendants": {
+                            "dMMqN": {
+                              "content": "PHOTO"
+                            }
+                          }
                         },
                         {
-                          "type": "text",
-                          "id": "vkEcD",
-                          "name": "CTeamBio_0",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "BcjcW",
+                          "name": "CTeamText_1",
                           "width": "fill_container",
-                          "content": "大手住宅メーカー・外資系金融機関を経て完全中立の独立系FPへ。住宅×金融、両面の最適化コンサルに定評。累積1000世帯以上の家計コンサルティング。年間講演20回。",
-                          "lineHeight": 1.7,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "iPU2V",
+                              "name": "CTeamName_1",
+                              "fill": "$text-primary",
+                              "content": "分部彰吾",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "bRSrI",
+                              "name": "CTeamBio_1",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "一般社団法人確定拠出年金診断協会 代表理事／株式会社visible 代表取締役。メガバンク系金融機関新卒→保険代理店FP→独立。金融機関で累積150講演。",
+                              "lineHeight": 1.7,
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "iIRVN",
+                              "name": "CTeamCred_1",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "著書「退職金で損する人得する人」",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "tI9Tc",
+                      "name": "C_TeamCard",
+                      "width": 305,
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "id": "s7ELUB",
+                          "type": "ref",
+                          "ref": "mdqZ3",
+                          "name": "CTeamPhoto_2",
+                          "width": "fill_container",
+                          "height": 380,
+                          "descendants": {
+                            "dMMqN": {
+                              "content": "PHOTO"
+                            }
+                          }
                         },
                         {
-                          "type": "text",
-                          "id": "Kn7GE",
-                          "name": "CTeamCred_0",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "WRncZ",
+                          "name": "CTeamText_2",
                           "width": "fill_container",
-                          "content": "2級FP技能士／住宅ローンアドバイザー／確定拠出年金診断士®／相続士®上級資格者",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "bBBGm",
+                              "name": "CTeamName_2",
+                              "fill": "$text-primary",
+                              "content": "横田健一",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "opifg",
+                              "name": "CTeamBio_2",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "日本FP協会CFP資格標準テキスト監修者／DCプランナー実務必携執筆者。東京大学卒業後、野村証券新卒入社→独立系FPへ。",
+                              "lineHeight": 1.7,
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Yt3Dk",
+                              "name": "CTeamCred_2",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "CFP／1級FP技能士／日本証券アナリスト協会認定アナリスト(CMA)。著書「60歳からの賢い『お金の回し方』」",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "C7wtp",
+                      "name": "C_TeamCard",
+                      "width": 305,
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "id": "HIBgM",
+                          "type": "ref",
+                          "ref": "mdqZ3",
+                          "name": "CTeamPhoto_3",
+                          "width": "fill_container",
+                          "height": 380,
+                          "descendants": {
+                            "dMMqN": {
+                              "content": "PHOTO"
+                            }
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Dfp7z",
+                          "name": "CTeamText_3",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "j4UIo",
+                              "name": "CTeamName_3",
+                              "fill": "$text-primary",
+                              "content": "片岡佳樹（ライフプラン）",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "K5bMO",
+                              "name": "CTeamBio_3",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "陸上自衛隊出身。「自衛隊時代に『おかねで知らずに損していた』経験から、同じ想いをする人を減らしたい」という思いで従事。",
+                              "lineHeight": 1.7,
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -4853,395 +5441,200 @@
                 },
                 {
                   "type": "frame",
-                  "id": "YZ2Z7",
-                  "name": "CTeamRow_1",
+                  "id": "bwpCs",
+                  "name": "C_TeamGridRow_1",
                   "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "gap": 24,
-                  "padding": 20,
+                  "gap": 20,
                   "children": [
                     {
-                      "id": "XgMMr",
-                      "type": "ref",
-                      "ref": "mdqZ3",
-                      "name": "CTeamPhoto_1",
-                      "width": 120,
-                      "height": 120,
-                      "descendants": {
-                        "dMMqN": {
-                          "content": "PHOTO"
-                        }
-                      }
-                    },
-                    {
                       "type": "frame",
-                      "id": "BcjcW",
-                      "name": "CTeamText_1",
-                      "width": "fill_container",
+                      "id": "nqPzW",
+                      "name": "C_TeamCard",
+                      "width": 305,
                       "layout": "vertical",
-                      "gap": 6,
+                      "gap": 14,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "iPU2V",
-                          "name": "CTeamName_1",
-                          "fill": "$text-primary",
-                          "content": "分部彰吾",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 16,
-                          "fontWeight": "700"
+                          "id": "y0SB1s",
+                          "type": "ref",
+                          "ref": "mdqZ3",
+                          "name": "CTeamPhoto_4",
+                          "width": "fill_container",
+                          "height": 380,
+                          "descendants": {
+                            "dMMqN": {
+                              "content": "PHOTO"
+                            }
+                          }
                         },
                         {
-                          "type": "text",
-                          "id": "bRSrI",
-                          "name": "CTeamBio_1",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "v9GKv7",
+                          "name": "CTeamText_4",
                           "width": "fill_container",
-                          "content": "一般社団法人確定拠出年金診断協会 代表理事／株式会社visible 代表取締役。メガバンク系金融機関新卒→保険代理店FP→独立。金融機関で累積150講演。",
-                          "lineHeight": 1.7,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "iIRVN",
-                          "name": "CTeamCred_1",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "著書「退職金で損する人得する人」",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "awoSH",
+                              "name": "CTeamName_4",
+                              "fill": "$text-primary",
+                              "content": "杉山晃貴（証券）",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "lTvSm",
+                              "name": "CTeamBio_4",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Amazon、外資系生命保険会社を経て独立系FP・IFAへ。税理士向け勉強会も実施。",
+                              "lineHeight": 1.7,
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Y7kXhw",
+                              "name": "CTeamCred_4",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "相談しやすいキャラクターとわかりやすい説明が好評",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "vdcbk",
-                  "name": "CTeamRow_2",
-                  "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "gap": 24,
-                  "padding": 20,
-                  "children": [
-                    {
-                      "id": "s7ELUB",
-                      "type": "ref",
-                      "ref": "mdqZ3",
-                      "name": "CTeamPhoto_2",
-                      "width": 120,
-                      "height": 120,
-                      "descendants": {
-                        "dMMqN": {
-                          "content": "PHOTO"
-                        }
-                      }
                     },
                     {
                       "type": "frame",
-                      "id": "WRncZ",
-                      "name": "CTeamText_2",
-                      "width": "fill_container",
+                      "id": "gOaqS",
+                      "name": "C_TeamCard",
+                      "width": 305,
                       "layout": "vertical",
-                      "gap": 6,
+                      "gap": 14,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "bBBGm",
-                          "name": "CTeamName_2",
-                          "fill": "$text-primary",
-                          "content": "横田健一",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 16,
-                          "fontWeight": "700"
+                          "id": "nJ0iI",
+                          "type": "ref",
+                          "ref": "mdqZ3",
+                          "name": "CTeamPhoto_5",
+                          "width": "fill_container",
+                          "height": 380,
+                          "descendants": {
+                            "dMMqN": {
+                              "content": "PHOTO"
+                            }
+                          }
                         },
                         {
-                          "type": "text",
-                          "id": "opifg",
-                          "name": "CTeamBio_2",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "KlADs",
+                          "name": "CTeamText_5",
                           "width": "fill_container",
-                          "content": "日本FP協会CFP資格標準テキスト監修者／DCプランナー実務必携執筆者。東京大学卒業後、野村証券新卒入社→独立系FPへ。",
-                          "lineHeight": 1.7,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Yt3Dk",
-                          "name": "CTeamCred_2",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "CFP／1級FP技能士／日本証券アナリスト協会認定アナリスト(CMA)。著書「60歳からの賢い『お金の回し方』」",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "VELr1",
+                              "name": "CTeamName_5",
+                              "fill": "$text-primary",
+                              "content": "松田直樹（保険）",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "j66wJJ",
+                              "name": "CTeamBio_5",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "製薬会社→MR（抗がん剤担当）→ソニー生命→独立系FPへ。",
+                              "lineHeight": 1.7,
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "ZXcu1",
+                              "name": "CTeamCred_5",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "医療現場やがん治療を知っているからこそできる保険の最適化提案が好評",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 11,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "pBrBb",
-                  "name": "CTeamRow_3",
-                  "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "gap": 24,
-                  "padding": 20,
-                  "children": [
-                    {
-                      "id": "HIBgM",
-                      "type": "ref",
-                      "ref": "mdqZ3",
-                      "name": "CTeamPhoto_3",
-                      "width": 120,
-                      "height": 120,
-                      "descendants": {
-                        "dMMqN": {
-                          "content": "PHOTO"
-                        }
-                      }
                     },
                     {
                       "type": "frame",
-                      "id": "Dfp7z",
-                      "name": "CTeamText_3",
-                      "width": "fill_container",
+                      "id": "DW8E9",
+                      "name": "C_TeamCard",
+                      "width": 305,
                       "layout": "vertical",
-                      "gap": 6,
+                      "gap": 14,
                       "children": [
                         {
-                          "type": "text",
-                          "id": "j4UIo",
-                          "name": "CTeamName_3",
-                          "fill": "$text-primary",
-                          "content": "片岡佳樹（ライフプラン）",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 16,
-                          "fontWeight": "700"
+                          "id": "MJsME",
+                          "type": "ref",
+                          "ref": "mdqZ3",
+                          "name": "CTeamPhoto_6",
+                          "width": "fill_container",
+                          "height": 380,
+                          "descendants": {
+                            "dMMqN": {
+                              "content": "PHOTO"
+                            }
+                          }
                         },
                         {
-                          "type": "text",
-                          "id": "K5bMO",
-                          "name": "CTeamBio_3",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
+                          "type": "frame",
+                          "id": "q9cbnJ",
+                          "name": "CTeamText_6",
                           "width": "fill_container",
-                          "content": "陸上自衛隊出身。「自衛隊時代に『おかねで知らずに損していた』経験から、同じ想いをする人を減らしたい」という思いで従事。",
-                          "lineHeight": 1.7,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "f3zeL",
-                  "name": "CTeamRow_4",
-                  "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "gap": 24,
-                  "padding": 20,
-                  "children": [
-                    {
-                      "id": "y0SB1s",
-                      "type": "ref",
-                      "ref": "mdqZ3",
-                      "name": "CTeamPhoto_4",
-                      "width": 120,
-                      "height": 120,
-                      "descendants": {
-                        "dMMqN": {
-                          "content": "PHOTO"
-                        }
-                      }
-                    },
-                    {
-                      "type": "frame",
-                      "id": "v9GKv7",
-                      "name": "CTeamText_4",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 6,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "awoSH",
-                          "name": "CTeamName_4",
-                          "fill": "$text-primary",
-                          "content": "杉山晃貴（証券）",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 16,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "lTvSm",
-                          "name": "CTeamBio_4",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "Amazon、外資系生命保険会社を経て独立系FP・IFAへ。税理士向け勉強会も実施。",
-                          "lineHeight": 1.7,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "Y7kXhw",
-                          "name": "CTeamCred_4",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "相談しやすいキャラクターとわかりやすい説明が好評",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "OiDQL",
-                  "name": "CTeamRow_5",
-                  "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "gap": 24,
-                  "padding": 20,
-                  "children": [
-                    {
-                      "id": "nJ0iI",
-                      "type": "ref",
-                      "ref": "mdqZ3",
-                      "name": "CTeamPhoto_5",
-                      "width": 120,
-                      "height": 120,
-                      "descendants": {
-                        "dMMqN": {
-                          "content": "PHOTO"
-                        }
-                      }
-                    },
-                    {
-                      "type": "frame",
-                      "id": "KlADs",
-                      "name": "CTeamText_5",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 6,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "VELr1",
-                          "name": "CTeamName_5",
-                          "fill": "$text-primary",
-                          "content": "松田直樹（保険）",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 16,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "j66wJJ",
-                          "name": "CTeamBio_5",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "製薬会社→MR（抗がん剤担当）→ソニー生命→独立系FPへ。",
-                          "lineHeight": 1.7,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
-                        },
-                        {
-                          "type": "text",
-                          "id": "ZXcu1",
-                          "name": "CTeamCred_5",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "医療現場やがん治療を知っているからこそできる保険の最適化提案が好評",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 11,
-                          "fontWeight": "normal"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "frame",
-                  "id": "U1Zst",
-                  "name": "CTeamRow_6",
-                  "width": "fill_container",
-                  "fill": "$bg-gray",
-                  "cornerRadius": 4,
-                  "gap": 24,
-                  "padding": 20,
-                  "children": [
-                    {
-                      "id": "MJsME",
-                      "type": "ref",
-                      "ref": "mdqZ3",
-                      "name": "CTeamPhoto_6",
-                      "width": 120,
-                      "height": 120,
-                      "descendants": {
-                        "dMMqN": {
-                          "content": "PHOTO"
-                        }
-                      }
-                    },
-                    {
-                      "type": "frame",
-                      "id": "q9cbnJ",
-                      "name": "CTeamText_6",
-                      "width": "fill_container",
-                      "layout": "vertical",
-                      "gap": 6,
-                      "children": [
-                        {
-                          "type": "text",
-                          "id": "cPoZq",
-                          "name": "CTeamName_6",
-                          "fill": "$text-primary",
-                          "content": "小宮翔真（ライフプラン／資産運用／保険）",
-                          "fontFamily": "$font-jp",
-                          "fontSize": 16,
-                          "fontWeight": "700"
-                        },
-                        {
-                          "type": "text",
-                          "id": "h0j8C",
-                          "name": "CTeamBio_6",
-                          "fill": "$text-secondary",
-                          "textGrowth": "fixed-width",
-                          "width": "fill_container",
-                          "content": "株式投資が身近な家庭環境で育ち中1から株式投資。不動産会社新卒→FP事業部新規立上げ→独立系FPへ。",
-                          "lineHeight": 1.7,
-                          "fontFamily": "$font-jp",
-                          "fontSize": 13,
-                          "fontWeight": "normal"
+                          "layout": "vertical",
+                          "gap": 6,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "cPoZq",
+                              "name": "CTeamName_6",
+                              "fill": "$text-primary",
+                              "content": "小宮翔真（ライフプラン／資産運用／保険）",
+                              "fontFamily": "$font-jp",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "h0j8C",
+                              "name": "CTeamBio_6",
+                              "fill": "$text-secondary",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "株式投資が身近な家庭環境で育ち中1から株式投資。不動産会社新卒→FP事業部新規立上げ→独立系FPへ。",
+                              "lineHeight": 1.7,
+                              "fontFamily": "$font-jp",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
                         }
                       ]
                     }
@@ -6466,11 +6859,502 @@
           "fill": "$text-secondary",
           "textGrowth": "fixed-width",
           "width": 1212,
-          "content": "WordPressバッジ＝クライアントが自分で随時更新するCMS管理エリア（実績の追加・ジャーナルの更新）。それ以外のページは静的ページとしてCRATER側で構築・更新。\nグローバルナビ（全ページ共通）：サービス／実績／会社情報／FAQ　＋　CTA：LINE登録",
+          "content": "WordPressバッジ＝クライアントが自分で随時更新するCMS管理エリア（実績の追加・ジャーナルの更新）。それ以外のページは静的ページとしてCRATER側で構築・更新。\nグローバルナビ（全ページ共通）：トップ／サービス／実績／会社情報／FAQ　＋　CTA：LINE登録\nプライバシーポリシーは全ページ共通フッターのみに設置（グローバルナビには含めない）。",
           "lineHeight": 1.8,
           "fontFamily": "$font-jp",
           "fontSize": 12,
           "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "L1A46",
+          "x": 114,
+          "y": 710,
+          "name": "Site_Privacy",
+          "width": 300,
+          "fill": "$bg-white",
+          "cornerRadius": 4,
+          "stroke": "$line",
+          "strokeWidth": 1,
+          "layout": "vertical",
+          "gap": 8,
+          "padding": 18,
+          "children": [
+            {
+              "type": "text",
+              "id": "L3rd8",
+              "name": "Site_Privacy_Tag",
+              "fill": "$text-secondary",
+              "content": "FOOTER ONLY",
+              "fontFamily": "$font-jp",
+              "fontSize": 10,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "YN3Ox",
+              "name": "Site_Privacy_Name",
+              "fill": "$text-primary",
+              "content": "プライバシーポリシー",
+              "fontFamily": "$font-jp",
+              "fontSize": 15,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "jkHoP",
+              "name": "Site_Privacy_Slug",
+              "fill": "$text-secondary",
+              "content": "/privacy",
+              "fontFamily": "$font-jp",
+              "fontSize": 11,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "AKEVR",
+              "name": "Site_Privacy_Desc",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": 260,
+              "content": "個人情報の取り扱いについて",
+              "lineHeight": 1.6,
+              "fontFamily": "$font-jp",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "I1nXo5",
+      "x": 7800,
+      "y": 3761,
+      "name": "PRIVACY",
+      "clip": true,
+      "width": 1440,
+      "fill": "$bg-white",
+      "layout": "vertical",
+      "children": [
+        {
+          "id": "dsmu5",
+          "type": "ref",
+          "ref": "gkwLm",
+          "name": "Header",
+          "width": "fill_container"
+        },
+        {
+          "type": "frame",
+          "id": "Ym2ob",
+          "name": "P_Hero",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            100,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "rsjmJ",
+              "name": "P_Eyebrow",
+              "fill": "$text-secondary",
+              "content": "PRIVACY POLICY",
+              "fontFamily": "$font-jp",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "text",
+              "id": "uEYqE",
+              "name": "P_Title",
+              "fill": "$text-primary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "プライバシーポリシー",
+              "fontFamily": "$font-jp",
+              "fontSize": 36,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "FxRQE",
+          "name": "P_Content",
+          "width": "fill_container",
+          "fill": "$bg-white",
+          "layout": "vertical",
+          "gap": 32,
+          "padding": [
+            0,
+            80,
+            100,
+            80
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "UmYbG",
+              "name": "P_Intro",
+              "fill": "$text-secondary",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "一般社団法人 確定拠出年金診断協会・株式会社visible（以下「当社」）は、お客様の個人情報の保護を重要な社会的責務と認識し、以下の方針に基づき適切に管理・保護いたします。",
+              "lineHeight": 1.8,
+              "fontFamily": "$font-jp",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "UVaBp",
+              "name": "P_Section_0",
+              "width": "fill_container",
+              "stroke": "$line",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "tMfIS",
+                  "name": "P_SectionTitle_0",
+                  "fill": "$text-primary",
+                  "content": "1. 個人情報の収集について",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "Cm1Y3",
+                  "name": "P_SectionBody_0",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "当社は、個別現状分析会・対面勉強会のお申込み、LINEでのご相談等にあたり、お名前・ご住所・電話番号・メールアドレス・生年月日等の個人情報をご提供いただく場合があります。収集にあたっては、利用目的を明示した上で、適法かつ公正な手段により行います。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "g2iu5",
+              "name": "P_Section_1",
+              "width": "fill_container",
+              "stroke": "$line",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hvznI",
+                  "name": "P_SectionTitle_1",
+                  "fill": "$text-primary",
+                  "content": "2. 個人情報の利用目的",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "vXzTJ",
+                  "name": "P_SectionBody_1",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "収集した個人情報は、以下の目的のために利用します。\n・個別現状分析会・対面勉強会に関するご案内、お申込み対応\n・ライフプラン作成、資産状況の分析・ご提案\n・アフターフォロー（年1回の見直しのご案内等）に関する連絡\n・LINE公式アカウントを通じたご相談対応",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "K2qhp",
+              "name": "P_Section_2",
+              "width": "fill_container",
+              "stroke": "$line",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "qkCPJ",
+                  "name": "P_SectionTitle_2",
+                  "fill": "$text-primary",
+                  "content": "3. 個人情報の第三者提供",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "A1rjQ",
+                  "name": "P_SectionBody_2",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "当社は、以下の場合を除き、お客様の個人情報を第三者に提供することはありません。\n・お客様の同意がある場合\n・法令に基づく場合\n・人の生命・身体・財産の保護のために必要な場合",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xgXQF",
+              "name": "P_Section_3",
+              "width": "fill_container",
+              "stroke": "$line",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Nezcp",
+                  "name": "P_SectionTitle_3",
+                  "fill": "$text-primary",
+                  "content": "4. 個人情報の管理",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "rXScS",
+                  "name": "P_SectionBody_3",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "当社は、個人情報の漏洩・紛失・改ざん等を防止するため、適切な安全管理措置を講じます。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "AYJX4",
+              "name": "P_Section_4",
+              "width": "fill_container",
+              "stroke": "$line",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ZmSSI",
+                  "name": "P_SectionTitle_4",
+                  "fill": "$text-primary",
+                  "content": "5. 個人情報の開示・訂正・利用停止等の請求",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "jd4e6",
+                  "name": "P_SectionBody_4",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "お客様は、当社が保有するご自身の個人情報について、開示・訂正・利用停止等を求めることができます。ご要望は下記お問合せ窓口までご連絡ください。",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "e9jaiE",
+              "name": "P_Section_5",
+              "width": "fill_container",
+              "stroke": "$line",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wB8ML",
+                  "name": "P_SectionTitle_5",
+                  "fill": "$text-primary",
+                  "content": "6. Cookie等の取得について",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "X0yJXm",
+                  "name": "P_SectionBody_5",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "当サイトでは、サービス向上のためCookie等を使用する場合があります。（詳細は計測ツール導入時に追記）",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "l4JLJi",
+              "name": "P_Section_6",
+              "width": "fill_container",
+              "stroke": "$line",
+              "strokeWidth": {
+                "bottom": 1
+              },
+              "layout": "vertical",
+              "gap": 10,
+              "padding": [
+                0,
+                0,
+                24,
+                0
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z8umV",
+                  "name": "P_SectionTitle_6",
+                  "fill": "$text-primary",
+                  "content": "7. お問合せ窓口",
+                  "fontFamily": "$font-jp",
+                  "fontSize": 17,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "ZGI56",
+                  "name": "P_SectionBody_6",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "一般社団法人 確定拠出年金診断協会／株式会社visible　個人情報に関するお問合せ窓口\n所在地：東京都千代田区九段南1-5-6 りそな九段ビル5F",
+                  "lineHeight": 1.8,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 13,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "JVDah",
+              "name": "P_Date",
+              "fill": "$text-secondary",
+              "content": "制定日：（確認中）",
+              "fontFamily": "$font-jp",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "DDhW3",
+              "name": "P_Note",
+              "width": "fill_container",
+              "fill": "$bg-gray",
+              "cornerRadius": 4,
+              "layout": "vertical",
+              "gap": 6,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "j6IJFg",
+                  "name": "P_NoteText",
+                  "fill": "$text-secondary",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "※このページは仮の内容です。正式社名・お問い合わせ先電話番号・Cookie利用の詳細は、クライアント確認後に確定します。",
+                  "lineHeight": 1.7,
+                  "fontFamily": "$font-jp",
+                  "fontSize": 12,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "Qvuw2",
+          "type": "ref",
+          "ref": "D0vxC",
+          "name": "FooterInstance",
+          "width": "fill_container"
         }
       ]
     }
