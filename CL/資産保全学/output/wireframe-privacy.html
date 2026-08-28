@@ -21,13 +21,8 @@
         overflow-x: hidden;
       }
     
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   body { overflow-x: hidden; }
-  [data-pencil-name="TOP"], [data-pencil-name="SERVICE"], [data-pencil-name="RESULTS"],
-  [data-pencil-name="COMPANY"], [data-pencil-name="FAQ"], [data-pencil-name="PRIVACY"] {
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
   [style*="flex-direction: row"] {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -36,11 +31,9 @@
     flex-direction: row !important;
     overflow-x: auto !important;
   }
-  [data-pencil-name="Nav"] { display: none !important; }
   [data-pencil-name="Sec3_Arrow1"], [data-pencil-name="Sec3_Arrow2"] {
     transform: rotate(90deg);
   }
-  [style*="width: 800px"] { width: 100% !important; max-width: 100% !important; }
   [style*="padding: 100px 80px"] { padding: 56px 24px !important; }
   [style*="padding: 60px 80px"] { padding: 40px 24px !important; }
   [style*="padding: 0px 80px 100px 80px"] { padding: 0px 24px 56px 24px !important; }
@@ -52,7 +45,8 @@
 [data-pencil-name="FNav_プライバシーポリシー"] { font-weight:700 !important; color:#1A1A1A !important; text-decoration:underline !important; }
 
 #wf-hamburger { display: none; }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  [data-pencil-name="Nav"] { display: none !important; }
   #wf-hamburger {
     display: flex; flex-direction: column; justify-content: center; gap: 5px;
     width: 28px; height: 28px; background: none; border: none; cursor: pointer; padding: 0; flex-shrink: 0;
@@ -60,9 +54,9 @@
   #wf-hamburger span { display: block; width: 100%; height: 2px; background: #1A1A1A; }
   #wf-mobile-menu {
     position: fixed; inset: 0; background: #FFFFFF; z-index: 99990;
-    display: none; flex-direction: column; padding: 24px;
+    flex-direction: column; padding: 24px;
   }
-  #wf-mobile-menu.open { display: flex; }
+  #wf-mobile-menu.open { display: flex !important; }
   #wf-mobile-menu-top { display: flex; justify-content: flex-end; margin-bottom: 24px; }
   #wf-mobile-menu-close { background: none; border: none; font-size: 28px; cursor: pointer; color: #1A1A1A; line-height: 1; }
   #wf-mobile-menu a {
@@ -71,15 +65,18 @@
     text-decoration: none; color: #1A1A1A;
   }
   #wf-mobile-menu a.active { font-weight: 700; text-decoration: underline; }
+  [data-pencil-name="NavGroup"] { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
+  [data-pencil-name="Header"] { flex-direction: row !important; flex-wrap: nowrap !important; height: auto !important; }
+  [data-pencil-name="HeaderCTA"] { flex-wrap: nowrap !important; }
+}
+@media (max-width: 480px) {
+  [data-pencil-name="HeaderCTA"] { padding: 8px 12px !important; }
+  [data-pencil-name="HeaderCTA"] * { font-size: 12px !important; }
 }
 
     </style>
 
-  <style>
-@media (max-width: 768px) {
-  [data-pencil-name="NavGroup"] { flex-direction: row !important; align-items: center !important; gap: 12px !important; }
-}
-</style>
+  
 <style>
 [data-pencil-name="TOP"], [data-pencil-name="SERVICE"], [data-pencil-name="RESULTS"],
 [data-pencil-name="COMPANY"], [data-pencil-name="FAQ"], [data-pencil-name="PRIVACY"] {
@@ -87,11 +84,43 @@
   max-width: 1440px !important;
   margin: 0 auto !important;
 }
+[data-pencil-name="Header"], [data-pencil-name="Footer"] {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
 [style*="width: 800px"] { width: 100% !important; max-width: 800px !important; }
 </style>
 <style>
-#wf-mobile-menu { display: none !important; }
-#wf-mobile-menu.open { display: flex !important; }
+#wf-mobile-menu { display: none; }
+</style>
+
+<style>
+[data-pencil-name="Sec_Media"], [data-pencil-name="Sec_Talks"] {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  box-sizing: border-box;
+}
+[data-pencil-name="Sec_MediaRow"], [data-pencil-name="Sec_TalksRow"] {
+  overflow: hidden !important;
+}
+.wf-marquee-track {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  animation: wf-marquee-scroll 30s linear infinite;
+}
+[data-pencil-name="Sec_MediaRow"]:hover .wf-marquee-track,
+[data-pencil-name="Sec_TalksRow"]:hover .wf-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes wf-marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
 </style>
 </head>
   <body>
@@ -130,7 +159,7 @@
     >
       <div
         data-pencil-name="Header"
-        style="align-items: center; background-color: #FFFFFF; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: space-between; padding: 20px 40px; width: 100%"
+        style="align-items: center; background-color: #FFFFFF; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: row; flex-shrink: 0; gap: 24px; height: 78.5px; justify-content: space-between; margin: 0px 0px -0.5px 0px; padding: 20px 40px; width: 1440px"
       >
         <a href="wireframe-top.html" style="text-decoration:none;color:inherit;display:contents;"><div
           data-pencil-name="Logo"
@@ -220,7 +249,7 @@
         </div>
         <div
           data-pencil-name="P_Section_0"
-          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 0px 0px 24px 0px; width: 100%"
+          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: 104.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1280px"
         >
           <div
             data-pencil-name="P_SectionTitle_0"
@@ -237,7 +266,7 @@
         </div>
         <div
           data-pencil-name="P_Section_1"
-          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 0px 0px 24px 0px; width: 100%"
+          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: 173.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1280px"
         >
           <div
             data-pencil-name="P_SectionTitle_1"
@@ -262,7 +291,7 @@
         </div>
         <div
           data-pencil-name="P_Section_2"
-          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 0px 0px 24px 0px; width: 100%"
+          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: 150.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1280px"
         >
           <div
             data-pencil-name="P_SectionTitle_2"
@@ -285,7 +314,7 @@
         </div>
         <div
           data-pencil-name="P_Section_3"
-          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 0px 0px 24px 0px; width: 100%"
+          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: 81.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1280px"
         >
           <div
             data-pencil-name="P_SectionTitle_3"
@@ -302,7 +331,7 @@
         </div>
         <div
           data-pencil-name="P_Section_4"
-          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 0px 0px 24px 0px; width: 100%"
+          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: 81.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1280px"
         >
           <div
             data-pencil-name="P_SectionTitle_4"
@@ -319,7 +348,7 @@
         </div>
         <div
           data-pencil-name="P_Section_5"
-          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 0px 0px 24px 0px; width: 100%"
+          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: 81.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1280px"
         >
           <div
             data-pencil-name="P_SectionTitle_5"
@@ -336,7 +365,7 @@
         </div>
         <div
           data-pencil-name="P_Section_6"
-          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: fit-content; justify-content: flex-start; padding: 0px 0px 24px 0px; width: 100%"
+          style="align-items: flex-start; border-color: #CCCCCC; border-style: solid; border-width: 0px 0px 1px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 10px; height: 104.5px; justify-content: flex-start; margin: 0px 0px -0.5px 0px; padding: 0px 0px 24px 0px; width: 1280px"
         >
           <div
             data-pencil-name="P_SectionTitle_6"
@@ -373,7 +402,7 @@
       </div>
       <div
         data-pencil-name="FooterInstance"
-        style="align-items: flex-start; background-color: #F2F2F2; border-color: #CCCCCC; border-style: solid; border-width: 1px 0px 0px 0px; box-sizing: border-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 24px; height: fit-content; justify-content: flex-start; padding: 60px 40px 40px 40px; width: 100%"
+        style="align-items: flex-start; background-color: #F2F2F2; border-color: #CCCCCC; border-style: solid; border-width: 1px 0px 0px 0px; box-sizing: content-box; display: flex; flex-direction: column; flex-shrink: 0; gap: 24px; height: 182.5px; justify-content: flex-start; margin: -0.5px 0px 0px 0px; padding: 60px 40px 40px 40px; width: 1440px"
       >
         <div
           data-pencil-name="FooterTop"
@@ -438,6 +467,22 @@
   
 <script>
   function wfToggleMenu(){ document.getElementById('wf-mobile-menu').classList.toggle('open'); }
+</script>
+  
+<script>
+  (function(){
+    ['Sec_MediaRow','Sec_TalksRow'].forEach(function(name){
+      var row = document.querySelector('[data-pencil-name="' + name + '"]');
+      if(!row) return;
+      var track = document.createElement('div');
+      track.className = 'wf-marquee-track';
+      var kids = Array.prototype.slice.call(row.children);
+      kids.forEach(function(k){ track.appendChild(k); });
+      kids.forEach(function(k){ track.appendChild(k.cloneNode(true)); });
+      row.innerHTML = '';
+      row.appendChild(track);
+    });
+  })();
 </script>
   </body>
 </html>
