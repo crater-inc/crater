@@ -195,10 +195,11 @@
   .fcol h4{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:2px;color:#f7f4ef99;font-weight:500;margin-bottom:14px;}
   .fcol a{display:block;font-size:13px;color:#f7f4efcc;margin-bottom:14px;}
   .fcol a:hover{color:#f7f4ef;}
-  .footer-bottom{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;border-top:1px solid #ffffff1a;padding-top:26px;}
   .footer-brand .flogo{height:44px;width:auto;margin-bottom:16px;}
   .footer-brand .ftg{font-size:13px;color:#f7f4ef99;}
   .fsns svg{width:20px;height:20px;stroke:#f7f4ef;}
+  .fcopy{font-family:'Playfair Display',serif;font-size:11px;letter-spacing:1px;color:#f7f4ef80;}
 
   /* ===== レスポンシブ ===== */
   @media (max-width:768px){
@@ -438,44 +439,40 @@
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-top">
-      <div class="newsletter">
-        <div class="nh">NEWSLETTER</div>
-        <div class="nd">初めての方へ。ご登録で10%OFFクーポンをお届けします。</div>
-        <form class="nform" onsubmit="return false;">
-          <input type="email" placeholder="メールアドレス">
-          <button type="submit">SUBSCRIBE</button>
-        </form>
+      <div class="footer-brand">
+        <img class="flogo" src="assets/logo_white.png" alt="A CURRY" onerror="this.style.display='none'">
+        <div class="ftg">あ！となる一皿。</div>
       </div>
       <div class="fcols">
         <div class="fcol">
-          <h4>SHOP</h4>
-          <a href="#">肉じゃがカレー</a>
-          <a href="#">牡蠣ココナッツ</a>
-          <a href="#">柚子胡椒豚</a>
-          <a href="#">セット商品</a>
-        </div>
-        <div class="fcol">
           <h4>MENU</h4>
           <a href="#">ホーム</a>
-          <a href="#">ジャーナル</a>
+          <a href="#">カレー</a>
           <a href="#">ブランドについて</a>
-          <a href="#">こだわり</a>
-          <a href="#">お客様の声</a>
+          <a href="#">ジャーナル</a>
+        </div>
+        <div class="fcol">
+          <h4>PRODUCTS</h4>
+          <a href="#">肉じゃがカレー</a>
+          <a href="#">柚子胡椒豚カレー</a>
+          <a href="#">牡蠣ココナッツ</a>
+          <a href="#">バリューパック</a>
+          <a href="#">食べ比べセット</a>
+          <a href="#">ギフトボックス</a>
         </div>
         <div class="fcol">
           <h4>SUPPORT</h4>
           <a href="#">よくある質問</a>
           <a href="#">お問い合わせ</a>
-          <a href="#">特定商取引法</a>
+          <a href="#">返品・返金</a>
           <a href="#">プライバシーポリシー</a>
+          <a href="#">利用規約</a>
+          <a href="#">特定商取引法</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-brand">
-        <img class="flogo" src="assets/logo_white.png" alt="A CURRY" onerror="this.style.display='none'">
-        <div class="ftg">あ！となる一皿。</div>
-      </div>
+      <div class="fcopy">&copy; 2026 A CURRY — CRATER Inc.</div>
       <div class="fsns">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
       </div>
