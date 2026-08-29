@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ESION | BASE TOP draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Hina+Mincho:wght@400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+<!-- BASE本番では、この位置に {FaviconTag} を入れる -->
+<style>
+:root{
+  --navy-deep:#081B52;
+  --navy-light:#0D41A8;
+  --black:#14181F;
+  --gray-dark:#3D4655;
+  --gray:#727D94;
+  --line:#E3E8EF;
+  --bg-soft:#F5F7FA;
+  --white:#FFFFFF;
+  --sub:#4A5266;
+  --meta:#7A8296;
+  --en:'Barlow Condensed',sans-serif;
+  --mincho:'Hina Mincho',serif;
+  --jp:'Zen Kaku Gothic New',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:#fff;overflow-x:hidden;font-family:var(--jp);color:var(--black);}
+img{max-width:100%;display:block;}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+.eyebrow{font-family:var(--en);font-size:12px;letter-spacing:.28em;color:var(--navy-light);font-weight:600;}
+.section{padding:120px 0;}
+.section-head{max-width:640px;margin:0 auto 56px;text-align:center;}
+.section-head h2{font-family:var(--mincho);font-weight:400;font-size:34px;color:var(--navy-deep);margin:14px 0 0;line-height:1.5;}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 40px;border-radius:100px;background:var(--navy-deep);color:#fff;font-family:var(--jp);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;cursor:pointer;border:none;transition:opacity .25s ease;}
+.btn:hover{opacity:.85;}
+.btn-outline{background:transparent;border:1px solid var(--navy-deep);color:var(--navy-deep);}
+
+/* ---------- Header ---------- */
+header.site{position:fixed;top:0;left:0;width:100%;z-index:500;padding:26px 0;transition:background .3s ease,padding .3s ease;}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;}
+header.site .logo{font-family:var(--en);font-size:21px;letter-spacing:.22em;font-weight:600;color:#fff;text-decoration:none;}
+header.site nav{display:flex;align-items:center;gap:40px;}
+header.site nav a{font-family:var(--en);font-size:13px;letter-spacing:.12em;color:#fff;text-decoration:none;font-weight:500;}
+header.site .baseicons{display:flex;align-items:center;gap:18px;color:#fff;}
+header.site .baseicons a,header.site .baseicons img{filter:brightness(0) invert(1);}
+header.site.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(6px);box-shadow:0 1px 0 var(--line);padding:16px 0;}
+header.site.scrolled .logo,header.site.scrolled nav a{color:var(--navy-deep);}
+header.site.scrolled .baseicons,header.site.scrolled .baseicons img{filter:none;color:var(--navy-deep);}
+#sp-toggle{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;}
+#sp-toggle span{position:absolute;left:0;width:100%;height:2px;background:#fff;border-radius:2px;transition:background .3s;}
+header.site.scrolled #sp-toggle span{background:var(--navy-deep);}
+#sp-toggle span:nth-child(1){top:0;}
+#sp-toggle span:nth-child(2){top:9px;}
+#sp-toggle span:nth-child(3){top:18px;}
+
+#sp-menu{display:none;position:fixed;inset:0;z-index:4900;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(135deg,#071b52 0%,#0d41a8 100%);opacity:0;visibility:hidden;transition:opacity .5s ease,visibility .5s ease;padding:0 44px;}
+#sp-menu.open{opacity:1;visibility:visible;}
+#sp-close{position:absolute;top:20px;right:24px;width:44px;height:44px;background:none;border:none;cursor:pointer;}
+#sp-close span{position:absolute;top:50%;left:50%;width:26px;height:2px;background:#fff;border-radius:2px;}
+#sp-close span:nth-child(1){transform:translate(-50%,-50%) rotate(45deg);}
+#sp-close span:nth-child(2){transform:translate(-50%,-50%) rotate(-45deg);}
+#sp-menu nav{display:flex;flex-direction:column;gap:26px;}
+#sp-menu nav a{font-family:var(--en);font-size:26px;letter-spacing:.05em;color:#fff;text-decoration:none;font-weight:600;}
+#sp-menu .sp-cart{margin-top:36px;display:flex;align-items:center;justify-content:center;height:52px;width:220px;background:#fff;color:var(--navy-deep);border-radius:100px;font-weight:700;font-size:14px;text-decoration:none;}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;height:790px;min-height:600px;width:100%;overflow:hidden;background:#bfe0f5;}
+.hero .bg{position:absolute;inset:0;background-image:url('a/Image_6__1_no.jpg');background-size:cover;background-position:center;animation:kvZoom 10s ease-in-out infinite;}
+@keyframes kvZoom{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,#081B5266 0%,#081B5210 40%,#081B5240 100%);}
+.hero .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;}
+.hero .shoulder{font-family:var(--jp);font-size:13px;letter-spacing:.32em;color:#fff;margin-bottom:18px;}
+.hero h1{font-family:var(--en);font-weight:600;font-size:clamp(40px,7vw,88px);letter-spacing:.02em;color:#fff;margin:0;line-height:1.05;}
+.hero .tagline{font-family:var(--jp);font-size:15px;color:rgba(255,255,255,.88);margin:22px 0 40px;letter-spacing:.03em;}
+.hero .scroll{position:absolute;right:44px;bottom:40px;display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;}
+.hero .scroll span{font-family:var(--en);font-size:10px;letter-spacing:.2em;color:#fff;writing-mode:vertical-rl;}
+.hero .scroll i{width:1px;height:34px;background:rgba(255,255,255,.7);display:block;}
+.hero .copyright{position:absolute;left:44px;bottom:36px;font-family:var(--en);font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.75);z-index:2;}
+
+/* ---------- Manifesto (new) ---------- */
+.manifesto{padding:96px 0;text-align:center;background:#fff;}
+.manifesto p{font-family:var(--mincho);font-weight:400;font-size:clamp(22px,3.4vw,36px);color:var(--navy-deep);line-height:1.9;max-width:820px;margin:0 auto;}
+.manifesto p em{font-style:normal;color:var(--navy-light);}
+
+/* ---------- Lineup ---------- */
+.lineup{background:var(--bg-soft);}
+.lineup .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;}
+.card .imgwrap{aspect-ratio:4/5;overflow:hidden;background:#eef1f5;}
+.card .imgwrap img{width:100%;height:100%;object-fit:cover;}
+.card .body{padding:24px 24px 28px;}
+.card .badge{display:inline-block;font-family:var(--en);font-size:10px;letter-spacing:.14em;color:var(--navy-light);border:1px solid var(--navy-light);border-radius:100px;padding:4px 12px;margin-bottom:14px;}
+.card h3{font-family:var(--jp);font-size:16px;font-weight:700;margin:0 0 8px;color:var(--black);}
+.card .desc{font-size:13px;color:var(--sub);line-height:1.7;margin:0 0 18px;}
+.card .price{font-family:var(--en);font-size:22px;color:var(--navy-deep);font-weight:600;}
+.card .price small{font-family:var(--jp);font-size:11px;color:var(--meta);font-weight:400;margin-left:6px;}
+.card .link{margin-top:16px;font-family:var(--en);font-size:12px;letter-spacing:.1em;color:var(--navy-deep);text-decoration:none;border-bottom:1px solid var(--navy-deep);padding-bottom:2px;display:inline-block;}
+
+/* ---------- Statement / Foam (full bleed color) ---------- */
+.fullstatement{padding:160px 0;text-align:center;background:linear-gradient(155deg,#071b52 0%,#0d41a8 100%);}
+.fullstatement p{font-family:var(--mincho);font-weight:400;font-size:clamp(24px,3.6vw,40px);color:#fff;line-height:1.9;margin:0;}
+
+/* ---------- Story ---------- */
+.story{padding:0;}
+.story .row{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
+.story .imgwrap{aspect-ratio:1/1;overflow:hidden;}
+.story .imgwrap img{width:100%;height:100%;object-fit:cover;}
+.story .textwrap{display:flex;align-items:center;padding:60px 80px;}
+.story .textinner .eyebrow{margin-bottom:16px;display:block;}
+.story h2{font-family:var(--mincho);font-weight:400;font-size:32px;color:var(--navy-deep);margin:0 0 20px;line-height:1.6;}
+.story p{font-size:14px;color:var(--sub);line-height:1.9;margin:0 0 28px;}
+
+/* ---------- Reasons (WHY ESION) ---------- */
+.reasons .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;}
+.reasons .item{text-align:center;}
+.reasons .imgwrap{aspect-ratio:1/1;border-radius:4px;overflow:hidden;margin-bottom:24px;background:#eef1f5;}
+.reasons .imgwrap img{width:100%;height:100%;object-fit:cover;}
+.reasons .num{font-family:var(--en);font-size:12px;color:var(--navy-light);letter-spacing:.14em;margin-bottom:8px;}
+.reasons h3{font-family:var(--jp);font-size:17px;font-weight:700;margin:0 0 10px;}
+.reasons p{font-size:13px;color:var(--sub);line-height:1.8;}
+
+/* ---------- 13FREE ---------- */
+.free13{background:var(--navy-deep);text-align:center;}
+.free13 .section-head h2{color:#fff;}
+.free13 .section-head .eyebrow{color:#9FB6CC;}
+.free13 .chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:820px;margin:0 auto;}
+.free13 .chip{border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:10px 20px;font-size:12px;color:#fff;letter-spacing:.03em;}
+
+/* ---------- ForWhom ---------- */
+.forwhom .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.forwhom .chip{border:1px solid var(--line);border-radius:8px;padding:22px 20px;font-size:13px;color:var(--gray-dark);text-align:center;line-height:1.7;}
+
+/* ---------- Voices ---------- */
+.voices{background:var(--bg-soft);}
+.voices .row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.voice-card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:28px;}
+.voice-card .stars{color:#F5B301;font-size:14px;margin-bottom:14px;}
+.voice-card p{font-size:13px;color:var(--sub);line-height:1.9;margin:0 0 16px;}
+.voice-card .who{font-family:var(--en);font-size:11px;letter-spacing:.08em;color:var(--meta);}
+
+/* ---------- Stores ---------- */
+.stores{text-align:center;}
+.stores .row{display:flex;justify-content:center;align-items:center;gap:56px;flex-wrap:wrap;opacity:.8;}
+.stores .name{font-family:var(--en);font-size:20px;letter-spacing:.1em;color:var(--gray-dark);}
+
+/* ---------- Subscription ---------- */
+.subscribe{background:var(--navy-deep);color:#fff;}
+.subscribe .row{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.subscribe .eyebrow{color:#9FB6CC;}
+.subscribe h2{font-family:var(--mincho);font-weight:400;font-size:32px;margin:14px 0 24px;line-height:1.6;}
+.subscribe ul{list-style:none;margin:0 0 32px;padding:0;display:flex;flex-direction:column;gap:14px;}
+.subscribe li{font-size:13px;color:rgba(255,255,255,.85);padding-left:22px;position:relative;line-height:1.7;}
+.subscribe li::before{content:'';position:absolute;left:0;top:7px;width:10px;height:10px;border:1px solid #fff;border-radius:50%;}
+.subscribe .imgwrap{aspect-ratio:4/5;border-radius:4px;overflow:hidden;}
+.subscribe .imgwrap img{width:100%;height:100%;object-fit:cover;}
+.subscribe .btn{background:#fff;color:var(--navy-deep);}
+
+/* ---------- FAQ ---------- */
+.faq .qa{border-top:1px solid var(--line);}
+.faq .q{border-bottom:1px solid var(--line);padding:22px 4px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:24px;}
+.faq .q .t{font-size:14px;font-weight:700;color:var(--black);}
+.faq .q .mark{font-family:var(--en);font-size:18px;color:var(--navy-light);transition:transform .3s ease;flex:none;}
+.faq .q.open .mark{transform:rotate(45deg);}
+.faq .a{max-height:0;overflow:hidden;opacity:0;transition:max-height .4s ease,opacity .3s ease;padding:0 4px;}
+.faq .q.open + .a{max-height:200px;opacity:1;padding:0 4px 22px;}
+.faq .a p{font-size:13px;color:var(--sub);line-height:1.8;margin:0;}
+
+/* ---------- News ---------- */
+.news .row{display:flex;flex-direction:column;border-top:1px solid var(--line);}
+.news a{display:flex;gap:28px;padding:20px 4px;border-bottom:1px solid var(--line);text-decoration:none;align-items:baseline;}
+.news .date{font-family:var(--en);font-size:12px;color:var(--meta);flex:none;width:90px;}
+.news .title{font-size:13px;color:var(--black);}
+
+/* ---------- Contact ---------- */
+.contact{background:linear-gradient(155deg,#071b52 0%,#0d41a8 100%);}
+.contact .section-head h2{color:#fff;}
+.contact .section-head .eyebrow{color:#9FB6CC;}
+.contact .row{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto;}
+.contact .box{border:1px solid rgba(255,255,255,.3);border-radius:8px;padding:32px 24px;text-align:center;color:#fff;}
+.contact .box .t{font-family:var(--en);font-size:16px;letter-spacing:.08em;margin-bottom:10px;}
+.contact .box .d{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:20px;}
+
+/* ---------- Footer ---------- */
+footer.site{background:var(--navy-deep);color:#fff;padding:56px 0 32px;}
+footer.site .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:20px;}
+footer.site .logo{font-family:var(--en);font-size:18px;letter-spacing:.2em;font-weight:600;}
+footer.site .sns{display:flex;gap:16px;}
+footer.site .sns img{width:20px;height:20px;filter:brightness(0) invert(1);opacity:.85;}
+footer.site .links{display:flex;gap:24px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.15);padding-top:24px;}
+footer.site .links a{font-family:var(--en);font-size:11px;letter-spacing:.05em;color:rgba(255,255,255,.7);text-decoration:none;}
+footer.site .copyright{margin-top:24px;font-family:var(--en);font-size:10px;letter-spacing:.05em;color:rgba(255,255,255,.4);}
+
+/* ---------- Responsive ---------- */
+@media (max-width:768px){
+  .wrap{padding:0 20px;}
+  header.site nav,header.site .baseicons .textlink{display:none;}
+  #sp-toggle{display:block;}
+  #sp-menu{display:flex;}
+  .hero{height:640px;}
+  .hero .scroll{display:none;}
+  .section{padding:72px 0;}
+  .section-head h2{font-size:24px;}
+  .manifesto{padding:64px 0;}
+  .lineup .grid{grid-template-columns:1fr;gap:20px;}
+  .fullstatement{padding:96px 0;}
+  .story .row{grid-template-columns:1fr;}
+  .story .textwrap{padding:40px 20px;}
+  .story h2{font-size:24px;}
+  .reasons .grid{grid-template-columns:1fr;gap:28px;}
+  .free13 .chips{gap:8px;}
+  .forwhom .chips{grid-template-columns:1fr 1fr;}
+  .voices .row{grid-template-columns:1fr;}
+  .stores .row{gap:32px;}
+  .subscribe .row{grid-template-columns:1fr;gap:32px;}
+  .subscribe h2{font-size:24px;}
+  .contact .row{grid-template-columns:1fr;}
+  .news a{gap:16px;}
+  footer.site .top{flex-direction:column;align-items:flex-start;}
+}
+
+/* ---------- scroll reveal ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);}
+.rv.shown{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     header / footer は全ページ共通。BASEでは {block:IndexPage} の
+     外側（ラップしない状態）に置く。
+============================================================ -->
+<header class="site" id="siteHeader">
+  <div class="wrap">
+    <a class="logo" href="/">ESION</a>
+    <nav>
+      <a href="#lineup">PRODUCTS</a>
+      <a href="#story">COMMITMENT</a>
+      <a href="#voices">STORY</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="baseicons">
+      <!-- 本番では {BASEMenuTag} をここに差し込む（カート・BASEへのリンクアイコン） -->
+      <span class="textlink" style="font-family:var(--en);font-size:12px;letter-spacing:.1em;">CART</span>
+    </div>
+    <button id="sp-toggle" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div id="sp-menu">
+  <button id="sp-close"><span></span><span></span></button>
+  <nav>
+    <a href="#lineup">PRODUCTS</a>
+    <a href="#story">COMMITMENT</a>
+    <a href="#voices">STORY</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="sp-cart" href="#lineup">まずはお試し</a>
+</div>
+
+<!-- ============================================================
+     ここから {block:IndexPage} 〜 {/block:IndexPage}（TOPページのみ表示）
+============================================================ -->
+
+<section class="hero">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="shoulder">SCALP CARE AMINO SHAMPOO</div>
+    <h1>ESION</h1>
+    <p class="tagline">無香料であること、シャンプーで洗い流すこと。</p>
+    <a class="btn" href="#lineup">まずはお試し ¥990</a>
+  </div>
+  <div class="scroll"><span>SCROLL</span><i></i></div>
+  <div class="copyright">© ESION</div>
+</section>
+
+<section class="manifesto">
+  <div class="wrap">
+    <p class="rv">香りで、隠さない。<br><em>清潔だけを、まっすぐ届ける。</em></p>
+  </div>
+</section>
+
+<section class="section lineup" id="lineup">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">LINEUP</div>
+      <h2>まずは、5日間の静けさから。</h2>
+    </div>
+    <div class="grid">
+      <div class="card rv">
+        <div class="imgwrap"><img src="a/ch05-bottle-composite.jpg" alt="エシオンお試し５days"></div>
+        <div class="body">
+          <span class="badge">TRIAL</span>
+          <h3>エシオンお試し５days</h3>
+          <p class="desc">はじめての方へ。5日分の携帯用パウチで、無香料の洗い上がりを試す。</p>
+          <div class="price">¥990<small>税込</small></div>
+        </div>
+      </div>
+      <div class="card rv">
+        <div class="imgwrap"><img src="a/ESION_Photoshoot_ESION-SHAMPOO_Minimal-Oil-Bottle_2026-07-05_2x__1_.jpg" alt="エシオン450mL+２days"></div>
+        <div class="body">
+          <span class="badge">SINGLE</span>
+          <h3>エシオン450mL+２days</h3>
+          <p class="desc">本品450mLに、携帯用2日分を添えて。まずは1本、暮らしに置く。</p>
+          <div class="price">¥4,500<small>税込</small></div>
+        </div>
+      </div>
+      <div class="card rv">
+        <div class="imgwrap"><img src="a/ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x-1.jpg" alt="エシオン定期便"></div>
+        <div class="body">
+          <span class="badge">SUBSCRIPTION</span>
+          <h3>エシオン定期便</h3>
+          <p class="desc">続けるほど、静けさが日常になる。周期・本数は自由に変更可能。</p>
+          <div class="price">初回¥7,317<small>税込</small></div>
+          <div style="font-family:var(--en);font-size:12px;color:var(--meta);margin-top:4px;">2回目以降 ¥6,389</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fullstatement">
+  <div class="wrap"><p class="rv">洗うために、<br>香りはいらなかった。</p></div>
+</section>
+
+<section class="story" id="story">
+  <div class="row">
+    <div class="imgwrap"><img src="a/ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x.jpg" alt="ESION 使用シーン"></div>
+    <div class="textwrap">
+      <div class="textinner">
+        <span class="eyebrow">COMMITMENT</span>
+        <h2>消耗品から、<br>愛用品へ。</h2>
+        <p>香りで気分を上げるのではなく、香りを足さないことで清潔をつくる。ESIONは「何も足さない」を設計した、スカルプケアアミノシャンプーです。</p>
+        <a class="btn btn-outline" href="#faq">こだわりを読む</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reasons">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">WHY ESION</div>
+      <h2>選ばれる、3つの理由。</h2>
+    </div>
+    <div class="grid">
+      <div class="item rv">
+        <div class="imgwrap"><img src="a/ESION_Photoshoot_ESION-SHAMPOO_Minimal-Oil-Bottle_2026-07-05_2x__1_.jpg" alt="無香料"></div>
+        <div class="num">01</div>
+        <h3>無香料</h3>
+        <p>香料を一切加えない。<br>肌もライフスタイルも選ばない。</p>
+      </div>
+      <div class="item rv">
+        <div class="imgwrap"><img src="a/ch05-bottle-composite.jpg" alt="アミノ酸系"></div>
+        <div class="num">02</div>
+        <h3>アミノ酸系</h3>
+        <p>頭皮にやさしい洗浄成分で、<br>毎日のケアを続けやすく。</p>
+      </div>
+      <div class="item rv">
+        <div class="imgwrap"><img src="a/ESION_Photoshoot_Mineral-Blue-Shower-Mousse_2026-07-05_2x-1.jpg" alt="オールインワン"></div>
+        <div class="num">03</div>
+        <h3>オールインワン</h3>
+        <p>これ1本で、洗う・整える・<br>仕上げるまで完結。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section free13" id="free13">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">INGREDIENTS</div>
+      <h2>THE 13 FREE</h2>
+    </div>
+    <div class="chips">
+      <span class="chip">パラベン</span><span class="chip">シリコン</span><span class="chip">紫外線吸収剤</span>
+      <span class="chip">着色料</span><span class="chip">鉱物油</span><span class="chip">合成香料</span>
+      <span class="chip">エタノール</span><span class="chip">サルフェート</span><span class="chip">フェノキシエタノール</span>
+      <span class="chip">動物性原料</span><span class="chip">石油系界面活性剤</span><span class="chip">紫外線散乱剤</span>
+      <span class="chip">合成ポリマー</span>
+    </div>
+  </div>
+</section>
+
+<section class="fullstatement" style="background:linear-gradient(155deg,#0d41a8 0%,#071b52 100%);">
+  <div class="wrap"><p class="rv">指と髪の間に、<br>泡の層。</p></div>
+</section>
+
+<section class="section forwhom">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">RECOMMENDED</div>
+      <h2>こんな方に、選ばれています。</h2>
+    </div>
+    <div class="chips">
+      <div class="chip">香りに敏感な方</div>
+      <div class="chip">頭皮の乾燥・かゆみが気になる方</div>
+      <div class="chip">家族で同じものを使いたい方</div>
+      <div class="chip">スキンケアの延長でケアしたい方</div>
+      <div class="chip">忙しくて時短したい方</div>
+      <div class="chip">無添加にこだわりたい方</div>
+    </div>
+  </div>
+</section>
+
+<section class="section voices" id="voices">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">VOICE</div>
+      <h2>使った人の、声。</h2>
+    </div>
+    <div class="row">
+      <div class="voice-card">
+        <div class="stars">★★★★★</div>
+        <p>香りが本当にしないので、家族全員で使えるようになりました。子どもの敏感肌にも安心です。</p>
+        <div class="who">40代 / 女性</div>
+      </div>
+      <div class="voice-card">
+        <div class="stars">★★★★★</div>
+        <p>これ1本で完結するのが楽。仕事で疲れて帰った日でも、ケアが続けられています。</p>
+        <div class="who">30代 / 男性</div>
+      </div>
+      <div class="voice-card">
+        <div class="stars">★★★★★</div>
+        <p>頭皮のかゆみが落ち着きました。無香料なのに、洗い上がりはちゃんと清潔感があります。</p>
+        <div class="who">50代 / 女性</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section stores">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">STORES</div>
+      <h2>お取り扱い店舗</h2>
+    </div>
+    <div class="row">
+      <div class="name">LOFT</div>
+      <div class="name">PLAZA</div>
+      <div class="name">Hands</div>
+      <div class="name">@cosme</div>
+      <div class="name">AINZ&TULPE</div>
+    </div>
+  </div>
+</section>
+
+<section class="section subscribe">
+  <div class="wrap">
+    <div class="row">
+      <div>
+        <span class="eyebrow">FLEX ORDER</span>
+        <h2>続けやすさも、<br>設計した。</h2>
+        <ul>
+          <li>周期・本数はいつでも変更可能</li>
+          <li>初回から10%OFF、継続でさらに優待</li>
+          <li>お届け前にLINEでリマインド通知</li>
+          <li>休止・再開もマイページから1分で完了</li>
+        </ul>
+        <a class="btn" href="#lineup">定期便を始める</a>
+      </div>
+      <div class="imgwrap"><img src="a/ESION_Photoshoot_ESION-SHAMPOO_Minimal-Oil-Bottle_2026-07-05_2x__1_.jpg" alt="定期便"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">FAQ</div>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="qa">
+      <div class="q" data-q="1"><span class="t">本当に香りがしませんか？</span><span class="mark">+</span></div>
+      <div class="a"><p>香料を一切使用していないため、洗浄中・洗い上がり後ともに香りはほぼ感じられません。</p></div>
+      <div class="q" data-q="2"><span class="t">敏感肌でも使えますか？</span><span class="mark">+</span></div>
+      <div class="a"><p>アミノ酸系洗浄成分を採用し、13の添加物を排除しています。パッチテストの上でのご使用をおすすめします。</p></div>
+      <div class="q" data-q="3"><span class="t">家族で共有できますか？</span><span class="mark">+</span></div>
+      <div class="a"><p>無香料・オールインワン設計のため、年齢・性別を問わずご家族でお使いいただけます。</p></div>
+      <div class="q" data-q="4"><span class="t">定期便はいつでも解約できますか？</span><span class="mark">+</span></div>
+      <div class="a"><p>マイページからいつでも休止・解約が可能です。次回お届けの5日前までにご変更ください。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section news">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">NEWS</div>
+      <h2>お知らせ</h2>
+    </div>
+    <div class="row">
+      <a href="#"><span class="date">2026.08.01</span><span class="title">ESION定期便、周期変更機能をリニューアルしました。</span></a>
+      <a href="#"><span class="date">2026.07.10</span><span class="title">お試し5daysパウチの販売を開始しました。</span></a>
+      <a href="#"><span class="date">2026.06.20</span><span class="title">ロフト各店にてお取り扱いを開始しました。</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="section contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">CONTACT</div>
+      <h2>お問い合わせ</h2>
+    </div>
+    <div class="row">
+      <div class="box">
+        <div class="t">LINE</div>
+        <div class="d">お友だち登録で、最短で回答します。</div>
+        <a class="btn" href="https://line.me/R/ti/p/%40esion" style="background:#06C755;">LINEで質問する</a>
+      </div>
+      <div class="box">
+        <div class="t">MAIL</div>
+        <div class="d">フォームより、お気軽にご連絡ください。</div>
+        <!-- 本番では {ContactPageURL} に差し替え -->
+        <a class="btn btn-outline" style="background:transparent;border-color:#fff;color:#fff;" href="#">メールで問い合わせる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     {/block:IndexPage} ここまで
+============================================================ -->
+
+<footer class="site">
+  <div class="wrap">
+    <div class="top">
+      <div class="logo">ESION</div>
+      <div class="sns">
+        <a href="https://www.instagram.com/esion.jp/"><img src="https://api.iconify.design/mdi/instagram.svg" alt="Instagram"></a>
+        <a href="https://x.com/esion_jp"><img src="https://api.iconify.design/mdi/twitter.svg" alt="X"></a>
+        <a href="https://line.me/R/ti/p/%40esion"><img src="https://api.iconify.design/simple-icons/line.svg" alt="LINE"></a>
+        <a href="https://facebook.com/esion.jp"><img src="https://api.iconify.design/mdi/facebook.svg" alt="Facebook"></a>
+        <a href="https://www.youtube.com/@esion_official"><img src="https://api.iconify.design/mdi/youtube.svg" alt="YouTube"></a>
+      </div>
+    </div>
+    <div class="links">
+      <!-- 本番では {ContactPageURL} {PrivacyPageURL} {LawPageURL} に差し替え -->
+      <a href="#">お問い合わせ</a>
+      <a href="#">プライバシーポリシー</a>
+      <a href="#">特定商取引法に基づく表記</a>
+    </div>
+    <div class="copyright">© ESION公式</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var header=document.getElementById('siteHeader');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>60){header.classList.add('scrolled');}else{header.classList.remove('scrolled');}
+  });
+  var spToggle=document.getElementById('sp-toggle');
+  var spMenu=document.getElementById('sp-menu');
+  var spClose=document.getElementById('sp-close');
+  spToggle.addEventListener('click',function(){spMenu.classList.add('open');});
+  spClose.addEventListener('click',function(){spMenu.classList.remove('open');});
+  spMenu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){spMenu.classList.remove('open');});});
+
+  document.querySelectorAll('.faq .q').forEach(function(q){
+    q.addEventListener('click',function(){q.classList.toggle('open');});
+  });
+
+  var rv=document.querySelectorAll('.rv');
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('shown');}});
+  },{threshold:.2});
+  rv.forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
