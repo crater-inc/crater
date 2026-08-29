@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ショップカードデザイン | CHICS</title>
+<meta name="description" content="ショップカードの世界観は、まずロゴ作りから。ロゴは一番思いがこもる場所だから、CHICSはそこを大切にするチームです。">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  /* トンマナはchics.top公式サイトから実測して踏襲（完全モノクロ・Noto Sans JP＋英字はRoboto Condensedのトラッキング広めラベル） */
+  :root{
+    --ink:#000000;
+    --sub:#4d4d4d;
+    --meta:#8a8a8a;
+    --line:#e6e4e0;
+    --bg:#ffffff;
+    --bg-soft:#f8f8f8;
+    --accent:#000000;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Noto Sans JP", sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.8;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{text-decoration:none; color:inherit;}
+  .wrap{width:100%; max-width:1120px; margin:0 auto; padding:0 32px;}
+
+  /* ===== ヘッダー：ロゴ左端・CTAのみ右端（フルナビなし=LPの離脱防止）。ヒーロー上のみに存在し、スクロールでバーは出さない ===== */
+  header{
+    position:absolute; top:0; left:0; width:100%; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:24px 40px;
+  }
+  .logo img{height:19px; width:auto; display:block; filter:brightness(0) invert(1);}
+  .header-cta{
+    display:inline-flex; align-items:center;
+    font-size:13px; font-weight:700; letter-spacing:.04em;
+    padding:13px 26px; border-radius:999px;
+    background:var(--ink); color:#fff; border:1px solid #fff;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+  }
+  .header-cta:hover{background:#fff; color:var(--ink); transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.25);}
+
+  /* ===== ヒーロー：790px基準・全画面背景 ===== */
+  .hero{
+    position:relative; width:100%; height:790px; min-height:600px;
+    display:flex; align-items:flex-end;
+    background:linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.7)), url("../assets/mood_service.jpg");
+    background-size:cover; background-position:center;
+    overflow:hidden;
+  }
+
+  /* ===== 写真ドーンセクション（ESION同様、全面写真＋短いコピー） ===== */
+  .photo-band{
+    position:relative; width:100%; height:560px;
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    background-size:cover; background-position:center;
+    overflow:hidden;
+  }
+  .photo-band::before{
+    content:''; position:absolute; inset:0; background:rgba(0,0,0,.38);
+  }
+  .photo-band .band-inner{position:relative; z-index:2; padding:0 32px;}
+  .photo-band .band-label{
+    font-family:"Roboto Condensed", sans-serif; font-size:13px; letter-spacing:.2em;
+    color:rgba(255,255,255,.7); text-transform:uppercase; margin-bottom:20px;
+  }
+  .photo-band .band-copy{
+    font-size:clamp(22px,3.2vw,34px); font-weight:600; color:#fff; line-height:1.7;
+    max-width:720px; margin:0 auto;
+  }
+  @media (max-width:768px){
+    .photo-band{height:400px;}
+  }
+  .hero-inner{position:relative; z-index:2; width:100%; padding:0 40px 72px;}
+  .hero-eyebrow{
+    font-family:"Roboto Condensed", sans-serif;
+    color:rgba(255,255,255,.75); font-size:13px; letter-spacing:.2em; font-weight:400;
+    margin-bottom:20px; text-transform:uppercase;
+  }
+  .hero h1{
+    font-family:"Noto Sans JP", sans-serif;
+    color:#fff; font-size:clamp(28px, 4.4vw, 52px); line-height:1.5; font-weight:600;
+    max-width:820px; margin-bottom:24px;
+  }
+  .hero p.lead{
+    color:rgba(255,255,255,.85); font-size:16px; max-width:520px; margin-bottom:36px;
+  }
+  .cta-btn{
+    display:inline-flex; align-items:center; gap:10px;
+    background:#fff; color:var(--ink);
+    font-size:15px; font-weight:700; letter-spacing:.03em;
+    padding:18px 32px; border-radius:999px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .cta-btn:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.25);}
+  .cta-btn .arrow{transition:transform .25s ease;}
+  .cta-btn:hover .arrow{transform:translateX(4px);}
+
+  /* ===== 共通セクション ===== */
+  section{padding:96px 0;}
+  .section-label{
+    font-family:"Roboto Condensed", sans-serif;
+    font-size:13px; font-weight:400; letter-spacing:.2em; color:var(--meta);
+    text-transform:uppercase; margin-bottom:16px;
+  }
+  .section-title{
+    font-family:"Noto Sans JP", sans-serif; font-size:clamp(22px,3vw,32px); font-weight:600;
+    line-height:1.6; margin-bottom:20px;
+  }
+  .section-desc{color:var(--sub); font-size:15px; max-width:640px; margin-bottom:56px;}
+
+  .reveal{opacity:0; transform:translateY(28px);}
+
+  /* ===== 選ばれる理由 ===== */
+  .reasons{background:var(--bg-soft);}
+  .reason-list{display:grid; grid-template-columns:repeat(3,1fr); gap:40px;}
+  .reason-item{position:relative;}
+  .reason-thumb{aspect-ratio:4/3; width:100%; overflow:hidden; margin-bottom:24px; background:#e2e0db;}
+  .reason-thumb img{width:100%; height:100%; object-fit:cover;}
+  .reason-num{
+    font-family:"Noto Sans JP", sans-serif; font-size:14px; color:var(--meta);
+    display:block; margin-bottom:10px;
+  }
+  .reason-item h3{font-size:17px; font-weight:700; margin-bottom:12px; line-height:1.6;}
+  .reason-item p{color:var(--sub); font-size:14px; line-height:1.9;}
+
+  /* ===== 実績・事例（プレースホルダー） ===== */
+  .works-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .work-card{border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+  .work-thumb{
+    aspect-ratio:16/9; width:100%; overflow:hidden;
+    background:#efeeea;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .work-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .5s ease;}
+  .work-card:hover .work-thumb img{transform:scale(1.05);}
+  .work-thumb--more{
+    color:var(--sub); font-size:13px; font-weight:700; letter-spacing:.03em;
+  }
+  .work-card{display:block; cursor:pointer; transition:box-shadow .25s ease;}
+  .work-card:hover{box-shadow:0 12px 28px rgba(0,0,0,.08);}
+  .work-card-body{padding:18px 20px;}
+  .work-card-body .cat{font-size:11px; color:var(--meta); letter-spacing:.05em; margin-bottom:6px;}
+  .work-card-body .name{font-size:14px; font-weight:700;}
+  .works-note{
+    margin-top:24px; font-size:13px; color:var(--meta);
+    border-left:3px solid var(--line); padding-left:14px;
+  }
+
+  /* ===== 納品までの流れ ===== */
+  .flow{background:var(--bg);}
+  .flow-list{display:flex; flex-direction:column;}
+  .flow-row{display:grid; grid-template-columns:100px 1fr; gap:32px; padding:36px 0; border-top:1px solid var(--line);}
+  .flow-list .flow-row:last-child{border-bottom:1px solid var(--line);}
+  .flow-num{font-family:"Roboto Condensed", sans-serif; font-size:44px; font-weight:700; color:var(--ink); line-height:1;}
+  .flow-num span{display:block; font-size:11px; font-family:"Noto Sans JP",sans-serif; font-weight:700; letter-spacing:.1em; color:var(--meta); margin-top:8px;}
+  .flow-steps{display:flex; flex-wrap:wrap; gap:16px 40px;}
+  .flow-step{min-width:160px;}
+  .flow-step .step-name{font-size:15px; font-weight:700; margin-bottom:6px;}
+  .flow-step .step-desc{font-size:13px; color:var(--sub); line-height:1.8;}
+  @media (max-width:768px){
+    .flow-row{grid-template-columns:1fr; gap:12px;}
+    .flow-steps{flex-direction:column; gap:20px;}
+  }
+
+  /* ===== Craft写真：スプリット型（Printの写真ドーンと差をつける） ===== */
+  .split-band{display:grid; grid-template-columns:1fr 1fr; background:var(--ink);}
+  .split-photo{aspect-ratio:1/1; overflow:hidden;}
+  .split-photo img{width:100%; height:100%; object-fit:cover;}
+  .split-text{display:flex; flex-direction:column; justify-content:center; padding:60px;}
+  .split-text .band-label{color:rgba(255,255,255,.55); margin-bottom:20px;}
+  .split-text .band-copy{color:#fff; font-size:clamp(20px,2.6vw,28px); font-weight:600; line-height:1.8; text-align:left; margin:0;}
+  @media (max-width:768px){
+    .split-band{grid-template-columns:1fr;}
+    .split-photo{aspect-ratio:16/9;}
+    .split-text{padding:44px 24px;}
+  }
+
+  /* ===== FAQ ===== */
+  .faq{background:var(--bg-soft);}
+  .faq-list{max-width:960px;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:26px 4px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+    font-size:15px; font-weight:700; color:var(--ink); font-family:inherit;
+  }
+  .faq-q .q-mark{color:var(--meta); font-family:"Noto Sans JP", sans-serif; flex-shrink:0;}
+  .faq-plus{font-size:20px; font-weight:400; transition:transform .3s ease; flex-shrink:0;}
+  .faq-item.open .faq-plus{transform:rotate(45deg);}
+  .faq-a{
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+  }
+  .faq-a p{padding:0 4px 26px; color:var(--sub); font-size:14px; line-height:1.9;}
+
+  /* ===== 最終CTA ===== */
+  .final-cta{
+    background:var(--ink); color:#fff; text-align:center; padding:120px 0;
+  }
+  .final-cta .section-label{color:rgba(255,255,255,.5);}
+  .final-cta h2{
+    font-family:"Noto Sans JP", sans-serif; font-size:clamp(24px,3.6vw,38px); font-weight:600;
+    line-height:1.7; margin-bottom:44px;
+  }
+  .final-cta .cta-btn{background:#fff; color:var(--ink);}
+
+  /* ===== フッター：直前の最終CTA(黒)と明確に分けるため白地。ロゴ実物＋帯コピーで構造を作る。サイトマップなし ===== */
+  .site-footer{background:var(--bg); color:var(--ink); padding:0;}
+  .footer-band{
+    background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.72)), url('../assets/mood_service.jpg');
+    background-size:cover; background-position:center 30%;
+    padding:96px 0 72px; text-align:center;
+  }
+  .footer-band .foot-logo{height:26px; width:auto; margin:0 auto 32px; filter:brightness(0) invert(1);}
+  .footer-band .foot-eyebrow{font-family:"Roboto Condensed", sans-serif; font-size:13px; letter-spacing:.2em; color:rgba(255,255,255,.55); text-transform:uppercase; margin-bottom:14px;}
+  .footer-band h2{color:#fff; font-size:clamp(22px,3vw,30px); font-weight:600; line-height:1.6; margin-bottom:24px;}
+  .footer-band .foot-desc{color:rgba(255,255,255,.72); font-size:14px; max-width:560px; margin:0 auto 36px; line-height:2;}
+  .footer-band .cta-btn{background:#fff; color:var(--ink);}
+  .footer-bottom{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 0; border-top:1px solid var(--line);
+  }
+  .footer-bottom .copyright{font-size:12px; color:var(--meta);}
+  .footer-bottom .foot-mark img{height:14px; width:auto;}
+  @media (max-width:768px){
+    .footer-band{padding:72px 0 56px;}
+    .footer-bottom{flex-direction:column; gap:14px; text-align:center;}
+  }
+
+  @media (max-width:768px){
+    .wrap{padding:0 24px;}
+    header{padding:18px 24px;}
+    .hero{height:auto; min-height:640px; padding-top:120px;}
+    .hero-inner{padding:0 24px 56px;}
+    section{padding:64px 0;}
+    .reason-list{grid-template-columns:1fr; gap:36px;}
+    .works-grid{grid-template-columns:1fr; gap:20px;}
+    .section-desc{margin-bottom:40px;}
+    .final-cta{padding:80px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <a class="logo" href="https://chics.top/"><img src="../assets/logo_sp.svg" alt="CHICS"></a>
+  <a class="header-cta" href="#cta">ロゴ制作を相談する</a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner wrap">
+    <div class="hero-eyebrow">Shop Card Design</div>
+    <h1>そのショップカード、<br>お店の見せたい世界観になっていますか。</h1>
+    <p class="lead">その世界観は、まずロゴ作りから始まります。ロゴは一番思いがこもる場所。CHICSは、そこを大切にするチームです。</p>
+    <a class="cta-btn" href="#cta">ロゴ制作を相談する <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<section class="reasons">
+  <div class="wrap">
+    <div class="section-label reveal">Why CHICS</div>
+    <h2 class="section-title reveal">選ばれる理由</h2>
+    <div class="reason-list">
+      <div class="reason-item reveal">
+        <div class="reason-thumb"><img src="../assets/strength_1_品質.jpg" alt="オーダーメイドによる唯一無二の品質"></div>
+        <div class="reason-num">01</div>
+        <h3>ロゴには、お店の一番の思いが詰まっている</h3>
+        <p>ショップカードも含めて、すべてのデザインの起点はロゴです。CHICSは、そこを一番大切に作るチームです。</p>
+      </div>
+      <div class="reason-item reveal">
+        <div class="reason-thumb"><img src="../assets/strength_4_修正無制限.jpg" alt="修正回数は無制限"></div>
+        <div class="reason-num">02</div>
+        <h3>修正回数は無制限。納得いくまで詰められる</h3>
+        <p>ロゴとの微調整も、回数を気にせず納得いくまで修正できます。CHICSの制作全体に共通する強みです。</p>
+      </div>
+      <div class="reason-item reveal">
+        <div class="reason-thumb"><img src="../assets/strength_5_印刷対応.jpg" alt="印刷にも対応"></div>
+        <div class="reason-num">03</div>
+        <h3>データ納品だけでなく、印刷にも対応</h3>
+        <p>ロゴ制作から着手し、そこから一貫してショップカードの印刷まで対応します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="photo-band" style="background-image:url('../assets/strength_5_印刷対応.jpg');">
+  <div class="band-inner">
+    <div class="band-label reveal">Print</div>
+    <p class="band-copy reveal">データだけで終わらせない。<br>印刷まで、CHICSの仕事です。</p>
+  </div>
+</div>
+
+<section class="works">
+  <div class="wrap">
+    <div class="section-label reveal">Works</div>
+    <h2 class="section-title reveal">実績・事例</h2>
+    <p class="section-desc reveal">ロゴ制作とあわせて手がけたショップカードの実例です。</p>
+    <div class="works-grid">
+      <a class="work-card reveal" href="https://chics.top/works/post-414/" target="_blank" rel="noopener">
+        <div class="work-thumb"><img src="../assets/work_catatsumuri.jpg" alt="Catatsumuri ロゴ・ショップカード"></div>
+        <div class="work-card-body"><div class="cat">LOGO + SHOP CARD</div><div class="name">Catatsumuri</div></div>
+      </a>
+      <a class="work-card reveal" href="https://chics.top/works/post-383/" target="_blank" rel="noopener">
+        <div class="work-thumb"><img src="../assets/work_ringoseika.png" alt="クリエイトアイエムエス株式会社 ロゴ・ショップカード"></div>
+        <div class="work-card-body"><div class="cat">LOGO + SHOP CARD</div><div class="name">クリエイトアイエムエス株式会社</div></div>
+      </a>
+      <a class="work-card reveal work-card--more" href="https://chics.top/works/" target="_blank" rel="noopener">
+        <div class="work-thumb work-thumb--more">その他の実績を見る →</div>
+        <div class="work-card-body"><div class="cat">CHICS WORKS</div><div class="name">実績一覧へ</div></div>
+      </a>
+    </div>
+    <p class="works-note reveal">※実績はCHICS公式サイト(chics.top)の公開実績から、ロゴ＋ショップカードの実例を掲載しています。</p>
+  </div>
+</section>
+
+<section class="flow">
+  <div class="wrap">
+    <div class="section-label reveal">Flow</div>
+    <h2 class="section-title reveal">納品までの流れ</h2>
+    <p class="section-desc reveal">ロゴ制作から、ショップカードの印刷・納品まで。</p>
+    <div class="flow-list">
+      <div class="flow-row reveal">
+        <div class="flow-num">01<span>契約前</span></div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-name">お問合せ</div><div class="step-desc">まずはウェブフォームからご連絡ください。</div></div>
+          <div class="flow-step"><div class="step-name">お打合せ</div><div class="step-desc">初回はビデオ通話ツールでヒアリングします。</div></div>
+          <div class="flow-step"><div class="step-name">半金お支払い</div><div class="step-desc">契約後、着手金をお支払いいただきます。</div></div>
+        </div>
+      </div>
+      <div class="flow-row reveal">
+        <div class="flow-num">02<span>制作開始</span></div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-name">デザインご相談</div><div class="step-desc">ロゴ制作からショップカードまで、あわせてご相談します。</div></div>
+          <div class="flow-step"><div class="step-name">修正・調整</div><div class="step-desc">回数無制限で、納得いくまで調整します。</div></div>
+        </div>
+      </div>
+      <div class="flow-row reveal">
+        <div class="flow-num">03<span>印刷・納品</span></div>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-name">印刷</div><div class="step-desc">データ納品だけでなく、印刷まで対応します。</div></div>
+          <div class="flow-step"><div class="step-name">発送(納品)</div><div class="step-desc">印刷物をお手元まで発送します。</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="split-band">
+  <div class="split-photo"><img src="../assets/strength_1_品質.jpg" alt="CHICSの名刺"></div>
+  <div class="split-text">
+    <div class="band-label reveal">Craft</div>
+    <p class="band-copy reveal">一枚のカードにも、<br>ロゴと同じだけの手間をかける。</p>
+  </div>
+</div>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="section-title reveal">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q"><span><span class="q-mark">Q. </span>ショップカードだけ作ってもらえますか?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>単体でのご依頼は承っておりません。ショップカードは、ロゴ制作の仕事の一部としてご提供しています。まずはロゴ制作からご相談ください。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span><span class="q-mark">Q. </span>印刷まで依頼できますか?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>はい、対応しています。データ納品だけでなく、印刷まで一貫してお任せいただけます。増刷のご相談もご連絡一本で承ります。</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q"><span><span class="q-mark">Q. </span>対応エリアはどこまでですか?</span><span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>全国オンラインで対応しています。拠点は東京ですが、全国どこからでもロゴ制作からご依頼いただけます。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="cta">
+  <div class="wrap">
+    <div class="section-label reveal">Contact</div>
+    <h2 class="reveal">ロゴ制作を、相談する。</h2>
+    <p class="section-desc reveal" style="margin:0 auto 48px; text-align:center; color:rgba(255,255,255,.7);">制作に関するご相談、お待ちしております。2〜3営業日内に担当よりご連絡します。</p>
+    <div class="contact-form-embed reveal">
+      <iframe id="bownowForm" title="CHICS お問合せフォーム" width="100%" height="900" frameborder="0" style="max-width:640px; margin:0 auto; display:block; background:#fff; border-radius:8px;"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-band">
+    <div class="wrap">
+      <img class="foot-logo" src="../assets/footer_logo.svg" alt="CHICS">
+      <div class="foot-eyebrow">Support all over Japan</div>
+      <h2>日本全国対応いたします。</h2>
+      <p class="foot-desc">対面はもちろんオンラインで日本全国納品可能です。初回ヒアリングのみビデオ通話ツールを使用し、その後は電話・メール・チャットツールなどお客様の使いやすい方法でやりとりいたします。</p>
+      <a class="cta-btn" href="#cta">ロゴ制作を相談する <span class="arrow">→</span></a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="footer-bottom">
+      <div class="copyright">&copy; CHICS</div>
+      <div class="foot-mark"><img src="../assets/logo_sp.svg" alt="CHICS"></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // BowNowフォーム：どのLP経由かをtitle/refererで渡す（既存フォームをLP横断で使い回し、流入元はBowNow側で判別）
+  (function(){
+    const base = 'https://contents.bownow.jp/forms/view/sid_a87473cd6d70f3bda799/f3743464-84cd-4139-ba55-debfcdb258a0';
+    const params = new URLSearchParams({
+      title: 'ショップカードデザインLP',
+      referer: window.location.href
+    });
+    document.getElementById('bownowForm').src = base + '?' + params.toString();
+  })();
+
+  // FAQ アコーディオン
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // GSAP スクロールリビール
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll('.reveal').forEach(el => {
+    gsap.to(el, {
+      opacity:1, y:0, duration:0.9, ease:'power2.out',
+      scrollTrigger:{ trigger: el, start:'top 88%' }
+    });
+  });
+</script>
+
+</body>
+</html>
