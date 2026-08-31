@@ -80,6 +80,8 @@ header.site.scrolled #sp-toggle span{background:var(--navy-deep);}
 .hero .scroll span{font-family:var(--en);font-size:10px;letter-spacing:.2em;color:var(--navy-deep);writing-mode:vertical-rl;}
 .hero .scroll i{width:1px;height:32px;background:var(--navy-deep);display:block;}
 .hero .tagline{position:absolute;left:44px;bottom:64px;font-family:var(--en);font-size:10px;letter-spacing:.05em;color:var(--navy-deep);z-index:2;}
+.hero .bottle{position:absolute;right:6%;top:9%;width:19%;max-width:260px;min-width:130px;z-index:2;transform:rotate(2.558deg);transform-origin:top left;animation:bottleFloat 4.2s ease-in-out infinite;filter:drop-shadow(0 24px 40px rgba(8,27,82,.35));}
+@keyframes bottleFloat{0%,100%{transform:rotate(2.558deg) translateY(0);}50%{transform:rotate(2.558deg) translateY(-15px);}}
 
 /* ---------- Lineup ---------- */
 .lineup .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
@@ -220,6 +222,7 @@ footer.site .bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:24px;
   #sp-menu{display:flex;}
   .hero{height:640px;}
   .hero .scroll{display:none;}
+  .hero .bottle{width:26%;right:4%;top:14%;}
   .section{padding:64px 0;}
   .lineup .grid{grid-template-columns:1fr;gap:24px;}
   .photostatement{height:auto;padding:64px 0;}
@@ -279,6 +282,7 @@ footer.site .bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:24px;
 <section class="hero">
   <div class="bg"></div>
   <div class="overlay"></div>
+  <div class="bottle"><img src="https://view.crater.co.jp/CL/ESION/webpen/a/KV2_0001_______-1.png" alt="ESION"></div>
   <div class="content">
     <h1>ESION</h1>
     <a class="btn btn-fill cta" href="#lineup">まずはお試し！</a>
