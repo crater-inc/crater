@@ -61,6 +61,8 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
 {BackgroundTag}
 <style>body{font-family:"Zen Kaku Gothic New",system-ui,sans-serif;}.logoImage{height:24px!important;width:auto!important;max-width:160px;}</style></head><body>
 
+<div id="pw-lock" style="position:fixed;inset:0;background:#071C52;display:flex;align-items:center;justify-content:center;z-index:99999;font-family:'Zen Kaku Gothic New',sans-serif"><div style="display:flex;flex-direction:column;align-items:center;gap:16px"><div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;letter-spacing:.15em;color:#fff;font-weight:600">ESION</div><input id="pw-input" type="password" placeholder="PASSWORD" autofocus style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:13px 16px;font-size:16px;color:#fff;width:240px;text-align:center;letter-spacing:.1em;outline:none" onkeydown="if(event.key==='Enter')pwCheck()"><button onclick="pwCheck()" style="background:#fff;color:#071C52;border:none;border-radius:100px;padding:12px 0;width:240px;font-size:13px;font-weight:700;letter-spacing:.15em;cursor:pointer">ENTER</button><div id="pw-error" style="font-size:12px;color:#ff9b9b;display:none">パスワードが違います</div></div></div><script>(function(){if(sessionStorage.getItem('cv_auth')==='1'){document.getElementById('pw-lock').style.display='none';}})();function pwCheck(){if(document.getElementById('pw-input').value==='view'){document.getElementById('pw-lock').style.display='none';sessionStorage.setItem('cv_auth','1');}else{document.getElementById('pw-error').style.display='block';}}</script>
+
 {block:IndexPage}
  <div class="lyt-pc"><div
  id="pageRoot" data-pencil-name="ESION Top v1"
@@ -793,7 +795,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  >
  50代 / 女性
  </div></div></div></div><div
- data-pencil-name="Subscription"
+ id="subscription" data-pencil-name="Subscription"
  style="background-image:linear-gradient(67.537deg, #071b52 11.452%, #0d41a8 88.548%);background-repeat:no-repeat;background-size:100% 100%;height:708px;left:0px;overflow:hidden;position:absolute;top:5394px;width:1199px;z-index:9"
  ><div
  data-pencil-name="Sb-Panel"
@@ -1216,37 +1218,22 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  PRODUCTS
  </div><div
  data-pencil-name="すべての商品"
+ data-href="#lineup"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  すべての商品
  </div><div
  data-pencil-name="ボトル"
+ data-href="/items/155142724"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  ボトル
  </div><div
  data-pencil-name="トライアル"
+ data-href="/items/155147829"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  トライアル
- </div></div><div
- data-pencil-name="MEMBER"
- style="align-items:flex-start;display:flex;flex-direction:column;flex-shrink:0;gap:15px;height:fit-content;width:fit-content"
- ><div
- data-pencil-name="hd"
- style='color: #FFFFFF; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap'
- >
- MEMBER
- </div><div
- data-pencil-name="新規ユーザー登録"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 新規ユーザー登録
- </div><div
- data-pencil-name="ログイン"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- ログイン
  </div></div><div
  data-pencil-name="SERVICE"
  style="align-items:flex-start;display:flex;flex-direction:column;flex-shrink:0;gap:15px;height:fit-content;width:fit-content"
@@ -1257,29 +1244,10 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  SERVICE
  </div><div
  data-pencil-name="フレックスオーダー（定期）"
+ data-href="#subscription"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  フレックスオーダー（定期）
- </div><div
- data-pencil-name="30日間返金保証"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 30日間返金保証
- </div><div
- data-pencil-name="事業者様向け"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 事業者様向け
- </div><div
- data-pencil-name="営業日カレンダー"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 営業日カレンダー
- </div><div
- data-pencil-name="取扱店舗"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 取扱店舗
  </div></div><div
  data-pencil-name="ABOUT"
  style="align-items:flex-start;display:flex;flex-direction:column;flex-shrink:0;gap:15px;height:fit-content;width:fit-content"
@@ -1290,14 +1258,10 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  ABOUT
  </div><div
  data-pencil-name="よくある質問"
+ data-href="#faq"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  よくある質問
- </div><div
- data-pencil-name="利用規約"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 利用規約
  </div><div
  data-pencil-name="特定商取引法に基づく表記"
  data-href="{LawPageURL}"
@@ -1310,11 +1274,6 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  プライバシーポリシー
- </div><div
- data-pencil-name="会社概要"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 会社概要
  </div></div></div></div></div></div><div class="lyt-sp"><div style="height:12153px;position:relative;width:390px"><div
  id="spRoot" data-pencil-name="ESION Top SP"
  style="align-items:flex-start;background-color:#FFFFFF;display:flex;flex-direction:column;height:12153px;left:0px;overflow:hidden;position:absolute;top:0px;width:390px"
@@ -2009,7 +1968,7 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  >
  50代 / 女性
  </div></div></div></div><div
- data-pencil-name="Subscription"
+ id="subscription" data-pencil-name="Subscription"
  style="background-image:linear-gradient(32.717deg, #071b52 18.568%, #0d41a8 81.432%);background-repeat:no-repeat;background-size:100% 100%;flex-shrink:0;height:867px;overflow:hidden;position:relative;width:390px;z-index:9"
  ><div
  data-pencil-name="Sb-Panel"
@@ -2393,16 +2352,19 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  PRODUCTS
  </div><div
  data-pencil-name="すべての商品"
+ data-href="#lineup"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  すべての商品
  </div><div
  data-pencil-name="ボトル"
+ data-href="/items/155142724"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  ボトル
  </div><div
  data-pencil-name="トライアル"
+ data-href="/items/155147829"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  トライアル
@@ -2416,51 +2378,14 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  SERVICE
  </div><div
  data-pencil-name="フレックスオーダー（定期）"
+ data-href="#subscription"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  フレックスオーダー（定期）
- </div><div
- data-pencil-name="30日間返金保証"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 30日間返金保証
- </div><div
- data-pencil-name="事業者様向け"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 事業者様向け
- </div><div
- data-pencil-name="営業日カレンダー"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 営業日カレンダー
- </div><div
- data-pencil-name="取扱店舗"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 取扱店舗
  </div></div></div><div
  data-pencil-name="colB"
  style="align-items:flex-start;display:flex;flex-direction:column;flex-shrink:0;gap:30px;height:fit-content;width:fit-content"
  ><div
- data-pencil-name="MEMBER"
- style="align-items:flex-start;display:flex;flex-direction:column;flex-shrink:0;gap:14px;height:fit-content;width:fit-content"
- ><div
- data-pencil-name="hd"
- style='color: #FFFFFF; font-family: "Barlow Condensed", system-ui, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; white-space: nowrap'
- >
- MEMBER
- </div><div
- data-pencil-name="新規ユーザー登録"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 新規ユーザー登録
- </div><div
- data-pencil-name="ログイン"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- ログイン
- </div></div><div
  data-pencil-name="ABOUT"
  style="align-items:flex-start;display:flex;flex-direction:column;flex-shrink:0;gap:14px;height:fit-content;width:fit-content"
  ><div
@@ -2470,14 +2395,10 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  ABOUT
  </div><div
  data-pencil-name="よくある質問"
+ data-href="#faq"
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  よくある質問
- </div><div
- data-pencil-name="利用規約"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 利用規約
  </div><div
  data-pencil-name="特定商取引法に基づく表記"
  data-href="{LawPageURL}"
@@ -2490,11 +2411,6 @@ html,body{margin:0;background:#fff;overflow-x:hidden;}
  style='color:#9FB6CC;font-size:12px;white-space:nowrap'
  >
  プライバシーポリシー
- </div><div
- data-pencil-name="会社概要"
- style='color:#9FB6CC;font-size:12px;white-space:nowrap'
- >
- 会社概要
  </div></div></div></div><div
  data-pencil-name="line"
  style="background-color:#22335F;height:1px;left:32px;position:absolute;top:580px;width:326px;z-index:4"
