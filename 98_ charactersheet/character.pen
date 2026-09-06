@@ -1,0 +1,3068 @@
+{
+  "version": "2.17",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "GILT CROW - KON",
+      "clip": true,
+      "width": 2438,
+      "height": 1370,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "RHqsI",
+          "x": 121,
+          "y": 81,
+          "name": "Main Visual Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_メインビジュアル/KON_メインビジュアル_独立版.png",
+            "mode": "fit"
+          },
+          "width": 1184,
+          "height": 1579
+        },
+        {
+          "type": "frame",
+          "id": "P0tdR",
+          "x": 60,
+          "y": 42,
+          "name": "Text Block",
+          "width": 300,
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "juAjI",
+              "name": "Name",
+              "fill": "#111111",
+              "content": "KON",
+              "fontFamily": "Inter",
+              "fontSize": 72,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "bXLww",
+              "name": "Info Rows",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qIkww",
+                  "name": "PART Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JKN3Y",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "PART",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "BpQoP",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "Vocal",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "lee3t",
+                  "name": "HEIGHT Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "H7jTJV",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "HEIGHT",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "EdhcK",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "176cm",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "AnzXX",
+                  "name": "KEY COLOR Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "vJjDw",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "KEY COLOR",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "POipL",
+                      "name": "Swatch Row",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "PQVtF",
+                          "name": "Color Dot",
+                          "fill": "#D4AF37",
+                          "width": 20,
+                          "height": 20
+                        },
+                        {
+                          "type": "text",
+                          "id": "b9CMs",
+                          "name": "Color Name",
+                          "fill": "#222222",
+                          "content": "Gold",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "GYTeK",
+              "name": "Tagline",
+              "fill": "#333333",
+              "textGrowth": "fixed-width",
+              "width": 300,
+              "content": "圧倒的な歌声と存在感で場の中心に立つボーカル。感情を深く見つめるクールな内面に、繊細な共感力を秘める。美意識が高く、すべての佇まいが芸術的。",
+              "lineHeight": 1.7,
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "LSfrK",
+          "x": 1354,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_表情/KON_表情_穏やか.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "LQIwr",
+          "x": 1354,
+          "y": 351.74812271521256,
+          "name": "穏やか Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "穏やか",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "pWvGK",
+          "x": 1678.7376278283464,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_表情/KON_表情_驚き.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "EhhlK",
+          "x": 1678.7376278283464,
+          "y": 351.74812271521256,
+          "name": "驚き Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "驚き",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "j7lWxu",
+          "x": 1354,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_表情/KON_表情_決然.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "yCoC5",
+          "x": 1354,
+          "y": 713.289348364105,
+          "name": "決然 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "決然",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "XNhcg",
+          "x": 1678.7376278283464,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_表情/KON_表情_リラックス.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "PNTgy",
+          "x": 1678.7376278283464,
+          "y": 713.289348364105,
+          "name": "リラックス Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "リラックス",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "AVMhk",
+          "x": 2003.4752556566928,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ディテール/KON_ディテール_刺繍.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "SssRW",
+          "x": 2003.4752556566928,
+          "y": 349.5832051963569,
+          "name": "刺繍 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "刺繍",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "fEGCL",
+          "x": 2203.73012615084,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ディテール/KON_ディテール_ネックレス・チョーカー.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "x61f4V",
+          "x": 2203.73012615084,
+          "y": 349.5832051963569,
+          "name": "ネックレス・チョーカー Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "ネックレス・チョーカー",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "nqDkz",
+          "x": 2003.4752556566928,
+          "y": 388.5517205357585,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ディテール/KON_ディテール_ブーツ.png",
+            "mode": "fill"
+          },
+          "width": 387,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "qgLAF",
+          "x": 2003.4752556566928,
+          "y": 698.1349257321154,
+          "name": "ブーツ Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 387,
+          "height": 24,
+          "content": "ブーツ",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "yr6uf",
+          "x": 1433,
+          "y": 720,
+          "name": "Turnaround Zone",
+          "width": 958,
+          "height": 622,
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "gY9U0",
+              "name": "FRONT Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "g4hYjN",
+                  "name": "FRONT Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "U7S0A",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ターンアラウンド/KON_ターンアラウンド_FRONT_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    },
+                    {
+                      "type": "path",
+                      "id": "q67ir",
+                      "x": 70.58191150308107,
+                      "y": 48.84693356256116,
+                      "geometry": "M0 0c-4.5-5.5-8.5-14.5-8.5-14.5 0 0-5 6.5-8 9-3 2.5-10 4.5-15.5 2-5.5-2.5-8-7-8-7 0 0-4.5 8.5-6.5 9.5-2 1-7.5 4.5-13-1-5.5-5.5-8.5-69-3-74.5 5.5-5.5 34-13.5 44.5-10.5 10.5 3 46 30 46 43.5 0 13.5-3 37-6.5 38-3.5 1-21.5 5.5-21.5 5.5z",
+                      "fill": "#ffffffff",
+                      "width": 93.41808849691891,
+                      "height": 88.6724552055886
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "IH9qy",
+                  "name": "FRONT Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "FRONT",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HM8Yd",
+              "name": "3-4 Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "CCQGv",
+                  "name": "3-4 Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "iHcWj",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ターンアラウンド/KON_ターンアラウンド_3-4_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "rJBuE",
+                  "name": "3-4 Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "3-4",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "y9hNO",
+              "name": "SIDE Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Zbc8Q",
+                  "name": "SIDE Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "x51wEW",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ターンアラウンド/KON_ターンアラウンド_SIDE_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "oMC5S",
+                  "name": "SIDE Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "SIDE",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Qmm0V",
+              "name": "BACK Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "M5Kkm",
+                  "name": "BACK Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "dJ2DZ",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ターンアラウンド/KON_ターンアラウンド_BACK_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "MCvrU",
+                  "name": "BACK Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "BACK",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "hZtMa",
+      "x": 2588,
+      "y": 0,
+      "name": "GILT CROW - Sui",
+      "clip": true,
+      "width": 2438,
+      "height": 1370,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "my58v",
+          "x": 163,
+          "y": 93,
+          "name": "Main Visual Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_メインビジュアル/Sui_メインビジュアル_独立版.png",
+            "mode": "fit"
+          },
+          "width": 1119,
+          "height": 1492
+        },
+        {
+          "type": "frame",
+          "id": "NA67I",
+          "x": 60,
+          "y": 42,
+          "name": "Text Block",
+          "width": 300,
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "lILW0",
+              "name": "Name",
+              "fill": "#111111",
+              "content": "Sui",
+              "fontFamily": "Inter",
+              "fontSize": 72,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "Q8vqA",
+              "name": "Info Rows",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qLbqX",
+                  "name": "PART Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "iOVzv",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "PART",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "pSm0y",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "Guitar",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JvaF5",
+                  "name": "HEIGHT Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "flJm5",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "HEIGHT",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "R5MPuK",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "176cm",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "H5f3K",
+                  "name": "KEY COLOR Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "FlOGW",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "KEY COLOR",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zMVZR",
+                      "name": "Swatch Row",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "D5ddG",
+                          "name": "Color Dot",
+                          "fill": "#2F4E8C",
+                          "width": 20,
+                          "height": 20
+                        },
+                        {
+                          "type": "text",
+                          "id": "V5ybZL",
+                          "name": "Color Name",
+                          "fill": "#222222",
+                          "content": "Blue",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "GlXiQ",
+              "name": "Tagline",
+              "fill": "#333333",
+              "textGrowth": "fixed-width",
+              "width": 300,
+              "content": "圧倒的な集中力で弦と向き合うギタリスト。冷静な佇まいの奥に、燃えるような情熱を隠し持つ。寡黙だが、鳴らす一音一音に強い意志が宿る。",
+              "lineHeight": 1.7,
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "bWv6r",
+          "x": 1354,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_表情/Sui_表情_穏やか.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "o9RUn1",
+          "x": 1354,
+          "y": 351.74812271521256,
+          "name": "穏やか Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "穏やか",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "z73vY",
+          "x": 1678.7376278283464,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_表情/Sui_表情_驚き.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "ntyS3",
+          "x": 1678.7376278283464,
+          "y": 351.74812271521256,
+          "name": "驚き Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "驚き",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "Hm6CH",
+          "x": 1354,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_表情/Sui_表情_決然.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "BOv5a",
+          "x": 1354,
+          "y": 713.289348364105,
+          "name": "決然 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "決然",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "iIDX1",
+          "x": 1678.7376278283464,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_表情/Sui_表情_リラックス.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "WsGgZ",
+          "x": 1678.7376278283464,
+          "y": 713.289348364105,
+          "name": "リラックス Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "リラックス",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "giiTj",
+          "x": 2003.4752556566928,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_ディテール/Sui_ディテール_ラペルジュエル.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "B978eO",
+          "x": 2003.4752556566928,
+          "y": 349.5832051963569,
+          "name": "刺繍 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "ジュエル装飾",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "nO6ww",
+          "x": 2203.73012615084,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_ディテール/Sui_ディテール_ネックレス.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "Y4XLd",
+          "x": 2203.73012615084,
+          "y": 349.5832051963569,
+          "name": "ネックレス・チョーカー Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "ネックレス",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "tZyFZ",
+          "x": 2003.4752556566928,
+          "y": 388.5517205357585,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_ディテール/Sui_ディテール_ギター.png",
+            "mode": "fill"
+          },
+          "width": 387,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "LkIOM",
+          "x": 2003.4752556566928,
+          "y": 698.1349257321154,
+          "name": "ブーツ Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 387,
+          "height": 24,
+          "content": "ギター",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "x1nVE8",
+          "x": 1433,
+          "y": 720,
+          "name": "Turnaround Zone",
+          "width": 958,
+          "height": 622,
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "m3yI8t",
+              "name": "FRONT Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fnKup",
+                  "name": "FRONT Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "zSHev",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_ターンアラウンド/Sui_ターンアラウンド_FRONT.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "MOCDW",
+                  "name": "FRONT Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "FRONT",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oDbyL",
+              "name": "3-4 Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ID0Pk",
+                  "name": "3-4 Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "q41zaP",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_ターンアラウンド/Sui_ターンアラウンド_3-4.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "lCBHT",
+                  "name": "3-4 Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "3-4",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "E6Runv",
+              "name": "SIDE Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "haYeX",
+                  "name": "SIDE Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "xQg4G",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_ターンアラウンド/Sui_ターンアラウンド_SIDE.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "gUB3a",
+                  "name": "SIDE Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "SIDE",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "M5Wyj",
+              "name": "BACK Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qjD8p",
+                  "name": "BACK Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "xoNp3",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Suiテスト/zone_ターンアラウンド/Sui_ターンアラウンド_BACK.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "qok7Q",
+                  "name": "BACK Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "BACK",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "mgt99",
+      "x": 5176,
+      "y": 0,
+      "name": "GILT CROW - KII",
+      "clip": true,
+      "width": 2438,
+      "height": 1370,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "QYJzL",
+          "x": 60,
+          "y": 72,
+          "name": "Main Visual Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_メインビジュアル/KII_メインビジュアル_独立版.png",
+            "mode": "fit"
+          },
+          "width": 1265,
+          "height": 1687
+        },
+        {
+          "type": "frame",
+          "id": "Z6P9U1",
+          "x": 60,
+          "y": 42,
+          "name": "Text Block",
+          "width": 300,
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "C0lV3",
+              "name": "Name",
+              "fill": "#111111",
+              "content": "KII",
+              "fontFamily": "Inter",
+              "fontSize": 72,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "brCr2",
+              "name": "Info Rows",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VOi6o",
+                  "name": "PART Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "n73cuL",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "PART",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "UIYo4",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "Bass",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VZQx8",
+                  "name": "HEIGHT Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AZA2l",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "HEIGHT",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "g9dK67",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "179cm",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "EnP1L",
+                  "name": "KEY COLOR Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "NdzJA",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "KEY COLOR",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "PIwQe",
+                      "name": "Swatch Row",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "nDEYz",
+                          "name": "Color Dot",
+                          "fill": "#1F4B34",
+                          "width": 20,
+                          "height": 20
+                        },
+                        {
+                          "type": "text",
+                          "id": "O5l6mC",
+                          "name": "Color Name",
+                          "fill": "#222222",
+                          "content": "Dark Green",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "s8ATc",
+              "name": "Tagline",
+              "fill": "#333333",
+              "textGrowth": "fixed-width",
+              "width": 300,
+              "content": "重心の低いグルーヴでバンド全体を支えるベーシスト。物静かな瞳の奥に鋭い観察眼が光る。多くを語らずとも、その存在感だけで場の空気を変える。",
+              "lineHeight": 1.7,
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "J5dx8",
+          "x": 1354,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_表情/KII_表情_穏やか.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "k7AW8r",
+          "x": 1354,
+          "y": 351.74812271521256,
+          "name": "穏やか Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "穏やか",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "t7lx9Q",
+          "x": 1678.7376278283464,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_表情/KII_表情_驚き.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "STatk",
+          "x": 1678.7376278283464,
+          "y": 351.74812271521256,
+          "name": "驚き Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "驚き",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "OZDRZ",
+          "x": 1354,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_表情/KII_表情_決然.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "tU9o3",
+          "x": 1354,
+          "y": 713.289348364105,
+          "name": "決然 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "決然",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "UAfeX",
+          "x": 1678.7376278283464,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_表情/KII_表情_リラックス.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "mWZl9",
+          "x": 1678.7376278283464,
+          "y": 713.289348364105,
+          "name": "リラックス Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "リラックス",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "W2263",
+          "x": 2003.4752556566928,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_ディテール/KII_ディテール_ファー襟.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "Z8bH45",
+          "x": 2003.4752556566928,
+          "y": 349.5832051963569,
+          "name": "刺繍 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "ファー襟",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "PCO11",
+          "x": 2203.73012615084,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_ディテール/KII_ディテール_ネックレス.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "jwbOf",
+          "x": 2203.73012615084,
+          "y": 349.5832051963569,
+          "name": "ネックレス・チョーカー Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "ネックレス",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "YGVAF",
+          "x": 2003.4752556566928,
+          "y": 388.5517205357585,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_ディテール/KII_ディテール_ベース.png",
+            "mode": "fill"
+          },
+          "width": 387,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "zjXTN",
+          "x": 2003.4752556566928,
+          "y": 698.1349257321154,
+          "name": "ブーツ Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 387,
+          "height": 24,
+          "content": "ベース",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "t3BP0",
+          "x": 1433,
+          "y": 720,
+          "name": "Turnaround Zone",
+          "width": 958,
+          "height": 622,
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "brnCq",
+              "name": "FRONT Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "f2DNeq",
+                  "name": "FRONT Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "XQauf",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_ターンアラウンド/KII_ターンアラウンド_FRONT.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "y6EJ6",
+                  "name": "FRONT Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "FRONT",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "tiVBA",
+              "name": "3-4 Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "hQ7EL",
+                  "name": "3-4 Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "Aj3si",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_ターンアラウンド/KII_ターンアラウンド_3-4.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "P6IzXd",
+                  "name": "3-4 Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "3-4",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YUDgB",
+              "name": "SIDE Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gpES1",
+                  "name": "SIDE Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "To1wU",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_ターンアラウンド/KII_ターンアラウンド_SIDE.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "pPN9F",
+                  "name": "SIDE Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "SIDE",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "A571h",
+              "name": "BACK Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "KUkdt",
+                  "name": "BACK Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "SReUN",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KIIテスト/zone_ターンアラウンド/KII_ターンアラウンド_BACK.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "TxO30",
+                  "name": "BACK Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "BACK",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "lc9uH",
+      "x": 7764,
+      "y": 0,
+      "name": "GILT CROW - Luna",
+      "clip": true,
+      "width": 2438,
+      "height": 1370,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "p1jbB",
+          "x": 210,
+          "y": 138,
+          "name": "Main Visual Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_メインビジュアル/Luna_メインビジュアル_独立版.png",
+            "mode": "fit"
+          },
+          "width": 1009,
+          "height": 1347
+        },
+        {
+          "type": "frame",
+          "id": "YSkZb",
+          "x": 60,
+          "y": 42,
+          "name": "Text Block",
+          "width": 300,
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "K47nZN",
+              "name": "Name",
+              "fill": "#111111",
+              "content": "Luna",
+              "fontFamily": "Inter",
+              "fontSize": 72,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "XX5We",
+              "name": "Info Rows",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Vwmow",
+                  "name": "PART Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "EEvVu",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "PART",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "PqCH0",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "Guitar (2nd)",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "h55x14",
+                  "name": "HEIGHT Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WAUr7",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "HEIGHT",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "Fdh0P",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "167cm",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "xtdmX",
+                  "name": "KEY COLOR Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "f9J5O",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "KEY COLOR",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Akdg3",
+                      "name": "Swatch Row",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "Lp49P",
+                          "name": "Color Dot",
+                          "fill": "#CDD1D4",
+                          "width": 20,
+                          "height": 20,
+                          "stroke": "#B5B9BC",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "dshhm",
+                          "name": "Color Name",
+                          "fill": "#222222",
+                          "content": "Silver White",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "XISEk",
+              "name": "Tagline",
+              "fill": "#333333",
+              "textGrowth": "fixed-width",
+              "width": 300,
+              "content": "透明感のある指先から紡がれる旋律で世界を彩るセカンドギター。中性的な美しさを纏い、儚さと強さを同時に感じさせる。静けさの中に確かな芯を持つ。",
+              "lineHeight": 1.7,
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "maZ6P",
+          "x": 1354,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_表情/Luna_表情_穏やか.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "CJzPP",
+          "x": 1354,
+          "y": 351.74812271521256,
+          "name": "穏やか Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "穏やか",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "aEdVB",
+          "x": 1678.7376278283464,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_表情/Luna_表情_驚き.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "ToHsw",
+          "x": 1678.7376278283464,
+          "y": 351.74812271521256,
+          "name": "驚き Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "驚き",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "MOrDM",
+          "x": 1354,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_表情/Luna_表情_決然.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "nhpLf",
+          "x": 1354,
+          "y": 713.289348364105,
+          "name": "決然 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "決然",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "t7uvO",
+          "x": 1678.7376278283464,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_表情/Luna_表情_リラックス.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "e88I4W",
+          "x": 1678.7376278283464,
+          "y": 713.289348364105,
+          "name": "リラックス Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "リラックス",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "s0htu",
+          "x": 2003.4752556566928,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_ディテール/Luna_ディテール_刺繍レース.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "xMhCr",
+          "x": 2003.4752556566928,
+          "y": 349.5832051963569,
+          "name": "刺繍 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "刺繍・レース",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "VubIn",
+          "x": 2203.73012615084,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_ディテール/Luna_ディテール_ネックレス.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "mUjM5",
+          "x": 2203.73012615084,
+          "y": 349.5832051963569,
+          "name": "ネックレス・チョーカー Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "ネックレス",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "XUmOy",
+          "x": 2003.4752556566928,
+          "y": 388.5517205357585,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_ディテール/Luna_ディテール_ギター.png",
+            "mode": "fill"
+          },
+          "width": 387,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "N2xeQZ",
+          "x": 2003.4752556566928,
+          "y": 698.1349257321154,
+          "name": "ブーツ Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 387,
+          "height": 24,
+          "content": "ギター",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "Ydn6Z",
+          "x": 1433,
+          "y": 720,
+          "name": "Turnaround Zone",
+          "width": 958,
+          "height": 622,
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "J74b9",
+              "name": "FRONT Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "oGXVC",
+                  "name": "FRONT Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "wXkhY",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_ターンアラウンド/Luna_ターンアラウンド_FRONT_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "kE8hH",
+                  "name": "FRONT Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "FRONT",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "oZzQH",
+              "name": "3-4 Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "z4GNpq",
+                  "name": "3-4 Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "g3G7J",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_ターンアラウンド/Luna_ターンアラウンド_3-4_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "o8K98",
+                  "name": "3-4 Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "3-4",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "a5eFzB",
+              "name": "SIDE Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VjZQn",
+                  "name": "SIDE Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "PbGkj",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_ターンアラウンド/Luna_ターンアラウンド_SIDE_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "sXyQl",
+                  "name": "SIDE Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "SIDE",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "TgZuR",
+              "name": "BACK Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "vPHVt",
+                  "name": "BACK Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "uyCGr",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_Lunaテスト/zone_ターンアラウンド/Luna_ターンアラウンド_BACK_v2.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "OrEnl",
+                  "name": "BACK Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "BACK",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "OEXoF",
+      "x": 10352,
+      "y": 0,
+      "name": "GILT CROW - 鴉",
+      "clip": true,
+      "width": 2438,
+      "height": 1370,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "BYKNY",
+          "x": 55,
+          "y": -57.69594594594582,
+          "name": "Main Visual Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_メインビジュアル/鴉_メインビジュアル_独立版.png",
+            "mode": "fit"
+          },
+          "width": 1317,
+          "height": 1757
+        },
+        {
+          "type": "frame",
+          "id": "PiTrA",
+          "x": 60,
+          "y": 42,
+          "name": "Text Block",
+          "width": 300,
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "text",
+              "id": "t0WKBx",
+              "name": "Name",
+              "fill": "#111111",
+              "content": "鴉",
+              "fontFamily": "Inter",
+              "fontSize": 72,
+              "fontWeight": "800"
+            },
+            {
+              "type": "frame",
+              "id": "r5YvEf",
+              "name": "Info Rows",
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "nWj7q",
+                  "name": "PART Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sZFbq",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "PART",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "dRZW4",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "Drums",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "frdnW",
+                  "name": "HEIGHT Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YsvXl",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "HEIGHT",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal",
+                      "letterSpacing": 0.5
+                    },
+                    {
+                      "type": "text",
+                      "id": "MgqHc",
+                      "name": "Value",
+                      "fill": "#222222",
+                      "content": "185cm",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "d84RR",
+                  "name": "KEY COLOR Row",
+                  "gap": 20,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "t5Hty",
+                      "name": "Label",
+                      "fill": "#999999",
+                      "textGrowth": "fixed-width",
+                      "width": 130,
+                      "content": "KEY COLOR",
+                      "fontFamily": "Inter",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "brMPR",
+                      "name": "Swatch Row",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "ak32N",
+                          "name": "Color Dot",
+                          "fill": "#9C1F1F",
+                          "width": 20,
+                          "height": 20
+                        },
+                        {
+                          "type": "text",
+                          "id": "tEeRR",
+                          "name": "Color Name",
+                          "fill": "#222222",
+                          "content": "Black × Red",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "WnI8a",
+              "name": "Tagline",
+              "fill": "#333333",
+              "textGrowth": "fixed-width",
+              "width": 300,
+              "content": "重厚なビートでバンドの骨格を作るドラマー。素顔を明かさず、仮面の奥に本当の感情を封じ込める。寡黙な圧を放ちながら、リズムの中でだけ本音を叩きつける。",
+              "lineHeight": 1.7,
+              "fontFamily": "Noto Sans JP",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "rectangle",
+          "id": "lhvIt",
+          "x": 1354,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ムード/鴉_ムード_正面.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "DxmyN",
+          "x": 1354,
+          "y": 351.74812271521256,
+          "name": "穏やか Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "正面",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "jfwfb",
+          "x": 1678.7376278283464,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ムード/鴉_ムード_伏し目.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "F3XlHA",
+          "x": 1678.7376278283464,
+          "y": 351.74812271521256,
+          "name": "驚き Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "伏し目",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "qn0gq",
+          "x": 1354,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ムード/鴉_ムード_横顔.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "nZtkv",
+          "x": 1354,
+          "y": 713.289348364105,
+          "name": "決然 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "横顔",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "FnGgq",
+          "x": 1678.7376278283464,
+          "y": 401.54122564889235,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ムード/鴉_ムード_見上げ.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "uphj7",
+          "x": 1678.7376278283464,
+          "y": 713.289348364105,
+          "name": "リラックス Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "見上げ",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "bWnop",
+          "x": 2003.4752556566928,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ディテール/鴉_ディテール_マスク.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "MHUSW",
+          "x": 2003.4752556566928,
+          "y": 349.5832051963569,
+          "name": "刺繍 Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "マスク",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "x9wST",
+          "x": 2203.73012615084,
+          "y": 40,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ディテール/鴉_ディテール_ベスト袖口.png",
+            "mode": "fill"
+          },
+          "width": 187,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "WcsUa",
+          "x": 2203.73012615084,
+          "y": 349.5832051963569,
+          "name": "ネックレス・チョーカー Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 187,
+          "height": 24,
+          "content": "ベスト・袖口",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "sEiMF",
+          "x": 2003.4752556566928,
+          "y": 388.5517205357585,
+          "name": "Placeholder",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ディテール/鴉_ディテール_ドラム.png",
+            "mode": "fill"
+          },
+          "width": 387,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "GKbo8",
+          "x": 2003.4752556566928,
+          "y": 698.1349257321154,
+          "name": "ブーツ Label",
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 387,
+          "height": 24,
+          "content": "ドラム",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 15,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "tvIQT",
+          "x": 1433,
+          "y": 720,
+          "name": "Turnaround Zone",
+          "width": 958,
+          "height": 622,
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "B9np0",
+              "name": "FRONT Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "eSt3B",
+                  "name": "FRONT Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "B3GsWC",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ターンアラウンド/鴉_ターンアラウンド_FRONT.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "TC4el",
+                  "name": "FRONT Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "FRONT",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "YP88i",
+              "name": "3-4 Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xh5uT",
+                  "name": "3-4 Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "NsGfy",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ターンアラウンド/鴉_ターンアラウンド_3-4.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "FBHMK",
+                  "name": "3-4 Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "3-4",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "PxNjs",
+              "name": "SIDE Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Nlj1Y",
+                  "name": "SIDE Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "b6H62",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ターンアラウンド/鴉_ターンアラウンド_SIDE.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "GdWKV",
+                  "name": "SIDE Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "SIDE",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "HHHTL",
+              "name": "BACK Cell",
+              "width": 224,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "pRg41",
+                  "name": "BACK Image",
+                  "clip": true,
+                  "width": 220,
+                  "height": 586,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "vVzvp",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_鴉テスト/zone_ターンアラウンド/鴉_ターンアラウンド_BACK.png",
+                        "mode": "fill"
+                      },
+                      "width": 220,
+                      "height": 586
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "EK6FP",
+                  "name": "BACK Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 220,
+                  "content": "BACK",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "fileToken": "679cd5e4-537d-41b0-9ea1-3e65e9ff5ea3"
+}
