@@ -18,9 +18,9 @@ jobs:
       - name: サイト本体をデプロイ
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ secrets.HEEKES_FTP_HOST }}
+          username: ${{ secrets.HEEKES_FTP_USERNAME }}
+          password: ${{ secrets.HEEKES_FTP_PASSWORD }}
           local-dir: CL/ライフギアジャパン/ブランドサイト/heekes-html/
           server-dir: public_html/heekes.jp/
           state-name: .ftp-deploy-heekes.json
@@ -32,6 +32,6 @@ jobs:
       - name: .htaccess を配置（拡張子なしURL・リダイレクト用・単体アップ）
         run: |
           curl -sS --ftp-create-dirs -T "CL/ライフギアジャパン/ブランドサイト/heekes-html/.htaccess" \
-            "ftp://${{ secrets.FTP_HOST }}/public_html/heekes.jp/.htaccess" \
-            --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+            "ftp://${{ secrets.HEEKES_FTP_HOST }}/public_html/heekes.jp/.htaccess" \
+            --user "${{ secrets.HEEKES_FTP_USERNAME }}:${{ secrets.HEEKES_FTP_PASSWORD }}"
           echo ".htaccess uploaded"
