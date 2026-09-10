@@ -30,6 +30,13 @@
   "url": "https://heekes.jp/contact"
 }
 </script>
+<!-- BowNow トラッキングコード -->
+<script id="_bownow_ts">
+var _bownow_ts = document.createElement('script');
+_bownow_ts.charset = 'utf-8';
+_bownow_ts.src = 'https://contents.bownow.jp/js/UTC_a3d1e76e2382a346f120/trace.js';
+document.getElementsByTagName('head')[0].appendChild(_bownow_ts);
+</script>
 </head>
 
 <body class="has-fixed-bg">
@@ -100,46 +107,17 @@
           3営業日を過ぎても返信がない場合は、お手数ですが再度お問い合わせをお願いいたします。
         </p>
 
-        <!-- ▼▼▼ ここにHEEKES用のBowNowフォームタグを貼る ▼▼▼
-
-             BowNowで発行されたタグを、この下の
-             <div class="bownow-form"></div> の中にそのまま貼り付けるだけで動く。
-
-             貼ったら、その下の「見た目確認用フォーム」の
-             <form> 〜 </form> を丸ごと削除する。
-        -->
+        <!-- お問い合わせフォーム（BowNow）
+             項目・デザイン・通知先はBowNowの管理画面側で設定する。
+             通知先：heekes@life-gear.co.jp -->
         <div class="bownow-form" data-anim="fade" style="--delay:500ms; --duration:1000ms">
-          <!-- ここにBowNowのタグを貼る -->
+          <script id="_bownow_cs_sid_9d6c3c239cbbe401569f">
+          var _bownow_cs_sid_9d6c3c239cbbe401569f = document.createElement('script');
+          _bownow_cs_sid_9d6c3c239cbbe401569f.charset = 'utf-8';
+          _bownow_cs_sid_9d6c3c239cbbe401569f.src = 'https://contents.bownow.jp/forms/sid_9d6c3c239cbbe401569f/trace.js';
+          document.getElementsByTagName('head')[0].appendChild(_bownow_cs_sid_9d6c3c239cbbe401569f);
+          </script>
         </div>
-        <!-- ▲▲▲ BowNowフォームここまで ▲▲▲ -->
-
-
-        <!-- 見た目確認用フォーム（送信先は未設定。BowNowのタグを入れたら削除する） -->
-        <form class="form" data-anim="fade" style="--delay:500ms; --duration:1000ms">
-
-          <label class="form__field">
-            <span class="form__label">お名前<span class="form__required">*</span></span>
-            <input class="form__input" type="text" name="name" autocomplete="name" required>
-          </label>
-
-          <label class="form__field">
-            <span class="form__label">メールアドレス<span class="form__required">*</span></span>
-            <input class="form__input" type="email" name="email" autocomplete="email" required>
-          </label>
-
-          <label class="form__field">
-            <span class="form__label">お問い合わせ内容<span class="form__required">*</span></span>
-            <textarea class="form__textarea" name="message" required></textarea>
-          </label>
-
-          <label class="form__agree">
-            <input type="checkbox" name="agree" required>
-            <span><a href="policy.html">プライバシーポリシー</a>に同意して送信する</span>
-          </label>
-
-          <button class="form__submit" type="submit">この内容で送信する</button>
-
-        </form>
 
       </div>
     </div>
