@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>SEO順位ウォッチ｜CHICS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0f12;
+  --panel:#16181d;
+  --line:#252932;
+  --text:#e8eaf0;
+  --sub:#a8aebd;      /* 本文補足 */
+  --meta:#7c8393;     /* ラベル */
+  --accent:#5ac8fa;
+  --up:#4ade80;
+  --down:#f87171;
+  --flat:#fbbf24;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Zen Kaku Gothic New",-apple-system,BlinkMacSystemFont,"Hiragino Sans",sans-serif;
+  font-size:16px;
+  line-height:1.75;
+  overflow-x:hidden;
+}
+.num{font-family:"IBM Plex Mono",monospace;font-feature-settings:"tnum";}
+
+/* ---- パスワードゲート ---- */
+#lockScreen{
+  position:fixed;inset:0;background:var(--bg);z-index:100;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;
+}
+#lockScreen h1{font-size:18px;letter-spacing:.18em;font-weight:500;margin:0;color:var(--sub);}
+#pwInput{
+  width:260px;max-width:100%;padding:14px 16px;font-size:16px;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;color:var(--text);
+  text-align:center;letter-spacing:.2em;font-family:"IBM Plex Mono",monospace;
+}
+#pwInput:focus{outline:none;border-color:var(--accent);}
+#lockErr{color:var(--down);font-size:13px;letter-spacing:.1em;min-height:20px;}
+
+#mainWrap{display:none;}
+#mainWrap.show{display:block;}
+
+.wrap{max-width:1080px;margin:0 auto;padding:56px 40px 96px;}
+
+header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:48px;}
+.eyebrow{font-size:11px;letter-spacing:.22em;color:var(--meta);margin:0 0 10px;}
+h1.title{font-size:30px;font-weight:700;margin:0 0 14px;letter-spacing:.02em;}
+.lead{font-size:14px;color:var(--sub);margin:0;max-width:62ch;}
+.updated{font-size:12px;color:var(--meta);margin-top:14px;}
+
+section{margin-bottom:64px;}
+h2{
+  font-size:13px;letter-spacing:.18em;color:var(--meta);font-weight:500;
+  margin:0 0 20px;padding-bottom:10px;border-bottom:1px solid var(--line);
+}
+
+/* ---- 観察中カード ---- */
+.watching{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px;}
+.card .kw{font-size:17px;font-weight:700;margin:0 0 4px;}
+.card .page{font-size:12px;color:var(--meta);word-break:break-all;margin:0 0 16px;}
+.card .row{display:flex;gap:24px;margin-bottom:14px;}
+.stat .label{font-size:10px;letter-spacing:.14em;color:var(--meta);display:block;}
+.stat .value{font-size:22px;font-weight:600;}
+.until{font-size:13px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px;margin:0;}
+.badge{
+  display:inline-block;font-size:11px;letter-spacing:.08em;padding:3px 10px;border-radius:999px;
+  border:1px solid var(--line);color:var(--sub);margin-bottom:12px;
+}
+.badge.watch{border-color:#3b4252;color:var(--accent);}
+.badge.done{border-color:#2f5b3f;color:var(--up);}
+.badge.bad{border-color:#5b2f2f;color:var(--down);}
+
+/* ---- 施策履歴 ---- */
+.timeline{border-left:2px solid var(--line);padding-left:26px;margin-left:6px;}
+.entry{position:relative;padding-bottom:36px;}
+.entry::before{
+  content:"";position:absolute;left:-33px;top:7px;width:11px;height:11px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--accent);
+}
+.entry .date{font-size:12px;color:var(--meta);letter-spacing:.1em;}
+.entry .kw{font-size:17px;font-weight:700;margin:2px 0 12px;}
+.diff{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px;}
+.diff .lbl{font-size:10px;letter-spacing:.14em;color:var(--meta);display:block;margin-bottom:3px;}
+.diff .before{font-size:14px;color:var(--sub);text-decoration:line-through;text-decoration-color:#5a4040;margin-bottom:12px;}
+.diff .after{font-size:15px;color:var(--text);font-weight:500;}
+.why{font-size:14px;color:var(--sub);margin:0 0 8px;}
+.why b{color:var(--text);font-weight:500;}
+.verdict{font-size:14px;margin:10px 0 0;padding:10px 14px;border-radius:8px;background:#12161c;border:1px solid var(--line);}
+
+/* ---- 惜しい記事 ---- */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:600px;}
+th{
+  font-size:10px;letter-spacing:.14em;color:var(--meta);font-weight:500;text-align:left;
+  padding:12px 16px;border-bottom:1px solid var(--line);background:var(--panel);
+}
+td{padding:13px 16px;border-bottom:1px solid var(--line);color:var(--sub);}
+tr:last-child td{border-bottom:none;}
+td.kw{color:var(--text);font-weight:500;}
+td.n{text-align:right;font-family:"IBM Plex Mono",monospace;}
+.gap{color:var(--flat);}
+
+.empty{font-size:14px;color:var(--meta);padding:24px 0;}
+
+@media (max-width:768px){
+  .wrap{padding:40px 32px 72px;width:100%;}
+  h1.title{font-size:24px;}
+  .watching{grid-template-columns:1fr;}
+  .card .row{gap:18px;}
+  .timeline{padding-left:20px;}
+  .entry::before{left:-27px;}
+}
+</style>
+</head>
+<body>
+
+<div id="lockScreen">
+  <h1>SEO RANK WATCH</h1>
+  <input type="password" id="pwInput" placeholder="PASSWORD" autocomplete="off">
+  <div id="lockErr"></div>
+</div>
+
+<div id="mainWrap">
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">CHICS ／ chics.top</p>
+    <h1 class="title">SEO順位ウォッチ</h1>
+    <p class="lead">既存記事を1本ずつ改善して育てる記録。1回に直すのは1キーワードだけ。直したら14日間は触らず、実測で効果を判定する。</p>
+    <p class="updated" id="updated"></p>
+  </header>
+
+  <section>
+    <h2>いま観察中</h2>
+    <div class="watching" id="watching"></div>
+  </section>
+
+  <section>
+    <h2>施策履歴</h2>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <section>
+    <h2>惜しい記事（順位の割にクリックされていない順）</h2>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>キーワード</th>
+            <th style="text-align:right">順位</th>
+            <th style="text-align:right">表示</th>
+            <th style="text-align:right">クリック</th>
+            <th style="text-align:right">CTR</th>
+            <th style="text-align:right">期待との差</th>
+          </tr>
+        </thead>
+        <tbody id="candidates"></tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script>
+// ============ パスワードゲート ============
+function unlock(){
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('mainWrap').classList.add('show');
+  init();
+}
+function checkPw(){
+  if (document.getElementById('pwInput').value === 'view') {
+    sessionStorage.setItem('srw_unlocked', '1');
+    unlock();
+  } else {
+    document.getElementById('lockErr').textContent = 'INCORRECT';
+    setTimeout(() => document.getElementById('lockErr').textContent = '', 1800);
+  }
+}
+document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
+if (sessionStorage.getItem('srw_unlocked') === '1') unlock();
+
+// ============ 検索順位ごとの平均的なクリック率（％） ============
+const 期待CTR = {1:28.0, 2:15.0, 3:11.0, 4:8.0, 5:6.0, 6:4.5, 7:3.5, 8:3.0, 9:2.5, 10:2.2};
+
+// 受注につながらないキーワードは候補から外す（他社ロゴを見に来ているだけ・デザイナー志望者向け）
+const 除外パターン = [/ロゴ\s*一覧/, /一覧/, /有名/, /になるには/, /仕事内容/, /年収/];
+
+function 除外するか(kw){
+  return 除外パターン.some(p => p.test(kw));
+}
+
+async function init(){
+  const [ログ, 履歴] = await Promise.all([
+    fetch('../data/改善ログ.json', {cache:'no-store'}).then(r => r.json()).catch(() => ({改善:[]})),
+    fetch('../data/順位履歴.json', {cache:'no-store'}).then(r => r.json()).catch(() => ({測定:[]}))
+  ]);
+
+  const 最新 = 履歴.測定.length ? 履歴.測定[履歴.測定.length - 1] : null;
+  document.getElementById('updated').textContent = 最新
+    ? `最終測定 ${最新.測定日}（集計期間 ${最新.集計期間.開始} 〜 ${最新.集計期間.終了}）`
+    : 'まだ測定データがありません';
+
+  描く観察中(ログ, 最新);
+  描く履歴(ログ);
+  描く候補(ログ, 最新);
+}
+
+function 残り日数(日付){
+  const 差 = Math.ceil((new Date(日付) - new Date()) / 86400000);
+  if (差 > 0) return `あと${差}日（${日付}）`;
+  if (差 === 0) return `今日がレビュー日（${日付}）`;
+  return `レビュー日を過ぎています（${日付}）`;
+}
+
+function 描く観察中(ログ, 最新){
+  const 箱 = document.getElementById('watching');
+  const 対象 = ログ.改善.filter(c => c.状態 === '観察中');
+  if (!対象.length){
+    箱.innerHTML = '<p class="empty">観察中のキーワードはありません。</p>';
+    return;
+  }
+  箱.innerHTML = 対象.map(c => {
+    const s = c.施策[c.施策.length - 1];
+    const 現在 = 最新 ? 最新.結果.find(r => r.キーワード === c.キーワード && r.ページ === c.対象ページ) : null;
+    return `
+      <div class="card">
+        <span class="badge watch">観察中</span>
+        <p class="kw">${c.キーワード}</p>
+        <p class="page">${c.対象ページ}</p>
+        <div class="row">
+          <div class="stat">
+            <span class="label">改善前</span>
+            <span class="value num">${s.実施時の順位}</span>
+          </div>
+          <div class="stat">
+            <span class="label">現在</span>
+            <span class="value num">${現在 ? 現在.順位 : '—'}</span>
+          </div>
+          <div class="stat">
+            <span class="label">CTR</span>
+            <span class="value num">${現在 ? 現在.CTR + '%' : '—'}</span>
+          </div>
+        </div>
+        <p class="until">${残り日数(c.次回レビュー日)}</p>
+      </div>`;
+  }).join('');
+}
+
+function 描く履歴(ログ){
+  const 箱 = document.getElementById('timeline');
+  const 並び = [];
+  ログ.改善.forEach(c => c.施策.forEach(s => 並び.push({c, s})));
+  並び.sort((a, b) => b.s.日付.localeCompare(a.s.日付));
+
+  if (!並び.length){
+    箱.innerHTML = '<p class="empty">まだ施策がありません。</p>';
+    return;
+  }
+
+  箱.innerHTML = 並び.map(({c, s}) => {
+    const 判定 = (c.判定履歴 || []).filter(j => j.日付 >= s.日付).slice(-1)[0];
+    return `
+      <div class="entry">
+        <p class="date">${s.日付}</p>
+        <p class="kw">${c.キーワード}</p>
+        <p class="why">実施時 <b class="num">${s.実施時の順位}位</b> ／ 表示 <b class="num">${s.実施時の表示回数}</b> ／ クリック <b class="num">${s.実施時のクリック数}</b>（CTR <b class="num">${s.実施時のCTR}%</b>）</p>
+        ${s.変更前タイトル ? `
+        <div class="diff">
+          <span class="lbl">変更前</span>
+          <p class="before">${s.変更前タイトル}</p>
+          <span class="lbl">変更後</span>
+          <p class="after">${s.変更後タイトル}</p>
+        </div>` : ''}
+        <p class="why"><b>検索ニーズ：</b>${s.検索ニーズ || '—'}</p>
+        <p class="why"><b>足りなかったもの：</b>${s.ギャップ || '—'}</p>
+        <p class="why"><b>触っていないもの：</b>${s.変更しなかったもの || '—'}</p>
+        ${判定 ? `<p class="verdict">判定：${判定.判定}／順位 ${判定.順位}／CTR ${判定.CTR}</p>` : ''}
+      </div>`;
+  }).join('');
+}
+
+function 描く候補(ログ, 最新){
+  const 体 = document.getElementById('candidates');
+  if (!最新){ 体.innerHTML = '<tr><td colspan="6" class="empty">データがありません。</td></tr>'; return; }
+
+  const 観察中 = new Set(ログ.改善.filter(c => c.状態 === '観察中').map(c => c.キーワード));
+  const 達成 = new Set(ログ.改善.filter(c => c.状態 === '達成').map(c => c.キーワード));
+
+  const 候補 = 最新.結果
+    .filter(r => r.表示回数 >= 20 && r.順位 <= 20)
+    .filter(r => !観察中.has(r.キーワード) && !達成.has(r.キーワード))
+    .filter(r => !除外するか(r.キーワード))
+    .map(r => {
+      const 順位 = Math.round(r.順位);
+      const 差 = 期待CTR[順位] ? +(期待CTR[順位] - r.CTR).toFixed(2) : 0;
+      return {...r, 差, 点数: r.表示回数 * Math.max(差, 0.1)};
+    })
+    .sort((a, b) => b.点数 - a.点数)
+    .slice(0, 12);
+
+  if (!候補.length){ 体.innerHTML = '<tr><td colspan="6" class="empty">今は候補がありません。無理に対象を作らないこと。</td></tr>'; return; }
+
+  体.innerHTML = 候補.map(c => `
+    <tr>
+      <td class="kw">${c.キーワード}</td>
+      <td class="n">${c.順位}</td>
+      <td class="n">${c.表示回数}</td>
+      <td class="n">${c.クリック数}</td>
+      <td class="n">${c.CTR}%</td>
+      <td class="n gap">-${c.差}pt</td>
+    </tr>`).join('');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+name: SEO順位ウォッチ
+
+# 毎週月曜 7:00(JST) に自動実行（UTCでは日曜22:00）。手動実行も可能。
+on:
+  schedule:
+    - cron: "0 22 * * 0"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: "01_CRATER/_SERVICE/SEO順位ウォッチ"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 依存インストール
+        run: pip install google-api-python-client google-auth
+
+      - name: Search Consoleから順位を取得して判定材料を作る
+        env:
+          GOOGLE_SA_JSON: ${{ secrets.GA4_DASHBOARD_SA_JSON }}
+        run: python engine.py
+
+      - name: Claude Codeインストール
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: 今週の1本を選んで改善する
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          WP_SITE: https://chics.top
+          WP_USER: chics
+          WP_APP_PASSWORD: ${{ secrets.CHICS_WP_APP_PASSWORD }}
+        run: |
+          PROMPT="$(cat 指示.md)"
+          claude -p "$PROMPT" \
+            --model opus \
+            --max-turns 60 \
+            --permission-mode bypassPermissions 2>&1 | tee 実行ログ.txt
+          echo "---- 報告 ----"
+          cat 報告.txt || echo "報告.txt が作られませんでした"
+
+      - name: 記録をコミット
+        run: |
+          git config user.name "SEO順位ウォッチ"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/順位履歴.json data/改善ログ.json summary.txt 報告.txt
+          git commit -m "SEO順位ウォッチ $(TZ=Asia/Tokyo date '+%Y-%m-%d')" || echo "変更なし"
+          git pull --rebase || echo "rebase skip"
+          git push || echo "push skip"
+
+      - name: クロタ（LINE）に通知
+        if: always()
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+        run: |
+          if [ -f 報告.txt ]; then
+            MSG="$(cat 報告.txt)
+
+          履歴はこちら
+          https://view.crater.co.jp/01_CRATER/_SERVICE/SEO順位ウォッチ/output/dashboard.html"
+          else
+            MSG="【SEO順位ウォッチ】今週の自動実行が最後まで完了しませんでした。ログを確認してください。"
+          fi
+
+          jq -n --arg to "$LINE_USER_ID" --arg text "$MSG" \
+            '{to:$to, messages:[{type:"text", text:($text | .[0:4900])}]}' \
+          | curl -sS -X POST https://api.line.me/v2/bot/message/push \
+              -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+              -H "Content-Type: application/json" \
+              -d @-
