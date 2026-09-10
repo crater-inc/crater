@@ -6,7 +6,9 @@ heekes.jp をSTUDIOから静的HTMLへ丸ごと移植したもの。
 
 ```
 ブランドサイト/
-├ heekes-html/            ← 制作物（このフォルダをそのままサーバーに上げる）
+├ pencil/
+│  └ 01heekes.pen        ← デザインデータ（正・Single Source of Truth）
+├ heekes-html/            ← 実装（このフォルダをそのままサーバーに上げる）
 │  ├ index.html           トップ
 │  ├ about.html           ABOUT
 │  ├ products.html        PRODUCTS
@@ -21,6 +23,25 @@ heekes.jp をSTUDIOから静的HTMLへ丸ごと移植したもの。
 │     └ img/              画像一式（STUDIOから原寸で回収）
 └ 参考_現行STUDIO/         移植元の見た目を記録したスクリーンショット
 ```
+
+## Pencil（デザインデータ）
+
+**`pencil/01heekes.pen` が正（Single Source of Truth）。** デザインの修正はまずPencilで行い、
+そのあとHTMLへ反映する。逆にHTMLだけ直して放置しない。
+
+### 中身（全24フレーム）
+- **再利用コンポーネント（8）**：Header PC/SP・Footer PC/SP・Page Head PC/SP・Breadcrumb PC/SP
+  （キャンバス上部の行に配置。ここを直すと全ページのインスタンスに一括で反映される）
+- **PC版8ページ**（1440px幅・上の行）
+- **SP版8ページ**（390px幅・下の行）
+
+高さはHTMLの実測値とほぼ一致している（例：TOP PC 4968px / HTML 4975px）。
+
+### Pencil版とHTML版で意図的に違うところ
+- **和文フォント**：Pencilはヒラギノを扱えないため Noto Sans JP。
+  HTMLはMac/iPhoneでヒラギノが出るので、和文の折り返し位置がわずかに違う
+- **動き**：スクロール出現アニメ・赤い幕のワイプ等はPencilでは表現できない。動きはHTML側だけが持つ
+- **YouTube動画**：Pencilではサムネイル画像で代用
 
 ## 移植のやり方
 

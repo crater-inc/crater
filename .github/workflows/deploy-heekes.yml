@@ -1,0 +1,37 @@
+name: Deploy HEEKES
+
+# heekes.jp（自社ConoHaサーバー）へ静的サイトをFTPデプロイする。
+# heekes-html/ 以下を変更してpushすると自動で反映される。
+on:
+  push:
+    branches: [main]
+    paths:
+      - "CL/ライフギアジャパン/ブランドサイト/heekes-html/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: サイト本体をデプロイ
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: CL/ライフギアジャパン/ブランドサイト/heekes-html/
+          server-dir: public_html/heekes.jp/
+          state-name: .ftp-deploy-heekes.json
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.DS_Store
+
+      - name: .htaccess を配置（拡張子なしURL・リダイレクト用・単体アップ）
+        run: |
+          curl -sS --ftp-create-dirs -T "CL/ライフギアジャパン/ブランドサイト/heekes-html/.htaccess" \
+            "ftp://${{ secrets.FTP_HOST }}/public_html/heekes.jp/.htaccess" \
+            --user "${{ secrets.FTP_USERNAME }}:${{ secrets.FTP_PASSWORD }}"
+          echo ".htaccess uploaded"

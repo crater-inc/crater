@@ -1,0 +1,79 @@
+# HEEKES 公式サイト（自社サーバー用）
+
+# --------------------------------------------------------------------------
+# 拡張子なしURLを維持する
+# STUDIO版が /about /products のような形だったので、
+# .html を付けなくても同じページが開くようにする（既存のリンク・検索結果を守る）
+# --------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # https へ統一
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # www なしへ統一
+  RewriteCond %{HTTP_HOST} ^www\.heekes\.jp$ [NC]
+  RewriteRule ^(.*)$ https://heekes.jp/$1 [R=301,L]
+
+  # STUDIO時代の記事URLを新しいURLへ転送
+  RewriteRule ^posts/jFh5vRTe/?$ /news-heekes-site-release [R=301,L]
+
+  # /index.html でアクセスされたらトップへ寄せる
+  RewriteCond %{THE_REQUEST} \s/index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+
+  # /about のような拡張子なしのアクセスを about.html につなぐ
+  # （STUDIO時代のURLをそのまま生かすため）
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ /$1.html [L]
+
+  # 注：/about.html でも開けるが、各ページの <link rel="canonical"> で
+  # 拡張子なしURLを正としているため、検索エンジンには1つのURLとして扱われる。
+  # （.html を強制リダイレクトしないのは、内部リンクで余計な転送を挟まないため）
+</IfModule>
+
+# --------------------------------------------------------------------------
+# 404ページ
+# --------------------------------------------------------------------------
+ErrorDocument 404 /404.html
+
+# --------------------------------------------------------------------------
+# 圧縮（表示を軽くする）
+# --------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# --------------------------------------------------------------------------
+# ブラウザキャッシュ
+# 画像・CSS・JSは長め、HTMLは短めにして更新がすぐ反映されるようにする
+# --------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 10 minutes"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
+
+# --------------------------------------------------------------------------
+# セキュリティ
+# --------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# .pen などの作業ファイルを念のため非公開にする
+<FilesMatch "\.(pen|md)$">
+  Require all denied
+</FilesMatch>
