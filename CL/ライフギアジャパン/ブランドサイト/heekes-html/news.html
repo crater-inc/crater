@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEWS｜お知らせ｜HEEKES</title>
+<meta name="description" content="HEEKES（ヒーケス）からの最新のお知らせ・新商品リリース情報・導入事例をお届けします。">
+<meta name="robots" content="all">
+
+<meta property="og:site_name" content="HEEKES">
+<meta property="og:title" content="NEWS｜お知らせ｜HEEKES">
+<meta property="og:description" content="HEEKESからの最新のお知らせをお届けします。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://heekes.jp/news">
+<meta property="og:image" content="https://heekes.jp/assets/img/news-cover.png">
+<meta property="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" href="assets/img/logo-red.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "NEWS｜お知らせ｜HEEKES",
+  "url": "https://heekes.jp/news"
+}
+</script>
+</head>
+
+<body class="has-fixed-bg">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="arrow-right" viewBox="0 0 24 24">
+    <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+  </symbol>
+</svg>
+
+<!-- ヘッダー -->
+<header class="header" data-anim="down" style="--delay:1400ms; --duration:800ms">
+  <a class="header__logo" href="index.html">
+    <img src="assets/img/logo-red.png" alt="HEEKES" width="146">
+  </a>
+  <nav class="header__nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="products.html">PRODUCTS</a>
+    <a href="news.html">NEWS</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+  <button class="header__burger" type="button" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- スマホ用メニュー -->
+<div class="menu">
+  <button class="menu__close" type="button" aria-label="メニューを閉じる">×</button>
+  <nav class="menu__nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="products.html">PRODUCTS</a>
+    <a href="news.html">NEWS</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+  <div class="menu__sub">
+    <a href="policy.html">PRIVACY POLICY</a>
+  </div>
+</div>
+
+<!-- 下層ページ共通の固定背景 -->
+<div class="page-bg zoom" style="--delay:500ms"></div>
+
+<!-- ページを開いた瞬間に引いていく赤い幕 -->
+<div class="kv-curtain"></div>
+
+<main>
+
+  <!-- ページタイトル -->
+  <section class="page-head">
+    <div class="page-head__inner">
+      <h1 class="page-head__en" data-anim="up-md" style="--delay:800ms; --duration:1000ms">NEWS</h1>
+      <p class="page-head__jp" data-anim="fade" style="--delay:1000ms; --duration:800ms">お知らせ</p>
+    </div>
+  </section>
+
+  <section class="news-page">
+    <div class="news-page__inner">
+      <p class="news-page__label" data-anim="fade" style="--delay:300ms; --duration:800ms">すべての記事一覧</p>
+
+      <!-- ============================================================
+           記事を追加するときは、この <a class="news-card"> のかたまりを
+           そのままコピーして、リンク先・画像・タイトル・日付を差し替える。
+           新しい記事ほど上に置く。
+           ============================================================ -->
+      <div class="news__list">
+
+        <a class="news-card" href="news-heekes-site-release.html">
+          <div class="news-card__image">
+            <img class="zoom" src="assets/img/news-cover.png" alt="" width="1200" height="630" loading="lazy" style="--delay:300ms">
+            <span class="curtain" style="--delay:300ms"></span>
+          </div>
+          <h2 class="news-card__title" data-anim="fade" style="--delay:300ms; --duration:1000ms">HEEKES公式サイトリリースしました！</h2>
+          <time class="news-card__date" datetime="2025-09-16T22:35+09:00" data-anim="fade" style="--delay:300ms; --duration:1000ms">2025/9/16 22:35</time>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+      <li><a href="index.html">HOME</a></li>
+      <li><svg class="icon-arrow"><use href="#arrow-right"></use></svg></li>
+      <li>NEWS</li>
+    </ol>
+  </nav>
+
+</main>
+
+<!-- フッター -->
+<footer class="footer">
+  <div class="footer__action">
+    <a class="footer__contact" href="contact.html">
+      <div>
+        <p class="footer__contact-label">CONTACT</p>
+        <p class="footer__contact-sub">お問い合わせはこちらから</p>
+      </div>
+      <svg class="icon-arrow"><use href="#arrow-right"></use></svg>
+    </a>
+  </div>
+
+  <div class="footer__inner">
+    <a class="footer__logo" href="index.html">
+      <img src="assets/img/logo-white.png" alt="HEEKES" width="149">
+    </a>
+    <nav class="footer__nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="products.html">PRODUCTS</a>
+      <a href="news.html">NEWS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </div>
+
+  <div class="footer__links">
+    <a href="policy.html">PRIVACY POLICY</a>
+  </div>
+
+  <p class="footer__copyright">&copy;2025&nbsp;Lifegear Japan Inc,</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

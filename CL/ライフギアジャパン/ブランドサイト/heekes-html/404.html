@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 Not Found｜HEEKES</title>
+<meta name="description" content="お探しのページは見つかりませんでした。">
+<meta name="robots" content="noindex">
+
+
+<link rel="icon" type="image/png" href="assets/img/logo-red.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="has-fixed-bg">
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="arrow-right" viewBox="0 0 24 24">
+    <path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
+  </symbol>
+</svg>
+
+<!-- ヘッダー -->
+<header class="header" data-anim="down" style="--delay:1400ms; --duration:800ms">
+  <a class="header__logo" href="index.html">
+    <img src="assets/img/logo-red.png" alt="HEEKES" width="146">
+  </a>
+  <nav class="header__nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="products.html">PRODUCTS</a>
+    <a href="news.html">NEWS</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+  <button class="header__burger" type="button" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- スマホ用メニュー -->
+<div class="menu">
+  <button class="menu__close" type="button" aria-label="メニューを閉じる">×</button>
+  <nav class="menu__nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="products.html">PRODUCTS</a>
+    <a href="news.html">NEWS</a>
+    <a href="contact.html">CONTACT</a>
+  </nav>
+  <div class="menu__sub">
+    <a href="policy.html">PRIVACY POLICY</a>
+  </div>
+</div>
+
+<!-- 下層ページ共通の固定背景 -->
+<div class="page-bg zoom" style="--delay:500ms"></div>
+
+<!-- ページを開いた瞬間に引いていく赤い幕 -->
+<div class="kv-curtain"></div>
+
+<main>
+
+  <!-- ページタイトル -->
+  <section class="page-head">
+    <div class="page-head__inner">
+      <h1 class="page-head__en" data-anim="up-md" style="--delay:800ms; --duration:1000ms">404</h1>
+      <p class="page-head__jp" data-anim="fade" style="--delay:1000ms; --duration:800ms">お探しのページは見つかりませんでした</p>
+    </div>
+  </section>
+
+  <section class="panel-section">
+    <div class="panel-section__inner">
+      <div class="panel">
+        <div class="policy" data-anim="fade" style="--delay:300ms; --duration:1000ms">
+          <h2>404 Not Found</h2>
+          <p>お探しのページはアクセスできない状況にあるか、移動または削除された可能性があり、見つけられませんでした。URL、ファイル名にタイプミスがないかご確認ください。</p>
+          <p style="margin-top:32px;">
+            <a class="btn" href="index.html">
+              トップページへ戻る
+              <svg class="icon-arrow"><use href="#arrow-right"></use></svg>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- パンくず -->
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <ol>
+      <li><a href="index.html">HOME</a></li>
+      <li><svg class="icon-arrow"><use href="#arrow-right"></use></svg></li>
+      <li>404</li>
+    </ol>
+  </nav>
+
+</main>
+
+<!-- フッター -->
+<footer class="footer">
+  <div class="footer__action">
+    <a class="footer__contact" href="contact.html">
+      <div>
+        <p class="footer__contact-label">CONTACT</p>
+        <p class="footer__contact-sub">お問い合わせはこちらから</p>
+      </div>
+      <svg class="icon-arrow"><use href="#arrow-right"></use></svg>
+    </a>
+  </div>
+
+  <div class="footer__inner">
+    <a class="footer__logo" href="index.html">
+      <img src="assets/img/logo-white.png" alt="HEEKES" width="149">
+    </a>
+    <nav class="footer__nav">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="products.html">PRODUCTS</a>
+      <a href="news.html">NEWS</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </div>
+
+  <div class="footer__links">
+    <a href="policy.html">PRIVACY POLICY</a>
+  </div>
+
+  <p class="footer__copyright">&copy;2025&nbsp;Lifegear Japan Inc,</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
