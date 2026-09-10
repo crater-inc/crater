@@ -21,8 +21,10 @@ jobs:
           server: ${{ secrets.HEEKES_FTP_HOST }}
           username: ${{ secrets.HEEKES_FTP_USERNAME }}
           password: ${{ secrets.HEEKES_FTP_PASSWORD }}
+          # FTPアカウントの接続許可ディレクトリを public_html/heekes.jp に
+          # 限定しているため、FTPのルート（./）がそのままサイトの公開領域になる
           local-dir: CL/ライフギアジャパン/ブランドサイト/heekes-html/
-          server-dir: public_html/heekes.jp/
+          server-dir: ./
           state-name: .ftp-deploy-heekes.json
           exclude: |
             **/.git*
@@ -32,6 +34,6 @@ jobs:
       - name: .htaccess を配置（拡張子なしURL・リダイレクト用・単体アップ）
         run: |
           curl -sS --ftp-create-dirs -T "CL/ライフギアジャパン/ブランドサイト/heekes-html/.htaccess" \
-            "ftp://${{ secrets.HEEKES_FTP_HOST }}/public_html/heekes.jp/.htaccess" \
+            "ftp://${{ secrets.HEEKES_FTP_HOST }}/.htaccess" \
             --user "${{ secrets.HEEKES_FTP_USERNAME }}:${{ secrets.HEEKES_FTP_PASSWORD }}"
           echo ".htaccess uploaded"
