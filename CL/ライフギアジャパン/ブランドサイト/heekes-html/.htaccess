@@ -8,9 +8,10 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # https へ統一
-  RewriteCond %{HTTPS} !=on
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+  # https への統一はここでは書かない。
+  # ConoHaの無料独自SSLを有効にすると、サーバー側で自動的にhttpsへ
+  # リダイレクトされる。ここに同じ設定を書くとループしてエラーになる。
+  # （ConoHa公式の注意事項）
 
   # www なしへ統一
   RewriteCond %{HTTP_HOST} ^www\.heekes\.jp$ [NC]
