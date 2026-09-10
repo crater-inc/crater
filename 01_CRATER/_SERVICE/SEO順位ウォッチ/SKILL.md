@@ -61,15 +61,26 @@ description: chics.top等の既存記事を、Search Consoleの実測順位を�
   title/descriptionの現物確認は必ず `curl -sL <URL>` の生HTMLで行う。
 - **Yoastがタイトル末尾に「 ｜ VI専門チームCHICS」を自動で足す。**
   タイトル自体にブランド名を入れると重複して長くなる。全角30字前後に収める。
+- **観察中の判定はキーワードではなく記事単位。**
+  「10周年ロゴ」と「10周年 ロゴ」のように、同じ記事が表記違いの別キーワードで候補に出る。
+  観察中の記事は、どのキーワード経由でも次回レビュー日まで触らない。
+- **スパム語での表示に注意。** crater.co.jpで2026年7〜8月に、トルコの風俗系スパム語（kocaeli escort等）で
+  約8,000回表示された（ページ自体の改ざんは確認されず、外部スパムリンク由来と推定）。
+  engine.py とダッシュボードはスパム語を候補から除外し、まとまって出たら【異常検知】として報告する。
+  語のリストは `engine.py` と `output/dashboard.html` の `スパム語` の2か所。
 
 ## 対象サイトを増やすとき
 
 1. Search Consoleで対象サイトのプロパティに
    `analytics-reader@crater-dashboard.iam.gserviceaccount.com` を「制限付き」で追加
-2. `engine.py` の `対象サイト` リストに追加
+2. `engine.py` の `対象サイト` と `output/dashboard.html` の `サイト一覧` の**両方**に追加（扱いは「改善」か「測定のみ」）
 3. WordPress以外のサイトは `wp.py` が使えないので、更新手段を別途用意する
 
-現時点でループに乗せる価値があるのは chics.top と years.design。
-APOLLOS/BIRTHは記事が薄く改善対象がない。A CURRYはECなので順位より購入率の話になる。
+2026-09-10時点：6サイト（chics.top / years.design / crater.co.jp / apollos.jp / birth.business / acurry.jp）を毎週測定。**自動改善は chics.top のみ**。
+- years.design … WPアプリケーションパスワードが揃ったら「改善」に切り替える
+- crater.co.jp … 実績ページ（WORKS 187本）が画像だけでテキストがほぼ無い。改善するなら業種で語れる実績に短い説明を足すのが本命（本文なので人の確認が要る）。大手ブランド案件は検索では勝てないので狙わない
+- apollos.jp … 記事が溜まったら「改善」を検討
+- acurry.jp … ECなので測定のみ
+- heekes.jp … ブログも実績ページも無いので対象外
 
 関連メモリ：[[MEMORY_SEO順位ウォッチ]] [[MEMORY_CHICS_LP計測]] [[MEMORY_CHICS記事量産]]

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>SEO順位ウォッチ｜CHICS</title>
+<title>SEO順位ウォッチ｜CRATER</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -52,17 +52,39 @@ body{
 
 .wrap{max-width:1080px;margin:0 auto;padding:56px 40px 96px;}
 
-header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:48px;}
+header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:36px;}
 .eyebrow{font-size:11px;letter-spacing:.22em;color:var(--meta);margin:0 0 10px;}
 h1.title{font-size:30px;font-weight:700;margin:0 0 14px;letter-spacing:.02em;}
 .lead{font-size:14px;color:var(--sub);margin:0;max-width:62ch;}
 .updated{font-size:12px;color:var(--meta);margin-top:14px;}
+.updated a{color:var(--accent);}
+
+/* ---- サイト切り替え ---- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.tab{
+  font-family:inherit;font-size:14px;padding:8px 16px;border-radius:999px;cursor:pointer;
+  background:var(--panel);border:1px solid var(--line);color:var(--sub);
+}
+.tab:hover{border-color:#3b4252;}
+.tab.on{border-color:var(--accent);color:var(--text);}
+.tab .mode{font-size:10px;letter-spacing:.08em;color:var(--meta);margin-left:6px;}
+.tab.on .mode{color:var(--accent);}
+.modeNote{font-size:13px;color:var(--sub);margin:0 0 44px;}
 
 section{margin-bottom:64px;}
 h2{
   font-size:13px;letter-spacing:.18em;color:var(--meta);font-weight:500;
   margin:0 0 20px;padding-bottom:10px;border-bottom:1px solid var(--line);
 }
+
+/* ---- 異常 ---- */
+.alert{
+  background:#1f1414;border:1px solid #5b2f2f;border-left:3px solid var(--down);
+  border-radius:10px;padding:18px 22px;margin-bottom:44px;
+}
+.alert .h{font-size:15px;font-weight:700;color:var(--text);display:block;margin-bottom:6px;}
+.alert p{font-size:14px;color:var(--sub);margin:0 0 6px;}
+.alert p:last-child{margin-bottom:0;}
 
 /* ---- 観察中カード ---- */
 .watching{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;}
@@ -75,11 +97,8 @@ h2{
 .until{font-size:13px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px;margin:0;}
 .badge{
   display:inline-block;font-size:11px;letter-spacing:.08em;padding:3px 10px;border-radius:999px;
-  border:1px solid var(--line);color:var(--sub);margin-bottom:12px;
+  border:1px solid #3b4252;color:var(--accent);margin-bottom:12px;
 }
-.badge.watch{border-color:#3b4252;color:var(--accent);}
-.badge.done{border-color:#2f5b3f;color:var(--up);}
-.badge.bad{border-color:#5b2f2f;color:var(--down);}
 
 /* ---- 施策履歴 ---- */
 .timeline{border-left:2px solid var(--line);padding-left:26px;margin-left:6px;}
@@ -88,12 +107,12 @@ h2{
   content:"";position:absolute;left:-33px;top:7px;width:11px;height:11px;border-radius:50%;
   background:var(--bg);border:2px solid var(--accent);
 }
-.entry .date{font-size:12px;color:var(--meta);letter-spacing:.1em;}
+.entry .date{font-size:12px;color:var(--meta);letter-spacing:.1em;margin:0;}
 .entry .kw{font-size:17px;font-weight:700;margin:2px 0 12px;}
 .diff{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px;}
 .diff .lbl{font-size:10px;letter-spacing:.14em;color:var(--meta);display:block;margin-bottom:3px;}
-.diff .before{font-size:14px;color:var(--sub);text-decoration:line-through;text-decoration-color:#5a4040;margin-bottom:12px;}
-.diff .after{font-size:15px;color:var(--text);font-weight:500;}
+.diff .before{font-size:14px;color:var(--sub);text-decoration:line-through;text-decoration-color:#5a4040;margin:0 0 12px;}
+.diff .after{font-size:15px;color:var(--text);font-weight:500;margin:0;}
 .why{font-size:14px;color:var(--sub);margin:0 0 8px;}
 .why b{color:var(--text);font-weight:500;}
 .verdict{font-size:14px;margin:10px 0 0;padding:10px 14px;border-radius:8px;background:#12161c;border:1px solid var(--line);}
@@ -111,7 +130,7 @@ td.kw{color:var(--text);font-weight:500;}
 td.n{text-align:right;font-family:"IBM Plex Mono",monospace;}
 .gap{color:var(--flat);}
 
-.empty{font-size:14px;color:var(--meta);padding:24px 0;}
+.empty{font-size:14px;color:var(--meta);padding:24px 0;margin:0;}
 
 @media (max-width:768px){
   .wrap{padding:40px 32px 72px;width:100%;}
@@ -135,12 +154,17 @@ td.n{text-align:right;font-family:"IBM Plex Mono",monospace;}
 <div class="wrap">
 
   <header>
-    <p class="eyebrow">CHICS ／ chics.top</p>
+    <p class="eyebrow">CRATER GROUP</p>
     <h1 class="title">SEO順位ウォッチ</h1>
     <p class="lead">既存記事を1本ずつ改善して育てる記録。1回に直すのは1キーワードだけ。直したら14日間は触らず、実測で効果を判定する。</p>
     <p class="updated" id="updated"></p>
-    <p class="updated"><a href="./概要.html" style="color:#5ac8fa">この仕組みの説明はこちら →</a></p>
+    <p class="updated"><a href="./概要.html">この仕組みの説明はこちら →</a></p>
   </header>
+
+  <nav class="tabs" id="tabs"></nav>
+  <p class="modeNote" id="modeNote"></p>
+
+  <div id="alertBox"></div>
 
   <section>
     <h2>いま観察中</h2>
@@ -193,30 +217,89 @@ function checkPw(){
 document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
 if (sessionStorage.getItem('srw_unlocked') === '1') unlock();
 
+// ============ サイトごとの扱い（engine.py の 対象サイト と合わせる） ============
+const サイト一覧 = [
+  { id:'chics.top',      名前:'CHICS',    扱い:'改善' },
+  { id:'years.design',   名前:'YEARS',    扱い:'測定のみ' },
+  { id:'crater.co.jp',   名前:'CRATER',   扱い:'測定のみ' },
+  { id:'apollos.jp',     名前:'APOLLOS',  扱い:'測定のみ' },
+  { id:'birth.business', 名前:'BIRTH',    扱い:'測定のみ' },
+  { id:'acurry.jp',      名前:'A CURRY',  扱い:'測定のみ' },
+];
+
 // ============ 検索順位ごとの平均的なクリック率（％） ============
 const 期待CTR = {1:28.0, 2:15.0, 3:11.0, 4:8.0, 5:6.0, 6:4.5, 7:3.5, 8:3.0, 9:2.5, 10:2.2};
 
-// 受注につながらないキーワードは候補から外す（他社ロゴを見に来ているだけ・デザイナー志望者向け）
-const 除外パターン = [/ロゴ\s*一覧/, /一覧/, /有名/, /になるには/, /仕事内容/, /年収/];
+// スパム・無関係な検索語（engine.py と合わせる）
+const スパム語 = /escort|eskort|escoet|eacort|bayan|casino|slot|viagra|cialis|porn|xxx|kocaeli|izmit|derince|kartepe|gebze|kandıra|maşukiye/i;
+// 受注につながらないキーワード（他社ロゴを見に来ているだけ・デザイナー志望者向け）
+const 対象外 = [/一覧/, /有名/, /になるには/, /仕事内容/, /年収/];
 
-function 除外するか(kw){
-  return 除外パターン.some(p => p.test(kw));
-}
+let ログ = {改善:[]}, 履歴 = {測定:[]}, 選択中 = 'chics.top';
 
 async function init(){
-  const [ログ, 履歴] = await Promise.all([
+  [ログ, 履歴] = await Promise.all([
     fetch('../data/改善ログ.json', {cache:'no-store'}).then(r => r.json()).catch(() => ({改善:[]})),
     fetch('../data/順位履歴.json', {cache:'no-store'}).then(r => r.json()).catch(() => ({測定:[]}))
   ]);
+  try { 選択中 = localStorage.getItem('srw_site') || 選択中; } catch(e) {}
+  if (!サイト一覧.some(s => s.id === 選択中)) 選択中 = 'chics.top';
+  描くタブ();
+  描く();
+}
 
-  const 最新 = 履歴.測定.length ? 履歴.測定[履歴.測定.length - 1] : null;
+function 描くタブ(){
+  document.getElementById('tabs').innerHTML = サイト一覧.map(s => `
+    <button class="tab ${s.id === 選択中 ? 'on' : ''}" data-id="${s.id}">
+      ${s.名前}<span class="mode">${s.扱い}</span>
+    </button>`).join('');
+  document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => {
+    選択中 = b.dataset.id;
+    try { localStorage.setItem('srw_site', 選択中); } catch(e) {}
+    描くタブ();
+    描く();
+  }));
+}
+
+function 最新の測定(){
+  const 該当 = 履歴.測定.filter(m => m.サイト === 選択中);
+  return 該当.length ? 該当[該当.length - 1] : null;
+}
+
+function 描く(){
+  const サイト = サイト一覧.find(s => s.id === 選択中);
+  const 最新 = 最新の測定();
+  const ログ絞り込み = {改善: ログ.改善.filter(c => c.サイト === 選択中)};
+
   document.getElementById('updated').textContent = 最新
-    ? `最終測定 ${最新.測定日}（集計期間 ${最新.集計期間.開始} 〜 ${最新.集計期間.終了}）`
-    : 'まだ測定データがありません';
+    ? `${選択中} ／ 最終測定 ${最新.測定日}（集計期間 ${最新.集計期間.開始} 〜 ${最新.集計期間.終了}）`
+    : `${選択中} ／ まだ測定データがありません`;
+  document.getElementById('modeNote').textContent = サイト.扱い === '改善'
+    ? 'このサイトは毎週1本ずつ自動で改善しています（タイトル・descriptionのみ）。'
+    : 'このサイトは測定のみです。順位を記録して異常を見ていますが、記事には触っていません。';
 
-  描く観察中(ログ, 最新);
-  描く履歴(ログ);
-  描く候補(ログ, 最新);
+  描く異常(最新);
+  描く観察中(ログ絞り込み, 最新);
+  描く履歴(ログ絞り込み);
+  描く候補(ログ絞り込み, 最新);
+}
+
+function 描く異常(最新){
+  const 箱 = document.getElementById('alertBox');
+  if (!最新){ 箱.innerHTML = ''; return; }
+  const 該当 = 最新.結果.filter(r => スパム語.test(r.キーワード));
+  const 合計 = 該当.reduce((a, r) => a + r.表示回数, 0);
+  if (合計 < 50){ 箱.innerHTML = ''; return; }
+  const ページ = {};
+  該当.forEach(r => ページ[r.ページ] = (ページ[r.ページ] || 0) + r.表示回数);
+  const 上位ページ = Object.entries(ページ).sort((a, b) => b[1] - a[1]).slice(0, 3);
+  箱.innerHTML = `
+    <div class="alert">
+      <span class="h">スパム語での表示を検知（${合計.toLocaleString()}回）</span>
+      <p>「${該当.sort((a, b) => b.表示回数 - a.表示回数).slice(0, 3).map(r => r.キーワード).join('」「')}」など、事業と無関係な検索語で表示されています。</p>
+      ${上位ページ.map(([u, n]) => `<p class="num">${n.toLocaleString()}回 → ${u}</p>`).join('')}
+      <p>これらの語は下の「惜しい記事」からは除外しています。</p>
+    </div>`;
 }
 
 function 残り日数(日付){
@@ -238,7 +321,7 @@ function 描く観察中(ログ, 最新){
     const 現在 = 最新 ? 最新.結果.find(r => r.キーワード === c.キーワード && r.ページ === c.対象ページ) : null;
     return `
       <div class="card">
-        <span class="badge watch">観察中</span>
+        <span class="badge">観察中</span>
         <p class="kw">${c.キーワード}</p>
         <p class="page">${c.対象ページ}</p>
         <div class="row">
@@ -299,11 +382,15 @@ function 描く候補(ログ, 最新){
 
   const 観察中 = new Set(ログ.改善.filter(c => c.状態 === '観察中').map(c => c.キーワード));
   const 達成 = new Set(ログ.改善.filter(c => c.状態 === '達成').map(c => c.キーワード));
+  // 表記違いの別キーワードで同じ記事が出てくるため、観察中は記事単位でも除外する
+  const 観察中ページ = new Set(ログ.改善.filter(c => c.状態 === '観察中').map(c => c.対象ページ));
 
   const 候補 = 最新.結果
     .filter(r => r.表示回数 >= 20 && r.順位 <= 20)
     .filter(r => !観察中.has(r.キーワード) && !達成.has(r.キーワード))
-    .filter(r => !除外するか(r.キーワード))
+    .filter(r => !観察中ページ.has(r.ページ))
+    .filter(r => !スパム語.test(r.キーワード))
+    .filter(r => !対象外.some(p => p.test(r.キーワード)))
     .map(r => {
       const 順位 = Math.round(r.順位);
       const 差 = 期待CTR[順位] ? +(期待CTR[順位] - r.CTR).toFixed(2) : 0;
