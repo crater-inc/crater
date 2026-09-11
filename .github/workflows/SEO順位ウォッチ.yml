@@ -29,17 +29,24 @@ jobs:
       - name: Search Consoleから順位を取得して判定材料を作る
         env:
           GOOGLE_SA_JSON: ${{ secrets.GA4_DASHBOARD_SA_JSON }}
+          # WordPressの認証情報があるかの確認に使う（無いサイトはその週は測定のみになる）
+          WP_APP_PASSWORD: ${{ secrets.CHICS_WP_APP_PASSWORD }}
+          WP_KEYS_JSON: ${{ secrets.WP_KEYS_JSON }}
         run: python engine.py
 
       - name: Claude Codeインストール
         run: npm install -g @anthropic-ai/claude-code
 
-      - name: 今週の1本を選んで改善する
+      - name: 今週の対象を選んで改善する
         env:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # chics.top（以前からの設定）
           WP_SITE: https://chics.top
           WP_USER: chics
           WP_APP_PASSWORD: ${{ secrets.CHICS_WP_APP_PASSWORD }}
+          # years.design・apollos.jp（ログイン名とパスワードをまとめたJSON）。
+          # crater.co.jp は提案のみなので、あえて入れない（自動では書き込めないようにしておく）
+          WP_KEYS_JSON: ${{ secrets.WP_KEYS_JSON }}
         run: |
           PROMPT="$(cat 指示.md)"
           claude -p "$PROMPT" \

@@ -364,7 +364,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
           <span class="h">観察期間中（14日間）の記事は触らないでください</span>
           <p>どの記事が観察期間中かは、「いまの状況」タブで確認できます。同じ期間に別の変更が入ると、効果の判定ができなくなります。</p>
           <p>記事の追加・他の記事の修正は、これまで通り進めていただいて問題ありません。<strong>止めていただきたいのは「観察中」と表示されている記事だけ</strong>です。</p>
-          <p>また、この仕組みは記事タイトルを書き換えます。<strong>タイトルが変わっていても、意図した変更です。</strong>変更内容と理由は、すべて「いまの状況」タブの施策履歴に記録されています。</p>
+          <p>また、この仕組みは記事タイトルやmeta descriptionを書き換えます。<strong>変わっていても、意図した変更です。</strong>変更内容と理由は、すべて「いまの状況」タブの施策履歴に記録されています。</p>
         </div>
       </section>
 
@@ -383,7 +383,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
           <dd>Google Search Console API。読み取り専用のサービスアカウント <code>analytics-reader@crater-dashboard.iam.gserviceaccount.com</code> を、各サイトのプロパティに「制限付き」で追加しています。既存のGA4ダッシュボードと同じアカウントの流用です。</dd>
 
           <dt>記事の更新</dt>
-          <dd>WordPress REST API。chics.topの記事はカスタム投稿タイプ <code>news</code> なので、エンドポイントは <code>/wp-json/wp/v2/news/&lt;ID&gt;</code> です（<code>posts</code> では404）。認証はアプリケーションパスワード。</dd>
+          <dd>WordPress REST API（認証はアプリケーションパスワード）。変更するのは各サイトの記事だけで、トップページ・固定ページは対象外です。chics.topの記事はカスタム投稿タイプ <code>news</code>（<code>/wp-json/wp/v2/news/&lt;ID&gt;</code>）、years.design・apollos.jpは通常の投稿（<code>posts</code>）です。years.designはmeta descriptionもYoastの項目（<code>_yoast_wpseo_metadesc</code>）で書き換えます。crater.co.jpの実績（<code>works</code>）はタイトルが作品名としてそのまま表示されるため、自動では変更せず、改善案の提案だけにしています。</dd>
 
           <dt>WAFによる403について</dt>
           <dd>サーバー側のWAFが、外部IP（GitHub Actions）からの <code>/wp-json/</code> へのPOSTを403で弾いていました。現在は403を検知したら <code>?rest_route=</code> のクエリ形式で自動的に再試行する実装で回避しています。<strong>WAF設定の変更はしていません。</strong>もし今後この挙動を調整される場合はご一報ください。</dd>
@@ -396,7 +396,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
 
   </main>
 
-  <footer>株式会社クレーター　SEO順位ウォッチ　最終更新 2026-09-11</footer>
+  <footer>株式会社クレーター　SEO順位ウォッチ　最終更新 2026-09-12</footer>
 
 </div>
 </div>
@@ -405,9 +405,9 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
 // ============ サイトごとの扱い（engine.py の 対象サイト と合わせる） ============
 const サイト一覧 = [
   { id:'chics.top',      名前:'CHICS',    扱い:'改善',     上限:5, 最低表示:20, 最大順位:20 },
-  { id:'years.design',   名前:'YEARS',    扱い:'認証待ち', 上限:5, 最低表示:5,  最大順位:30 },
-  { id:'crater.co.jp',   名前:'CRATER',   扱い:'認証待ち', 上限:2, 最低表示:5,  最大順位:30 },
-  { id:'apollos.jp',     名前:'APOLLOS',  扱い:'認証待ち', 上限:2, 最低表示:5,  最大順位:30 },
+  { id:'years.design',   名前:'YEARS',    扱い:'改善',     上限:5, 最低表示:5,  最大順位:30, 対象URL:/^https:\/\/years\.design\/info\/\d+/ },
+  { id:'crater.co.jp',   名前:'CRATER',   扱い:'提案のみ', 上限:2, 最低表示:5,  最大順位:30, 対象URL:/^https:\/\/crater\.co\.jp\/works\/[^/]+\/[^/]+\// },
+  { id:'apollos.jp',     名前:'APOLLOS',  扱い:'改善',     上限:2, 最低表示:5,  最大順位:30, 対象URL:/^https:\/\/apollos\.jp\/(?!(contact|company|about|service|philosophy|info|sample-page)\/)/ },
   { id:'birth.business', 名前:'BIRTH',    扱い:'測定のみ', 上限:2, 最低表示:5,  最大順位:30 },
   { id:'acurry.jp',      名前:'A CURRY',  扱い:'測定のみ', 上限:2, 最低表示:5,  最大順位:30 },
 ];
@@ -468,6 +468,7 @@ window.addEventListener('hashchange', () => { 表示するパネル(); window.sc
 function 描く対象サイト(){
   const 説明 = {
     '改善':     s => `週${s.上限}本まで自動で改善`,
+    '提案のみ': s => `週${s.上限}件まで改善案を提案（反映は確認後）`,
     '認証待ち': s => `週${s.上限}本まで（WordPressの接続後に開始）`,
     '測定のみ': () => '当面は順位の測定のみ',
   };
@@ -515,6 +516,7 @@ function 描く(){
     : `${選択中} ／ まだ測定データがありません`;
   const 説明 = {
     '改善':     `このサイトは毎週最大${サイト.上限}本、自動で改善しています（タイトル・descriptionのみ）。`,
+    '提案のみ': `このサイトは自動では変更しません。毎週最大${サイト.上限}件の改善案をLINEで提案し、クレーター側で確認してから反映します。`,
     '認証待ち': `週${サイト.上限}本の自動改善を予定しています。WordPressの接続待ちのため、今は測定のみです。`,
     '測定のみ': 'このサイトは測定のみです。順位を記録して異常を見ていますが、記事には触っていません。',
   };
@@ -605,10 +607,17 @@ function 描く履歴(ログ){
         <p class="why">実施時 <b class="num">${s.実施時の順位}位</b> ／ 表示 <b class="num">${s.実施時の表示回数}</b> ／ クリック <b class="num">${s.実施時のクリック数}</b>（CTR <b class="num">${s.実施時のCTR}%</b>）</p>
         ${s.変更前タイトル ? `
         <div class="diff">
-          <span class="lbl">変更前</span>
+          <span class="lbl">変更前（タイトル）</span>
           <p class="before">${s.変更前タイトル}</p>
-          <span class="lbl">変更後</span>
+          <span class="lbl">変更後（タイトル）</span>
           <p class="after">${s.変更後タイトル}</p>
+        </div>` : ''}
+        ${'変更後description' in s ? `
+        <div class="diff">
+          <span class="lbl">変更前（description）</span>
+          <p class="before">${s.変更前description || '（未設定）'}</p>
+          <span class="lbl">変更後（description）</span>
+          <p class="after">${s.変更後description || '（未設定）'}</p>
         </div>` : ''}
         <p class="why"><b>検索ニーズ：</b>${s.検索ニーズ || '—'}</p>
         <p class="why"><b>足りなかったもの：</b>${s.ギャップ || '—'}</p>
@@ -631,6 +640,8 @@ function 描く候補(ログ, 最新, サイト){
     .filter(r => r.表示回数 >= サイト.最低表示 && r.順位 <= サイト.最大順位)
     .filter(r => !観察中.has(r.キーワード) && !達成.has(r.キーワード))
     .filter(r => !観察中ページ.has(r.ページ))
+    .filter(r => new URL(r.ページ).pathname !== '/')              // トップページは自動では変えない
+    .filter(r => !サイト.対象URL || サイト.対象URL.test(r.ページ))   // 対象URLが決まっているサイトは、それ以外を外す
     .filter(r => !スパム語.test(r.キーワード))
     .filter(r => !対象外.some(p => p.test(r.キーワード)))
     .filter(r => !(指名語[選択中] && 指名語[選択中].test(r.キーワード)))
