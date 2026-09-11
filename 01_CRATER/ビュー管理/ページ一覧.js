@@ -28,4 +28,16 @@ window.ページ一覧 = [
       { 名前: 'ハイエンドEC 商品リサーチ', URL: '/01_CRATER/_SERVICE/ハイエンドEC/dashboard/index.html' },
     ],
   },
+  {
+    グループ: 'タスク',
+    ページ: [
+      { 名前: 'AIタスク', URL: '/01_CRATER/ケイスケグループ座組/AIタスク.html' },
+    ],
+  },
+  {
+    グループ: '資料',
+    ページ: [
+      { 名前: '会社案内（ポートフォリオ）', URL: '/01_CRATER/ポートフォリオ/output/index.html' },
+    ],
+  },
 ];

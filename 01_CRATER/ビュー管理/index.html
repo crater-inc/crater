@@ -688,8 +688,8 @@
       const ページの文字 = {};     // URL → そのページのタイトル・見出し・本文をつなげた文字
       let 読み込み状態 = 'まだ';   // まだ → 読み込み中 → 済み
 
-      // 全角・半角、大文字・小文字の違いをそろえる
-      function そろえる(s) {
+      // 検索用に、全角・半角、大文字・小文字の違いをそろえる（URLには使わない）
+      function 検索用にそろえる(s) {
         return (s || '').normalize('NFKC').toLowerCase();
       }
 
@@ -720,7 +720,7 @@
 
       // 本文で当たった所の前後を少し切り出し、当たった語に印をつける
       function 当たった所を出す(el, 文字, 語) {
-        const そろえた文字 = そろえる(文字);
+        const そろえた文字 = 検索用にそろえる(文字);
         const 位置 = そろえた文字.indexOf(語);
         if (位置 < 0) { el.hidden = true; return; }
         // 全角半角をそろえて文字数が変わった時は、そろえた方の文字で見せる（位置がずれないように）
@@ -738,7 +738,7 @@
       }
 
       function 検索する() {
-        const 語 = そろえる(searchInput.value).trim().split(/\s+/).filter(Boolean);
+        const 語 = 検索用にそろえる(searchInput.value).trim().split(/\s+/).filter(Boolean);
         const 検索中 = 語.length > 0;
         let 件数 = 0;
         nav.classList.toggle('is-searching', 検索中);
@@ -748,9 +748,9 @@
           section.querySelectorAll('li').forEach(function (li) {
             const item = li.querySelector('.site');
             const snippet = li.querySelector('.site-snippet');
-            const 名前側 = そろえる(item.dataset.name + ' ' + item.dataset.group);
+            const 名前側 = 検索用にそろえる(item.dataset.name + ' ' + item.dataset.group);
             const 中身 = ページの文字[item.dataset.url] || '';
-            const 全部 = 名前側 + ' ' + そろえる(中身);
+            const 全部 = 名前側 + ' ' + 検索用にそろえる(中身);
             const 当たり = !検索中 || 語.every(function (w) { return 全部.indexOf(w) >= 0; });
             li.hidden = !当たり;
 
