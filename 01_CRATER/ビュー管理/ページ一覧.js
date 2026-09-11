@@ -14,7 +14,12 @@ window.ページ一覧 = [
     ページ: [
       { 名前: 'アクセス解析', URL: '/01_CRATER/_SERVICE/アクセス解析ダッシュボード/output/dashboard.html' },
       { 名前: 'SEO順位ウォッチ', URL: '/01_CRATER/_SERVICE/SEO順位ウォッチ/output/dashboard.html' },
-      { 名前: 'SEO順位ウォッチ 概要', URL: '/01_CRATER/_SERVICE/SEO順位ウォッチ/output/概要.html' },
+    ],
+  },
+  {
+    グループ: '入札',
+    ページ: [
+      { 名前: 'ロゴ案件ウォッチ', URL: '/01_CRATER/_SERVICE/ロゴ案件ウォッチ/output/ロゴ案件一覧.html' },
     ],
   },
   {
