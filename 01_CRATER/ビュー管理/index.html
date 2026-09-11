@@ -398,6 +398,133 @@
       to { width: 100%; }
     }
 
+    /* ===== 左の一番上：トップへのリンク ===== */
+    .home-link-wrap { padding: 8px 10px 0; }
+    .home-link { justify-content: flex-start; }
+    .home-icon { flex-shrink: 0; color: var(--side-sub); }
+    .home-link.is-active .home-icon { color: #fff; }
+
+    /* ===== トップ（view全体の最近の更新）・白背景 ===== */
+    .top-view {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      overflow-y: auto;
+      background: #fff;
+      color: #333;
+    }
+
+    .top-inner {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
+
+    .top-kicker {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: #888;
+    }
+
+    .top-title {
+      margin-top: 6px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #111;
+    }
+
+    .top-lead {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .top-day { margin-top: 36px; }
+
+    .top-day-label {
+      padding-bottom: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: #555;
+      border-bottom: 1px solid #e6e6e6;
+    }
+
+    .top-row {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 16px;
+      width: 100%;
+      padding: 14px 10px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .top-row:hover { background: #f7f7f7; }
+
+    .top-time {
+      padding-top: 2px;
+      font-size: 13px;
+      color: #777;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .top-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .top-name-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px 10px;
+    }
+
+    .top-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #111;
+      overflow-wrap: anywhere;
+    }
+
+    .top-project {
+      padding: 2px 8px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: #555;
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+
+    /* 同じ変更でまとめて更新されたページの数（「ほか7ページ」） */
+    .top-others {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .top-others:empty { display: none; }
+
+    .top-note {
+      font-size: 14px;
+      color: #555;
+      overflow-wrap: anywhere;
+    }
+
+    .top-more {
+      margin-top: 28px;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+    }
+
+    .top-more:hover { background: #f7f7f7; }
+
     .overlay { display: none; }
 
     /* ===== スマホ：一覧は左から引き出す ===== */
@@ -435,6 +562,9 @@
 
       .topbar { padding: 0 8px; }
       .site { padding: 12px; }
+
+      .top-inner { padding: 32px 32px 64px; }
+      .top-row { grid-template-columns: 44px 1fr; gap: 12px; padding: 12px 4px; }
     }
   </style>
 </head>
@@ -472,6 +602,12 @@
         </label>
         <p class="search-status" id="searchStatus" hidden></p>
       </div>
+      <div class="home-link-wrap" id="homeWrap">
+        <button type="button" class="site home-link" id="homeBtn">
+          <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+          <span class="site-name">トップ（最近の更新）</span>
+        </button>
+      </div>
       <nav class="site-nav" id="siteNav"></nav>
     </aside>
 
@@ -500,6 +636,16 @@
       <div class="viewer" id="viewerWrap">
         <iframe id="viewer" title="選んだページ"></iframe>
         <p class="empty" id="empty">左の一覧からページを選んでください</p>
+        <!-- トップ：view全体の最近の更新（中身は 更新一覧.json から作る） -->
+        <section class="top-view" id="topView" hidden>
+          <div class="top-inner">
+            <p class="top-kicker">CRATER VIEW</p>
+            <h1 class="top-title">最近の更新</h1>
+            <p class="top-lead" id="topLead"></p>
+            <div class="top-list" id="topList"></div>
+            <button type="button" class="top-more" id="topMore" hidden></button>
+          </div>
+        </section>
       </div>
     </main>
 
@@ -671,15 +817,8 @@
           nav.appendChild(section);
         });
 
-        // 最後に開いていたページ（なければ一番上）を開く
-        const 最後のURL = 読み出す('view_hub_last', null);
-        const ボタン = Array.from(nav.querySelectorAll('button.site'));
-        const 最初 = ボタン.find(function (b) { return b.dataset.url === 最後のURL; }) || ボタン[0];
-        if (最初) {
-          最初.click();
-        } else {
-          empty.textContent = 'まだページがありません（ページ一覧.js に追加します）';
-        }
+        // 開いたら、まずトップ（view全体の最近の更新）を出す
+        トップを開く();
       }
 
       // ===== 検索（ページ名・グループ名・各ページのタイトル・見出し・本文） =====
@@ -742,6 +881,7 @@
         const 検索中 = 語.length > 0;
         let 件数 = 0;
         nav.classList.toggle('is-searching', 検索中);
+        homeWrap.hidden = 検索中;
 
         nav.querySelectorAll('.group').forEach(function (section) {
           let 見えている = 0;
@@ -784,7 +924,156 @@
         }
       });
 
+      // ===== トップ（view全体の最近の更新） =====
+      // 一覧は GitHub Actions（VIEW更新一覧）が view-data ブランチに置く 更新一覧.json を読む
+      const 更新一覧のURL = 'https://raw.githubusercontent.com/crater-inc/crater/view-data/' + encodeURIComponent('更新一覧.json');
+      const topView = document.getElementById('topView');
+      const topList = document.getElementById('topList');
+      const topLead = document.getElementById('topLead');
+      const topMore = document.getElementById('topMore');
+      const homeBtn = document.getElementById('homeBtn');
+      const homeWrap = document.getElementById('homeWrap');
+      let 更新一覧 = null;
+      let 全部見せる = false;
+
+      function トップを開く() {
+        topView.hidden = false;
+        viewer.hidden = true;
+        empty.hidden = true;
+        viewerWrap.classList.remove('is-loading');
+        currentGroup.textContent = '';
+        currentName.textContent = 'トップ（最近の更新）';
+        newTabBtn.hidden = true;
+        reloadBtn.hidden = false;
+        document.title = 'VIEW管理';
+        homeBtn.classList.add('is-active');
+        nav.querySelectorAll('.site').forEach(function (s) {
+          s.classList.remove('is-active');
+          s.removeAttribute('aria-current');
+        });
+        if (スマホ幅.matches) 一覧を引き出す(false);
+        更新一覧を読み込む();
+      }
+
+      function 更新一覧を読み込む() {
+        topLead.textContent = '読み込み中…';
+        topList.textContent = '';
+        topMore.hidden = true;
+        fetch(更新一覧のURL + '?t=' + Date.now(), { cache: 'no-store' })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.status);
+            return res.json();
+          })
+          .then(function (data) {
+            更新一覧 = data;
+            全部見せる = false;
+            更新一覧を描く();
+          })
+          .catch(function () {
+            topLead.textContent = '更新一覧を準備中です。数分たってから、右上の再読み込みを押してください。';
+          });
+      }
+
+      // 「今日」「昨日」「9月9日（水）」の見出し
+      function 日付の見出し(日時) {
+        const 今日 = new Date();
+        今日.setHours(0, 0, 0, 0);
+        const その日 = new Date(日時);
+        その日.setHours(0, 0, 0, 0);
+        const 何日前 = Math.round((今日 - その日) / 86400000);
+        if (何日前 === 0) return '今日';
+        if (何日前 === 1) return '昨日';
+        return (日時.getMonth() + 1) + '月' + 日時.getDate() + '日（' + '日月火水木金土'.charAt(日時.getDay()) + '）';
+      }
+
+      function 更新一覧を描く() {
+        const ページ = (更新一覧 && 更新一覧.ページ) || [];
+        const 二週間前 = Date.now() - 14 * 86400000;
+        const 最近 = ページ.filter(function (p) { return new Date(p.日時).getTime() >= 二週間前; });
+        const 見せる = 全部見せる ? ページ : (最近.length ? 最近 : ページ.slice(0, 20));
+
+        topLead.textContent = 全部見せる
+          ? 'view の全ページ（' + ページ.length + '件）を、更新が新しい順に並べています。'
+          : 'view の全ページのうち、直近2週間に更新されたページです（' + 見せる.length + '件）。押すとここで開きます。';
+        topList.textContent = '';
+
+        let 今の見出し = '';
+        let 日の箱 = null;
+        let 前の行 = null;
+        見せる.forEach(function (p) {
+          // 同じ変更でまとめて更新されたページは1行にまとめる（「ほか7ページ」）
+          const まとめキー = p.日時 + '|' + p.案件 + '|' + p.内容;
+          if (前の行 && 前の行.dataset.key === まとめキー) {
+            前の行.dataset.count = Number(前の行.dataset.count) + 1;
+            前の行.querySelector('.top-others').textContent = 'ほか' + (前の行.dataset.count - 1) + 'ページ';
+            return;
+          }
+
+          const 日時 = new Date(p.日時);
+          const 見出し = 日付の見出し(日時);
+          if (見出し !== 今の見出し) {
+            今の見出し = 見出し;
+            日の箱 = document.createElement('section');
+            日の箱.className = 'top-day';
+            const h = document.createElement('h2');
+            h.className = 'top-day-label';
+            h.textContent = 見出し;
+            日の箱.appendChild(h);
+            topList.appendChild(日の箱);
+          }
+
+          const row = document.createElement('button');
+          row.type = 'button';
+          row.className = 'top-row';
+          row.dataset.key = まとめキー;
+          row.dataset.count = 1;
+
+          const time = document.createElement('span');
+          time.className = 'top-time';
+          time.textContent = ('0' + 日時.getHours()).slice(-2) + ':' + ('0' + 日時.getMinutes()).slice(-2);
+
+          const main = document.createElement('span');
+          main.className = 'top-main';
+          const nameRow = document.createElement('span');
+          nameRow.className = 'top-name-row';
+          const name = document.createElement('span');
+          name.className = 'top-name';
+          name.textContent = p.タイトル;
+          const project = document.createElement('span');
+          project.className = 'top-project';
+          project.textContent = p.案件;
+          const others = document.createElement('span');
+          others.className = 'top-others';
+          nameRow.appendChild(name);
+          nameRow.appendChild(project);
+          nameRow.appendChild(others);
+          const note = document.createElement('span');
+          note.className = 'top-note';
+          note.textContent = p.内容;
+          main.appendChild(nameRow);
+          main.appendChild(note);
+
+          row.appendChild(time);
+          row.appendChild(main);
+          row.addEventListener('click', function () { ページを開く(p.タイトル, p.案件, p.URL); });
+          日の箱.appendChild(row);
+          前の行 = row;
+        });
+
+        topMore.textContent = 'それより前も見る（全' + ページ.length + '件）';
+        topMore.hidden = 全部見せる || ページ.length <= 見せる.length;
+      }
+
+      topMore.addEventListener('click', function () {
+        全部見せる = true;
+        更新一覧を描く();
+      });
+      homeBtn.addEventListener('click', トップを開く);
+
       function ページを開く(名前, グループ名, url) {
+        topView.hidden = true;
+        viewer.hidden = false;
+        homeBtn.classList.remove('is-active');
         viewerWrap.classList.add('is-loading');
         viewer.src = url;
         viewer.title = 名前;
@@ -803,7 +1092,6 @@
           if (選択中) s.setAttribute('aria-current', 'page'); else s.removeAttribute('aria-current');
         });
 
-        書き込む('view_hub_last', url);
         if (スマホ幅.matches) 一覧を引き出す(false);
       }
 
@@ -817,6 +1105,11 @@
       });
 
       reloadBtn.addEventListener('click', function () {
+        // トップを見ている時は、更新一覧を読み直す
+        if (!topView.hidden) {
+          更新一覧を読み込む();
+          return;
+        }
         viewerWrap.classList.add('is-loading');
         try {
           viewer.contentWindow.location.reload();

@@ -1,0 +1,51 @@
+# VIEW管理のトップ「最近の更新」用の一覧（更新一覧.json）を作る
+# ・mainにHTMLがpushされた時と、1時間ごとに動く
+#   （GitHub Actionsからの自動コミット＝アクセス解析などのデータ更新はpushイベントを起こさないため、1時間ごとにも拾う）
+# ・一覧は main ではなく view-data ブランチに置く（mainのコミットを増やさない＝他の作業のpushの邪魔をしない）
+# ・VIEW管理は https://raw.githubusercontent.com/crater-inc/crater/view-data/更新一覧.json を読む
+name: VIEW更新一覧
+
+on:
+  push:
+    branches: [main]
+    paths: ["**.html"]
+  schedule:
+    - cron: "10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: view-updates
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリが大きい（画像・動画で数GB）ので、履歴はコミットとフォルダ構成だけ・中身はHTMLだけ取り出す
+      - name: チェックアウト（HTMLだけ）
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
+          sparse-checkout: |
+            *.html
+            /01_CRATER/ビュー管理/更新一覧を作る.py
+          sparse-checkout-cone-mode: false
+
+      - name: 更新一覧を作る
+        run: python3 "01_CRATER/ビュー管理/更新一覧を作る.py" > "$RUNNER_TEMP/更新一覧.json"
+
+      - name: view-data ブランチに置く
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          cp "$RUNNER_TEMP/更新一覧.json" "$RUNNER_TEMP/out/"
+          cd "$RUNNER_TEMP/out"
+          git init -q -b view-data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "更新一覧"
+          git push -q -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" view-data

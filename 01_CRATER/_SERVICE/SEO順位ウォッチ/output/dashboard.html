@@ -10,16 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0e0f12;
-  --panel:#16181d;
-  --line:#252932;
-  --text:#e8eaf0;
-  --sub:#a8aebd;      /* 本文補足 */
-  --meta:#7c8393;     /* ラベル */
-  --accent:#5ac8fa;
-  --up:#4ade80;
-  --down:#f87171;
-  --flat:#fbbf24;
+  /* 白背景（2026-09-12 ケイスケさん指定：VIEW管理の右側に出すページは白） */
+  --bg:#ffffff;
+  --panel:#f6f7f9;
+  --line:#e3e6eb;
+  --text:#1c1f26;
+  --sub:#4a5060;      /* 本文補足 */
+  --meta:#6b7280;     /* ラベル */
+  --accent:#0a7bbf;
+  --up:#15803d;
+  --down:#dc2626;
+  --flat:#b45309;
 }
 *{box-sizing:border-box;}
 [hidden]{display:none!important;}
@@ -75,7 +76,7 @@ h1.title{font-size:30px;font-weight:700;margin:0;letter-spacing:.02em;}
   font-family:inherit;font-size:14px;padding:8px 16px;border-radius:999px;cursor:pointer;
   background:var(--panel);border:1px solid var(--line);color:var(--sub);
 }
-.tab:hover{border-color:#3b4252;}
+.tab:hover{border-color:#c5cbd4;}
 .tab.on{border-color:var(--accent);color:var(--text);}
 .tab .mode{font-size:10px;letter-spacing:.08em;color:var(--meta);margin-left:6px;}
 .tab.on .mode{color:var(--accent);}
@@ -89,7 +90,7 @@ h2{
 
 /* ---- 異常 ---- */
 .alert{
-  background:#1f1414;border:1px solid #5b2f2f;border-left:3px solid var(--down);
+  background:#fdf3f3;border:1px solid #f1c8c8;border-left:3px solid var(--down);
   border-radius:10px;padding:18px 22px;margin-bottom:44px;
 }
 .alert .h{font-size:15px;font-weight:700;color:var(--text);display:block;margin-bottom:6px;}
@@ -107,7 +108,7 @@ h2{
 .until{font-size:13px;color:var(--sub);border-top:1px solid var(--line);padding-top:12px;margin:0;}
 .badge{
   display:inline-block;font-size:11px;letter-spacing:.08em;padding:3px 10px;border-radius:999px;
-  border:1px solid #3b4252;color:var(--accent);margin-bottom:12px;
+  border:1px solid #cdd3dc;color:var(--accent);margin-bottom:12px;
 }
 
 /* ---- 施策履歴 ---- */
@@ -121,11 +122,11 @@ h2{
 .entry .kw{font-size:17px;font-weight:700;margin:2px 0 12px;}
 .diff{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:14px;}
 .diff .lbl{font-size:10px;letter-spacing:.14em;color:var(--meta);display:block;margin-bottom:3px;}
-.diff .before{font-size:14px;color:var(--sub);text-decoration:line-through;text-decoration-color:#5a4040;margin:0 0 12px;}
+.diff .before{font-size:14px;color:var(--sub);text-decoration:line-through;text-decoration-color:#c99595;margin:0 0 12px;}
 .diff .after{font-size:15px;color:var(--text);font-weight:500;margin:0;}
 .why{font-size:14px;color:var(--sub);margin:0 0 8px;}
 .why b{color:var(--text);font-weight:500;}
-.verdict{font-size:14px;margin:10px 0 0;padding:10px 14px;border-radius:8px;background:#12161c;border:1px solid var(--line);}
+.verdict{font-size:14px;margin:10px 0 0;padding:10px 14px;border-radius:8px;background:#f1f3f6;border:1px solid var(--line);}
 
 /* ---- 惜しい記事 ---- */
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;}
@@ -204,7 +205,7 @@ td.n{text-align:right;font-family:"IBM Plex Mono",monospace;}
 .about dd strong{color:var(--text);font-weight:500;}
 .about code{
   font-family:"IBM Plex Mono",monospace;font-size:13px;
-  background:#1c2027;border:1px solid var(--line);border-radius:4px;padding:1px 6px;
+  background:#eef0f3;border:1px solid var(--line);border-radius:4px;padding:1px 6px;
   word-break:break-all;
 }
 
