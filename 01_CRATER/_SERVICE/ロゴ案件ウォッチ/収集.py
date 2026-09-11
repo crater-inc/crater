@@ -468,6 +468,7 @@ td.deadline .date { display:block; font-size:15px; font-weight:700; }
 td.deadline .kind, td.deadline .left, td.deadline .due2 { display:block; font-size:12px; color:var(--sub); }
 td.deadline.is-urgent .date, td.deadline.is-urgent .left { color:var(--urgent); }
 td.deadline .start { display:block; margin-top:6px; font-size:12px; color:var(--meta); }
+td.deadline .start .term { display:inline-block; }
 td.money { font-variant-numeric:tabular-nums; }
 .group--paid td.money { color:var(--paid); font-weight:700; font-size:15px; }
 .clamp { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
@@ -578,7 +579,8 @@ def 開始表示(c):
     try:
         s = "募集開始 " + 日付表示(c["募集開始日"][:10])
         p = 募集期間(c)
-        return '<span class="start">{}{}</span>'.format(s, "（期間{}日）".format(p) if p is not None and p >= 0 else "")
+        term = '<span class="term">（期間{}日）</span>'.format(p) if p is not None and p >= 0 else ""
+        return '<span class="start">{}{}</span>'.format(s, term)
     except (KeyError, TypeError, ValueError):
         pass
     try:
