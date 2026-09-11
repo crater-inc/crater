@@ -424,7 +424,6 @@
 
   </div>
 
-  <script src="ページ一覧.js"></script>
   <script>
     (function () {
       // ===== パスワード =====
@@ -448,7 +447,7 @@
         ページのパスワード記憶キー.forEach(function (key) { sessionStorage.setItem(key, '1'); });
         lockScreen.hidden = true;
         app.hidden = false;
-        一覧を組み立てる();
+        一覧を読み込む();
       }
 
       function パスワードを確かめる() {
@@ -502,6 +501,17 @@
       // viewのページは「/〜」の形にそろえる（ローカル確認でも本番でも同じように動くように）
       function そろえる(url) {
         return url.indexOf(VIEWのURL) === 0 ? (url.slice(VIEWのURL.length) || '/') : url;
+      }
+
+      // ページ一覧.js は毎回最新を読む（viewはブラウザに10分ほど古いファイルが残るので、URLに時刻を付けて避ける）
+      function 一覧を読み込む() {
+        const script = document.createElement('script');
+        script.src = 'ページ一覧.js?t=' + Date.now();
+        script.onload = 一覧を組み立てる;
+        script.onerror = function () {
+          empty.textContent = '一覧を読み込めませんでした。ページを再読み込みしてください';
+        };
+        document.body.appendChild(script);
       }
 
       function 一覧を組み立てる() {
