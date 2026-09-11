@@ -2,7 +2,7 @@
 # ロゴ案件ウォッチ：行政・団体の「ロゴ／VI・ブランディング」の募集を毎日集めて、HTML一覧とLINEに出す。
 # 流れ：集める（国のAPI・役所の新着RSS・JDN・公募ナビ）→ タイトルで候補を絞る → 中身を取る
 #       → AIで判定・読み取り → data/案件.json に貯める → HTML一覧を作る → 新着をLINEで送る
-import json, os, re, io, time, html, hashlib, datetime, subprocess, tempfile, unicodedata
+import json, os, re, io, sys, time, html, hashlib, datetime, subprocess, tempfile, unicodedata
 import urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
@@ -333,7 +333,7 @@ def e(s):
     return html.escape(str(s or ""))
 
 
-# ---------------------------------------------------------------- ⑤ HTML一覧
+# ---------------------------------------------------------------- ⑤ HTML一覧（表の形：1行1案件）
 HTMLひな形 = """<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -342,83 +342,127 @@ HTMLひな形 = """<!DOCTYPE html>
 <meta name="robots" content="noindex, nofollow">
 <title>ロゴ案件ウォッチ</title>
 <style>
-:root { --ink:#1a1a1a; --sub:#444; --meta:#777; --line:#e4e4e4; --bg:#f6f6f4; --card:#fff;
-        --itaku:#1f3fa8; --itaku-bg:#eef2ff; --kobo:#c2410c; --kobo-bg:#fff4ec; }
-* { box-sizing: border-box; }
-body { margin:0; background:var(--bg); color:var(--ink); font-size:16px; line-height:1.7; overflow-x:hidden;
+:root { --ink:#202226; --sub:#50555c; --meta:#7a7f87; --line:#e8eaee; --hover:#f6f7f9;
+        --paid:#2b4acb; --urgent:#c62828; --bg:#ffffff; }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; background:var(--bg); color:var(--ink); font-size:16px; line-height:1.6; overflow-x:hidden;
        font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif; }
 a { color:inherit; }
-.site-header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 24px;
-               background:#111; color:#fff; }
-.site-title { margin:0; font-size:18px; letter-spacing:.08em; font-weight:700; }
-.site-status { font-size:13px; color:rgba(255,255,255,.75); text-align:right; }
-.wrap { max-width:980px; margin:0 auto; padding:24px; }
-.lead { margin:0 0 16px; color:var(--sub); font-size:14px; }
-.filters { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; }
-.chip { border:1px solid #ccc; background:#fff; color:var(--ink); border-radius:999px; padding:6px 14px; font-size:14px; cursor:pointer; }
-.chip.is-on { background:var(--ink); color:#fff; border-color:var(--ink); }
-.section-title { font-size:15px; letter-spacing:.06em; margin:28px 0 12px; color:var(--sub); }
-.cards { display:grid; gap:14px; }
-.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 20px; }
-.card.is-itaku { border-left:5px solid var(--itaku); }
-.card.is-kobo { border-left:5px solid var(--kobo); }
-.card.is-closed { opacity:.55; }
-.card-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin-bottom:6px; }
-.badge { font-size:12px; padding:2px 8px; border-radius:4px; background:#efefef; color:var(--sub); }
-.badge.type-itaku { background:var(--itaku-bg); color:var(--itaku); font-weight:700; }
-.badge.type-kobo { background:var(--kobo-bg); color:var(--kobo); font-weight:700; }
-.money { margin-left:auto; font-weight:700; font-size:16px; }
-.card-title { margin:4px 0 2px; font-size:18px; line-height:1.5; }
-.card-title a { text-decoration:none; }
-.card-title a:hover { text-decoration:underline; }
-.org { margin:0; color:var(--sub); font-size:14px; }
-.summary { margin:8px 0 0; font-size:14px; color:var(--sub); }
-.meta { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px 20px; margin:12px 0 0; }
-.meta div { display:flex; gap:10px; font-size:14px; }
-.meta dt { flex:0 0 5.5em; color:var(--meta); }
-.meta dd { margin:0; color:var(--ink); }
-.deadline-soon { color:#b91c1c; font-weight:700; }
-.source { margin:12px 0 0; font-size:12px; color:var(--meta); }
-.source a { color:var(--meta); }
-.empty { color:var(--sub); font-size:14px; }
-.note { margin:32px 0 0; font-size:12px; color:var(--meta); }
+a:focus-visible, .chip:focus-visible, summary:focus-visible { outline:2px solid var(--paid); outline-offset:2px; }
+.site-header { display:flex; justify-content:space-between; align-items:flex-end; gap:16px;
+               padding:20px 24px 16px; border-bottom:1px solid var(--line); }
+.site-title { margin:0; font-size:20px; font-weight:700; letter-spacing:.04em; }
+.site-status { margin:0; font-size:13px; color:var(--sub); text-align:right; line-height:1.5; }
+.site-status strong { color:var(--ink); font-size:15px; }
+.wrap { max-width:1240px; margin:0 auto; padding:20px 24px 48px; }
+.lead { margin:0 0 16px; font-size:14px; color:var(--sub); }
+.filters { display:flex; flex-wrap:wrap; gap:8px; }
+.chip { font:inherit; font-size:14px; line-height:1.4; border:1px solid #cfd3d9; background:#fff; color:var(--ink);
+        border-radius:6px; padding:6px 12px; cursor:pointer; }
+.chip[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:#fff; }
+.group { margin-top:36px; }
+.group-title { display:flex; align-items:baseline; gap:10px; margin:0 0 6px; font-size:17px; font-weight:700; }
+.group-title .group-count { font-size:14px; font-weight:400; color:var(--sub); }
+.group--paid .group-title::before { content:""; flex:0 0 10px; height:10px; background:var(--paid); border-radius:2px; align-self:center; }
+details.group > summary { cursor:pointer; list-style:none; }
+details.group > summary::-webkit-details-marker { display:none; }
+details.group > summary::after { content:"＋"; font-weight:400; color:var(--meta); margin-left:auto; }
+details.group[open] > summary::after { content:"−"; }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { text-align:left; font-weight:400; font-size:12px; color:var(--meta); padding:8px 12px; border-bottom:1px solid var(--line); }
+tbody td { padding:14px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+tbody tr.row:hover { background:var(--hover); }
+.col-title { width:34%; } .col-deadline { width:13%; } .col-money { width:17%; }
+.col-count { width:11%; } .col-qual { width:17%; } .col-src { width:8%; }
+td.title a { font-size:15px; font-weight:700; line-height:1.5; text-decoration:none; }
+td.title a:hover { text-decoration:underline; }
+td.title .org { display:block; margin-top:3px; font-size:13px; color:var(--sub); }
+.tags { display:inline-flex; flex-wrap:wrap; gap:4px; margin-left:6px; vertical-align:2px; }
+.tag { font-size:11px; line-height:1.6; padding:0 6px; border:1px solid #cfd3d9; border-radius:3px; color:var(--sub); }
+td.deadline { font-variant-numeric:tabular-nums; }
+td.deadline .date { display:block; font-size:15px; font-weight:700; }
+td.deadline .kind, td.deadline .left { display:block; font-size:12px; color:var(--sub); }
+td.deadline.is-urgent .date, td.deadline.is-urgent .left { color:var(--urgent); }
+td.money { font-variant-numeric:tabular-nums; }
+.group--paid td.money { color:var(--paid); font-weight:700; font-size:15px; }
+.clamp { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+.none { color:var(--meta); font-weight:400; font-size:13px; }
+td.src { font-size:12px; color:var(--sub); }
+td.src a { color:var(--sub); }
+td.src .found { display:block; margin-top:2px; color:var(--meta); }
+tr.empty td, tr.no-match td { color:var(--sub); }
+details.group tbody td { color:var(--sub); }
+.note { margin-top:44px; font-size:12px; color:var(--meta); }
+.amt-note { display:block; font-size:12px; font-weight:400; color:var(--sub); }
+.col-title { width:33%; } .col-deadline { width:12%; } .col-src { width:10%; }
 @media (max-width: 768px) {
-  .site-header { padding:14px 20px; }
-  .wrap { width:100%; padding:20px 32px; }
-  .card { padding:16px; }
-  .meta { grid-template-columns:1fr; }
-  .money { margin-left:0; width:100%; }
+  .site-header { padding:16px 20px 12px; }
+  .site-title { font-size:18px; }
+  .wrap { width:100%; padding:16px 32px 40px; }
+  .group { margin-top:28px; }
+  table, tbody, tr, td { display:block; width:100%; }
+  thead { display:none; }
+  tbody tr.row { border:1px solid var(--line); border-radius:8px; padding:14px 16px 10px; margin-bottom:10px; }
+  tbody tr.row:hover { background:transparent; }
+  tbody td { border:0; padding:0; }
+  td.title { margin-bottom:8px; }
+  td.title a { font-size:16px; }
+  td[data-label] { display:grid; grid-template-columns:4.8em minmax(0, 1fr); gap:10px; padding:6px 0; border-top:1px solid #f0f1f3; }
+  td[data-label]::before { content:attr(data-label); font-size:12px; font-weight:400; color:var(--meta); padding-top:2px; }
+  td.deadline .date, td.deadline .kind, td.deadline .left { display:inline; margin-right:6px; }
+  td.money .amt-note { display:inline; margin-left:4px; }
+  .clamp { -webkit-line-clamp:4; }
+  td.src .found { display:inline; margin-left:8px; }
+  tr.empty td, tr.no-match td { padding:14px 0; }
 }
 </style>
 </head>
 <body>
 <header class="site-header">
   <h1 class="site-title">ロゴ案件ウォッチ</h1>
-  <div class="site-status">受付中 __OPEN__件<br>更新 __UPDATED__</div>
+  <p class="site-status"><strong>受付中 __OPEN__件</strong><br>更新 __UPDATED__</p>
 </header>
 <main class="wrap">
-  <p class="lead">行政・団体のロゴ／VI・ブランディングの募集を毎日集めています（業務委託を上に表示）。</p>
+  <p class="lead">行政・団体のロゴとVI・ブランディングの募集です。毎日9時と17時に更新しています。</p>
   <div class="filters" role="group" aria-label="絞り込み">
-    <button class="chip is-on" data-f="all">すべて</button>
-    <button class="chip" data-f="is-itaku">業務委託</button>
-    <button class="chip" data-f="is-kobo">公募・コンペ</button>
-    <button class="chip" data-f="is-anniv">周年</button>
-    <button class="chip" data-f="is-vi">VI・ブランディング</button>
+    <button type="button" class="chip" data-f="all" aria-pressed="true">すべて</button>
+    <button type="button" class="chip" data-f="is-urgent" aria-pressed="false">締切まで7日以内</button>
+    <button type="button" class="chip" data-f="is-anniv" aria-pressed="false">周年</button>
+    <button type="button" class="chip" data-f="is-vi" aria-pressed="false">VI・ブランディング</button>
   </div>
-  <h2 class="section-title">受付中</h2>
-  <div class="cards">__OPEN_CARDS__</div>
-  <h2 class="section-title">締切を過ぎたもの（直近60日）</h2>
-  <div class="cards">__CLOSED_CARDS__</div>
-  <p class="note">出どころ：国の官公需情報ポータルサイト検索API（中小企業庁）／各役所サイトの新着情報／JDN「登竜門」／公募ナビ。内容は必ず掲載元で確認してください。</p>
+  <section class="group group--paid">
+    <h2 class="group-title">業務委託（入札・プロポーザル）<span class="group-count">__PAID_COUNT__件</span></h2>
+    __PAID_TABLE__
+  </section>
+  <section class="group">
+    <h2 class="group-title">公募・コンペ<span class="group-count">__KOBO_COUNT__件</span></h2>
+    __KOBO_TABLE__
+  </section>
+  <details class="group">
+    <summary class="group-title">締切を過ぎたもの（直近60日）<span class="group-count">__CLOSED_COUNT__件</span></summary>
+    __CLOSED_TABLE__
+  </details>
+  <p class="note">出どころ：国の官公需情報ポータルサイト検索API（中小企業庁）／各役所サイトの新着情報／JDN「登竜門」／公募ナビ。応募する前に、必ず掲載元で内容を確認してください。</p>
 </main>
 <script>
-document.querySelectorAll('.chip').forEach(function (chip) {
+var chips = document.querySelectorAll('.chip');
+chips.forEach(function (chip) {
   chip.addEventListener('click', function () {
-    document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('is-on'); });
-    chip.classList.add('is-on');
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
     var f = chip.dataset.f;
-    document.querySelectorAll('.card').forEach(function (card) {
-      card.hidden = !(f === 'all' || card.classList.contains(f));
+    document.querySelectorAll('tbody').forEach(function (tb) {
+      var shown = 0;
+      tb.querySelectorAll('tr.row').forEach(function (tr) {
+        var ok = f === 'all' || tr.classList.contains(f);
+        tr.hidden = !ok;
+        if (ok) shown++;
+      });
+      var none = tb.querySelector('tr.no-match');
+      if (none) none.hidden = shown > 0;
+      var count = tb.closest('.group').querySelector('.group-count');
+      if (count && tb.querySelector('tr.row')) count.textContent = shown + '件';
     });
   });
 });
@@ -427,53 +471,100 @@ document.querySelectorAll('.chip').forEach(function (chip) {
 </html>
 """
 
+表の見出し = ('<thead><tr><th class="col-title" scope="col">案件名</th><th class="col-deadline" scope="col">締切</th>'
+          '<th class="col-money" scope="col">金額</th><th class="col-count" scope="col">応募点数</th>'
+          '<th class="col-qual" scope="col">応募資格</th><th class="col-src" scope="col">掲載元</th></tr></thead>')
 
-def カード(c, closed=False):
-    itaku = c.get("種類") == "業務委託"
-    cls = ["card", "is-itaku" if itaku else "is-kobo"]
-    badges = ['<span class="badge {}">{}</span>'.format("type-itaku" if itaku else "type-kobo", e(c.get("種類") or "種類不明"))]
+
+def 日付表示(s):
+    d = datetime.date.fromisoformat(s)
+    return f"{d.month}/{d.day}" if d.year == 今日.year else f"{d.year}/{d.month}/{d.day}"
+
+
+def 値(v):
+    return e(v) if v and v != "記載なし" else '<span class="none">記載なし</span>'
+
+
+def 金額HTML(v):
+    if not v or v == "記載なし":
+        return '<span class="none">記載なし</span>'
+    m = re.match(r"^(.+?)\s*([（(][^（）()]*[）)])$", v)
+    if m:
+        return '<span class="amt">{}</span><span class="amt-note">{}</span>'.format(e(m.group(1)), e(m.group(2)))
+    return '<span class="amt">{}</span>'.format(e(v))
+
+
+def 行(c, closed=False):
+    r = 残り日数(c)
+    urgent = (not closed) and r is not None and 0 <= r <= 7
+    cls = ["row"]
+    tags = []
+    if urgent:
+        cls.append("is-urgent")
+    if closed and c.get("種類") == "業務委託":
+        tags.append("業務委託")
     if c.get("周年"):
         cls.append("is-anniv")
-        badges.append('<span class="badge">周年</span>')
+        tags.append("周年")
     if c.get("分野") == "VI・ブランディング":
         cls.append("is-vi")
-        badges.append('<span class="badge">VI・ブランディング</span>')
-    if closed:
-        cls.append("is-closed")
-    money = c.get("金額") if c.get("金額") not in (None, "", "記載なし") else ""
-    if money:
-        badges.append('<span class="money">{}</span>'.format(e(money)))
-    dl = e(締切表示(c))
-    r = 残り日数(c)
-    if r is not None and 0 <= r <= 7 and not closed:
-        dl = '<span class="deadline-soon">{}</span>'.format(dl)
-    rows = [("締切", dl)]
-    for key, label in (("その他の締切", "その他の締切"), ("募集開始日", "募集開始"), ("応募資格", "応募資格"), ("応募点数", "応募点数")):
-        v = c.get(key)
-        if v and v != "記載なし":
-            rows.append((label, e(v)))
-    meta = "".join("<div><dt>{}</dt><dd>{}</dd></div>".format(k, v) for k, v in rows)
-    others = "".join('／<a href="{}" target="_blank" rel="noopener">{}</a>'.format(e(o["URL"]), e(o["出どころ"]))
-                     for o in c.get("他の掲載", []))
+        tags.append("VI・ブランディング")
+    tag_html = ('<span class="tags">' + "".join('<span class="tag">{}</span>'.format(t) for t in tags) + "</span>") if tags else ""
     place = "・".join(x for x in (c.get("主催"), c.get("都道府県")) if x)
-    summary = '<p class="summary">{}</p>'.format(e(c["ひとこと"])) if c.get("ひとこと") else ""
-    return ('<article class="{cls}"><div class="card-head">{badges}</div>'
-            '<h3 class="card-title"><a href="{url}" target="_blank" rel="noopener">{name}</a></h3>'
-            '<p class="org">{place}</p>{summary}<dl class="meta">{meta}</dl>'
-            '<p class="source">出どころ：{src}{others}／見つけた日：{found}</p></article>').format(
-        cls=" ".join(cls), badges="".join(badges), url=e(c["URL"]), name=e(c.get("案件名") or c["タイトル"]),
-        place=e(place), summary=summary, meta=meta, src=e(c["出どころ"]), others=others, found=e(c.get("発見日")))
+    title = ('<td class="title"><a href="{url}" target="_blank" rel="noopener" title="{hint}">{name}</a>{tags}'
+             '<span class="org">{place}</span></td>').format(
+        url=e(c["URL"]), hint=e(c.get("ひとこと")), name=e(c.get("案件名") or c["タイトル"]), tags=tag_html, place=e(place))
+    if c.get("締切"):
+        left = "終了" if closed else ("今日まで" if r == 0 else "あと{}日".format(r))
+        dl = '<span class="date">{}</span><span class="kind">{}</span><span class="left">{}</span>'.format(
+            日付表示(c["締切"]), e(c.get("締切の種類")), left)
+    else:
+        dl = '<span class="none">記載なし</span>'
+    others = "".join('<br><a href="{}" target="_blank" rel="noopener">{}</a>'.format(e(o["URL"]), e(o["出どころ"]))
+                     for o in c.get("他の掲載", []))
+    found = "見つけた日 " + 日付表示(c["発見日"]) if c.get("発見日") else ""
+
+    def セル(name, label, inner):
+        return '<td class="{}" data-label="{}"><div class="v">{}</div></td>'.format(name, label, inner)
+
+    return '<tr class="{}">{}{}{}{}{}{}</tr>'.format(
+        " ".join(cls), title,
+        セル("deadline" + (" is-urgent" if urgent else ""), "締切", dl),
+        セル("money", "金額", 金額HTML(c.get("金額"))),
+        セル("count", "応募点数", 値(c.get("応募点数"))),
+        セル("qual", "応募資格", '<span class="clamp" title="{}">{}</span>'.format(e(c.get("応募資格")), 値(c.get("応募資格")))),
+        セル("src", "掲載元", '<a href="{}" target="_blank" rel="noopener">{}</a>{}<span class="found">{}</span>'.format(
+            e(c["URL"]), e(c["出どころ"]), others, found)))
+
+
+def テーブル(rows, 空の文):
+    if rows:
+        body = "".join(rows) + '<tr class="no-match" hidden><td colspan="6">この条件に合う案件はありません。</td></tr>'
+    else:
+        body = '<tr class="empty"><td colspan="6">{}</td></tr>'.format(空の文)
+    return '<div class="table-wrap"><table>{}<tbody>{}</tbody></table></div>'.format(表の見出し, body)
 
 
 def HTMLを書く(data):
     対象 = [c for c in data["案件"] if c.get("判定") == "対象"]
     open_ = sorted([c for c in 対象 if 受付中(c)], key=並び順)
+    paid = [c for c in open_ if c.get("種類") == "業務委託"]
+    kobo = [c for c in open_ if c.get("種類") != "業務委託"]
     境 = str(今日 - datetime.timedelta(days=60))
     closed = sorted([c for c in 対象 if not 受付中(c) and (c.get("締切") or c.get("発見日", "")) >= 境],
                     key=lambda c: c.get("締切") or "", reverse=True)
-    page = (HTMLひな形.replace("__OPEN__", str(len(open_))).replace("__UPDATED__", 今.strftime("%-m/%-d %H:%M"))
-            .replace("__OPEN_CARDS__", "".join(カード(c) for c in open_) or '<p class="empty">いま受付中の案件はありません。</p>')
-            .replace("__CLOSED_CARDS__", "".join(カード(c, True) for c in closed) or '<p class="empty">ありません。</p>'))
+    try:
+        更新 = datetime.datetime.fromisoformat(data.get("更新", "")).astimezone(JST)
+    except Exception:
+        更新 = 今
+    page = (HTMLひな形.replace("__OPEN__", str(len(open_)))
+            .replace("__UPDATED__", "{}/{} {:%H:%M}".format(更新.month, 更新.day, 更新))
+            .replace("__PAID_COUNT__", str(len(paid)))
+            .replace("__PAID_TABLE__", テーブル([行(c) for c in paid], "いま受付中の業務委託はありません。"))
+            .replace("__KOBO_COUNT__", str(len(kobo)))
+            .replace("__KOBO_TABLE__", テーブル([行(c) for c in kobo], "いま受付中の公募・コンペはありません。"))
+            .replace("__CLOSED_COUNT__", str(len(closed)))
+            .replace("__CLOSED_TABLE__", テーブル([行(c, True) for c in closed], "ありません。")))
     HTML出力.parent.mkdir(parents=True, exist_ok=True)
     HTML出力.write_text(page)
     return open_
@@ -601,4 +692,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    if "--html" in sys.argv:  # 集め直さずに、今あるデータから一覧だけ作り直す
+        HTMLを書く(json.loads(案件JSON.read_text()))
+        print("一覧を作り直しました:", HTML出力)
+    else:
+        main()
