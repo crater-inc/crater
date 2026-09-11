@@ -39,7 +39,10 @@ JDNのRSS = ["https://compe.japandesign.ne.jp/category/character/feed/",
 国のAPIの言葉 = ["ロゴ", "ロゴマーク", "シンボルマーク", "校章", "ブランディング", "ブランドデザイン", "VI", "CI"]
 
 項目 = ["種類", "分野", "周年", "案件名", "主催", "都道府県", "金額", "金額_円", "募集開始日", "締切",
-        "締切の種類", "その他の締切", "応募資格", "応募点数", "同一キー", "ひとこと", "除外理由"]
+        "締切の種類", "提出締切", "その他の締切", "応募資格", "応募点数", "同一キー", "ひとこと", "除外理由"]
+読み取り版 = 2  # AIへの指示を変えたら上げる。受付中の案件は、次に掲載元に出てきたときに1回読み直す
+短い期間 = 14  # 募集開始から提出締切までがこの日数以下なら「期間短め」
+参加の言葉 = ("参加表明", "参加申込", "参加申し込み", "参加申請", "参加資格", "エントリー")
 
 
 def n(s):
@@ -121,8 +124,11 @@ def rss_items(b):
         date = next((kids[k].text for k in ("pubDate", "date", "updated", "published", "issued") if k in kids and kids[k].text), "")
         desc = kids.get("description") if "description" in kids else kids.get("summary")
         desc = html.unescape(re.sub(r"<[^>]+>", " ", desc.text or "")) if desc is not None else ""
+        body = kids["encoded"] if "encoded" in kids else kids.get("content")  # RSSに入っている記事本文
+        body = html.unescape(re.sub(r"<[^>]+>", " ", body.text or "")) if body is not None else ""
         title = (kids["title"].text or "").strip() if "title" in kids else ""
-        items.append({"title": title, "link": link, "date": 日付(date), "desc": re.sub(r"\s+", " ", desc).strip(), "cats": cats})
+        items.append({"title": title, "link": link, "date": 日付(date), "desc": re.sub(r"\s+", " ", desc).strip(),
+                      "content": re.sub(r"\s+", " ", body).strip()[:5000], "cats": cats})
     return items
 
 
@@ -198,9 +204,11 @@ def 公募ナビ():
             print("  公募ナビ失敗", f, ex)
             continue
         for it in rss_items(b):
-            # 公募ナビは記事ページを読みに行かず、RSSに載っている範囲（タイトル・紹介文・カテゴリ）だけ使う
+            # 公募ナビは記事ページを読みに行かず、RSSに載っている範囲（タイトル・記事本文・カテゴリ）だけ使う
+            # 紹介文はほかの募集の文と入れ違っていることがある（東浦町の件）ので、記事本文があればそちらを使う
+            本文 = it["content"] or it["desc"]
             out.append({"出どころ": "公募ナビ", "タイトル": it["title"], "機関": "", "都道府県": "", "URL": it["link"],
-                        "公開日": it["date"], "本文": f"{it['title']}\n{it['desc']}\nカテゴリ：{'、'.join(it['cats'])}"})
+                        "公開日": it["date"], "本文": f"{it['title']}\n{本文}\nカテゴリ：{'、'.join(it['cats'])}"})
     return out
 
 
@@ -221,7 +229,7 @@ def 案件ID(it):
 
 
 def 本文を取る(it):
-    if it.get("本文"):
+    if it.get("本文") or it["出どころ"] == "公募ナビ":  # 公募ナビの記事ページは読みに行かない
         return it
     try:
         b, final, ct = get(it["URL"], timeout=25, limit=15_000_000)
@@ -257,7 +265,10 @@ AI指示 = """あなたは、ロゴ・VI・ブランディングが専門のデ�
 書き方のルール
 - 本文に書いていないことは推測しない（null または "記載なし"）。
 - 日付は西暦の YYYY-MM-DD にする（令和8年＝2026年）。年が書いていなければ公開日から判断する。
-- 締切は、これから来る締切のうち一番早いもの（参加申込・質問・提案書提出・応募・入札）。ほかの締切は「その他の締切」に短く。
+- 締切は、参加するために最初に守る締切（参加申込・参加表明・参加資格の申請・エントリー・応募・入札・提案書提出のうち一番早いもの）。
+  質問の締切は入れない。今日より前でもそのまま書く。
+- 提出締切は、企画提案書・作品・入札書を最後に出す締切。締切と同じ日ならその日を書く。
+- ほかの締切（質問など）は「その他の締切」に短く。
 - 募集開始日は、募集・受付が始まる日（募集期間の初日・公告日）。書いていなければ null。
 - 金額は、業務委託なら上限額・予定価格、公募なら最高賞金（賞品なら「◯◯相当」）。金額_円 はその数値（なければ null）。
 - 応募点数は「1人何点まで応募できるか」。書いてあればそのまま（例：1人3点まで／複数応募可／1人1点）、なければ "記載なし"。
@@ -267,7 +278,7 @@ AI指示 = """あなたは、ロゴ・VI・ブランディングが専門のデ�
 [{"id":"候補のid","対象":true,"除外理由":null,"種類":"業務委託 または 公募・コンペ","分野":"ロゴ または VI・ブランディング","周年":false,
   "案件名":"短く整えた名前","主催":"発注機関・主催者","都道府県":"都道府県名（全国なら全国）",
   "金額":"表示用（例：上限2,200,000円（税込）／最優秀賞 10万円／記載なし）","金額_円":null,
-  "募集開始日":null,"締切":null,"締切の種類":null,"その他の締切":null,
+  "募集開始日":null,"締切":null,"締切の種類":null,"提出締切":null,"その他の締切":null,
   "応募資格":"短く（例：法人のみ・県の入札参加資格が必要／不問／市内在住・在勤）","応募点数":"記載なし",
   "同一キー":"主催|何のロゴか","ひとこと":"どんなロゴ・案件か1行"}]
 """
@@ -280,6 +291,42 @@ def AIで読む(batch, 既存キー):
                      f"都道府県: {it['都道府県']}\n公開日: {it['公開日']}\nURL: {it['URL']}\n本文:\n{it.get('本文') or '（取得できず。タイトルだけで判断）'}")
     prompt = (AI指示.replace("__TODAY__", str(今日)) + "\n\nすでにある案件（同一キー）:\n" + ("\n".join(既存キー[-200:]) or "なし")
               + "\n\n候補:\n\n" + "\n\n".join(parts))
+    return AIに聞く(prompt, len(batch))
+
+
+おすすめ指示 = """あなたは、ロゴ・VIが専門のデザイン会社（代表はアートディレクター）のために、募集案件の「おすすめ度」を付けるアシスタントです。
+ツールは使わず、あなたの知識と下の情報だけで判断してください。
+
+基準は2つだけ
+1. 実績としての価値：できたロゴが、実績として人に見せたときに意味を持つか。
+   主催の知名度（一般の人も知っている／その業界で有名）、規模（国際大会・全国大会・大きな自治体・歴史ある団体の節目の周年など）、
+   ロゴがどれだけ長く・広く使われるか。
+2. 金額：業務委託ならおおむね100万円以上、公募なら賞金10万円以上は高い。
+金額は低いことが多いので、主に1で判断する。
+
+おすすめ度
+- 0：ふつう。ほとんどはこれ。毎回おすすめを付けなくてよい。
+- 1：おすすめ。実績として見せたときに伝わるもの。
+- 2：特におすすめ。めったに付けない（誰でも知っている主催・国際的な大舞台・高額など）。
+- 知らない団体や判断がつかないものは0。推測で持ち上げない。
+
+おすすめ理由は、なぜ実績になるか（またはなぜ高いか）を短く1行で具体的に。0なら null。
+
+返す形（JSONの配列だけを返す。前後に説明文やコードブロックを付けない）
+[{"id":"案件のid","おすすめ度":0,"おすすめ理由":null}]
+"""
+
+
+def AIでおすすめ(cases):
+    parts = []
+    for c in cases:
+        parts.append("### id: {}\n種類: {}\n分野: {}\n周年: {}\n案件名: {}\n主催: {}\n都道府県: {}\n金額: {}\n応募資格: {}\nひとこと: {}".format(
+            c["id"], c.get("種類"), c.get("分野"), "はい" if c.get("周年") else "いいえ", c.get("案件名") or c["タイトル"],
+            c.get("主催") or c.get("機関"), c.get("都道府県"), c.get("金額"), c.get("応募資格"), c.get("ひとこと")))
+    return AIに聞く(おすすめ指示 + "\n\n案件:\n\n" + "\n\n".join(parts), len(cases))
+
+
+def AIに聞く(prompt, 件数):
     # 余計なものを読ませず軽く動かす：リポジトリの外で実行（CLAUDE.mdを読まない）・短い役割指示・道具なし
     cmd = ["claude", "-p", "--model", AIモデル, "--max-turns", "2", "--output-format", "json",
            "--system-prompt", "あなたは、行政・団体の募集情報を読んで、指定されたJSONだけを返す仕分け係です。ツールは使いません。",
@@ -290,7 +337,7 @@ def AIで読む(batch, 既存キー):
         raise RuntimeError(f"claude 失敗: {r.stderr[:300]} {r.stdout[:300]}")
     out = json.loads(r.stdout)
     u = out.get("usage", {})
-    print(f"  AI {len(batch)}件：入力{u.get('input_tokens', 0) + u.get('cache_creation_input_tokens', 0) + u.get('cache_read_input_tokens', 0)}"
+    print(f"  AI {件数}件：入力{u.get('input_tokens', 0) + u.get('cache_creation_input_tokens', 0) + u.get('cache_read_input_tokens', 0)}"
           f"・出力{u.get('output_tokens', 0)}トークン（API換算 ${out.get('total_cost_usd', 0):.3f}）")
     text = out.get("result", "")
     m = re.search(r"\[.*\]", text, re.S)
@@ -300,10 +347,35 @@ def AIで読む(batch, 既存キー):
 
 
 # ---------------------------------------------------------------- 表示用の小道具
+def 締切を整える(c):
+    # 参加表明などの締切が、表示中の締切より前にあればそちらを締切にする（遅い日付で受付中に見せない）
+    if not c.get("締切"):
+        return
+    c["提出締切"] = c.get("提出締切") or c["締切"]
+    for part in re.split(r"[／、;；\n]", c.get("その他の締切") or ""):
+        m = re.search(r"\d{4}-\d{2}-\d{2}", part)
+        if m and m.group(0) < c["締切"] and any(w in part for w in 参加の言葉):
+            c["締切"], c["締切の種類"] = m.group(0), part[:m.start()].strip(" ：:") or "参加申込"
+
+
+def 募集期間(c):
+    # 本文に書いてあった募集開始日から提出締切までの日数。掲載日では測らない（載るのが遅れただけで短く見えるため）
+    try:
+        return (datetime.date.fromisoformat(c.get("提出締切") or c["締切"])
+                - datetime.date.fromisoformat(c["募集開始日"][:10])).days
+    except Exception:
+        return None
+
+
 def 受付中(c):
     if c.get("締切"):
         return c["締切"] >= str(今日)
     return c.get("発見日", "") >= str(今日 - datetime.timedelta(days=45))
+
+
+def 読み直す(c):
+    # AIへの指示が新しくなった後、受付中の案件が掲載元にまた出てきたら1回だけ読み直す
+    return c.get("判定") == "対象" and c.get("読み取り版", 1) < 読み取り版 and 受付中(c)
 
 
 def 残り日数(c):
@@ -389,9 +461,11 @@ td.title a:hover { text-decoration:underline; }
 td.title .org { display:block; margin-top:3px; font-size:13px; color:var(--sub); }
 .tags { display:inline-flex; flex-wrap:wrap; gap:4px; margin-left:6px; vertical-align:2px; }
 .tag { font-size:11px; line-height:1.6; padding:0 6px; border:1px solid #cfd3d9; border-radius:3px; color:var(--sub); }
+.tag--pick { background:var(--ink); border-color:var(--ink); color:#fff; font-weight:700; }
+td.title .why { display:block; margin-top:8px; padding-left:8px; border-left:2px solid var(--ink); font-size:13px; line-height:1.5; }
 td.deadline { font-variant-numeric:tabular-nums; }
 td.deadline .date { display:block; font-size:15px; font-weight:700; }
-td.deadline .kind, td.deadline .left { display:block; font-size:12px; color:var(--sub); }
+td.deadline .kind, td.deadline .left, td.deadline .due2 { display:block; font-size:12px; color:var(--sub); }
 td.deadline.is-urgent .date, td.deadline.is-urgent .left { color:var(--urgent); }
 td.deadline .start { display:block; margin-top:6px; font-size:12px; color:var(--meta); }
 td.money { font-variant-numeric:tabular-nums; }
@@ -421,7 +495,7 @@ details.group tbody td { color:var(--sub); }
   td.title a { font-size:16px; }
   td[data-label] { display:grid; grid-template-columns:4.8em minmax(0, 1fr); gap:10px; padding:6px 0; border-top:1px solid #f0f1f3; }
   td[data-label]::before { content:attr(data-label); font-size:12px; font-weight:400; color:var(--meta); padding-top:2px; }
-  td.deadline .date, td.deadline .kind, td.deadline .left { display:inline; margin-right:6px; }
+  td.deadline .date, td.deadline .kind, td.deadline .left, td.deadline .due2 { display:inline; margin-right:6px; }
   td.deadline .start { margin-top:2px; }
   td.money .amt-note { display:inline; margin-left:4px; }
   .clamp { -webkit-line-clamp:4; }
@@ -439,6 +513,7 @@ details.group tbody td { color:var(--sub); }
   <p class="lead">行政・団体のロゴとVI・ブランディングの募集です。毎日9時と17時に更新しています。</p>
   <div class="filters" role="group" aria-label="絞り込み">
     <button type="button" class="chip" data-f="all" aria-pressed="true">すべて</button>
+    <button type="button" class="chip" data-f="is-pick" aria-pressed="false">おすすめ</button>
     <button type="button" class="chip" data-f="is-urgent" aria-pressed="false">締切まで7日以内</button>
     <button type="button" class="chip" data-f="is-anniv" aria-pressed="false">周年</button>
     <button type="button" class="chip" data-f="is-vi" aria-pressed="false">VI・ブランディング</button>
@@ -499,13 +574,17 @@ def 日付表示(s):
 
 
 def 開始表示(c):
-    # 締切の下に小さく出す開始日。募集開始日が読めたものはそれ、読めなかったものは掲載元に載った日
-    for key, label in (("募集開始日", "募集開始"), ("公開日", "掲載")):
-        try:
-            return '<span class="start">{} {}</span>'.format(label, 日付表示(c[key][:10]))
-        except (KeyError, TypeError, ValueError):
-            continue
-    return ""
+    # 締切の下に小さく出す開始日。募集開始日が読めたものはそれと募集期間、読めなかったものは掲載元に載った日
+    try:
+        s = "募集開始 " + 日付表示(c["募集開始日"][:10])
+        p = 募集期間(c)
+        return '<span class="start">{}{}</span>'.format(s, "（期間{}日）".format(p) if p is not None and p >= 0 else "")
+    except (KeyError, TypeError, ValueError):
+        pass
+    try:
+        return '<span class="start">掲載 {}</span>'.format(日付表示(c["公開日"][:10]))
+    except (KeyError, TypeError, ValueError):
+        return ""
 
 
 def 値(v):
@@ -536,15 +615,31 @@ def 行(c, closed=False):
     if c.get("分野") == "VI・ブランディング":
         cls.append("is-vi")
         tags.append("VI・ブランディング")
-    tag_html = ('<span class="tags">' + "".join('<span class="tag">{}</span>'.format(t) for t in tags) + "</span>") if tags else ""
+    p = 募集期間(c)
+    if p is not None and 0 <= p <= 短い期間:
+        cls.append("is-short")
+        tags.append("期間短め")
+    pick = c.get("おすすめ度") or 0
+    pick_tag = ""
+    why = ""
+    if pick >= 1:
+        cls.append("is-pick")
+        pick_tag = '<span class="tag tag--pick">{}</span>'.format("特におすすめ" if pick >= 2 else "おすすめ")
+        if c.get("おすすめ理由"):
+            why = '<span class="why">{}</span>'.format(e(c["おすすめ理由"]))
+    tag_html = ('<span class="tags">' + pick_tag + "".join('<span class="tag">{}</span>'.format(t) for t in tags)
+                + "</span>") if (tags or pick_tag) else ""
     place = "・".join(x for x in (c.get("主催"), c.get("都道府県")) if x)
     title = ('<td class="title"><a href="{url}" target="_blank" rel="noopener" title="{hint}">{name}</a>{tags}'
-             '<span class="org">{place}</span></td>').format(
-        url=e(c["URL"]), hint=e(c.get("ひとこと")), name=e(c.get("案件名") or c["タイトル"]), tags=tag_html, place=e(place))
+             '<span class="org">{place}</span>{why}</td>').format(
+        url=e(c["URL"]), hint=e(c.get("ひとこと")), name=e(c.get("案件名") or c["タイトル"]), tags=tag_html,
+        place=e(place), why=why)
     if c.get("締切"):
         left = "終了" if closed else ("今日まで" if r == 0 else "あと{}日".format(r))
         dl = '<span class="date">{}</span><span class="kind">{}</span><span class="left">{}</span>'.format(
             日付表示(c["締切"]), e(c.get("締切の種類")), left)
+        if c.get("提出締切") and c["提出締切"] != c["締切"]:
+            dl += '<span class="due2">提出 {}</span>'.format(日付表示(c["提出締切"]))
     else:
         dl = '<span class="none">記載なし</span>'
     dl += 開始表示(c)
@@ -575,6 +670,8 @@ def テーブル(rows, 空の文):
 
 def HTMLを書く(data):
     対象 = [c for c in data["案件"] if c.get("判定") == "対象"]
+    for c in 対象:
+        締切を整える(c)
     open_ = sorted([c for c in 対象 if 受付中(c)], key=並び順)
     paid = [c for c in open_ if c.get("種類") == "業務委託"]
     kobo = [c for c in open_ if c.get("種類") != "業務委託"]
@@ -604,7 +701,9 @@ def LINE文(cases, 見出し, 残り=0):
     parts = [見出し]
     for c in cases:
         icon = "💰" if c.get("種類") == "業務委託" else "🏆"
-        parts.append(f"{icon}{c.get('種類') or ''}｜{c.get('主催') or c.get('機関') or ''}\n{c.get('案件名') or c['タイトル']}\n"
+        pick = c.get("おすすめ度") or 0
+        why = "{}：{}\n".format("★特におすすめ" if pick >= 2 else "★おすすめ", c.get("おすすめ理由") or "") if pick >= 1 else ""
+        parts.append(f"{icon}{c.get('種類') or ''}｜{c.get('主催') or c.get('機関') or ''}\n{c.get('案件名') or c['タイトル']}\n{why}"
                      f"金額：{c.get('金額') or '記載なし'}\n締切：{締切表示(c)}\n{c['URL']}")
     if 残り:
         parts.append(f"ほか{残り}件は一覧で")
@@ -646,7 +745,7 @@ def main():
         if not it["タイトル"] or not 候補か(it):
             continue
         it["id"] = 案件ID(it)
-        if it["id"] in index and index[it["id"]].get("判定") != "未判定":
+        if it["id"] in index and index[it["id"]].get("判定") != "未判定" and not 読み直す(index[it["id"]]):
             continue
         cands.setdefault(it["id"], it)
     for c in data["案件"]:  # 前回AIで読めなかったものを再挑戦
@@ -677,12 +776,17 @@ def main():
     新着 = []
     for it in todo + 後回し:
         old = index.get(it["id"], {})
+        r = 結果.get(it["id"])
+        if not r and old.get("判定") == "対象":  # 読み直しできなかったものは前のまま
+            continue
         c = {k: it.get(k, "") for k in ("id", "出どころ", "タイトル", "機関", "都道府県", "URL", "公開日")}
         c["発見日"] = old.get("発見日") or str(今日)
-        r = 結果.get(it["id"])
+        if old.get("他の掲載"):
+            c["他の掲載"] = old["他の掲載"]
         if r:
             c.update({k: r.get(k) for k in 項目})
             c["判定"] = "対象" if r.get("対象") else "除外"
+            c["読み取り版"] = 読み取り版
         else:
             c["判定"] = "未判定"
         if c["判定"] == "対象":
@@ -695,6 +799,21 @@ def main():
             elif old.get("判定") != "対象":
                 新着.append(c)
         index[c["id"]] = c
+    for c in index.values():
+        if c.get("判定") == "対象":
+            締切を整える(c)
+
+    # ⑤' おすすめ度（受付中で、まだ付けていないものだけ）
+    まだ = [c for c in index.values() if c.get("判定") == "対象" and 受付中(c) and "おすすめ度" not in c]
+    if まだ and AI上限 > 0:
+        try:
+            for r in AIでおすすめ(まだ[:30]):
+                c = index.get(str(r.get("id")))
+                if c:
+                    c["おすすめ度"] = int(r.get("おすすめ度") or 0)
+                    c["おすすめ理由"] = r.get("おすすめ理由")
+        except Exception as ex:
+            print("  おすすめ失敗（次回に再挑戦）", str(ex)[:300])
     data["案件"] = sorted(index.values(), key=lambda c: c.get("発見日", ""), reverse=True)
     data["更新"] = 今.isoformat(timespec="minutes")
     案件JSON.parent.mkdir(parents=True, exist_ok=True)
