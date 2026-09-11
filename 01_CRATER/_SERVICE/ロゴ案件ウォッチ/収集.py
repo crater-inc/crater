@@ -258,6 +258,7 @@ AI指示 = """あなたは、ロゴ・VI・ブランディングが専門のデ�
 - 本文に書いていないことは推測しない（null または "記載なし"）。
 - 日付は西暦の YYYY-MM-DD にする（令和8年＝2026年）。年が書いていなければ公開日から判断する。
 - 締切は、これから来る締切のうち一番早いもの（参加申込・質問・提案書提出・応募・入札）。ほかの締切は「その他の締切」に短く。
+- 募集開始日は、募集・受付が始まる日（募集期間の初日・公告日）。書いていなければ null。
 - 金額は、業務委託なら上限額・予定価格、公募なら最高賞金（賞品なら「◯◯相当」）。金額_円 はその数値（なければ null）。
 - 応募点数は「1人何点まで応募できるか」。書いてあればそのまま（例：1人3点まで／複数応募可／1人1点）、なければ "記載なし"。
 - 同一キーは「主催者名|何のロゴか」の形で短く書く。下の「すでにある案件」と同じ募集なら、そのキーをそのまま使う。
@@ -392,6 +393,7 @@ td.deadline { font-variant-numeric:tabular-nums; }
 td.deadline .date { display:block; font-size:15px; font-weight:700; }
 td.deadline .kind, td.deadline .left { display:block; font-size:12px; color:var(--sub); }
 td.deadline.is-urgent .date, td.deadline.is-urgent .left { color:var(--urgent); }
+td.deadline .start { display:block; margin-top:6px; font-size:12px; color:var(--meta); }
 td.money { font-variant-numeric:tabular-nums; }
 .group--paid td.money { color:var(--paid); font-weight:700; font-size:15px; }
 .clamp { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
@@ -420,6 +422,7 @@ details.group tbody td { color:var(--sub); }
   td[data-label] { display:grid; grid-template-columns:4.8em minmax(0, 1fr); gap:10px; padding:6px 0; border-top:1px solid #f0f1f3; }
   td[data-label]::before { content:attr(data-label); font-size:12px; font-weight:400; color:var(--meta); padding-top:2px; }
   td.deadline .date, td.deadline .kind, td.deadline .left { display:inline; margin-right:6px; }
+  td.deadline .start { margin-top:2px; }
   td.money .amt-note { display:inline; margin-left:4px; }
   .clamp { -webkit-line-clamp:4; }
   td.src .found { display:inline; margin-left:8px; }
@@ -495,6 +498,16 @@ def 日付表示(s):
     return f"{d.month}/{d.day}" if d.year == 今日.year else f"{d.year}/{d.month}/{d.day}"
 
 
+def 開始表示(c):
+    # 締切の下に小さく出す開始日。募集開始日が読めたものはそれ、読めなかったものは掲載元に載った日
+    for key, label in (("募集開始日", "募集開始"), ("公開日", "掲載")):
+        try:
+            return '<span class="start">{} {}</span>'.format(label, 日付表示(c[key][:10]))
+        except (KeyError, TypeError, ValueError):
+            continue
+    return ""
+
+
 def 値(v):
     return e(v) if v and v != "記載なし" else '<span class="none">記載なし</span>'
 
@@ -534,7 +547,8 @@ def 行(c, closed=False):
             日付表示(c["締切"]), e(c.get("締切の種類")), left)
     else:
         dl = '<span class="none">記載なし</span>'
-    others = "".join('<br><a href="{}" target="_blank" rel="noopener">{}</a>'.format(e(o["URL"]), e(o["出どころ"]))
+    dl += 開始表示(c)
+    others ="".join('<br><a href="{}" target="_blank" rel="noopener">{}</a>'.format(e(o["URL"]), e(o["出どころ"]))
                      for o in c.get("他の掲載", []))
     found = "見つけた日 " + 日付表示(c["発見日"]) if c.get("発見日") else ""
 
