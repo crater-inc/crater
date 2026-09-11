@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>ロゴ案件ウォッチ</title>
+<style>
+:root { --ink:#1a1a1a; --sub:#444; --meta:#777; --line:#e4e4e4; --bg:#f6f6f4; --card:#fff;
+        --itaku:#1f3fa8; --itaku-bg:#eef2ff; --kobo:#c2410c; --kobo-bg:#fff4ec; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-size:16px; line-height:1.7; overflow-x:hidden;
+       font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif; }
+a { color:inherit; }
+.site-header { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:18px 24px;
+               background:#111; color:#fff; }
+.site-title { margin:0; font-size:18px; letter-spacing:.08em; font-weight:700; }
+.site-status { font-size:13px; color:rgba(255,255,255,.75); text-align:right; }
+.wrap { max-width:980px; margin:0 auto; padding:24px; }
+.lead { margin:0 0 16px; color:var(--sub); font-size:14px; }
+.filters { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; }
+.chip { border:1px solid #ccc; background:#fff; color:var(--ink); border-radius:999px; padding:6px 14px; font-size:14px; cursor:pointer; }
+.chip.is-on { background:var(--ink); color:#fff; border-color:var(--ink); }
+.section-title { font-size:15px; letter-spacing:.06em; margin:28px 0 12px; color:var(--sub); }
+.cards { display:grid; gap:14px; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 20px; }
+.card.is-itaku { border-left:5px solid var(--itaku); }
+.card.is-kobo { border-left:5px solid var(--kobo); }
+.card.is-closed { opacity:.55; }
+.card-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin-bottom:6px; }
+.badge { font-size:12px; padding:2px 8px; border-radius:4px; background:#efefef; color:var(--sub); }
+.badge.type-itaku { background:var(--itaku-bg); color:var(--itaku); font-weight:700; }
+.badge.type-kobo { background:var(--kobo-bg); color:var(--kobo); font-weight:700; }
+.money { margin-left:auto; font-weight:700; font-size:16px; }
+.card-title { margin:4px 0 2px; font-size:18px; line-height:1.5; }
+.card-title a { text-decoration:none; }
+.card-title a:hover { text-decoration:underline; }
+.org { margin:0; color:var(--sub); font-size:14px; }
+.summary { margin:8px 0 0; font-size:14px; color:var(--sub); }
+.meta { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px 20px; margin:12px 0 0; }
+.meta div { display:flex; gap:10px; font-size:14px; }
+.meta dt { flex:0 0 5.5em; color:var(--meta); }
+.meta dd { margin:0; color:var(--ink); }
+.deadline-soon { color:#b91c1c; font-weight:700; }
+.source { margin:12px 0 0; font-size:12px; color:var(--meta); }
+.source a { color:var(--meta); }
+.empty { color:var(--sub); font-size:14px; }
+.note { margin:32px 0 0; font-size:12px; color:var(--meta); }
+@media (max-width: 768px) {
+  .site-header { padding:14px 20px; }
+  .wrap { width:100%; padding:20px 32px; }
+  .card { padding:16px; }
+  .meta { grid-template-columns:1fr; }
+  .money { margin-left:0; width:100%; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <h1 class="site-title">ロゴ案件ウォッチ</h1>
+  <div class="site-status">受付中 14件<br>更新 9/11 21:17</div>
+</header>
+<main class="wrap">
+  <p class="lead">行政・団体のロゴ／VI・ブランディングの募集を毎日集めています（業務委託を上に表示）。</p>
+  <div class="filters" role="group" aria-label="絞り込み">
+    <button class="chip is-on" data-f="all">すべて</button>
+    <button class="chip" data-f="is-itaku">業務委託</button>
+    <button class="chip" data-f="is-kobo">公募・コンペ</button>
+    <button class="chip" data-f="is-anniv">周年</button>
+    <button class="chip" data-f="is-vi">VI・ブランディング</button>
+  </div>
+  <h2 class="section-title">受付中</h2>
+  <div class="cards"><article class="card is-itaku"><div class="card-head"><span class="badge type-itaku">業務委託</span><span class="money">上限1,501,500円（税込）</span></div><h3 class="card-title"><a href="https://www.pref.gunma.jp/site/nyuusatsu/773050.html" target="_blank" rel="noopener">デジタルクリエイティブ人材育成新規機関 ロゴマーク制作等業務</a></h3><p class="org">群馬県（エンターテインメント・コンテンツ課）・群馬県</p><p class="summary">新設予定のデジタルクリエイティブ人材育成機関の名称選定支援とロゴマーク（シンボル・ロゴタイプ）制作を委託する公募型プロポーザル</p><dl class="meta"><div><dt>締切</dt><dd>企画提案書提出締切 9/30（あと19日）</dd></div><div><dt>その他の締切</dt><dd>参加表明書・質問票提出期限 2026-09-11正午</dd></div><div><dt>募集開始</dt><dd>2026-09-02</dd></div><div><dt>応募資格</dt><dd>ロゴマーク制作業務の受託実績があること、群馬県の指名停止等を受けていないこと</dd></div></dl><p class="source">出どころ：役所サイト／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">ロゴマーク部門 最優秀賞 商品券7万円分</span></div><h3 class="card-title"><a href="https://kobonabi.com/kagawa-yamanohi2027-2026/" target="_blank" rel="noopener">第11回「山の日」全国大会ロゴマーク（および大会テーマ）募集</a></h3><p class="org">香川県・香川県</p><p class="summary">香川県で開催される第11回「山の日」全国大会のロゴマークと大会テーマを募集する公募</p><dl class="meta"><div><dt>締切</dt><dd><span class="deadline-soon">応募締切（必着） 9/11（今日まで）</span></dd></div><div><dt>その他の締切</dt><dd>大会テーマ部門 最優秀賞 商品券3万円分（同一締切）</dd></div><div><dt>応募資格</dt><dd>不問（誰でも応募可）</dd></div></dl><p class="source">出どころ：公募ナビ／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">賞金なし（採用のみ）</span></div><h3 class="card-title"><a href="https://compe.japandesign.ne.jp/oyama-tochigi-edu-2026/" target="_blank" rel="noopener">栃木県立小山中等教育学校（仮称）校章デザイン募集</a></h3><p class="org">栃木県立小山高等学校・栃木県</p><p class="summary">2028年開校予定の中高一貫校、栃木県立小山中等教育学校（仮称）の校章デザインを募集。</p><dl class="meta"><div><dt>締切</dt><dd><span class="deadline-soon">応募締切 9/13（あと2日）</span></dd></div><div><dt>応募資格</dt><dd>不問（グループ応募可）</dd></div><div><dt>応募点数</dt><dd>複数応募可</dd></div></dl><p class="source">出どころ：JDN 登竜門／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">最優秀賞 賞状、5万円相当の副賞</span></div><h3 class="card-title"><a href="https://compe.japandesign.ne.jp/choshi-tonekamome-kousyou-design-2026/" target="_blank" rel="noopener">利根かもめ小学校の校章デザイン募集</a></h3><p class="org">銚子市教育委員会・千葉県</p><p class="summary">統合新設される利根かもめ小学校の校章デザインを募集する公募</p><dl class="meta"><div><dt>締切</dt><dd><span class="deadline-soon">応募締切（必着） 9/14（あと3日）</span></dd></div><div><dt>応募資格</dt><dd>銚子市内外不問（グループ応募可）</dd></div><div><dt>応募点数</dt><dd>1人5点まで</dd></div></dl><p class="source">出どころ：JDN 登竜門／<a href="https://kobonabi.com/choshi-chiba-schoolemblem-2026/" target="_blank" rel="noopener">公募ナビ</a>／見つけた日：2026-09-11</p></article><article class="card is-kobo is-anniv"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="badge">周年</span><span class="money">最優秀賞：賞状、図書カード1万円分</span></div><h3 class="card-title"><a href="https://compe.japandesign.ne.jp/kanagawa-la-100th-logo-2026/" target="_blank" rel="noopener">神奈川県図書館協会100周年記念ロゴマークデザイン募集</a></h3><p class="org">神奈川県図書館協会・神奈川県</p><p class="summary">神奈川県図書館協会100周年を記念したロゴマークをe-kanagawa電子申請で募集。</p><dl class="meta"><div><dt>締切</dt><dd><span class="deadline-soon">応募締切 9/15（あと4日）</span></dd></div><div><dt>応募資格</dt><dd>神奈川県図書館協会加盟館職員・加盟館利用者、または神奈川県在住・在学・在勤（18歳未満は保護者同意要）</dd></div><div><dt>応募点数</dt><dd>1人1点</dd></div></dl><p class="source">出どころ：JDN 登竜門／<a href="https://kobonabi.com/kanagawa-la-jp-100th-congrats-2026/" target="_blank" rel="noopener">公募ナビ</a>／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">最優秀賞（採用作品）5万円、優秀賞（2作品）各3万円</span></div><h3 class="card-title"><a href="https://compe.japandesign.ne.jp/kochi-kodomoshokudou-supporter-logo-2026/" target="_blank" rel="noopener">「高知県子ども食堂サポーター」ロゴマーク募集</a></h3><p class="org">高知県（子ども家庭課）・高知県</p><p class="summary">高知県の子ども食堂サポーター制度を象徴するシンボルロゴマークを募集するコンテスト</p><dl class="meta"><div><dt>締切</dt><dd>作品提出・応募締切 9/25（あと14日）</dd></div><div><dt>応募資格</dt><dd>高知県内在住・出身または在勤在学（個人・グループ応募可）</dd></div><div><dt>応募点数</dt><dd>複数応募可（一人何点でも可）</dd></div></dl><p class="source">出どころ：JDN 登竜門／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">優秀賞：那賀川流域の自然の恵み詰め合わせセット（予定）</span></div><h3 class="card-title"><a href="https://compe.japandesign.ne.jp/mlit-nakagawa-logo-copy-2026/" target="_blank" rel="noopener">「那賀川流域地域ワーキング」ロゴマーク・キャッチコピー募集</a></h3><p class="org">那賀川流域地域ワーキング・徳島県</p><p class="summary">那賀川流域の取組を周知するロゴマークとキャッチコピーを募集する公募</p><dl class="meta"><div><dt>締切</dt><dd>応募締切（必着） 9/28（あと17日）</dd></div><div><dt>応募資格</dt><dd>不問</dd></div><div><dt>応募点数</dt><dd>複数応募可（1人何点でも可）</dd></div></dl><p class="source">出どころ：JDN 登竜門／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">採用された場合の報酬 10万円</span></div><h3 class="card-title"><a href="https://kobonabi.com/kiyosumishirakawacom-2026/" target="_blank" rel="noopener">深川清澄白河共栄会 新ロゴデザイン募集</a></h3><p class="org">深川清澄白河共栄会・東京都</p><p class="summary">東京都江東区の商店会（深川清澄白河共栄会）の新しいロゴマークを一般公募</p><dl class="meta"><div><dt>締切</dt><dd>応募締切 9/30（あと19日）</dd></div></dl><p class="source">出どころ：公募ナビ／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">最優秀賞 賞金10万円</span></div><h3 class="card-title"><a href="https://kobonabi.com/naikaorjp-2026/" target="_blank" rel="noopener">「内科の日」ロゴマークデザイン公募</a></h3><p class="org">一般社団法人 日本内科学会、一般社団法人 日本臨床内科医会・全国</p><p class="summary">「内科の日」を周知するロゴマークデザインの公募</p><dl class="meta"><div><dt>締切</dt><dd>応募締切（正午） 9/30（あと19日）</dd></div><div><dt>応募資格</dt><dd>不問（プロ・アマ、年齢、個人・グループ・法人問わず）</dd></div></dl><p class="source">出どころ：公募ナビ／見つけた日：2026-09-11</p></article><article class="card is-kobo is-anniv"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="badge">周年</span><span class="money">賞金なし（副賞：公演招待、劇場探検ツアー）</span></div><h3 class="card-title"><a href="https://compe.japandesign.ne.jp/puk-100logo-2026/" target="_blank" rel="noopener">人形劇団プーク100周年記念シンボルマークデザイン案募集</a></h3><p class="org">人形劇団プーク・東京都</p><p class="summary">人形劇団プーク100周年を記念したシンボルマークのデザイン案を募集。</p><dl class="meta"><div><dt>締切</dt><dd>応募締切 9/30（あと19日）</dd></div><div><dt>応募資格</dt><dd>不問</dd></div></dl><p class="source">出どころ：JDN 登竜門／見つけた日：2026-09-11</p></article><article class="card is-kobo is-anniv"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="badge">周年</span><span class="money">最優秀賞 図書カード30,000円分</span></div><h3 class="card-title"><a href="https://kobonabi.com/textbookorjp-15th-congrats-2026/" target="_blank" rel="noopener">「教科書の日」15周年記念ロゴマーク募集</a></h3><p class="org">一般社団法人 教科書協会・全国</p><p class="summary">「教科書の日」15周年を記念したロゴマークデザインの公募</p><dl class="meta"><div><dt>締切</dt><dd>応募締切 10/15（あと34日）</dd></div><div><dt>応募資格</dt><dd>不問（プロ・アマ・年齢・居住地・国籍問わず）</dd></div></dl><p class="source">出どころ：公募ナビ／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">5万円（最優秀作品のみ）</span></div><h3 class="card-title"><a href="https://www.city.kasai.hyogo.jp/soshiki/60/61996.html" target="_blank" rel="noopener">善防小学校の校章デザイン募集</a></h3><p class="org">兵庫県加西市教育委員会・兵庫県</p><p class="summary">令和10年4月開校の統合小学校「善防小学校」の校章デザインを募集する公募</p><dl class="meta"><div><dt>締切</dt><dd>応募締切（必着） 10/30（あと49日）</dd></div><div><dt>募集開始</dt><dd>2026-08-17</dd></div><div><dt>応募資格</dt><dd>加西市内在住・在勤・在学、または加西市内小中学校卒業者（未成年は保護者承認必要）</dd></div><div><dt>応募点数</dt><dd>1人2点まで</dd></div></dl><p class="source">出どころ：役所サイト／見つけた日：2026-09-11</p></article><article class="card is-kobo"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="money">採用作品 賞金20万円</span></div><h3 class="card-title"><a href="https://kobonabi.com/kyudojp-5wkyt-2026/" target="_blank" rel="noopener">第5回世界弓道大会ロゴマーク募集</a></h3><p class="org">公益財団法人全日本弓道連盟・東京都</p><p class="summary">第5回世界弓道大会のロゴマークデザインを国内在住者から募集、賞金20万円。</p><dl class="meta"><div><dt>締切</dt><dd>応募締切 10/31（あと50日）</dd></div><div><dt>応募資格</dt><dd>国内在住の個人（プロ・アマ問わず）</dd></div></dl><p class="source">出どころ：公募ナビ／見つけた日：2026-09-11</p></article><article class="card is-kobo is-anniv"><div class="card-head"><span class="badge type-kobo">公募・コンペ</span><span class="badge">周年</span><span class="money">最優秀賞 東浦町・阿久比町・新城市・刈谷市の特産品60,000円相当プレゼント</span></div><h3 class="card-title"><a href="https://kobonabi.com/higashiura-aichi-odainokata-500th-congrats-2026/" target="_blank" rel="noopener">於大の方生誕500年記念ロゴマーク募集</a></h3><p class="org">東浦町・愛知県</p><p class="summary">於大の方生誕500年を記念したロゴマークの募集（本文の詳細説明が別案件のものと混在しており締切等記載なし）</p><dl class="meta"><div><dt>締切</dt><dd>記載なし</dd></div></dl><p class="source">出どころ：公募ナビ／見つけた日：2026-09-11</p></article></div>
+  <h2 class="section-title">締切を過ぎたもの（直近60日）</h2>
+  <div class="cards"><p class="empty">ありません。</p></div>
+  <p class="note">出どころ：国の官公需情報ポータルサイト検索API（中小企業庁）／各役所サイトの新着情報／JDN「登竜門」／公募ナビ。内容は必ず掲載元で確認してください。</p>
+</main>
+<script>
+document.querySelectorAll('.chip').forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    document.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('is-on'); });
+    chip.classList.add('is-on');
+    var f = chip.dataset.f;
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.hidden = !(f === 'all' || card.classList.contains(f));
+    });
+  });
+});
+</script>
+</body>
+</html>
