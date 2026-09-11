@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>VIEW管理｜CRATER</title>
+  <title>VIEW管理</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     [hidden] { display: none !important; }
@@ -795,7 +795,7 @@
         newTabBtn.href = url;
         newTabBtn.hidden = false;
         reloadBtn.hidden = false;
-        document.title = 名前 + '｜VIEW管理';
+        document.title = 'VIEW管理 | ' + 名前;
 
         nav.querySelectorAll('.site').forEach(function (s) {
           const 選択中 = s.dataset.url === url;
