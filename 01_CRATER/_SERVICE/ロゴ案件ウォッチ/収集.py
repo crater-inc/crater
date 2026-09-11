@@ -363,12 +363,19 @@ a:focus-visible, .chip:focus-visible, summary:focus-visible { outline:2px solid 
         border-radius:6px; padding:6px 12px; cursor:pointer; }
 .chip[aria-pressed="true"] { background:var(--ink); border-color:var(--ink); color:#fff; }
 .group { margin-top:36px; }
-.group-title { display:flex; align-items:baseline; gap:10px; margin:0 0 6px; font-size:17px; font-weight:700; }
-.group-title .group-count { font-size:14px; font-weight:400; color:var(--sub); }
-.group--paid .group-title::before { content:""; flex:0 0 10px; height:10px; background:var(--paid); border-radius:2px; align-self:center; }
+.group-head { display:flex; flex-wrap:wrap; align-items:center; gap:6px 12px; margin:0; padding:0 0 10px;
+              border-bottom:2px solid var(--ink); }
+.group--paid .group-head { border-bottom-color:var(--paid); }
+details.group .group-head { border-bottom:1px solid var(--line); }
+.group-title { order:0; margin:0; font-size:20px; font-weight:700; line-height:1.4; }
+.group-count { order:1; font-size:14px; font-weight:700; line-height:1.6; padding:1px 11px; border-radius:999px;
+               background:var(--ink); color:#fff; font-variant-numeric:tabular-nums; }
+.group--paid .group-count { background:var(--paid); }
+details.group .group-count, .group-count.is-zero, .group--paid .group-count.is-zero { background:#eceef1; color:var(--sub); }
+.group-desc { order:3; flex-basis:100%; margin:0; font-size:13px; color:var(--sub); }
 details.group > summary { cursor:pointer; list-style:none; }
 details.group > summary::-webkit-details-marker { display:none; }
-details.group > summary::after { content:"＋"; font-weight:400; color:var(--meta); margin-left:auto; }
+details.group > summary::after { content:"＋"; order:2; font-weight:400; color:var(--meta); margin-left:auto; }
 details.group[open] > summary::after { content:"−"; }
 table { width:100%; border-collapse:collapse; font-size:14px; }
 thead th { text-align:left; font-weight:400; font-size:12px; color:var(--meta); padding:8px 12px; border-bottom:1px solid var(--line); }
@@ -402,6 +409,7 @@ details.group tbody td { color:var(--sub); }
   .site-title { font-size:18px; }
   .wrap { width:100%; padding:16px 32px 40px; }
   .group { margin-top:28px; }
+  .group-title { font-size:18px; }
   table, tbody, tr, td { display:block; width:100%; }
   thead { display:none; }
   tbody tr.row { border:1px solid var(--line); border-radius:8px; padding:14px 16px 10px; margin-bottom:10px; }
@@ -433,15 +441,21 @@ details.group tbody td { color:var(--sub); }
     <button type="button" class="chip" data-f="is-vi" aria-pressed="false">VI・ブランディング</button>
   </div>
   <section class="group group--paid">
-    <h2 class="group-title">業務委託（入札・プロポーザル）<span class="group-count">__PAID_COUNT__件</span></h2>
+    <div class="group-head">
+      <h2 class="group-title">業務委託</h2><span class="group-count__PAID_Z__">__PAID_COUNT__件</span>
+      <p class="group-desc">入札・プロポーザルで受注する、制作費が出る仕事</p>
+    </div>
     __PAID_TABLE__
   </section>
   <section class="group">
-    <h2 class="group-title">公募・コンペ<span class="group-count">__KOBO_COUNT__件</span></h2>
+    <div class="group-head">
+      <h2 class="group-title">公募・コンペ</h2><span class="group-count__KOBO_Z__">__KOBO_COUNT__件</span>
+      <p class="group-desc">作品を応募して、賞金・採用をねらう募集</p>
+    </div>
     __KOBO_TABLE__
   </section>
   <details class="group">
-    <summary class="group-title">締切を過ぎたもの（直近60日）<span class="group-count">__CLOSED_COUNT__件</span></summary>
+    <summary class="group-head"><span class="group-title">締切を過ぎたもの</span><span class="group-count">__CLOSED_COUNT__件</span><span class="group-desc">直近60日の分です。押すと開きます</span></summary>
     __CLOSED_TABLE__
   </details>
   <p class="note">出どころ：国の官公需情報ポータルサイト検索API（中小企業庁）／各役所サイトの新着情報／JDN「登竜門」／公募ナビ。応募する前に、必ず掲載元で内容を確認してください。</p>
@@ -462,7 +476,7 @@ chips.forEach(function (chip) {
       var none = tb.querySelector('tr.no-match');
       if (none) none.hidden = shown > 0;
       var count = tb.closest('.group').querySelector('.group-count');
-      if (count && tb.querySelector('tr.row')) count.textContent = shown + '件';
+      if (count && tb.querySelector('tr.row')) { count.textContent = shown + '件'; count.classList.toggle('is-zero', shown === 0); }
     });
   });
 });
@@ -559,6 +573,7 @@ def HTMLを書く(data):
         更新 = 今
     page = (HTMLひな形.replace("__OPEN__", str(len(open_)))
             .replace("__UPDATED__", "{}/{} {:%H:%M}".format(更新.month, 更新.day, 更新))
+            .replace("__PAID_Z__", "" if paid else " is-zero").replace("__KOBO_Z__", "" if kobo else " is-zero")
             .replace("__PAID_COUNT__", str(len(paid)))
             .replace("__PAID_TABLE__", テーブル([行(c) for c in paid], "いま受付中の業務委託はありません。"))
             .replace("__KOBO_COUNT__", str(len(kobo)))
