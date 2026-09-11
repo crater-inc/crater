@@ -22,6 +22,7 @@
   --flat:#fbbf24;
 }
 *{box-sizing:border-box;}
+[hidden]{display:none!important;}
 body{
   margin:0;
   background:var(--bg);
@@ -52,15 +53,24 @@ body{
 
 .wrap{max-width:1080px;margin:0 auto;padding:56px 40px 96px;}
 
-header{border-bottom:1px solid var(--line);padding-bottom:28px;margin-bottom:36px;}
+header{border-bottom:1px solid var(--line);margin-bottom:40px;}
 .eyebrow{font-size:11px;letter-spacing:.22em;color:var(--meta);margin:0 0 10px;}
-h1.title{font-size:30px;font-weight:700;margin:0 0 14px;letter-spacing:.02em;}
+h1.title{font-size:30px;font-weight:700;margin:0;letter-spacing:.02em;}
+
+/* ---- 上のタブ（いまの状況／この仕組みについて） ---- */
+.mainTabs{display:flex;gap:32px;margin-top:26px;}
+.mainTab{
+  font-size:15px;font-weight:500;color:var(--sub);text-decoration:none;
+  padding:0 0 14px;border-bottom:2px solid transparent;margin-bottom:-1px;
+}
+.mainTab:hover{color:var(--text);}
+.mainTab.on{color:var(--text);border-bottom-color:var(--accent);}
+
 .lead{font-size:14px;color:var(--sub);margin:0;max-width:62ch;}
-.updated{font-size:12px;color:var(--meta);margin-top:14px;}
-.updated a{color:var(--accent);}
+.updated{font-size:12px;color:var(--meta);margin:14px 0 0;}
 
 /* ---- サイト切り替え ---- */
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:32px 0 14px;}
 .tab{
   font-family:inherit;font-size:14px;padding:8px 16px;border-radius:999px;cursor:pointer;
   background:var(--panel);border:1px solid var(--line);color:var(--sub);
@@ -132,13 +142,84 @@ td.n{text-align:right;font-family:"IBM Plex Mono",monospace;}
 
 .empty{font-size:14px;color:var(--meta);padding:24px 0;margin:0;}
 
+/* ============ この仕組みについて ============ */
+.about{max-width:820px;}
+.about .lead{font-size:16px;line-height:1.85;max-width:none;margin-bottom:52px;}
+.about section{margin-bottom:60px;}
+.about p{font-size:15px;line-height:1.85;color:var(--sub);margin:0 0 18px;}
+.about p strong,.about li strong{color:var(--text);font-weight:500;}
+
+/* 流れのステップ */
+.flow{list-style:none;padding:0;margin:0;counter-reset:step;}
+.flow li{
+  position:relative;padding:0 0 26px 52px;counter-increment:step;
+  border-left:2px solid var(--line);margin-left:14px;
+}
+.flow li:last-child{border-left-color:transparent;padding-bottom:0;}
+.flow li::before{
+  content:counter(step);
+  position:absolute;left:-16px;top:0;width:30px;height:30px;border-radius:50%;
+  background:var(--panel);border:1px solid var(--line);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"IBM Plex Mono",monospace;font-size:13px;
+}
+.flow .st{font-size:16px;font-weight:700;color:var(--text);display:block;margin-bottom:4px;}
+.flow .sd{font-size:14px;line-height:1.85;color:var(--sub);display:block;}
+.flow .sd strong{color:var(--text);font-weight:500;}
+
+/* 自動で変える範囲／変えない範囲 */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px;}
+.rule{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 24px;}
+.rule h3{font-size:14px;margin:0 0 14px;letter-spacing:.04em;}
+.rule.auto h3{color:var(--up);}
+.rule.manual h3{color:var(--down);}
+.rule ul{margin:0;padding-left:20px;}
+.rule li{font-size:14px;color:var(--sub);margin-bottom:7px;}
+
+.plain{margin:0 0 14px;padding-left:20px;}
+.plain li{font-size:15px;color:var(--sub);margin-bottom:8px;}
+
+/* お願い */
+.note{
+  background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:10px;padding:22px 26px;
+}
+.note p:last-child{margin-bottom:0;}
+.note .h{font-size:15px;font-weight:700;color:var(--text);display:block;margin-bottom:10px;}
+
+/* 「いまの状況」へのリンク */
+.linkbox{
+  display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:20px 24px;text-decoration:none;margin-bottom:12px;
+}
+.linkbox:hover{border-color:var(--accent);}
+.linkbox .t{font-size:16px;font-weight:700;color:var(--text);display:block;margin-bottom:4px;}
+.linkbox .d{font-size:14px;color:var(--sub);}
+
+/* 技術メモ */
+.about dl{margin:0;}
+.about dt{font-size:14px;font-weight:700;color:var(--text);margin-top:18px;}
+.about dt:first-child{margin-top:0;}
+.about dd{font-size:14px;line-height:1.85;color:var(--sub);margin:4px 0 0;}
+.about dd strong{color:var(--text);font-weight:500;}
+.about code{
+  font-family:"IBM Plex Mono",monospace;font-size:13px;
+  background:#1c2027;border:1px solid var(--line);border-radius:4px;padding:1px 6px;
+  word-break:break-all;
+}
+
+footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:var(--meta);}
+
 @media (max-width:768px){
   .wrap{padding:40px 32px 72px;width:100%;}
   h1.title{font-size:24px;}
+  .mainTabs{gap:24px;}
   .watching{grid-template-columns:1fr;}
   .card .row{gap:18px;}
   .timeline{padding-left:20px;}
   .entry::before{left:-27px;}
+  .rules{grid-template-columns:1fr;}
+  .flow li{padding-left:40px;}
 }
 </style>
 </head>
@@ -156,75 +237,179 @@ td.n{text-align:right;font-family:"IBM Plex Mono",monospace;}
   <header>
     <p class="eyebrow">CRATER GROUP</p>
     <h1 class="title">SEO順位ウォッチ</h1>
-    <p class="lead">既存記事を少しずつ改善して育てる記録。1つの記事で直すのは1か所だけ。直した記事は14日間触らず、実測で効果を判定する。</p>
-    <p class="updated" id="updated"></p>
-    <p class="updated"><a href="./概要.html">この仕組みの説明はこちら →</a></p>
+    <nav class="mainTabs" aria-label="表示の切り替え">
+      <a href="#status" class="mainTab" data-panel="status">いまの状況</a>
+      <a href="#about" class="mainTab" data-panel="about">この仕組みについて</a>
+    </nav>
   </header>
 
-  <nav class="tabs" id="tabs"></nav>
-  <p class="modeNote" id="modeNote"></p>
+  <main>
 
-  <div id="alertBox"></div>
+    <!-- ============ いまの状況 ============ -->
+    <div id="panelStatus" role="tabpanel">
+      <p class="lead">既存記事を少しずつ改善して育てる記録。1つの記事で直すのは1か所だけ。直した記事は14日間触らず、実測で効果を判定する。</p>
+      <p class="updated" id="updated"></p>
 
-  <section>
-    <h2>いま観察中</h2>
-    <div class="watching" id="watching"></div>
-  </section>
+      <nav class="tabs" id="tabs" aria-label="サイトの切り替え"></nav>
+      <p class="modeNote" id="modeNote"></p>
 
-  <section>
-    <h2>施策履歴</h2>
-    <div class="timeline" id="timeline"></div>
-  </section>
+      <div id="alertBox"></div>
 
-  <section>
-    <h2>惜しい記事（順位の割にクリックされていない順）</h2>
-    <div class="tablewrap">
-      <table>
-        <thead>
-          <tr>
-            <th>キーワード</th>
-            <th style="text-align:right">順位</th>
-            <th style="text-align:right">表示</th>
-            <th style="text-align:right">クリック</th>
-            <th style="text-align:right">CTR</th>
-            <th style="text-align:right">期待との差</th>
-          </tr>
-        </thead>
-        <tbody id="candidates"></tbody>
-      </table>
+      <section>
+        <h2>いま観察中</h2>
+        <div class="watching" id="watching"></div>
+      </section>
+
+      <section>
+        <h2>施策履歴</h2>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section>
+        <h2>惜しい記事（順位の割にクリックされていない順）</h2>
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>キーワード</th>
+                <th style="text-align:right">順位</th>
+                <th style="text-align:right">表示</th>
+                <th style="text-align:right">クリック</th>
+                <th style="text-align:right">CTR</th>
+                <th style="text-align:right">期待との差</th>
+              </tr>
+            </thead>
+            <tbody id="candidates"></tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  </section>
+
+    <!-- ============ この仕組みについて ============ -->
+    <div id="panelAbout" class="about" role="tabpanel" hidden>
+      <p class="lead">新しく記事を作るのではなく、すでにある記事の検索順位を実測して、少しずつ直して育てていく仕組みです。毎週月曜に自動で動きます。</p>
+
+      <section>
+        <h2>なぜやるのか</h2>
+        <p>たとえばchics.topには400本以上の記事がありますが、これまで<strong>公開したあとに順位を測って直す工程がありませんでした</strong>。作りっぱなしの状態です。</p>
+        <p>Search Console（Googleの検索データ）を見ると、「1ページ目に入っているのにクリックされていない記事」がいくつもありました。あと少し直せば成果が出るものが、放置されたままになっている状態です。</p>
+        <p><strong>新しく作るより、すでに評価されている記事を拾って伸ばすほうが早い。</strong>これがこの仕組みの狙いです。</p>
+      </section>
+
+      <section>
+        <h2>進め方</h2>
+        <ol class="flow">
+          <li>
+            <span class="st">順位を測る</span>
+            <span class="sd">Search Console APIから、キーワードごとの順位・表示回数・クリック数を取得します。</span>
+          </li>
+          <li>
+            <span class="st">直す記事を選ぶ</span>
+            <span class="sd">順位の割にクリックされていない記事を洗い出し、その中から<strong>受注につながるものを、サイトごとに決めた本数まで</strong>選びます。表示回数が多くても、他社ロゴを見に来ているだけの検索や、デザイナー志望者向けの検索は選びません。</span>
+          </li>
+          <li>
+            <span class="st">検索意図を調べる</span>
+            <span class="sd">実際にそのキーワードで検索し、上位ページと比べて何が足りないかを特定します。</span>
+          </li>
+          <li>
+            <span class="st">1つの記事につき1か所だけ直す</span>
+            <span class="sd">タイトルなど、原因と判断した箇所だけを直します。<strong>1つの記事で複数の箇所は同時に変えません。</strong>タイトルと本文を一緒に変えると、どちらが効いたのか分からなくなるためです。別々の記事であれば、同じ週に複数直しても測定は混ざりません。</span>
+          </li>
+          <li>
+            <span class="st">14日間そのままにする</span>
+            <span class="sd">Googleが変更を評価に反映するまで2〜4週かかります。この期間は<strong>その記事に一切触りません。</strong></span>
+          </li>
+          <li>
+            <span class="st">実測で判定して、次へ</span>
+            <span class="sd">14日が過ぎた後の最初の月曜に順位を測り直し、上がった／変わらなかった／下がったを数字で判定します。下がっていた場合は元に戻します。</span>
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>自動化の中身</h2>
+        <p><strong>毎週月曜7:00に、GitHub Actionsで自動実行されます。</strong>順位の取得から、判定、記事の修正、記録、LINE通知まで一通り自動です。判断部分はAI（Claude）が担当しています。</p>
+        <div class="rules">
+          <div class="rule auto">
+            <h3>自動で変更する範囲</h3>
+            <ul>
+              <li>記事タイトル</li>
+              <li>meta description</li>
+              <li>効果が出なかった場合の差し戻し</li>
+            </ul>
+          </div>
+          <div class="rule manual">
+            <h3>自動では変更しない範囲</h3>
+            <ul>
+              <li>本文・見出し</li>
+              <li>URL・パーマリンク</li>
+              <li>内部リンク構成</li>
+              <li>テーマ・プラグイン設定</li>
+            </ul>
+          </div>
+        </div>
+        <p>本文をAIに自動生成させることは<strong>意図的にしていません。</strong>事実と違う内容が自動で増えていくリスクがあるためです。</p>
+        <p><strong>ただし「本文は今後も一切触らない」という意味ではありません。</strong>順位が低い記事は、タイトルを直しても上がりません。その場合の原因は本文の情報量や検索意図とのズレなので、本文の改善が必要になります。<strong>そのケースは自動では行わず、クレーター側で内容を確認してから対応し、実施後にお知らせします。</strong></p>
+      </section>
+
+      <section>
+        <h2>対象サイトと本数</h2>
+        <ul class="plain" id="siteList"></ul>
+        <p>本数は上限です。受注につながる候補がない週は、それより少なくなります。</p>
+      </section>
+
+      <section>
+        <h2>コーダーさんへのお願い</h2>
+        <div class="note">
+          <span class="h">観察期間中（14日間）の記事は触らないでください</span>
+          <p>どの記事が観察期間中かは、「いまの状況」タブで確認できます。同じ期間に別の変更が入ると、効果の判定ができなくなります。</p>
+          <p>記事の追加・他の記事の修正は、これまで通り進めていただいて問題ありません。<strong>止めていただきたいのは「観察中」と表示されている記事だけ</strong>です。</p>
+          <p>また、この仕組みは記事タイトルを書き換えます。<strong>タイトルが変わっていても、意図した変更です。</strong>変更内容と理由は、すべて「いまの状況」タブの施策履歴に記録されています。</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>現状の確認先</h2>
+        <a class="linkbox" href="#status">
+          <span class="t">いまの状況を見る →</span>
+          <span class="d">観察中の記事／これまでの施策と結果／順位の割にクリックされていない記事の一覧</span>
+        </a>
+      </section>
+
+      <section>
+        <h2>技術メモ</h2>
+        <dl>
+          <dt>順位データの取得</dt>
+          <dd>Google Search Console API。読み取り専用のサービスアカウント <code>analytics-reader@crater-dashboard.iam.gserviceaccount.com</code> を、各サイトのプロパティに「制限付き」で追加しています。既存のGA4ダッシュボードと同じアカウントの流用です。</dd>
+
+          <dt>記事の更新</dt>
+          <dd>WordPress REST API。chics.topの記事はカスタム投稿タイプ <code>news</code> なので、エンドポイントは <code>/wp-json/wp/v2/news/&lt;ID&gt;</code> です（<code>posts</code> では404）。認証はアプリケーションパスワード。</dd>
+
+          <dt>WAFによる403について</dt>
+          <dd>サーバー側のWAFが、外部IP（GitHub Actions）からの <code>/wp-json/</code> へのPOSTを403で弾いていました。現在は403を検知したら <code>?rest_route=</code> のクエリ形式で自動的に再試行する実装で回避しています。<strong>WAF設定の変更はしていません。</strong>もし今後この挙動を調整される場合はご一報ください。</dd>
+
+          <dt>実行環境</dt>
+          <dd>GitHub Actions（<code>.github/workflows/SEO順位ウォッチ.yml</code>）。毎週月曜7:00 JST。実行結果は同リポジトリにコミットされ、LINEにも通知されます。</dd>
+        </dl>
+      </section>
+    </div>
+
+  </main>
+
+  <footer>株式会社クレーター　SEO順位ウォッチ　最終更新 2026-09-11</footer>
 
 </div>
 </div>
 
 <script>
-// ============ パスワードゲート ============
-function unlock(){
-  document.getElementById('lockScreen').style.display = 'none';
-  document.getElementById('mainWrap').classList.add('show');
-  init();
-}
-function checkPw(){
-  if (document.getElementById('pwInput').value === 'view') {
-    sessionStorage.setItem('srw_unlocked', '1');
-    unlock();
-  } else {
-    document.getElementById('lockErr').textContent = 'INCORRECT';
-    setTimeout(() => document.getElementById('lockErr').textContent = '', 1800);
-  }
-}
-document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
-if (sessionStorage.getItem('srw_unlocked') === '1') unlock();
-
 // ============ サイトごとの扱い（engine.py の 対象サイト と合わせる） ============
 const サイト一覧 = [
-  { id:'chics.top',      名前:'CHICS',    扱い:'改善',     上限:5 },
-  { id:'years.design',   名前:'YEARS',    扱い:'認証待ち', 上限:5 },
-  { id:'crater.co.jp',   名前:'CRATER',   扱い:'認証待ち', 上限:2 },
-  { id:'apollos.jp',     名前:'APOLLOS',  扱い:'認証待ち', 上限:2 },
-  { id:'birth.business', 名前:'BIRTH',    扱い:'測定のみ', 上限:2 },
-  { id:'acurry.jp',      名前:'A CURRY',  扱い:'測定のみ', 上限:2 },
+  { id:'chics.top',      名前:'CHICS',    扱い:'改善',     上限:5, 最低表示:20, 最大順位:20 },
+  { id:'years.design',   名前:'YEARS',    扱い:'認証待ち', 上限:5, 最低表示:5,  最大順位:30 },
+  { id:'crater.co.jp',   名前:'CRATER',   扱い:'認証待ち', 上限:2, 最低表示:5,  最大順位:30 },
+  { id:'apollos.jp',     名前:'APOLLOS',  扱い:'認証待ち', 上限:2, 最低表示:5,  最大順位:30 },
+  { id:'birth.business', 名前:'BIRTH',    扱い:'測定のみ', 上限:2, 最低表示:5,  最大順位:30 },
+  { id:'acurry.jp',      名前:'A CURRY',  扱い:'測定のみ', 上限:2, 最低表示:5,  最大順位:30 },
 ];
 
 // ============ 検索順位ごとの平均的なクリック率（％） ============
@@ -246,6 +431,51 @@ const 指名語 = {
 
 let ログ = {改善:[]}, 履歴 = {測定:[]}, 選択中 = 'chics.top';
 
+// ============ パスワードゲート ============
+function unlock(){
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('mainWrap').classList.add('show');
+  表示するパネル();
+  描く対象サイト();
+  init();
+}
+function checkPw(){
+  if (document.getElementById('pwInput').value === 'view') {
+    sessionStorage.setItem('srw_unlocked', '1');
+    unlock();
+  } else {
+    document.getElementById('lockErr').textContent = 'INCORRECT';
+    setTimeout(() => document.getElementById('lockErr').textContent = '', 1800);
+  }
+}
+document.getElementById('pwInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
+
+// ============ 上のタブ（URLの #status / #about で切り替える。リンクで直接共有できる） ============
+function 表示するパネル(){
+  const 表示 = location.hash === '#about' ? 'about' : 'status';
+  document.getElementById('panelStatus').hidden = 表示 !== 'status';
+  document.getElementById('panelAbout').hidden = 表示 !== 'about';
+  document.querySelectorAll('.mainTab').forEach(t => {
+    const on = t.dataset.panel === 表示;
+    t.classList.toggle('on', on);
+    if (on) t.setAttribute('aria-current', 'page');
+    else t.removeAttribute('aria-current');
+  });
+}
+window.addEventListener('hashchange', () => { 表示するパネル(); window.scrollTo(0, 0); });
+
+// ============ 「この仕組みについて」の対象サイト一覧（サイト一覧から自動で作る） ============
+function 描く対象サイト(){
+  const 説明 = {
+    '改善':     s => `週${s.上限}本まで自動で改善`,
+    '認証待ち': s => `週${s.上限}本まで（WordPressの接続後に開始）`,
+    '測定のみ': () => '当面は順位の測定のみ',
+  };
+  document.getElementById('siteList').innerHTML = サイト一覧.map(s =>
+    `<li><strong>${s.名前}（${s.id}）</strong>　${説明[s.扱い](s)}</li>`).join('');
+}
+
+// ============ いまの状況 ============
 async function init(){
   [ログ, 履歴] = await Promise.all([
     fetch('../data/改善ログ.json', {cache:'no-store'}).then(r => r.json()).catch(() => ({改善:[]})),
@@ -293,7 +523,7 @@ function 描く(){
   描く異常(最新);
   描く観察中(ログ絞り込み, 最新);
   描く履歴(ログ絞り込み);
-  描く候補(ログ絞り込み, 最新);
+  描く候補(ログ絞り込み, 最新, サイト);
 }
 
 function 描く異常(最新){
@@ -388,7 +618,7 @@ function 描く履歴(ログ){
   }).join('');
 }
 
-function 描く候補(ログ, 最新){
+function 描く候補(ログ, 最新, サイト){
   const 体 = document.getElementById('candidates');
   if (!最新){ 体.innerHTML = '<tr><td colspan="6" class="empty">データがありません。</td></tr>'; return; }
 
@@ -398,7 +628,7 @@ function 描く候補(ログ, 最新){
   const 観察中ページ = new Set(ログ.改善.filter(c => c.状態 === '観察中').map(c => c.対象ページ));
 
   const 候補 = 最新.結果
-    .filter(r => r.表示回数 >= 20 && r.順位 <= 20)
+    .filter(r => r.表示回数 >= サイト.最低表示 && r.順位 <= サイト.最大順位)
     .filter(r => !観察中.has(r.キーワード) && !達成.has(r.キーワード))
     .filter(r => !観察中ページ.has(r.ページ))
     .filter(r => !スパム語.test(r.キーワード))
@@ -410,7 +640,7 @@ function 描く候補(ログ, 最新){
       return {...r, 差, 点数: r.表示回数 * Math.max(差, 0.1)};
     })
     .sort((a, b) => b.点数 - a.点数)
-    .slice(0, 12);
+    .slice(0, Math.max(12, サイト.上限 * 4));
 
   if (!候補.length){ 体.innerHTML = '<tr><td colspan="6" class="empty">今は候補がありません。無理に対象を作らないこと。</td></tr>'; return; }
 
@@ -424,6 +654,10 @@ function 描く候補(ログ, 最新){
       <td class="n gap">-${c.差}pt</td>
     </tr>`).join('');
 }
+
+// すべての定義が済んでから、解錠済みなら表示する
+表示するパネル();
+if (sessionStorage.getItem('srw_unlocked') === '1') unlock();
 </script>
 </body>
 </html>

@@ -20,7 +20,8 @@ description: クレーターグループ各サイトの既存記事を、Search 
 | `指示.md` | 自動実行時にClaudeが読む指示書。**判断基準の本体はここ** |
 | `data/順位履歴.json` | 測定結果（追記専用・過去は書き換えない） |
 | `data/改善ログ.json` | 何をいつ直したか・判定結果・次回レビュー日 |
-| `output/dashboard.html` | 履歴の閲覧用（パスワード `view`） |
+| `output/dashboard.html` | 閲覧用の1ページ（パスワード `view`）。上のタブで「いまの状況」と「この仕組みについて」（コーダー向けの説明）を切り替える。URL末尾に `#about` を付けると説明タブが直接開く |
+| `output/概要.html` | 旧URLの互換用。`dashboard.html#about` に転送するだけ（2026-09-11に統合） |
 
 ## 自動実行
 
@@ -75,7 +76,7 @@ description: クレーターグループ各サイトの既存記事を、Search 
 
 1. Search Consoleで対象サイトのプロパティに
    `analytics-reader@crater-dashboard.iam.gserviceaccount.com` を「制限付き」で追加
-2. `engine.py` の `対象サイト` と `output/dashboard.html` の `サイト一覧` の**両方**に追加（扱いは「改善」か「測定のみ」）
+2. `engine.py` の `対象サイト` と `output/dashboard.html` の `サイト一覧` の**両方**に追加（扱い・週の上限・候補条件を揃える）。説明タブの「対象サイトと本数」は `サイト一覧` から自動で表示される
 3. WordPress以外のサイトは `wp.py` が使えないので、更新手段を別途用意する
 
 2026-09-11時点：6サイトを毎週測定。**自動改善は chics.top（週5本）のみ稼働**。years.design（週5本）・crater.co.jp・apollos.jp（週2本）は「認証待ち」＝WordPressのアプリケーションパスワードが届いたら `扱い` を「改善」に変え、wp.py を該当サイトに対応させてテストしてからONにする。
