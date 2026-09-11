@@ -17,7 +17,7 @@
       --side-text: rgba(255, 255, 255, 0.88);
       --side-sub: rgba(255, 255, 255, 0.65); /* グループ名など */
       --side-line: rgba(255, 255, 255, 0.1);
-      --main-bg: #1a1a1a;                    /* 何も開いていない時の右側 */
+      --main-bg: #fff;                       /* 右側の背景（白） */
     }
 
     html, body { height: 100%; }
@@ -296,7 +296,7 @@
       justify-content: center;
       padding: 32px;
       font-size: 14px;
-      color: var(--side-sub);
+      color: #555;
       text-align: center;
       background: var(--main-bg);
     }
@@ -428,7 +428,7 @@
   <script>
     (function () {
       // ===== パスワード =====
-      const パスワード = 'view123';
+      const パスワード = 'fj';
 
       // 右側に表示するページが使っている「パスワード入力済み」の記憶キー。
       // 入室時に全部「入力済み」にしておくので、中のページでパスワードを聞かれない。
