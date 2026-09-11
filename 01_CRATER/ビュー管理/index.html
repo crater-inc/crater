@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>VIEW管理｜CRATER</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    [hidden] { display: none !important; }
+
+    :root {
+      --side-w: 264px;                       /* 左の一覧の幅 */
+      --side-bg: #111;                       /* 左の一覧の背景 */
+      --side-hover: #1f1f1f;
+      --side-active: #2c2c2c;
+      --side-text: rgba(255, 255, 255, 0.88);
+      --side-sub: rgba(255, 255, 255, 0.65); /* グループ名など */
+      --side-line: rgba(255, 255, 255, 0.1);
+      --main-bg: #1a1a1a;                    /* 何も開いていない時の右側 */
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', sans-serif;
+      font-size: 16px;
+      background: var(--main-bg);
+      color: var(--side-text);
+      overflow-x: hidden;
+    }
+
+    button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button:focus-visible, a:focus-visible { outline: 2px solid #7a9cff; outline-offset: 2px; }
+
+    /* ===== パスワード画面（viewトップと同じ見た目） ===== */
+    .lock-screen {
+      position: fixed;
+      inset: 0;
+      background: #888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .lock-screen .inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lock-screen .path {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #111;
+    }
+
+    .lock-screen .logo {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: #333;
+    }
+
+    .lock-screen input {
+      background: #666;
+      border: 1px solid #777;
+      border-radius: 4px;
+      padding: 12px 16px;
+      font-size: 16px;
+      color: #fff;
+      width: 240px;
+      text-align: center;
+      letter-spacing: 0.1em;
+      outline: none;
+    }
+
+    .lock-screen button {
+      background: #111;
+      color: #888;
+      border-radius: 100px;
+      padding: 11px 0;
+      width: 240px;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 0.15em;
+    }
+
+    .lock-screen .error {
+      font-size: 12px;
+      color: #c0392b;
+    }
+
+    /* ===== 全体：左に一覧、右に表示 ===== */
+    .app {
+      display: flex;
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    /* ===== 左：ページ一覧 ===== */
+    .sidebar {
+      width: var(--side-w);
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      background: var(--side-bg);
+      color: var(--side-text);
+    }
+
+    .app.is-collapsed .sidebar { display: none; }
+
+    .sidebar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 18px 12px 16px 20px;
+      border-bottom: 1px solid var(--side-line);
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .brand-logo {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--side-sub);
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #fff;
+    }
+
+    .site-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 10px 32px;
+      scrollbar-width: thin;
+      scrollbar-color: #333 transparent;
+    }
+
+    .group + .group { margin-top: 14px; }
+
+    .group-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--side-sub);
+      text-align: left;
+    }
+
+    .group-head:hover { color: #fff; }
+
+    .chevron { flex-shrink: 0; transition: transform 0.2s; }
+    .group.is-closed .chevron { transform: rotate(-90deg); }
+    .group.is-closed .group-list { display: none; }
+
+    .group-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 2px;
+    }
+
+    .site {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--side-text);
+      text-align: left;
+    }
+
+    .site:hover { background: var(--side-hover); }
+    .site.is-active { background: var(--side-active); color: #fff; }
+
+    /* 長い名前は2行まで（それ以上は…で省略） */
+    .site-name {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    .ext-icon { flex-shrink: 0; color: var(--side-sub); }
+
+    /* ===== 右：選んだページを表示 ===== */
+    .main {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 48px;
+      flex-shrink: 0;
+      padding: 0 12px 0 16px;
+      background: var(--side-bg);
+      border-bottom: 1px solid var(--side-line);
+    }
+
+    .current {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .current-group {
+      flex-shrink: 0;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--side-sub);
+    }
+
+    .current-name {
+      min-width: 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    .topbar-actions { display: flex; gap: 4px; }
+
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      color: var(--side-sub);
+    }
+
+    .icon-btn:hover { background: var(--side-hover); color: #fff; }
+
+    /* 一覧を出すボタン：PCでは一覧をしまった時だけ出す */
+    .open-btn { display: none; }
+    .app.is-collapsed .open-btn { display: inline-flex; }
+
+    /* 閉じるボタンのアイコン：PC＝パネル、スマホ＝× */
+    .icon-close { display: none; }
+
+    .viewer {
+      position: relative;
+      flex: 1;
+      background: #fff;
+    }
+
+    .viewer iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .empty {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      font-size: 14px;
+      color: var(--side-sub);
+      text-align: center;
+      background: var(--main-bg);
+    }
+
+    /* 読み込み中の細いバー */
+    .viewer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 0;
+      height: 2px;
+      background: #111;
+      opacity: 0;
+    }
+
+    .viewer.is-loading::before {
+      opacity: 1;
+      animation: loading 1.2s ease-out infinite;
+    }
+
+    @keyframes loading {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .overlay { display: none; }
+
+    /* ===== スマホ：一覧は左から引き出す ===== */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 30;
+        width: min(84vw, 320px);
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+      }
+
+      .app.is-collapsed .sidebar { display: flex; }
+      .app.is-drawer-open .sidebar { transform: none; }
+
+      .overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        background: rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+      }
+
+      .app.is-drawer-open .overlay { opacity: 1; pointer-events: auto; }
+
+      .open-btn { display: inline-flex; }
+      .icon-panel { display: none; }
+      .icon-close { display: block; }
+
+      .topbar { padding: 0 8px; }
+      .site { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- パスワード画面 -->
+  <div class="lock-screen" id="lockScreen">
+    <div class="inner">
+      <div class="path">CRATER / VIEW管理</div>
+      <input type="password" id="passwordInput" placeholder="PASSWORD" autocomplete="current-password" autofocus>
+      <button type="button" id="enterBtn">ENTER</button>
+      <div class="error" id="errorMsg" hidden>パスワードが違います</div>
+      <div class="logo">CRATER INC.</div>
+    </div>
+  </div>
+
+  <div class="app" id="app" hidden>
+
+    <!-- 左：ページ一覧（中身は ページ一覧.js から作る） -->
+    <aside class="sidebar" aria-label="ページ一覧">
+      <div class="sidebar-head">
+        <div class="brand">
+          <span class="brand-logo">CRATER INC.</span>
+          <span class="brand-title">VIEW管理</span>
+        </div>
+        <button type="button" class="icon-btn" id="closeBtn" aria-label="一覧をしまう" title="一覧をしまう">
+          <svg class="icon-panel" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg>
+          <svg class="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <nav class="site-nav" id="siteNav"></nav>
+    </aside>
+
+    <!-- スマホで一覧を開いたときの背景（押すと閉じる） -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- 右：選んだページを表示 -->
+    <main class="main">
+      <div class="topbar">
+        <button type="button" class="icon-btn open-btn" id="openBtn" aria-label="一覧を出す" title="一覧を出す">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <div class="current">
+          <span class="current-group" id="currentGroup"></span>
+          <span class="current-name" id="currentName"></span>
+        </div>
+        <div class="topbar-actions">
+          <button type="button" class="icon-btn" id="reloadBtn" aria-label="再読み込み" title="再読み込み" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>
+          </button>
+          <a class="icon-btn" id="newTabBtn" target="_blank" rel="noopener" aria-label="新しいタブで開く" title="新しいタブで開く" hidden>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="viewer" id="viewerWrap">
+        <iframe id="viewer" title="選んだページ"></iframe>
+        <p class="empty" id="empty">左の一覧からページを選んでください</p>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="ページ一覧.js"></script>
+  <script>
+    (function () {
+      // ===== パスワード =====
+      const パスワード = 'view123';
+
+      // 右側に表示するページが使っている「パスワード入力済み」の記憶キー。
+      // 入室時に全部「入力済み」にしておくので、中のページでパスワードを聞かれない。
+      // 新しいキー名のページを一覧に入れたら、ここにも足す。
+      const ページのパスワード記憶キー = [
+        'crater_auth', 'wf_auth', 'cv_auth', 'shisanhozengaku_wf_auth', 'cp_auth',
+        'tamatebako_auth', 'unlocked_tamatebako', 'srw_unlocked', 'aid_unlocked',
+        'auth_bb', 'unlocked'
+      ];
+
+      const lockScreen = document.getElementById('lockScreen');
+      const app = document.getElementById('app');
+      const passwordInput = document.getElementById('passwordInput');
+      const errorMsg = document.getElementById('errorMsg');
+
+      function 入室する() {
+        ページのパスワード記憶キー.forEach(function (key) { sessionStorage.setItem(key, '1'); });
+        lockScreen.hidden = true;
+        app.hidden = false;
+        一覧を組み立てる();
+      }
+
+      function パスワードを確かめる() {
+        if (passwordInput.value === パスワード) {
+          入室する();
+        } else {
+          errorMsg.hidden = false;
+          passwordInput.value = '';
+        }
+      }
+
+      document.getElementById('enterBtn').addEventListener('click', パスワードを確かめる);
+      passwordInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') パスワードを確かめる();
+      });
+
+      // ===== このブラウザに覚えさせる（最後に開いたページ・閉じたグループ・一覧をしまったか） =====
+      function 読み出す(key, 初期値) {
+        try {
+          const 値 = localStorage.getItem(key);
+          return 値 === null ? 初期値 : JSON.parse(値);
+        } catch (e) {
+          return 初期値;
+        }
+      }
+
+      function 書き込む(key, 値) {
+        try { localStorage.setItem(key, JSON.stringify(値)); } catch (e) {}
+      }
+
+      // ===== 一覧と表示 =====
+      const VIEWのURL = 'https://view.crater.co.jp';
+      const nav = document.getElementById('siteNav');
+      const viewer = document.getElementById('viewer');
+      const viewerWrap = document.getElementById('viewerWrap');
+      const empty = document.getElementById('empty');
+      const currentGroup = document.getElementById('currentGroup');
+      const currentName = document.getElementById('currentName');
+      const reloadBtn = document.getElementById('reloadBtn');
+      const newTabBtn = document.getElementById('newTabBtn');
+      const スマホ幅 = window.matchMedia('(max-width: 768px)');
+
+      const 矢印 = '<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+      const 外部マーク = '<svg class="ext-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>';
+
+      // viewのページか（＝右側に表示できるか）。view以外は相手側が埋め込みを拒否するので新しいタブで開く
+      function viewのページか(url) {
+        return url.charAt(0) === '/' || url.indexOf(VIEWのURL) === 0;
+      }
+
+      // viewのページは「/〜」の形にそろえる（ローカル確認でも本番でも同じように動くように）
+      function そろえる(url) {
+        return url.indexOf(VIEWのURL) === 0 ? (url.slice(VIEWのURL.length) || '/') : url;
+      }
+
+      function 一覧を組み立てる() {
+        if (nav.childElementCount) return;
+
+        const 一覧 = Array.isArray(window.ページ一覧) ? window.ページ一覧 : [];
+        const 閉じたグループ = new Set(読み出す('view_hub_closed_groups', []));
+
+        一覧.forEach(function (g) {
+          const section = document.createElement('section');
+          section.className = 'group';
+          if (閉じたグループ.has(g.グループ)) section.classList.add('is-closed');
+
+          // グループ名（押すと開閉）
+          const head = document.createElement('button');
+          head.type = 'button';
+          head.className = 'group-head';
+          head.setAttribute('aria-expanded', String(!section.classList.contains('is-closed')));
+          const groupName = document.createElement('span');
+          groupName.textContent = g.グループ;
+          head.appendChild(groupName);
+          head.insertAdjacentHTML('beforeend', 矢印);
+          head.addEventListener('click', function () {
+            const 閉じた = section.classList.toggle('is-closed');
+            head.setAttribute('aria-expanded', String(!閉じた));
+            if (閉じた) 閉じたグループ.add(g.グループ); else 閉じたグループ.delete(g.グループ);
+            書き込む('view_hub_closed_groups', Array.from(閉じたグループ));
+          });
+
+          // ページ名
+          const list = document.createElement('ul');
+          list.className = 'group-list';
+
+          (g.ページ || []).forEach(function (p) {
+            const url = そろえる(p.URL);
+            let item;
+
+            if (viewのページか(p.URL)) {
+              item = document.createElement('button');
+              item.type = 'button';
+              item.addEventListener('click', function () { ページを開く(p.名前, g.グループ, url); });
+            } else {
+              item = document.createElement('a');
+              item.href = url;
+              item.target = '_blank';
+              item.rel = 'noopener';
+              item.title = '新しいタブで開きます';
+            }
+
+            item.classList.add('site');
+            item.dataset.url = url;
+
+            const name = document.createElement('span');
+            name.className = 'site-name';
+            name.textContent = p.名前;
+            item.appendChild(name);
+            if (item.tagName === 'A') item.insertAdjacentHTML('beforeend', 外部マーク);
+
+            const li = document.createElement('li');
+            li.appendChild(item);
+            list.appendChild(li);
+          });
+
+          section.appendChild(head);
+          section.appendChild(list);
+          nav.appendChild(section);
+        });
+
+        // 最後に開いていたページ（なければ一番上）を開く
+        const 最後のURL = 読み出す('view_hub_last', null);
+        const ボタン = Array.from(nav.querySelectorAll('button.site'));
+        const 最初 = ボタン.find(function (b) { return b.dataset.url === 最後のURL; }) || ボタン[0];
+        if (最初) {
+          最初.click();
+        } else {
+          empty.textContent = 'まだページがありません（ページ一覧.js に追加します）';
+        }
+      }
+
+      function ページを開く(名前, グループ名, url) {
+        viewerWrap.classList.add('is-loading');
+        viewer.src = url;
+        viewer.title = 名前;
+        empty.hidden = true;
+
+        currentGroup.textContent = グループ名;
+        currentName.textContent = 名前;
+        newTabBtn.href = url;
+        newTabBtn.hidden = false;
+        reloadBtn.hidden = false;
+        document.title = 名前 + '｜VIEW管理';
+
+        nav.querySelectorAll('.site').forEach(function (s) {
+          const 選択中 = s.dataset.url === url;
+          s.classList.toggle('is-active', 選択中);
+          if (選択中) s.setAttribute('aria-current', 'page'); else s.removeAttribute('aria-current');
+        });
+
+        書き込む('view_hub_last', url);
+        if (スマホ幅.matches) 一覧を引き出す(false);
+      }
+
+      viewer.addEventListener('load', function () {
+        viewerWrap.classList.remove('is-loading');
+        // 中でリンクを移動した時も「新しいタブで開く」が今見ているページを開くように
+        try {
+          const 今のURL = viewer.contentWindow.location.href;
+          if (今のURL && 今のURL !== 'about:blank') newTabBtn.href = 今のURL;
+        } catch (e) {}
+      });
+
+      reloadBtn.addEventListener('click', function () {
+        viewerWrap.classList.add('is-loading');
+        try {
+          viewer.contentWindow.location.reload();
+        } catch (e) {
+          viewer.src = viewer.src;
+        }
+      });
+
+      // ===== 一覧の出し入れ（PC＝しまう／出す、スマホ＝左から引き出す） =====
+      function 一覧を引き出す(出す) {
+        app.classList.toggle('is-drawer-open', 出す);
+      }
+
+      if (読み出す('view_hub_collapsed', false)) app.classList.add('is-collapsed');
+
+      document.getElementById('closeBtn').addEventListener('click', function () {
+        if (スマホ幅.matches) {
+          一覧を引き出す(false);
+        } else {
+          app.classList.add('is-collapsed');
+          書き込む('view_hub_collapsed', true);
+        }
+      });
+
+      document.getElementById('openBtn').addEventListener('click', function () {
+        if (スマホ幅.matches) {
+          一覧を引き出す(true);
+        } else {
+          app.classList.remove('is-collapsed');
+          書き込む('view_hub_collapsed', false);
+        }
+      });
+
+      document.getElementById('overlay').addEventListener('click', function () { 一覧を引き出す(false); });
+
+      // 入室済みならパスワード画面を飛ばす
+      if (sessionStorage.getItem('crater_auth') === '1') 入室する();
+    })();
+  </script>
+
+</body>
+</html>
