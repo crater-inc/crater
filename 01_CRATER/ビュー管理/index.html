@@ -149,6 +149,55 @@
       scrollbar-color: #333 transparent;
     }
 
+    /* ===== 検索 ===== */
+    .search { padding: 12px 10px 4px; }
+
+    .search-box {
+      position: relative;
+      display: block;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: var(--side-sub);
+      pointer-events: none;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 12px 10px 36px;
+      font: inherit;
+      font-size: 16px;
+      color: #fff;
+      background: #1c1c1c;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .search-box input::placeholder { color: var(--side-sub); }
+    .search-box input:focus { border-color: rgba(255, 255, 255, 0.35); }
+
+    /* 入力を消す×ボタン（ブラウザ標準の青をグレーに） */
+    .search-box input::-webkit-search-cancel-button {
+      filter: grayscale(1) brightness(2);
+      cursor: pointer;
+    }
+
+    .search-status {
+      padding: 8px 10px 0;
+      font-size: 12px;
+      color: var(--side-sub);
+    }
+
+    /* 検索中は、閉じているグループも開いて当たったページを見せる */
+    .site-nav.is-searching .group.is-closed .group-list { display: flex; }
+
     .group + .group { margin-top: 14px; }
 
     .group-head {
@@ -204,6 +253,31 @@
     }
 
     .ext-icon { flex-shrink: 0; color: var(--side-sub); }
+
+    .site-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    /* 本文で当たった部分（名前の下に小さく出す） */
+    .site-snippet {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--side-sub);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      overflow-wrap: anywhere;
+    }
+
+    .site-snippet mark {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-radius: 2px;
+    }
 
     /* ===== 右：選んだページを表示 ===== */
     .main {
@@ -391,6 +465,13 @@
           <svg class="icon-close" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
       </div>
+      <div class="search">
+        <label class="search-box">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input type="search" id="searchInput" placeholder="ページ・本文を検索" autocomplete="off" aria-label="ページ名・見出し・本文を検索">
+        </label>
+        <p class="search-status" id="searchStatus" hidden></p>
+      </div>
       <nav class="site-nav" id="siteNav"></nav>
     </aside>
 
@@ -563,11 +644,21 @@
 
             item.classList.add('site');
             item.dataset.url = url;
+            item.dataset.name = p.名前;
+            item.dataset.group = g.グループ;
 
+            // 名前（検索が本文に当たった時は、その下に当たった部分を出す）
+            const text = document.createElement('span');
+            text.className = 'site-text';
             const name = document.createElement('span');
             name.className = 'site-name';
             name.textContent = p.名前;
-            item.appendChild(name);
+            const snippet = document.createElement('span');
+            snippet.className = 'site-snippet';
+            snippet.hidden = true;
+            text.appendChild(name);
+            text.appendChild(snippet);
+            item.appendChild(text);
             if (item.tagName === 'A') item.insertAdjacentHTML('beforeend', 外部マーク);
 
             const li = document.createElement('li');
@@ -590,6 +681,108 @@
           empty.textContent = 'まだページがありません（ページ一覧.js に追加します）';
         }
       }
+
+      // ===== 検索（ページ名・グループ名・各ページのタイトル・見出し・本文） =====
+      const searchInput = document.getElementById('searchInput');
+      const searchStatus = document.getElementById('searchStatus');
+      const ページの文字 = {};     // URL → そのページのタイトル・見出し・本文をつなげた文字
+      let 読み込み状態 = 'まだ';   // まだ → 読み込み中 → 済み
+
+      // 全角・半角、大文字・小文字の違いをそろえる
+      function そろえる(s) {
+        return (s || '').normalize('NFKC').toLowerCase();
+      }
+
+      // viewのページの中身を読み、タイトル・見出し・本文の文字を取り出す（検索欄を使った時に1回だけ）
+      function ページの文字を読み込む() {
+        if (読み込み状態 !== 'まだ') return;
+        const ボタン = Array.from(nav.querySelectorAll('button.site'));
+        if (!ボタン.length) return;
+        読み込み状態 = '読み込み中';
+        検索する();
+
+        Promise.all(ボタン.map(function (b) {
+          return fetch(b.dataset.url)
+            .then(function (res) { return res.ok ? res.text() : ''; })
+            .then(function (html) {
+              const doc = new DOMParser().parseFromString(html, 'text/html');
+              doc.querySelectorAll('script, style, noscript, template, svg').forEach(function (el) { el.remove(); });
+              const 見出し = Array.from(doc.querySelectorAll('h1, h2, h3, h4')).map(function (h) { return h.textContent; }).join(' ');
+              const 本文 = doc.body ? doc.body.textContent : '';
+              ページの文字[b.dataset.url] = [doc.title, 見出し, 本文].join(' ').replace(/\s+/g, ' ').trim();
+            })
+            .catch(function () {});
+        })).then(function () {
+          読み込み状態 = '済み';
+          検索する();
+        });
+      }
+
+      // 本文で当たった所の前後を少し切り出し、当たった語に印をつける
+      function 当たった所を出す(el, 文字, 語) {
+        const そろえた文字 = そろえる(文字);
+        const 位置 = そろえた文字.indexOf(語);
+        if (位置 < 0) { el.hidden = true; return; }
+        // 全角半角をそろえて文字数が変わった時は、そろえた方の文字で見せる（位置がずれないように）
+        const 見せる文字 = そろえた文字.length === 文字.length ? 文字 : そろえた文字;
+        const 始め = Math.max(0, 位置 - 16);
+        const 終わり = Math.min(見せる文字.length, 位置 + 語.length + 24);
+
+        el.textContent = '';
+        el.appendChild(document.createTextNode((始め > 0 ? '…' : '') + 見せる文字.slice(始め, 位置)));
+        const mark = document.createElement('mark');
+        mark.textContent = 見せる文字.slice(位置, 位置 + 語.length);
+        el.appendChild(mark);
+        el.appendChild(document.createTextNode(見せる文字.slice(位置 + 語.length, 終わり) + (終わり < 見せる文字.length ? '…' : '')));
+        el.hidden = false;
+      }
+
+      function 検索する() {
+        const 語 = そろえる(searchInput.value).trim().split(/\s+/).filter(Boolean);
+        const 検索中 = 語.length > 0;
+        let 件数 = 0;
+        nav.classList.toggle('is-searching', 検索中);
+
+        nav.querySelectorAll('.group').forEach(function (section) {
+          let 見えている = 0;
+          section.querySelectorAll('li').forEach(function (li) {
+            const item = li.querySelector('.site');
+            const snippet = li.querySelector('.site-snippet');
+            const 名前側 = そろえる(item.dataset.name + ' ' + item.dataset.group);
+            const 中身 = ページの文字[item.dataset.url] || '';
+            const 全部 = 名前側 + ' ' + そろえる(中身);
+            const 当たり = !検索中 || 語.every(function (w) { return 全部.indexOf(w) >= 0; });
+            li.hidden = !当たり;
+
+            // 名前では当たらず本文で当たった語があれば、その部分を名前の下に出す
+            const 本文だけの語 = 検索中 && 当たり ? 語.find(function (w) { return 名前側.indexOf(w) < 0; }) : null;
+            if (本文だけの語) 当たった所を出す(snippet, 中身, 本文だけの語); else snippet.hidden = true;
+
+            if (当たり) 見えている++;
+          });
+          section.hidden = 見えている === 0;
+          件数 += 見えている;
+        });
+
+        if (!検索中) {
+          searchStatus.hidden = true;
+          return;
+        }
+        searchStatus.hidden = false;
+        searchStatus.textContent = (件数 ? 件数 + '件' : '見つかりませんでした') + (読み込み状態 === '読み込み中' ? '（本文を読み込み中…）' : '');
+      }
+
+      searchInput.addEventListener('focus', ページの文字を読み込む);
+      searchInput.addEventListener('input', function () {
+        ページの文字を読み込む();
+        検索する();
+      });
+      searchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          searchInput.value = '';
+          検索する();
+        }
+      });
 
       function ページを開く(名前, グループ名, url) {
         viewerWrap.classList.add('is-loading');
