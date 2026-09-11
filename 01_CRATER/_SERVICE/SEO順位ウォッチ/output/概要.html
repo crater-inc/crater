@@ -88,6 +88,8 @@ p strong,li strong{color:var(--text);font-weight:500;}
 .rule.manual h3{color:var(--ng);}
 .rule ul{margin:0;padding-left:20px;}
 .rule li{font-size:14px;color:var(--sub);margin-bottom:7px;}
+.plain{margin:0;padding-left:20px;}
+.plain li{font-size:15px;color:var(--sub);margin-bottom:8px;}
 
 /* お願いボックス */
 .note{
@@ -149,9 +151,9 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
 <div class="wrap">
 
   <header>
-    <p class="eyebrow">CHICS ／ chics.top ／ 2026-09-10 開始</p>
+    <p class="eyebrow">CRATER GROUP ／ 2026-09-10 開始</p>
     <h1 class="title">SEO順位ウォッチとは</h1>
-    <p class="lead">新しく記事を作るのではなく、すでにある記事の検索順位を実測して、1本ずつ直して育てていく仕組みです。週1回、自動で動きます。</p>
+    <p class="lead">新しく記事を作るのではなく、すでにある記事の検索順位を実測して、少しずつ直して育てていく仕組みです。週1回、自動で動きます。</p>
   </header>
 
   <section>
@@ -169,16 +171,16 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
         <span class="sd">Search Console APIから、キーワードごとの順位・表示回数・クリック数を取得します。</span>
       </li>
       <li>
-        <span class="st">1本だけ選ぶ</span>
-        <span class="sd">順位の割にクリックされていない記事を洗い出し、その中から<strong>受注につながるキーワードを1つだけ</strong>選びます。表示回数が多くても、他社ロゴを見に来ているだけの検索や、デザイナー志望者向けの検索は選びません。</span>
+        <span class="st">直す記事を選ぶ</span>
+        <span class="sd">順位の割にクリックされていない記事を洗い出し、その中から<strong>受注につながるものを、サイトごとに決めた本数まで</strong>選びます。表示回数が多くても、他社ロゴを見に来ているだけの検索や、デザイナー志望者向けの検索は選びません。</span>
       </li>
       <li>
         <span class="st">検索意図を調べる</span>
         <span class="sd">実際にそのキーワードで検索し、上位ページと比べて何が足りないかを特定します。</span>
       </li>
       <li>
-        <span class="st">1か所だけ直す</span>
-        <span class="sd">タイトルなど、原因と判断した箇所だけを直します。<strong>まとめて何本も変えません。</strong>同時に複数変えると、何が効いたのか分からなくなるためです。</span>
+        <span class="st">1つの記事につき1か所だけ直す</span>
+        <span class="sd">タイトルなど、原因と判断した箇所だけを直します。<strong>1つの記事で複数の箇所は同時に変えません。</strong>タイトルと本文を一緒に変えると、どちらが効いたのか分からなくなるためです。別々の記事であれば、同じ週に複数直しても測定は混ざりません。</span>
       </li>
       <li>
         <span class="st">14日間そのままにする</span>
@@ -186,7 +188,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
       </li>
       <li>
         <span class="st">実測で判定して、次の1本へ</span>
-        <span class="sd">14日後に順位を測り直し、上がった／変わらなかった／下がったを数字で判定します。下がっていた場合は元に戻します。</span>
+        <span class="sd">14日が過ぎた後の最初の月曜に順位を測り直し、上がった／変わらなかった／下がったを数字で判定します。下がっていた場合は元に戻します。</span>
       </li>
     </ol>
   </section>
@@ -215,6 +217,17 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
     </div>
     <p style="margin-top:20px">本文をAIに自動生成させることは<strong>意図的にしていません。</strong>事実と違う内容が自動で増えていくリスクがあるためです。</p>
     <p><strong>ただし「本文は今後も一切触らない」という意味ではありません。</strong>順位が低い記事は、タイトルを直しても上がりません。その場合の原因は本文の情報量や検索意図とのズレなので、本文の改善が必要になります。<strong>そのケースは自動では行わず、クレーター側で内容を確認してから対応し、実施後にお知らせします。</strong></p>
+  </section>
+
+  <section>
+    <h2>対象サイトと本数</h2>
+    <ul class="plain">
+      <li><strong>CHICS（chics.top）</strong>　週5本まで自動で改善</li>
+      <li><strong>YEARS（years.design）</strong>　週5本まで（WordPressの接続後に開始）</li>
+      <li><strong>CRATER・APOLLOS</strong>　週2本まで（WordPressの接続後に開始）</li>
+      <li><strong>BIRTH・A CURRY</strong>　当面は順位の測定のみ</li>
+    </ul>
+    <p style="margin-top:14px">本数は上限です。受注につながる候補がない週は、それより少なくなります。</p>
   </section>
 
   <section>
@@ -280,7 +293,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
   </section>
 
   <footer>
-    株式会社クレーター／CHICS　SEO順位ウォッチ　最終更新 2026-09-10
+    株式会社クレーター　SEO順位ウォッチ　最終更新 2026-09-11
   </footer>
 
 </div>

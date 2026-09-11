@@ -12,7 +12,7 @@ permissions:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     defaults:
       run:
         working-directory: "01_CRATER/_SERVICE/SEO順位ウォッチ"
@@ -44,7 +44,7 @@ jobs:
           PROMPT="$(cat 指示.md)"
           claude -p "$PROMPT" \
             --model opus \
-            --max-turns 60 \
+            --max-turns 200 \
             --permission-mode bypassPermissions 2>&1 | tee 実行ログ.txt
           echo "---- 報告 ----"
           cat 報告.txt || echo "報告.txt が作られませんでした"

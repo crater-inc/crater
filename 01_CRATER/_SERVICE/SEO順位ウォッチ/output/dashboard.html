@@ -156,7 +156,7 @@ td.n{text-align:right;font-family:"IBM Plex Mono",monospace;}
   <header>
     <p class="eyebrow">CRATER GROUP</p>
     <h1 class="title">SEO順位ウォッチ</h1>
-    <p class="lead">既存記事を1本ずつ改善して育てる記録。1回に直すのは1キーワードだけ。直したら14日間は触らず、実測で効果を判定する。</p>
+    <p class="lead">既存記事を少しずつ改善して育てる記録。1つの記事で直すのは1か所だけ。直した記事は14日間触らず、実測で効果を判定する。</p>
     <p class="updated" id="updated"></p>
     <p class="updated"><a href="./概要.html">この仕組みの説明はこちら →</a></p>
   </header>
@@ -219,12 +219,12 @@ if (sessionStorage.getItem('srw_unlocked') === '1') unlock();
 
 // ============ サイトごとの扱い（engine.py の 対象サイト と合わせる） ============
 const サイト一覧 = [
-  { id:'chics.top',      名前:'CHICS',    扱い:'改善' },
-  { id:'years.design',   名前:'YEARS',    扱い:'測定のみ' },
-  { id:'crater.co.jp',   名前:'CRATER',   扱い:'測定のみ' },
-  { id:'apollos.jp',     名前:'APOLLOS',  扱い:'測定のみ' },
-  { id:'birth.business', 名前:'BIRTH',    扱い:'測定のみ' },
-  { id:'acurry.jp',      名前:'A CURRY',  扱い:'測定のみ' },
+  { id:'chics.top',      名前:'CHICS',    扱い:'改善',     上限:5 },
+  { id:'years.design',   名前:'YEARS',    扱い:'認証待ち', 上限:5 },
+  { id:'crater.co.jp',   名前:'CRATER',   扱い:'認証待ち', 上限:2 },
+  { id:'apollos.jp',     名前:'APOLLOS',  扱い:'認証待ち', 上限:2 },
+  { id:'birth.business', 名前:'BIRTH',    扱い:'測定のみ', 上限:2 },
+  { id:'acurry.jp',      名前:'A CURRY',  扱い:'測定のみ', 上限:2 },
 ];
 
 // ============ 検索順位ごとの平均的なクリック率（％） ============
@@ -234,6 +234,15 @@ const 期待CTR = {1:28.0, 2:15.0, 3:11.0, 4:8.0, 5:6.0, 6:4.5, 7:3.5, 8:3.0, 9:
 const スパム語 = /escort|eskort|escoet|eacort|bayan|casino|slot|viagra|cialis|porn|xxx|kocaeli|izmit|derince|kartepe|gebze|kandıra|maşukiye/i;
 // 受注につながらないキーワード（他社ロゴを見に来ているだけ・デザイナー志望者向け）
 const 対象外 = [/一覧/, /有名/, /になるには/, /仕事内容/, /年収/];
+// 指名検索（社名・ブランド名そのもの）。もともと上位でタイトルを直す意味がないので除外（engine.py と合わせる）
+const 指名語 = {
+  'chics.top':      /chics|シックス/i,
+  'years.design':   /^years|イヤーズ/i,
+  'crater.co.jp':   /クレーター|crater/i,
+  'apollos.jp':     /apollos|アポロス/i,
+  'birth.business': /^birth\b|birth\.business/i,
+  'acurry.jp':      /a\s*curry|acurry|accurry|アカリー|akari\s*curry/i,
+};
 
 let ログ = {改善:[]}, 履歴 = {測定:[]}, 選択中 = 'chics.top';
 
@@ -274,9 +283,12 @@ function 描く(){
   document.getElementById('updated').textContent = 最新
     ? `${選択中} ／ 最終測定 ${最新.測定日}（集計期間 ${最新.集計期間.開始} 〜 ${最新.集計期間.終了}）`
     : `${選択中} ／ まだ測定データがありません`;
-  document.getElementById('modeNote').textContent = サイト.扱い === '改善'
-    ? 'このサイトは毎週1本ずつ自動で改善しています（タイトル・descriptionのみ）。'
-    : 'このサイトは測定のみです。順位を記録して異常を見ていますが、記事には触っていません。';
+  const 説明 = {
+    '改善':     `このサイトは毎週最大${サイト.上限}本、自動で改善しています（タイトル・descriptionのみ）。`,
+    '認証待ち': `週${サイト.上限}本の自動改善を予定しています。WordPressの接続待ちのため、今は測定のみです。`,
+    '測定のみ': 'このサイトは測定のみです。順位を記録して異常を見ていますが、記事には触っていません。',
+  };
+  document.getElementById('modeNote').textContent = 説明[サイト.扱い];
 
   描く異常(最新);
   描く観察中(ログ絞り込み, 最新);
@@ -391,6 +403,7 @@ function 描く候補(ログ, 最新){
     .filter(r => !観察中ページ.has(r.ページ))
     .filter(r => !スパム語.test(r.キーワード))
     .filter(r => !対象外.some(p => p.test(r.キーワード)))
+    .filter(r => !(指名語[選択中] && 指名語[選択中].test(r.キーワード)))
     .map(r => {
       const 順位 = Math.round(r.順位);
       const 差 = 期待CTR[順位] ? +(期待CTR[順位] - r.CTR).toFixed(2) : 0;
