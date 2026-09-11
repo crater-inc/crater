@@ -1,0 +1,65 @@
+name: ロゴ案件ウォッチ
+
+# 毎日 9:00 と 17:00(JST) に自動実行（UTCでは0:00と8:00）。手動実行も可能。
+on:
+  schedule:
+    - cron: "0 0 * * *"
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+    inputs:
+      ai_limit:
+        description: "1回にAIで読む候補の上限"
+        required: false
+        default: "40"
+
+permissions:
+  contents: write   # 集めた案件と一覧HTMLをコミットするため
+
+concurrency:
+  group: logo-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: "01_CRATER/_SERVICE/ロゴ案件ウォッチ"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 依存インストール
+        run: pip install pypdf
+
+      - name: Claude Codeインストール
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: 役所サイトのRSS一覧を作り直す（毎月1日の朝だけ）
+        run: |
+          if [ "$(TZ=Asia/Tokyo date +%d)" = "01" ] && [ "$(TZ=Asia/Tokyo date +%H)" -lt 12 ]; then
+            python 役所RSSさがし.py
+          else
+            echo "今日は作り直さない"
+          fi
+
+      - name: ロゴ案件を集めて判定・一覧を更新・新着をLINEへ
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
+          AI_LIMIT: ${{ github.event.inputs.ai_limit || '40' }}
+        run: python 収集.py
+
+      - name: 記録をコミット
+        run: |
+          git config user.name "ロゴ案件ウォッチ"
+          git config user.email "actions@users.noreply.github.com"
+          git add data output
+          git commit -m "ロゴ案件ウォッチ $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M')" || echo "変更なし"
+          git pull --rebase || echo "rebase skip"
+          git push || echo "push skip"
