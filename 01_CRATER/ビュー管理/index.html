@@ -33,7 +33,8 @@
     button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
-    button:focus-visible, a:focus-visible { outline: 2px solid #7a9cff; outline-offset: 2px; }
+    /* キーボード操作時の目印（黒い画面で浮かないよう、白の細枠を内側に） */
+    button:focus-visible, a:focus-visible { outline: 1px solid rgba(255, 255, 255, 0.4); outline-offset: -1px; }
 
     /* ===== パスワード画面（viewトップと同じ見た目） ===== */
     .lock-screen {
@@ -228,9 +229,8 @@
 
     .site {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 10px;
       width: 100%;
       padding: 10px 12px;
       border-radius: 10px;
@@ -252,10 +252,20 @@
       overflow-wrap: anywhere;
     }
 
-    .ext-icon { flex-shrink: 0; color: var(--side-sub); }
+    .ext-icon { flex-shrink: 0; margin: 4px 0 0 auto; color: var(--side-sub); }
+
+    /* ページ名の頭の絵文字アイコン（名前の1行目の高さにそろえる） */
+    .site-icon {
+      flex-shrink: 0;
+      width: 20px;
+      font-size: 15px;
+      line-height: 21px;
+      text-align: center;
+    }
 
     .site-text {
       display: flex;
+      flex: 1;
       flex-direction: column;
       gap: 2px;
       min-width: 0;
@@ -400,9 +410,6 @@
 
     /* ===== 左の一番上：トップへのリンク ===== */
     .home-link-wrap { padding: 8px 10px 0; }
-    .home-link { justify-content: flex-start; }
-    .home-icon { flex-shrink: 0; color: var(--side-sub); }
-    .home-link.is-active .home-icon { color: #fff; }
 
     /* ===== トップ（view全体の最近の更新）・白背景 ===== */
     .top-view {
@@ -604,8 +611,8 @@
       </div>
       <div class="home-link-wrap" id="homeWrap">
         <button type="button" class="site home-link" id="homeBtn">
-          <svg class="home-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
-          <span class="site-name">トップ（最近の更新）</span>
+          <span class="site-icon" aria-hidden="true">🏠</span>
+          <span class="site-text"><span class="site-name">トップ（最近の更新）</span></span>
         </button>
       </div>
       <nav class="site-nav" id="siteNav"></nav>
@@ -804,6 +811,13 @@
             snippet.hidden = true;
             text.appendChild(name);
             text.appendChild(snippet);
+
+            // 名前の頭の絵文字アイコン（ページ一覧.js の「アイコン」。無い時は📄）
+            const icon = document.createElement('span');
+            icon.className = 'site-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            icon.textContent = p.アイコン || '📄';
+            item.appendChild(icon);
             item.appendChild(text);
             if (item.tagName === 'A') item.insertAdjacentHTML('beforeend', 外部マーク);
 
