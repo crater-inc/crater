@@ -384,7 +384,7 @@ footer{border-top:1px solid var(--line);padding-top:24px;font-size:13px;color:va
           <dd>Google Search Console API。読み取り専用のサービスアカウント <code>analytics-reader@crater-dashboard.iam.gserviceaccount.com</code> を、各サイトのプロパティに「制限付き」で追加しています。既存のGA4ダッシュボードと同じアカウントの流用です。</dd>
 
           <dt>記事の更新</dt>
-          <dd>WordPress REST API（認証はアプリケーションパスワード）。変更するのは各サイトの記事だけで、トップページ・固定ページは対象外です。chics.topの記事はカスタム投稿タイプ <code>news</code>（<code>/wp-json/wp/v2/news/&lt;ID&gt;</code>）、years.design・apollos.jpは通常の投稿（<code>posts</code>）です。years.designはmeta descriptionもYoastの項目（<code>_yoast_wpseo_metadesc</code>）で書き換えます。crater.co.jpの実績（<code>works</code>）はタイトルが作品名としてそのまま表示されるため、自動では変更せず、改善案の提案だけにしています。</dd>
+          <dd>WordPress REST API（認証はアプリケーションパスワード）。変更するのは各サイトの記事だけで、トップページ・固定ページは対象外です。chics.topの記事はカスタム投稿タイプ <code>news</code>（<code>/wp-json/wp/v2/news/&lt;ID&gt;</code>）、years.design・apollos.jpは通常の投稿（<code>posts</code>）です。years.design・apollos.jpはmeta descriptionもYoastの項目（<code>_yoast_wpseo_metadesc</code>）で書き換えます。crater.co.jpの実績（<code>works</code>）はタイトルが作品名としてそのまま表示されるため、自動では変更せず、改善案の提案だけにしています。</dd>
 
           <dt>WAFによる403について</dt>
           <dd>サーバー側のWAFが、外部IP（GitHub Actions）からの <code>/wp-json/</code> へのPOSTを403で弾いていました。現在は403を検知したら <code>?rest_route=</code> のクエリ形式で自動的に再試行する実装で回避しています。<strong>WAF設定の変更はしていません。</strong>もし今後この挙動を調整される場合はご一報ください。</dd>

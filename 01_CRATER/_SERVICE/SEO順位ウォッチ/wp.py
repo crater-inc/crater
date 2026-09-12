@@ -45,9 +45,9 @@ import urllib.request
     },
     "apollos.jp": {
         "url": "https://apollos.jp", "鍵": "apollos", "触ってよい種類": ["posts"],
-        # テーマ（functions.php）もmeta descriptionを出していて、Yoastの分と2つ重複している。
-        # 直すまではYoast側を変えても効果が読めないので、タイトルだけにする
-        "説明文を変えられる": False,
+        # テーマとYoastがdescriptionを二重に出していたのを、2026-09-12にテーマ側で修正した。
+        # 重複が残っているページは、下の「説明文タグの数」で止まる
+        "説明文を変えられる": True,
         "自動で変えてよい": True,
     },
     "crater.co.jp": {
@@ -176,6 +176,20 @@ def 記事を特定する(url):
     return None, None
 
 
+def 説明文タグの数(url):
+    """公開ページに <meta name="description"> がいくつ出ているかを数える。
+
+    テーマとSEOプラグインの両方が出していると2つ並び、どちらが検索結果に使われるか分からない。
+    その状態でdescriptionを変えても効果が読めないので、変更前に確かめる。
+    """
+    url = urllib.parse.quote(url, safe=":/?&=%#+~")
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (CRATER-SEO-Watch)"})
+    with urllib.request.urlopen(req, timeout=30) as res:
+        html = res.read().decode(errors="replace")
+    head = html.split("</head>")[0]
+    return len(re.findall(r"""<meta[^>]+name=["']description["']""", head))
+
+
 def 種類を探す(サイト, 認証, 記事ID):
     """記事IDから投稿タイプを調べる（触ってよい種類の中から順に試す）。"""
     設定 = サイト設定[サイト]
@@ -246,6 +260,12 @@ def main():
         if args.desc is not None and not 設定["説明文を変えられる"]:
             print(f"{args.site} ではmeta descriptionを変更できません。タイトルで対応してください。")
             sys.exit(2)
+        if args.desc is not None:
+            数 = 説明文タグの数(今["link"])
+            if 数 > 1:
+                print(f"このページにはmeta descriptionが{数}つ出ています（テーマとSEOプラグインの重複など）。"
+                      "直るまでは変えても効果が読めないため、変更しません。タイトルで対応してください。")
+                sys.exit(2)
         if args.title is not None and meta.get("_yoast_wpseo_title"):
             # Yoastで検索用タイトルが個別に決められている記事は、記事タイトルを変えても検索結果に出ない
             print(f"この記事はYoastの検索用タイトルが個別に設定されています（{meta['_yoast_wpseo_title']}）。"

@@ -76,7 +76,28 @@ add_filter('excerpt_more', 'apollos_excerpt_more');
  * AI検索対策（GEO / AIO / LLMO）
  * meta description・OGP・構造化データ(JSON-LD)を <head> 内に出力する。
  * すべて画面に表示されない裏方の要素。レイアウト・動作には一切影響しない。
+ * Yoast SEO が同じページに出しているタグは重ねて出さない（2026-09-12〜）。
  * ===================================================================== */
+
+/**
+ * Yoast SEO が今のページに出している内容を調べる。
+ * テーマ側で同じタグを重ねて出さないために使う。Yoastが無い・調べられないときは null（テーマ側で全部出す）。
+ */
+function apollos_yoast_head_info() {
+    if (! function_exists('YoastSEO')) {
+        return null;
+    }
+    try {
+        $meta = YoastSEO()->meta->for_current_page();
+        return array(
+            'description' => trim((string) $meta->meta_description),
+            'has_image'   => ! empty($meta->open_graph_images),
+        );
+    } catch (\Throwable $e) {
+        return null;
+    }
+}
+
 function apollos_ai_seo_head() {
     $site_name = '株式会社アポロス';
     $base_desc = 'APOLLOS（アポロス）は「認知」に特化し、価値が届き・理解され・選ばれる状態をつくる会社です。';
@@ -107,17 +128,31 @@ function apollos_ai_seo_head() {
     if (mb_strlen($desc) > 120) { $desc = mb_substr($desc, 0, 118) . '…'; }
     $title = wp_get_document_title();
 
+    // Yoast SEO が出しているタグは、ここでは出さない（同じタグが2つ並ぶのを防ぐ）。
+    // Yoastは記事ではdescription・OGP・画像まで出すが、トップや固定ページではdescriptionと画像を出さないので、そこだけ補う。
+    $yoast       = apollos_yoast_head_info();
+    $yoast_desc  = $yoast ? $yoast['description'] : '';
+    $yoast_image = $yoast ? $yoast['has_image'] : false;
+
     // --- meta description ---
-    echo "\n" . '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
+    if ($yoast_desc === '') {
+        echo "\n" . '<meta name="description" content="' . esc_attr($desc) . '">' . "\n";
+    }
 
     // --- OGP / Twitter Card ---
-    echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '">' . "\n";
-    echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
-    echo '<meta property="og:description" content="' . esc_attr($desc) . '">' . "\n";
-    echo '<meta property="og:type" content="' . esc_attr($type) . '">' . "\n";
-    echo '<meta property="og:url" content="' . esc_url($url) . '">' . "\n";
-    echo '<meta property="og:image" content="' . esc_url($ogimg) . '">' . "\n";
-    echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+    if (! $yoast) {
+        echo '<meta property="og:site_name" content="' . esc_attr($site_name) . '">' . "\n";
+        echo '<meta property="og:title" content="' . esc_attr($title) . '">' . "\n";
+        echo '<meta property="og:type" content="' . esc_attr($type) . '">' . "\n";
+        echo '<meta property="og:url" content="' . esc_url($url) . '">' . "\n";
+        echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
+    }
+    if ($yoast_desc === '') {
+        echo '<meta property="og:description" content="' . esc_attr($desc) . '">' . "\n";
+    }
+    if (! $yoast_image) {
+        echo '<meta property="og:image" content="' . esc_url($ogimg) . '">' . "\n";
+    }
 
     // --- Organization 構造化データ（全ページ共通）---
     $org = array(

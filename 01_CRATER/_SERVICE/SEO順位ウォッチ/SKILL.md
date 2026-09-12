@@ -39,7 +39,7 @@ description: クレーターグループ各サイトの既存記事を、Search 
    （元ネタのプロンプトは「1回1キーワード」だったが、週1本では年50本にしかならず遅すぎるため、2026-09-11にケイスケ判断で変更）
 2. **観察期間は14日。** 観察中のキーワードは次回レビュー日まで絶対に触らない。
    （元ネタのプロンプトは7日だが、Googleの反映に2〜4週かかるため誤判定を避けて延長した）
-3. **自動で変更していいのはタイトルとmeta descriptionだけ。**（descriptionを書き換えられるのは今は years.design だけ）
+3. **自動で変更していいのはタイトルとmeta descriptionだけ。**（descriptionを書き換えられるのは years.design と apollos.jp。chics・craterはタイトルのみ）
    本文・見出し・URL・内部リンクの変更はケイスケさんの承認が要る。
    ここを自動にするとRISING社と同じ「AIが薄い文章を勝手に量産」になる。
 4. **順位が取れても事業にならないキーワードは追わない。**
@@ -66,8 +66,10 @@ description: クレーターグループ各サイトの既存記事を、Search 
   承認後に反映するときは、このMacから `python3 wp.py --site crater.co.jp --url <URL> --title "..." --approved`。
 - **Yoastの説明文（`_yoast_wpseo_metadesc`）をREST APIで書き換えられるのは years.design と apollos.jp だけ。**
   chics・craterはREST APIに項目が出ていないので、タイトルしか変えられない。
-- **apollos.jpはページにmeta descriptionが2つ出ている。** テーマ（`02_APOLLOS/wp-theme/apollos/functions.php` の `apollos_ai_seo_head()`）とYoastの重複。
-  直すまではdescriptionを変えても効果が読めないので、wp.pyで止めている。
+- **apollos.jpは、テーマ（`02_APOLLOS/wp-theme/apollos/functions.php` の `apollos_ai_seo_head()`）とYoastがdescription・OGPを二重に出していた。**
+  2026-09-12にテーマ側を「Yoastが出しているタグは出さない」形に修正（トップ・固定ページではYoastがdescriptionと画像を出さないので、そこだけテーマが補う）。
+  テーマの反映は手動（Actions「Deploy APOLLOS WP Theme」）。
+  wp.py は `--desc` の前に公開ページのdescriptionタグを数え、2つ以上なら変更しない（重複が再発しても誤判定しない）。
 - **認証情報の置き場所。** このMacは `~/.<chics|years|apollos|crater>-wp/credentials.json`（chmod 600・Git管理外）。
   GitHubは chics が `CHICS_WP_APP_PASSWORD`、years・apollos が `WP_KEYS_JSON`（ログイン名とパスワードをまとめたJSON）。
   **リポジトリ crater-inc/crater はPUBLIC**なので、ログイン名もワークフローに直書きしない。
@@ -93,7 +95,7 @@ description: クレーターグループ各サイトの既存記事を、Search 
 3. WordPressなら `wp.py` の `サイト設定` にも追加し（触ってよい種類・description可否・自動可否）、アプリケーションパスワードを用意する
 4. WordPress以外のサイトは `wp.py` が使えないので、更新手段を別途用意する
 
-2026-09-12時点：6サイトを毎週測定。**自動改善は chics.top（週5本・タイトルのみ）・years.design（週5本・タイトルとdescription）・apollos.jp（週2本・タイトルのみ）**。crater.co.jp は「提案のみ」（実績ページ・週最大2件）。
+2026-09-12時点：6サイトを毎週測定。**自動改善は chics.top（週5本・タイトルのみ）・years.design（週5本・タイトルとdescription）・apollos.jp（週2本・タイトルとdescription）**。crater.co.jp は「提案のみ」（実績ページ・週最大2件）。
 - years.design … 記事（`/info/<ID>/`）のみ。検索データが少なく、週5本に届かない週が多い見込み
 - apollos.jp … 記事のみ（固定ページは不可）。13〜29位のものが中心で、タイトルより中身の改善が効く段階
 - crater.co.jp … 実績ページ（WORKS 187本）は画像だけでテキストがほぼ無い。本命は、業種で語れる実績に短い説明を足すこと（本文なので承認が要る）。大手ブランド案件は検索では勝てないので狙わない
