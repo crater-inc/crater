@@ -3065,7 +3065,7 @@
     },
     {
       "type": "frame",
-      "id": "lA8ZT",
+      "id": "tp0tS",
       "x": 0,
       "y": 1770,
       "name": "人と空間 - HUMAN",
@@ -3077,22 +3077,22 @@
       "children": [
         {
           "type": "rectangle",
-          "id": "gGMAM",
-          "x": 121,
-          "y": 81,
+          "id": "WnFhQ",
+          "x": 0,
+          "y": 130,
           "name": "Main Visual Placeholder",
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "../CL/人と空間/キャラ設定/final_HUMAN正面.png",
+            "url": "../CL/人と空間/キャラ設定/t_main_ON_noline.png",
             "mode": "fit"
           },
-          "width": 967,
-          "height": 1289
+          "width": 1373,
+          "height": 1831
         },
         {
           "type": "frame",
-          "id": "zCYUQ",
+          "id": "Jlibs",
           "x": 60,
           "y": 42,
           "name": "Text Block",
@@ -3102,7 +3102,7 @@
           "children": [
             {
               "type": "text",
-              "id": "JwzW0",
+              "id": "ZBm5j",
               "name": "Name",
               "fill": "#111111",
               "content": "HUMAN",
@@ -3112,26 +3112,26 @@
             },
             {
               "type": "frame",
-              "id": "d4M1DV",
+              "id": "ggjzO",
               "name": "Info Rows",
               "layout": "vertical",
               "gap": 8,
               "children": [
                 {
                   "type": "frame",
-                  "id": "MA3kW",
+                  "id": "q9TYu",
                   "name": "PART Row",
                   "gap": 20,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
-                      "id": "GCQcm",
+                      "id": "uN811",
                       "name": "Label",
                       "fill": "#999999",
                       "textGrowth": "fixed-width",
                       "width": 130,
-                      "content": "TYPE",
+                      "content": "PART",
                       "fontFamily": "Inter",
                       "fontSize": 20,
                       "fontWeight": "normal",
@@ -3139,7 +3139,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "r9LKo",
+                      "id": "UzV8t",
                       "name": "Value",
                       "fill": "#222222",
                       "content": "Anonymous",
@@ -3151,14 +3151,14 @@
                 },
                 {
                   "type": "frame",
-                  "id": "zZ8cx",
+                  "id": "l0NYF",
                   "name": "HEIGHT Row",
                   "gap": 20,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
-                      "id": "BqUx1",
+                      "id": "elLSt",
                       "name": "Label",
                       "fill": "#999999",
                       "textGrowth": "fixed-width",
@@ -3171,7 +3171,7 @@
                     },
                     {
                       "type": "text",
-                      "id": "TfX0k",
+                      "id": "qr4jD",
                       "name": "Value",
                       "fill": "#222222",
                       "content": "183cm",
@@ -3183,14 +3183,14 @@
                 },
                 {
                   "type": "frame",
-                  "id": "a89pn0",
+                  "id": "Fiq4x",
                   "name": "KEY COLOR Row",
                   "gap": 20,
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "text",
-                      "id": "hj4mr",
+                      "id": "aKLie",
                       "name": "Label",
                       "fill": "#999999",
                       "textGrowth": "fixed-width",
@@ -3202,22 +3202,24 @@
                     },
                     {
                       "type": "frame",
-                      "id": "s4kZ1d",
+                      "id": "aPIfV",
                       "name": "Swatch Row",
                       "gap": 8,
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "ellipse",
-                          "id": "w26Cf",
+                          "id": "R2BMFd",
                           "name": "Color Dot",
-                          "fill": "#D4AF37",
+                          "fill": "#FFFFFF",
                           "width": 20,
-                          "height": 20
+                          "height": 20,
+                          "stroke": "#CCCCCC",
+                          "strokeWidth": 1
                         },
                         {
                           "type": "text",
-                          "id": "yUs6u",
+                          "id": "N9QiUR",
                           "name": "Color Name",
                           "fill": "#222222",
                           "content": "White",
@@ -3233,11 +3235,11 @@
             },
             {
               "type": "text",
-              "id": "wZxwC",
+              "id": "MZ9Ar",
               "name": "Tagline",
               "fill": "#333333",
               "textGrowth": "fixed-width",
-              "width": 300,
+              "width": 321,
               "content": "匿名のヘルメットに宿る\"人\"。静かな緊張感をまとう近未来の姿で、機械の佇まいのなかに人間性を映す——人と空間の象徴。",
               "lineHeight": 1.7,
               "fontFamily": "Noto Sans JP",
@@ -3248,25 +3250,60 @@
         },
         {
           "type": "rectangle",
-          "id": "IV0JI",
-          "x": 1176,
-          "y": 236,
+          "id": "D6QNA",
+          "x": 1354,
+          "y": 40,
           "name": "Placeholder",
+          "enabled": false,
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "../CL/人と空間/キャラ設定/sheet_exp_OFF.jpg",
+            "url": "../CL/人と空間/キャラ設定/exp_ON_noline_t.png",
             "mode": "fill"
           },
-          "width": 541,
-          "height": 541
+          "width": 303,
+          "height": 303
         },
         {
           "type": "text",
-          "id": "Pn9VX",
+          "id": "VFGNs",
+          "x": 1354,
+          "y": 351.74812271521256,
+          "name": "穏やか Label",
+          "enabled": false,
+          "fill": "#333333",
+          "textGrowth": "fixed-width-height",
+          "width": 303,
+          "height": 28,
+          "content": "HUMAN ON",
+          "textAlign": "center",
+          "fontFamily": "Noto Sans JP",
+          "fontSize": 18,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "PRtev",
+          "x": 1678.7376278283464,
+          "y": 40,
+          "name": "Placeholder",
+          "enabled": false,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "../CL/人と空間/キャラ設定/exp_OFF_t.png",
+            "mode": "fill"
+          },
+          "width": 303,
+          "height": 303
+        },
+        {
+          "type": "text",
+          "id": "k06je",
           "x": 1678.7376278283464,
           "y": 351.74812271521256,
           "name": "驚き Label",
+          "enabled": false,
           "fill": "#333333",
           "textGrowth": "fixed-width-height",
           "width": 303,
@@ -3279,7 +3316,7 @@
         },
         {
           "type": "rectangle",
-          "id": "XaRt0",
+          "id": "QbVqt",
           "x": 1354,
           "y": 401.54122564889235,
           "name": "Placeholder",
@@ -3295,7 +3332,7 @@
         },
         {
           "type": "text",
-          "id": "q9IHz",
+          "id": "VOVWx",
           "x": 1354,
           "y": 713.289348364105,
           "name": "決然 Label",
@@ -3312,7 +3349,7 @@
         },
         {
           "type": "rectangle",
-          "id": "nnluW",
+          "id": "Uy7kU",
           "x": 1678.7376278283464,
           "y": 401.54122564889235,
           "name": "Placeholder",
@@ -3328,7 +3365,7 @@
         },
         {
           "type": "text",
-          "id": "Lzog1",
+          "id": "R6HUjU",
           "x": 1678.7376278283464,
           "y": 713.289348364105,
           "name": "リラックス Label",
@@ -3345,32 +3382,30 @@
         },
         {
           "type": "rectangle",
-          "id": "r4EfSt",
-          "x": 2003.4752556566928,
-          "y": 40,
+          "id": "GCLFi",
+          "x": 1274,
+          "y": 130,
           "name": "Placeholder",
-          "enabled": false,
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ディテール/KON_ディテール_刺繍.png",
-            "mode": "fill"
+            "url": "../CL/人と空間/キャラ設定/detail_helmet_t.png",
+            "mode": "fit"
           },
-          "width": 187,
-          "height": 303
+          "width": 332,
+          "height": 332
         },
         {
           "type": "text",
-          "id": "kHPlr",
-          "x": 2003.4752556566928,
-          "y": 349.5832051963569,
+          "id": "dKlAy",
+          "x": 1274,
+          "y": 470,
           "name": "刺繍 Label",
-          "enabled": false,
           "fill": "#333333",
           "textGrowth": "fixed-width-height",
-          "width": 187,
+          "width": 332,
           "height": 24,
-          "content": "刺繍",
+          "content": "ヘルメット",
           "textAlign": "center",
           "fontFamily": "Noto Sans JP",
           "fontSize": 15,
@@ -3378,32 +3413,30 @@
         },
         {
           "type": "rectangle",
-          "id": "KrxX5",
-          "x": 2203.73012615084,
-          "y": 40,
+          "id": "W2EL9",
+          "x": 1626,
+          "y": 130,
           "name": "Placeholder",
-          "enabled": false,
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ディテール/KON_ディテール_ネックレス・チョーカー.png",
+            "url": "../CL/人と空間/キャラ設定/detail_zip_t.png",
             "mode": "fill"
           },
-          "width": 187,
-          "height": 303
+          "width": 332,
+          "height": 332
         },
         {
           "type": "text",
-          "id": "eBfFB",
-          "x": 2203.73012615084,
-          "y": 349.5832051963569,
+          "id": "bfM3N",
+          "x": 1626,
+          "y": 470,
           "name": "ネックレス・チョーカー Label",
-          "enabled": false,
           "fill": "#333333",
           "textGrowth": "fixed-width-height",
-          "width": 187,
+          "width": 332,
           "height": 24,
-          "content": "ネックレス・チョーカー",
+          "content": "襟・ジップ",
           "textAlign": "center",
           "fontFamily": "Noto Sans JP",
           "fontSize": 15,
@@ -3411,156 +3444,242 @@
         },
         {
           "type": "rectangle",
-          "id": "EtG43",
-          "x": 2003.4752556566928,
-          "y": 388.5517205357585,
+          "id": "nOfKK",
+          "x": 1978,
+          "y": 130,
           "name": "Placeholder",
-          "enabled": false,
           "fill": {
             "type": "image",
             "enabled": true,
-            "url": "../01_CRATER/Artists/GILT CROW/output/MV_キーフレーム/13_キャラクターシート/Lovart_KONテスト/zone_ディテール/KON_ディテール_ブーツ.png",
-            "mode": "fill"
+            "url": "../CL/人と空間/キャラ設定/detail_shoes_t.png",
+            "mode": "fit"
           },
-          "width": 387,
-          "height": 303
+          "width": 332,
+          "height": 332
         },
         {
           "type": "text",
-          "id": "LjuMI",
-          "x": 2003.4752556566928,
-          "y": 698.1349257321154,
+          "id": "P3LoDm",
+          "x": 1978,
+          "y": 470,
           "name": "ブーツ Label",
-          "enabled": false,
           "fill": "#333333",
           "textGrowth": "fixed-width-height",
-          "width": 387,
+          "width": 332,
           "height": 24,
-          "content": "ブーツ",
+          "content": "シューズ",
           "textAlign": "center",
           "fontFamily": "Noto Sans JP",
           "fontSize": 15,
           "fontWeight": "normal"
         },
         {
-          "type": "rectangle",
-          "id": "uJUGc",
-          "x": 1762,
-          "y": -54,
-          "name": "Placeholder",
-          "fill": {
-            "type": "image",
-            "enabled": true,
-            "url": "../CL/人と空間/キャラ設定/sheet_turn_FRONT.jpg",
-            "mode": "fit"
-          },
-          "width": 303,
-          "height": 808
-        },
-        {
-          "type": "text",
-          "id": "ZrRwp",
-          "x": 1433,
-          "y": 1314,
-          "name": "FRONT Caption",
-          "fill": "#111111",
-          "textGrowth": "fixed-width",
-          "width": 220,
-          "content": "FRONT",
-          "textAlign": "center",
-          "fontFamily": "Inter",
-          "fontSize": 18,
-          "fontWeight": "700"
-        },
-        {
-          "type": "rectangle",
-          "id": "hNtc8",
-          "x": 2098.436860068259,
-          "y": -54,
-          "name": "Placeholder",
-          "fill": {
-            "type": "image",
-            "enabled": true,
-            "url": "../CL/人と空間/キャラ設定/sheet_turn_34.jpg",
-            "mode": "fit"
-          },
-          "width": 303,
-          "height": 808
-        },
-        {
-          "type": "text",
-          "id": "Am3j6",
-          "x": 1677,
-          "y": 1314,
-          "name": "3-4 Caption",
-          "fill": "#111111",
-          "textGrowth": "fixed-width",
-          "width": 220,
-          "content": "3-4",
-          "textAlign": "center",
-          "fontFamily": "Inter",
-          "fontSize": 18,
-          "fontWeight": "700"
-        },
-        {
-          "type": "rectangle",
-          "id": "sw0Kb",
-          "x": 1787.8737201365186,
-          "y": 540,
-          "name": "Placeholder",
-          "fill": {
-            "type": "image",
-            "enabled": true,
-            "url": "../CL/人と空間/キャラ設定/sheet_turn_SIDE.jpg",
-            "mode": "fit"
-          },
-          "width": 303,
-          "height": 808
-        },
-        {
-          "type": "text",
-          "id": "PPJj3",
-          "x": 1921,
-          "y": 1314,
-          "name": "SIDE Caption",
-          "fill": "#111111",
-          "textGrowth": "fixed-width",
-          "width": 220,
-          "content": "SIDE",
-          "textAlign": "center",
-          "fontFamily": "Inter",
-          "fontSize": 18,
-          "fontWeight": "700"
-        },
-        {
-          "type": "rectangle",
-          "id": "Y8ywv",
-          "x": 2124.3105802047776,
-          "y": 540,
-          "name": "Placeholder",
-          "fill": {
-            "type": "image",
-            "enabled": true,
-            "url": "../CL/人と空間/キャラ設定/sheet_turn_BACK.jpg",
-            "mode": "fit"
-          },
-          "width": 303,
-          "height": 808
-        },
-        {
-          "type": "text",
-          "id": "s75zJO",
-          "x": 2165,
-          "y": 1314,
-          "name": "BACK Caption",
-          "fill": "#111111",
-          "textGrowth": "fixed-width",
-          "width": 220,
-          "content": "BACK",
-          "textAlign": "center",
-          "fontFamily": "Inter",
-          "fontSize": 18,
-          "fontWeight": "700"
+          "type": "frame",
+          "id": "sfJKl",
+          "x": 1354,
+          "y": 538,
+          "name": "Turnaround Zone",
+          "width": 1036,
+          "height": 792,
+          "gap": 28,
+          "children": [
+            {
+              "type": "frame",
+              "id": "WzJh2",
+              "name": "FRONT Cell",
+              "width": 238,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "efux7",
+                  "name": "FRONT Image",
+                  "clip": true,
+                  "width": 238,
+                  "height": 762,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "W861S",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../CL/人と空間/キャラ設定/lovart_v5c_0.png",
+                        "mode": "fit"
+                      },
+                      "width": 238,
+                      "height": 762
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "e6J3tD",
+                  "name": "FRONT Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 238,
+                  "content": "FRONT",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "R4F3l",
+              "name": "3-4 Cell",
+              "width": 238,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YID26",
+                  "name": "3-4 Image",
+                  "clip": true,
+                  "width": 238,
+                  "height": 762,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "q7Dt3L",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../CL/人と空間/キャラ設定/lovart_v5c_1.png",
+                        "mode": "fit"
+                      },
+                      "width": 238,
+                      "height": 762
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "PYqYJ",
+                  "name": "3-4 Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 238,
+                  "content": "3-4",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sPF6e",
+              "name": "SIDE Cell",
+              "width": 238,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TWM4Q",
+                  "name": "SIDE Image",
+                  "clip": true,
+                  "width": 238,
+                  "height": 762,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "W01E2J",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../CL/人と空間/キャラ設定/lovart_v5c_2.png",
+                        "mode": "fit"
+                      },
+                      "width": 238,
+                      "height": 762
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "N9mfY4",
+                  "name": "SIDE Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 238,
+                  "content": "SIDE",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fnlif",
+              "name": "BACK Cell",
+              "width": 238,
+              "layout": "vertical",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zUMTV",
+                  "name": "BACK Image",
+                  "clip": true,
+                  "width": 238,
+                  "height": 762,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "id": "RFttG",
+                      "x": 0,
+                      "y": 42,
+                      "name": "Placeholder",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "../CL/人と空間/キャラ設定/lovart_v5c_3.png",
+                        "mode": "fit"
+                      },
+                      "width": 238,
+                      "height": 762
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "k4eX66",
+                  "name": "BACK Caption",
+                  "fill": "#111111",
+                  "textGrowth": "fixed-width",
+                  "width": 238,
+                  "content": "BACK",
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "700"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
