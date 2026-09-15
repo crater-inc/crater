@@ -18,6 +18,13 @@ window.ページ一覧 = [
     ],
   },
   {
+    グループ: '売上',
+    ページ: [
+      // 中身は非公開のアーティファクト（claude.ai・本人だけが開ける）。売上の数字はviewに置かない
+      { アイコン: '💴', 名前: 'デジタル売上ウォッチ', URL: 'https://claude.ai/artifact/Fj9ZtuY7LKyLcXUvLboAdi' },
+    ],
+  },
+  {
     グループ: '入札',
     ページ: [
       { アイコン: '🏛️', 名前: 'ロゴ案件ウォッチ', URL: '/01_CRATER/_SERVICE/ロゴ案件ウォッチ/output/ロゴ案件一覧.html' },
